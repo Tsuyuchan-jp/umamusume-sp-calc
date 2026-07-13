@@ -90,18 +90,27 @@
       </section>
 
       <section class="panel">
-        <h2>イベント・シナリオスキル</h2>
-        <div class="event-scope-notice warning" role="note">
-          <p class="event-scope-notice__lead">
-            <strong>サポカイベントは優先11種のみ対応</strong>
-          </p>
-          <p class="event-scope-notice__body">
-            イベント由来のスキルは、対応リストのサポカを編成したときだけ計上されます。それ以外のサポカは訓練ヒントのみ反映されます。
-          </p>
-          <details class="event-scope-details">
-            <summary class="event-scope-details__summary">対応サポカ一覧（11種）</summary>
+        <div class="event-panel-heading">
+          <h2>イベント・シナリオスキル</h2>
+          <button
+            type="button"
+            id="event-scope-trigger"
+            class="event-scope-trigger"
+            aria-expanded="false"
+            aria-controls="event-scope-panel"
+          >
+            ※サポカイベントについて
+          </button>
+          <div id="event-scope-panel" class="event-scope-panel warning" role="note" hidden>
+            <p class="event-scope-panel__lead">
+              <strong id="event-scope-lead">サポカイベントは優先11種のみ対応</strong>
+            </p>
+            <p class="event-scope-panel__body">
+              イベント由来のスキルは、対応リストのサポカを編成したときだけ計上されます。それ以外のサポカは訓練ヒントのみ反映されます。
+            </p>
+            <p id="event-scope-list-title" class="event-scope-panel__list-title">対応サポカ一覧（11種）</p>
             <ol id="event-priority-support-list" class="event-scope-list"></ol>
-          </details>
+          </div>
         </div>
         <details id="event-auto-collapse" class="collapse-section">
           <summary class="collapse-summary">

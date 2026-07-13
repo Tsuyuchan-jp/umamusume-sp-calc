@@ -342,34 +342,79 @@ tr.excluded td {
   margin-bottom: 0.5rem;
 }
 
-.event-scope-notice {
+.event-panel-heading {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-template-rows: auto auto;
+  align-items: center;
+  column-gap: 0.75rem;
   margin: 0 0 0.75rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid #e8e8e8;
 }
 
-.event-scope-notice__lead {
+.event-panel-heading > h2 {
+  grid-column: 1;
+  grid-row: 1;
+  margin: 0;
+  padding: 0;
+  border-bottom: none;
+  font-size: 1rem;
+}
+
+.event-scope-trigger {
+  grid-column: 2;
+  grid-row: 1;
+  justify-self: end;
+  padding: 0;
+  border: none;
+  background: none;
+  font: inherit;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: #666;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  cursor: pointer;
+}
+
+.event-scope-trigger:hover {
+  color: #9a6700;
+}
+
+.event-scope-trigger[aria-expanded="true"] {
+  color: #9a6700;
+}
+
+.event-scope-panel {
+  grid-column: 1 / -1;
+  grid-row: 2;
+  margin-top: 0.5rem;
+}
+
+.event-scope-panel[hidden] {
+  display: none;
+}
+
+.event-scope-panel__lead {
   margin: 0 0 0.35rem;
 }
 
-.event-scope-notice__body {
+.event-scope-panel__body {
   margin: 0 0 0.5rem;
   color: inherit;
   opacity: 0.9;
-}
-
-.event-scope-details {
-  margin-top: 0.35rem;
-}
-
-.event-scope-details__summary {
-  cursor: pointer;
   font-size: 0.85rem;
-  font-weight: 500;
-  color: #9a6700;
-  user-select: none;
+}
+
+.event-scope-panel__list-title {
+  margin: 0 0 0.25rem;
+  font-size: 0.85rem;
+  font-weight: 600;
 }
 
 .event-scope-list {
-  margin: 0.5rem 0 0;
+  margin: 0;
   padding-left: 1.25rem;
   font-size: 0.8rem;
   line-height: 1.6;

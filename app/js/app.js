@@ -212,17 +212,29 @@ function initEventChoiceIds(events) {
 function renderEventScopeNotice() {
   const names = state.events.prioritySupportNames || [];
   const list = document.getElementById("event-priority-support-list");
-  const summary = document.querySelector(".event-scope-details__summary");
-  const lead = document.querySelector(".event-scope-notice__lead strong");
+  const listTitle = document.getElementById("event-scope-list-title");
+  const lead = document.getElementById("event-scope-lead");
   if (!list) return;
 
   list.innerHTML = names.map((name) => `<li>${escapeHtml(name)}</li>`).join("");
-  if (summary) {
-    summary.textContent = `対応サポカ一覧（${names.length}種）`;
+  if (listTitle) {
+    listTitle.textContent = `対応サポカ一覧（${names.length}種）`;
   }
   if (lead && names.length > 0) {
     lead.textContent = `サポカイベントは優先${names.length}種のみ対応`;
   }
+}
+
+function bindEventScopeDisclosure() {
+  const trigger = document.getElementById("event-scope-trigger");
+  const panel = document.getElementById("event-scope-panel");
+  if (!trigger || !panel) return;
+
+  trigger.addEventListener("click", () => {
+    const open = panel.hidden;
+    panel.hidden = !open;
+    trigger.setAttribute("aria-expanded", String(open));
+  });
 }
 
 function renderEvents() {
@@ -639,6 +651,7 @@ async function init() {
     bindSupportFilters();
 
     renderEventScopeNotice();
+    bindEventScopeDisclosure();
     renderEvents();
     renderScenarioLinkRadios();
     renderSeniorRmjRadios();
