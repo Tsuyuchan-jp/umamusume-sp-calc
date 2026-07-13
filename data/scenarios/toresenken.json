@@ -1,0 +1,188 @@
+{
+  "version": 1,
+  "scenarioId": "toresenken",
+  "name": "らっしゃい！トレセン軒！",
+  "description": "mee1080/umasim ramen_memo.md ベース。選択式でON/OFF。",
+  "linkSkills": [
+    {
+      "id": "link_fine_motion",
+      "label": "ファインモーションリンク（シニア9月）",
+      "requiresLinkCharacterId": 1045,
+      "skills": [
+        {
+          "skillId": 201312,
+          "skillName": "先行直線○",
+          "hintLevel": 1,
+          "defaultOn": false
+        },
+        {
+          "skillId": 201313,
+          "skillName": "勇迅一閃",
+          "hintLevel": 1,
+          "defaultOn": false
+        }
+      ],
+      "note": "skillId は extract 後に名前マッチで補完予定"
+    },
+    {
+      "id": "link_top_road",
+      "label": "ナリタトップロードリンク",
+      "requiresLinkCharacterId": 1123,
+      "skills": [
+        {
+          "skillName": "長距離直線○",
+          "hintLevel": 1,
+          "defaultOn": false,
+          "skillId": 201172
+        },
+        {
+          "skillName": "烈風一閃",
+          "hintLevel": 1,
+          "defaultOn": false,
+          "skillId": 201173
+        }
+      ]
+    },
+    {
+      "id": "link_calstone",
+      "label": "カルストンライトオリンク",
+      "requiresLinkCharacterId": 1146,
+      "skills": [
+        {
+          "skillName": "弾ける足取り",
+          "hintLevel": 1,
+          "defaultOn": false,
+          "skillId": 203872
+        },
+        {
+          "skillName": "閃く雷光",
+          "hintLevel": 1,
+          "defaultOn": false,
+          "skillId": 203871
+        }
+      ]
+    },
+    {
+      "id": "link_dotou",
+      "label": "メイショウドトウリンク",
+      "requiresLinkCharacterId": 1058,
+      "skills": [
+        {
+          "skillName": "ネバーギブアップ",
+          "hintLevel": 1,
+          "defaultOn": false,
+          "skillId": 202721
+        }
+      ]
+    },
+    {
+      "id": "link_nature",
+      "label": "ナイスネイチャリンク",
+      "requiresLinkCharacterId": 1060,
+      "skills": [
+        {
+          "skillName": "中距離直線○",
+          "hintLevel": 1,
+          "defaultOn": false,
+          "skillId": 201102
+        },
+        {
+          "skillName": "光芒一閃",
+          "hintLevel": 1,
+          "defaultOn": false,
+          "skillId": 201103
+        }
+      ]
+    },
+    {
+      "id": "link_tazuna_halo",
+      "label": "たづな＆ハローリンク",
+      "requiresLinkCharacterIds": [
+        9001,
+        9002
+      ],
+      "skills": [
+        {
+          "skillName": "英俊豪傑",
+          "hintLevel": 1,
+          "defaultOn": false,
+          "skillId": 203501
+        }
+      ]
+    }
+  ],
+  "rmjSkills": [
+    {
+      "id": "rmj_super",
+      "label": "シニア12月 超盛況",
+      "skills": [
+        {
+          "skillName": "選択金スキル",
+          "hintLevel": 2,
+          "defaultOn": false,
+          "note": "選択式・要手動指定"
+        }
+      ]
+    },
+    {
+      "id": "rmj_great",
+      "label": "シニア12月 大盛況",
+      "skills": [
+        {
+          "skillName": "選択金スキル",
+          "hintLevel": 1,
+          "defaultOn": false
+        }
+      ]
+    },
+    {
+      "id": "rmj_good",
+      "label": "シニア12月 盛況",
+      "skills": [
+        {
+          "skillName": "選択金スキル",
+          "hintLevel": 1,
+          "defaultOn": false
+        }
+      ]
+    }
+  ],
+  "endSkills": [
+    {
+      "id": "end_great",
+      "label": "育成終了（大盛況以上）",
+      "skills": [
+        {
+          "skillName": "極上の感謝を！",
+          "hintLevel": 2,
+          "defaultOn": false
+        }
+      ]
+    },
+    {
+      "id": "end_good",
+      "label": "育成終了（盛況）",
+      "skills": [
+        {
+          "skillName": "恩返し、召し上がれ",
+          "hintLevel": 3,
+          "defaultOn": false
+        }
+      ]
+    }
+  ],
+  "classicRmj": [
+    {
+      "id": "classic_great",
+      "label": "クラシック12月 大盛況",
+      "skills": [
+        {
+          "skillName": "時中の妙",
+          "hintLevel": 1,
+          "defaultOn": false,
+          "skillId": 202791
+        }
+      ]
+    }
+  ]
+}

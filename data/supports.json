@@ -1,0 +1,10212 @@
+[
+  {
+    "id": 10001,
+    "name": "[[トレセン学園]] [トレセン学園]スペシャルウィーク (スペシャルウィーク)",
+    "characterId": 1001,
+    "rarity": "R",
+    "commandId": 103,
+    "type": "speed",
+    "hintSkillIds": [
+      200162,
+      200232,
+      200512,
+      200612,
+      200732,
+      201352,
+      201542
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 10002,
+    "name": "[[トレセン学園]] [トレセン学園]サイレンススズカ (サイレンススズカ)",
+    "characterId": 1002,
+    "rarity": "R",
+    "commandId": 101,
+    "type": "speed",
+    "hintSkillIds": [
+      200432,
+      200532,
+      200542,
+      200552,
+      200712,
+      201242,
+      201252,
+      201522,
+      201272
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 10003,
+    "name": "[[トレセン学園]] [トレセン学園]トウカイテイオー (トウカイテイオー)",
+    "characterId": 1003,
+    "rarity": "R",
+    "commandId": 101,
+    "type": "speed",
+    "hintSkillIds": [
+      200452,
+      200492,
+      200502,
+      201132,
+      201142,
+      201332
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 10004,
+    "name": "[[トレセン学園]] [トレセン学園]マルゼンスキー (マルゼンスキー)",
+    "characterId": 1004,
+    "rarity": "R",
+    "commandId": 101,
+    "type": "speed",
+    "hintSkillIds": [
+      200532,
+      200682,
+      201042,
+      201052,
+      201062
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 10005,
+    "name": "[[トレセン学園]] [トレセン学園]オグリキャップ (オグリキャップ)",
+    "characterId": 1006,
+    "rarity": "R",
+    "commandId": 102,
+    "type": "speed",
+    "hintSkillIds": [
+      200222,
+      200332,
+      200342,
+      200432,
+      200492,
+      200512,
+      200722,
+      201062,
+      201352,
+      201601
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 10006,
+    "name": "[[トレセン学園]] [トレセン学園]ゴールドシップ (ゴールドシップ)",
+    "characterId": 1007,
+    "rarity": "R",
+    "commandId": 105,
+    "type": "speed",
+    "hintSkillIds": [
+      200622,
+      200642,
+      200752,
+      201212,
+      201232,
+      201472,
+      201482,
+      201502,
+      201512,
+      201552,
+      201581,
+      201591,
+      201601,
+      201631
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 10007,
+    "name": "[[トレセン学園]] [トレセン学園]ウオッカ (ウオッカ)",
+    "characterId": 1008,
+    "rarity": "R",
+    "commandId": 102,
+    "type": "speed",
+    "hintSkillIds": [
+      200032,
+      200362,
+      200372,
+      200382,
+      200512,
+      200602,
+      200702,
+      201032,
+      201102
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 10008,
+    "name": "[[トレセン学園]] [トレセン学園]タイキシャトル (タイキシャトル)",
+    "characterId": 1010,
+    "rarity": "R",
+    "commandId": 101,
+    "type": "speed",
+    "hintSkillIds": [
+      200572,
+      200582,
+      200682,
+      200702,
+      201032,
+      201052
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 10009,
+    "name": "[[トレセン学園]] [トレセン学園]グラスワンダー (グラスワンダー)",
+    "characterId": 1011,
+    "rarity": "R",
+    "commandId": 103,
+    "type": "speed",
+    "hintSkillIds": [
+      200042,
+      200282,
+      200512,
+      200592,
+      200602,
+      200702,
+      200871,
+      201152
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 10010,
+    "name": "[[トレセン学園]] [トレセン学園]メジロマックイーン (メジロマックイーン)",
+    "characterId": 1013,
+    "rarity": "R",
+    "commandId": 105,
+    "type": "speed",
+    "hintSkillIds": [
+      200062,
+      200172,
+      200562,
+      200742,
+      201182,
+      201192,
+      201352,
+      201372
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 10011,
+    "name": "[[トレセン学園]] [トレセン学園]エルコンドルパサー (エルコンドルパサー)",
+    "characterId": 1014,
+    "rarity": "R",
+    "commandId": 102,
+    "type": "speed",
+    "hintSkillIds": [
+      200132,
+      200212,
+      200582,
+      200722,
+      201102,
+      201122,
+      201312
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 10012,
+    "name": "[[トレセン学園]] [トレセン学園]テイエムオペラオー (テイエムオペラオー)",
+    "characterId": 1015,
+    "rarity": "R",
+    "commandId": 105,
+    "type": "speed",
+    "hintSkillIds": [
+      200562,
+      200722,
+      201182,
+      201312,
+      201362,
+      201382,
+      201432
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 10013,
+    "name": "[[トレセン学園]] [トレセン学園]シンボリルドルフ (シンボリルドルフ)",
+    "characterId": 1017,
+    "rarity": "R",
+    "commandId": 106,
+    "type": "speed",
+    "hintSkillIds": [
+      200572,
+      200831,
+      200861,
+      200891,
+      200921,
+      201152,
+      201532,
+      201601
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 10014,
+    "name": "[[トレセン学園]] [トレセン学園]セイウンスカイ (セイウンスカイ)",
+    "characterId": 1020,
+    "rarity": "R",
+    "commandId": 105,
+    "type": "speed",
+    "hintSkillIds": [
+      200252,
+      200302,
+      200771,
+      200811,
+      200881,
+      201611
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 10015,
+    "name": "[[トレセン学園]] [トレセン学園]ライスシャワー (ライスシャワー)",
+    "characterId": 1030,
+    "rarity": "R",
+    "commandId": 105,
+    "type": "speed",
+    "hintSkillIds": [
+      200062,
+      200272,
+      200742,
+      200801,
+      200861,
+      200871,
+      201342,
+      201372,
+      201581
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 10016,
+    "name": "[[トレセン学園]] [トレセン学園]ウイニングチケット (ウイニングチケット)",
+    "characterId": 1035,
+    "rarity": "R",
+    "commandId": 103,
+    "type": "speed",
+    "hintSkillIds": [
+      200152,
+      200222,
+      200592,
+      200602,
+      200612
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 10017,
+    "name": "[[トレセン学園]] [トレセン学園]ゴールドシチー (ゴールドシチー)",
+    "characterId": 1040,
+    "rarity": "R",
+    "commandId": 101,
+    "type": "speed",
+    "hintSkillIds": [
+      200082,
+      200692,
+      201062
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 10018,
+    "name": "[[トレセン学園]] [トレセン学園]サクラバクシンオー (サクラバクシンオー)",
+    "characterId": 1041,
+    "rarity": "R",
+    "commandId": 101,
+    "type": "speed",
+    "hintSkillIds": [
+      200652,
+      200791,
+      200841,
+      200962,
+      200972,
+      200982,
+      200992,
+      201012
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 10019,
+    "name": "[[トレセン学園]] [トレセン学園]スーパークリーク (スーパークリーク)",
+    "characterId": 1045,
+    "rarity": "R",
+    "commandId": 105,
+    "type": "speed",
+    "hintSkillIds": [
+      200152,
+      200352,
+      200462,
+      200512,
+      200881
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 10020,
+    "name": "[[トレセン学園]] [トレセン学園]ハルウララ (ハルウララ)",
+    "characterId": 1052,
+    "rarity": "R",
+    "commandId": 103,
+    "type": "speed",
+    "hintSkillIds": [],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 10021,
+    "name": "[[トレセン学園]] [トレセン学園]駿川たづな (駿川たづな)",
+    "characterId": 9001,
+    "rarity": "R",
+    "commandId": 0,
+    "type": "stamina",
+    "hintSkillIds": [],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 10022,
+    "name": "[[トレセン学園]] [トレセン学園]桐生院葵 (桐生院葵)",
+    "characterId": 9004,
+    "rarity": "R",
+    "commandId": 0,
+    "type": "stamina",
+    "hintSkillIds": [],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 10023,
+    "name": "[[トレセン学園]] [トレセン学園]ダイワスカーレット (ダイワスカーレット)",
+    "characterId": 1009,
+    "rarity": "R",
+    "commandId": 106,
+    "type": "speed",
+    "hintSkillIds": [
+      200282,
+      200572,
+      200582,
+      200712,
+      200722,
+      201052
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 10024,
+    "name": "[[トレセン学園]] [トレセン学園]ヒシアマゾン (ヒシアマゾン)",
+    "characterId": 1012,
+    "rarity": "R",
+    "commandId": 102,
+    "type": "speed",
+    "hintSkillIds": [
+      200562,
+      200642,
+      201452,
+      201532,
+      201552
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 10025,
+    "name": "[[トレセン学園]] [トレセン学園]エアグルーヴ (エアグルーヴ)",
+    "characterId": 1018,
+    "rarity": "R",
+    "commandId": 103,
+    "type": "speed",
+    "hintSkillIds": [
+      200472,
+      200722,
+      200931,
+      200941,
+      201102,
+      201601
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 10026,
+    "name": "[[トレセン学園]] [トレセン学園]アグネスデジタル (アグネスデジタル)",
+    "characterId": 1019,
+    "rarity": "R",
+    "commandId": 102,
+    "type": "speed",
+    "hintSkillIds": [
+      200442,
+      200482,
+      201032,
+      201092,
+      201102,
+      201382
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 10027,
+    "name": "[[トレセン学園]] [トレセン学園]タマモクロス (タマモクロス)",
+    "characterId": 1021,
+    "rarity": "R",
+    "commandId": 105,
+    "type": "speed",
+    "hintSkillIds": [
+      200712,
+      200811,
+      200901,
+      201112,
+      201132,
+      201142,
+      201412
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 10028,
+    "name": "[[トレセン学園]] [トレセン学園]ファインモーション (ファインモーション)",
+    "characterId": 1022,
+    "rarity": "R",
+    "commandId": 106,
+    "type": "speed",
+    "hintSkillIds": [
+      200012,
+      200192,
+      200262,
+      200372,
+      200492
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 10029,
+    "name": "[[トレセン学園]] [トレセン学園]ビワハヤヒデ (ビワハヤヒデ)",
+    "characterId": 1023,
+    "rarity": "R",
+    "commandId": 102,
+    "type": "speed",
+    "hintSkillIds": [
+      200052,
+      200162,
+      200222,
+      200262,
+      200821
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 10030,
+    "name": "[[トレセン学園]] [トレセン学園]マヤノトップガン (マヤノトップガン)",
+    "characterId": 1024,
+    "rarity": "R",
+    "commandId": 105,
+    "type": "speed",
+    "hintSkillIds": [
+      200142,
+      200332,
+      200362,
+      200382,
+      200492,
+      200502
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 10031,
+    "name": "[[トレセン学園]] [トレセン学園]マンハッタンカフェ (マンハッタンカフェ)",
+    "characterId": 1025,
+    "rarity": "R",
+    "commandId": 105,
+    "type": "speed",
+    "hintSkillIds": [
+      200162,
+      200232,
+      201172,
+      201202,
+      201222,
+      201581
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 10032,
+    "name": "[[トレセン学園]] [トレセン学園]ミホノブルボン (ミホノブルボン)",
+    "characterId": 1026,
+    "rarity": "R",
+    "commandId": 102,
+    "type": "speed",
+    "hintSkillIds": [
+      200242,
+      200532,
+      201242,
+      201252
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 10033,
+    "name": "[[トレセン学園]] [トレセン学園]メジロライアン (メジロライアン)",
+    "characterId": 1027,
+    "rarity": "R",
+    "commandId": 102,
+    "type": "speed",
+    "hintSkillIds": [
+      200162,
+      200232,
+      200722,
+      201102
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 10034,
+    "name": "[[トレセン学園]] [トレセン学園]ユキノビジン (ユキノビジン)",
+    "characterId": 1029,
+    "rarity": "R",
+    "commandId": 103,
+    "type": "speed",
+    "hintSkillIds": [
+      200042,
+      200202,
+      200732,
+      201112
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 10035,
+    "name": "[[トレセン学園]] [トレセン学園]アイネスフウジン (アイネスフウジン)",
+    "characterId": 1031,
+    "rarity": "R",
+    "commandId": 103,
+    "type": "speed",
+    "hintSkillIds": [
+      200732,
+      201082,
+      201282,
+      201651,
+      201661
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 10036,
+    "name": "[[トレセン学園]] [トレセン学園]アグネスタキオン (アグネスタキオン)",
+    "characterId": 1032,
+    "rarity": "R",
+    "commandId": 106,
+    "type": "speed",
+    "hintSkillIds": [
+      200722,
+      201102,
+      201112,
+      201152
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 10037,
+    "name": "[[トレセン学園]] [トレセン学園]エアシャカール (エアシャカール)",
+    "characterId": 1036,
+    "rarity": "R",
+    "commandId": 106,
+    "type": "speed",
+    "hintSkillIds": [
+      201212,
+      201492,
+      201502
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 10038,
+    "name": "[[トレセン学園]] [トレセン学園]エイシンフラッシュ (エイシンフラッシュ)",
+    "characterId": 1037,
+    "rarity": "R",
+    "commandId": 101,
+    "type": "speed",
+    "hintSkillIds": [
+      200132,
+      200372,
+      201382,
+      201392,
+      201402
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 10039,
+    "name": "[[トレセン学園]] [トレセン学園]スマートファルコン (スマートファルコン)",
+    "characterId": 1046,
+    "rarity": "R",
+    "commandId": 102,
+    "type": "speed",
+    "hintSkillIds": [
+      200162,
+      200222,
+      200262,
+      200352,
+      200952,
+      201292,
+      201302,
+      201522
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 10040,
+    "name": "[[トレセン学園]] [トレセン学園]ナリタタイシン (ナリタタイシン)",
+    "characterId": 1050,
+    "rarity": "R",
+    "commandId": 101,
+    "type": "speed",
+    "hintSkillIds": [
+      200442,
+      200482,
+      200622,
+      200632,
+      201462,
+      201512,
+      201641
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 10041,
+    "name": "[[トレセン学園]] [トレセン学園]ニシノフラワー (ニシノフラワー)",
+    "characterId": 1051,
+    "rarity": "R",
+    "commandId": 101,
+    "type": "speed",
+    "hintSkillIds": [
+      200052,
+      200132,
+      200152,
+      200702,
+      201322
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 10042,
+    "name": "[[トレセン学園]] [トレセン学園]ビコーペガサス (ビコーペガサス)",
+    "characterId": 1054,
+    "rarity": "R",
+    "commandId": 101,
+    "type": "speed",
+    "hintSkillIds": [
+      200262,
+      200662,
+      200672,
+      200682,
+      200702,
+      201002,
+      201022
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 10043,
+    "name": "[[トレセン学園]] [トレセン学園]マーベラスサンデー (マーベラスサンデー)",
+    "characterId": 1055,
+    "rarity": "R",
+    "commandId": 106,
+    "type": "speed",
+    "hintSkillIds": [
+      200362,
+      200462,
+      200851,
+      200881,
+      201611
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 10044,
+    "name": "[[トレセン学園]] [トレセン学園]マチカネフクキタル (マチカネフクキタル)",
+    "characterId": 1056,
+    "rarity": "R",
+    "commandId": 106,
+    "type": "speed",
+    "hintSkillIds": [
+      200092,
+      200482,
+      200781,
+      201392,
+      201422,
+      201562,
+      201571
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 10045,
+    "name": "[[トレセン学園]] [トレセン学園]メイショウドトウ (メイショウドトウ)",
+    "characterId": 1058,
+    "rarity": "R",
+    "commandId": 103,
+    "type": "speed",
+    "hintSkillIds": [
+      200142,
+      200152,
+      200252,
+      200302,
+      201122,
+      201382,
+      201621
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 10046,
+    "name": "[[トレセン学園]] [トレセン学園]メジロドーベル (メジロドーベル)",
+    "characterId": 1059,
+    "rarity": "R",
+    "commandId": 106,
+    "type": "speed",
+    "hintSkillIds": [
+      200062,
+      200212,
+      200722,
+      200732,
+      201542
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 10047,
+    "name": "[[トレセン学園]] [トレセン学園]ナイスネイチャ (ナイスネイチャ)",
+    "characterId": 1060,
+    "rarity": "R",
+    "commandId": 103,
+    "type": "speed",
+    "hintSkillIds": [
+      200122,
+      200342,
+      200442,
+      200502,
+      200911,
+      201162,
+      201422,
+      201442
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 10048,
+    "name": "[[トレセン学園]] [トレセン学園]キングヘイロー (キングヘイロー)",
+    "characterId": 1061,
+    "rarity": "R",
+    "commandId": 101,
+    "type": "speed",
+    "hintSkillIds": [
+      200152,
+      200222,
+      200262,
+      200352,
+      200662,
+      200672
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 10049,
+    "name": "[[トレセン学園]] [トレセン学園]フジキセキ (フジキセキ)",
+    "characterId": 1005,
+    "rarity": "R",
+    "commandId": 106,
+    "type": "speed",
+    "hintSkillIds": [
+      200182,
+      200222,
+      200771,
+      201042,
+      201072
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 10050,
+    "name": "[[トレセン学園]] [トレセン学園]スイープトウショウ (スイープトウショウ)",
+    "characterId": 1044,
+    "rarity": "R",
+    "commandId": 101,
+    "type": "speed",
+    "hintSkillIds": [
+      200452,
+      200771,
+      200781,
+      201162,
+      201472,
+      201482,
+      201651
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 10051,
+    "name": "[[トレセン学園]] [トレセン学園]ツインターボ (ツインターボ)",
+    "characterId": 1066,
+    "rarity": "R",
+    "commandId": 101,
+    "type": "speed",
+    "hintSkillIds": [
+      200282,
+      200292,
+      200532,
+      200542,
+      201272,
+      201282
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 10052,
+    "name": "[[トレセン学園]] [トレセン学園]ダイタクヘリオス (ダイタクヘリオス)",
+    "characterId": 1065,
+    "rarity": "R",
+    "commandId": 102,
+    "type": "speed",
+    "hintSkillIds": [
+      200462,
+      200562,
+      201042,
+      201052,
+      201082,
+      201631,
+      201651
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 10053,
+    "name": "[[トレセン学園]] [トレセン学園]イクノディクタス (イクノディクタス)",
+    "characterId": 1063,
+    "rarity": "R",
+    "commandId": 106,
+    "type": "speed",
+    "hintSkillIds": [
+      200442,
+      200482,
+      201122,
+      201432,
+      201442
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 10054,
+    "name": "[[トレセン学園]] [トレセン学園]メジロパーマー (メジロパーマー)",
+    "characterId": 1064,
+    "rarity": "R",
+    "commandId": 103,
+    "type": "speed",
+    "hintSkillIds": [
+      200042,
+      200052,
+      200532,
+      200542,
+      200871,
+      201282,
+      201631
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 10055,
+    "name": "[[トレセン学園]] [トレセン学園]キタサンブラック (キタサンブラック)",
+    "characterId": 1068,
+    "rarity": "R",
+    "commandId": 101,
+    "type": "speed",
+    "hintSkillIds": [
+      200332,
+      200352,
+      200382,
+      200432,
+      200762,
+      201182,
+      201242,
+      201262
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 10056,
+    "name": "[[トレセン学園]] [トレセン学園]サトノダイヤモンド (サトノダイヤモンド)",
+    "characterId": 1067,
+    "rarity": "R",
+    "commandId": 105,
+    "type": "speed",
+    "hintSkillIds": [
+      200152,
+      200212,
+      200841,
+      201112,
+      201152,
+      201422,
+      201432
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 10057,
+    "name": "[[トレセン学園]] [トレセン学園]マチカネタンホイザ (マチカネタンホイザ)",
+    "characterId": 1062,
+    "rarity": "R",
+    "commandId": 103,
+    "type": "speed",
+    "hintSkillIds": [
+      200442,
+      200472,
+      200732,
+      200742,
+      201402
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 10058,
+    "name": "[[トレセン学園]] [トレセン学園]ヤエノムテキ (ヤエノムテキ)",
+    "characterId": 1072,
+    "rarity": "R",
+    "commandId": 102,
+    "type": "speed",
+    "hintSkillIds": [
+      200462,
+      200512,
+      200582,
+      200722,
+      201611
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 10059,
+    "name": "[[トレセン学園]] [トレセン学園]ゼンノロブロイ (ゼンノロブロイ)",
+    "characterId": 1047,
+    "rarity": "R",
+    "commandId": 105,
+    "type": "speed",
+    "hintSkillIds": [
+      200362,
+      200452,
+      200492,
+      200502,
+      201332,
+      201432,
+      201532,
+      201542
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 10060,
+    "name": "[[トレセン学園]] [トレセン学園]樫本理子 (樫本理子)",
+    "characterId": 9006,
+    "rarity": "R",
+    "commandId": 0,
+    "type": "stamina",
+    "hintSkillIds": [],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 10061,
+    "name": "[[トレセン学園]] [トレセン学園]シーキングザパール (シーキングザパール)",
+    "characterId": 1042,
+    "rarity": "R",
+    "commandId": 103,
+    "type": "speed",
+    "hintSkillIds": [
+      200152,
+      200472,
+      200652,
+      200692,
+      200962,
+      201072
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 10062,
+    "name": "[[トレセン学園]] [トレセン学園]サクラチヨノオー (サクラチヨノオー)",
+    "characterId": 1069,
+    "rarity": "R",
+    "commandId": 105,
+    "type": "speed",
+    "hintSkillIds": [
+      200732,
+      201052,
+      201112,
+      201532
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 10063,
+    "name": "[[トレセン学園]] [トレセン学園]カワカミプリンセス (カワカミプリンセス)",
+    "characterId": 1039,
+    "rarity": "R",
+    "commandId": 101,
+    "type": "speed",
+    "hintSkillIds": [
+      200132,
+      200572,
+      201142,
+      201362
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 10064,
+    "name": "[[トレセン学園]] [トレセン学園]ヒシアケボノ (ヒシアケボノ)",
+    "characterId": 1028,
+    "rarity": "R",
+    "commandId": 103,
+    "type": "speed",
+    "hintSkillIds": [
+      200212,
+      200552,
+      200972,
+      200992,
+      201002,
+      201352
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 10065,
+    "name": "[[トレセン学園]] [トレセン学園]バンブーメモリー (バンブーメモリー)",
+    "characterId": 1053,
+    "rarity": "R",
+    "commandId": 102,
+    "type": "speed",
+    "hintSkillIds": [
+      200292,
+      200362,
+      200672,
+      201032,
+      201062,
+      201382
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 10066,
+    "name": "[[トレセン学園]] [トレセン学園]シンコウウインディ (シンコウウインディ)",
+    "characterId": 1043,
+    "rarity": "R",
+    "commandId": 101,
+    "type": "speed",
+    "hintSkillIds": [
+      200162,
+      200282,
+      200582,
+      200851
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 10067,
+    "name": "[[トレセン学園]] [トレセン学園]ナカヤマフェスタ (ナカヤマフェスタ)",
+    "characterId": 1049,
+    "rarity": "R",
+    "commandId": 105,
+    "type": "speed",
+    "hintSkillIds": [
+      200162,
+      200302,
+      200602,
+      200612,
+      200732,
+      201382,
+      201442,
+      201562,
+      201702
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 10068,
+    "name": "[[トレセン学園]] [トレセン学園]イナリワン (イナリワン)",
+    "characterId": 1034,
+    "rarity": "R",
+    "commandId": 102,
+    "type": "speed",
+    "hintSkillIds": [
+      200172,
+      200202,
+      200292,
+      200462,
+      201442,
+      201611,
+      201682,
+      202002
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 10069,
+    "name": "[[トレセン学園]] [トレセン学園]メジロアルダン (メジロアルダン)",
+    "characterId": 1071,
+    "rarity": "R",
+    "commandId": 106,
+    "type": "speed",
+    "hintSkillIds": [
+      200022,
+      200572,
+      201142,
+      201322,
+      201532
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 10070,
+    "name": "[[トレセン学園]] [トレセン学園]トーセンジョーダン (トーセンジョーダン)",
+    "characterId": 1048,
+    "rarity": "R",
+    "commandId": 105,
+    "type": "speed",
+    "hintSkillIds": [
+      200302,
+      200562,
+      200592,
+      201102,
+      201112,
+      201312
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 10071,
+    "name": "[[トレセン学園]] [トレセン学園]シリウスシンボリ (シリウスシンボリ)",
+    "characterId": 1070,
+    "rarity": "R",
+    "commandId": 103,
+    "type": "speed",
+    "hintSkillIds": [
+      200162,
+      200582,
+      201112,
+      201641
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 10072,
+    "name": "[[トレセン学園]] [トレセン学園]ナリタブライアン (ナリタブライアン)",
+    "characterId": 1016,
+    "rarity": "R",
+    "commandId": 101,
+    "type": "speed",
+    "hintSkillIds": [
+      200012,
+      200572,
+      200612,
+      200752,
+      201102,
+      201112,
+      201172,
+      201352
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 10073,
+    "name": "[[トレセン学園]] [トレセン学園]カレンチャン (カレンチャン)",
+    "characterId": 1038,
+    "rarity": "R",
+    "commandId": 106,
+    "type": "speed",
+    "hintSkillIds": [
+      200652,
+      200911,
+      200962,
+      201002,
+      201372
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 10074,
+    "name": "[[笹針師]] [笹針師]安心沢刺々美 (安心沢刺々美)",
+    "characterId": 9005,
+    "rarity": "R",
+    "commandId": 0,
+    "type": "stamina",
+    "hintSkillIds": [],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 10075,
+    "name": "[[トレセン学園]] [トレセン学園]アドマイヤベガ (アドマイヤベガ)",
+    "characterId": 1033,
+    "rarity": "R",
+    "commandId": 102,
+    "type": "speed",
+    "hintSkillIds": [
+      200632,
+      201152,
+      201452,
+      201492,
+      201502
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 10076,
+    "name": "[[トレセン学園]] [トレセン学園]メジロブライト (メジロブライト)",
+    "characterId": 1074,
+    "rarity": "R",
+    "commandId": 105,
+    "type": "speed",
+    "hintSkillIds": [
+      200012,
+      200762,
+      201202,
+      201212,
+      201222
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 10077,
+    "name": "[[トレセン学園]] [トレセン学園]ナリタトップロード (ナリタトップロード)",
+    "characterId": 1077,
+    "rarity": "R",
+    "commandId": 101,
+    "type": "speed",
+    "hintSkillIds": [
+      200142,
+      200152,
+      200252,
+      200572,
+      200582,
+      201172,
+      201702
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 10078,
+    "name": "[[トレセン学園]] [トレセン学園]ミスターシービー (ミスターシービー)",
+    "characterId": 1057,
+    "rarity": "R",
+    "commandId": 106,
+    "type": "speed",
+    "hintSkillIds": [
+      200232,
+      200342,
+      200512,
+      200642,
+      201112,
+      201502,
+      201611
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 10079,
+    "name": "[[トレセン学園]] [トレセン学園]ダイイチルビー (ダイイチルビー)",
+    "characterId": 1085,
+    "rarity": "R",
+    "commandId": 102,
+    "type": "speed",
+    "hintSkillIds": [
+      200602,
+      200672,
+      200831,
+      200841,
+      200851,
+      201022,
+      201092,
+      201152,
+      201382,
+      201641,
+      202122
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 10080,
+    "name": "[[トレセン学園]] [トレセン学園]ケイエスミラクル (ケイエスミラクル)",
+    "characterId": 1093,
+    "rarity": "R",
+    "commandId": 103,
+    "type": "speed",
+    "hintSkillIds": [
+      200702,
+      200972,
+      200992,
+      201312,
+      201532,
+      202372
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 10081,
+    "name": "[[トレセン学園]] [トレセン学園]ツルマルツヨシ (ツルマルツヨシ)",
+    "characterId": 1073,
+    "rarity": "R",
+    "commandId": 103,
+    "type": "speed",
+    "hintSkillIds": [
+      200302,
+      200722,
+      202032,
+      202092,
+      202152
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 10082,
+    "name": "[[トレセン学園]] [トレセン学園]シンボリクリスエス (シンボリクリスエス)",
+    "characterId": 1083,
+    "rarity": "R",
+    "commandId": 105,
+    "type": "speed",
+    "hintSkillIds": [
+      200352,
+      200602,
+      201172,
+      201202,
+      201392,
+      201412,
+      202122,
+      202422
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 10083,
+    "name": "[[イベントプロデューサー]] [イベントプロデューサー]ライトハロー (ライトハロー)",
+    "characterId": 9008,
+    "rarity": "R",
+    "commandId": 0,
+    "type": "stamina",
+    "hintSkillIds": [],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 10084,
+    "name": "[[トレセン学園]] [トレセン学園]タニノギムレット (タニノギムレット)",
+    "characterId": 1084,
+    "rarity": "R",
+    "commandId": 102,
+    "type": "speed",
+    "hintSkillIds": [
+      200152,
+      200642,
+      200702,
+      201122,
+      202082,
+      202102
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 10085,
+    "name": "[[トレセン学園]] [トレセン学園]サクラローレル (サクラローレル)",
+    "characterId": 1076,
+    "rarity": "R",
+    "commandId": 105,
+    "type": "speed",
+    "hintSkillIds": [
+      200172,
+      200202,
+      200212,
+      200742,
+      201182,
+      201222,
+      201422,
+      202072,
+      202422
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 10086,
+    "name": "[[トレセン学園]] [トレセン学園]ヤマニンゼファー (ヤマニンゼファー)",
+    "characterId": 1078,
+    "rarity": "R",
+    "commandId": 103,
+    "type": "speed",
+    "hintSkillIds": [
+      200192,
+      200302,
+      200342,
+      201042,
+      201052,
+      201072,
+      201112,
+      201532,
+      202412
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 10087,
+    "name": "[[トレセン学園]] [トレセン学園]アストンマーチャン (アストンマーチャン)",
+    "characterId": 1087,
+    "rarity": "R",
+    "commandId": 101,
+    "type": "speed",
+    "hintSkillIds": [
+      200162,
+      200532,
+      200962,
+      201022,
+      201262,
+      201302,
+      201601
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 10088,
+    "name": "[[トレセン学園]] [トレセン学園]メジロラモーヌ (メジロラモーヌ)",
+    "characterId": 1086,
+    "rarity": "R",
+    "commandId": 106,
+    "type": "speed",
+    "hintSkillIds": [
+      200362,
+      200432,
+      201032,
+      201052,
+      201042,
+      201102,
+      201702,
+      202432,
+      202532
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 10089,
+    "name": "[[トレセン学園]] [トレセン学園]ジャングルポケット (ジャングルポケット)",
+    "characterId": 1094,
+    "rarity": "R",
+    "commandId": 101,
+    "type": "speed",
+    "hintSkillIds": [
+      201392,
+      201462,
+      202022,
+      202082,
+      202122,
+      202452,
+      202492
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 10090,
+    "name": "[[トレセン学園]] [トレセン学園]ホッコータルマエ (ホッコータルマエ)",
+    "characterId": 1099,
+    "rarity": "R",
+    "commandId": 105,
+    "type": "speed",
+    "hintSkillIds": [
+      201682,
+      202262,
+      202282,
+      202312,
+      202832,
+      202842
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 10091,
+    "name": "[[トレセン学園]] [トレセン学園]カツラギエース (カツラギエース)",
+    "characterId": 1104,
+    "rarity": "R",
+    "commandId": 101,
+    "type": "speed",
+    "hintSkillIds": [
+      200032,
+      200542,
+      200732,
+      201102,
+      201252,
+      201272,
+      202412,
+      202432,
+      202462
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 10092,
+    "name": "[[トレセン学園]] [トレセン学園]コパノリッキー (コパノリッキー)",
+    "characterId": 1098,
+    "rarity": "R",
+    "commandId": 103,
+    "type": "speed",
+    "hintSkillIds": [
+      200952,
+      201532,
+      201672,
+      201682,
+      202212,
+      202222,
+      202252,
+      202302
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 10093,
+    "name": "[[トレセン学園]] [トレセン学園]ワンダーアキュート (ワンダーアキュート)",
+    "characterId": 1100,
+    "rarity": "R",
+    "commandId": 102,
+    "type": "speed",
+    "hintSkillIds": [
+      201072,
+      201672,
+      201682,
+      202212,
+      202232,
+      202282,
+      202302,
+      202343,
+      202362
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 10094,
+    "name": "[[URA職員]] [URA職員]佐岳メイ (佐岳メイ)",
+    "characterId": 9043,
+    "rarity": "R",
+    "commandId": 0,
+    "type": "stamina",
+    "hintSkillIds": [],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 10095,
+    "name": "[[トレセン学園]] [トレセン学園]タップダンスシチー (タップダンスシチー)",
+    "characterId": 1107,
+    "rarity": "R",
+    "commandId": 103,
+    "type": "speed",
+    "hintSkillIds": [
+      200252,
+      200532,
+      200542,
+      200552,
+      201252
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 10096,
+    "name": "[[トレセン学園]] [トレセン学園]スティルインラブ (スティルインラブ)",
+    "characterId": 1097,
+    "rarity": "R",
+    "commandId": 101,
+    "type": "speed",
+    "hintSkillIds": [
+      200332,
+      200362,
+      200492,
+      201112,
+      201611,
+      201661,
+      202742,
+      202962
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 10097,
+    "name": "[[トレセン学園]] [トレセン学園]ヴィルシーナ (ヴィルシーナ)",
+    "characterId": 1090,
+    "rarity": "R",
+    "commandId": 103,
+    "type": "speed",
+    "hintSkillIds": [
+      200032,
+      200132,
+      200452,
+      200542,
+      201292
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 10098,
+    "name": "[[トレセン学園]] [トレセン学園]サウンズオブアース (サウンズオブアース)",
+    "characterId": 1102,
+    "rarity": "R",
+    "commandId": 105,
+    "type": "speed",
+    "hintSkillIds": [
+      200382,
+      200492,
+      200512,
+      201651,
+      201661,
+      202792,
+      202802
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 10099,
+    "name": "[[トレセン学園]] [トレセン学園]ヴィブロス (ヴィブロス)",
+    "characterId": 1091,
+    "rarity": "R",
+    "commandId": 103,
+    "type": "speed",
+    "hintSkillIds": [
+      200592,
+      200602,
+      201102,
+      201412,
+      201692,
+      202102,
+      202652
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 10100,
+    "name": "[[トレセン学園]] [トレセン学園]ロイスアンドロイス (ロイスアンドロイス)",
+    "characterId": 1103,
+    "rarity": "R",
+    "commandId": 102,
+    "type": "speed",
+    "hintSkillIds": [
+      200432,
+      200442,
+      200472,
+      200482,
+      200492,
+      200722,
+      201651
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 10101,
+    "name": "[[トレセン学園]] [トレセン学園]ドゥラメンテ (ドゥラメンテ)",
+    "characterId": 1108,
+    "rarity": "R",
+    "commandId": 101,
+    "type": "speed",
+    "hintSkillIds": [
+      200382,
+      201102,
+      201452,
+      201651,
+      202552,
+      202662,
+      202722
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 10102,
+    "name": "[[トレセン学園]] [トレセン学園]ノースフライト (ノースフライト)",
+    "characterId": 1082,
+    "rarity": "R",
+    "commandId": 106,
+    "type": "speed",
+    "hintSkillIds": [
+      200132,
+      200432,
+      200502,
+      200582,
+      200682,
+      200702,
+      201042,
+      201062
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 10103,
+    "name": "[[トレセン学園]] [トレセン学園]オルフェーヴル (オルフェーヴル)",
+    "characterId": 1115,
+    "rarity": "R",
+    "commandId": 103,
+    "type": "speed",
+    "hintSkillIds": [
+      200332,
+      200492,
+      201611,
+      201661,
+      202552,
+      202662,
+      202872
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 10104,
+    "name": "[[プロデューサー]] [プロデューサー]都留岐涼花 (都留岐涼花)",
+    "characterId": 9044,
+    "rarity": "R",
+    "commandId": 0,
+    "type": "stamina",
+    "hintSkillIds": [],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 10105,
+    "name": "[[トレセン学園]] [トレセン学園]シュヴァルグラン (シュヴァルグラン)",
+    "characterId": 1089,
+    "rarity": "R",
+    "commandId": 105,
+    "type": "speed",
+    "hintSkillIds": [
+      200562,
+      200582,
+      200752,
+      201172,
+      201182,
+      201312,
+      202372,
+      202482
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 10106,
+    "name": "[[トレセン学園]] [トレセン学園]ネオユニヴァース (ネオユニヴァース)",
+    "characterId": 1105,
+    "rarity": "R",
+    "commandId": 106,
+    "type": "speed",
+    "hintSkillIds": [
+      200132,
+      201112,
+      201591,
+      201702,
+      202102,
+      202161,
+      202522,
+      202602
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 10107,
+    "name": "[[トレセン学園]] [トレセン学園]ヒシミラクル (ヒシミラクル)",
+    "characterId": 1106,
+    "rarity": "R",
+    "commandId": 105,
+    "type": "speed",
+    "hintSkillIds": [
+      200602,
+      200742,
+      201222,
+      201422,
+      202562,
+      202592,
+      202622
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 10108,
+    "name": "[[トレセン学園]] [トレセン学園]ダンツフレーム (ダンツフレーム)",
+    "characterId": 1092,
+    "rarity": "R",
+    "commandId": 106,
+    "type": "speed",
+    "hintSkillIds": [
+      200462,
+      201102,
+      201132,
+      201591,
+      201702,
+      202092,
+      202472,
+      202792
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 10109,
+    "name": "[[トレセン学園]] [トレセン学園]秋川理事長 (秋川理事長)",
+    "characterId": 9002,
+    "rarity": "R",
+    "commandId": 0,
+    "type": "stamina",
+    "hintSkillIds": [],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 10110,
+    "name": "[[トレセン学園]] [トレセン学園]エスポワールシチー (エスポワールシチー)",
+    "characterId": 1081,
+    "rarity": "R",
+    "commandId": 102,
+    "type": "speed",
+    "hintSkillIds": [
+      201072,
+      201661,
+      202252,
+      202262,
+      202302,
+      202332,
+      202952,
+      203103,
+      203182
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 10111,
+    "name": "[[トレセン学園]] [トレセン学園]バブルガムフェロー (バブルガムフェロー)",
+    "characterId": 1124,
+    "rarity": "R",
+    "commandId": 101,
+    "type": "speed",
+    "hintSkillIds": [
+      200462,
+      200502,
+      201352,
+      202412,
+      202802,
+      202982
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 10113,
+    "name": "[[トレセン学園]] [トレセン学園]ジェンティルドンナ (ジェンティルドンナ)",
+    "characterId": 1116,
+    "rarity": "R",
+    "commandId": 101,
+    "type": "speed",
+    "hintSkillIds": [
+      200152,
+      200362,
+      200512,
+      200562,
+      201402,
+      201591,
+      202532
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 10114,
+    "name": "[[トレセン学園]] [トレセン学園]ラインクラフト (ラインクラフト)",
+    "characterId": 1109,
+    "rarity": "R",
+    "commandId": 103,
+    "type": "speed",
+    "hintSkillIds": [
+      200052,
+      200582,
+      200682,
+      201032,
+      201062,
+      201072,
+      201082
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 10115,
+    "name": "[[トレセン学園]] [トレセン学園]シーザリオ (シーザリオ)",
+    "characterId": 1110,
+    "rarity": "R",
+    "commandId": 106,
+    "type": "speed",
+    "hintSkillIds": [
+      200132,
+      200462,
+      200512,
+      201702,
+      202092,
+      202472
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 10116,
+    "name": "[[トレセン学園]] [トレセン学園]ブラストワンピース (ブラストワンピース)",
+    "characterId": 1128,
+    "rarity": "R",
+    "commandId": 103,
+    "type": "speed",
+    "hintSkillIds": [
+      200332,
+      200562,
+      201312,
+      201591,
+      202372,
+      202772,
+      203132,
+      203412,
+      203422
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 10117,
+    "name": "[[トレセン学園]] [トレセン学園]ノーリーズン (ノーリーズン)",
+    "characterId": 1096,
+    "rarity": "R",
+    "commandId": 103,
+    "type": "speed",
+    "hintSkillIds": [
+      200302,
+      200372,
+      201402,
+      201422,
+      202092,
+      202472,
+      202652
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 10118,
+    "name": "[[トレセン学園]] [トレセン学園]ブエナビスタ (ブエナビスタ)",
+    "characterId": 1114,
+    "rarity": "R",
+    "commandId": 103,
+    "type": "speed",
+    "hintSkillIds": [
+      200342,
+      200372,
+      200462,
+      200702,
+      201072,
+      202112,
+      202652
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 10119,
+    "name": "[[トレセン学園]] [トレセン学園]ドリームジャーニー (ドリームジャーニー)",
+    "characterId": 1119,
+    "rarity": "R",
+    "commandId": 101,
+    "type": "speed",
+    "hintSkillIds": [
+      200012,
+      200492,
+      200632,
+      201462,
+      202022,
+      202882,
+      202902,
+      202922,
+      202932,
+      203582
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 10120,
+    "name": "[[トレセン学園]] [トレセン学園]デアリングタクト (デアリングタクト)",
+    "characterId": 1075,
+    "rarity": "R",
+    "commandId": 106,
+    "type": "speed",
+    "hintSkillIds": [
+      200172,
+      200592,
+      201382,
+      201412,
+      202172,
+      202452,
+      202612,
+      202622,
+      203322,
+      203592
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 10121,
+    "name": "[[トレセン学園]] [トレセン学園]デアリングハート (デアリングハート)",
+    "characterId": 1112,
+    "rarity": "R",
+    "commandId": 102,
+    "type": "speed",
+    "hintSkillIds": [
+      200462,
+      200502,
+      200582,
+      200682,
+      201052,
+      201072,
+      201631,
+      203022
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 10122,
+    "name": "[[トレセン学園]] [トレセン学園]アーモンドアイ (アーモンドアイ)",
+    "characterId": 1129,
+    "rarity": "R",
+    "commandId": 101,
+    "type": "speed",
+    "hintSkillIds": [
+      200332,
+      200362,
+      200492,
+      201591,
+      201611,
+      202702,
+      202982,
+      203122,
+      203432,
+      203442
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 10123,
+    "name": "[[トレセン学園]] [トレセン学園]ラッキーライラック (ラッキーライラック)",
+    "characterId": 1130,
+    "rarity": "R",
+    "commandId": 106,
+    "type": "speed",
+    "hintSkillIds": [
+      200142,
+      200342,
+      200732,
+      201112,
+      201142,
+      202652,
+      203312
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 10124,
+    "name": "[[トレセン学園]] [トレセン学園]グランアレグリア (グランアレグリア)",
+    "characterId": 1131,
+    "rarity": "R",
+    "commandId": 102,
+    "type": "speed",
+    "hintSkillIds": [
+      200132,
+      200702,
+      202112,
+      202552,
+      202652,
+      203042,
+      203362
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 10125,
+    "name": "[[トレセン学園]] [トレセン学園]トランセンド (トランセンド)",
+    "characterId": 1080,
+    "rarity": "R",
+    "commandId": 103,
+    "type": "speed",
+    "hintSkillIds": [
+      201601,
+      201661,
+      201672,
+      201682,
+      202332,
+      202952,
+      203093,
+      203103,
+      203182,
+      203602
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 10126,
+    "name": "[[トレセン学園]] [トレセン学園]カレンブーケドール (カレンブーケドール)",
+    "characterId": 1134,
+    "rarity": "R",
+    "commandId": 105,
+    "type": "speed",
+    "hintSkillIds": [
+      200352,
+      200462,
+      200572,
+      201142,
+      201352,
+      202372,
+      202762,
+      202982,
+      203312
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 10127,
+    "name": "[[トレセン学園]] [トレセン学園]エアメサイア (エアメサイア)",
+    "characterId": 1111,
+    "rarity": "R",
+    "commandId": 106,
+    "type": "speed",
+    "hintSkillIds": [
+      200132,
+      200502,
+      200592,
+      201402,
+      201581,
+      203242,
+      203322
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 10128,
+    "name": "[[無人島PJ責任者]] [無人島PJ責任者]タッカーブライン (タッカーブライン)",
+    "characterId": 9049,
+    "rarity": "R",
+    "commandId": 0,
+    "type": "stamina",
+    "hintSkillIds": [],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 10129,
+    "name": "[[トレセン学園]] [トレセン学園]フサイチパンドラ (フサイチパンドラ)",
+    "characterId": 1113,
+    "rarity": "R",
+    "commandId": 101,
+    "type": "speed",
+    "hintSkillIds": [
+      200502,
+      200512,
+      200572,
+      201322,
+      201342,
+      202432,
+      202982
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 10131,
+    "name": "[[トレセン学園]] [トレセン学園]ウインバリアシオン (ウインバリアシオン)",
+    "characterId": 1117,
+    "rarity": "R",
+    "commandId": 106,
+    "type": "speed",
+    "hintSkillIds": [
+      200012,
+      200182,
+      200382,
+      200752,
+      201172,
+      202582,
+      202852,
+      203562,
+      203652,
+      203732,
+      203772
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 10132,
+    "name": "[[トレセン学園]] [トレセン学園]ステイゴールド (ステイゴールド)",
+    "characterId": 1135,
+    "rarity": "R",
+    "commandId": 103,
+    "type": "speed",
+    "hintSkillIds": [
+      200332,
+      201591,
+      201601,
+      201651,
+      202532,
+      202602,
+      202722,
+      203362,
+      203502,
+      203632,
+      203852,
+      203862
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 10133,
+    "name": "[[トレセン学園]] [トレセン学園]アドマイヤグルーヴ (アドマイヤグルーヴ)",
+    "characterId": 1118,
+    "rarity": "R",
+    "commandId": 101,
+    "type": "speed",
+    "hintSkillIds": [
+      200192,
+      201102,
+      201112,
+      201412,
+      202122,
+      203322,
+      203432,
+      203572,
+      203672,
+      203832,
+      203842
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 10134,
+    "name": "[[トレセン学園]] [トレセン学園]クロノジェネシス (クロノジェネシス)",
+    "characterId": 1133,
+    "rarity": "R",
+    "commandId": 106,
+    "type": "speed",
+    "hintSkillIds": [
+      200142,
+      200482,
+      202472,
+      203052,
+      203142,
+      203232
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 10135,
+    "name": "[[トレセン学園]] [トレセン学園]カルストンライトオ (カルストンライトオ)",
+    "characterId": 1120,
+    "rarity": "R",
+    "commandId": 101,
+    "type": "speed",
+    "hintSkillIds": [
+      200192,
+      200362,
+      200452,
+      200652,
+      200962,
+      201661,
+      202862,
+      203032,
+      203042,
+      203061,
+      203071,
+      203482,
+      203882
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 10136,
+    "name": "[[トレセン学園]] [トレセン学園]デュランダル (デュランダル)",
+    "characterId": 1121,
+    "rarity": "R",
+    "commandId": 106,
+    "type": "speed",
+    "hintSkillIds": [
+      200152,
+      200362,
+      201452,
+      202382,
+      202402,
+      202922,
+      203152,
+      203762,
+      203892,
+      203902
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 10137,
+    "name": "[[トレセン学園]] [トレセン学園]サクラチトセオー (サクラチトセオー)",
+    "characterId": 1126,
+    "rarity": "R",
+    "commandId": 101,
+    "type": "speed",
+    "hintSkillIds": [
+      200222,
+      201112,
+      201142,
+      202532,
+      203142,
+      203172,
+      203242,
+      203312,
+      203432
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 10138,
+    "name": "[[ゆこま旅館女将]] [ゆこま旅館女将]保科健子 (保科健子)",
+    "characterId": 9050,
+    "rarity": "R",
+    "commandId": 0,
+    "type": "stamina",
+    "hintSkillIds": [],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 10139,
+    "name": "[[トレセン学園]] [トレセン学園]フェノーメノ (フェノーメノ)",
+    "characterId": 1127,
+    "rarity": "R",
+    "commandId": 105,
+    "type": "speed",
+    "hintSkillIds": [
+      201182,
+      202012,
+      202192,
+      202482,
+      202662,
+      202772,
+      203132,
+      203412,
+      203702,
+      203712,
+      204012
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 10140,
+    "name": "[[トレセン学園]] [トレセン学園]フォーエバーヤング (フォーエバーヤング)",
+    "characterId": 1138,
+    "rarity": "R",
+    "commandId": 106,
+    "type": "speed",
+    "hintSkillIds": [
+      200362,
+      200462,
+      200492,
+      201601,
+      201611,
+      201661,
+      202552,
+      202952,
+      203502,
+      203852,
+      204122,
+      204182,
+      204222
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 10141,
+    "name": "[[『DREAMS』責任者]] [『DREAMS』責任者]カジノドライヴ (カジノドライヴ)",
+    "characterId": 1139,
+    "rarity": "R",
+    "commandId": 0,
+    "type": "stamina",
+    "hintSkillIds": [],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 10142,
+    "name": "[[トレセン学園]] [トレセン学園]レッドディザイア (レッドディザイア)",
+    "characterId": 1136,
+    "rarity": "R",
+    "commandId": 103,
+    "type": "speed",
+    "hintSkillIds": [
+      200602,
+      200612,
+      201402,
+      201631,
+      202122,
+      202452,
+      202642,
+      203852
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 10143,
+    "name": "[[トレセン学園]] [トレセン学園]ヴィクトワールピサ (ヴィクトワールピサ)",
+    "characterId": 1143,
+    "rarity": "R",
+    "commandId": 101,
+    "type": "speed",
+    "hintSkillIds": [
+      200042,
+      200352,
+      200512,
+      201591,
+      202602,
+      202792,
+      203652,
+      203662,
+      204142
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 10144,
+    "name": "[[トレセン学園]] [トレセン学園]マルシュロレーヌ (マルシュロレーヌ)",
+    "characterId": 1140,
+    "rarity": "R",
+    "commandId": 101,
+    "type": "speed",
+    "hintSkillIds": [
+      200302,
+      201672,
+      201682,
+      202262,
+      202302,
+      202332,
+      203093,
+      203103,
+      203182,
+      203602,
+      203612,
+      203792,
+      203982
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 20001,
+    "name": "[[やれやれ、お帰り]] [やれやれ、お帰り]フジキセキ (フジキセキ)",
+    "characterId": 1005,
+    "rarity": "SR",
+    "commandId": 106,
+    "type": "speed",
+    "hintSkillIds": [
+      200182,
+      200222,
+      200771,
+      201042,
+      201072
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 20002,
+    "name": "[[努力は裏切らない！]] [努力は裏切らない！]ダイワスカーレット (ダイワスカーレット)",
+    "characterId": 1009,
+    "rarity": "SR",
+    "commandId": 106,
+    "type": "speed",
+    "hintSkillIds": [
+      200282,
+      200572,
+      200582,
+      200712,
+      200722,
+      201052
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 20003,
+    "name": "[[テッペンに立て！]] [テッペンに立て！]ヒシアマゾン (ヒシアマゾン)",
+    "characterId": 1012,
+    "rarity": "SR",
+    "commandId": 102,
+    "type": "speed",
+    "hintSkillIds": [
+      200562,
+      200642,
+      201452,
+      201532,
+      201552
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 20004,
+    "name": "[[副会長の一刺し]] [副会長の一刺し]エアグルーヴ (エアグルーヴ)",
+    "characterId": 1018,
+    "rarity": "SR",
+    "commandId": 103,
+    "type": "speed",
+    "hintSkillIds": [
+      200472,
+      200722,
+      200931,
+      200941,
+      201102,
+      201601
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 20005,
+    "name": "[[デジタル充電中+]] [デジタル充電中+]アグネスデジタル (アグネスデジタル)",
+    "characterId": 1019,
+    "rarity": "SR",
+    "commandId": 102,
+    "type": "speed",
+    "hintSkillIds": [
+      200442,
+      200482,
+      201032,
+      201092,
+      201102,
+      201382
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 20006,
+    "name": "[[検証、開始]] [検証、開始]ビワハヤヒデ (ビワハヤヒデ)",
+    "characterId": 1023,
+    "rarity": "SR",
+    "commandId": 102,
+    "type": "speed",
+    "hintSkillIds": [
+      200052,
+      200162,
+      200222,
+      200262,
+      200821
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 20007,
+    "name": "[[カワイイ＋カワイイは～？]] [カワイイ＋カワイイは～？]マヤノトップガン (マヤノトップガン)",
+    "characterId": 1024,
+    "rarity": "SR",
+    "commandId": 105,
+    "type": "speed",
+    "hintSkillIds": [
+      200142,
+      200332,
+      200362,
+      200382,
+      200492,
+      200502
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 20008,
+    "name": "[[雨の独奏、私の独創]] [雨の独奏、私の独創]マンハッタンカフェ (マンハッタンカフェ)",
+    "characterId": 1025,
+    "rarity": "SR",
+    "commandId": 105,
+    "type": "speed",
+    "hintSkillIds": [
+      200162,
+      200232,
+      201172,
+      201202,
+      201222,
+      201581
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 20009,
+    "name": "[[鍛えぬくトモ]] [鍛えぬくトモ]ミホノブルボン (ミホノブルボン)",
+    "characterId": 1026,
+    "rarity": "SR",
+    "commandId": 102,
+    "type": "speed",
+    "hintSkillIds": [
+      200242,
+      200532,
+      201242,
+      201252
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 20010,
+    "name": "[[鍛えて、応えて！]] [鍛えて、応えて！]メジロライアン (メジロライアン)",
+    "characterId": 1027,
+    "rarity": "SR",
+    "commandId": 102,
+    "type": "speed",
+    "hintSkillIds": [
+      200162,
+      200232,
+      200722,
+      201102
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 20011,
+    "name": "[[シチーガール入門♯]] [シチーガール入門♯]ユキノビジン (ユキノビジン)",
+    "characterId": 1029,
+    "rarity": "SR",
+    "commandId": 103,
+    "type": "speed",
+    "hintSkillIds": [
+      200042,
+      200202,
+      200732,
+      201112
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 20012,
+    "name": "[[生体Aに関する実験的研究]] [生体Aに関する実験的研究]アグネスタキオン (アグネスタキオン)",
+    "characterId": 1032,
+    "rarity": "SR",
+    "commandId": 106,
+    "type": "speed",
+    "hintSkillIds": [
+      200722,
+      201102,
+      201112,
+      201152
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 20013,
+    "name": "[[0500・定刻通り]] [0500・定刻通り]エイシンフラッシュ (エイシンフラッシュ)",
+    "characterId": 1037,
+    "rarity": "SR",
+    "commandId": 101,
+    "type": "speed",
+    "hintSkillIds": [
+      200132,
+      200372,
+      201382,
+      201392,
+      201402
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 20014,
+    "name": "[[波立つキモチ]] [波立つキモチ]ナリタタイシン (ナリタタイシン)",
+    "characterId": 1050,
+    "rarity": "SR",
+    "commandId": 101,
+    "type": "speed",
+    "hintSkillIds": [
+      200442,
+      200482,
+      200622,
+      200632,
+      201462,
+      201512,
+      201641
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 20015,
+    "name": "[[マーベラス☆大作戦]] [マーベラス☆大作戦]マーベラスサンデー (マーベラスサンデー)",
+    "characterId": 1055,
+    "rarity": "SR",
+    "commandId": 106,
+    "type": "speed",
+    "hintSkillIds": [
+      200362,
+      200462,
+      200851,
+      200881,
+      201611
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 20016,
+    "name": "[[運の行方]] [運の行方]マチカネフクキタル (マチカネフクキタル)",
+    "characterId": 1056,
+    "rarity": "SR",
+    "commandId": 106,
+    "type": "speed",
+    "hintSkillIds": [
+      200092,
+      200482,
+      200781,
+      201392,
+      201422,
+      201562,
+      201571
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 20017,
+    "name": "[[幸せと背中合わせ]] [幸せと背中合わせ]メイショウドトウ (メイショウドトウ)",
+    "characterId": 1058,
+    "rarity": "SR",
+    "commandId": 103,
+    "type": "speed",
+    "hintSkillIds": [
+      200142,
+      200152,
+      200252,
+      200302,
+      201122,
+      201382,
+      201621
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 20018,
+    "name": "[[目線は気にせず]] [目線は気にせず]メジロドーベル (メジロドーベル)",
+    "characterId": 1059,
+    "rarity": "SR",
+    "commandId": 106,
+    "type": "speed",
+    "hintSkillIds": [
+      200062,
+      200212,
+      200722,
+      200732,
+      201542
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 20019,
+    "name": "[[…ただの水滴ですって]] […ただの水滴ですって]ナイスネイチャ (ナイスネイチャ)",
+    "characterId": 1060,
+    "rarity": "SR",
+    "commandId": 103,
+    "type": "speed",
+    "hintSkillIds": [
+      200122,
+      200342,
+      200442,
+      200502,
+      200911,
+      201162,
+      201422,
+      201442
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 20020,
+    "name": "[[一流プランニング]] [一流プランニング]キングヘイロー (キングヘイロー)",
+    "characterId": 1061,
+    "rarity": "SR",
+    "commandId": 101,
+    "type": "speed",
+    "hintSkillIds": [
+      200152,
+      200222,
+      200262,
+      200352,
+      200662,
+      200672
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 20021,
+    "name": "[[共に同じ道を！]] [共に同じ道を！]桐生院葵 (桐生院葵)",
+    "characterId": 9004,
+    "rarity": "SR",
+    "commandId": 0,
+    "type": "stamina",
+    "hintSkillIds": [],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 20022,
+    "name": "[[これがウチらのいか焼きや！]] [これがウチらのいか焼きや！]タマモクロス (タマモクロス)",
+    "characterId": 1021,
+    "rarity": "SR",
+    "commandId": 103,
+    "type": "speed",
+    "hintSkillIds": [
+      200712,
+      200811,
+      200901,
+      201112,
+      201132,
+      201142,
+      201412
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 20023,
+    "name": "[[見習い魔女と長い夜]] [見習い魔女と長い夜]スイープトウショウ (スイープトウショウ)",
+    "characterId": 1044,
+    "rarity": "SR",
+    "commandId": 101,
+    "type": "speed",
+    "hintSkillIds": [
+      200452,
+      200771,
+      200781,
+      201162,
+      201472,
+      201482,
+      201651
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 20024,
+    "name": "[[パリピ・ぱーりないと！]] [パリピ・ぱーりないと！]ダイタクヘリオス (ダイタクヘリオス)",
+    "characterId": 1065,
+    "rarity": "SR",
+    "commandId": 102,
+    "type": "speed",
+    "hintSkillIds": [
+      200462,
+      200562,
+      201042,
+      201052,
+      201082,
+      201631,
+      201651
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 20025,
+    "name": "[[準備運動は怠るべからず]] [準備運動は怠るべからず]イクノディクタス (イクノディクタス)",
+    "characterId": 1063,
+    "rarity": "SR",
+    "commandId": 106,
+    "type": "speed",
+    "hintSkillIds": [
+      200442,
+      200482,
+      201122,
+      201432,
+      201442
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 20026,
+    "name": "[[むじゃむじゃむじゃき]] [むじゃむじゃむじゃき]ナイスネイチャ (ナイスネイチャ)",
+    "characterId": 1060,
+    "rarity": "SR",
+    "commandId": 106,
+    "type": "speed",
+    "hintSkillIds": [
+      200122,
+      200342,
+      200442,
+      200502,
+      200911,
+      201162,
+      201422,
+      201442
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 20027,
+    "name": "[[あなたにささげる]] [あなたにささげる]ニシノフラワー (ニシノフラワー)",
+    "characterId": 1051,
+    "rarity": "SR",
+    "commandId": 102,
+    "type": "speed",
+    "hintSkillIds": [
+      200052,
+      200132,
+      200152,
+      200702,
+      201322
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 20028,
+    "name": "[[おすすめ本、あります！]] [おすすめ本、あります！]ゼンノロブロイ (ゼンノロブロイ)",
+    "characterId": 1047,
+    "rarity": "SR",
+    "commandId": 105,
+    "type": "speed",
+    "hintSkillIds": [
+      200362,
+      200452,
+      200492,
+      200502,
+      201332,
+      201432,
+      201532,
+      201542
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 20029,
+    "name": "[[世界の真珠、その名は]] [世界の真珠、その名は]シーキングザパール (シーキングザパール)",
+    "characterId": 1042,
+    "rarity": "SR",
+    "commandId": 103,
+    "type": "speed",
+    "hintSkillIds": [
+      200152,
+      200472,
+      200652,
+      200692,
+      200962,
+      201072
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 20030,
+    "name": "[[頑張るキミに！]] [頑張るキミに！]アイネスフウジン (アイネスフウジン)",
+    "characterId": 1031,
+    "rarity": "SR",
+    "commandId": 106,
+    "type": "speed",
+    "hintSkillIds": [
+      200732,
+      201082,
+      201282,
+      201651,
+      201661
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 20031,
+    "name": "[[///WARNING GATE///]] [///WARNING GATE///]シンコウウインディ (シンコウウインディ)",
+    "characterId": 1043,
+    "rarity": "SR",
+    "commandId": 101,
+    "type": "speed",
+    "hintSkillIds": [
+      200162,
+      200282,
+      200582,
+      200851
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 20032,
+    "name": "[[泥濘一笑、真っつぐに]] [泥濘一笑、真っつぐに]イナリワン (イナリワン)",
+    "characterId": 1034,
+    "rarity": "SR",
+    "commandId": 102,
+    "type": "speed",
+    "hintSkillIds": [
+      200172,
+      200202,
+      200292,
+      200462,
+      201442,
+      201611,
+      201682,
+      202002
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 20033,
+    "name": "[[泥まみれのコンパネーロ]] [泥まみれのコンパネーロ]エルコンドルパサー (エルコンドルパサー)",
+    "characterId": 1014,
+    "rarity": "SR",
+    "commandId": 101,
+    "type": "speed",
+    "hintSkillIds": [
+      200132,
+      200582,
+      200722,
+      201312,
+      201902
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 20034,
+    "name": "[[その心に吹きすさぶ]] [その心に吹きすさぶ]メジロアルダン (メジロアルダン)",
+    "characterId": 1071,
+    "rarity": "SR",
+    "commandId": 106,
+    "type": "speed",
+    "hintSkillIds": [
+      200022,
+      200572,
+      201142,
+      201322,
+      201532
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 20035,
+    "name": "[[nail on Turf]] [nail on Turf]トーセンジョーダン (トーセンジョーダン)",
+    "characterId": 1048,
+    "rarity": "SR",
+    "commandId": 105,
+    "type": "speed",
+    "hintSkillIds": [
+      200302,
+      200562,
+      200592,
+      201102,
+      201112,
+      201312
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 20036,
+    "name": "[[救いはあるよっ♪]] [救いはあるよっ♪]メジロパーマー (メジロパーマー)",
+    "characterId": 1064,
+    "rarity": "SR",
+    "commandId": 105,
+    "type": "speed",
+    "hintSkillIds": [
+      200332,
+      200742,
+      200762,
+      201192,
+      201282,
+      202012,
+      202582,
+      202792
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 20037,
+    "name": "[[GRMAラーメン♪]] [GRMAラーメン♪]ファインモーション (ファインモーション)",
+    "characterId": 1022,
+    "rarity": "SR",
+    "commandId": 102,
+    "type": "speed",
+    "hintSkillIds": [
+      200012,
+      200192,
+      200262,
+      200372,
+      200492
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 20038,
+    "name": "[[一等星は揺らがない]] [一等星は揺らがない]シリウスシンボリ (シリウスシンボリ)",
+    "characterId": 1070,
+    "rarity": "SR",
+    "commandId": 103,
+    "type": "speed",
+    "hintSkillIds": [
+      200162,
+      200582,
+      201112,
+      201641
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 20039,
+    "name": "[[うるさい監視役]] [うるさい監視役]ウオッカ (ウオッカ)",
+    "characterId": 1008,
+    "rarity": "SR",
+    "commandId": 101,
+    "type": "speed",
+    "hintSkillIds": [
+      200032,
+      200362,
+      200372,
+      200382,
+      200512,
+      200602,
+      200702,
+      201032,
+      201102
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 20040,
+    "name": "[[鼓動が速まるクールダウン]] [鼓動が速まるクールダウン]メジロライアン (メジロライアン)",
+    "characterId": 1027,
+    "rarity": "SR",
+    "commandId": 105,
+    "type": "speed",
+    "hintSkillIds": [
+      200602,
+      200722,
+      201102
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 20041,
+    "name": "[[一等星を目指して]] [一等星を目指して]アドマイヤベガ (アドマイヤベガ)",
+    "characterId": 1033,
+    "rarity": "SR",
+    "commandId": 103,
+    "type": "speed",
+    "hintSkillIds": [
+      200632,
+      201152,
+      201452,
+      201492,
+      201502
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 20042,
+    "name": "[[響け！模範的あいさつ！]] [響け！模範的あいさつ！]サクラバクシンオー (サクラバクシンオー)",
+    "characterId": 1041,
+    "rarity": "SR",
+    "commandId": 102,
+    "type": "speed",
+    "hintSkillIds": [
+      200652,
+      200791,
+      200841,
+      200962,
+      200972,
+      200982,
+      200992,
+      201012
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 20043,
+    "name": "[[1日の終わりに]] [1日の終わりに]スペシャルウィーク (スペシャルウィーク)",
+    "characterId": 1001,
+    "rarity": "SR",
+    "commandId": 102,
+    "type": "speed",
+    "hintSkillIds": [
+      200162,
+      200512,
+      200562,
+      200732,
+      201312,
+      201352,
+      201362
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 20044,
+    "name": "[[ほっと♪きゅーとメモリー]] [ほっと♪きゅーとメモリー]カレンチャン (カレンチャン)",
+    "characterId": 1038,
+    "rarity": "SR",
+    "commandId": 101,
+    "type": "speed",
+    "hintSkillIds": [
+      200652,
+      200911,
+      200962,
+      201002,
+      201372
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 20045,
+    "name": "[[ギリギリ!?UMA♡DOL]] [ギリギリ!?UMA♡DOL]スマートファルコン (スマートファルコン)",
+    "characterId": 1046,
+    "rarity": "SR",
+    "commandId": 103,
+    "type": "speed",
+    "hintSkillIds": [
+      200162,
+      200222,
+      200952,
+      201242,
+      201522,
+      201672,
+      201682
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 20046,
+    "name": "[[おてんば魔女、修行中。]] [おてんば魔女、修行中。]スイープトウショウ (スイープトウショウ)",
+    "characterId": 1044,
+    "rarity": "SR",
+    "commandId": 106,
+    "type": "speed",
+    "hintSkillIds": [
+      200452,
+      201162,
+      201462,
+      201472,
+      201482,
+      201552,
+      201651
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 20047,
+    "name": "[[Step! Smile! Wink!]] [Step! Smile! Wink!]トウカイテイオー (トウカイテイオー)",
+    "characterId": 1003,
+    "rarity": "SR",
+    "commandId": 105,
+    "type": "speed",
+    "hintSkillIds": [
+      200452,
+      200492,
+      200502,
+      201132,
+      201142,
+      201332
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 20048,
+    "name": "[[好きなんだ、ご飯が]] [好きなんだ、ご飯が]オグリキャップ (オグリキャップ)",
+    "characterId": 1006,
+    "rarity": "SR",
+    "commandId": 103,
+    "type": "speed",
+    "hintSkillIds": [
+      200342,
+      200492,
+      200512,
+      201062,
+      201072,
+      201601,
+      202112,
+      202122
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 20049,
+    "name": "[[金色を目指して]] [金色を目指して]ゴールドシチー (ゴールドシチー)",
+    "characterId": 1040,
+    "rarity": "SR",
+    "commandId": 106,
+    "type": "speed",
+    "hintSkillIds": [
+      200232,
+      200302,
+      200692,
+      201611,
+      201641
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 20050,
+    "name": "[[ゆるっと、まにまに]] [ゆるっと、まにまに]セイウンスカイ (セイウンスカイ)",
+    "characterId": 1020,
+    "rarity": "SR",
+    "commandId": 106,
+    "type": "speed",
+    "hintSkillIds": [
+      200532,
+      200542,
+      200881,
+      200811,
+      201522,
+      201601
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 20051,
+    "name": "[[The 3rd MIRACLE]] [The 3rd MIRACLE]ケイエスミラクル (ケイエスミラクル)",
+    "characterId": 1093,
+    "rarity": "SR",
+    "commandId": 103,
+    "type": "speed",
+    "hintSkillIds": [
+      200702,
+      200972,
+      200992,
+      201312,
+      201532,
+      202372
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 20052,
+    "name": "[[『フレフレ、ツヨシ！』]] [『フレフレ、ツヨシ！』]ツルマルツヨシ (ツルマルツヨシ)",
+    "characterId": 1073,
+    "rarity": "SR",
+    "commandId": 103,
+    "type": "speed",
+    "hintSkillIds": [
+      200302,
+      200722,
+      202032,
+      202092,
+      202152
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 20053,
+    "name": "[[ストップ、委員長！]] [ストップ、委員長！]ナリタトップロード (ナリタトップロード)",
+    "characterId": 1077,
+    "rarity": "SR",
+    "commandId": 102,
+    "type": "speed",
+    "hintSkillIds": [
+      200012,
+      200142,
+      200152,
+      200572,
+      200582
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 20054,
+    "name": "[[偉大なるフォトグラフィーア]] [偉大なるフォトグラフィーア]テイエムオペラオー (テイエムオペラオー)",
+    "characterId": 1015,
+    "rarity": "SR",
+    "commandId": 105,
+    "type": "speed",
+    "hintSkillIds": [
+      200142,
+      200352,
+      200362,
+      200562,
+      200582,
+      200722,
+      201182,
+      201902,
+      202012
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 20055,
+    "name": "[[添付ファイル、温めますか？]] [添付ファイル、温めますか？]アストンマーチャン (アストンマーチャン)",
+    "characterId": 1087,
+    "rarity": "SR",
+    "commandId": 101,
+    "type": "speed",
+    "hintSkillIds": [
+      200162,
+      200532,
+      200962,
+      201022,
+      201262,
+      201302,
+      201601
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 20056,
+    "name": "[[デッド・エンド【通せん坊】]] [デッド・エンド【通せん坊】]ジャングルポケット (ジャングルポケット)",
+    "characterId": 1094,
+    "rarity": "SR",
+    "commandId": 101,
+    "type": "speed",
+    "hintSkillIds": [
+      201392,
+      201462,
+      202022,
+      202082,
+      202122,
+      202452,
+      202492
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 20057,
+    "name": "[[ふわり、さらり]] [ふわり、さらり]メジロドーベル (メジロドーベル)",
+    "characterId": 1059,
+    "rarity": "SR",
+    "commandId": 103,
+    "type": "speed",
+    "hintSkillIds": [
+      200012,
+      200142,
+      201112,
+      201132,
+      201152,
+      202082
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 20058,
+    "name": "[[放課後、君が笑った]] [放課後、君が笑った]シンボリルドルフ (シンボリルドルフ)",
+    "characterId": 1017,
+    "rarity": "SR",
+    "commandId": 105,
+    "type": "speed",
+    "hintSkillIds": [
+      200831,
+      200861,
+      200891,
+      200921,
+      201172,
+      201182,
+      202012,
+      202422
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 20059,
+    "name": "[[嗚呼素晴らしき甘味哉]] [嗚呼素晴らしき甘味哉]アグネスタキオン (アグネスタキオン)",
+    "characterId": 1032,
+    "rarity": "SR",
+    "commandId": 102,
+    "type": "speed",
+    "hintSkillIds": [
+      200012,
+      200042,
+      200722,
+      201102,
+      201152,
+      201532,
+      201902,
+      202032,
+      202372
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 20060,
+    "name": "[[甘～い浮き輪を召し上がれ]] [甘～い浮き輪を召し上がれ]ヒシアケボノ (ヒシアケボノ)",
+    "characterId": 1028,
+    "rarity": "SR",
+    "commandId": 102,
+    "type": "speed",
+    "hintSkillIds": [
+      200212,
+      200342,
+      200652,
+      200972,
+      200992,
+      201002,
+      202412
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 20061,
+    "name": "[[ゴルシ印のスペシャリテ]] [ゴルシ印のスペシャリテ]ゴールドシップ (ゴールドシップ)",
+    "characterId": 1007,
+    "rarity": "SR",
+    "commandId": 105,
+    "type": "speed",
+    "hintSkillIds": [
+      200622,
+      200642,
+      200752,
+      200791,
+      200801,
+      200811,
+      200821,
+      201202,
+      201212,
+      201222,
+      201232,
+      201452,
+      201462,
+      201472,
+      201482,
+      201502,
+      201512,
+      201552,
+      201591,
+      201631,
+      202022,
+      202032,
+      202382,
+      202492
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 20062,
+    "name": "[[激マブ！ドライブ♪]] [激マブ！ドライブ♪]マルゼンスキー (マルゼンスキー)",
+    "characterId": 1004,
+    "rarity": "SR",
+    "commandId": 106,
+    "type": "speed",
+    "hintSkillIds": [
+      200042,
+      200532,
+      200552,
+      200682,
+      201062,
+      201082,
+      202532
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 20063,
+    "name": "[[夕立の向こうからのぞく]] [夕立の向こうからのぞく]サイレンススズカ (サイレンススズカ)",
+    "characterId": 1002,
+    "rarity": "SR",
+    "commandId": 101,
+    "type": "speed",
+    "hintSkillIds": [
+      200022,
+      200152,
+      200212,
+      200542,
+      201242,
+      201302,
+      201621,
+      202502
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 20064,
+    "name": "[[ラッキーの神様は早起き]] [ラッキーの神様は早起き]コパノリッキー (コパノリッキー)",
+    "characterId": 1098,
+    "rarity": "SR",
+    "commandId": 103,
+    "type": "speed",
+    "hintSkillIds": [
+      200952,
+      201532,
+      201672,
+      201682,
+      202212,
+      202222,
+      202252,
+      202302
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 20065,
+    "name": "[[よい茶の飲み置き]] [よい茶の飲み置き]グラスワンダー (グラスワンダー)",
+    "characterId": 1011,
+    "rarity": "SR",
+    "commandId": 102,
+    "type": "speed",
+    "hintSkillIds": [
+      200592,
+      200612,
+      201042,
+      201072,
+      201412,
+      201442
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 20066,
+    "name": "[[お助け大将と小さな魔女]] [お助け大将と小さな魔女]キタサンブラック (キタサンブラック)",
+    "characterId": 1068,
+    "rarity": "SR",
+    "commandId": 105,
+    "type": "speed",
+    "hintSkillIds": [
+      200332,
+      200352,
+      200382,
+      200762,
+      201192,
+      201242,
+      202462
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 20067,
+    "name": "[[あまえんぼNight]] [あまえんぼNight]タイキシャトル (タイキシャトル)",
+    "characterId": 1010,
+    "rarity": "SR",
+    "commandId": 106,
+    "type": "speed",
+    "hintSkillIds": [
+      200682,
+      201042,
+      201052,
+      201062,
+      201082
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 20068,
+    "name": "[[とびっきりの金メダル]] [とびっきりの金メダル]ナイスネイチャ (ナイスネイチャ)",
+    "characterId": 1060,
+    "rarity": "SR",
+    "commandId": 105,
+    "type": "speed",
+    "hintSkillIds": [
+      200602,
+      201162,
+      201402,
+      201422,
+      201442,
+      201692
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 20069,
+    "name": "[[あくもー退散！？]] [あくもー退散！？]マチカネタンホイザ (マチカネタンホイザ)",
+    "characterId": 1062,
+    "rarity": "SR",
+    "commandId": 101,
+    "type": "speed",
+    "hintSkillIds": [
+      200482,
+      200592,
+      201212,
+      201222,
+      201382,
+      201692
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 20070,
+    "name": "[[長姉は大変？]] [長姉は大変？]ヴィルシーナ (ヴィルシーナ)",
+    "characterId": 1090,
+    "rarity": "SR",
+    "commandId": 103,
+    "type": "speed",
+    "hintSkillIds": [
+      200032,
+      200132,
+      200452,
+      200542,
+      201292
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 20071,
+    "name": "[[『最強』は作れる！]] [『最強』は作れる！]ロイスアンドロイス (ロイスアンドロイス)",
+    "characterId": 1103,
+    "rarity": "SR",
+    "commandId": 102,
+    "type": "speed",
+    "hintSkillIds": [
+      200432,
+      200442,
+      200472,
+      200482,
+      200492,
+      200722,
+      201651
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 20072,
+    "name": "[[ギャラルホルンを磨き上げよ]] [ギャラルホルンを磨き上げよ]タニノギムレット (タニノギムレット)",
+    "characterId": 1084,
+    "rarity": "SR",
+    "commandId": 106,
+    "type": "speed",
+    "hintSkillIds": [
+      200362,
+      200502,
+      200632,
+      200642,
+      201102,
+      201452,
+      201472
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 20073,
+    "name": "[[Time flies]] [Time flies]トーセンジョーダン (トーセンジョーダン)",
+    "characterId": 1048,
+    "rarity": "SR",
+    "commandId": 101,
+    "type": "speed",
+    "hintSkillIds": [
+      200302,
+      200502,
+      200582,
+      200722,
+      201102,
+      202652,
+      202792
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 20074,
+    "name": "[[護るべきは無垢の瞳]] [護るべきは無垢の瞳]ヤエノムテキ (ヤエノムテキ)",
+    "characterId": 1072,
+    "rarity": "SR",
+    "commandId": 105,
+    "type": "speed",
+    "hintSkillIds": [
+      200472,
+      200512,
+      200572,
+      200732,
+      201112,
+      202092,
+      202412
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 20075,
+    "name": "[[Cheers!]] [Cheers!]タップダンスシチー (タップダンスシチー)",
+    "characterId": 1107,
+    "rarity": "SR",
+    "commandId": 103,
+    "type": "speed",
+    "hintSkillIds": [
+      200032,
+      200372,
+      200712,
+      200722,
+      201262,
+      202132,
+      202652,
+      202792
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 20076,
+    "name": "[[道端フィードバック]] [道端フィードバック]エアシャカール (エアシャカール)",
+    "characterId": 1036,
+    "rarity": "SR",
+    "commandId": 102,
+    "type": "speed",
+    "hintSkillIds": [
+      200372,
+      200632,
+      201452,
+      201492,
+      202382,
+      202942
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 20077,
+    "name": "[[ぬりぬりシェイプアップ！]] [ぬりぬりシェイプアップ！]ダンツフレーム (ダンツフレーム)",
+    "characterId": 1092,
+    "rarity": "SR",
+    "commandId": 106,
+    "type": "speed",
+    "hintSkillIds": [
+      200462,
+      201102,
+      201132,
+      201591,
+      201702,
+      202092,
+      202472,
+      202792
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 20078,
+    "name": "[[お守りパワーで福徳円満！]] [お守りパワーで福徳円満！]マチカネフクキタル (マチカネフクキタル)",
+    "characterId": 1056,
+    "rarity": "SR",
+    "commandId": 101,
+    "type": "speed",
+    "hintSkillIds": [
+      201212,
+      201222,
+      201562,
+      201571,
+      202072,
+      202792
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 20079,
+    "name": "[[みんなにグッドマーベラス☆]] [みんなにグッドマーベラス☆]マーベラスサンデー (マーベラスサンデー)",
+    "characterId": 1055,
+    "rarity": "SR",
+    "commandId": 103,
+    "type": "speed",
+    "hintSkillIds": [
+      200012,
+      200372,
+      200462,
+      200572,
+      200722,
+      201332,
+      202082
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 20080,
+    "name": "[[君の花衣]] [君の花衣]サクラローレル (サクラローレル)",
+    "characterId": 1076,
+    "rarity": "SR",
+    "commandId": 106,
+    "type": "speed",
+    "hintSkillIds": [
+      200442,
+      200502,
+      200742,
+      201202,
+      201222,
+      202422,
+      202662
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 20081,
+    "name": "[[お任せ！オートクチュール]] [お任せ！オートクチュール]ノースフライト (ノースフライト)",
+    "characterId": 1082,
+    "rarity": "SR",
+    "commandId": 102,
+    "type": "speed",
+    "hintSkillIds": [
+      200132,
+      200462,
+      200502,
+      200682,
+      201042,
+      201062,
+      202502,
+      203022
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 20082,
+    "name": "[[先陣スプラッシュ！]] [先陣スプラッシュ！]バブルガムフェロー (バブルガムフェロー)",
+    "characterId": 1124,
+    "rarity": "SR",
+    "commandId": 101,
+    "type": "speed",
+    "hintSkillIds": [
+      200462,
+      200502,
+      201352,
+      202412,
+      202802,
+      202982
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 20083,
+    "name": "[[月下麗人]] [月下麗人]メジロラモーヌ (メジロラモーヌ)",
+    "characterId": 1086,
+    "rarity": "SR",
+    "commandId": 105,
+    "type": "speed",
+    "hintSkillIds": [
+      200462,
+      200732,
+      201142,
+      201702,
+      202092,
+      202532,
+      203312
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 20084,
+    "name": "[[喜びの咲く刻]] [喜びの咲く刻]ラッキーライラック (ラッキーライラック)",
+    "characterId": 1130,
+    "rarity": "SR",
+    "commandId": 106,
+    "type": "speed",
+    "hintSkillIds": [
+      200142,
+      200342,
+      200732,
+      201112,
+      201142,
+      202652,
+      203312
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 20085,
+    "name": "[[メロンなささやき]] [メロンなささやき]メジロマックイーン (メジロマックイーン)",
+    "characterId": 1013,
+    "rarity": "SR",
+    "commandId": 103,
+    "type": "speed",
+    "hintSkillIds": [
+      200472,
+      200482,
+      200742,
+      201532,
+      202372,
+      202762,
+      203132,
+      203302
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 20086,
+    "name": "[[『しあわせの青いバラ』]] [『しあわせの青いバラ』]ライスシャワー (ライスシャワー)",
+    "characterId": 1030,
+    "rarity": "SR",
+    "commandId": 101,
+    "type": "speed",
+    "hintSkillIds": [
+      200062,
+      200742,
+      201352,
+      201581,
+      202722,
+      202772,
+      203302
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 20087,
+    "name": "[[Daring Music]] [Daring Music]デアリングハート (デアリングハート)",
+    "characterId": 1112,
+    "rarity": "SR",
+    "commandId": 102,
+    "type": "speed",
+    "hintSkillIds": [
+      200462,
+      200502,
+      200582,
+      200682,
+      201052,
+      201072,
+      201631,
+      203022
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 20088,
+    "name": "[[一輪ずつ、喜びを束ねて]] [一輪ずつ、喜びを束ねて]カレンブーケドール (カレンブーケドール)",
+    "characterId": 1134,
+    "rarity": "SR",
+    "commandId": 105,
+    "type": "speed",
+    "hintSkillIds": [
+      200352,
+      200462,
+      200572,
+      201142,
+      201352,
+      202372,
+      202762,
+      202982,
+      203312
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 20089,
+    "name": "[[私たちのプリンセス流儀]] [私たちのプリンセス流儀]カワカミプリンセス (カワカミプリンセス)",
+    "characterId": 1039,
+    "rarity": "SR",
+    "commandId": 103,
+    "type": "speed",
+    "hintSkillIds": [
+      200342,
+      201132,
+      201631,
+      202102,
+      202472,
+      202722,
+      203592
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 20090,
+    "name": "[[ニャンともイカすヒーローさ]] [ニャンともイカすヒーローさ]ビコーペガサス (ビコーペガサス)",
+    "characterId": 1054,
+    "rarity": "SR",
+    "commandId": 106,
+    "type": "speed",
+    "hintSkillIds": [
+      200162,
+      200652,
+      201402,
+      202152,
+      202402,
+      202722,
+      203012,
+      203152
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 20091,
+    "name": "[[静寂を煎じ]] [静寂を煎じ]サクラチトセオー (サクラチトセオー)",
+    "characterId": 1126,
+    "rarity": "SR",
+    "commandId": 101,
+    "type": "speed",
+    "hintSkillIds": [
+      200222,
+      201112,
+      201142,
+      202532,
+      203142,
+      203172,
+      203242,
+      203312,
+      203432
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 20092,
+    "name": "[[続け故郷へ、けっぱり道！]] [続け故郷へ、けっぱり道！]ホッコータルマエ (ホッコータルマエ)",
+    "characterId": 1099,
+    "rarity": "SR",
+    "commandId": 102,
+    "type": "speed",
+    "hintSkillIds": [
+      201332,
+      201631,
+      202302,
+      202312,
+      203093,
+      203222,
+      203422,
+      203602
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 20093,
+    "name": "[[ぬくもりフォー・ユー]] [ぬくもりフォー・ユー]メジロドーベル (メジロドーベル)",
+    "characterId": 1059,
+    "rarity": "SR",
+    "commandId": 101,
+    "type": "speed",
+    "hintSkillIds": [
+      200202,
+      200502,
+      201432,
+      202112,
+      202642,
+      202962,
+      203322,
+      203552
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 20094,
+    "name": "[[私たちのアイディアノート]] [私たちのアイディアノート]サトノダイヤモンド (サトノダイヤモンド)",
+    "characterId": 1067,
+    "rarity": "SR",
+    "commandId": 105,
+    "type": "speed",
+    "hintSkillIds": [
+      200202,
+      201402,
+      201422,
+      202082,
+      202092,
+      202662,
+      203312,
+      203622,
+      203742
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 20095,
+    "name": "[[Fervent Yearning]] [Fervent Yearning]レッドディザイア (レッドディザイア)",
+    "characterId": 1136,
+    "rarity": "SR",
+    "commandId": 103,
+    "type": "speed",
+    "hintSkillIds": [
+      200602,
+      200612,
+      201402,
+      201631,
+      202122,
+      202452,
+      202642,
+      203852
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 20096,
+    "name": "[[Sushi-Go-Round!]] [Sushi-Go-Round!]タイキシャトル (タイキシャトル)",
+    "characterId": 1010,
+    "rarity": "SR",
+    "commandId": 103,
+    "type": "speed",
+    "hintSkillIds": [
+      200162,
+      201352,
+      201532,
+      202672,
+      202762,
+      203042,
+      203162,
+      204162
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 20097,
+    "name": "[[温もりの一皿、召し上がれ♪]] [温もりの一皿、召し上がれ♪]スーパークリーク (スーパークリーク)",
+    "characterId": 1045,
+    "rarity": "SR",
+    "commandId": 102,
+    "type": "speed",
+    "hintSkillIds": [
+      200352,
+      200752,
+      201182,
+      201202,
+      201212,
+      203772,
+      204142
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 20098,
+    "name": "[[そびえ立つ背中]] [そびえ立つ背中]ヒシアマゾン (ヒシアマゾン)",
+    "characterId": 1012,
+    "rarity": "SR",
+    "commandId": 106,
+    "type": "speed",
+    "hintSkillIds": [
+      201452,
+      202492,
+      202882,
+      202892,
+      203532,
+      203662,
+      203752
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 20099,
+    "name": "[[夕映えに身をゆだねて]] [夕映えに身をゆだねて]メジロアルダン (メジロアルダン)",
+    "characterId": 1071,
+    "rarity": "SR",
+    "commandId": 105,
+    "type": "speed",
+    "hintSkillIds": [
+      200582,
+      200732,
+      201142,
+      201631,
+      202742,
+      203112,
+      203312,
+      204322
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30001,
+    "name": "[[日本一のステージを]] [日本一のステージを]スペシャルウィーク (スペシャルウィーク)",
+    "characterId": 1001,
+    "rarity": "SSR",
+    "commandId": 103,
+    "type": "speed",
+    "hintSkillIds": [
+      200162,
+      200232,
+      200512,
+      200612,
+      200732,
+      201352,
+      201542
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30002,
+    "name": "[[輝く景色の、その先に]] [輝く景色の、その先に]サイレンススズカ (サイレンススズカ)",
+    "characterId": 1002,
+    "rarity": "SSR",
+    "commandId": 101,
+    "type": "speed",
+    "hintSkillIds": [
+      200432,
+      200532,
+      200542,
+      200552,
+      200712,
+      201242,
+      201252,
+      201522,
+      201272
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30003,
+    "name": "[[夢は掲げるものなのだっ！]] [夢は掲げるものなのだっ！]トウカイテイオー (トウカイテイオー)",
+    "characterId": 1003,
+    "rarity": "SSR",
+    "commandId": 101,
+    "type": "speed",
+    "hintSkillIds": [
+      200452,
+      200492,
+      200502,
+      201132,
+      201142,
+      201332
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30004,
+    "name": "[[不沈艦の進撃]] [不沈艦の進撃]ゴールドシップ (ゴールドシップ)",
+    "characterId": 1007,
+    "rarity": "SSR",
+    "commandId": 105,
+    "type": "speed",
+    "hintSkillIds": [
+      200622,
+      200642,
+      200752,
+      201212,
+      201232,
+      201472,
+      201482,
+      201502,
+      201512,
+      201552,
+      201581,
+      201591,
+      201601,
+      201631
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30005,
+    "name": "[[ロード・オブ・ウオッカ]] [ロード・オブ・ウオッカ]ウオッカ (ウオッカ)",
+    "characterId": 1008,
+    "rarity": "SSR",
+    "commandId": 102,
+    "type": "speed",
+    "hintSkillIds": [
+      200032,
+      200362,
+      200372,
+      200382,
+      200512,
+      200602,
+      200702,
+      201032,
+      201102
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30006,
+    "name": "[[千紫万紅にまぎれぬ一凛]] [千紫万紅にまぎれぬ一凛]グラスワンダー (グラスワンダー)",
+    "characterId": 1011,
+    "rarity": "SSR",
+    "commandId": 103,
+    "type": "speed",
+    "hintSkillIds": [
+      200042,
+      200282,
+      200512,
+      200592,
+      200602,
+      200702,
+      200871,
+      201152
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30007,
+    "name": "[[パッションチャンピオーナ！]] [パッションチャンピオーナ！]エルコンドルパサー (エルコンドルパサー)",
+    "characterId": 1014,
+    "rarity": "SSR",
+    "commandId": 102,
+    "type": "speed",
+    "hintSkillIds": [
+      200132,
+      200212,
+      200582,
+      200722,
+      201102,
+      201122,
+      201312
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30008,
+    "name": "[[待望の大謀]] [待望の大謀]セイウンスカイ (セイウンスカイ)",
+    "characterId": 1020,
+    "rarity": "SSR",
+    "commandId": 105,
+    "type": "speed",
+    "hintSkillIds": [
+      200252,
+      200302,
+      200771,
+      200811,
+      200881,
+      201611
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30009,
+    "name": "[[天をも切り裂くイナズマ娘！]] [天をも切り裂くイナズマ娘！]タマモクロス (タマモクロス)",
+    "characterId": 1021,
+    "rarity": "SSR",
+    "commandId": 105,
+    "type": "speed",
+    "hintSkillIds": [
+      200712,
+      200811,
+      200901,
+      201112,
+      201132,
+      201142,
+      201412
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30010,
+    "name": "[[感謝は指先まで込めて]] [感謝は指先まで込めて]ファインモーション (ファインモーション)",
+    "characterId": 1022,
+    "rarity": "SSR",
+    "commandId": 106,
+    "type": "speed",
+    "hintSkillIds": [
+      200012,
+      200192,
+      200262,
+      200372,
+      200492
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30011,
+    "name": "[[飛び出せ、キラメケ]] [飛び出せ、キラメケ]アイネスフウジン (アイネスフウジン)",
+    "characterId": 1031,
+    "rarity": "SSR",
+    "commandId": 103,
+    "type": "speed",
+    "hintSkillIds": [
+      200732,
+      201082,
+      201282,
+      201651,
+      201661
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30012,
+    "name": "[[B・N・Winner!!]] [B・N・Winner!!]ウイニングチケット (ウイニングチケット)",
+    "characterId": 1035,
+    "rarity": "SSR",
+    "commandId": 103,
+    "type": "speed",
+    "hintSkillIds": [
+      200152,
+      200222,
+      200592,
+      200602,
+      200612
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30013,
+    "name": "[[7センチの先へ]] [7センチの先へ]エアシャカール (エアシャカール)",
+    "characterId": 1036,
+    "rarity": "SSR",
+    "commandId": 106,
+    "type": "speed",
+    "hintSkillIds": [
+      201212,
+      201492,
+      201502
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30014,
+    "name": "[[Run(my)way]] [Run(my)way]ゴールドシチー (ゴールドシチー)",
+    "characterId": 1040,
+    "rarity": "SSR",
+    "commandId": 101,
+    "type": "speed",
+    "hintSkillIds": [
+      200082,
+      200692,
+      201062
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30015,
+    "name": "[[はやい！うまい！はやい！]] [はやい！うまい！はやい！]サクラバクシンオー (サクラバクシンオー)",
+    "characterId": 1041,
+    "rarity": "SSR",
+    "commandId": 101,
+    "type": "speed",
+    "hintSkillIds": [
+      200652,
+      200791,
+      200841,
+      200962,
+      200972,
+      200982,
+      200992,
+      201012
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30016,
+    "name": "[[一粒の安らぎ]] [一粒の安らぎ]スーパークリーク (スーパークリーク)",
+    "characterId": 1045,
+    "rarity": "SSR",
+    "commandId": 105,
+    "type": "speed",
+    "hintSkillIds": [
+      200152,
+      200352,
+      200462,
+      200512,
+      200881
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30017,
+    "name": "[[これが私のウマドル道☆]] [これが私のウマドル道☆]スマートファルコン (スマートファルコン)",
+    "characterId": 1046,
+    "rarity": "SSR",
+    "commandId": 102,
+    "type": "speed",
+    "hintSkillIds": [
+      200162,
+      200222,
+      200262,
+      200352,
+      200952,
+      201292,
+      201302,
+      201522
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30018,
+    "name": "[[まだ小さな蕾でも]] [まだ小さな蕾でも]ニシノフラワー (ニシノフラワー)",
+    "characterId": 1051,
+    "rarity": "SSR",
+    "commandId": 101,
+    "type": "speed",
+    "hintSkillIds": [
+      200052,
+      200132,
+      200152,
+      200702,
+      201322
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30019,
+    "name": "[[うらら～な休日]] [うらら～な休日]ハルウララ (ハルウララ)",
+    "characterId": 1052,
+    "rarity": "SSR",
+    "commandId": 103,
+    "type": "speed",
+    "hintSkillIds": [],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30020,
+    "name": "[[必殺！Wキャロットパンチ！]] [必殺！Wキャロットパンチ！]ビコーペガサス (ビコーペガサス)",
+    "characterId": 1054,
+    "rarity": "SSR",
+    "commandId": 101,
+    "type": "speed",
+    "hintSkillIds": [
+      200262,
+      200662,
+      200672,
+      200682,
+      200702,
+      201002,
+      201022
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30021,
+    "name": "[[ようこそ、トレセン学園へ！]] [ようこそ、トレセン学園へ！]駿川たづな (駿川たづな)",
+    "characterId": 9001,
+    "rarity": "SSR",
+    "commandId": 0,
+    "type": "stamina",
+    "hintSkillIds": [],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30022,
+    "name": "[[『エース』として]] [『エース』として]メジロマックイーン (メジロマックイーン)",
+    "characterId": 1013,
+    "rarity": "SSR",
+    "commandId": 105,
+    "type": "speed",
+    "hintSkillIds": [
+      200062,
+      200162,
+      200232,
+      200332,
+      200362,
+      200562,
+      200582,
+      200742,
+      200752,
+      200762
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30023,
+    "name": "[[『幸せ』が舞う時]] [『幸せ』が舞う時]ライスシャワー (ライスシャワー)",
+    "characterId": 1030,
+    "rarity": "SSR",
+    "commandId": 105,
+    "type": "speed",
+    "hintSkillIds": [
+      200062,
+      200272,
+      200742,
+      200801,
+      200861,
+      200871,
+      201342,
+      201372,
+      201581
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30024,
+    "name": "[[『愛してもらうんだぞ』]] [『愛してもらうんだぞ』]オグリキャップ (オグリキャップ)",
+    "characterId": 1006,
+    "rarity": "SSR",
+    "commandId": 102,
+    "type": "speed",
+    "hintSkillIds": [
+      200222,
+      200332,
+      200342,
+      200432,
+      200492,
+      200512,
+      200722,
+      201062,
+      201352,
+      201601
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30025,
+    "name": "[[夕焼けはあこがれの色]] [夕焼けはあこがれの色]スペシャルウィーク (スペシャルウィーク)",
+    "characterId": 1001,
+    "rarity": "SSR",
+    "commandId": 101,
+    "type": "speed",
+    "hintSkillIds": [
+      200162,
+      200232,
+      200512,
+      200612,
+      200732,
+      201352,
+      201542
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30026,
+    "name": "[[ターボエンジン全開宣言！]] [ターボエンジン全開宣言！]ツインターボ (ツインターボ)",
+    "characterId": 1066,
+    "rarity": "SSR",
+    "commandId": 101,
+    "type": "speed",
+    "hintSkillIds": [
+      200282,
+      200292,
+      200532,
+      200542,
+      201272,
+      201282
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30027,
+    "name": "[[バカと笑え]] [バカと笑え]メジロパーマー (メジロパーマー)",
+    "characterId": 1064,
+    "rarity": "SSR",
+    "commandId": 103,
+    "type": "speed",
+    "hintSkillIds": [
+      200042,
+      200052,
+      200532,
+      200542,
+      200871,
+      201282,
+      201631
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30028,
+    "name": "[[迫る熱に押されて]] [迫る熱に押されて]キタサンブラック (キタサンブラック)",
+    "characterId": 1068,
+    "rarity": "SSR",
+    "commandId": 101,
+    "type": "speed",
+    "hintSkillIds": [
+      200332,
+      200352,
+      200382,
+      200432,
+      200762,
+      201182,
+      201242,
+      201262
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30029,
+    "name": "[[その背中を越えて]] [その背中を越えて]サトノダイヤモンド (サトノダイヤモンド)",
+    "characterId": 1067,
+    "rarity": "SSR",
+    "commandId": 105,
+    "type": "speed",
+    "hintSkillIds": [
+      200152,
+      200212,
+      200841,
+      201112,
+      201152,
+      201422,
+      201432
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30030,
+    "name": "[[Just keep going.]] [Just keep going.]マチカネタンホイザ (マチカネタンホイザ)",
+    "characterId": 1062,
+    "rarity": "SSR",
+    "commandId": 103,
+    "type": "speed",
+    "hintSkillIds": [
+      200442,
+      200472,
+      200732,
+      200742,
+      201402
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30031,
+    "name": "[[ふるさと直送エール！]] [ふるさと直送エール！]ユキノビジン (ユキノビジン)",
+    "characterId": 1029,
+    "rarity": "SSR",
+    "commandId": 106,
+    "type": "speed",
+    "hintSkillIds": [
+      200042,
+      200202,
+      200732,
+      201112
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30032,
+    "name": "[[押して忍べど燃ゆるもの]] [押して忍べど燃ゆるもの]ヤエノムテキ (ヤエノムテキ)",
+    "characterId": 1072,
+    "rarity": "SSR",
+    "commandId": 102,
+    "type": "speed",
+    "hintSkillIds": [
+      200462,
+      200512,
+      200582,
+      200722,
+      201611
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30033,
+    "name": "[[夢はホントに叶うんだ！]] [夢はホントに叶うんだ！]ウイニングチケット (ウイニングチケット)",
+    "characterId": 1035,
+    "rarity": "SSR",
+    "commandId": 102,
+    "type": "speed",
+    "hintSkillIds": [
+      200152,
+      200222,
+      200592,
+      200602,
+      200612
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30034,
+    "name": "[[幸せは曲がり角の向こう]] [幸せは曲がり角の向こう]ライスシャワー (ライスシャワー)",
+    "characterId": 1030,
+    "rarity": "SSR",
+    "commandId": 102,
+    "type": "speed",
+    "hintSkillIds": [
+      200062,
+      200272,
+      200742,
+      200801,
+      200861,
+      200871,
+      201342,
+      201372,
+      201581
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30036,
+    "name": "[[徹底管理主義]] [徹底管理主義]樫本理子 (樫本理子)",
+    "characterId": 9006,
+    "rarity": "SSR",
+    "commandId": 0,
+    "type": "stamina",
+    "hintSkillIds": [],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30037,
+    "name": "[[絶対皇帝]] [絶対皇帝]シンボリルドルフ (シンボリルドルフ)",
+    "characterId": 1017,
+    "rarity": "SSR",
+    "commandId": 103,
+    "type": "speed",
+    "hintSkillIds": [
+      200012,
+      200042,
+      200352,
+      200712,
+      201112,
+      201152,
+      202092,
+      202102,
+      202412,
+      202432,
+      202472,
+      202522
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30038,
+    "name": "[[今ぞ盛りのさくら花]] [今ぞ盛りのさくら花]サクラチヨノオー (サクラチヨノオー)",
+    "characterId": 1069,
+    "rarity": "SSR",
+    "commandId": 105,
+    "type": "speed",
+    "hintSkillIds": [
+      200732,
+      201052,
+      201112,
+      201532
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30039,
+    "name": "[[花嫁たるもの！！]] [花嫁たるもの！！]カワカミプリンセス (カワカミプリンセス)",
+    "characterId": 1039,
+    "rarity": "SSR",
+    "commandId": 101,
+    "type": "speed",
+    "hintSkillIds": [
+      200132,
+      200572,
+      201142,
+      201362
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30040,
+    "name": "[[召しませふぁーすとBite！]] [召しませふぁーすとBite！]ヒシアケボノ (ヒシアケボノ)",
+    "characterId": 1028,
+    "rarity": "SSR",
+    "commandId": 103,
+    "type": "speed",
+    "hintSkillIds": [
+      200212,
+      200552,
+      200972,
+      200992,
+      201002,
+      201352
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30041,
+    "name": "[[おもい、ねがう]] [おもい、ねがう]メジロドーベル (メジロドーベル)",
+    "characterId": 1059,
+    "rarity": "SSR",
+    "commandId": 106,
+    "type": "speed",
+    "hintSkillIds": [
+      200062,
+      200212,
+      200722,
+      200732,
+      201542
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30042,
+    "name": "[[Head-on fight！]] [Head-on fight！]バンブーメモリー (バンブーメモリー)",
+    "characterId": 1053,
+    "rarity": "SSR",
+    "commandId": 102,
+    "type": "speed",
+    "hintSkillIds": [
+      200292,
+      200362,
+      200672,
+      201032,
+      201062,
+      201382
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30043,
+    "name": "[[43、8、1]] [43、8、1]ナカヤマフェスタ (ナカヤマフェスタ)",
+    "characterId": 1049,
+    "rarity": "SSR",
+    "commandId": 105,
+    "type": "speed",
+    "hintSkillIds": [
+      200162,
+      200302,
+      200602,
+      200612,
+      200732,
+      201382,
+      201442,
+      201562,
+      201702
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30044,
+    "name": "[[Two Pieces]] [Two Pieces]ナリタブライアン (ナリタブライアン)",
+    "characterId": 1016,
+    "rarity": "SSR",
+    "commandId": 101,
+    "type": "speed",
+    "hintSkillIds": [
+      200012,
+      200572,
+      200612,
+      200752,
+      201102,
+      201112,
+      201172,
+      201352
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30045,
+    "name": "[[ツメたいヒトリジメ？]] [ツメたいヒトリジメ？]スイープトウショウ (スイープトウショウ)",
+    "characterId": 1044,
+    "rarity": "SSR",
+    "commandId": 101,
+    "type": "speed",
+    "hintSkillIds": [
+      200452,
+      200771,
+      200781,
+      201162,
+      201472,
+      201482,
+      201651
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30046,
+    "name": "[[全力！タントラムッッ！]] [全力！タントラムッッ！]ウイニングチケット (ウイニングチケット)",
+    "characterId": 1035,
+    "rarity": "SSR",
+    "commandId": 105,
+    "type": "speed",
+    "hintSkillIds": [
+      200152,
+      200222,
+      200592,
+      200602,
+      200612
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30047,
+    "name": "[[トライフル☆バケーション]] [トライフル☆バケーション]ダイワスカーレット (ダイワスカーレット)",
+    "characterId": 1009,
+    "rarity": "SSR",
+    "commandId": 102,
+    "type": "speed",
+    "hintSkillIds": [
+      200282,
+      200572,
+      200582,
+      200712,
+      200722,
+      201052
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30048,
+    "name": "[[爽快！ウイニングショット！]] [爽快！ウイニングショット！]メジロライアン (メジロライアン)",
+    "characterId": 1027,
+    "rarity": "SSR",
+    "commandId": 103,
+    "type": "speed",
+    "hintSkillIds": [
+      200162,
+      200232,
+      200722,
+      201102
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30052,
+    "name": "[[from the GROUND UP]] [from the GROUND UP]ライトハロー (ライトハロー)",
+    "characterId": 9008,
+    "rarity": "SSR",
+    "commandId": 0,
+    "type": "stamina",
+    "hintSkillIds": [],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30053,
+    "name": "[[Hands up, crook!]] [Hands up, crook!]タイキシャトル (タイキシャトル)",
+    "characterId": 1010,
+    "rarity": "SSR",
+    "commandId": 101,
+    "type": "speed",
+    "hintSkillIds": [
+      200162,
+      200682,
+      201032,
+      201052,
+      201062,
+      201082
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30054,
+    "name": "[[願いまでは拭わない]] [願いまでは拭わない]ナイスネイチャ (ナイスネイチャ)",
+    "characterId": 1060,
+    "rarity": "SSR",
+    "commandId": 106,
+    "type": "speed",
+    "hintSkillIds": [
+      200122,
+      200342,
+      200442,
+      200502,
+      200911,
+      201162,
+      201422,
+      201442
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30055,
+    "name": "[[明日は全国的に赤でしょう♪]] [明日は全国的に赤でしょう♪]セイウンスカイ (セイウンスカイ)",
+    "characterId": 1020,
+    "rarity": "SSR",
+    "commandId": 106,
+    "type": "speed",
+    "hintSkillIds": [
+      200252,
+      200302,
+      200771,
+      200811,
+      200881,
+      201611
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30056,
+    "name": "[[今宵、円舞曲にのせて]] [今宵、円舞曲にのせて]キングヘイロー (キングヘイロー)",
+    "characterId": 1061,
+    "rarity": "SSR",
+    "commandId": 102,
+    "type": "speed",
+    "hintSkillIds": [
+      200152,
+      200222,
+      200262,
+      200352,
+      200662,
+      200672
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30057,
+    "name": "[[ウマ王伝説・最強になった件]] [ウマ王伝説・最強になった件]ゴールドシップ (ゴールドシップ)",
+    "characterId": 1007,
+    "rarity": "SSR",
+    "commandId": 101,
+    "type": "speed",
+    "hintSkillIds": [
+      200622,
+      200642,
+      200752,
+      201212,
+      201232,
+      201472,
+      201482,
+      201502,
+      201512,
+      201552,
+      201581,
+      201591,
+      201601,
+      201631
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30058,
+    "name": "[[ふたつのノーブルライト]] [ふたつのノーブルライト]トウカイテイオー (トウカイテイオー)",
+    "characterId": 1003,
+    "rarity": "SSR",
+    "commandId": 102,
+    "type": "speed",
+    "hintSkillIds": [
+      200452,
+      200492,
+      200502,
+      201132,
+      201142,
+      201332
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30059,
+    "name": "[[祝福はフーガ]] [祝福はフーガ]ミホノブルボン (ミホノブルボン)",
+    "characterId": 1026,
+    "rarity": "SSR",
+    "commandId": 105,
+    "type": "speed",
+    "hintSkillIds": [
+      200242,
+      200532,
+      201242,
+      201252
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30060,
+    "name": "[[集まってコンステレーション]] [集まってコンステレーション]ツインターボ (ツインターボ)",
+    "characterId": 1066,
+    "rarity": "SSR",
+    "commandId": 103,
+    "type": "speed",
+    "hintSkillIds": [
+      200282,
+      200292,
+      200532,
+      200542,
+      201272,
+      201282
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30061,
+    "name": "[[響き合うストレイン]] [響き合うストレイン]ビワハヤヒデ (ビワハヤヒデ)",
+    "characterId": 1023,
+    "rarity": "SSR",
+    "commandId": 106,
+    "type": "speed",
+    "hintSkillIds": [
+      200052,
+      200162,
+      200222,
+      200262,
+      200821
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30062,
+    "name": "[[WINNING DREAM]] [WINNING DREAM]サイレンススズカ (サイレンススズカ)",
+    "characterId": 1002,
+    "rarity": "SSR",
+    "commandId": 105,
+    "type": "speed",
+    "hintSkillIds": [
+      200432,
+      200532,
+      200542,
+      200552,
+      200712,
+      201242,
+      201252,
+      201522,
+      201272
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30063,
+    "name": "[[心と足元は温かく]] [心と足元は温かく]イクノディクタス (イクノディクタス)",
+    "characterId": 1063,
+    "rarity": "SSR",
+    "commandId": 103,
+    "type": "speed",
+    "hintSkillIds": [
+      200442,
+      200482,
+      201122,
+      201432,
+      201442
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30064,
+    "name": "[[やったれハロウィンナイト！]] [やったれハロウィンナイト！]タマモクロス (タマモクロス)",
+    "characterId": 1021,
+    "rarity": "SSR",
+    "commandId": 102,
+    "type": "speed",
+    "hintSkillIds": [
+      200712,
+      200811,
+      200901,
+      201112,
+      201132,
+      201142,
+      201412
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30065,
+    "name": "[[魔力授かりし英雄]] [魔力授かりし英雄]ゼンノロブロイ (ゼンノロブロイ)",
+    "characterId": 1047,
+    "rarity": "SSR",
+    "commandId": 101,
+    "type": "speed",
+    "hintSkillIds": [
+      200362,
+      200452,
+      200492,
+      200502,
+      201332,
+      201432,
+      201532,
+      201542
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30066,
+    "name": "[[幽霊さんとハロウィンの魔法]] [幽霊さんとハロウィンの魔法]ミホノブルボン (ミホノブルボン)",
+    "characterId": 1026,
+    "rarity": "SSR",
+    "commandId": 106,
+    "type": "speed",
+    "hintSkillIds": [
+      200242,
+      200532,
+      201242,
+      201252
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30067,
+    "name": "[[尊尚親愛]] [尊尚親愛]玉座に集いし者たち (玉座に集いし者たち)",
+    "characterId": 1017,
+    "rarity": "SSR",
+    "commandId": 0,
+    "type": "power",
+    "hintSkillIds": [],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30068,
+    "name": "[[かなし君、うつくし君]] [かなし君、うつくし君]カレンチャン (カレンチャン)",
+    "characterId": 1038,
+    "rarity": "SSR",
+    "commandId": 106,
+    "type": "speed",
+    "hintSkillIds": [
+      200652,
+      200911,
+      200962,
+      201002,
+      201372
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30069,
+    "name": "[[天嗤う鏑矢]] [天嗤う鏑矢]ナリタブライアン (ナリタブライアン)",
+    "characterId": 1016,
+    "rarity": "SSR",
+    "commandId": 105,
+    "type": "speed",
+    "hintSkillIds": [
+      200012,
+      200572,
+      200612,
+      200752,
+      201102,
+      201112,
+      201172,
+      201352
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30070,
+    "name": "[[宵照らす奉納舞]] [宵照らす奉納舞]ユキノビジン (ユキノビジン)",
+    "characterId": 1029,
+    "rarity": "SSR",
+    "commandId": 103,
+    "type": "speed",
+    "hintSkillIds": [
+      200042,
+      200202,
+      200732,
+      201112
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30071,
+    "name": "[[おどれ・さわげ・フェスれ！]] [おどれ・さわげ・フェスれ！]ダイタクヘリオス (ダイタクヘリオス)",
+    "characterId": 1065,
+    "rarity": "SSR",
+    "commandId": 102,
+    "type": "speed",
+    "hintSkillIds": [
+      200462,
+      200562,
+      201042,
+      201052,
+      201082,
+      201631,
+      201651
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30072,
+    "name": "[[フォーメーション：PARTY]] [フォーメーション：PARTY]マヤノトップガン (マヤノトップガン)",
+    "characterId": 1024,
+    "rarity": "SSR",
+    "commandId": 101,
+    "type": "speed",
+    "hintSkillIds": [
+      200142,
+      200332,
+      200362,
+      200382,
+      200492,
+      200502
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30073,
+    "name": "[[いじっぱりのマルクト]] [いじっぱりのマルクト]ナリタタイシン (ナリタタイシン)",
+    "characterId": 1050,
+    "rarity": "SSR",
+    "commandId": 106,
+    "type": "speed",
+    "hintSkillIds": [
+      200442,
+      200482,
+      200622,
+      200632,
+      201462,
+      201512,
+      201641
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30074,
+    "name": "[[スノウクリスタル・デイ]] [スノウクリスタル・デイ]マーベラスサンデー (マーベラスサンデー)",
+    "characterId": 1055,
+    "rarity": "SSR",
+    "commandId": 102,
+    "type": "speed",
+    "hintSkillIds": [
+      200362,
+      200462,
+      200851,
+      200881,
+      201611
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30075,
+    "name": "[[独奏・螺旋追走曲]] [独奏・螺旋追走曲]マンハッタンカフェ (マンハッタンカフェ)",
+    "characterId": 1025,
+    "rarity": "SSR",
+    "commandId": 105,
+    "type": "speed",
+    "hintSkillIds": [
+      200162,
+      200232,
+      201172,
+      201202,
+      201222,
+      201581
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30076,
+    "name": "[[まだ見ぬ景色を求めて]] [まだ見ぬ景色を求めて]サイレンススズカ (サイレンススズカ)",
+    "characterId": 1002,
+    "rarity": "SSR",
+    "commandId": 101,
+    "type": "speed",
+    "hintSkillIds": [
+      200432,
+      200532,
+      200542,
+      200552,
+      200712,
+      201242,
+      201252,
+      201522,
+      201272
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30077,
+    "name": "[[夜に暁、空に瑞星]] [夜に暁、空に瑞星]アドマイヤベガ (アドマイヤベガ)",
+    "characterId": 1033,
+    "rarity": "SSR",
+    "commandId": 102,
+    "type": "speed",
+    "hintSkillIds": [
+      200632,
+      201152,
+      201452,
+      201492,
+      201502
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30078,
+    "name": "[[袖振り合えば福となる♪]] [袖振り合えば福となる♪]マチカネフクキタル (マチカネフクキタル)",
+    "characterId": 1056,
+    "rarity": "SSR",
+    "commandId": 101,
+    "type": "speed",
+    "hintSkillIds": [
+      200092,
+      200482,
+      200781,
+      201392,
+      201422,
+      201562,
+      201571
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30079,
+    "name": "[[飛びも出でぬべき心地すれ]] [飛びも出でぬべき心地すれ]メイショウドトウ (メイショウドトウ)",
+    "characterId": 1058,
+    "rarity": "SSR",
+    "commandId": 105,
+    "type": "speed",
+    "hintSkillIds": [
+      200142,
+      200152,
+      200252,
+      200302,
+      201122,
+      201382,
+      201621
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30080,
+    "name": "[[ブスッといっとく？]] [ブスッといっとく？]安心沢刺々美 (安心沢刺々美)",
+    "characterId": 9005,
+    "rarity": "SSR",
+    "commandId": 0,
+    "type": "stamina",
+    "hintSkillIds": [],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30081,
+    "name": "[[紡がれてゆく想い]] [紡がれてゆく想い]チーム＜シリウス＞ (チーム＜シリウス＞)",
+    "characterId": 1001,
+    "rarity": "SSR",
+    "commandId": 0,
+    "type": "power",
+    "hintSkillIds": [],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30082,
+    "name": "[[小さなカップに想いをこめて]] [小さなカップに想いをこめて]ニシノフラワー (ニシノフラワー)",
+    "characterId": 1051,
+    "rarity": "SSR",
+    "commandId": 106,
+    "type": "speed",
+    "hintSkillIds": [
+      200052,
+      200132,
+      200152,
+      200702,
+      201322
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30083,
+    "name": "[[爆速！最速！花あらし！]] [爆速！最速！花あらし！]サクラバクシンオー (サクラバクシンオー)",
+    "characterId": 1041,
+    "rarity": "SSR",
+    "commandId": 103,
+    "type": "speed",
+    "hintSkillIds": [
+      200652,
+      200791,
+      200841,
+      200962,
+      200972,
+      200982,
+      200992,
+      201012
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30084,
+    "name": "[[In my way]] [In my way]トーセンジョーダン (トーセンジョーダン)",
+    "characterId": 1048,
+    "rarity": "SSR",
+    "commandId": 101,
+    "type": "speed",
+    "hintSkillIds": [
+      200302,
+      200562,
+      200592,
+      201102,
+      201112,
+      201312
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30085,
+    "name": "[[そこに“いる”幸せ]] [そこに“いる”幸せ]アグネスデジタル (アグネスデジタル)",
+    "characterId": 1019,
+    "rarity": "SSR",
+    "commandId": 102,
+    "type": "speed",
+    "hintSkillIds": [
+      200022,
+      201032,
+      201382,
+      201591,
+      201682,
+      201702
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30086,
+    "name": "[[桃色のバックショット]] [桃色のバックショット]ナリタトップロード (ナリタトップロード)",
+    "characterId": 1077,
+    "rarity": "SSR",
+    "commandId": 101,
+    "type": "speed",
+    "hintSkillIds": [
+      200142,
+      200152,
+      200252,
+      200572,
+      200582,
+      201172,
+      201702
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30087,
+    "name": "[[リトル・バイ・リトル]] [リトル・バイ・リトル]メジロブライト (メジロブライト)",
+    "characterId": 1074,
+    "rarity": "SSR",
+    "commandId": 105,
+    "type": "speed",
+    "hintSkillIds": [
+      200012,
+      200762,
+      201202,
+      201212,
+      201222
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30088,
+    "name": "[[SPECIAL DREAMERS!!]] [SPECIAL DREAMERS!!]サトノダイヤモンド (サトノダイヤモンド)",
+    "characterId": 1067,
+    "rarity": "SSR",
+    "commandId": 106,
+    "type": "speed",
+    "hintSkillIds": [
+      200592,
+      201212,
+      201382,
+      201392,
+      201542,
+      201692
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30089,
+    "name": "[[世界にもっと☆マーベラス]] [世界にもっと☆マーベラス]マーベラスサンデー (マーベラスサンデー)",
+    "characterId": 1055,
+    "rarity": "SSR",
+    "commandId": 103,
+    "type": "speed",
+    "hintSkillIds": [
+      200362,
+      200462,
+      200851,
+      200881,
+      201611
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30090,
+    "name": "[[Enchaînement]] [Enchaînement]シンボリルドルフ (シンボリルドルフ)",
+    "characterId": 1017,
+    "rarity": "SSR",
+    "commandId": 105,
+    "type": "speed",
+    "hintSkillIds": [
+      200831,
+      200861,
+      200891,
+      200921,
+      201102,
+      201112,
+      201152,
+      201702
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30091,
+    "name": "[[Escorte étoile]] [Escorte étoile]シリウスシンボリ (シリウスシンボリ)",
+    "characterId": 1070,
+    "rarity": "SSR",
+    "commandId": 106,
+    "type": "speed",
+    "hintSkillIds": [
+      200162,
+      201112,
+      201382,
+      201641,
+      201692
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30092,
+    "name": "[[mag!c number]] [mag!c number]エアシャカール (エアシャカール)",
+    "characterId": 1036,
+    "rarity": "SSR",
+    "commandId": 101,
+    "type": "speed",
+    "hintSkillIds": [
+      200622,
+      200642,
+      200722,
+      201462,
+      201492
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30093,
+    "name": "[[Outfit as No.1]] [Outfit as No.1]ダイワスカーレット (ダイワスカーレット)",
+    "characterId": 1009,
+    "rarity": "SSR",
+    "commandId": 102,
+    "type": "speed",
+    "hintSkillIds": [
+      200282,
+      200572,
+      200582,
+      201322,
+      201342
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30094,
+    "name": "[[届け、このオモイ！]] [届け、このオモイ！]バンブーメモリー (バンブーメモリー)",
+    "characterId": 1053,
+    "rarity": "SSR",
+    "commandId": 103,
+    "type": "speed",
+    "hintSkillIds": [
+      200292,
+      200512,
+      200612,
+      200672,
+      200702,
+      201032
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30095,
+    "name": "[[そのエールは世界を変えた]] [そのエールは世界を変えた]シーキングザパール (シーキングザパール)",
+    "characterId": 1042,
+    "rarity": "SSR",
+    "commandId": 101,
+    "type": "speed",
+    "hintSkillIds": [
+      200152,
+      200582,
+      200602,
+      200652,
+      200692,
+      201442,
+      201532,
+      201542,
+      201902
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30096,
+    "name": "[[フレフレ☆プリンセス！]] [フレフレ☆プリンセス！]カワカミプリンセス (カワカミプリンセス)",
+    "characterId": 1039,
+    "rarity": "SSR",
+    "commandId": 102,
+    "type": "speed",
+    "hintSkillIds": [
+      200132,
+      200572,
+      201142,
+      201362
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30097,
+    "name": "[[Dear Mr. C.B.]] [Dear Mr. C.B.]ミスターシービー (ミスターシービー)",
+    "characterId": 1057,
+    "rarity": "SSR",
+    "commandId": 106,
+    "type": "speed",
+    "hintSkillIds": [
+      200232,
+      200342,
+      200512,
+      200642,
+      201112,
+      201502,
+      201611
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30098,
+    "name": "[[うららか・ぱっしょん♪]] [うららか・ぱっしょん♪]ハルウララ (ハルウララ)",
+    "characterId": 1052,
+    "rarity": "SSR",
+    "commandId": 102,
+    "type": "speed",
+    "hintSkillIds": [],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30099,
+    "name": "[[愛すべき金蘭のつどい]] [愛すべき金蘭のつどい]イクノディクタス (イクノディクタス)",
+    "characterId": 1063,
+    "rarity": "SSR",
+    "commandId": 105,
+    "type": "speed",
+    "hintSkillIds": [
+      200482,
+      200592,
+      201392,
+      201432,
+      201442,
+      201542,
+      201692
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30100,
+    "name": "[[あこがれの景色]] [あこがれの景色]ライスシャワー (ライスシャワー)",
+    "characterId": 1030,
+    "rarity": "SSR",
+    "commandId": 106,
+    "type": "speed",
+    "hintSkillIds": [
+      200742,
+      201322,
+      201342,
+      201372,
+      201532,
+      202012
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30101,
+    "name": "[[Q≠0]] [Q≠0]アグネスタキオン (アグネスタキオン)",
+    "characterId": 1032,
+    "rarity": "SSR",
+    "commandId": 101,
+    "type": "speed",
+    "hintSkillIds": [
+      200722,
+      201102,
+      201112,
+      201152,
+      201322,
+      201532,
+      201902,
+      202372
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30102,
+    "name": "[[キラキラカケル∞]] [キラキラカケル∞]エルコンドルパサー (エルコンドルパサー)",
+    "characterId": 1014,
+    "rarity": "SSR",
+    "commandId": 103,
+    "type": "speed",
+    "hintSkillIds": [
+      200132,
+      200572,
+      200582,
+      201122,
+      201312,
+      201532,
+      201902
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30103,
+    "name": "[[マチタン☆アドベンチャー]] [マチタン☆アドベンチャー]マチカネタンホイザ (マチカネタンホイザ)",
+    "characterId": 1062,
+    "rarity": "SSR",
+    "commandId": 106,
+    "type": "speed",
+    "hintSkillIds": [
+      200352,
+      200442,
+      200472,
+      200492,
+      200512,
+      201621
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30104,
+    "name": "[[『ロードナイトと夢の石』]] [『ロードナイトと夢の石』]ゼンノロブロイ (ゼンノロブロイ)",
+    "characterId": 1047,
+    "rarity": "SSR",
+    "commandId": 105,
+    "type": "speed",
+    "hintSkillIds": [
+      200032,
+      200722,
+      201112,
+      201152,
+      201532,
+      201542
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30105,
+    "name": "[[私たちと夢、掴みましょう！]] [私たちと夢、掴みましょう！]スペシャルウィーク (スペシャルウィーク)",
+    "characterId": 1001,
+    "rarity": "SSR",
+    "commandId": 103,
+    "type": "speed",
+    "hintSkillIds": [
+      200012,
+      200042,
+      200142,
+      200202,
+      201172,
+      201212
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30106,
+    "name": "[[理想へ向かう青嵐]] [理想へ向かう青嵐]エアグルーヴ (エアグルーヴ)",
+    "characterId": 1018,
+    "rarity": "SSR",
+    "commandId": 102,
+    "type": "speed",
+    "hintSkillIds": [
+      200931,
+      200941,
+      201382,
+      201442,
+      201692,
+      202122
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30107,
+    "name": "[[おセンチ注意報♪]] [おセンチ注意報♪]マルゼンスキー (マルゼンスキー)",
+    "characterId": 1004,
+    "rarity": "SSR",
+    "commandId": 101,
+    "type": "speed",
+    "hintSkillIds": [
+      200182,
+      200432,
+      200532,
+      201242,
+      201252,
+      201272,
+      201571,
+      201601,
+      201651,
+      201661
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30108,
+    "name": "[[一天地六に身を任せ]] [一天地六に身を任せ]ナカヤマフェスタ (ナカヤマフェスタ)",
+    "characterId": 1049,
+    "rarity": "SSR",
+    "commandId": 106,
+    "type": "speed",
+    "hintSkillIds": [
+      200162,
+      200182,
+      200302,
+      200492,
+      200602,
+      200732,
+      201382,
+      201562,
+      201571,
+      201591,
+      201702,
+      202032
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30109,
+    "name": "[[チョベリグ心あれば桜心]] [チョベリグ心あれば桜心]サクラチヨノオー (サクラチヨノオー)",
+    "characterId": 1069,
+    "rarity": "SSR",
+    "commandId": 103,
+    "type": "speed",
+    "hintSkillIds": [
+      200182,
+      201032,
+      201052,
+      201312,
+      201322,
+      201532,
+      201902
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30110,
+    "name": "[[It's on the house.]] [It's on the house.]マンハッタンカフェ (マンハッタンカフェ)",
+    "characterId": 1025,
+    "rarity": "SSR",
+    "commandId": 105,
+    "type": "speed",
+    "hintSkillIds": [
+      200742,
+      201172,
+      201182,
+      201202,
+      201212,
+      201222,
+      201581
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30111,
+    "name": "[[テイオー・オー・オー！！！]] [テイオー・オー・オー！！！]トウカイテイオー (トウカイテイオー)",
+    "characterId": 1003,
+    "rarity": "SSR",
+    "commandId": 106,
+    "type": "speed",
+    "hintSkillIds": [
+      200282,
+      200332,
+      200452,
+      200492,
+      200502,
+      201142,
+      201322,
+      202132
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30112,
+    "name": "[[TT Ignition!]] [TT Ignition!]ツインターボ (ツインターボ)",
+    "characterId": 1066,
+    "rarity": "SSR",
+    "commandId": 103,
+    "type": "speed",
+    "hintSkillIds": [
+      200282,
+      200292,
+      200532,
+      200542,
+      201282,
+      201272,
+      202392
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30113,
+    "name": "[[ユークロニア・アーキテクト]] [ユークロニア・アーキテクト]ビワハヤヒデ (ビワハヤヒデ)",
+    "characterId": 1023,
+    "rarity": "SSR",
+    "commandId": 105,
+    "type": "speed",
+    "hintSkillIds": [
+      200052,
+      200162,
+      200262,
+      200222,
+      200562,
+      201202,
+      201312,
+      201532,
+      201611,
+      201902,
+      202192
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30114,
+    "name": "[[嗚呼華麗ナル一族]] [嗚呼華麗ナル一族]ダイイチルビー (ダイイチルビー)",
+    "characterId": 1085,
+    "rarity": "SSR",
+    "commandId": 102,
+    "type": "speed",
+    "hintSkillIds": [
+      200602,
+      200672,
+      200831,
+      200841,
+      200851,
+      201022,
+      201092,
+      201152,
+      201382,
+      201641,
+      202122
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30115,
+    "name": "[[月下の悪魔ちゃん♪]] [月下の悪魔ちゃん♪]メジロパーマー (メジロパーマー)",
+    "characterId": 1064,
+    "rarity": "SSR",
+    "commandId": 105,
+    "type": "speed",
+    "hintSkillIds": [
+      200532,
+      200552,
+      201192,
+      201282,
+      201522,
+      201601,
+      201631,
+      201661
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30116,
+    "name": "[[お日さま天使ちゃん♪]] [お日さま天使ちゃん♪]ダイタクヘリオス (ダイタクヘリオス)",
+    "characterId": 1065,
+    "rarity": "SSR",
+    "commandId": 101,
+    "type": "speed",
+    "hintSkillIds": [
+      200152,
+      200192,
+      200212,
+      201042,
+      201052,
+      201082,
+      201631,
+      201651,
+      202392
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30117,
+    "name": "[[とびだせ！恐怖の魔王軍]] [とびだせ！恐怖の魔王軍]シンコウウインディ (シンコウウインディ)",
+    "characterId": 1043,
+    "rarity": "SSR",
+    "commandId": 103,
+    "type": "speed",
+    "hintSkillIds": [
+      200582,
+      200851,
+      200282,
+      200162,
+      202282,
+      202302,
+      202312,
+      202343,
+      202362
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30118,
+    "name": "[[A Win Foreshadowed]] [A Win Foreshadowed]シンボリクリスエス (シンボリクリスエス)",
+    "characterId": 1083,
+    "rarity": "SSR",
+    "commandId": 105,
+    "type": "speed",
+    "hintSkillIds": [
+      200352,
+      200602,
+      201172,
+      201202,
+      201392,
+      201412,
+      202122,
+      202422
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30119,
+    "name": "[[夜風に舞うは祈りの花]] [夜風に舞うは祈りの花]メジロアルダン (メジロアルダン)",
+    "characterId": 1071,
+    "rarity": "SSR",
+    "commandId": 101,
+    "type": "speed",
+    "hintSkillIds": [
+      200022,
+      200572,
+      201142,
+      201322,
+      201532
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30120,
+    "name": "[[天まで焦がせ祈りの火]] [天まで焦がせ祈りの火]ヤエノムテキ (ヤエノムテキ)",
+    "characterId": 1072,
+    "rarity": "SSR",
+    "commandId": 103,
+    "type": "speed",
+    "hintSkillIds": [
+      200462,
+      200512,
+      200582,
+      200722,
+      201102,
+      201112,
+      201611
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30121,
+    "name": "[[U & Me]] [U & Me]ミホノブルボン (ミホノブルボン)",
+    "characterId": 1026,
+    "rarity": "SSR",
+    "commandId": 101,
+    "type": "speed",
+    "hintSkillIds": [
+      200432,
+      200452,
+      200532,
+      201272,
+      201242,
+      201252
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30122,
+    "name": "[[Danke schön]] [Danke schön]エイシンフラッシュ (エイシンフラッシュ)",
+    "characterId": 1037,
+    "rarity": "SSR",
+    "commandId": 101,
+    "type": "speed",
+    "hintSkillIds": [
+      200132,
+      201142,
+      201382,
+      201392,
+      201402,
+      201542,
+      202082
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30123,
+    "name": "[[GLAD TIDINGS]] [GLAD TIDINGS]ナリタブライアン (ナリタブライアン)",
+    "characterId": 1016,
+    "rarity": "SSR",
+    "commandId": 102,
+    "type": "speed",
+    "hintSkillIds": [
+      200012,
+      200152,
+      200202,
+      200572,
+      200612,
+      201172,
+      202192,
+      202432,
+      202472,
+      202482
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30124,
+    "name": "[[Are you merry?]] [Are you merry?]エアグルーヴ (エアグルーヴ)",
+    "characterId": 1018,
+    "rarity": "SSR",
+    "commandId": 106,
+    "type": "speed",
+    "hintSkillIds": [
+      200132,
+      200202,
+      200592,
+      200702,
+      201382,
+      201542,
+      201692,
+      202122
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30125,
+    "name": "[[ここからはDon't stop!]] [ここからはDon't stop!]サクラローレル (サクラローレル)",
+    "characterId": 1076,
+    "rarity": "SSR",
+    "commandId": 105,
+    "type": "speed",
+    "hintSkillIds": [
+      200172,
+      200202,
+      200212,
+      200742,
+      201182,
+      201222,
+      201422,
+      202072,
+      202422
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30126,
+    "name": "[[誰も知らない風へ]] [誰も知らない風へ]ヤマニンゼファー (ヤマニンゼファー)",
+    "characterId": 1078,
+    "rarity": "SSR",
+    "commandId": 103,
+    "type": "speed",
+    "hintSkillIds": [
+      200192,
+      200302,
+      200342,
+      201042,
+      201052,
+      201072,
+      201112,
+      201532,
+      202412
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30127,
+    "name": "[[ハネ退け魔を退け願い込め]] [ハネ退け魔を退け願い込め]スペシャルウィーク (スペシャルウィーク)",
+    "characterId": 1001,
+    "rarity": "SSR",
+    "commandId": 105,
+    "type": "speed",
+    "hintSkillIds": [
+      200022,
+      200132,
+      200492,
+      200512,
+      200722,
+      200762,
+      201142,
+      201702,
+      202012,
+      202092
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30128,
+    "name": "[[気まぐれ絶佳]] [気まぐれ絶佳]スイープトウショウ (スイープトウショウ)",
+    "characterId": 1044,
+    "rarity": "SSR",
+    "commandId": 106,
+    "type": "speed",
+    "hintSkillIds": [
+      200781,
+      201162,
+      201452,
+      201472,
+      201482,
+      201651,
+      202382,
+      202492
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30129,
+    "name": "[[遥か流るる冬夏青青]] [遥か流るる冬夏青青]グラスワンダー (グラスワンダー)",
+    "characterId": 1011,
+    "rarity": "SSR",
+    "commandId": 102,
+    "type": "speed",
+    "hintSkillIds": [
+      200202,
+      200222,
+      201182,
+      201222,
+      202192
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30130,
+    "name": "[[To you]] [To you]ケイエスミラクル (ケイエスミラクル)",
+    "characterId": 1093,
+    "rarity": "SSR",
+    "commandId": 103,
+    "type": "speed",
+    "hintSkillIds": [
+      200702,
+      200972,
+      200992,
+      201312,
+      201532,
+      202372
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30131,
+    "name": "[[マーベラス☆ショコラSHOW]] [マーベラス☆ショコラSHOW]マーベラスサンデー (マーベラスサンデー)",
+    "characterId": 1055,
+    "rarity": "SSR",
+    "commandId": 101,
+    "type": "speed",
+    "hintSkillIds": [
+      200472,
+      201172,
+      201222,
+      201611,
+      201702,
+      202082,
+      202102,
+      202422
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30132,
+    "name": "[[変身！ギャルソンフォーム！]] [変身！ギャルソンフォーム！]ビコーペガサス (ビコーペガサス)",
+    "characterId": 1054,
+    "rarity": "SSR",
+    "commandId": 102,
+    "type": "speed",
+    "hintSkillIds": [
+      200232,
+      200492,
+      200592,
+      200652,
+      201392,
+      202122,
+      202402
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30133,
+    "name": "[[フォンデンテで笑って]] [フォンデンテで笑って]ヒシアケボノ (ヒシアケボノ)",
+    "characterId": 1028,
+    "rarity": "SSR",
+    "commandId": 106,
+    "type": "speed",
+    "hintSkillIds": [
+      200212,
+      200552,
+      200972,
+      200992,
+      201002,
+      201352
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30134,
+    "name": "[[燦爛]] [燦爛]メジロラモーヌ (メジロラモーヌ)",
+    "characterId": 1086,
+    "rarity": "SSR",
+    "commandId": 106,
+    "type": "speed",
+    "hintSkillIds": [
+      200362,
+      200432,
+      201032,
+      201042,
+      201052,
+      201102,
+      201702,
+      202432,
+      202532
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30135,
+    "name": "[[掲げよ、燃え盛る灯を]] [掲げよ、燃え盛る灯を]カツラギエース (カツラギエース)",
+    "characterId": 1104,
+    "rarity": "SSR",
+    "commandId": 101,
+    "type": "speed",
+    "hintSkillIds": [
+      200032,
+      200542,
+      200732,
+      201102,
+      201252,
+      201272,
+      202412,
+      202432,
+      202462
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30136,
+    "name": "[[Unyielding resolve]] [Unyielding resolve]シンボリクリスエス (シンボリクリスエス)",
+    "characterId": 1083,
+    "rarity": "SSR",
+    "commandId": 103,
+    "type": "speed",
+    "hintSkillIds": [
+      201112,
+      201392,
+      201412,
+      201702,
+      202092,
+      202122
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30137,
+    "name": "[[永劫続く栄光へ]] [永劫続く栄光へ]祖にして導く者 (祖にして導く者)",
+    "characterId": 9040,
+    "rarity": "SSR",
+    "commandId": 0,
+    "type": "power",
+    "hintSkillIds": [],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30138,
+    "name": "[[今は瞳を閉じないで]] [今は瞳を閉じないで]ナイスネイチャ (ナイスネイチャ)",
+    "characterId": 1060,
+    "rarity": "SSR",
+    "commandId": 102,
+    "type": "speed",
+    "hintSkillIds": [
+      200122,
+      200332,
+      200362,
+      200442,
+      200512,
+      200602,
+      201591,
+      201651
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30139,
+    "name": "[[心、夜風にさらわれて]] [心、夜風にさらわれて]メジロマックイーン (メジロマックイーン)",
+    "characterId": 1013,
+    "rarity": "SSR",
+    "commandId": 105,
+    "type": "speed",
+    "hintSkillIds": [
+      200062,
+      200162,
+      200352,
+      200382,
+      200762,
+      201172,
+      201182,
+      202012,
+      202582
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30140,
+    "name": "[[比翼のワルツ]] [比翼のワルツ]トウカイテイオー (トウカイテイオー)",
+    "characterId": 1003,
+    "rarity": "SSR",
+    "commandId": 101,
+    "type": "speed",
+    "hintSkillIds": [
+      200452,
+      200492,
+      200502,
+      201132,
+      201142,
+      201332,
+      202432
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30141,
+    "name": "[[ミッション『心の栄養補給』]] [ミッション『心の栄養補給』]ミホノブルボン (ミホノブルボン)",
+    "characterId": 1026,
+    "rarity": "SSR",
+    "commandId": 106,
+    "type": "speed",
+    "hintSkillIds": [
+      200022,
+      200152,
+      200162,
+      200532,
+      200542,
+      200552,
+      201292,
+      201581,
+      201601
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30142,
+    "name": "[[刻下、桜花爛漫]] [刻下、桜花爛漫]サクラローレル (サクラローレル)",
+    "characterId": 1076,
+    "rarity": "SSR",
+    "commandId": 105,
+    "type": "speed",
+    "hintSkillIds": [
+      200172,
+      200352,
+      200382,
+      201222,
+      202072,
+      202592,
+      202612,
+      202622
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30143,
+    "name": "[[たどり着いた景色]] [たどり着いた景色]イクノディクタス (イクノディクタス)",
+    "characterId": 1063,
+    "rarity": "SSR",
+    "commandId": 102,
+    "type": "speed",
+    "hintSkillIds": [
+      200482,
+      200592,
+      201382,
+      201442,
+      201542
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30145,
+    "name": "[[Welcome to Umayuru]] [Welcome to Umayuru]タニノギムレット (タニノギムレット)",
+    "characterId": 1084,
+    "rarity": "SSR",
+    "commandId": 102,
+    "type": "speed",
+    "hintSkillIds": [
+      200152,
+      200642,
+      200702,
+      201122,
+      202082,
+      202102
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30146,
+    "name": "[[駆けよ、駆けよ、駆けよ！！]] [駆けよ、駆けよ、駆けよ！！]オグリキャップ (オグリキャップ)",
+    "characterId": 1006,
+    "rarity": "SSR",
+    "commandId": 106,
+    "type": "speed",
+    "hintSkillIds": [
+      200222,
+      200332,
+      200492,
+      200572,
+      200722,
+      201312,
+      201322,
+      201342,
+      201352,
+      201702,
+      201902,
+      202432
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30147,
+    "name": "[[The frontier]] [The frontier]ジャングルポケット (ジャングルポケット)",
+    "characterId": 1094,
+    "rarity": "SSR",
+    "commandId": 101,
+    "type": "speed",
+    "hintSkillIds": [
+      200332,
+      200602,
+      201102,
+      201112,
+      202082,
+      202492,
+      202662
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30148,
+    "name": "[[Something Blue]] [Something Blue]ダイワスカーレット (ダイワスカーレット)",
+    "characterId": 1009,
+    "rarity": "SSR",
+    "commandId": 103,
+    "type": "speed",
+    "hintSkillIds": [
+      200432,
+      200712,
+      200722,
+      200732,
+      201102,
+      201262,
+      201272,
+      201522,
+      202132,
+      202462
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30149,
+    "name": "[[オートクチュール・メモリー]] [オートクチュール・メモリー]アストンマーチャン (アストンマーチャン)",
+    "characterId": 1087,
+    "rarity": "SSR",
+    "commandId": 106,
+    "type": "speed",
+    "hintSkillIds": [
+      200432,
+      200532,
+      200652,
+      200962,
+      200972,
+      201002,
+      201522
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30150,
+    "name": "[[ハート・イグニッション！！]] [ハート・イグニッション！！]ウオッカ (ウオッカ)",
+    "characterId": 1008,
+    "rarity": "SSR",
+    "commandId": 105,
+    "type": "speed",
+    "hintSkillIds": [
+      200032,
+      200382,
+      200592,
+      201062,
+      202082,
+      202152
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30151,
+    "name": "[[Chill chill night*]] [Chill chill night*]マヤノトップガン (マヤノトップガン)",
+    "characterId": 1024,
+    "rarity": "SSR",
+    "commandId": 102,
+    "type": "speed",
+    "hintSkillIds": [
+      200462,
+      200492,
+      200572,
+      201142,
+      201312,
+      201902,
+      202432
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30152,
+    "name": "[[All'alba vincerò!]] [All'alba vincerò!]テイエムオペラオー (テイエムオペラオー)",
+    "characterId": 1015,
+    "rarity": "SSR",
+    "commandId": 106,
+    "type": "speed",
+    "hintSkillIds": [
+      200042,
+      200362,
+      200382,
+      200752,
+      201172,
+      201182,
+      202012,
+      202482,
+      202562
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30153,
+    "name": "[[優しい月]] [優しい月]ゴールドシチー (ゴールドシチー)",
+    "characterId": 1040,
+    "rarity": "SSR",
+    "commandId": 103,
+    "type": "speed",
+    "hintSkillIds": [
+      201042,
+      201072,
+      201092,
+      201611,
+      202402,
+      202502,
+      202672
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30154,
+    "name": "[[カモメのように]] [カモメのように]メジロパーマー (メジロパーマー)",
+    "characterId": 1064,
+    "rarity": "SSR",
+    "commandId": 101,
+    "type": "speed",
+    "hintSkillIds": [
+      200332,
+      200742,
+      201172,
+      201182,
+      201242,
+      201282,
+      201601,
+      201661,
+      202392,
+      202682
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30155,
+    "name": "[[#夏 #新しい自分]] [#夏 #新しい自分]ダイタクヘリオス (ダイタクヘリオス)",
+    "characterId": 1065,
+    "rarity": "SSR",
+    "commandId": 106,
+    "type": "speed",
+    "hintSkillIds": [
+      200152,
+      200182,
+      200212,
+      200972,
+      201042,
+      201372,
+      201651,
+      202042
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30156,
+    "name": "[[ライフロング・ワンダー]] [ライフロング・ワンダー]ワンダーアキュート (ワンダーアキュート)",
+    "characterId": 1100,
+    "rarity": "SSR",
+    "commandId": 102,
+    "type": "speed",
+    "hintSkillIds": [
+      201072,
+      201672,
+      201682,
+      202212,
+      202232,
+      202282,
+      202302,
+      202343,
+      202362
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30157,
+    "name": "[[君と見る泡沫]] [君と見る泡沫]マンハッタンカフェ (マンハッタンカフェ)",
+    "characterId": 1025,
+    "rarity": "SSR",
+    "commandId": 106,
+    "type": "speed",
+    "hintSkillIds": [
+      200742,
+      201172,
+      202072,
+      202422,
+      202522,
+      202562,
+      202592
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30158,
+    "name": "[[トばすぜホットサマー！]] [トばすぜホットサマー！]ジャングルポケット (ジャングルポケット)",
+    "characterId": 1094,
+    "rarity": "SSR",
+    "commandId": 103,
+    "type": "speed",
+    "hintSkillIds": [
+      200592,
+      200602,
+      201102,
+      201392,
+      201412,
+      201542,
+      202082,
+      202612,
+      202622
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30159,
+    "name": "[[Seaside Bloom]] [Seaside Bloom]エアグルーヴ (エアグルーヴ)",
+    "characterId": 1018,
+    "rarity": "SSR",
+    "commandId": 101,
+    "type": "speed",
+    "hintSkillIds": [
+      200562,
+      201322,
+      201342,
+      201372,
+      201532,
+      201902,
+      202372
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30160,
+    "name": "[[L'aubeは迫りて]] [L'aubeは迫りて]佐岳メイ (佐岳メイ)",
+    "characterId": 9043,
+    "rarity": "SSR",
+    "commandId": 0,
+    "type": "stamina",
+    "hintSkillIds": [],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30161,
+    "name": "[[大望は飛んでいく]] [大望は飛んでいく]エルコンドルパサー (エルコンドルパサー)",
+    "characterId": 1014,
+    "rarity": "SSR",
+    "commandId": 101,
+    "type": "speed",
+    "hintSkillIds": [
+      200332,
+      200352,
+      201112,
+      201322,
+      202132,
+      202172,
+      202372,
+      202712
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30162,
+    "name": "[[Precious☆Moments]] [Precious☆Moments]アドマイヤベガ (アドマイヤベガ)",
+    "characterId": 1033,
+    "rarity": "SSR",
+    "commandId": 105,
+    "type": "speed",
+    "hintSkillIds": [
+      200622,
+      200632,
+      201462,
+      201502,
+      202022
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30163,
+    "name": "[[鉄火場に咲く菫]] [鉄火場に咲く菫]ナカヤマフェスタ (ナカヤマフェスタ)",
+    "characterId": 1049,
+    "rarity": "SSR",
+    "commandId": 106,
+    "type": "speed",
+    "hintSkillIds": [
+      200462,
+      200512,
+      201641,
+      202442,
+      202652,
+      202732
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30164,
+    "name": "[[炎々、闘志を抱き]] [炎々、闘志を抱き]ヒシアマゾン (ヒシアマゾン)",
+    "characterId": 1012,
+    "rarity": "SSR",
+    "commandId": 102,
+    "type": "speed",
+    "hintSkillIds": [
+      200332,
+      200492,
+      200512,
+      200622,
+      200632,
+      201452
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30165,
+    "name": "[[フォルトゥーナの喝采]] [フォルトゥーナの喝采]タニノギムレット (タニノギムレット)",
+    "characterId": 1084,
+    "rarity": "SSR",
+    "commandId": 105,
+    "type": "speed",
+    "hintSkillIds": [
+      200032,
+      200362,
+      200492,
+      200642,
+      200732,
+      201102,
+      201452,
+      202102
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30166,
+    "name": "[[高らかにYO-HO!]] [高らかにYO-HO!]タップダンスシチー (タップダンスシチー)",
+    "characterId": 1107,
+    "rarity": "SSR",
+    "commandId": 103,
+    "type": "speed",
+    "hintSkillIds": [
+      200252,
+      200532,
+      200542,
+      200552,
+      201252
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30167,
+    "name": "[[Hello my clover]] [Hello my clover]ファインモーション (ファインモーション)",
+    "characterId": 1022,
+    "rarity": "SSR",
+    "commandId": 101,
+    "type": "speed",
+    "hintSkillIds": [
+      200012,
+      200452,
+      200562,
+      200682,
+      200722,
+      202372
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30168,
+    "name": "[[波をかきわけ夢がゆく]] [波をかきわけ夢がゆく]ゴールドシップ (ゴールドシップ)",
+    "characterId": 1007,
+    "rarity": "SSR",
+    "commandId": 101,
+    "type": "speed",
+    "hintSkillIds": [
+      200012,
+      200462,
+      200512,
+      200622,
+      200642,
+      201452,
+      201462,
+      201552,
+      201591
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30169,
+    "name": "[[天より遣われし微笑み]] [天より遣われし微笑み]ツルマルツヨシ (ツルマルツヨシ)",
+    "characterId": 1073,
+    "rarity": "SSR",
+    "commandId": 102,
+    "type": "speed",
+    "hintSkillIds": [
+      200512,
+      200582,
+      200732,
+      201102,
+      202372,
+      202472
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30170,
+    "name": "[[我が舞、巡りて]] [我が舞、巡りて]キングヘイロー (キングヘイロー)",
+    "characterId": 1061,
+    "rarity": "SSR",
+    "commandId": 103,
+    "type": "speed",
+    "hintSkillIds": [
+      200612,
+      200652,
+      200962,
+      201002,
+      202122,
+      202542,
+      202752
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30171,
+    "name": "[[ああ、楽しや、楽しや！]] [ああ、楽しや、楽しや！]ハルウララ (ハルウララ)",
+    "characterId": 1052,
+    "rarity": "SSR",
+    "commandId": 102,
+    "type": "speed",
+    "hintSkillIds": [],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30172,
+    "name": "[[かっとばせー！ですわ！？]] [かっとばせー！ですわ！？]メジロマックイーン (メジロマックイーン)",
+    "characterId": 1013,
+    "rarity": "SSR",
+    "commandId": 106,
+    "type": "speed",
+    "hintSkillIds": [
+      200582,
+      201312,
+      201352,
+      201611,
+      201902,
+      202372,
+      202762,
+      202772
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30173,
+    "name": "[[大地と我らのアンサンブル]] [大地と我らのアンサンブル]サウンズオブアース (サウンズオブアース)",
+    "characterId": 1102,
+    "rarity": "SSR",
+    "commandId": 105,
+    "type": "speed",
+    "hintSkillIds": [
+      200382,
+      200492,
+      200512,
+      201651,
+      201661,
+      202792,
+      202802
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30174,
+    "name": "[[聖夜、変わるために]] [聖夜、変わるために]メジロドーベル (メジロドーベル)",
+    "characterId": 1059,
+    "rarity": "SSR",
+    "commandId": 101,
+    "type": "speed",
+    "hintSkillIds": [
+      200462,
+      200612,
+      200702,
+      201042,
+      202112,
+      202402,
+      202612
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30175,
+    "name": "[[冬溶かす熾火]] [冬溶かす熾火]メジロラモーヌ (メジロラモーヌ)",
+    "characterId": 1086,
+    "rarity": "SSR",
+    "commandId": 102,
+    "type": "speed",
+    "hintSkillIds": [
+      200012,
+      200722,
+      201102,
+      201581,
+      201661,
+      201702,
+      202082,
+      202432,
+      202532,
+      202712,
+      202742
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30176,
+    "name": "[[選んで選んで、想いを込めて]] [選んで選んで、想いを込めて]メジロライアン (メジロライアン)",
+    "characterId": 1027,
+    "rarity": "SSR",
+    "commandId": 103,
+    "type": "speed",
+    "hintSkillIds": [
+      200142,
+      200202,
+      201212,
+      201382,
+      201402,
+      202092
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30177,
+    "name": "[[会心のウイニングスマイル]] [会心のウイニングスマイル]ヴィブロス (ヴィブロス)",
+    "characterId": 1091,
+    "rarity": "SSR",
+    "commandId": 103,
+    "type": "speed",
+    "hintSkillIds": [
+      200592,
+      200602,
+      201102,
+      201412,
+      201692,
+      202102,
+      202652
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30178,
+    "name": "[[血脈の胎動]] [血脈の胎動]ドゥラメンテ (ドゥラメンテ)",
+    "characterId": 1108,
+    "rarity": "SSR",
+    "commandId": 101,
+    "type": "speed",
+    "hintSkillIds": [
+      200382,
+      201102,
+      201452,
+      201651,
+      202552,
+      202662,
+      202722
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30179,
+    "name": "[[百花の願いをこの胸に]] [百花の願いをこの胸に]サトノダイヤモンド (サトノダイヤモンド)",
+    "characterId": 1067,
+    "rarity": "SSR",
+    "commandId": 106,
+    "type": "speed",
+    "hintSkillIds": [
+      200342,
+      200452,
+      200602,
+      202092,
+      201392,
+      202152,
+      202612,
+      202622
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30180,
+    "name": "[[この先も！]] [この先も！]刻み続ける者たち (刻み続ける者たち)",
+    "characterId": 1068,
+    "rarity": "SSR",
+    "commandId": 0,
+    "type": "power",
+    "hintSkillIds": [],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30181,
+    "name": "[[ウタエミンナノ]] [ウタエミンナノ]ツインターボ (ツインターボ)",
+    "characterId": 1066,
+    "rarity": "SSR",
+    "commandId": 105,
+    "type": "speed",
+    "hintSkillIds": [
+      200282,
+      200462,
+      200532,
+      200552,
+      200732,
+      201192,
+      201282,
+      202032,
+      202392,
+      202652
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30182,
+    "name": "[[白い翼は舞い戻りて]] [白い翼は舞い戻りて]ホッコータルマエ (ホッコータルマエ)",
+    "characterId": 1099,
+    "rarity": "SSR",
+    "commandId": 105,
+    "type": "speed",
+    "hintSkillIds": [
+      201682,
+      202262,
+      202282,
+      202312,
+      202832,
+      202842
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30183,
+    "name": "[[小さな笑顔、2つ]] [小さな笑顔、2つ]ウイニングチケット (ウイニングチケット)",
+    "characterId": 1035,
+    "rarity": "SSR",
+    "commandId": 102,
+    "type": "speed",
+    "hintSkillIds": [
+      200022,
+      200492,
+      200592,
+      200602,
+      202612,
+      202622
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30184,
+    "name": "[[感謝感謝！サクラ吹雪！！]] [感謝感謝！サクラ吹雪！！]サクラバクシンオー (サクラバクシンオー)",
+    "characterId": 1041,
+    "rarity": "SSR",
+    "commandId": 101,
+    "type": "speed",
+    "hintSkillIds": [
+      200972,
+      200992,
+      201601,
+      202042,
+      202752,
+      202802,
+      202862
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30185,
+    "name": "[[ゴー・ファッショニスタ！]] [ゴー・ファッショニスタ！]ノースフライト (ノースフライト)",
+    "characterId": 1082,
+    "rarity": "SSR",
+    "commandId": 106,
+    "type": "speed",
+    "hintSkillIds": [
+      200132,
+      200432,
+      200502,
+      200582,
+      200682,
+      200702,
+      201042,
+      201062
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30186,
+    "name": "[[Balliamo?]] [Balliamo?]ジェンティルドンナ (ジェンティルドンナ)",
+    "characterId": 1116,
+    "rarity": "SSR",
+    "commandId": 101,
+    "type": "speed",
+    "hintSkillIds": [
+      200152,
+      200362,
+      200512,
+      200562,
+      201402,
+      201591,
+      202532
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30187,
+    "name": "[[只、君臨す。]] [只、君臨す。]オルフェーヴル (オルフェーヴル)",
+    "characterId": 1115,
+    "rarity": "SSR",
+    "commandId": 103,
+    "type": "speed",
+    "hintSkillIds": [
+      200332,
+      200492,
+      201611,
+      201661,
+      202552,
+      202662,
+      202872
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30188,
+    "name": "[[共に描くキラメキ]] [共に描くキラメキ]都留岐涼花 (都留岐涼花)",
+    "characterId": 9044,
+    "rarity": "SSR",
+    "commandId": 0,
+    "type": "stamina",
+    "hintSkillIds": [],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30189,
+    "name": "[[2人のバウンス・シャッセ]] [2人のバウンス・シャッセ]キタサンブラック (キタサンブラック)",
+    "characterId": 1068,
+    "rarity": "SSR",
+    "commandId": 103,
+    "type": "speed",
+    "hintSkillIds": [
+      200062,
+      200432,
+      200722,
+      200762,
+      201282,
+      201522
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30190,
+    "name": "[[激情のピッツィカ]] [激情のピッツィカ]ドゥラメンテ (ドゥラメンテ)",
+    "characterId": 1108,
+    "rarity": "SSR",
+    "commandId": 105,
+    "type": "speed",
+    "hintSkillIds": [
+      200472,
+      200512,
+      201102,
+      202102
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30191,
+    "name": "[[ブリッランテな旋律を君と]] [ブリッランテな旋律を君と]サウンズオブアース (サウンズオブアース)",
+    "characterId": 1102,
+    "rarity": "SSR",
+    "commandId": 102,
+    "type": "speed",
+    "hintSkillIds": [
+      200462,
+      200492,
+      200512,
+      200722,
+      201631,
+      202792
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30192,
+    "name": "[[とっておきのレヴェランス]] [とっておきのレヴェランス]ヴィブロス (ヴィブロス)",
+    "characterId": 1091,
+    "rarity": "SSR",
+    "commandId": 101,
+    "type": "speed",
+    "hintSkillIds": [
+      200612,
+      200692,
+      201072,
+      201162,
+      201402,
+      202652
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30193,
+    "name": "[[Over the Ocean]] [Over the Ocean]シュヴァルグラン (シュヴァルグラン)",
+    "characterId": 1089,
+    "rarity": "SSR",
+    "commandId": 105,
+    "type": "speed",
+    "hintSkillIds": [
+      200562,
+      200582,
+      200752,
+      201172,
+      201182,
+      201312,
+      202372,
+      202482
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30194,
+    "name": "[[ティアラが描くレイライン]] [ティアラが描くレイライン]ラインクラフト (ラインクラフト)",
+    "characterId": 1109,
+    "rarity": "SSR",
+    "commandId": 103,
+    "type": "speed",
+    "hintSkillIds": [
+      200052,
+      200582,
+      200682,
+      201032,
+      201062,
+      201072,
+      201082
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30195,
+    "name": "[[白い鳥のアラベスク]] [白い鳥のアラベスク]ケイエスミラクル (ケイエスミラクル)",
+    "characterId": 1093,
+    "rarity": "SSR",
+    "commandId": 102,
+    "type": "speed",
+    "hintSkillIds": [
+      200182,
+      200652,
+      200962,
+      200992,
+      202172,
+      202802,
+      202862
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30196,
+    "name": "[[浚いの風]] [浚いの風]ヤマニンゼファー (ヤマニンゼファー)",
+    "characterId": 1078,
+    "rarity": "SSR",
+    "commandId": 101,
+    "type": "speed",
+    "hintSkillIds": [
+      200582,
+      200682,
+      201312,
+      201651,
+      201902,
+      202502,
+      202532
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30197,
+    "name": "[[Burning!!]] [Burning!!]バンブーメモリー (バンブーメモリー)",
+    "characterId": 1053,
+    "rarity": "SSR",
+    "commandId": 102,
+    "type": "speed",
+    "hintSkillIds": [
+      200032,
+      200632,
+      200672,
+      200702,
+      201002,
+      201072,
+      202382
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30198,
+    "name": "[[V.E.R.2285のあなたへ]] [V.E.R.2285のあなたへ]ネオユニヴァース (ネオユニヴァース)",
+    "characterId": 1105,
+    "rarity": "SSR",
+    "commandId": 106,
+    "type": "speed",
+    "hintSkillIds": [
+      200132,
+      201112,
+      201591,
+      201702,
+      202102,
+      202161,
+      202522,
+      202602
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30199,
+    "name": "[[わーく・あ・みらくる！]] [わーく・あ・みらくる！]ヒシミラクル (ヒシミラクル)",
+    "characterId": 1106,
+    "rarity": "SSR",
+    "commandId": 105,
+    "type": "speed",
+    "hintSkillIds": [
+      200602,
+      200742,
+      201222,
+      201422,
+      202562,
+      202592,
+      202622
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30200,
+    "name": "[[大胆不敵の兵よ]] [大胆不敵の兵よ]ノーリーズン (ノーリーズン)",
+    "characterId": 1096,
+    "rarity": "SSR",
+    "commandId": 103,
+    "type": "speed",
+    "hintSkillIds": [
+      200302,
+      200372,
+      201402,
+      201422,
+      202092,
+      202472,
+      202652
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30201,
+    "name": "[[Take Them Down!]] [Take Them Down!]ナリタタイシン (ナリタタイシン)",
+    "characterId": 1050,
+    "rarity": "SSR",
+    "commandId": 106,
+    "type": "speed",
+    "hintSkillIds": [
+      200642,
+      201452,
+      202382,
+      202882,
+      202902,
+      202922,
+      202932,
+      202972
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30202,
+    "name": "[[明日のライド・オン]] [明日のライド・オン]ウオッカ (ウオッカ)",
+    "characterId": 1008,
+    "rarity": "SSR",
+    "commandId": 103,
+    "type": "speed",
+    "hintSkillIds": [
+      200022,
+      200332,
+      200612,
+      201072,
+      202152,
+      202402,
+      202652
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30203,
+    "name": "[[新時代を開く者]] [新時代を開く者]ジャングルポケット (ジャングルポケット)",
+    "characterId": 1094,
+    "rarity": "SSR",
+    "commandId": 102,
+    "type": "speed",
+    "hintSkillIds": [
+      200032,
+      200482,
+      200512,
+      201102,
+      202102,
+      202522,
+      202652
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30204,
+    "name": "[[幸福の匂いにまどろむ]] [幸福の匂いにまどろむ]セイウンスカイ (セイウンスカイ)",
+    "characterId": 1020,
+    "rarity": "SSR",
+    "commandId": 102,
+    "type": "speed",
+    "hintSkillIds": [
+      200012,
+      201112,
+      201242,
+      201262,
+      201272,
+      202132,
+      202462
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30205,
+    "name": "[[紺碧の戴冠式]] [紺碧の戴冠式]ヴィルシーナ (ヴィルシーナ)",
+    "characterId": 1090,
+    "rarity": "SSR",
+    "commandId": 101,
+    "type": "speed",
+    "hintSkillIds": [
+      200342,
+      200432,
+      200462,
+      200502,
+      201052,
+      201292,
+      202532
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30206,
+    "name": "[[アルストロメリアの夢]] [アルストロメリアの夢]ヴィブロス (ヴィブロス)",
+    "characterId": 1091,
+    "rarity": "SSR",
+    "commandId": 101,
+    "type": "speed",
+    "hintSkillIds": [
+      200362,
+      200492,
+      201032,
+      201591,
+      202622,
+      202802
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30207,
+    "name": "[[謹製ッ！特大夢にんじん！]] [謹製ッ！特大夢にんじん！]秋川理事長 (秋川理事長)",
+    "characterId": 9002,
+    "rarity": "SSR",
+    "commandId": 0,
+    "type": "stamina",
+    "hintSkillIds": [],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30208,
+    "name": "[[朝焼け苺の畑にて]] [朝焼け苺の畑にて]ニシノフラワー (ニシノフラワー)",
+    "characterId": 1051,
+    "rarity": "SSR",
+    "commandId": 102,
+    "type": "speed",
+    "hintSkillIds": [
+      200362,
+      201601,
+      201651,
+      202802,
+      203032,
+      203042
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30209,
+    "name": "[[そして幕は上がる]] [そして幕は上がる]ダンツフレーム (ダンツフレーム)",
+    "characterId": 1092,
+    "rarity": "SSR",
+    "commandId": 105,
+    "type": "speed",
+    "hintSkillIds": [
+      200492,
+      200562,
+      200572,
+      201102,
+      201112,
+      201312,
+      201661,
+      201702,
+      203052
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30210,
+    "name": "[[波間のオフショット]] [波間のオフショット]スマートファルコン (スマートファルコン)",
+    "characterId": 1046,
+    "rarity": "SSR",
+    "commandId": 101,
+    "type": "speed",
+    "hintSkillIds": [
+      200452,
+      200532,
+      200542,
+      201242,
+      201252,
+      201272,
+      201522,
+      201601,
+      202462
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30211,
+    "name": "[[Lucky☆Summertime]] [Lucky☆Summertime]コパノリッキー (コパノリッキー)",
+    "characterId": 1098,
+    "rarity": "SSR",
+    "commandId": 106,
+    "type": "speed",
+    "hintSkillIds": [
+      200022,
+      201601,
+      202252,
+      202262,
+      202302,
+      202332,
+      202652,
+      203093,
+      203103
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30212,
+    "name": "[[あの夏のキリトリ線]] [あの夏のキリトリ線]ワンダーアキュート (ワンダーアキュート)",
+    "characterId": 1100,
+    "rarity": "SSR",
+    "commandId": 105,
+    "type": "speed",
+    "hintSkillIds": [
+      200472,
+      201682,
+      202252,
+      202372,
+      202842
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30213,
+    "name": "[[開催☆ハチャメチャGP！]] [開催☆ハチャメチャGP！]トウカイテイオー (トウカイテイオー)",
+    "characterId": 1003,
+    "rarity": "SSR",
+    "commandId": 101,
+    "type": "speed",
+    "hintSkillIds": [
+      200042,
+      200332,
+      200502,
+      200722,
+      201611
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30214,
+    "name": "[[歴史も美食も余すところなく]] [歴史も美食も余すところなく]ファインモーション (ファインモーション)",
+    "characterId": 1022,
+    "rarity": "SSR",
+    "commandId": 103,
+    "type": "speed",
+    "hintSkillIds": [
+      200182,
+      200382,
+      201112,
+      202532,
+      202702,
+      202982,
+      203052,
+      203112
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30215,
+    "name": "[[Devilish Whispers]] [Devilish Whispers]スティルインラブ (スティルインラブ)",
+    "characterId": 1097,
+    "rarity": "SSR",
+    "commandId": 101,
+    "type": "speed",
+    "hintSkillIds": [
+      200332,
+      200362,
+      200492,
+      201112,
+      201611,
+      201661,
+      202742,
+      202962
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30216,
+    "name": "[[我が学び舎へ、愛をこめて]] [我が学び舎へ、愛をこめて]ブエナビスタ (ブエナビスタ)",
+    "characterId": 1114,
+    "rarity": "SSR",
+    "commandId": 103,
+    "type": "speed",
+    "hintSkillIds": [
+      200342,
+      200372,
+      200462,
+      200702,
+      201072,
+      202112,
+      202652
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30217,
+    "name": "[[慈恵のMother Sea]] [慈恵のMother Sea]シーザリオ (シーザリオ)",
+    "characterId": 1110,
+    "rarity": "SSR",
+    "commandId": 106,
+    "type": "speed",
+    "hintSkillIds": [
+      200132,
+      200462,
+      200512,
+      201702,
+      202092,
+      202472
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30218,
+    "name": "[[月下のSunshine]] [月下のSunshine]タイキシャトル (タイキシャトル)",
+    "characterId": 1010,
+    "rarity": "SSR",
+    "commandId": 106,
+    "type": "speed",
+    "hintSkillIds": [
+      200682,
+      201042,
+      201072,
+      201601,
+      202502,
+      202672,
+      203022,
+      203162
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30219,
+    "name": "[[悩み事かい？ポニーちゃん]] [悩み事かい？ポニーちゃん]フジキセキ (フジキセキ)",
+    "characterId": 1005,
+    "rarity": "SSR",
+    "commandId": 103,
+    "type": "speed",
+    "hintSkillIds": [
+      201322,
+      201661,
+      201902,
+      202372,
+      202472,
+      202982,
+      203042
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30220,
+    "name": "[[Rewarding Job]] [Rewarding Job]シンボリクリスエス (シンボリクリスエス)",
+    "characterId": 1083,
+    "rarity": "SSR",
+    "commandId": 106,
+    "type": "speed",
+    "hintSkillIds": [
+      200462,
+      200472,
+      200742,
+      200762,
+      201182,
+      201222,
+      202792
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30221,
+    "name": "[[今日もたのしく、おいしく。]] [今日もたのしく、おいしく。]サトノダイヤモンド (サトノダイヤモンド)",
+    "characterId": 1067,
+    "rarity": "SSR",
+    "commandId": 105,
+    "type": "speed",
+    "hintSkillIds": [
+      200512,
+      200742,
+      200752,
+      200762,
+      201202,
+      202192,
+      202472
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30222,
+    "name": "[[KNOCK 'EM DOWN!]] [KNOCK 'EM DOWN!]エスポワールシチー (エスポワールシチー)",
+    "characterId": 1081,
+    "rarity": "SSR",
+    "commandId": 102,
+    "type": "speed",
+    "hintSkillIds": [
+      201072,
+      201661,
+      202252,
+      202262,
+      202302,
+      202332,
+      202952,
+      203103,
+      203182
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30223,
+    "name": "[[牙を立て、リフレイン]] [牙を立て、リフレイン]ヒシアマゾン (ヒシアマゾン)",
+    "characterId": 1012,
+    "rarity": "SSR",
+    "commandId": 103,
+    "type": "speed",
+    "hintSkillIds": [
+      200632,
+      200642,
+      201462,
+      201591,
+      201651,
+      202872,
+      202882,
+      202912
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30224,
+    "name": "[[咆哮のアポヤンド]] [咆哮のアポヤンド]ナリタブライアン (ナリタブライアン)",
+    "characterId": 1016,
+    "rarity": "SSR",
+    "commandId": 101,
+    "type": "speed",
+    "hintSkillIds": [
+      201312,
+      201322,
+      201902,
+      202472,
+      202482,
+      203222,
+      203232
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30225,
+    "name": "[[メークパワートリオ]] [メークパワートリオ]マチカネフクキタル (マチカネフクキタル)",
+    "characterId": 1056,
+    "rarity": "SSR",
+    "commandId": 103,
+    "type": "speed",
+    "hintSkillIds": [
+      201412,
+      201422,
+      201562,
+      201571,
+      202542,
+      202642
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30226,
+    "name": "[[Cocoon]] [Cocoon]エアシャカール (エアシャカール)",
+    "characterId": 1036,
+    "rarity": "SSR",
+    "commandId": 105,
+    "type": "speed",
+    "hintSkillIds": [
+      200142,
+      200332,
+      200512,
+      201182,
+      202522,
+      203242,
+      203252
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30227,
+    "name": "[[緋色の君へ風が吹く]] [緋色の君へ風が吹く]ダイワスカーレット (ダイワスカーレット)",
+    "characterId": 1009,
+    "rarity": "SSR",
+    "commandId": 106,
+    "type": "speed",
+    "hintSkillIds": [
+      200362,
+      201252,
+      201262,
+      201272,
+      201661,
+      202802,
+      202812,
+      202822,
+      203262,
+      203272
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30228,
+    "name": "[[COOL⇔CRAZY/Buddy]] [COOL⇔CRAZY/Buddy]シンボリクリスエス (シンボリクリスエス)",
+    "characterId": 1083,
+    "rarity": "SSR",
+    "commandId": 102,
+    "type": "speed",
+    "hintSkillIds": [
+      200592,
+      201392,
+      201651,
+      202452,
+      202542,
+      202592,
+      202612,
+      202622
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30229,
+    "name": "[[【告知】新刊あります！]] [【告知】新刊あります！]アグネスデジタル (アグネスデジタル)",
+    "characterId": 1019,
+    "rarity": "SSR",
+    "commandId": 106,
+    "type": "speed",
+    "hintSkillIds": [
+      201032,
+      201042,
+      201072,
+      201651,
+      202112,
+      202402,
+      202962,
+      203022
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30230,
+    "name": "[[不屈の遠吠え]] [不屈の遠吠え]メイショウドトウ (メイショウドトウ)",
+    "characterId": 1058,
+    "rarity": "SSR",
+    "commandId": 101,
+    "type": "speed",
+    "hintSkillIds": [
+      200012,
+      200602,
+      201382,
+      201412,
+      201591,
+      202152,
+      202472,
+      203362
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30231,
+    "name": "[[王を統べて覇す者]] [王を統べて覇す者]テイエムオペラオー (テイエムオペラオー)",
+    "characterId": 1015,
+    "rarity": "SSR",
+    "commandId": 102,
+    "type": "speed",
+    "hintSkillIds": [
+      200352,
+      200462,
+      200572,
+      201312,
+      201332,
+      202762
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30232,
+    "name": "[[Blast Off!]] [Blast Off!]ブラストワンピース (ブラストワンピース)",
+    "characterId": 1128,
+    "rarity": "SSR",
+    "commandId": 103,
+    "type": "speed",
+    "hintSkillIds": [
+      200332,
+      200562,
+      201312,
+      201591,
+      202372,
+      202772,
+      203132,
+      203412,
+      203422
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30233,
+    "name": "[[雲煙飛動]] [雲煙飛動]シンボリルドルフ (シンボリルドルフ)",
+    "characterId": 1017,
+    "rarity": "SSR",
+    "commandId": 106,
+    "type": "speed",
+    "hintSkillIds": [
+      201102,
+      201591,
+      201611,
+      201651,
+      202172,
+      202552,
+      202712,
+      202802,
+      203432
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30234,
+    "name": "[[深窓の少女へ]] [深窓の少女へ]メジロアルダン (メジロアルダン)",
+    "characterId": 1071,
+    "rarity": "SSR",
+    "commandId": 102,
+    "type": "speed",
+    "hintSkillIds": [
+      200022,
+      201322,
+      202372,
+      202532,
+      202742,
+      202982,
+      203032,
+      203132,
+      203232,
+      203442
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30235,
+    "name": "[[ふりさけみれば天花のわらう]] [ふりさけみれば天花のわらう]マルゼンスキー (マルゼンスキー)",
+    "characterId": 1004,
+    "rarity": "SSR",
+    "commandId": 101,
+    "type": "speed",
+    "hintSkillIds": [
+      200372,
+      200432,
+      200552,
+      201252,
+      201282,
+      201522,
+      201661,
+      203032
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30236,
+    "name": "[[飛び立つヴィーナス]] [飛び立つヴィーナス]シーキングザパール (シーキングザパール)",
+    "characterId": 1042,
+    "rarity": "SSR",
+    "commandId": 101,
+    "type": "speed",
+    "hintSkillIds": [
+      200652,
+      200962,
+      200972,
+      202402,
+      203012,
+      203042,
+      203452
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30237,
+    "name": "[[Cutest in Ur ♡]] [Cutest in Ur ♡]カレンチャン (カレンチャン)",
+    "characterId": 1038,
+    "rarity": "SSR",
+    "commandId": 103,
+    "type": "speed",
+    "hintSkillIds": [
+      200432,
+      200652,
+      200962,
+      200972,
+      201601,
+      202042,
+      202862,
+      203012,
+      203492
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30238,
+    "name": "[[鉄の乙女も微笑んで]] [鉄の乙女も微笑んで]イクノディクタス (イクノディクタス)",
+    "characterId": 1063,
+    "rarity": "SSR",
+    "commandId": 106,
+    "type": "speed",
+    "hintSkillIds": [
+      201032,
+      201042,
+      201072,
+      201601,
+      202502,
+      202652,
+      202962,
+      203022,
+      203042
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30239,
+    "name": "[[これきり、特別ですよ？]] [これきり、特別ですよ？]ナイスネイチャ (ナイスネイチャ)",
+    "characterId": 1060,
+    "rarity": "SSR",
+    "commandId": 105,
+    "type": "speed",
+    "hintSkillIds": [
+      200442,
+      200472,
+      200592,
+      200781,
+      201152,
+      201692,
+      202102,
+      202122
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30240,
+    "name": "[[『最強は俺だ！！』]] [『最強は俺だ！！』]ジャングルポケット (ジャングルポケット)",
+    "characterId": 1094,
+    "rarity": "SSR",
+    "commandId": 105,
+    "type": "speed",
+    "hintSkillIds": [
+      200032,
+      200502,
+      200512,
+      200612,
+      201382,
+      201402,
+      201422,
+      201542
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30241,
+    "name": "[[導きの光]] [導きの光]伝説の体現者 (伝説の体現者)",
+    "characterId": 9047,
+    "rarity": "SSR",
+    "commandId": 0,
+    "type": "power",
+    "hintSkillIds": [],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30242,
+    "name": "[[世界を変える眼差し]] [世界を変える眼差し]アーモンドアイ (アーモンドアイ)",
+    "characterId": 1129,
+    "rarity": "SSR",
+    "commandId": 101,
+    "type": "speed",
+    "hintSkillIds": [
+      200332,
+      200362,
+      200492,
+      201591,
+      201611,
+      202702,
+      202982,
+      203122,
+      203432,
+      203442
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30243,
+    "name": "[[NEW TALES AWAIT]] [NEW TALES AWAIT]グランアレグリア (グランアレグリア)",
+    "characterId": 1131,
+    "rarity": "SSR",
+    "commandId": 102,
+    "type": "speed",
+    "hintSkillIds": [
+      200132,
+      200702,
+      202112,
+      202552,
+      202652,
+      203042,
+      203362
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30244,
+    "name": "[[春、来たれり]] [春、来たれり]メジロブライト (メジロブライト)",
+    "characterId": 1074,
+    "rarity": "SSR",
+    "commandId": 105,
+    "type": "speed",
+    "hintSkillIds": [
+      200172,
+      201172,
+      201222,
+      201382,
+      201692,
+      202422,
+      202562,
+      202592,
+      203242,
+      203332,
+      203562
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30245,
+    "name": "[[Ballroom Tempest]] [Ballroom Tempest]ウオッカ (ウオッカ)",
+    "characterId": 1008,
+    "rarity": "SSR",
+    "commandId": 102,
+    "type": "speed",
+    "hintSkillIds": [
+      200022,
+      201112,
+      201382,
+      201392,
+      202452,
+      202612,
+      202652,
+      202712,
+      203312,
+      203572
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30246,
+    "name": "[[誘うは夢心地]] [誘うは夢心地]ドリームジャーニー (ドリームジャーニー)",
+    "characterId": 1119,
+    "rarity": "SSR",
+    "commandId": 101,
+    "type": "speed",
+    "hintSkillIds": [
+      200012,
+      200492,
+      200632,
+      201462,
+      202022,
+      202882,
+      202902,
+      202922,
+      202932,
+      203582
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30247,
+    "name": "[[Operation: Escort]] [Operation: Escort]シンボリクリスエス (シンボリクリスエス)",
+    "characterId": 1083,
+    "rarity": "SSR",
+    "commandId": 101,
+    "type": "speed",
+    "hintSkillIds": [
+      200472,
+      200512,
+      200742,
+      201212,
+      201222,
+      202072,
+      202562,
+      203302
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30248,
+    "name": "[[無垢の白妙]] [無垢の白妙]デアリングタクト (デアリングタクト)",
+    "characterId": 1075,
+    "rarity": "SSR",
+    "commandId": 106,
+    "type": "speed",
+    "hintSkillIds": [
+      200172,
+      200592,
+      201382,
+      201412,
+      202172,
+      202452,
+      202612,
+      202622,
+      203322,
+      203592
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30249,
+    "name": "[[繋がれパレード・ノーツ♪]] [繋がれパレード・ノーツ♪]トランセンド (トランセンド)",
+    "characterId": 1080,
+    "rarity": "SSR",
+    "commandId": 103,
+    "type": "speed",
+    "hintSkillIds": [
+      201601,
+      201661,
+      201672,
+      201682,
+      202332,
+      202952,
+      203093,
+      203103,
+      203182,
+      203602
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30250,
+    "name": "[[Luz de ensueño]] [Luz de ensueño]ブエナビスタ (ブエナビスタ)",
+    "characterId": 1114,
+    "rarity": "SSR",
+    "commandId": 102,
+    "type": "speed",
+    "hintSkillIds": [
+      201102,
+      201462,
+      202102,
+      202532,
+      202872,
+      203172,
+      203342,
+      203432,
+      203522,
+      203532
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30251,
+    "name": "[[約束のglitter]] [約束のglitter]エスポワールシチー (エスポワールシチー)",
+    "characterId": 1081,
+    "rarity": "SSR",
+    "commandId": 103,
+    "type": "speed",
+    "hintSkillIds": [
+      200462,
+      200502,
+      201032,
+      202282,
+      202302,
+      202343,
+      202652,
+      203022
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30252,
+    "name": "[[My Beloved Scenery]] [My Beloved Scenery]サイレンススズカ (サイレンススズカ)",
+    "characterId": 1002,
+    "rarity": "SSR",
+    "commandId": 103,
+    "type": "speed",
+    "hintSkillIds": [
+      200452,
+      200542,
+      201242,
+      201601,
+      202692,
+      203032,
+      203382,
+      203392,
+      203402,
+      203462
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30253,
+    "name": "[[Unveiled Dream]] [Unveiled Dream]ラインクラフト (ラインクラフト)",
+    "characterId": 1109,
+    "rarity": "SSR",
+    "commandId": 101,
+    "type": "speed",
+    "hintSkillIds": [
+      200682,
+      201032,
+      201052,
+      201082,
+      201601,
+      202402,
+      202672,
+      203022,
+      203032,
+      203472
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30254,
+    "name": "[[Blooming Buds]] [Blooming Buds]デアリングハート (デアリングハート)",
+    "characterId": 1112,
+    "rarity": "SSR",
+    "commandId": 106,
+    "type": "speed",
+    "hintSkillIds": [
+      201042,
+      201072,
+      201312,
+      201902,
+      202502,
+      202652,
+      203042,
+      203162,
+      203422
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30255,
+    "name": "[[いつか深まる若草]] [いつか深まる若草]エアメサイア (エアメサイア)",
+    "characterId": 1111,
+    "rarity": "SSR",
+    "commandId": 106,
+    "type": "speed",
+    "hintSkillIds": [
+      200132,
+      200502,
+      200592,
+      201402,
+      201581,
+      203242,
+      203322
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30256,
+    "name": "[[白き稲妻の如く]] [白き稲妻の如く]タマモクロス (タマモクロス)",
+    "characterId": 1021,
+    "rarity": "SSR",
+    "commandId": 102,
+    "type": "speed",
+    "hintSkillIds": [
+      200492,
+      200512,
+      201611,
+      202522,
+      202552,
+      203362,
+      203502,
+      203662
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30257,
+    "name": "[[本能は吼えているか！？]] [本能は吼えているか！？]タッカーブライン (タッカーブライン)",
+    "characterId": 9049,
+    "rarity": "SSR",
+    "commandId": 0,
+    "type": "stamina",
+    "hintSkillIds": [],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30258,
+    "name": "[[瞳に闘志を胸に勝利の渇望を]] [瞳に闘志を胸に勝利の渇望を]メジロライアン (メジロライアン)",
+    "characterId": 1027,
+    "rarity": "SSR",
+    "commandId": 105,
+    "type": "speed",
+    "hintSkillIds": [
+      200602,
+      201392,
+      201702,
+      202082,
+      202102,
+      202122,
+      203322,
+      203332,
+      203572,
+      203682
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30259,
+    "name": "[[ゼッタイ☆天才伝説]] [ゼッタイ☆天才伝説]フサイチパンドラ (フサイチパンドラ)",
+    "characterId": 1113,
+    "rarity": "SSR",
+    "commandId": 101,
+    "type": "speed",
+    "hintSkillIds": [
+      200502,
+      200512,
+      200572,
+      201322,
+      201342,
+      202432,
+      202982
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30260,
+    "name": "[[グレイッシュPARTY☆]] [グレイッシュPARTY☆]メジロマックイーン (メジロマックイーン)",
+    "characterId": 1013,
+    "rarity": "SSR",
+    "commandId": 101,
+    "type": "speed",
+    "hintSkillIds": [
+      200502,
+      200762,
+      201182,
+      201352,
+      201532,
+      202372,
+      202762
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30261,
+    "name": "[[水面のプリンシパル]] [水面のプリンシパル]ウインバリアシオン (ウインバリアシオン)",
+    "characterId": 1117,
+    "rarity": "SSR",
+    "commandId": 106,
+    "type": "speed",
+    "hintSkillIds": [
+      200012,
+      200182,
+      200382,
+      200752,
+      201172,
+      202582,
+      202852,
+      203562,
+      203652,
+      203732,
+      203772
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30262,
+    "name": "[[Tranquillo]] [Tranquillo]ドゥラメンテ (ドゥラメンテ)",
+    "characterId": 1108,
+    "rarity": "SSR",
+    "commandId": 105,
+    "type": "speed",
+    "hintSkillIds": [
+      200642,
+      201452,
+      201462,
+      201651,
+      202382,
+      202892,
+      203152,
+      203512,
+      203752,
+      203762
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30263,
+    "name": "[[極上スマイルはっし～ん♪]] [極上スマイルはっし～ん♪]ヴィブロス (ヴィブロス)",
+    "characterId": 1091,
+    "rarity": "SSR",
+    "commandId": 102,
+    "type": "speed",
+    "hintSkillIds": [
+      201062,
+      201072,
+      201412,
+      201542,
+      202172,
+      202642,
+      202652
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30264,
+    "name": "[[気まぐれ渡り星]] [気まぐれ渡り星]ステイゴールド (ステイゴールド)",
+    "characterId": 1135,
+    "rarity": "SSR",
+    "commandId": 103,
+    "type": "speed",
+    "hintSkillIds": [
+      200332,
+      201591,
+      201601,
+      201651,
+      202532,
+      202602,
+      202722,
+      203362,
+      203502,
+      203632,
+      203852,
+      203862
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30265,
+    "name": "[[氷結晶の静域]] [氷結晶の静域]アドマイヤグルーヴ (アドマイヤグルーヴ)",
+    "characterId": 1118,
+    "rarity": "SSR",
+    "commandId": 101,
+    "type": "speed",
+    "hintSkillIds": [
+      200192,
+      201102,
+      201112,
+      201412,
+      202122,
+      203322,
+      203432,
+      203572,
+      203672,
+      203832,
+      203842
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30266,
+    "name": "[[この先の未来で]] [この先の未来で]クロノジェネシス (クロノジェネシス)",
+    "characterId": 1133,
+    "rarity": "SSR",
+    "commandId": 106,
+    "type": "speed",
+    "hintSkillIds": [
+      200142,
+      200482,
+      202472,
+      203052,
+      203142,
+      203232
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30267,
+    "name": "[[カルストンライトオ、猫です]] [カルストンライトオ、猫です]カルストンライトオ (カルストンライトオ)",
+    "characterId": 1120,
+    "rarity": "SSR",
+    "commandId": 101,
+    "type": "speed",
+    "hintSkillIds": [
+      200192,
+      200362,
+      200452,
+      200652,
+      200962,
+      201661,
+      202862,
+      203032,
+      203042,
+      203061,
+      203071,
+      203482,
+      203882
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30268,
+    "name": "[[今宵、我が君のために]] [今宵、我が君のために]デュランダル (デュランダル)",
+    "characterId": 1121,
+    "rarity": "SSR",
+    "commandId": 106,
+    "type": "speed",
+    "hintSkillIds": [
+      200152,
+      200362,
+      201452,
+      202382,
+      202402,
+      202922,
+      203152,
+      203762,
+      203892,
+      203902
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30269,
+    "name": "[[今日が楽しかったから、]] [今日が楽しかったから、]ダンツフレーム (ダンツフレーム)",
+    "characterId": 1092,
+    "rarity": "SSR",
+    "commandId": 101,
+    "type": "speed",
+    "hintSkillIds": [
+      200052,
+      200582,
+      200602,
+      202152,
+      202722,
+      202742,
+      203122
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30270,
+    "name": "[[Inseparable]] [Inseparable]ダイイチルビー (ダイイチルビー)",
+    "characterId": 1085,
+    "rarity": "SSR",
+    "commandId": 103,
+    "type": "speed",
+    "hintSkillIds": [
+      200192,
+      200602,
+      200962,
+      201002,
+      201392,
+      202402,
+      202752,
+      203042,
+      203452,
+      203912,
+      203922
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30271,
+    "name": "[[壇上より魔法を込めて]] [壇上より魔法を込めて]フジキセキ (フジキセキ)",
+    "characterId": 1005,
+    "rarity": "SSR",
+    "commandId": 103,
+    "type": "speed",
+    "hintSkillIds": [
+      200362,
+      200492,
+      200682,
+      201042,
+      201651,
+      201902,
+      202372,
+      202672,
+      202742,
+      203162,
+      203232,
+      203962
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30272,
+    "name": "[[Zirkus der Träume]] [Zirkus der Träume]エイシンフラッシュ (エイシンフラッシュ)",
+    "characterId": 1037,
+    "rarity": "SSR",
+    "commandId": 101,
+    "type": "speed",
+    "hintSkillIds": [
+      200362,
+      200462,
+      201382,
+      201392,
+      201661,
+      202122,
+      202152,
+      202612,
+      202642,
+      203672
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30273,
+    "name": "[[All-Out Brilliance]] [All-Out Brilliance]トーセンジョーダン (トーセンジョーダン)",
+    "characterId": 1048,
+    "rarity": "SSR",
+    "commandId": 102,
+    "type": "speed",
+    "hintSkillIds": [
+      200032,
+      200602,
+      201402,
+      201661,
+      201692,
+      202612,
+      202722,
+      203312
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30274,
+    "name": "[[決意のフローラ]] [決意のフローラ]カレンブーケドール (カレンブーケドール)",
+    "characterId": 1134,
+    "rarity": "SSR",
+    "commandId": 105,
+    "type": "speed",
+    "hintSkillIds": [
+      200172,
+      200352,
+      200562,
+      202372,
+      202472,
+      202482,
+      202982,
+      203032,
+      203642,
+      203652,
+      203992
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30275,
+    "name": "[[天才的ユートピア]] [天才的ユートピア]トウカイテイオー (トウカイテイオー)",
+    "characterId": 1003,
+    "rarity": "SSR",
+    "commandId": 101,
+    "type": "speed",
+    "hintSkillIds": [
+      201312,
+      201322,
+      201902,
+      202372,
+      203122,
+      203232,
+      203422,
+      203442,
+      203642,
+      203712,
+      203992,
+      204002
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30276,
+    "name": "[[ゆるり、ゆこま旅館]] [ゆるり、ゆこま旅館]保科健子 (保科健子)",
+    "characterId": 9050,
+    "rarity": "SSR",
+    "commandId": 0,
+    "type": "stamina",
+    "hintSkillIds": [],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30277,
+    "name": "[[無機の闘志]] [無機の闘志]ミホノブルボン (ミホノブルボン)",
+    "characterId": 1026,
+    "rarity": "SSR",
+    "commandId": 102,
+    "type": "speed",
+    "hintSkillIds": [
+      200132,
+      200452,
+      200532,
+      200542,
+      201242,
+      201252,
+      201272,
+      201601,
+      202161,
+      203272,
+      203462,
+      204092
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30278,
+    "name": "[[激録！爆走トナカイ事件]] [激録！爆走トナカイ事件]ゴールドシップ (ゴールドシップ)",
+    "characterId": 1007,
+    "rarity": "SSR",
+    "commandId": 105,
+    "type": "speed",
+    "hintSkillIds": [
+      200202,
+      200642,
+      201182,
+      201452,
+      201591,
+      202562,
+      202852,
+      202882,
+      202892,
+      203252,
+      203532,
+      203582,
+      203762
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30279,
+    "name": "[[ぬくもりのノエル]] [ぬくもりのノエル]フェノーメノ (フェノーメノ)",
+    "characterId": 1127,
+    "rarity": "SSR",
+    "commandId": 105,
+    "type": "speed",
+    "hintSkillIds": [
+      201182,
+      202012,
+      202192,
+      202482,
+      202662,
+      202772,
+      203132,
+      203412,
+      203702,
+      203712,
+      204012
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30280,
+    "name": "[[黄金の夢に溺れよ]] [黄金の夢に溺れよ]オルフェーヴル (オルフェーヴル)",
+    "characterId": 1115,
+    "rarity": "SSR",
+    "commandId": 105,
+    "type": "speed",
+    "hintSkillIds": [
+      201492,
+      202022,
+      202382,
+      202552,
+      202662,
+      202902,
+      202972,
+      203752
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30281,
+    "name": "[[故郷に錦を飾るんでい！]] [故郷に錦を飾るんでい！]イナリワン (イナリワン)",
+    "characterId": 1034,
+    "rarity": "SSR",
+    "commandId": 105,
+    "type": "speed",
+    "hintSkillIds": [
+      200012,
+      201172,
+      201392,
+      201692,
+      202422,
+      202592,
+      202662,
+      203152,
+      203252,
+      203332,
+      203772,
+      204022
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30282,
+    "name": "[[心覚えし、京の華]] [心覚えし、京の華]エアグルーヴ (エアグルーヴ)",
+    "characterId": 1018,
+    "rarity": "SSR",
+    "commandId": 101,
+    "type": "speed",
+    "hintSkillIds": [
+      200022,
+      201102,
+      201112,
+      201702,
+      202092,
+      202472,
+      202652,
+      202712,
+      203312,
+      203432,
+      204032,
+      204042,
+      204112
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30283,
+    "name": "[[ゆかし、きらめきの旅路]] [ゆかし、きらめきの旅路]ファインモーション (ファインモーション)",
+    "characterId": 1022,
+    "rarity": "SSR",
+    "commandId": 102,
+    "type": "speed",
+    "hintSkillIds": [
+      200202,
+      200362,
+      201342,
+      202172,
+      202702,
+      202742,
+      202762,
+      202982,
+      203032,
+      203222,
+      204052,
+      204072,
+      204082,
+      204162
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30284,
+    "name": "[[琴線弾きて、風光る]] [琴線弾きて、風光る]バブルガムフェロー (バブルガムフェロー)",
+    "characterId": 1124,
+    "rarity": "SSR",
+    "commandId": 103,
+    "type": "speed",
+    "hintSkillIds": [
+      200282,
+      200342,
+      201532,
+      201601,
+      202372,
+      202412,
+      202472,
+      203222
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30285,
+    "name": "[[私のためのショッピング]] [私のためのショッピング]キングヘイロー (キングヘイロー)",
+    "characterId": 1061,
+    "rarity": "SSR",
+    "commandId": 103,
+    "type": "speed",
+    "hintSkillIds": [
+      200592,
+      200602,
+      201382,
+      201412,
+      202402,
+      202622,
+      203152,
+      203332,
+      203362,
+      203542,
+      203852,
+      204132
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30286,
+    "name": "[[吉兆招福チョコ来たる]] [吉兆招福チョコ来たる]マチカネフクキタル (マチカネフクキタル)",
+    "characterId": 1056,
+    "rarity": "SSR",
+    "commandId": 101,
+    "type": "speed",
+    "hintSkillIds": [
+      200012,
+      200752,
+      201172,
+      201591,
+      202482,
+      202682,
+      202772,
+      203302,
+      203472,
+      203702,
+      204082,
+      204202
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30287,
+    "name": "[[星跨ぐメッセージ]] [星跨ぐメッセージ]ネオユニヴァース (ネオユニヴァース)",
+    "characterId": 1105,
+    "rarity": "SSR",
+    "commandId": 102,
+    "type": "speed",
+    "hintSkillIds": [
+      201611,
+      201631,
+      201702,
+      202082,
+      202532,
+      202552,
+      202602,
+      203142,
+      203572,
+      203632,
+      203652,
+      204052
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30288,
+    "name": "[[ギュッとしてマイフレンド]] [ギュッとしてマイフレンド]サイレンススズカ (サイレンススズカ)",
+    "characterId": 1002,
+    "rarity": "SSR",
+    "commandId": 106,
+    "type": "speed",
+    "hintSkillIds": [
+      200022,
+      200432,
+      201042,
+      201262,
+      201302,
+      201522,
+      201601,
+      203022,
+      203042
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30289,
+    "name": "[[Innovator]] [Innovator]フォーエバーヤング (フォーエバーヤング)",
+    "characterId": 1138,
+    "rarity": "SSR",
+    "commandId": 106,
+    "type": "speed",
+    "hintSkillIds": [
+      200362,
+      200462,
+      200492,
+      201601,
+      201611,
+      201661,
+      202552,
+      202952,
+      203502,
+      203852,
+      204122,
+      204182,
+      204222
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30290,
+    "name": "[[American Dream]] [American Dream]カジノドライヴ (カジノドライヴ)",
+    "characterId": 1139,
+    "rarity": "SSR",
+    "commandId": 0,
+    "type": "stamina",
+    "hintSkillIds": [],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30291,
+    "name": "[[Let's Go Together!]] [Let's Go Together!]ヴィクトワールピサ (ヴィクトワールピサ)",
+    "characterId": 1143,
+    "rarity": "SSR",
+    "commandId": 101,
+    "type": "speed",
+    "hintSkillIds": [
+      200042,
+      200352,
+      200512,
+      201591,
+      202602,
+      202792,
+      203652,
+      203662,
+      204142
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30292,
+    "name": "[[響け、二人の凱歌]] [響け、二人の凱歌]マルシュロレーヌ (マルシュロレーヌ)",
+    "characterId": 1140,
+    "rarity": "SSR",
+    "commandId": 101,
+    "type": "speed",
+    "hintSkillIds": [
+      200302,
+      201672,
+      201682,
+      202262,
+      202302,
+      202332,
+      203093,
+      203103,
+      203182,
+      203602,
+      203612,
+      203792,
+      203982
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30293,
+    "name": "[[白に至る純真]] [白に至る純真]デアリングタクト (デアリングタクト)",
+    "characterId": 1075,
+    "rarity": "SSR",
+    "commandId": 103,
+    "type": "speed",
+    "hintSkillIds": [
+      200172,
+      201591,
+      202102,
+      202172,
+      202532,
+      202652,
+      203152,
+      203352,
+      203362,
+      203792,
+      204052,
+      204322
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30294,
+    "name": "[[白に至る覚悟]] [白に至る覚悟]デアリングハート (デアリングハート)",
+    "characterId": 1112,
+    "rarity": "SSR",
+    "commandId": 103,
+    "type": "speed",
+    "hintSkillIds": [
+      200172,
+      201082,
+      201661,
+      202532,
+      202652,
+      202742,
+      202802,
+      203032,
+      203862,
+      204052,
+      204072,
+      204322
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30295,
+    "name": "[[花ども集いて束となる]] [花ども集いて束となる]カレンブーケドール (カレンブーケドール)",
+    "characterId": 1134,
+    "rarity": "SSR",
+    "commandId": 102,
+    "type": "speed",
+    "hintSkillIds": [
+      200472,
+      200562,
+      201362,
+      202161,
+      202372,
+      203412,
+      203442,
+      203992
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30296,
+    "name": "[[単焦点でつかまえて]] [単焦点でつかまえて]アストンマーチャン (アストンマーチャン)",
+    "characterId": 1087,
+    "rarity": "SSR",
+    "commandId": 103,
+    "type": "speed",
+    "hintSkillIds": [
+      200192,
+      200962,
+      200972,
+      201012,
+      202042,
+      202862,
+      203012,
+      203482,
+      203492,
+      203872,
+      204162,
+      204272,
+      204282,
+      204312
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30297,
+    "name": "[[全てに挑む勇ましき者]] [全てに挑む勇ましき者]アグネスデジタル (アグネスデジタル)",
+    "characterId": 1019,
+    "rarity": "SSR",
+    "commandId": 102,
+    "type": "speed",
+    "hintSkillIds": [
+      200602,
+      201382,
+      201392,
+      201412,
+      202152,
+      202472,
+      202622,
+      203592,
+      204112,
+      204132,
+      204352,
+      204362,
+      204372
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30298,
+    "name": "[[刀光散らしてClash！]] [刀光散らしてClash！]タップダンスシチー (タップダンスシチー)",
+    "characterId": 1107,
+    "rarity": "SSR",
+    "commandId": 101,
+    "type": "speed",
+    "hintSkillIds": [
+      200432,
+      200542,
+      201242,
+      201252,
+      201262,
+      201272,
+      202392,
+      202692,
+      202802,
+      203032,
+      203382,
+      203402,
+      203472,
+      204342
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30299,
+    "name": "[[無辺際ラボラトリィ]] [無辺際ラボラトリィ]アグネスタキオン (アグネスタキオン)",
+    "characterId": 1032,
+    "rarity": "SSR",
+    "commandId": 103,
+    "type": "speed",
+    "hintSkillIds": [
+      200572,
+      201322,
+      201332,
+      201362,
+      202412,
+      202792,
+      202982,
+      204082
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30300,
+    "name": "[[賑やかな未来を乗せて走れ！]] [賑やかな未来を乗せて走れ！]サクラチヨノオー (サクラチヨノオー)",
+    "characterId": 1069,
+    "rarity": "SSR",
+    "commandId": 105,
+    "type": "speed",
+    "hintSkillIds": [
+      200562,
+      200722,
+      202092,
+      202602,
+      202712,
+      202742,
+      203052,
+      203122,
+      203442,
+      203862,
+      204012,
+      204082,
+      204332
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30301,
+    "name": "[[スマイル・エバーアフター]] [スマイル・エバーアフター]グランアレグリア (グランアレグリア)",
+    "characterId": 1131,
+    "rarity": "SSR",
+    "commandId": 102,
+    "type": "speed",
+    "hintSkillIds": [
+      201032,
+      201042,
+      201072,
+      202112,
+      202402,
+      202962,
+      203042,
+      203542,
+      203552,
+      203942,
+      204172,
+      204462
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30302,
+    "name": "[[永久の誓い、永久の輝き]] [永久の誓い、永久の輝き]サトノダイヤモンド (サトノダイヤモンド)",
+    "characterId": 1067,
+    "rarity": "SSR",
+    "commandId": 101,
+    "type": "speed",
+    "hintSkillIds": [
+      200382,
+      200752,
+      201172,
+      201182,
+      202562,
+      203242,
+      203512,
+      203562,
+      203772,
+      204022,
+      204202,
+      204293,
+      204382
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30303,
+    "name": "[[『ずーっと一緒、だぞー！』]] [『ずーっと一緒、だぞー！』]ブラストワンピース (ブラストワンピース)",
+    "characterId": 1128,
+    "rarity": "SSR",
+    "commandId": 105,
+    "type": "speed",
+    "hintSkillIds": [
+      200332,
+      200572,
+      201422,
+      202452,
+      202662,
+      202792,
+      203952,
+      204112,
+      204132
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  }
+]

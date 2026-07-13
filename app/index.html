@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>umamusume-sp-calc</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <header>
+      <h1>umamusume-sp-calc</h1>
+      <p>取得可能スキル全習得の理論必要SP（ヒント想定込み）</p>
+    </header>
+    <main>
+      <div id="load-error" class="panel error" hidden></div>
+
+      <section class="panel">
+        <h2>育成設定</h2>
+        <div class="grid-2">
+          <div>
+            <label for="character-select">育成ウマ娘（覚醒Lv5想定）</label>
+            <select id="character-select"></select>
+          </div>
+          <div>
+            <label>シナリオ</label>
+            <p class="hint">らっしゃい！トレセン軒！（固定）</p>
+          </div>
+        </div>
+        <label>サポートカード（6枚）</label>
+        <div class="support-slots" id="support-slots"></div>
+      </section>
+
+      <section class="panel">
+        <h2>オプション</h2>
+        <div class="options-row">
+          <label class="checkbox-row">
+            <input type="checkbox" id="fast-learner" />
+            切れ者（全スキル+10%OFF）
+          </label>
+        </div>
+        <div class="options-row" style="margin-top: 0.5rem">
+          <label class="checkbox-row">
+            <input type="checkbox" id="inherit-enabled" />
+            継承固有を含める
+          </label>
+          <label>
+            個数
+            <input type="number" id="inherit-count" min="2" max="6" value="2" style="width: 4rem" />
+          </label>
+          <label>
+            ヒントLv
+            <input type="number" id="inherit-hint" min="1" max="5" value="1" style="width: 4rem" />
+          </label>
+          <label>
+            baseSp
+            <input type="number" id="inherit-base" min="1" value="200" style="width: 5rem" />
+          </label>
+        </div>
+      </section>
+
+      <section class="panel">
+        <h2>イベント・シナリオスキル（選択式）</h2>
+        <div id="event-checks"></div>
+        <div id="scenario-checks" style="margin-top: 0.75rem"></div>
+        <p class="hint" style="margin-top: 0.5rem">
+          skillId 未設定の項目は data 抽出後に名前マッチで有効化されます。
+        </p>
+      </section>
+
+      <section class="panel">
+        <h2>結果</h2>
+        <div class="total-box">合計必要SP: <span id="total-sp">—</span></div>
+        <p class="hint">一覧の「含める」チェックを外すと合計から除外されます。</p>
+        <div style="overflow-x: auto; max-height: 480px">
+          <table>
+            <thead>
+              <tr>
+                <th>含める</th>
+                <th>スキル</th>
+                <th>ヒントLv</th>
+                <th>必要SP</th>
+                <th>由来</th>
+              </tr>
+            </thead>
+            <tbody id="result-body"></tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+    <script type="module" src="js/app.js"></script>
+  </body>
+</html>

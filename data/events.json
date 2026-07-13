@@ -1,0 +1,45 @@
+{
+  "version": 1,
+  "description": "常用サポカのイベントスキル。skillId は extract 後に補完。名前でマッチも可。",
+  "prioritySupportNames": [
+    "[一杯のノスタルジア] 駿川たづな",
+    "[その執念は怒濤が如く] メイショウドトウ",
+    "[永久の誓い、永久の輝き] サトノダイヤモンド",
+    "[刀光散らしてClash！] タップダンスシチー",
+    "[全てに挑む勇ましき者] アグネスデジタル",
+    "[白に至る覚悟] デアリングハート",
+    "[Innovator] フォーエバーヤング",
+    "[ゆかし、きらめきの旅路] ファインモーション",
+    "[心覚えし、京の華] エアグルーヴ",
+    "[天才的ユートピア] トウカイテイオー",
+    "[Zirkus der Träume] エイシンフラッシュ"
+  ],
+  "events": [
+    {
+      "id": "evt_tazuna_oodate5",
+      "supportNameMatch": "一杯のノスタルジア",
+      "label": "たづな お出かけ5回目",
+      "skills": [
+        {
+          "skillName": "お先に失礼っ！",
+          "hintLevel": 3,
+          "defaultOn": true,
+          "skillId": 201662
+        }
+      ]
+    },
+    {
+      "id": "evt_tazuna_newyear",
+      "supportNameMatch": "一杯のノスタルジア",
+      "label": "たづな クラシック正月",
+      "skills": [
+        {
+          "skillName": "中盤巧者",
+          "hintLevel": 3,
+          "defaultOn": true,
+          "skillId": 202792
+        }
+      ]
+    }
+  ]
+}
