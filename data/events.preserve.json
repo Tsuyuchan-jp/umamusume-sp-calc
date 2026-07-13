@@ -1,0 +1,33 @@
+{
+  "description": "U-tools 抽出対象外だが実機確認済みで維持するイベント（旧11種・たづなお出かけ/正月）",
+  "events": [
+    {
+      "id": "evt_tazuna_oodate5",
+      "supportNameMatch": "一杯のノスタルジア",
+      "label": "たづな お出かけ5回目",
+      "selection": "auto",
+      "skills": [
+        {
+          "skillName": "お先に失礼っ！",
+          "hintLevel": 3,
+          "skillId": 201662
+        }
+      ],
+      "_preserveReason": "U-tools サポカページに無し。旧11種実機確認済み"
+    },
+    {
+      "id": "evt_tazuna_newyear",
+      "supportNameMatch": "一杯のノスタルジア",
+      "label": "たづな クラシック正月",
+      "selection": "auto",
+      "skills": [
+        {
+          "skillName": "中盤巧者",
+          "hintLevel": 3,
+          "skillId": 202792
+        }
+      ],
+      "_preserveReason": "U-tools サポカページに無し。旧11種実機確認済み"
+    }
+  ]
+}

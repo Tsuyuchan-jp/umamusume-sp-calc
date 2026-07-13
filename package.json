@@ -1,6 +1,6 @@
 {
   "name": "umamusume-sp-calc",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "private": true,
   "type": "module",
   "description": "ウマ娘 取得可能スキル全習得の理論必要SP算出ツール",
@@ -12,6 +12,7 @@
     "bind-priority": "node scripts/bind_priority.mjs",
     "extract:events": "node scripts/extract_support_events.mjs",
     "compare:events": "node scripts/compare_events_golden.mjs",
+    "apply:events": "node scripts/apply_extracted_events.mjs",
     "merge-support-events": "node scripts/merge_support_events.mjs",
     "reclassify-support-events": "node scripts/reclassify_support_events.mjs",
     "serve": "npx --yes serve . -l 8080"

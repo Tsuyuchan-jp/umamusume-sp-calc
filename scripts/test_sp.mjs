@@ -181,7 +181,7 @@ function makePlan(supportIds) {
 
 const defaultPlan = makePlan([young.id, tazuna.id]);
 assertEq(defaultPlan.unresolved.length, 0, "デフォルト未解決スキル");
-assertEq(defaultPlan.total, 4173, "デフォルト合計SP");
+assertEq(defaultPlan.total, 4281, "デフォルト合計SP（U-tools 抽出正本・たづな+2イベント追加）");
 
 const jichu = defaultPlan.rows.find((r) => r.name === "時中の妙");
 assertTruthy(jichu, "時中の妙が結果に含まれる");

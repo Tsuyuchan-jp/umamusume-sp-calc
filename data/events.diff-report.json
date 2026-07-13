@@ -1,21 +1,20 @@
 {
-  "comparedAt": "2026-07-13T15:29:45.932Z",
+  "comparedAt": "2026-07-13T15:35:41.848Z",
   "handCount": 102,
   "extractedCount": 100,
   "counts": {
-    "match": 96,
+    "match": 100,
     "conflict": 0,
-    "extracted_only": 4,
-    "hand_only": 6
+    "extracted_only": 0,
+    "hand_only": 2
   },
   "old11": {
-    "match": 28,
+    "match": 32,
     "conflict": 0,
-    "hand_only": 4,
-    "extracted_only": 4
+    "hand_only": 2,
+    "extracted_only": 0
   },
   "old11Conflicts": [],
-  "old11HandOnly": [],
   "handOnly": [
     {
       "side": "hand",
@@ -46,130 +45,6 @@
         }
       ],
       "skillPayload": "id:202792\u00003"
-    },
-    {
-      "side": "hand",
-      "id": "evt_young_dreams",
-      "supportNameMatch": "Innovator",
-      "label": "ヤング Dreams are Forever（連続3・成功時）",
-      "selection": "single",
-      "choices": [
-        {
-          "id": "dirt",
-          "label": "① 二段構え Lv1 + アプローチ Lv1 + コール&レスポンス Lv1 + イノベーション Lv1",
-          "skills": [
-            {
-              "skillName": "二段構え",
-              "hintLevel": 1,
-              "skillId": 202832
-            },
-            {
-              "skillName": "アプローチ",
-              "hintLevel": 1,
-              "skillId": 204192
-            },
-            {
-              "skillName": "コール&レスポンス",
-              "hintLevel": 1,
-              "skillId": 202831
-            },
-            {
-              "skillName": "イノベーション",
-              "hintLevel": 1,
-              "skillId": 204191
-            }
-          ]
-        },
-        {
-          "id": "general",
-          "label": "② 尻尾の滝登り Lv1 + 前人未到 Lv1",
-          "skills": [
-            {
-              "skillName": "尻尾の滝登り",
-              "hintLevel": 1,
-              "skillId": 201612
-            },
-            {
-              "skillName": "前人未到",
-              "hintLevel": 1,
-              "skillId": 204181
-            }
-          ]
-        }
-      ],
-      "skillPayload": "id:201612\u00001|id:204181\u00001||id:202831\u00001|id:202832\u00001|id:204191\u00001|id:204192\u00001"
-    },
-    {
-      "side": "hand",
-      "id": "evt_groove_makeup",
-      "supportNameMatch": "心覚えし、京の華",
-      "label": "グルーヴ そのメイクは誰がために（連続3・金2択）",
-      "selection": "single",
-      "choices": [
-        {
-          "id": "osu_kin",
-          "label": "① 王手 Lv2 + 千鍛万錬 Lv1",
-          "skills": [
-            {
-              "skillName": "王手",
-              "hintLevel": 2,
-              "skillId": 202711
-            },
-            {
-              "skillName": "千鍛万錬",
-              "hintLevel": 1,
-              "skillId": 204031
-            }
-          ]
-        },
-        {
-          "id": "kin_kin",
-          "label": "② 千鍛万錬 Lv2 + 錦上添花 Lv2",
-          "skills": [
-            {
-              "skillName": "千鍛万錬",
-              "hintLevel": 2,
-              "skillId": 204031
-            },
-            {
-              "skillName": "錦上添花",
-              "hintLevel": 2,
-              "skillId": 204041
-            }
-          ]
-        }
-      ],
-      "skillPayload": "id:202711\u00002|id:204031\u00001||id:204031\u00002|id:204041\u00002"
-    },
-    {
-      "side": "hand",
-      "id": "evt_gran_seicho",
-      "supportNameMatch": "スマイル・エバーアフター",
-      "label": "グラン 成長のヒント",
-      "selection": "auto",
-      "skills": [
-        {
-          "skillName": "足任せ",
-          "hintLevel": 4,
-          "skillId": 203542
-        }
-      ],
-      "skillPayload": "id:203542\u00004"
-    },
-    {
-      "side": "hand",
-      "id": "evt_fuji_sleight",
-      "supportNameMatch": "壇上より魔法を込めて",
-      "label": "フジ スライハンド",
-      "selection": "auto",
-      "skills": [
-        {
-          "skillName": "流星光底",
-          "hintLevel": 1,
-          "skillId": 202981
-        }
-      ],
-      "skillPayload": "id:202981\u00001"
     }
   ],
   "results": [
@@ -177,9 +52,9 @@
       "status": "match",
       "hand": {
         "side": "hand",
-        "id": "evt_young_light",
+        "id": "evt_30289_801138002",
         "supportNameMatch": "Innovator",
-        "label": "ヤング やっちゃお！イノベーション",
+        "label": "ヤング やっちゃお！イノベーション！",
         "selection": "auto",
         "skills": [
           {
@@ -205,13 +80,13 @@
         ],
         "skillPayload": "id:204052\u00001"
       },
-      "matchKey": "skill"
+      "matchKey": "name"
     },
     {
       "status": "match",
       "hand": {
         "side": "hand",
-        "id": "evt_young_vitality",
+        "id": "evt_30289_830289001",
         "supportNameMatch": "Innovator",
         "label": "ヤング Young & Unstoppable",
         "selection": "auto",
@@ -242,7 +117,59 @@
       "matchKey": "name"
     },
     {
-      "status": "extracted_only",
+      "status": "match",
+      "hand": {
+        "side": "hand",
+        "id": "evt_30289_830289003",
+        "supportNameMatch": "Innovator",
+        "label": "ヤング Dreams are Forever",
+        "selection": "single",
+        "choices": [
+          {
+            "id": "c001_2028312+2028325+204191",
+            "label": "① 二段構え Lv5 + アプローチ Lv5 + コール&レスポンス Lv2 + イノベーション Lv2",
+            "skills": [
+              {
+                "skillName": "二段構え",
+                "hintLevel": 5,
+                "skillId": 202832
+              },
+              {
+                "skillName": "アプローチ",
+                "hintLevel": 5,
+                "skillId": 204192
+              },
+              {
+                "skillName": "コール&レスポンス",
+                "hintLevel": 2,
+                "skillId": 202831
+              },
+              {
+                "skillName": "イノベーション",
+                "hintLevel": 2,
+                "skillId": 204191
+              }
+            ]
+          },
+          {
+            "id": "c002_2016122+2041812",
+            "label": "② 尻尾の滝登り Lv2 + 前人未到 Lv2",
+            "skills": [
+              {
+                "skillName": "尻尾の滝登り",
+                "hintLevel": 2,
+                "skillId": 201612
+              },
+              {
+                "skillName": "前人未到",
+                "hintLevel": 2,
+                "skillId": 204181
+              }
+            ]
+          }
+        ],
+        "skillPayload": "id:201612\u00002|id:204181\u00002||id:202831\u00002|id:202832\u00005|id:204191\u00002|id:204192\u00005"
+      },
       "extracted": {
         "side": "extracted",
         "id": "evt_30289_830289003",
@@ -294,13 +221,14 @@
           }
         ],
         "skillPayload": "id:201612\u00002|id:204181\u00002||id:202831\u00002|id:202832\u00005|id:204191\u00002|id:204192\u00005"
-      }
+      },
+      "matchKey": "name"
     },
     {
       "status": "match",
       "hand": {
         "side": "hand",
-        "id": "evt_ruby_ganka",
+        "id": "evt_30270_801085002",
         "supportNameMatch": "Inseparable",
         "label": "ルビー 華麗なる旋律",
         "selection": "auto",
@@ -334,7 +262,7 @@
       "status": "match",
       "hand": {
         "side": "hand",
-        "id": "evt_ruby_akadama",
+        "id": "evt_30270_830270001",
         "supportNameMatch": "Inseparable",
         "label": "ルビー 紅玉の誓約",
         "selection": "auto",
@@ -368,7 +296,7 @@
       "status": "match",
       "hand": {
         "side": "hand",
-        "id": "evt_dura_ou",
+        "id": "evt_30262_801108002",
         "supportNameMatch": "Tranquillo",
         "label": "ドゥラ 追うべき背中",
         "selection": "auto",
@@ -402,7 +330,7 @@
       "status": "match",
       "hand": {
         "side": "hand",
-        "id": "evt_dura_kawaii_power",
+        "id": "evt_30262_830262003",
         "supportNameMatch": "Tranquillo",
         "label": "ドゥラ 可愛いの真の力！",
         "selection": "auto",
@@ -446,7 +374,7 @@
       "status": "match",
       "hand": {
         "side": "hand",
-        "id": "evt_line_wakuwaku",
+        "id": "evt_30253_801109001",
         "supportNameMatch": "Unveiled Dream",
         "label": "ライン ワクワクでキラキラな夢",
         "selection": "auto",
@@ -480,7 +408,7 @@
       "status": "match",
       "hand": {
         "side": "hand",
-        "id": "evt_line_letter",
+        "id": "evt_30253_830253003",
         "supportNameMatch": "Unveiled Dream",
         "label": "ライン 拝啓、お父さん",
         "selection": "auto",
@@ -524,7 +452,7 @@
       "status": "match",
       "hand": {
         "side": "hand",
-        "id": "evt_flash_shop",
+        "id": "evt_30272_801037002",
         "supportNameMatch": "Zirkus der Träume",
         "label": "フラッシュ 想定外への対応",
         "selection": "auto",
@@ -558,7 +486,7 @@
       "status": "match",
       "hand": {
         "side": "hand",
-        "id": "evt_flash_try",
+        "id": "evt_30272_830272002",
         "supportNameMatch": "Zirkus der Träume",
         "label": "フラッシュ 美しきトライ",
         "selection": "auto",
@@ -592,13 +520,13 @@
       "status": "match",
       "hand": {
         "side": "hand",
-        "id": "evt_flash_fruit",
+        "id": "evt_30272_830272003",
         "supportNameMatch": "Zirkus der Träume",
-        "label": "フラッシュ 美しき結実（連続3）",
+        "label": "フラッシュ 美しき結実",
         "selection": "single",
         "choices": [
           {
-            "id": "gold",
+            "id": "c001_2026411+2036711",
             "label": "① 千里の道 Lv1 + 陽炎 Lv1",
             "skills": [
               {
@@ -614,7 +542,7 @@
             ]
           },
           {
-            "id": "scenario",
+            "id": "c002_2100625+2100825+210091",
             "label": "② レースの真髄・速 Lv5 + 前だけ見据えて Lv5 + 綺羅星 Lv5",
             "skills": [
               {
@@ -684,13 +612,13 @@
         ],
         "skillPayload": "id:202641\u00001|id:203671\u00001||id:210062\u00005|id:210082\u00005|id:210091\u00005"
       },
-      "matchKey": "skill"
+      "matchKey": "name"
     },
     {
       "status": "match",
       "hand": {
         "side": "hand",
-        "id": "evt_carlton_massugu",
+        "id": "evt_30267_801120001",
         "supportNameMatch": "カルストンライトオ、猫です",
         "label": "ライトオ 『真っ直ぐ』はすばらしい",
         "selection": "auto",
@@ -724,7 +652,7 @@
       "status": "match",
       "hand": {
         "side": "hand",
-        "id": "evt_carlton_saisoku",
+        "id": "evt_30267_801120002",
         "supportNameMatch": "カルストンライトオ、猫です",
         "label": "ライトオ 『最速』はすばらしい",
         "selection": "auto",
@@ -758,9 +686,9 @@
       "status": "match",
       "hand": {
         "side": "hand",
-        "id": "evt_carlton_sokyu",
+        "id": "evt_30267_830267003",
         "supportNameMatch": "カルストンライトオ、猫です",
-        "label": "ライトオ 速い&真っ直ぐは世界を救う！",
+        "label": "ライトオ 速い＆真っ直ぐは世界を救う！",
         "selection": "auto",
         "skills": [
           {
@@ -802,9 +730,9 @@
       "status": "match",
       "hand": {
         "side": "hand",
-        "id": "evt_gran_mile_way",
+        "id": "evt_30301_801131002",
         "supportNameMatch": "スマイル・エバーアフター",
-        "label": "グラン ゴー・マイル・ウェイ",
+        "label": "グラン ゴー・マイル・ウェイ、です！",
         "selection": "auto",
         "skills": [
           {
@@ -830,13 +758,13 @@
         ],
         "skillPayload": "id:201032\u00001"
       },
-      "matchKey": "skill"
+      "matchKey": "name"
     },
     {
       "status": "match",
       "hand": {
         "side": "hand",
-        "id": "evt_gran_milestone",
+        "id": "evt_30301_830301002",
         "supportNameMatch": "スマイル・エバーアフター",
         "label": "グラン 勝利へのマイルストーン",
         "selection": "auto",
@@ -870,7 +798,7 @@
       "status": "match",
       "hand": {
         "side": "hand",
-        "id": "evt_gran_muse_final",
+        "id": "evt_30301_830301003",
         "supportNameMatch": "スマイル・エバーアフター",
         "label": "グラン 最強のミューズへ",
         "selection": "auto",
@@ -914,9 +842,9 @@
       "status": "match",
       "hand": {
         "side": "hand",
-        "id": "evt_dotou_call",
+        "id": "evt_30304_801058002",
         "supportNameMatch": "その執念は怒濤が如く",
-        "label": "ドトウ イベントB（呼び込み）",
+        "label": "ドトウ にんじん……買ってくださいっ",
         "selection": "auto",
         "skills": [
           {
@@ -942,15 +870,15 @@
         ],
         "skillPayload": "id:201322\u00001"
       },
-      "matchKey": "skill"
+      "matchKey": "name"
     },
     {
       "status": "match",
       "hand": {
         "side": "hand",
-        "id": "evt_dotou_umalike",
+        "id": "evt_30304_830304002",
         "supportNameMatch": "その執念は怒濤が如く",
-        "label": "ドトウ イベントA（ウマ好み）",
+        "label": "ドトウ 美味しい楽しいファンサービス",
         "selection": "auto",
         "skills": [
           {
@@ -976,19 +904,19 @@
         ],
         "skillPayload": "id:201591\u00001"
       },
-      "matchKey": "skill"
+      "matchKey": "name"
     },
     {
       "status": "match",
       "hand": {
         "side": "hand",
-        "id": "evt_dotou_chain",
+        "id": "evt_30304_830304003",
         "supportNameMatch": "その執念は怒濤が如く",
-        "label": "ドトウ イベントC（連続・最終選択）",
+        "label": "ドトウ 覇王と共に歩む道",
         "selection": "single",
         "choices": [
           {
-            "id": "ou",
+            "id": "c001_2003312+2036511",
             "label": "① 弧線のプロフェッサー Lv2 + パスファインダー Lv1",
             "skills": [
               {
@@ -1004,7 +932,7 @@
             ]
           },
           {
-            "id": "dawn",
+            "id": "c002_2036412+2036511",
             "label": "② パスファインダー Lv1 + 曙光 Lv2",
             "skills": [
               {
@@ -1020,7 +948,7 @@
             ]
           },
           {
-            "id": "yuyu",
+            "id": "c003_2036511+2043912",
             "label": "③ パスファインダー Lv1 + 悠々自適 Lv2",
             "skills": [
               {
@@ -1096,13 +1024,13 @@
         ],
         "skillPayload": "id:200331\u00002|id:203651\u00001||id:203641\u00002|id:203651\u00001||id:203651\u00001|id:204391\u00002"
       },
-      "matchKey": "skill"
+      "matchKey": "name"
     },
     {
       "status": "match",
       "hand": {
         "side": "hand",
-        "id": "evt_pheno_kowamote",
+        "id": "evt_30279_801127002",
         "supportNameMatch": "ぬくもりのノエル",
         "label": "フェノーメノ あぶないコワモテ刑事？",
         "selection": "auto",
@@ -1136,7 +1064,7 @@
       "status": "match",
       "hand": {
         "side": "hand",
-        "id": "evt_pheno_mame",
+        "id": "evt_30279_830279002",
         "supportNameMatch": "ぬくもりのノエル",
         "label": "フェノーメノ マメちん堕落計画！",
         "selection": "auto",
@@ -1170,9 +1098,9 @@
       "status": "match",
       "hand": {
         "side": "hand",
-        "id": "evt_pheno_kisei",
+        "id": "evt_30279_830279003",
         "supportNameMatch": "ぬくもりのノエル",
-        "label": "フェノーメノ いかなる時も矜持は揺るがず",
+        "label": "フェノーメノ いかなる時も、矜持は揺るがず",
         "selection": "auto",
         "skills": [
           {
@@ -1208,13 +1136,13 @@
         ],
         "skillPayload": "id:202011\u00001|id:202771\u00001"
       },
-      "matchKey": "skill"
+      "matchKey": "name"
     },
     {
       "status": "match",
       "hand": {
         "side": "hand",
-        "id": "evt_fine_corner",
+        "id": "evt_30283_801022002",
         "supportNameMatch": "ゆかし、きらめきの旅路",
         "label": "ファイン 思い出クローバー",
         "selection": "auto",
@@ -1248,7 +1176,7 @@
       "status": "match",
       "hand": {
         "side": "hand",
-        "id": "evt_fine_step",
+        "id": "evt_30283_830283002",
         "supportNameMatch": "ゆかし、きらめきの旅路",
         "label": "ファイン ロイヤル推し活ライフ",
         "selection": "auto",
@@ -1282,13 +1210,13 @@
       "status": "match",
       "hand": {
         "side": "hand",
-        "id": "evt_fine_look",
+        "id": "evt_30283_830283003",
         "supportNameMatch": "ゆかし、きらめきの旅路",
-        "label": "ファイン Look at me（連続3）",
+        "label": "ファイン Look at me",
         "selection": "single",
         "choices": [
           {
-            "id": "gold",
+            "id": "c001_2027611+2040711",
             "label": "① かっとばせ！ Lv1 + 順風満帆 Lv1",
             "skills": [
               {
@@ -1304,7 +1232,7 @@
             ]
           },
           {
-            "id": "scenario",
+            "id": "c002_2040725+2101015+210262",
             "label": "② 気持ちを乗せて Lv5 + レースの真髄・体 Lv5 + 陽の加護 Lv5",
             "skills": [
               {
@@ -1374,10 +1302,25 @@
         ],
         "skillPayload": "id:202761\u00001|id:204071\u00001||id:204072\u00005|id:210101\u00005|id:210262\u00005"
       },
-      "matchKey": "skill"
+      "matchKey": "name"
     },
     {
-      "status": "extracted_only",
+      "status": "match",
+      "hand": {
+        "side": "hand",
+        "id": "evt_30305_809001004",
+        "supportNameMatch": "一杯のノスタルジア",
+        "label": "たづな 情熱のふたり",
+        "selection": "auto",
+        "skills": [
+          {
+            "skillName": "展開窺い",
+            "hintLevel": 1,
+            "skillId": 200692
+          }
+        ],
+        "skillPayload": "id:200692\u00001"
+      },
       "extracted": {
         "side": "extracted",
         "id": "evt_30305_809001004",
@@ -1392,10 +1335,26 @@
           }
         ],
         "skillPayload": "id:200692\u00001"
-      }
+      },
+      "matchKey": "name"
     },
     {
-      "status": "extracted_only",
+      "status": "match",
+      "hand": {
+        "side": "hand",
+        "id": "evt_30305_809001011",
+        "supportNameMatch": "一杯のノスタルジア",
+        "label": "たづな たづなとの絆・憧れを託して",
+        "selection": "auto",
+        "skills": [
+          {
+            "skillName": "尻尾上がり",
+            "hintLevel": 3,
+            "skillId": 201611
+          }
+        ],
+        "skillPayload": "id:201611\u00003"
+      },
       "extracted": {
         "side": "extracted",
         "id": "evt_30305_809001011",
@@ -1410,15 +1369,16 @@
           }
         ],
         "skillPayload": "id:201611\u00003"
-      }
+      },
+      "matchKey": "name"
     },
     {
       "status": "match",
       "hand": {
         "side": "hand",
-        "id": "evt_diamond_nigetam",
+        "id": "evt_30302_801067002",
         "supportNameMatch": "永久の誓い、永久の輝き",
-        "label": "ダイヤ 新しいもの、大好きです！",
+        "label": "ダイヤ 難しいこと、大好きです！",
         "selection": "auto",
         "skills": [
           {
@@ -1444,13 +1404,13 @@
         ],
         "skillPayload": "id:200851\u00001"
       },
-      "matchKey": "skill"
+      "matchKey": "name"
     },
     {
       "status": "match",
       "hand": {
         "side": "hand",
-        "id": "evt_diamond_gamushara",
+        "id": "evt_30302_830302002",
         "supportNameMatch": "永久の誓い、永久の輝き",
         "label": "ダイヤ まず、知るより始めよう",
         "selection": "auto",
@@ -1484,13 +1444,13 @@
       "status": "match",
       "hand": {
         "side": "hand",
-        "id": "evt_diamond_chain",
+        "id": "evt_30302_830302003",
         "supportNameMatch": "永久の誓い、永久の輝き",
-        "label": "ダイヤ そして、未来を誓う（連続3・金分岐）",
+        "label": "ダイヤ そして、未来を誓う",
         "selection": "single",
         "choices": [
           {
-            "id": "rensa",
+            "id": "c001_2032411+2035611",
             "label": "① 連鎖反応 Lv1 + 一所懸命 Lv1",
             "skills": [
               {
@@ -1506,7 +1466,7 @@
             ]
           },
           {
-            "id": "kouki",
+            "id": "c002_2035611+2043811",
             "label": "② 一所懸命 Lv1 + 光輝燦然 Lv1",
             "skills": [
               {
@@ -1566,13 +1526,13 @@
         ],
         "skillPayload": "id:203241\u00001|id:203561\u00001||id:203561\u00001|id:204381\u00001"
       },
-      "matchKey": "skill"
+      "matchKey": "name"
     },
     {
       "status": "match",
       "hand": {
         "side": "hand",
-        "id": "evt_stay_kin",
+        "id": "evt_30264_801135001",
         "supportNameMatch": "気まぐれ渡り星",
         "label": "ステイ 黄金を探し求めて",
         "selection": "auto",
@@ -1606,7 +1566,7 @@
       "status": "match",
       "hand": {
         "side": "hand",
-        "id": "evt_stay_over17",
+        "id": "evt_30264_830264002",
         "supportNameMatch": "気まぐれ渡り星",
         "label": "ステイ Over 17 Lights",
         "selection": "auto",
@@ -1640,13 +1600,13 @@
       "status": "match",
       "hand": {
         "side": "hand",
-        "id": "evt_stay_shinryou",
+        "id": "evt_30264_830264003",
         "supportNameMatch": "気まぐれ渡り星",
         "label": "ステイ 新しい旅へ",
         "selection": "single",
         "choices": [
           {
-            "id": "unknown",
+            "id": "c001_2027212+2038512",
             "label": "① ネバーギブアップ Lv2 + 好奇心 Lv2",
             "skills": [
               {
@@ -1662,7 +1622,7 @@
             ]
           },
           {
-            "id": "past",
+            "id": "c002_2027212+2038612",
             "label": "② ネバーギブアップ Lv2 + 自由奔放 Lv2",
             "skills": [
               {
@@ -1728,7 +1688,7 @@
       "status": "match",
       "hand": {
         "side": "hand",
-        "id": "evt_fuku_kitto",
+        "id": "evt_30286_830286001",
         "supportNameMatch": "吉兆招福チョコ来たる",
         "label": "フクキタル 吉日・良縁ハグハグ！",
         "selection": "auto",
@@ -1762,7 +1722,7 @@
       "status": "match",
       "hand": {
         "side": "hand",
-        "id": "evt_mars_koe",
+        "id": "evt_30292_801140002",
         "supportNameMatch": "響け、二人の凱歌",
         "label": "マルシュ 溢れている愛",
         "selection": "auto",
@@ -1796,9 +1756,9 @@
       "status": "match",
       "hand": {
         "side": "hand",
-        "id": "evt_mars_kanshin",
+        "id": "evt_30292_830292002",
         "supportNameMatch": "響け、二人の凱歌",
-        "label": "マルシュ 募る不安",
+        "label": "マルシュ 募る『不安』",
         "selection": "auto",
         "skills": [
           {
@@ -1824,15 +1784,15 @@
         ],
         "skillPayload": "id:203852\u00001"
       },
-      "matchKey": "skill"
+      "matchKey": "name"
     },
     {
       "status": "match",
       "hand": {
         "side": "hand",
-        "id": "evt_mars_ai",
+        "id": "evt_30292_830292003",
         "supportNameMatch": "響け、二人の凱歌",
-        "label": "マルシュ 重なる愛",
+        "label": "マルシュ 重なる『愛』",
         "selection": "auto",
         "skills": [
           {
@@ -1868,15 +1828,15 @@
         ],
         "skillPayload": "id:202301\u00001|id:203611\u00001"
       },
-      "matchKey": "skill"
+      "matchKey": "name"
     },
     {
       "status": "match",
       "hand": {
         "side": "hand",
-        "id": "evt_gold_yakisoba",
+        "id": "evt_30278_801007002",
         "supportNameMatch": "激録！爆走トナカイ事件",
-        "label": "ゴルシ 甦れ！ゴルシ印のソース焼きそば！",
+        "label": "ゴルシ 甦れ！　ゴルシ印のソース焼きそば！",
         "selection": "auto",
         "skills": [
           {
@@ -1902,13 +1862,13 @@
         ],
         "skillPayload": "id:200052\u00001"
       },
-      "matchKey": "skill"
+      "matchKey": "name"
     },
     {
       "status": "match",
       "hand": {
         "side": "hand",
-        "id": "evt_gold_kyozo",
+        "id": "evt_30278_830278002",
         "supportNameMatch": "激録！爆走トナカイ事件",
         "label": "ゴルシ 虚像をぶち壊せ",
         "selection": "auto",
@@ -1942,7 +1902,7 @@
       "status": "match",
       "hand": {
         "side": "hand",
-        "id": "evt_gold_ougon",
+        "id": "evt_30278_830278003",
         "supportNameMatch": "激録！爆走トナカイ事件",
         "label": "ゴルシ 黄金二人旅",
         "selection": "auto",
@@ -1986,7 +1946,7 @@
       "status": "match",
       "hand": {
         "side": "hand",
-        "id": "evt_karen_chowa",
+        "id": "evt_30274_801134001",
         "supportNameMatch": "決意のフローラ",
         "label": "カレン 争いの種は咲かせない",
         "selection": "auto",
@@ -2020,7 +1980,7 @@
       "status": "match",
       "hand": {
         "side": "hand",
-        "id": "evt_karen_masou",
+        "id": "evt_30274_830274003",
         "supportNameMatch": "決意のフローラ",
         "label": "カレン 奏で合う幸福",
         "selection": "auto",
@@ -2064,7 +2024,7 @@
       "status": "match",
       "hand": {
         "side": "hand",
-        "id": "evt_inari_kyoto",
+        "id": "evt_30281_801034002",
         "supportNameMatch": "故郷に錦を飾るんでい！",
         "label": "イナリ 神輿だワッショイ",
         "selection": "auto",
@@ -2098,7 +2058,7 @@
       "status": "match",
       "hand": {
         "side": "hand",
-        "id": "evt_inari_iki",
+        "id": "evt_30281_830281002",
         "supportNameMatch": "故郷に錦を飾るんでい！",
         "label": "イナリ 粋の魅せ方、魂で語れ",
         "selection": "auto",
@@ -2132,7 +2092,7 @@
       "status": "match",
       "hand": {
         "side": "hand",
-        "id": "evt_inari_namida",
+        "id": "evt_30281_830281003",
         "supportNameMatch": "故郷に錦を飾るんでい！",
         "label": "イナリ 熱き涙の理由",
         "selection": "auto",
@@ -2176,7 +2136,7 @@
       "status": "match",
       "hand": {
         "side": "hand",
-        "id": "evt_king_advice",
+        "id": "evt_30285_801061002",
         "supportNameMatch": "私のためのショッピング",
         "label": "キング 助言する権利をあげる！",
         "selection": "auto",
@@ -2210,7 +2170,7 @@
       "status": "match",
       "hand": {
         "side": "hand",
-        "id": "evt_king_ikikoi",
+        "id": "evt_30285_830285002",
         "supportNameMatch": "私のためのショッピング",
         "label": "キング 学ぶは、一流の息抜き！",
         "selection": "auto",
@@ -2244,7 +2204,7 @@
       "status": "match",
       "hand": {
         "side": "hand",
-        "id": "evt_king_ren",
+        "id": "evt_30285_830285003",
         "supportNameMatch": "私のためのショッピング",
         "label": "キング 学びを繋げて",
         "selection": "auto",
@@ -2288,7 +2248,7 @@
       "status": "match",
       "hand": {
         "side": "hand",
-        "id": "evt_groove_taiki",
+        "id": "evt_30282_801018001",
         "supportNameMatch": "心覚えし、京の華",
         "label": "グルーヴ 峻厳にして優渥",
         "selection": "auto",
@@ -2322,13 +2282,13 @@
       "status": "match",
       "hand": {
         "side": "hand",
-        "id": "evt_groove_shadow",
+        "id": "evt_30282_830282002",
         "supportNameMatch": "心覚えし、京の華",
-        "label": "グルーヴ そのアイシャドウは繋がって（連続2・白3択）",
+        "label": "グルーヴ そのアイシャドウは繋がって",
         "selection": "single",
         "choices": [
           {
-            "id": "yume",
+            "id": "c001_2036322",
             "label": "① 夢への挑戦 Lv2",
             "skills": [
               {
@@ -2339,7 +2299,7 @@
             ]
           },
           {
-            "id": "jibun",
+            "id": "c002_2034222",
             "label": "② 己を信じて Lv2",
             "skills": [
               {
@@ -2350,7 +2310,7 @@
             ]
           },
           {
-            "id": "junbi",
+            "id": "c003_2033322",
             "label": "③ 下準備 Lv2",
             "skills": [
               {
@@ -2406,10 +2366,52 @@
         ],
         "skillPayload": "id:203332\u00002||id:203422\u00002||id:203632\u00002"
       },
-      "matchKey": "skill"
+      "matchKey": "name"
     },
     {
-      "status": "extracted_only",
+      "status": "match",
+      "hand": {
+        "side": "hand",
+        "id": "evt_30282_830282003",
+        "supportNameMatch": "心覚えし、京の華",
+        "label": "グルーヴ そのメイクは誰がために",
+        "selection": "single",
+        "choices": [
+          {
+            "id": "c001_2027112+2040311",
+            "label": "① 王手 Lv2 + 千鍛万錬 Lv1",
+            "skills": [
+              {
+                "skillName": "王手",
+                "hintLevel": 2,
+                "skillId": 202711
+              },
+              {
+                "skillName": "千鍛万錬",
+                "hintLevel": 1,
+                "skillId": 204031
+              }
+            ]
+          },
+          {
+            "id": "c002_2040312+2040411",
+            "label": "② 千鍛万錬 Lv2 + 錦上添花 Lv1",
+            "skills": [
+              {
+                "skillName": "千鍛万錬",
+                "hintLevel": 2,
+                "skillId": 204031
+              },
+              {
+                "skillName": "錦上添花",
+                "hintLevel": 1,
+                "skillId": 204041
+              }
+            ]
+          }
+        ],
+        "skillPayload": "id:202711\u00002|id:204031\u00001||id:204031\u00002|id:204041\u00001"
+      },
       "extracted": {
         "side": "extracted",
         "id": "evt_30282_830282003",
@@ -2451,13 +2453,14 @@
           }
         ],
         "skillPayload": "id:202711\u00002|id:204031\u00001||id:204031\u00002|id:204041\u00001"
-      }
+      },
+      "matchKey": "name"
     },
     {
       "status": "match",
       "hand": {
         "side": "hand",
-        "id": "evt_win_gran",
+        "id": "evt_30261_801117002",
         "supportNameMatch": "水面のプリンシパル",
         "label": "バリア グラン・ジュテ～いつの日か～",
         "selection": "auto",
@@ -2491,7 +2494,7 @@
       "status": "match",
       "hand": {
         "side": "hand",
-        "id": "evt_win_near",
+        "id": "evt_30261_830261002",
         "supportNameMatch": "水面のプリンシパル",
         "label": "バリア 潜在的ソウルメイト",
         "selection": "auto",
@@ -2525,7 +2528,7 @@
       "status": "match",
       "hand": {
         "side": "hand",
-        "id": "evt_win_cheer",
+        "id": "evt_30261_830261003",
         "supportNameMatch": "水面のプリンシパル",
         "label": "バリア 大衆的チアフレンド",
         "selection": "auto",
@@ -2569,7 +2572,7 @@
       "status": "match",
       "hand": {
         "side": "hand",
-        "id": "evt_almond_mental",
+        "id": "evt_30242_801129002",
         "supportNameMatch": "世界を変える眼差し",
         "label": "アーモンド アーモンドアイは見逃さない",
         "selection": "auto",
@@ -2603,13 +2606,13 @@
       "status": "match",
       "hand": {
         "side": "hand",
-        "id": "evt_almond_endless",
+        "id": "evt_30242_830242003",
         "supportNameMatch": "世界を変える眼差し",
         "label": "アーモンド 果てしなきアーモンドアイ",
         "selection": "single",
         "choices": [
           {
-            "id": "symboli",
+            "id": "c001_2027012+2034312",
             "label": "① シンギュラリティ Lv2 + 才気煥発 Lv2",
             "skills": [
               {
@@ -2625,7 +2628,7 @@
             ]
           },
           {
-            "id": "around",
+            "id": "c002_2003312+2003612",
             "label": "② ハヤテ一文字 Lv2 + 弧線のプロフェッサー Lv2",
             "skills": [
               {
@@ -2691,9 +2694,9 @@
       "status": "match",
       "hand": {
         "side": "hand",
-        "id": "evt_neo_encounter",
+        "id": "evt_30287_801105002",
         "supportNameMatch": "星跨ぐメッセージ",
-        "label": "ネオ 観測者との遭遇",
+        "label": "ネオ “観測者”との遭遇",
         "selection": "auto",
         "skills": [
           {
@@ -2719,15 +2722,15 @@
         ],
         "skillPayload": "id:202622\u00001"
       },
-      "matchKey": "skill"
+      "matchKey": "name"
     },
     {
       "status": "match",
       "hand": {
         "side": "hand",
-        "id": "evt_neo_signal",
+        "id": "evt_30287_830287002",
         "supportNameMatch": "星跨ぐメッセージ",
-        "label": "ネオ Forシグナル100%",
+        "label": "ネオ For “シグナル”100％",
         "selection": "auto",
         "skills": [
           {
@@ -2753,15 +2756,15 @@
         ],
         "skillPayload": "id:203362\u00001"
       },
-      "matchKey": "skill"
+      "matchKey": "name"
     },
     {
       "status": "match",
       "hand": {
         "side": "hand",
-        "id": "evt_neo_crewmate",
+        "id": "evt_30287_830287003",
         "supportNameMatch": "星跨ぐメッセージ",
-        "label": "ネオ You Areクルーメイト",
+        "label": "ネオ You Are “クルーメイト”",
         "selection": "auto",
         "skills": [
           {
@@ -2797,36 +2800,36 @@
         ],
         "skillPayload": "id:202601\u00001|id:203141\u00002"
       },
-      "matchKey": "skill"
+      "matchKey": "name"
     },
     {
       "status": "match",
       "hand": {
         "side": "hand",
-        "id": "evt_digital_emo",
+        "id": "evt_30297_801019002",
         "supportNameMatch": "全てに挑む勇ましき者",
         "label": "デジタル エモのためなら雨の中でも！",
         "selection": "single",
         "choices": [
           {
-            "id": "ame",
-            "label": "① 雨の日○ Lv1",
-            "skills": [
-              {
-                "skillName": "雨の日○",
-                "hintLevel": 1,
-                "skillId": 200232
-              }
-            ]
-          },
-          {
-            "id": "dou",
-            "label": "② 道悪○ Lv1",
+            "id": "c002_2001621",
+            "label": "① 道悪○ Lv1",
             "skills": [
               {
                 "skillName": "道悪○",
                 "hintLevel": 1,
                 "skillId": 200162
+              }
+            ]
+          },
+          {
+            "id": "c001_2002321",
+            "label": "② 雨の日○ Lv1",
+            "skills": [
+              {
+                "skillName": "雨の日○",
+                "hintLevel": 1,
+                "skillId": 200232
               }
             ]
           }
@@ -2871,9 +2874,9 @@
       "status": "match",
       "hand": {
         "side": "hand",
-        "id": "evt_digital_me",
+        "id": "evt_30297_830297002",
         "supportNameMatch": "全てに挑む勇ましき者",
-        "label": "デジタル おお！汝目覚めよ！（連続2）",
+        "label": "デジタル おお！汝目覚めよ！",
         "selection": "auto",
         "skills": [
           {
@@ -2899,15 +2902,15 @@
         ],
         "skillPayload": "id:203362\u00001"
       },
-      "matchKey": "skill"
+      "matchKey": "name"
     },
     {
       "status": "match",
       "hand": {
         "side": "hand",
-        "id": "evt_digital_yuuo",
+        "id": "evt_30297_830297003",
         "supportNameMatch": "全てに挑む勇ましき者",
-        "label": "デジタル 逃げぬ者、戦う者（連続3）",
+        "label": "デジタル 逃げぬ者、戦う者。すなわち汝。",
         "selection": "auto",
         "skills": [
           {
@@ -2943,13 +2946,13 @@
         ],
         "skillPayload": "id:202151\u00001|id:204351\u00002"
       },
-      "matchKey": "skill"
+      "matchKey": "name"
     },
     {
       "status": "match",
       "hand": {
         "side": "hand",
-        "id": "evt_aman_photo",
+        "id": "evt_30296_801087002",
         "supportNameMatch": "単焦点でつかまえて",
         "label": "マーチャン いつも写真から見つめてる",
         "selection": "auto",
@@ -2983,13 +2986,13 @@
       "status": "match",
       "hand": {
         "side": "hand",
-        "id": "evt_aman_tuber",
+        "id": "evt_30296_830296002",
         "supportNameMatch": "単焦点でつかまえて",
         "label": "マーチャン ターちゃんマーちゃん、行くのです！",
         "selection": "single",
         "choices": [
           {
-            "id": "rival",
+            "id": "c002_2012621",
             "label": "① 危険回避 Lv1",
             "skills": [
               {
@@ -3000,7 +3003,7 @@
             ]
           },
           {
-            "id": "edit",
+            "id": "c003_2006521",
             "label": "② スプリントギア Lv1",
             "skills": [
               {
@@ -3051,13 +3054,13 @@
       "status": "match",
       "hand": {
         "side": "hand",
-        "id": "evt_aman_kaori",
+        "id": "evt_30296_830296003",
         "supportNameMatch": "単焦点でつかまえて",
         "label": "マーチャン この香りが残りますように",
         "selection": "single",
         "choices": [
           {
-            "id": "doll",
+            "id": "c001_2042712+2043111",
             "label": "① 匠のステアリング Lv2 + 圧倒 Lv1",
             "skills": [
               {
@@ -3073,7 +3076,7 @@
             ]
           },
           {
-            "id": "gold",
+            "id": "c002_2043125+2102725+210322",
             "label": "② 押せ押せムード Lv5 + 海の加護 Lv5 + いつまでも健やかに Lv5",
             "skills": [
               {
@@ -3149,7 +3152,7 @@
       "status": "match",
       "hand": {
         "side": "hand",
-        "id": "evt_fuji_miss",
+        "id": "evt_30271_801005002",
         "supportNameMatch": "壇上より魔法を込めて",
         "label": "フジ ミスディレクション",
         "selection": "auto",
@@ -3183,7 +3186,7 @@
       "status": "match",
       "hand": {
         "side": "hand",
-        "id": "evt_fuji_maho",
+        "id": "evt_30271_830271001",
         "supportNameMatch": "壇上より魔法を込めて",
         "label": "フジ 魔法使いの秘密",
         "selection": "auto",
@@ -3217,7 +3220,7 @@
       "status": "match",
       "hand": {
         "side": "hand",
-        "id": "evt_teo_weapon",
+        "id": "evt_30275_801003002",
         "supportNameMatch": "天才的ユートピア",
         "label": "テイオー ボクの武器",
         "selection": "auto",
@@ -3251,13 +3254,13 @@
       "status": "match",
       "hand": {
         "side": "hand",
-        "id": "evt_teo_koukou",
+        "id": "evt_30275_830275002",
         "supportNameMatch": "天才的ユートピア",
-        "label": "テイオー 孝行はしたい時分に（連続2）",
+        "label": "テイオー 孝行はしたい時分に",
         "selection": "single",
         "choices": [
           {
-            "id": "hirui",
+            "id": "c001_2035021",
             "label": "① 比類なき Lv1",
             "skills": [
               {
@@ -3268,7 +3271,7 @@
             ]
           },
           {
-            "id": "yaku",
+            "id": "c002_2034321",
             "label": "② 躍動 Lv1",
             "skills": [
               {
@@ -3313,19 +3316,19 @@
         ],
         "skillPayload": "id:203432\u00001||id:203502\u00001"
       },
-      "matchKey": "skill"
+      "matchKey": "name"
     },
     {
       "status": "match",
       "hand": {
         "side": "hand",
-        "id": "evt_teo_weather",
+        "id": "evt_30275_830275003",
         "supportNameMatch": "天才的ユートピア",
-        "label": "テイオー まったり孝行日和（連続3・金2択）",
+        "label": "テイオー まったり孝行日和",
         "selection": "single",
         "choices": [
           {
-            "id": "seisei",
+            "id": "c001_2034211+2040012",
             "label": "① 迸る気迫 Lv2 + 正々堂々 Lv1",
             "skills": [
               {
@@ -3341,7 +3344,7 @@
             ]
           },
           {
-            "id": "yume",
+            "id": "c002_2034411+2040012",
             "label": "② 迸る気迫 Lv2 + 夢の舞台へ Lv1",
             "skills": [
               {
@@ -3401,13 +3404,13 @@
         ],
         "skillPayload": "id:203421\u00001|id:204001\u00002||id:203441\u00001|id:204001\u00002"
       },
-      "matchKey": "skill"
+      "matchKey": "name"
     },
     {
       "status": "match",
       "hand": {
         "side": "hand",
-        "id": "evt_taiki_sentou",
+        "id": "evt_30298_801107002",
         "supportNameMatch": "刀光散らしてClash！",
         "label": "シチー いざ求めん、夢多きTreasure",
         "selection": "auto",
@@ -3441,7 +3444,7 @@
       "status": "match",
       "hand": {
         "side": "hand",
-        "id": "evt_taiki_nigeru",
+        "id": "evt_30298_830298002",
         "supportNameMatch": "刀光散らしてClash！",
         "label": "シチー 心のカギは",
         "selection": "auto",
@@ -3475,13 +3478,13 @@
       "status": "match",
       "hand": {
         "side": "hand",
-        "id": "evt_taiki_chain",
+        "id": "evt_30298_830298003",
         "supportNameMatch": "刀光散らしてClash！",
-        "label": "シチー 仲間というロマン（連続3・金3択）",
+        "label": "シチー 仲間というロマン",
         "selection": "single",
         "choices": [
           {
-            "id": "conc_top",
+            "id": "c001_2004311+2012712",
             "label": "① コンセントレーション Lv1 + トップランナー Lv2",
             "skills": [
               {
@@ -3497,7 +3500,7 @@
             ]
           },
           {
-            "id": "conc_hiryu",
+            "id": "c002_2004311+2034012",
             "label": "② コンセントレーション Lv1 + 飛竜乗雲 Lv2",
             "skills": [
               {
@@ -3513,7 +3516,7 @@
             ]
           },
           {
-            "id": "top_hiryu",
+            "id": "c003_2012712+2034011",
             "label": "③ トップランナー Lv2 + 飛竜乗雲 Lv1",
             "skills": [
               {
@@ -3589,13 +3592,13 @@
         ],
         "skillPayload": "id:200431\u00001|id:201271\u00002||id:200431\u00001|id:203401\u00002||id:201271\u00002|id:203401\u00001"
       },
-      "matchKey": "skill"
+      "matchKey": "name"
     },
     {
       "status": "match",
       "hand": {
         "side": "hand",
-        "id": "evt_ryan_pace",
+        "id": "evt_30258_801027002",
         "supportNameMatch": "瞳に闘志を胸に勝利の渇望を",
         "label": "ライアン あくまで薦められただけ",
         "selection": "auto",
@@ -3629,7 +3632,7 @@
       "status": "match",
       "hand": {
         "side": "hand",
-        "id": "evt_ryan_muscle",
+        "id": "evt_30258_830258001",
         "supportNameMatch": "瞳に闘志を胸に勝利の渇望を",
         "label": "ライアン マッスル、ただひたすらに",
         "selection": "auto",
@@ -3663,7 +3666,7 @@
       "status": "match",
       "hand": {
         "side": "hand",
-        "id": "evt_chiyo_spring",
+        "id": "evt_30300_801069002",
         "supportNameMatch": "賑やかな未来を乗せて走れ！",
         "label": "チヨノ いつか咲く、その日まで……",
         "selection": "auto",
@@ -3697,7 +3700,7 @@
       "status": "match",
       "hand": {
         "side": "hand",
-        "id": "evt_chiyo_dosukoi",
+        "id": "evt_30300_830300001",
         "supportNameMatch": "賑やかな未来を乗せて走れ！",
         "label": "チヨノ どすこいカード列伝！",
         "selection": "auto",
@@ -3741,7 +3744,7 @@
       "status": "match",
       "hand": {
         "side": "hand",
-        "id": "evt_tamamo_lose",
+        "id": "evt_30256_801021002",
         "supportNameMatch": "白き稲妻の如く",
         "label": "タマモ 負けられん戦い！",
         "selection": "auto",
@@ -3775,13 +3778,13 @@
       "status": "match",
       "hand": {
         "side": "hand",
-        "id": "evt_tamamo_dareka",
+        "id": "evt_30256_830256002",
         "supportNameMatch": "白き稲妻の如く",
         "label": "タマモ 誰かの道を照らすなら",
         "selection": "single",
         "choices": [
           {
-            "id": "slip",
+            "id": "c001_2016511",
             "label": "① スリップストリーム Lv1",
             "skills": [
               {
@@ -3792,7 +3795,7 @@
             ]
           },
           {
-            "id": "joshu",
+            "id": "c002_2028021",
             "label": "② 序盤巧者 Lv1",
             "skills": [
               {
@@ -3843,13 +3846,13 @@
       "status": "match",
       "hand": {
         "side": "hand",
-        "id": "evt_tamamo_tooku",
+        "id": "evt_30256_830256003",
         "supportNameMatch": "白き稲妻の如く",
         "label": "タマモ 遠くで光るその走り",
         "selection": "single",
         "choices": [
           {
-            "id": "mirai",
+            "id": "c001_2025512+2033611",
             "label": "① 神速 Lv2 + 真骨頂 Lv1",
             "skills": [
               {
@@ -3865,7 +3868,7 @@
             ]
           },
           {
-            "id": "omo",
+            "id": "c002_2025512+2036611",
             "label": "② 神速 Lv2 + 悠久走破 Lv1",
             "skills": [
               {
@@ -3931,7 +3934,7 @@
       "status": "match",
       "hand": {
         "side": "hand",
-        "id": "evt_heart_aggressive",
+        "id": "evt_30294_801112002",
         "supportNameMatch": "白に至る覚悟",
         "label": "ハート Away in the Mountains",
         "selection": "auto",
@@ -3965,13 +3968,13 @@
       "status": "match",
       "hand": {
         "side": "hand",
-        "id": "evt_heart_charm",
+        "id": "evt_30294_830294002",
         "supportNameMatch": "白に至る覚悟",
-        "label": "ハート もっとも輝く『魅力』（連続2・白金分岐）",
+        "label": "ハート もっとも輝く『魅力』",
         "selection": "single",
         "choices": [
           {
-            "id": "mukou",
+            "id": "c002_2025021",
             "label": "① 向こう見ず Lv1",
             "skills": [
               {
@@ -3982,7 +3985,7 @@
             ]
           },
           {
-            "id": "shinnen",
+            "id": "c003_2030521",
             "label": "② 揺るがぬ信念 Lv1",
             "skills": [
               {
@@ -4027,15 +4030,15 @@
         ],
         "skillPayload": "id:202502\u00001||id:203052\u00001"
       },
-      "matchKey": "skill"
+      "matchKey": "name"
     },
     {
       "status": "match",
       "hand": {
         "side": "hand",
-        "id": "evt_heart_stack",
+        "id": "evt_30294_830294003",
         "supportNameMatch": "白に至る覚悟",
-        "label": "ハート 積み重ねられた『今』（連続3）",
+        "label": "ハート 積み重ねられた『今』",
         "selection": "auto",
         "skills": [
           {
@@ -4071,13 +4074,13 @@
         ],
         "skillPayload": "id:202531\u00001|id:202741\u00001"
       },
-      "matchKey": "skill"
+      "matchKey": "name"
     },
     {
       "status": "match",
       "hand": {
         "side": "hand",
-        "id": "evt_tact_survival",
+        "id": "evt_30293_801075002",
         "supportNameMatch": "白に至る純真",
         "label": "タクト 私を育てた場所",
         "selection": "auto",
@@ -4111,13 +4114,13 @@
       "status": "match",
       "hand": {
         "side": "hand",
-        "id": "evt_tact_tsutae",
+        "id": "evt_30293_830293002",
         "supportNameMatch": "白に至る純真",
         "label": "タクト 伝え、繋いで",
         "selection": "single",
         "choices": [
           {
-            "id": "taguru",
+            "id": "c002_2029621",
             "label": "① 滾る想い Lv1",
             "skills": [
               {
@@ -4128,7 +4131,7 @@
             ]
           },
           {
-            "id": "ashikari",
+            "id": "c003_2035721",
             "label": "② 足がかり Lv1",
             "skills": [
               {
@@ -4179,7 +4182,7 @@
       "status": "match",
       "hand": {
         "side": "hand",
-        "id": "evt_tact_cinderella",
+        "id": "evt_30293_830293003",
         "supportNameMatch": "白に至る純真",
         "label": "タクト シンデレラの行く末",
         "selection": "auto",
@@ -4223,7 +4226,7 @@
       "status": "match",
       "hand": {
         "side": "hand",
-        "id": "evt_groove_wan",
+        "id": "evt_30265_801118002",
         "supportNameMatch": "氷結晶の静域",
         "label": "アドマイヤ ひとりが好きなクラスメイトさん",
         "selection": "auto",
@@ -4257,7 +4260,7 @@
       "status": "match",
       "hand": {
         "side": "hand",
-        "id": "evt_groove_kyuukou",
+        "id": "evt_30265_830265002",
         "supportNameMatch": "氷結晶の静域",
         "label": "アドマイヤ 孤高の休日",
         "selection": "auto",
@@ -4291,7 +4294,7 @@
       "status": "match",
       "hand": {
         "side": "hand",
-        "id": "evt_groove_shomei",
+        "id": "evt_30265_830265003",
         "supportNameMatch": "氷結晶の静域",
         "label": "アドマイヤ 孤高の証明",
         "selection": "auto",
@@ -4335,7 +4338,7 @@
       "status": "match",
       "hand": {
         "side": "hand",
-        "id": "evt_bourbon_order",
+        "id": "evt_30277_801026002",
         "supportNameMatch": "無機の闘志",
         "label": "ブルボン 命令は守らなければならない",
         "selection": "auto",
@@ -4369,9 +4372,9 @@
       "status": "match",
       "hand": {
         "side": "hand",
-        "id": "evt_bourbon_hatsu",
+        "id": "evt_30277_830277002",
         "supportNameMatch": "無機の闘志",
-        "label": "ブルボン 発火:熱を帯びて",
+        "label": "ブルボン 発火：熱を帯びて",
         "selection": "auto",
         "skills": [
           {
@@ -4403,9 +4406,9 @@
       "status": "match",
       "hand": {
         "side": "hand",
-        "id": "evt_bourbon_hibana",
+        "id": "evt_30277_830277003",
         "supportNameMatch": "無機の闘志",
-        "label": "ブルボン 火花:夢焦がれ",
+        "label": "ブルボン 火炎：夢焦がれ",
         "selection": "auto",
         "skills": [
           {
@@ -4441,13 +4444,13 @@
         ],
         "skillPayload": "id:200531\u00001|id:203461\u00001"
       },
-      "matchKey": "skill"
+      "matchKey": "name"
     },
     {
       "status": "match",
       "hand": {
         "side": "hand",
-        "id": "evt_muku_survival",
+        "id": "evt_30248_801075002",
         "supportNameMatch": "無垢の白妙",
         "label": "タクト 私を育てた場所",
         "selection": "auto",
@@ -4481,7 +4484,7 @@
       "status": "match",
       "hand": {
         "side": "hand",
-        "id": "evt_muku_earth",
+        "id": "evt_30248_830248002",
         "supportNameMatch": "無垢の白妙",
         "label": "タクト 母なる大地の教え",
         "selection": "auto",
@@ -4515,7 +4518,7 @@
       "status": "match",
       "hand": {
         "side": "hand",
-        "id": "evt_muku_wild",
+        "id": "evt_30248_830248003",
         "supportNameMatch": "無垢の白妙",
         "label": "タクト Innocent Wildflower",
         "selection": "auto",
@@ -4559,7 +4562,7 @@
       "status": "match",
       "hand": {
         "side": "hand",
-        "id": "evt_dj_imouto",
+        "id": "evt_30246_801119002",
         "supportNameMatch": "誘うは夢心地",
         "label": "ドリーム 用意周到で妹想い",
         "selection": "auto",
@@ -4593,7 +4596,7 @@
       "status": "match",
       "hand": {
         "side": "hand",
-        "id": "evt_dj_shop",
+        "id": "evt_30246_830246002",
         "supportNameMatch": "誘うは夢心地",
         "label": "ドリーム それはただただ咲き誇る",
         "selection": "auto",
@@ -4627,7 +4630,7 @@
       "status": "match",
       "hand": {
         "side": "hand",
-        "id": "evt_dj_bloom",
+        "id": "evt_30246_830246003",
         "supportNameMatch": "誘うは夢心地",
         "label": "ドリーム そして今日も花が咲く",
         "selection": "auto",

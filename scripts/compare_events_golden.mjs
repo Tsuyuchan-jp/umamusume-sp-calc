@@ -8,7 +8,12 @@
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { SHORT_NAME_BY_MATCH } from "./format_event_choice_labels.mjs";
+import {
+  eventSkillPayload,
+  findHandMatch,
+  indexHandEvents,
+  payloadsEqual,
+} from "./event_golden_match.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(__dirname, "..");
@@ -31,74 +36,6 @@ const OLD_11_MATCHES = new Set([
 
 function loadJson(rel) {
   return JSON.parse(fs.readFileSync(path.join(DATA_DIR, rel), "utf8"));
-}
-
-function normalizeEventName(label, supportNameMatch) {
-  let name = String(label || "").trim();
-  const short = SHORT_NAME_BY_MATCH[supportNameMatch];
-  if (short && name.startsWith(`${short} `)) {
-    name = name.slice(short.length + 1).trim();
-  }
-  return name.normalize("NFKC");
-}
-
-function skillKey(sk) {
-  const id = sk.skillId != null ? `id:${sk.skillId}` : `name:${sk.skillName}`;
-  return `${id}\0${sk.hintLevel}`;
-}
-
-function skillsSignature(skills) {
-  return (skills || [])
-    .map(skillKey)
-    .sort()
-    .join("|");
-}
-
-function eventSkillPayload(evt) {
-  if (evt.selection === "single") {
-    return (evt.choices || [])
-      .filter((c) => (c.skills || []).length > 0)
-      .map((c) => skillsSignature(c.skills))
-      .sort()
-      .join("||");
-  }
-  return skillsSignature(evt.skills);
-}
-
-function payloadsEqual(a, b) {
-  return eventSkillPayload(a) === eventSkillPayload(b) && a.selection === b.selection;
-}
-
-function makeKey(supportNameMatch, suffix) {
-  return `${supportNameMatch}\0${suffix}`;
-}
-
-function indexHandEvents(events) {
-  const byName = new Map();
-  const bySkill = new Map();
-  const all = [];
-
-  for (const evt of events) {
-    const nameKey = makeKey(evt.supportNameMatch, normalizeEventName(evt.label, evt.supportNameMatch));
-    const skillKeyStr = makeKey(evt.supportNameMatch, eventSkillPayload(evt));
-    const entry = { evt, nameKey, skillKey: skillKeyStr, matched: false };
-
-    if (!byName.has(nameKey)) byName.set(nameKey, []);
-    byName.get(nameKey).push(entry);
-
-    if (!bySkill.has(skillKeyStr)) bySkill.set(skillKeyStr, []);
-    bySkill.get(skillKeyStr).push(entry);
-
-    all.push(entry);
-  }
-  return { byName, bySkill, all };
-}
-
-function pickBestHandMatch(candidates, extracted) {
-  if (!candidates?.length) return null;
-  const exact = candidates.find((c) => payloadsEqual(c.evt, extracted));
-  if (exact) return { hand: exact, kind: "match" };
-  return { hand: candidates[0], kind: "conflict" };
 }
 
 function summarizeEntry(evt, side) {
@@ -125,15 +62,9 @@ function main() {
   const counts = { match: 0, conflict: 0, extracted_only: 0, hand_only: 0 };
 
   for (const ext of extEvents) {
-    const nameKey = makeKey(ext.supportNameMatch, normalizeEventName(ext.label, ext.supportNameMatch));
-    let picked = pickBestHandMatch(handIndex.byName.get(nameKey), ext);
+    const hit = findHandMatch(ext, handIndex);
 
-    if (!picked) {
-      const skillKeyStr = makeKey(ext.supportNameMatch, eventSkillPayload(ext));
-      picked = pickBestHandMatch(handIndex.bySkill.get(skillKeyStr), ext);
-    }
-
-    if (!picked) {
+    if (!hit) {
       counts.extracted_only++;
       results.push({
         status: "extracted_only",
@@ -142,22 +73,22 @@ function main() {
       continue;
     }
 
-    picked.hand.matched = true;
-    if (picked.kind === "match" && payloadsEqual(picked.hand.evt, ext)) {
+    hit.hand.matched = true;
+    if (hit.exact && payloadsEqual(hit.hand.evt, ext)) {
       counts.match++;
       results.push({
         status: "match",
-        hand: summarizeEntry(picked.hand.evt, "hand"),
+        hand: summarizeEntry(hit.hand.evt, "hand"),
         extracted: summarizeEntry(ext, "extracted"),
-        matchKey: picked.hand.nameKey === nameKey ? "name" : "skill",
+        matchKey: hit.matchKey,
       });
     } else {
       counts.conflict++;
       results.push({
         status: "conflict",
-        hand: summarizeEntry(picked.hand.evt, "hand"),
+        hand: summarizeEntry(hit.hand.evt, "hand"),
         extracted: summarizeEntry(ext, "extracted"),
-        matchKey: picked.hand.nameKey === nameKey ? "name" : "skill",
+        matchKey: hit.matchKey,
       });
     }
   }
@@ -187,9 +118,6 @@ function main() {
     old11Conflicts: results.filter(
       (r) => r.status === "conflict" && OLD_11_MATCHES.has(r.hand?.supportNameMatch)
     ),
-    old11HandOnly: results.filter(
-      (r) => r.status === "hand_only" && OLD_11_MATCHES.has(r.hand?.supportNameMatch)
-    ),
     handOnly,
     results,
   };
@@ -204,7 +132,9 @@ function main() {
   console.log(`extracted_only: ${counts.extracted_only}`);
   console.log(`hand_only: ${counts.hand_only}`);
   console.log("--- 旧11種 ---");
-  console.log(`match: ${old11.match} conflict: ${old11.conflict} hand_only: ${old11.hand_only} extracted_only: ${old11.extracted_only}`);
+  console.log(
+    `match: ${old11.match} conflict: ${old11.conflict} hand_only: ${old11.hand_only} extracted_only: ${old11.extracted_only}`
+  );
   console.log("report:", outPath);
 
   if (old11.conflict > 0) {

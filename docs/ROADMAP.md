@@ -80,7 +80,7 @@
 | 段階 | 状態 |
 |------|------|
 | **Phase A** 抽出パイプライン + ゴールデン比較 | **完了**（2026-07-14） |
-| **Phase B** `events.json` 置換 | **未着手** |
+| **Phase B** `events.json` 置換 | **完了**（2026-07-14） |
 
 Phase A 成果: `extract_support_events.mjs`, `compare_events_golden.mjs`, `npm run extract:events` / `compare:events`。U-tools パース仕様: [UTOOLS_EVENT_PARSE.md](./UTOOLS_EVENT_PARSE.md)
 

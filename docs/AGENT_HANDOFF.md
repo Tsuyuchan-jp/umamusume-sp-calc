@@ -13,7 +13,7 @@
 | `data/skills.json` 等 | **あり** — skills 2103 / supports 543 / characters 261（`meta.json` 参照） |
 | extract 元 mdb | `D:\DMM\umamusumeDMM\Umamusume\umamusume_Data\Persistent\master\master.mdb` |
 | 既定 AppData の mdb | **無し** — `%USERPROFILE%\AppData\LocalLow\Cygames\...` には無い |
-| `data/events.json` | **あり** — 優先37サポカ記入済み（102イベント・手メンテ正本）。**Phase A 完了**: `extract:events` / `compare:events` で U-tools+mdb 抽出・ゴールデン比較。**Phase B 未着手**: `events.json` 置換 |
+| `data/events.json` | **あり** — 優先37・102イベント（U-tools+mdb 抽出正本・Phase B 完了）。例外2件は `events.preserve.json` |
 | `data/scenarios/toresenken.json` | **あり** — リンク白/金・RMJ自動計上・ラーメン3択（実機通し確認済み） |
 | Python / `py` | `where` 上は WindowsApps の `python.exe` スタブ寄り。`py` 無し。再 extract 時に実体 Python 要確認 |
 | Git | remote: `Tsuyuchan-jp/umamusume-sp-calc`（public）。Pages デプロイ運用中 |
@@ -23,11 +23,11 @@
 
 ## 次にやること（優先順）
 
-1. **優先37の events.json 置換**（Phase B）— ゴールデン比較は Phase A 完了。設計: [EVENT_EXTRACT_DESIGN.md](./EVENT_EXTRACT_DESIGN.md)
-2. UX 改善（結果の由来表示・初期デッキ6枚化など。プリセットは当面スコープ外）
+1. UX 改善（結果の由来表示・初期デッキ6枚化など。プリセットは当面スコープ外）
 3. 実機で確認したケースの回帰テスト追加（`npm test` 拡充）
 4. ゲーム更新時は DMM パスの mdb を `--mdb` 指定して再 extract
-5. （運用）`master` push で Pages 自動デプロイ。失敗時は Settings → Pages Source=GitHub Actions を確認
+5. サポカイベント更新時は `npm run extract:events` → `npm run apply:events`
+6. （運用）`master` push で Pages 自動デプロイ。失敗時は Settings → Pages Source=GitHub Actions を確認
 
 ## 非交渉ルール（変えない）
 

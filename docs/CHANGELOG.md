@@ -4,6 +4,27 @@
 
 形式は [Keep a Changelog](https://keepachangelog.com/ja/1.0.0/) に近いが、セマンティックバージョニングは緩め（`0.1.x` = 公開後の軽量改修）。
 
+## [0.1.3] — 2026-07-14
+
+### 変更
+
+- サポカイベント正本を **U-tools + mdb 抽出**に置換（Phase B 完了）
+- `events.json` 102件（抽出100 + preserve 2）。旧 id は `events.id-aliases.json` に記録
+- ゴールデン比較: 抽出100件すべて match（conflict 0）
+
+### 追加
+
+- `npm run apply:events` / `scripts/apply_extracted_events.mjs`
+- `data/events.preserve.json`（たづなお出かけ/正月・実機確認済み）
+- `data/events.default-overrides.json`（ドトウ連続・ヤング Dreams デフォルト）
+
+### 削除（手メンテ誤記）
+
+- グラン「成長のヒント」（U-tools に無し）
+- フジ「スライハンド」auto 登録（U-tools ではヒント無し）
+
+---
+
 ## [0.1.2] — 2026-07-13
 
 ### 追加

@@ -1,7 +1,7 @@
 {
   "version": 2,
   "description": "U-tools + mdb から抽出（Phase A 生成物・手メンテ events.json は未置換）",
-  "extractedAt": "2026-07-13T15:29:45.867Z",
+  "extractedAt": "2026-07-13T15:35:41.725Z",
   "source": {
     "mdb": "D:/DMM/umamusumeDMM/Umamusume/umamusume_Data/Persistent/master/master.mdb",
     "utoolsCache": "data/events.raw.utools.json",
@@ -88,7 +88,7 @@
           ]
         }
       ],
-      "defaultChoiceId": "c001_2028312+2028325+204191",
+      "defaultChoiceId": "c002_2016122+2041812",
       "selection": "single"
     },
     {
