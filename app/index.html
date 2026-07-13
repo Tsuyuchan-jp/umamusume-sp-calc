@@ -91,7 +91,18 @@
 
       <section class="panel">
         <h2>イベント・シナリオスキル</h2>
-        <p class="hint">サポカイベントはデッキ編成に応じて表示されます。</p>
+        <div class="event-scope-notice warning" role="note">
+          <p class="event-scope-notice__lead">
+            <strong>サポカイベントは優先11種のみ対応</strong>
+          </p>
+          <p class="event-scope-notice__body">
+            イベント由来のスキルは、対応リストのサポカを編成したときだけ計上されます。それ以外のサポカは訓練ヒントのみ反映されます。
+          </p>
+          <details class="event-scope-details">
+            <summary class="event-scope-details__summary">対応サポカ一覧（11種）</summary>
+            <ol id="event-priority-support-list" class="event-scope-list"></ol>
+          </details>
+        </div>
         <details id="event-auto-collapse" class="collapse-section">
           <summary class="collapse-summary">
             <span>サポカイベント（自動）</span>

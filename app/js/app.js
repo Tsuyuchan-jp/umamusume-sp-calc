@@ -209,6 +209,22 @@ function initEventChoiceIds(events) {
   return map;
 }
 
+function renderEventScopeNotice() {
+  const names = state.events.prioritySupportNames || [];
+  const list = document.getElementById("event-priority-support-list");
+  const summary = document.querySelector(".event-scope-details__summary");
+  const lead = document.querySelector(".event-scope-notice__lead strong");
+  if (!list) return;
+
+  list.innerHTML = names.map((name) => `<li>${escapeHtml(name)}</li>`).join("");
+  if (summary) {
+    summary.textContent = `対応サポカ一覧（${names.length}種）`;
+  }
+  if (lead && names.length > 0) {
+    lead.textContent = `サポカイベントは優先${names.length}種のみ対応`;
+  }
+}
+
 function renderEvents() {
   const autoContainer = document.getElementById("event-auto");
   const autoCollapse = document.getElementById("event-auto-collapse");
@@ -622,6 +638,7 @@ async function init() {
     renderSupportSlots();
     bindSupportFilters();
 
+    renderEventScopeNotice();
     renderEvents();
     renderScenarioLinkRadios();
     renderSeniorRmjRadios();
