@@ -99,18 +99,23 @@ const NEW_EVENTS = [
   },
   // --- アグネスデジタル ---
   {
-    id: "evt_digital_ame",
+    id: "evt_digital_emo",
     supportNameMatch: "全てに挑む勇ましき者",
-    label: "デジタル エモのためなら雨の中でも！（雨）",
-    selection: "auto",
-    skills: [{ skillName: "雨の日○", hintLevel: 1, skillId: 200232 }],
-  },
-  {
-    id: "evt_digital_dou",
-    supportNameMatch: "全てに挑む勇ましき者",
-    label: "デジタル エモのためなら雨の中でも！（道悪）",
-    selection: "auto",
-    skills: [{ skillName: "道悪○", hintLevel: 1, skillId: 200162 }],
+    label: "デジタル エモのためなら雨の中でも！",
+    selection: "single",
+    defaultChoiceId: "ame",
+    choices: [
+      {
+        id: "ame",
+        label: "① 雨の日○ Lv1",
+        skills: [{ skillName: "雨の日○", hintLevel: 1, skillId: 200232 }],
+      },
+      {
+        id: "dou",
+        label: "② 道悪○ Lv1",
+        skills: [{ skillName: "道悪○", hintLevel: 1, skillId: 200162 }],
+      },
+    ],
   },
   {
     id: "evt_digital_yuuo",
@@ -126,15 +131,8 @@ const NEW_EVENTS = [
     id: "evt_digital_me",
     supportNameMatch: "全てに挑む勇ましき者",
     label: "デジタル おお！汝目覚めよ！（連続2）",
-    selection: "single",
-    defaultChoiceId: "ippo",
-    choices: [
-      {
-        id: "ippo",
-        label: "① 一歩ずつ前へ Lv1",
-        skills: [{ skillName: "一歩ずつ前へ", hintLevel: 1, skillId: 203362 }],
-      },
-    ],
+    selection: "auto",
+    skills: [{ skillName: "一歩ずつ前へ", hintLevel: 1, skillId: 203362 }],
   },
   // --- デアリングハート ---
   {
