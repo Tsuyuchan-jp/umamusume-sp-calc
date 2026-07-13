@@ -18,7 +18,7 @@ data/
 - `skills.json` / `supports.json` / `characters.json` / `meta.json` **あり**
 - `meta.json` 例: skillCount 2103, supportCount 543, characterCount 261
 - 抽出元: `D:\DMM\umamusumeDMM\Umamusume\umamusume_Data\Persistent\master\master.mdb`
-- `events.json` / `toresenken.json` は手メンテ継続（優先11サポカのイベントは記入済み）
+- `events.json` / `toresenken.json` は手メンテ継続（優先37サポカのイベントは記入済み）
 - **実機通し確認済み**（2026-07）: 常用デッキ＋イベント＋シナリオリンク白/金＋RMJ自動計上／ラーメン3択＋終了。問題・バグなし
 
 ## master.mdb → extract
@@ -88,7 +88,7 @@ python scripts/extract_mdb.py --mdb "D:\...\master.mdb"
 ```json
 {
   "version": 2,
-  "prioritySupportNames": [ "...11枚..." ],
+  "prioritySupportNames": [ "...37枚..." ],
   "events": [
     {
       "id": "evt_...",
@@ -126,21 +126,11 @@ python scripts/extract_mdb.py --mdb "D:\...\master.mdb"
 | `toggle` | チェックボックス（後方互換） | ON のとき `skills` を加算 |
 
 - `skillId` は extract 後に埋めると確実。無くても `skillName` 完全一致で解決を試す
-- **現状**: 優先11サポカすべて記入済み（11/11）
+- **現状**: 優先37サポカ記入済み（37/37・103イベント）。追加26枚は GameWith / U-tools 照合（2026-07）
 
 ### 優先サポカ一覧
 
-1. [一杯のノスタルジア] 駿川たづな  
-2. [その執念は怒濤が如く] メイショウドトウ  
-3. [永久の誓い、永久の輝き] サトノダイヤモンド  
-4. [刀光散らしてClash！] タップダンスシチー  
-5. [全てに挑む勇ましき者] アグネスデジタル  
-6. [白に至る覚悟] デアリングハート  
-7. [Innovator] フォーエバーヤング  
-8. [ゆかし、きらめきの旅路] ファインモーション  
-9. [心覚えし、京の華] エアグルーヴ  
-10. [天才的ユートピア] トウカイテイオー  
-11. [Zirkus der Träume] エイシンフラッシュ  
+`events.json` の `prioritySupportNames` を正とする（計37種）。旧11種に加え、グランアレグリア・アーモンドアイほか24枚を追加（2026-07）。
 
 ## 手メンテ: scenarios/toresenken.json
 

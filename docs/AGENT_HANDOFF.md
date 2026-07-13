@@ -13,7 +13,7 @@
 | `data/skills.json` 等 | **あり** — skills 2103 / supports 543 / characters 261（`meta.json` 参照） |
 | extract 元 mdb | `D:\DMM\umamusumeDMM\Umamusume\umamusume_Data\Persistent\master\master.mdb` |
 | 既定 AppData の mdb | **無し** — `%USERPROFILE%\AppData\LocalLow\Cygames\...` には無い |
-| `data/events.json` | **あり** — 優先11サポカすべて記入済み（32イベント・実機確認済み） |
+| `data/events.json` | **あり** — 優先37サポカ記入済み（103イベント・旧11種は実機確認済み、追加26種は攻略サイト照合） |
 | `data/scenarios/toresenken.json` | **あり** — リンク白/金・RMJ自動計上・ラーメン3択（実機通し確認済み） |
 | Python / `py` | `where` 上は WindowsApps の `python.exe` スタブ寄り。`py` 無し。再 extract 時に実体 Python 要確認 |
 | Git | remote: `Tsuyuchan-jp/umamusume-sp-calc`（public）。Pages デプロイ運用中 |
@@ -71,7 +71,9 @@ scripts/extract_mdb.mjs master.mdb → JSON（推奨）
 scripts/extract_mdb.py  同上（代替）
 ```
 
-## 優先サポカ（events.json 対象・すべて記入済み）
+## 優先サポカ（events.json 対象・記入済み）
+
+計 **37種**（`prioritySupportNames` 参照）。2026-07 に +26種追加。
 
 1. [一杯のノスタルジア] 駿川たづな
 2. [その執念は怒濤が如く] メイショウドトウ
@@ -84,6 +86,7 @@ scripts/extract_mdb.py  同上（代替）
 9. [心覚えし、京の華] エアグルーヴ
 10. [天才的ユートピア] トウカイテイオー
 11. [Zirkus der Träume] エイシンフラッシュ
+12.〜37. 追加26枚 — 詳細は `data/events.json` の `prioritySupportNames`
 
 ## エージェントへの指示（短縮）
 

@@ -4,6 +4,22 @@
 
 形式は [Keep a Changelog](https://keepachangelog.com/ja/1.0.0/) に近いが、セマンティックバージョニングは緩め（`0.1.x` = 公開後の軽量改修）。
 
+## [0.1.2] — 2026-07-13
+
+### 追加
+
+- 優先サポカ **+26種**（計37種・103イベント）。GameWith / U-tools 照合の手メンテ
+- `scripts/merge_support_events.mjs`（調査JSON → `events.json` マージ＋skillId 解決）
+- `scripts/generate-support-events-26.mjs` / `data/support-events-research-26.json`（調査正本）
+
+### 変更
+
+- `bind_priority.mjs` を `prioritySupportNames` から自動生成するよう汎用化
+- サポカイベント注意書きの件数（11種 → 37種）
+- バージョン表記を **v0.1.2**
+
+---
+
 ## [0.1.1] — 2026-07-13
 
 ### 追加

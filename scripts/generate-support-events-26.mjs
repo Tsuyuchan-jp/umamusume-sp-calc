@@ -181,7 +181,7 @@ const raw = [
     selection: "single",
     defaultChoiceId: "symboli",
     choices: [
-      { id: "symboli", label: "シンボリルドルフらの反応を見る（大成功想定）", skills: [skill("シンギュラリティ", 2), skill("才気爆発", 2)] },
+      { id: "symboli", label: "シンボリルドルフらの反応を見る（大成功想定）", skills: [skill("シンギュラリティ", 2), skill("才気煥発", 2)] },
       { id: "around", label: "周囲の反応を見る（大成功想定）", skills: [skill("ハヤテ一文字", 2), skill("弧線のプロフェッサー", 2)] },
     ],
     _note: "失敗時は各ヒントLv+1",

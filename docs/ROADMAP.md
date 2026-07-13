@@ -12,7 +12,7 @@
 - [x] `scripts/test_sp.mjs` / `verify_data.mjs`
 - [x] 計算コア: `spCost` / `hintResolve` / `goldLower` / `aggregate`
 - [x] UI: 育成ウマ娘・6枠サポカ（検索・絞込）・切れ者・継承・イベント/シナリオ・除外・合計表示
-- [x] `data/events.json` — 優先11サポカ・32イベント（`auto` / `single`、実機確認済み）
+- [x] `data/events.json` — 優先37サポカ・103イベント（`auto` / `single`）
 - [x] `data/scenarios/toresenken.json` — リンク白/金・RMJ自動計上・ラーメン3択・終了スキル（skillId 確定）
 - [x] 常用デッキでのイベント表示・SP変化の実機確認
 - [x] 育成ウマ娘所持スキル・白→金コストの実機確認（固有・覚醒進化はデータ源で自然に整合）
@@ -50,7 +50,7 @@
 
 ### Phase B — データ充実 ✅
 
-1. ~~`events.json` 優先11サポカ~~ **済**
+1. ~~`events.json` 優先サポカ拡充（+26種）~~ **済（2026-07・37種）**
 2. ~~`toresenken.json` の RMJ / リンク / 終了具体化~~ **済**（自動計上＋ラーメン3択）
 3. 名前マッチ漏れ・表記ゆれの修正 — **必要時**
 
