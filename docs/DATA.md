@@ -145,7 +145,7 @@ python scripts/extract_mdb.py --mdb "D:\...\master.mdb"
 
 グループ:
 
-- `linkSkills` — シナリオリンク（**7種は相互排他・UI はラジオ1択**）
+- `linkSkills` — シナリオリンク（**相互排他・UI はラジオ1択**。未選択なし。デフォルト: メイショウドトウ）
 - `rmjSkills` — シニア12月 盛況段階の選択金など
 - `endSkills` — 育成終了スキル
 - `classicRmj` — クラシック12月 大盛況など

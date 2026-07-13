@@ -298,7 +298,7 @@ function renderCheckboxes(containerId, items, storageSet, key) {
   }
 }
 
-/** シナリオリンク（7種）は相互排他のラジオ1択 */
+/** シナリオリンクは相互排他のラジオ1択（未選択なし） */
 function renderScenarioLinkRadios() {
   const container = document.getElementById("scenario-link");
   container.innerHTML = "";
@@ -311,10 +311,9 @@ function renderScenarioLinkRadios() {
   legend.textContent = "シナリオリンク";
   group.appendChild(legend);
 
-  const current = state.ui.scenarioLinkChoiceId ?? "none";
-  const choices = [...links, { id: "none", label: "未選択（リンクなし）", skills: [] }];
+  const current = state.ui.scenarioLinkChoiceId ?? "link_dotou";
 
-  for (const entry of choices) {
+  for (const entry of links) {
     const row = document.createElement("div");
     row.className = "radio-row";
     const inputId = `scn-link-${entry.id}`;
@@ -340,8 +339,8 @@ function renderScenarioLinkRadios() {
 
 function buildEnabledScenarioEntryIds() {
   const enabled = new Set(state.ui.enabledScenarioEntryIds);
-  const linkId = state.ui.scenarioLinkChoiceId;
-  if (linkId && linkId !== "none") enabled.add(linkId);
+  const linkId = state.ui.scenarioLinkChoiceId ?? "link_dotou";
+  if (linkId) enabled.add(linkId);
   return enabled;
 }
 
@@ -473,7 +472,7 @@ async function init() {
         enabledEventIds: new Set(),
         eventChoiceIds: initEventChoiceIds(events),
         enabledScenarioEntryIds: new Set(),
-        scenarioLinkChoiceId: "none",
+        scenarioLinkChoiceId: "link_dotou",
       },
     };
 
