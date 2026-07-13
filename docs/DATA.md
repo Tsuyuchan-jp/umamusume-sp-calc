@@ -60,8 +60,8 @@ python scripts/extract_mdb.py --mdb "D:\...\master.mdb"
 | サポカヒント | `single_mode_hint_gain`（`hint_gain_type = 0` → `hintSkillIds`） |
 | ヒントLvアップ上限 | `support_card_effect_table` type **17** → `hintLevelUpMax` |
 | サポカマスタ | `support_card_data` |
-| カード↔覚醒セット | `card_data.available_skill_set_id` |
-| 覚醒スキル | `available_skill_set`（need_rank, skill_id） |
+| カード↔所持スキルセット | `card_data.available_skill_set_id` |
+| 育成ウマ娘所持スキル | `available_skill_set`（`need_rank`, `skill_id`） |
 
 ### 生成 JSON の要点
 
@@ -78,7 +78,9 @@ python scripts/extract_mdb.py --mdb "D:\...\master.mdb"
 
 **characters.json** 1件:
 
-- `id`, `name`, `skillsByAwakening`: `{ "1": [skillId,...], ... }`
+- `id`, `name`, `skillsByAwakening`: `{ "1": [skillId,...], ... }` — **育成ウマ娘所持スキル**（覚醒レベル `need_rank` 別。フィールド名はレガシー）
+
+用語: [GLOSSARY.md](./GLOSSARY.md)
 
 ## 手メンテ: events.json
 
@@ -158,6 +160,6 @@ python scripts/extract_mdb.py --mdb "D:\...\master.mdb"
 |--------|----------|
 | スキル baseSp・上下位 | mdb 自動 |
 | サポカ訓練ヒント | mdb 自動 |
-| ウマ娘覚醒スキル | mdb 自動 |
+| 育成ウマ娘所持スキル | mdb 自動（`available_skill_set`） |
 | サポカイベントの金・追加スキル | **events.json 手メンテ** |
 | シナリオ固有 | **toresenken.json 手メンテ** |

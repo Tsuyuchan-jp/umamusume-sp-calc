@@ -63,7 +63,7 @@ export function buildSkillPlan(params) {
     }
   }
 
-  // ウマ娘所持・覚醒スキル（最大覚醒想定: 全ランク合算、ヒントLv3）
+  // 育成ウマ娘所持スキル（育成ウマ娘覚醒レベル最大想定: 全ランク合算、ヒントLv3）
   const chara = params.characters.find((c) => c.id === params.characterId);
   if (chara?.skillsByAwakening) {
     const seen = new Set();

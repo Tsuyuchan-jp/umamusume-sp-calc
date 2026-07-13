@@ -6,6 +6,8 @@
 
 サポカデッキ・育成ウマ娘・トレセン軒想定で、取得可能なスキルをすべて習得するのに必要な理論 SP を算出する。
 
+用語は [GLOSSARY.md](./GLOSSARY.md) を正とする。
+
 ## ヒントLv解決
 
 各スキルについて、由来ごとのヒントLvを集め、**最大値**を採用する。
@@ -13,7 +15,7 @@
 | 由来 | Lv | 実装 |
 |------|-----|------|
 | サポカ訓練ヒント | 5 | `aggregate.js` 定数 `TRAINING_HINT` |
-| ウマ娘所持・覚醒 | 3 | `CHARA_HINT`。覚醒は最大ランク（Lv5想定）のセットのみ |
+| 育成ウマ娘所持スキル | 3 | `CHARA_HINT`。育成ウマ娘覚醒レベルは最大想定で全ランク合算 |
 | イベント | JSON の `hintLevel` | デッキに該当サポカがいるときのみ |
 | シナリオ | JSON の `hintLevel` | ユーザーがチェックしたエントリのみ |
 | 複数由来 | `max` | `hintResolve.js` |
@@ -67,8 +69,9 @@ cost(白, whiteHintLv) + cost(金, goldHintLv)
 
 | 対象 | 扱い |
 |------|------|
-| 自分の固有スキル本体 | 計画に含めない（SP 0） |
-| 進化スキル | 進化前の金スキル SP で計上（進化後 ID は使わない方針） |
+| 固有スキル本体 | SP 購入リスト外（mdb `skill_set`）。現行 extract は `available_skill_set` のみ採用のため **一覧に出ない** |
+| 覚醒進化（金→金） | 購入リストは**進化前の金** ID のみ（実機・mdb 確認済み）。進化後 ID で計上しない |
+| 白→金 | 白行は一覧から隠し、金行に白+金の合算コスト（`goldLower.js`） |
 | UI で「含める」を外したスキル | 合計から除外（対人レギュ等） |
 | 継承固有（オプションOFF） | 加算しない |
 
@@ -97,7 +100,9 @@ cost(白, whiteHintLv) + cost(金, goldHintLv)
 - `supportNameMatch` でデッキ内サポカ名部分一致 → イベント適用
 - `selection: auto` は編成時自動計上、`single` はラジオ1択（排他分岐用）
 
-## 覚醒
+## 育成ウマ娘所持スキル
 
-- `characters.json` の `skillsByAwakening` から **最大 need_rank** のスキル群を採用（Lv5 想定）
+- mdb `available_skill_set` → `characters.json` の `skillsByAwakening`
+- **育成ウマ娘覚醒レベルは最大想定**: 全 `need_rank` のスキル ID を合算
 - ヒントLv は 3（他由来の方が高ければ上書き）
+- 固有スキルはこのセットに含まれない（[GLOSSARY.md](./GLOSSARY.md)）

@@ -12,7 +12,7 @@ Cursor ルール: `.cursor/rules/model-recommendation.mdc`（`alwaysApply: true`
 | **Composer 2.5** | 設計・方針が固まった実装、UI改修、`events.json` 追記、extract 修正、小さなバグ修正 |
 | **Grok 4.6 Low** | 軽い調査、ドキュメント文言、単純な件数確認、README レベルの整理 |
 | **Grok 4.6 Medium** | 仕様が一部曖昧な改修、集計ロジックの切り分け、スキーマ変更＋UIの設計調整 |
-| **Grok 4.6 High** | 固有除外・進化スキルなど計算精度の難所、再現困難な不具合、要件そのものの再設計 |
+| **Grok 4.6 High** | 実機と大きくズレる原因調査、要件の再設計、extract データ源の変更 |
 
 ## いつ提示するか
 
@@ -40,9 +40,9 @@ Cursor ルール: `.cursor/rules/model-recommendation.mdc`（`alwaysApply: true`
 
 ### High を検討する例
 
-- 固有スキル本体の除外ロジック実装
-- 進化スキルの進化前金計上の厳密検証
-- 実機と合計SPが大きくズレるが再現条件が不明
+- 合計 SP が実機と大きくズレるが再現条件が不明
+- extract のデータ源変更（`available_skill_set` 以外を足す等）
+- 要件そのものの再設計
 
 ## 提示テンプレート
 

@@ -36,7 +36,7 @@ npm test
 
 ## 機能
 
-- 育成ウマ娘（覚醒スキル合算・ヒントLv3）＋サポカ6枚（ヒントLv5）
+- 育成ウマ娘所持スキル（最大覚醒レベル想定・ヒントLv3）＋サポカ6枚（ヒントLv5）
 - イベント／シナリオスキル選択式
 - 金＋白コスト合算（実機検証済み）
 - 切れ者トグル
@@ -51,6 +51,7 @@ npm test
 | `data/` | skills / supports / characters / events / scenarios |
 | `app/` | ブラウザUI |
 | `docs/spec.md` | 仕様 |
+| `docs/GLOSSARY.md` | 用語（育成ウマ娘所持スキル / 覚醒進化 など） |
 
 ## 更新フロー
 

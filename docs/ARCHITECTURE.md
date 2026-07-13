@@ -52,7 +52,7 @@ data/scenarios/toresenken.json ─┤
 app.js (loadJson) ──► buildSkillPlan(aggregate.js)
                           │
                           ├─ サポカ hintSkillIds → Lv5
-                          ├─ ウマ娘 skillsByAwakening(max) → Lv3
+                          ├─ 育成ウマ娘所持スキル skillsByAwakening（全ランク合算）→ Lv3
                           ├─ 有効イベント → JSON hintLv
                           ├─ 有効シナリオ → JSON hintLv
                           ├─ resolveHintLevels (max)
