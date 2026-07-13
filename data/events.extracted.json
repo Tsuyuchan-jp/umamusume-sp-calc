@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "description": "U-tools + mdb から抽出（Phase A 生成物・手メンテ events.json は未置換）",
+  "description": "U-tools + mdb から抽出（apply 前の中間生成物。正本は events.json）",
   "extractedAt": "2026-07-13T15:35:41.725Z",
   "source": {
     "mdb": "D:/DMM/umamusumeDMM/Umamusume/umamusume_Data/Persistent/master/master.mdb",

@@ -8,7 +8,10 @@ data/
   supports.json        # extract 生成
   characters.json      # extract 生成
   meta.json            # extract 生成（件数・ソースパス）
-  events.json          # 手メンテ
+  events.json          # U-tools+mdb 抽出正本（+ preserve 2件）
+  events.extracted.json
+  events.preserve.json
+  events.id-aliases.json
   scenarios/
     toresenken.json    # 手メンテ（トレセン軒）
 ```
@@ -18,7 +21,7 @@ data/
 - `skills.json` / `supports.json` / `characters.json` / `meta.json` **あり**
 - `meta.json` 例: skillCount 2103, supportCount 543, characterCount 261
 - 抽出元: `D:\DMM\umamusumeDMM\Umamusume\umamusume_Data\Persistent\master\master.mdb`
-- `events.json` / `toresenken.json` は手メンテ継続（優先37サポカのイベントは記入済み）
+- `events.json` は **U-tools+mdb 抽出正本**（102件）。`toresenken.json` は手メンテ
 - **実機通し確認済み**（2026-07）: 常用デッキ＋イベント＋シナリオリンク白/金＋RMJ自動計上／ラーメン3択＋終了。問題・バグなし
 
 ## master.mdb → extract
@@ -47,6 +50,27 @@ python scripts/extract_mdb.py --mdb "D:\...\master.mdb"
 ```
 
 補助: `scripts/verify_data.mjs`（優先サポカ名・スキル解決の目視）、`scripts/test_sp.mjs`（コスト式回帰）
+
+### サポカイベント（U-tools + mdb）
+
+優先37サポカのイベントスキルヒントは `extract_support_events.mjs` で生成する（`extract_mdb.mjs` とは分離）。
+
+```powershell
+npm run extract:events    # U-tools fetch → events.extracted.json
+npm run apply:events      # events.json へ反映（+ preserve マージ）
+npm run compare:events    # ゴールデン比較レポート
+```
+
+| ファイル | 役割 |
+|----------|------|
+| `events.raw.utools.json` | U-tools 生データ（ローカルキャッシュ・gitignore） |
+| `events.extracted.json` | 正規化済み中間物 |
+| `events.preserve.json` | U-tools 外の例外（たづなお出かけ/正月） |
+| `events.default-overrides.json` | `defaultChoiceId` の人手上書き |
+| `events.id-aliases.json` | 旧 id → 新 id |
+| `events.json` | **アプリ正本** |
+
+パース仕様: [UTOOLS_EVENT_PARSE.md](./UTOOLS_EVENT_PARSE.md)。設計: [EVENT_EXTRACT_DESIGN.md](./EVENT_EXTRACT_DESIGN.md)
 
 ### 主なテーブル / text_data category
 
@@ -83,7 +107,7 @@ python scripts/extract_mdb.py --mdb "D:\...\master.mdb"
 
 用語: [GLOSSARY.md](./GLOSSARY.md)
 
-## 手メンテ: events.json
+## events.json（サポカイベント）
 
 ```json
 {

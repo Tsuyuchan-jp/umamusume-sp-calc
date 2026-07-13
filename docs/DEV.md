@@ -31,7 +31,7 @@ node scripts/extract_mdb.mjs --mdb "D:\DMM\umamusumeDMM\Umamusume\umamusume_Data
 既定で次を順に探す: AppData 既定 → DMM Persistent → `D:\Umamusume\...`
 
 成功すると `data/skills.json`, `supports.json`, `characters.json`, `meta.json` が更新される。  
-`events.json` / `toresenken.json` は上書きされない。
+`events.json` / `toresenken.json` は `extract_mdb` では上書きされない。
 
 `skills.json` の `lowerSkillId` / `upperSkillId` は **`group_rate >= 0` のみ**リンクする（`group_rate < 0` の × は購入チェーン外）。  
 既存 JSON のリンクだけ直す場合:
@@ -40,12 +40,26 @@ node scripts/extract_mdb.mjs --mdb "D:\DMM\umamusumeDMM\Umamusume\umamusume_Data
 node scripts/relink_skills.mjs
 ```
 
+### サポカイベントの再生成（ゲーム更新・U-tools 再取得時）
+
+```powershell
+npm run extract:events
+# オフライン再生成のみ: node scripts/extract_support_events.mjs --cache-only
+npm run apply:events
+npm run compare:events
+```
+
+U-tools の raw キャッシュは `data/events.raw.utools.json`（gitignore）。初回はネットワーク必須。
+
+`events.preserve.json` — U-tools に無い実機確認済み例外（たづなお出かけ/正月）。  
+`events.default-overrides.json` — `defaultChoiceId` の少数上書き（ドトウ連続・ヤング Dreams 等）。
+
 ```powershell
 npm run verify
 npm test
 ```
 
-必要なら `data/events.json` 追記後に `npm run bind-priority`。
+優先サポカ ID の再同期が必要なときのみ `npm run bind-priority`（通常は不要）。
 
 ## 3. ローカル確認
 

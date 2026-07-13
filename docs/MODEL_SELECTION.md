@@ -9,7 +9,7 @@ Cursor ルール: `.cursor/rules/model-recommendation.mdc`（`alwaysApply: true`
 
 | モデル | 向く作業 |
 |--------|----------|
-| **Composer 2.5** | 設計・方針が固まった実装、UI改修、`events.json` 追記、extract 修正、小さなバグ修正 |
+| **Composer 2.5** | 設計済みの実装、UI改修、`extract:events` / `apply:events` 運用、docs 更新、小さなバグ修正 |
 | **Grok 4.6 Low** | 軽い調査、ドキュメント文言、単純な件数確認、README レベルの整理 |
 | **Grok 4.6 Medium** | 仕様が一部曖昧な改修、集計ロジックの切り分け、スキーマ変更＋UIの設計調整 |
 | **Grok 4.6 High** | 実機と大きくズレる原因調査、要件の再設計、extract データ源の変更 |
@@ -29,12 +29,12 @@ Cursor ルール: `.cursor/rules/model-recommendation.mdc`（`alwaysApply: true`
 
 - 案1イベントUI（`auto` / `single`）の実装
 - サポカ・ウマ娘セレクトのUI改善（検索・絞込など設計済み）
-- 優先サポカの `events.json` 追記（イベント内容がユーザー提供済み）
+- `npm run extract:events` → `apply:events` の再実行・`events.preserve.json` 追記
 - `npm run extract` 後の skillId 補完確認
 
 ### Medium 以上を検討する例
 
-- `events.json` のスキーマ変更が集計・既存データと絡む
+- U-tools SSR 構造変更へのパース修正（`utools_parse.mjs`）
 - ラジオ選択と `max(hintLv)` の整合が実機と合わない原因調査
 - 複数ファイルにまたがるリファクタの設計判断
 

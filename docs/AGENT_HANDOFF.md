@@ -17,17 +17,16 @@
 | `data/scenarios/toresenken.json` | **あり** — リンク白/金・RMJ自動計上・ラーメン3択（実機通し確認済み） |
 | Python / `py` | `where` 上は WindowsApps の `python.exe` スタブ寄り。`py` 無し。再 extract 時に実体 Python 要確認 |
 | Git | remote: `Tsuyuchan-jp/umamusume-sp-calc`（public）。Pages デプロイ運用中 |
-| 公開 URL | **https://Tsuyuchan-jp.github.io/umamusume-sp-calc/app/** （2026-07 初回公開・スモークOK） |
+| 公開 URL | **https://Tsuyuchan-jp.github.io/umamusume-sp-calc/app/** （v0.1.3・2026-07） |
 
 **アプリは実用段階・公開済み。** 常用デッキ＋シナリオ（リンク白/金・RMJ・終了）の通し確認は **実機 OK・バグなし**（2026-07）。
 
 ## 次にやること（優先順）
 
 1. UX 改善（結果の由来表示・初期デッキ6枚化など。プリセットは当面スコープ外）
-3. 実機で確認したケースの回帰テスト追加（`npm test` 拡充）
-4. ゲーム更新時は DMM パスの mdb を `--mdb` 指定して再 extract
-5. サポカイベント更新時は `npm run extract:events` → `npm run apply:events`
-6. （運用）`master` push で Pages 自動デプロイ。失敗時は Settings → Pages Source=GitHub Actions を確認
+2. 実機で確認したケースの回帰テスト追加（`npm test` 拡充）
+3. ゲーム更新時: `npm run extract`（mdb）→ `npm run extract:events` → `npm run apply:events`
+4. （運用）`master` push で Pages 自動デプロイ。失敗時は Settings → Pages Source=GitHub Actions を確認
 
 ## 非交渉ルール（変えない）
 
@@ -44,7 +43,7 @@
 - **固有スキル・覚醒進化**: 現行 extract（`available_skill_set`）で実機と整合。専用除外ロジックは不要（[GLOSSARY.md](./GLOSSARY.md)）
 - **育成ウマ娘覚醒レベル**: 最大想定で所持スキル全合算
 - **継承固有**: 汎用行のみ（親名・スキル名なし）、個数 2–6、baseSp 200、ヒント一律 1–5。
-- **イベントは優先37サポカのみ**（全539枚はスコープ外・撤回）。現状は手メンテ、次は U-tools+mdb 抽出で置換予定。訓練ヒントは mdb 自動。
+- **イベントは優先37サポカのみ**（全539枚はスコープ外）。**正本は U-tools+mdb 抽出**（`events.preserve.json` でたづな2件を例外維持）。訓練ヒントは mdb 自動。
 - **Git**: ワークスペース変更のたびにコミット。PowerShell では `git add .` と `git commit` を**別ステップ**（`&&` 禁止）。push は明示依頼時のみ。
 
 ## シナリオ・UI の要点（トレセン軒）
@@ -66,16 +65,19 @@ docs/DATA.md            mdb / JSON / 優先サポカ
 docs/ARCHITECTURE.md    構成とデータフロー
 docs/DEV.md             セットアップ・トラブルシュート
 docs/ROADMAP.md         完了 / 残り
-docs/EVENT_EXTRACT_DESIGN.md  イベント抽出設計（承認済み・優先37置換）
+docs/EVENT_EXTRACT_DESIGN.md  イベント抽出設計（Phase B 完了）
+docs/UTOOLS_EVENT_PARSE.md    U-tools SSR パース仕様
 app/                    ブラウザアプリ
-data/                   JSON（手メンテ + extract 生成）
-scripts/extract_mdb.mjs master.mdb → JSON（推奨）
+data/                   JSON（extract 生成 + シナリオ手メンテ）
+scripts/extract_mdb.mjs master.mdb → skills/supports/characters（推奨）
+scripts/extract_support_events.mjs  U-tools+mdb → events.extracted.json
+scripts/apply_extracted_events.mjs  events.json へ反映
 scripts/extract_mdb.py  同上（代替）
 ```
 
-## 優先サポカ（events.json 対象・記入済み）
+## 優先サポカ（events.json 対象）
 
-計 **37種**（`prioritySupportNames` 参照）。2026-07 に +26種追加。
+計 **37種**（`prioritySupportNames` 参照）。イベント **102件**（抽出100 + preserve 2）。
 
 1. [一杯のノスタルジア] 駿川たづな
 2. [その執念は怒濤が如く] メイショウドトウ
@@ -98,3 +100,4 @@ scripts/extract_mdb.py  同上（代替）
 4. 変更したら必ずコミット（メッセージ例: `feat/fix/chore: …` / ドキュメントなら `docs: …`）。
 5. 計算式・ヒントLv・継承スコープ・トレセン軒固定は勝手に変えない。変えるなら要件ドキュメントも更新する。
 6. 再 extract は Python より **Node の `scripts/extract_mdb.mjs`** が実績あり（DMM パス候補内蔵）。
+7. サポカイベント再生成は **`npm run extract:events` → `npm run apply:events`**（U-tools 要ネットワーク or raw キャッシュ）。
