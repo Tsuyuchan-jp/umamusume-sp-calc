@@ -191,7 +191,7 @@ const NEW_EVENTS = [
     supportNameMatch: "Innovator",
     label: "ヤング Dreams are Forever（連続3・成功時）",
     selection: "single",
-    defaultChoiceId: "dirt",
+    defaultChoiceId: "general",
     choices: [
       {
         id: "dirt",
