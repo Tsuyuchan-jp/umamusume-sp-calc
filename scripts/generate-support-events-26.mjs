@@ -63,7 +63,6 @@ const raw = [
   // 30296 単焦点でつかまえて
   withMeta(30296, "単焦点でつかまえて", { id: "evt_aman_tuber", label: "ターちゃんマーちゃん、行くのです！", selection: "single", defaultChoiceId: "rival", choices: [{ id: "walk", label: "お散歩動画", skills: [] }, { id: "rival", label: "ライバルコンビへ突撃動画", skills: [skill("危険回避", 1)] }, { id: "edit", label: "いっそ編集風景を動画に！", skills: [skill("スプリントギア", 1)] }] }),
   withMeta(30296, "単焦点でつかまえて", { id: "evt_aman_kaori", label: "この香りが残りますように", selection: "single", defaultChoiceId: "gold", choices: [{ id: "doll", label: "あの人形って……", skills: [skill("匠のステアリング", 2), skill("圧倒", 1)] }, { id: "gold", label: "あ、アストンマーチャン？", skills: [skill("押せ押せムード", 5), skill("海の加護", 5), skill("いつまでも健やかに", 5)] }] }),
-  withMeta(30296, "単焦点でつかまえて", { id: "evt_aman_mimamori", label: "いつもそばから見つめてる", selection: "single", defaultChoiceId: "capture", choices: [{ id: "cute", label: "かわいくって、癒される", skills: [] }, { id: "capture", label: "見張られているようで、きびきび走れそう", skills: [skill("捕捉", 1)] }] }),
   withMeta(30296, "単焦点でつかまえて", { id: "evt_aman_photo", label: "いつも写真から見つめてる", selection: "single", defaultChoiceId: "kehai", choices: [{ id: "other", label: "（非ヒント選択肢）", skills: [] }, { id: "kehai", label: "華麗な辻写りの極意が知りたい", skills: [skill("軽い足取り", 2)] }] }),
 
   // 30293 白に至る純真

@@ -221,25 +221,6 @@
       "game8": null,
       "uTools": "https://xn--gck1f423k.xn--1bvt37a.tools/supports/30296"
     },
-    "id": "evt_aman_mimamori",
-    "label": "マーチャン いつもそばから見つめてる",
-    "selection": "auto",
-    "skills": [
-      {
-        "skillName": "捕捉",
-        "hintLevel": 1,
-        "skillId": null
-      }
-    ]
-  },
-  {
-    "supportId": 30296,
-    "supportNameMatch": "単焦点でつかまえて",
-    "_source": {
-      "gameWith": "https://gamewith.jp/uma-musume/article/show/555216",
-      "game8": null,
-      "uTools": "https://xn--gck1f423k.xn--1bvt37a.tools/supports/30296"
-    },
     "id": "evt_aman_photo",
     "label": "マーチャン いつも写真から見つめてる",
     "selection": "auto",

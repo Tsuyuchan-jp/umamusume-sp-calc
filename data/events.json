@@ -993,19 +993,6 @@
     },
     {
       "supportNameMatch": "単焦点でつかまえて",
-      "id": "evt_aman_mimamori",
-      "label": "マーチャン いつもそばから見つめてる",
-      "selection": "auto",
-      "skills": [
-        {
-          "skillName": "捕捉",
-          "hintLevel": 1,
-          "skillId": 203582
-        }
-      ]
-    },
-    {
-      "supportNameMatch": "単焦点でつかまえて",
       "id": "evt_aman_photo",
       "label": "マーチャン いつも写真から見つめてる",
       "selection": "auto",
