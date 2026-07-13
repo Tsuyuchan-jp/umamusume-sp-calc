@@ -62,6 +62,26 @@ function normalizeSearchText(s) {
   return toKatakana(s).toLowerCase();
 }
 
+/** リスト展開時の表示行数 */
+const CHARACTER_SELECT_LIST_SIZE = 10;
+
+function updateCharacterSelectSize() {
+  const sel = document.getElementById("character-select");
+  if (!sel || document.activeElement !== sel) return;
+  const visibleCount = [...sel.options].filter((o) => !o.hidden).length;
+  sel.size = Math.min(CHARACTER_SELECT_LIST_SIZE, Math.max(1, visibleCount));
+}
+
+function setCharacterSelectExpanded(expanded) {
+  const sel = document.getElementById("character-select");
+  if (!sel) return;
+  if (expanded) {
+    updateCharacterSelectSize();
+  } else {
+    sel.size = 1;
+  }
+}
+
 function renderSupportSlots() {
   const container = document.getElementById("support-slots");
   const selected = state.ui.supportIds;
@@ -95,6 +115,7 @@ function filterCharacterOptions(query) {
     // 選択中は常に表示（フィルタ外でも値を見失わない）
     opt.hidden = q !== "" && opt.value !== selectedId && !hay.includes(q);
   }
+  updateCharacterSelectSize();
 }
 
 function renderCharacterSelect() {
@@ -115,6 +136,17 @@ function renderCharacterSelect() {
       return `<option value="${c.id}" data-search-text="${escapeHtml(searchText)}"${selected}>${escapeHtml(c.displayName)}</option>`;
     })
     .join("");
+
+  sel.size = 1;
+
+  sel.addEventListener("focus", () => {
+    setCharacterSelectExpanded(true);
+  });
+
+  sel.addEventListener("blur", () => {
+    // option クリックが blur より先に処理されるよう短い遅延
+    setTimeout(() => setCharacterSelectExpanded(false), 120);
+  });
 
   sel.addEventListener("change", () => {
     state.ui.characterId = Number(sel.value);
