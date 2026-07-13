@@ -37,14 +37,39 @@ npm run serve
 
 `app/js/app.js` は `../data/*.json` を読むため、`app/` だけをサイトルートにするとデータ取得に失敗します。
 
-### 3. 静的ホスト公開
+### 3. 公開 URL（GitHub Pages）
+
+**使い方**: 下記 URL をブラウザで開くだけ（インストール不要）。
+
+| 項目 | URL |
+|------|-----|
+| アプリ入口 | `https://<GitHubユーザー名>.github.io/umamusume-sp-calc/app/` |
+| リポジトリ直下 | `https://<GitHubユーザー名>.github.io/umamusume-sp-calc/` → 自動で `/app/` へ |
+
+> 初回デプロイ後、`<GitHubユーザー名>` を実際のユーザー名に置き換えてください。
+
+**制限事項（告知用）**
+
+> ウマ娘 SP 計算ツール（コミュニティ向け）。**トレセン軒シナリオのみ**・**ガチ想定**（大盛況/超盛況・終了スキル固定）・**優先11サポカのイベントのみ**対応。ゲーム更新時はデータが古くなる場合があります。
+
+### 4. 静的ホスト公開（技術メモ）
 
 GitHub Pages / Cloudflare Pages 等で公開する場合も同様です。
 
 - **サイトルート = リポジトリ直下**（`data/` と `app/` が同階層）
 - 入口は **`/app/`**（例: `https://example.github.io/umamusume-sp-calc/app/`）
+- `file://` では動かない（HTTP 必須）
 
-### 4. テスト・データ検証
+#### GitHub Pages 初回セットアップ
+
+1. GitHub に **public** リポジトリ `umamusume-sp-calc` を作成して push
+2. リポジトリ **Settings → Pages → Build and deployment → Source** を **GitHub Actions** に設定
+3. `master` へ push すると `.github/workflows/deploy-pages.yml` が `verify` / `test` 後にデプロイ
+4. 数分後、上記公開 URL で `/app/` を開いて合計 SP が表示されることを確認
+
+ルートの `index.html` は誤ってリポジトリ直下だけ開いた場合に `/app/` へリダイレクトします。
+
+### 5. テスト・データ検証
 
 ```powershell
 npm test
