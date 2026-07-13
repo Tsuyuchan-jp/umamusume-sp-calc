@@ -89,9 +89,17 @@
       </section>
 
       <section class="panel">
-        <h2>イベント・シナリオスキル（選択式）</h2>
-        <div id="event-checks"></div>
-        <div id="scenario-checks" style="margin-top: 0.75rem"></div>
+        <h2>イベント・シナリオスキル</h2>
+        <p class="hint">サポカイベントはデッキ編成に応じて表示されます。</p>
+        <h3 class="subsection-title">サポカイベント（自動）</h3>
+        <div id="event-auto" class="event-section"></div>
+        <h3 class="subsection-title">サポカイベント（選択）</h3>
+        <div id="event-single" class="event-section"></div>
+        <p id="event-empty-hint" class="hint" hidden>
+          該当サポカがデッキにいません。6枠に編成するとイベントが表示されます。
+        </p>
+        <h3 class="subsection-title">シナリオ</h3>
+        <div id="scenario-checks"></div>
         <p class="hint" style="margin-top: 0.5rem">
           skillId 未設定の項目は data 抽出後に名前マッチで有効化されます。
         </p>

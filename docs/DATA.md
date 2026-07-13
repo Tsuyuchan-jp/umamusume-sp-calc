@@ -84,20 +84,43 @@ python scripts/extract_mdb.py --mdb "D:\...\master.mdb"
 
 ```json
 {
-  "version": 1,
+  "version": 2,
   "prioritySupportNames": [ "...11枚..." ],
   "events": [
     {
       "id": "evt_...",
       "supportNameMatch": "一杯のノスタルジア",
       "label": "表示名",
+      "selection": "auto",
       "skills": [
-        { "skillName": "...", "hintLevel": 3, "defaultOn": true, "skillId": null }
+        { "skillName": "...", "hintLevel": 3, "skillId": null }
+      ]
+    },
+    {
+      "id": "evt_..._chain",
+      "supportNameMatch": "その執念は怒濤が如く",
+      "label": "連続イベント（最終選択）",
+      "selection": "single",
+      "defaultChoiceId": "ou",
+      "choices": [
+        {
+          "id": "ou",
+          "label": "① スキルA + スキルB",
+          "skills": [
+            { "skillName": "...", "hintLevel": 2, "skillId": null }
+          ]
+        }
       ]
     }
   ]
 }
 ```
+
+| `selection` | UI | 計上 |
+|-------------|-----|------|
+| `auto` | 表示のみ（チェックなし） | 該当サポカ編成時に常に加算 |
+| `single` | ラジオ1択（＋未選択） | 選んだ `choices` のスキルのみ |
+| `toggle` | チェックボックス（後方互換） | ON のとき `skills` を加算 |
 
 - `skillId` は extract 後に埋めると確実。無くても `skillName` 完全一致で解決を試す
 - **現状**: たづな・メイショウドトウのイベント記入済み（2/11）。残り9枚

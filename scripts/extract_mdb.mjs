@@ -216,16 +216,27 @@ function writeJson(filePath, data) {
 
 function resolveSkillIdsByName(skills, events, scenario) {
   const byName = new Map(skills.map((s) => [s.name, s.id]));
-  const resolveList = (list) => {
-    for (const entry of list || []) {
-      for (const sk of entry.skills || []) {
-        if (!sk.skillId && sk.skillName && byName.has(sk.skillName)) {
-          sk.skillId = byName.get(sk.skillName);
-        }
+  const resolveSkills = (list) => {
+    for (const sk of list || []) {
+      if (!sk.skillId && sk.skillName && byName.has(sk.skillName)) {
+        sk.skillId = byName.get(sk.skillName);
       }
     }
   };
-  resolveList(events.events);
+  const resolveEvents = (list) => {
+    for (const evt of list || []) {
+      resolveSkills(evt.skills);
+      for (const ch of evt.choices || []) {
+        resolveSkills(ch.skills);
+      }
+    }
+  };
+  resolveEvents(events.events);
+  const resolveList = (list) => {
+    for (const entry of list || []) {
+      resolveSkills(entry.skills);
+    }
+  };
   resolveList(scenario.linkSkills);
   resolveList(scenario.rmjSkills);
   resolveList(scenario.endSkills);

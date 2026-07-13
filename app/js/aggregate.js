@@ -5,6 +5,25 @@ import { calcSkillCost } from "./spCost.js";
 const TRAINING_HINT = 5;
 const CHARA_HINT = 3;
 
+function isEventSupportInDeck(evt, supportIds, supportById) {
+  if (!evt.supportNameMatch) return true;
+  return supportIds
+    .map((id) => supportById.get(id))
+    .some((s) => s && s.name.includes(evt.supportNameMatch));
+}
+
+function appendEventSkills(hintEntries, skills, label, nameToId) {
+  for (const sk of skills || []) {
+    const skillId = sk.skillId ?? nameToId.get(sk.skillName);
+    if (!skillId) continue;
+    hintEntries.push({
+      skillId,
+      hintLevel: sk.hintLevel,
+      source: `イベント: ${label}`,
+    });
+  }
+}
+
 /**
  * @param {object} params
  * @param {object[]} params.skills
@@ -20,7 +39,8 @@ const CHARA_HINT = 3;
  * @param {number} params.inheritCount 2-6
  * @param {number} params.inheritHintLevel 1-5
  * @param {number} params.inheritBaseSp default 200
- * @param {Set<string>} params.enabledEventIds
+ * @param {Set<string>} [params.enabledEventIds] selection=toggle 用（後方互換）
+ * @param {Record<string, string|null>} [params.eventChoiceIds] selection=single の選択
  * @param {Set<string>} params.enabledScenarioEntryIds
  */
 export function buildSkillPlan(params) {
@@ -63,19 +83,20 @@ export function buildSkillPlan(params) {
 
   // イベント
   for (const evt of params.events.events || []) {
-    if (!params.enabledEventIds.has(evt.id)) continue;
-    const sup = params.supportIds
-      .map((id) => supportById.get(id))
-      .find((s) => s && s.name.includes(evt.supportNameMatch));
-    if (!sup && evt.supportNameMatch) continue;
-    for (const sk of evt.skills || []) {
-      const skillId = sk.skillId ?? nameToId.get(sk.skillName);
-      if (!skillId) continue;
-      hintEntries.push({
-        skillId,
-        hintLevel: sk.hintLevel,
-        source: `イベント: ${evt.label}`,
-      });
+    if (!isEventSupportInDeck(evt, params.supportIds, supportById)) continue;
+
+    const selection = evt.selection ?? "toggle";
+    if (selection === "auto") {
+      appendEventSkills(hintEntries, evt.skills, evt.label, nameToId);
+    } else if (selection === "single") {
+      const choiceId = params.eventChoiceIds?.[evt.id];
+      if (!choiceId || choiceId === "none") continue;
+      const choice = (evt.choices || []).find((c) => c.id === choiceId);
+      if (choice) {
+        appendEventSkills(hintEntries, choice.skills, `${evt.label}`, nameToId);
+      }
+    } else if (params.enabledEventIds?.has(evt.id)) {
+      appendEventSkills(hintEntries, evt.skills, evt.label, nameToId);
     }
   }
 

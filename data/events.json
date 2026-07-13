@@ -1,6 +1,6 @@
 {
-  "version": 1,
-  "description": "常用サポカのイベントスキル。skillId は extract 後に補完。名前でマッチも可。",
+  "version": 2,
+  "description": "常用サポカのイベントスキル。selection: auto=編成時自動計上 / single=1択 / toggle=従来チェック（非推奨）",
   "prioritySupportNames": [
     "[一杯のノスタルジア] 駿川たづな",
     "[その執念は怒濤が如く] メイショウドトウ",
@@ -19,11 +19,11 @@
       "id": "evt_tazuna_oodate5",
       "supportNameMatch": "一杯のノスタルジア",
       "label": "たづな お出かけ5回目",
+      "selection": "auto",
       "skills": [
         {
           "skillName": "お先に失礼っ！",
           "hintLevel": 3,
-          "defaultOn": true,
           "skillId": 201662
         }
       ]
@@ -32,82 +32,95 @@
       "id": "evt_tazuna_newyear",
       "supportNameMatch": "一杯のノスタルジア",
       "label": "たづな クラシック正月",
+      "selection": "auto",
       "skills": [
         {
           "skillName": "中盤巧者",
           "hintLevel": 3,
-          "defaultOn": true,
           "skillId": 202792
         }
       ]
     },
     {
-      "id": "evt_dotou_route_ou",
+      "id": "evt_dotou_umalike",
       "supportNameMatch": "その執念は怒濤が如く",
-      "label": "ドトウ 連続（すっかり人気者→霸王と共に歩む）",
+      "label": "ドトウ イベントA（ウマ好み）",
+      "selection": "auto",
       "skills": [
         {
-          "skillName": "弧線のプロフェッサー",
-          "hintLevel": 2,
-          "defaultOn": true,
-          "skillId": 200331
-        },
-        {
-          "skillName": "パスファインダー",
+          "skillName": "ウマ好み",
           "hintLevel": 1,
-          "defaultOn": true,
-          "skillId": 203651
-        }
-      ]
-    },
-    {
-      "id": "evt_dotou_route_good",
-      "supportNameMatch": "その執念は怒濤が如く",
-      "label": "ドトウ 連続（何かいいことがあったのか）",
-      "skills": [
-        {
-          "skillName": "曙光",
-          "hintLevel": 2,
-          "defaultOn": true,
-          "skillId": 203641
-        },
-        {
-          "skillName": "パスファインダー",
-          "hintLevel": 1,
-          "defaultOn": true,
-          "skillId": 203651
-        },
-        {
-          "skillName": "悠々自適",
-          "hintLevel": 2,
-          "defaultOn": true,
-          "skillId": 204391
+          "skillId": 201591
         }
       ]
     },
     {
       "id": "evt_dotou_call",
       "supportNameMatch": "その執念は怒濤が如く",
-      "label": "ドトウ 呼び込み（人の多いところで）",
+      "label": "ドトウ イベントB（呼び込み）",
+      "selection": "auto",
       "skills": [
         {
           "skillName": "先行コーナー○",
           "hintLevel": 1,
-          "defaultOn": true,
           "skillId": 201322
         }
       ]
     },
     {
-      "id": "evt_dotou_popular",
+      "id": "evt_dotou_chain",
       "supportNameMatch": "その執念は怒濤が如く",
-      "label": "ドトウ 連続（すっかり人気者・ウマ好み）",
-      "skills": [
+      "label": "ドトウ イベントC（連続・最終選択）",
+      "selection": "single",
+      "defaultChoiceId": "ou",
+      "choices": [
         {
-          "skillName": "ウマ好み",
-          "hintLevel": 1,
-          "defaultOn": true,
-          "skillId": 201591
+          "id": "ou",
+          "label": "① 弧線のプロフェッサー Lv2 + パスファインダー Lv1",
+          "skills": [
+            {
+              "skillName": "弧線のプロフェッサー",
+              "hintLevel": 2,
+              "skillId": 200331
+            },
+            {
+              "skillName": "パスファインダー",
+              "hintLevel": 1,
+              "skillId": 203651
+            }
+          ]
+        },
+        {
+          "id": "dawn",
+          "label": "② パスファインダー Lv1 + 曙光 Lv2",
+          "skills": [
+            {
+              "skillName": "パスファインダー",
+              "hintLevel": 1,
+              "skillId": 203651
+            },
+            {
+              "skillName": "曙光",
+              "hintLevel": 2,
+              "skillId": 203641
+            }
+          ]
+        },
+        {
+          "id": "yuyu",
+          "label": "③ パスファインダー Lv1 + 悠々自適 Lv2",
+          "skills": [
+            {
+              "skillName": "パスファインダー",
+              "hintLevel": 1,
+              "skillId": 203651
+            },
+            {
+              "skillName": "悠々自適",
+              "hintLevel": 2,
+              "skillId": 204391
+            }
+          ]
         }
       ]
     }

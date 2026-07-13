@@ -115,6 +115,7 @@ function renderSupportSlots() {
       const v = sel.value ? Number(sel.value) : null;
       state.ui.supportIds[idx] = v;
       renderSupportSlots();
+      renderEvents();
       recalc();
     });
   });
@@ -171,6 +172,111 @@ function renderCharacterSelect() {
   });
 }
 
+function formatSkillList(skills) {
+  return (skills || [])
+    .map((sk) => `${sk.skillName} Lv${sk.hintLevel}`)
+    .join("、");
+}
+
+function isEventSupportInDeck(evt) {
+  const supportById = new Map(state.supports.map((s) => [s.id, s]));
+  if (!evt.supportNameMatch) return true;
+  return getSupportIds().some((id) => {
+    const s = supportById.get(id);
+    return s && s.name.includes(evt.supportNameMatch);
+  });
+}
+
+function initEventChoiceIds(events) {
+  const map = new Map();
+  for (const evt of events.events || []) {
+    if (evt.selection === "single") {
+      map.set(evt.id, evt.defaultChoiceId ?? "none");
+    }
+  }
+  return map;
+}
+
+function renderEvents() {
+  const autoContainer = document.getElementById("event-auto");
+  const singleContainer = document.getElementById("event-single");
+  const emptyHint = document.getElementById("event-empty-hint");
+  autoContainer.innerHTML = "";
+  singleContainer.innerHTML = "";
+
+  const events = (state.events.events || []).filter(isEventSupportInDeck);
+  if (events.length === 0) {
+    emptyHint.hidden = false;
+    return;
+  }
+  emptyHint.hidden = true;
+
+  for (const evt of events) {
+    if (evt.selection === "auto") {
+      const div = document.createElement("div");
+      div.className = "event-auto-item";
+      div.innerHTML = `
+        <div class="event-auto-label">${escapeHtml(evt.label)}</div>
+        <div class="hint">${escapeHtml(formatSkillList(evt.skills))}（自動計上）</div>
+      `;
+      autoContainer.appendChild(div);
+      continue;
+    }
+
+    if (evt.selection === "single") {
+      const group = document.createElement("fieldset");
+      group.className = "event-single-group";
+      const legend = document.createElement("legend");
+      legend.textContent = evt.label;
+      group.appendChild(legend);
+
+      const current = state.ui.eventChoiceIds.get(evt.id) ?? "none";
+      const choices = [
+        ...(evt.choices || []),
+        { id: "none", label: "未選択（発生しない）", skills: [] },
+      ];
+
+      for (const choice of choices) {
+        const row = document.createElement("div");
+        row.className = "radio-row";
+        const inputId = `evt-${evt.id}-${choice.id}`;
+        const checked = current === choice.id ? "checked" : "";
+        const skillNote =
+          choice.skills?.length > 0
+            ? `<span class="hint"> — ${escapeHtml(formatSkillList(choice.skills))}</span>`
+            : "";
+        row.innerHTML = `
+          <input type="radio" name="evt-${evt.id}" id="${inputId}" value="${escapeHtml(choice.id)}" ${checked} />
+          <label for="${inputId}">${escapeHtml(choice.label)}${skillNote}</label>
+        `;
+        group.appendChild(row);
+        row.querySelector("input").addEventListener("change", (e) => {
+          if (!e.target.checked) return;
+          state.ui.eventChoiceIds.set(evt.id, choice.id);
+          recalc();
+        });
+      }
+      singleContainer.appendChild(group);
+      continue;
+    }
+
+    // toggle（後方互換）
+    const div = document.createElement("div");
+    div.className = "checkbox-row";
+    const checked = state.ui.enabledEventIds.has(evt.id) ? "checked" : "";
+    div.innerHTML = `
+      <input type="checkbox" id="evt-${evt.id}" data-id="${evt.id}" ${checked} />
+      <label for="evt-${evt.id}">${escapeHtml(evt.label)}</label>
+    `;
+    singleContainer.appendChild(div);
+    div.querySelector("input").addEventListener("change", (e) => {
+      if (e.target.checked) state.ui.enabledEventIds.add(evt.id);
+      else state.ui.enabledEventIds.delete(evt.id);
+      recalc();
+    });
+  }
+}
+
 function renderCheckboxes(containerId, items, storageSet, key) {
   const container = document.getElementById(containerId);
   container.innerHTML = "";
@@ -214,6 +320,7 @@ function recalc() {
     inheritHintLevel: Number(document.getElementById("inherit-hint").value) || 1,
     inheritBaseSp: Number(document.getElementById("inherit-base").value) || 200,
     enabledEventIds: state.ui.enabledEventIds,
+    eventChoiceIds: Object.fromEntries(state.ui.eventChoiceIds),
     enabledScenarioEntryIds: state.ui.enabledScenarioEntryIds,
   });
 
@@ -316,9 +423,8 @@ async function init() {
       ui: {
         characterId: characters[0]?.id ?? 0,
         supportIds: [null, null, null, null, null, null],
-        enabledEventIds: new Set(
-          (events.events || []).filter((e) => e.skills?.some((s) => s.defaultOn)).map((e) => e.id)
-        ),
+        enabledEventIds: new Set(),
+        eventChoiceIds: initEventChoiceIds(events),
         enabledScenarioEntryIds: new Set(),
       },
     };
@@ -334,7 +440,7 @@ async function init() {
       ...(scenario.endSkills || []),
       ...(scenario.classicRmj || []),
     ];
-    renderCheckboxes("event-checks", events.events || [], state.ui.enabledEventIds, "evt");
+    renderEvents();
     renderCheckboxes(
       "scenario-checks",
       scenarioItems,

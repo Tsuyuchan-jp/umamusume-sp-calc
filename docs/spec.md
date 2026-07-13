@@ -95,6 +95,7 @@ cost(白, whiteHintLv) + cost(金, goldHintLv)
 - `data/events.json` を手メンテ
 - 初期は優先11サポカのイベントスキルのみ（訓練ヒントは mdb）
 - `supportNameMatch` でデッキ内サポカ名部分一致 → イベント適用
+- `selection: auto` は編成時自動計上、`single` はラジオ1択（排他分岐用）
 
 ## 覚醒
 
