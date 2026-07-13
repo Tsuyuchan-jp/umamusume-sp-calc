@@ -56,6 +56,7 @@
 
 ```
 docs/AGENT_HANDOFF.md   ← 今ここ
+docs/CHANGELOG.md        公開版の更新履歴
 docs/GLOSSARY.md        用語（育成ウマ娘所持スキル / 覚醒進化 など）
 docs/MODEL_SELECTION.md 推奨言語モデル（4択・Quota節約）
 docs/REQUIREMENTS.md    確定要件

@@ -44,7 +44,8 @@
 
 ローカル起動・データ再抽出・テスト・GitHub Pages の技術メモは [docs/DEV.md](docs/DEV.md) を参照。
 
-用語は [docs/GLOSSARY.md](docs/GLOSSARY.md)、仕様は [docs/spec.md](docs/spec.md)。
+用語は [docs/GLOSSARY.md](docs/GLOSSARY.md)、仕様は [docs/spec.md](docs/spec.md)。  
+更新履歴は [docs/CHANGELOG.md](docs/CHANGELOG.md)。
 
 ## 免責
 
