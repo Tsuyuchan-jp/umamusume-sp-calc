@@ -10,6 +10,10 @@ let state = null;
 /** @type {Set<number>} */
 const excludedSkillIds = new Set();
 
+/** イベントヒント対応サポカ id（events.json の prioritySupportIds） */
+/** @type {Set<number>} */
+let prioritySupportIdSet = new Set();
+
 /** 前回の合計SP（差分表示用） */
 let previousTotal = null;
 
@@ -40,6 +44,7 @@ const SUPPORT_TYPE_LABELS = {
 function getSupportFilterState() {
   return {
     query: normalizeSearchText(document.getElementById("support-search")?.value || "").trim(),
+    eventOnly: document.getElementById("support-event-only")?.checked ?? true,
     ssrOnly: document.getElementById("support-ssr-only")?.checked ?? false,
     type: document.getElementById("support-type-filter")?.value || "",
   };
@@ -55,6 +60,7 @@ function supportSearchHaystack(s) {
 
 function supportMatchesFilters(s, filters, keepId) {
   if (keepId != null && s.id === keepId) return true;
+  if (filters.eventOnly && !prioritySupportIdSet.has(s.id)) return false;
   if (filters.ssrOnly && s.rarity !== "SSR") return false;
   if (filters.type && s.type !== filters.type) return false;
   if (filters.query && !supportSearchHaystack(s).includes(filters.query)) return false;
@@ -138,6 +144,7 @@ function bindSupportFilters() {
     renderSupportSlots();
   };
   document.getElementById("support-search").addEventListener("input", refresh);
+  document.getElementById("support-event-only").addEventListener("change", refresh);
   document.getElementById("support-ssr-only").addEventListener("change", refresh);
   document.getElementById("support-type-filter").addEventListener("change", refresh);
 }
@@ -626,6 +633,8 @@ async function init() {
       loadJson("../data/events.json"),
       loadJson("../data/scenarios/toresenken.json"),
     ]);
+
+    prioritySupportIdSet = new Set(events.prioritySupportIds || []);
 
     state = {
       skills,
