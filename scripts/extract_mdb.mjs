@@ -243,9 +243,15 @@ function resolveSkillIdsByName(skills, events, scenario) {
     }
   };
   resolveList(scenario.linkSkills);
-  resolveList(scenario.rmjSkills);
-  resolveList(scenario.endSkills);
-  resolveList(scenario.classicRmj);
+  for (const entry of scenario.scenarioAutoSkills || []) {
+    resolveSkills(entry.skills);
+  }
+  const rmj = scenario.seniorRmjChoice;
+  if (rmj) {
+    for (const ch of rmj.choices || []) {
+      resolveSkills(ch.skills);
+    }
+  }
 }
 
 function main() {

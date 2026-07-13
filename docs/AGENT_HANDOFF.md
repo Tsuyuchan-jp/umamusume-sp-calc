@@ -30,7 +30,7 @@
 
 | `data/events.json` | **あり** — 優先11サポカすべて記入済み（33イベント・実機確認済み） |
 
-| `data/scenarios/toresenken.json` | **あり** — リンクは白/金分離（編成で切替）。RMJ 盛況はプレースホルダ |
+| `data/scenarios/toresenken.json` | **あり** — リンク白/金・RMJラーメン3択・自動計上 |
 
 | Python / `py` | `where` 上は WindowsApps の `python.exe` スタブ寄り。`py` 無し。再 extract 時に実体 Python 要確認 |
 
@@ -46,11 +46,9 @@
 
 
 
-1. **`toresenken.json` の RMJ 盛況スキル**を具体スキル名に置換（現状 `選択金スキル` プレースホルダ）
+1. 常用デッキ + シナリオ（リンク白/金・RMJラーメン3択）の通し確認
 
-2. 常用デッキ + シナリオリンク（白/金切替）の通し確認
-
-3. ゲーム更新時は DMM パスの mdb を `--mdb` 指定して再 extract
+2. ゲーム更新時は DMM パスの mdb を `--mdb` 指定して再 extract
 
 
 

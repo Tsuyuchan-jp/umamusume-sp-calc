@@ -1,8 +1,8 @@
 {
-  "version": 2,
+  "version": 3,
   "scenarioId": "toresenken",
   "name": "らっしゃい！トレセン軒！",
-  "description": "mee1080/umasim ramen_memo.md ベース。選択式でON/OFF。リンクはシニア9月前半: 非編成=白・編成=金。",
+  "description": "mee1080/umasim ramen_memo.md ベース。ガチ想定: RMJ/終了は自動計上、シニア12月はラーメン3択。",
   "linkSkills": [
     {
       "id": "link_fine_motion",
@@ -96,80 +96,88 @@
       }
     }
   ],
-  "rmjSkills": [
+  "scenarioAutoSkills": [
     {
-      "id": "rmj_super",
-      "label": "シニア12月 超盛況",
+      "id": "classic_rmj_great",
+      "label": "クラシック12月 大盛況",
       "skills": [
         {
-          "skillName": "選択金スキル",
-          "hintLevel": 2,
-          "defaultOn": false,
-          "note": "選択式・要手動指定"
+          "skillId": 202791,
+          "skillName": "時中の妙",
+          "hintLevel": 1
         }
       ]
     },
     {
-      "id": "rmj_great",
-      "label": "シニア12月 大盛況",
+      "id": "senior_rmj_super_fixed",
+      "label": "シニア12月 超盛況（固定）",
       "skills": [
         {
-          "skillName": "選択金スキル",
-          "hintLevel": 1,
-          "defaultOn": false
+          "skillId": 200472,
+          "skillName": "ペースキープ",
+          "hintLevel": 2
+        },
+        {
+          "skillId": 200742,
+          "skillName": "深呼吸",
+          "hintLevel": 2
+        },
+        {
+          "skillId": 210392,
+          "skillName": "恩返し、召し上がれ",
+          "hintLevel": 3
         }
       ]
     },
-    {
-      "id": "rmj_good",
-      "label": "シニア12月 盛況",
-      "skills": [
-        {
-          "skillName": "選択金スキル",
-          "hintLevel": 1,
-          "defaultOn": false
-        }
-      ]
-    }
-  ],
-  "endSkills": [
     {
       "id": "end_great",
       "label": "育成終了（大盛況以上）",
       "skills": [
         {
+          "skillId": 210391,
           "skillName": "極上の感謝を！",
-          "hintLevel": 2,
-          "defaultOn": false,
-          "skillId": 210391
-        }
-      ]
-    },
-    {
-      "id": "end_good",
-      "label": "育成終了（盛況）",
-      "skills": [
-        {
-          "skillName": "恩返し、召し上がれ",
-          "hintLevel": 3,
-          "defaultOn": false,
-          "skillId": 210392
+          "hintLevel": 2
         }
       ]
     }
   ],
-  "classicRmj": [
-    {
-      "id": "classic_great",
-      "label": "クラシック12月 大盛況",
-      "skills": [
-        {
-          "skillName": "時中の妙",
-          "hintLevel": 1,
-          "defaultOn": false,
-          "skillId": 202791
-        }
-      ]
-    }
-  ]
+  "seniorRmjChoice": {
+    "label": "シニア12月 超盛況（ラーメン選択）",
+    "defaultChoiceId": "ramen_shugyoku",
+    "choices": [
+      {
+        "id": "ramen_special",
+        "label": "スペシャルトレセンラーメン",
+        "skills": [
+          {
+            "skillId": 200761,
+            "skillName": "火事場のバ鹿力",
+            "hintLevel": 2
+          }
+        ]
+      },
+      {
+        "id": "ramen_yokubari",
+        "label": "よくばりトレセンラーメン",
+        "skills": [
+          {
+            "skillId": 201652,
+            "skillName": "いいとこ入った！",
+            "hintLevel": 2
+          }
+        ]
+      },
+      {
+        "id": "ramen_shugyoku",
+        "label": "珠玉のトレセンラーメン",
+        "skills": [
+          {
+            "skillId": 203851,
+            "skillName": "好奇心",
+            "hintLevel": 2
+          }
+        ]
+      }
+    ]
+  }
 }

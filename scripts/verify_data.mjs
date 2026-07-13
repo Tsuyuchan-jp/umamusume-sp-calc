@@ -36,15 +36,17 @@ for (const n of ["強者の証", "さらなる高みへ", "お先に失礼っ！
 
 console.log("chars sample:", chars.slice(0, 5).map((c) => `${c.id}:${c.name}`));
 console.log(
-  "scenario link resolved:",
-  scenario.linkSkills.map((e) => ({
+  "scenario auto:",
+  (scenario.scenarioAutoSkills || []).map((e) => ({
     id: e.id,
-    white: e.skillWithoutLink
-      ? `${e.skillWithoutLink.skillName}:${e.skillWithoutLink.skillId ?? "?"}`
-      : null,
-    gold: e.skillWithLink
-      ? `${e.skillWithLink.skillName}:${e.skillWithLink.skillId ?? "?"}`
-      : null,
+    skills: (e.skills || []).map((s) => `${s.skillName}:${s.skillId ?? "?"}`),
+  }))
+);
+console.log(
+  "senior rmj:",
+  (scenario.seniorRmjChoice?.choices || []).map((c) => ({
+    id: c.id,
+    skills: (c.skills || []).map((s) => `${s.skillName}:${s.skillId ?? "?"}`),
   }))
 );
 

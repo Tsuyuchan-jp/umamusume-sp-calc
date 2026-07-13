@@ -150,11 +150,11 @@ python scripts/extract_mdb.py --mdb "D:\...\master.mdb"
   - デフォルトは `skillWithoutLink`（白）。リンク対象キャラが **育成ウマ娘または6枠サポカ** にいれば `skillWithLink`（金）
   - `requiresLinkCharacterId` — 単一キャラ（`supports.characterId` / 育成カードの `floor(id/100)`）
   - `requiresLinkCharacterIds` — 複数キャラは **OR**（いずれか1人いれば金。たづな＆ハロー用）
-- `rmjSkills` — シニア12月 盛況段階の選択金など
-- `endSkills` — 育成終了スキル
-- `classicRmj` — クラシック12月 大盛況など
+- `scenarioAutoSkills` — ガチ想定で常に計上（UI は折りたたみ確認用）
+  - クラシック12月 大盛況 / シニア12月 超盛況固定 / 育成終了 大盛況以上
+- `seniorRmjChoice` — シニア12月 超盛況のラーメン3択（ラジオ1択・選択金 Lv2）
 
-`linkSkills` 以外はチェックボックスで ON/OFF（複数選択可）。
+旧 `rmjSkills` / `endSkills` / `classicRmj`（チェック ON/OFF）は廃止。
 
 参考: https://github.com/mee1080/umasim/blob/main/data/ramen_memo.md
 

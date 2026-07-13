@@ -290,29 +290,65 @@ function renderEvents() {
   }
 }
 
-function renderCheckboxes(containerId, items, storageSet, key) {
-  const container = document.getElementById(containerId);
+/** シナリオ自動計上（折りたたみ・確認用） */
+function renderScenarioAuto() {
+  const container = document.getElementById("scenario-auto");
+  const summary = document.getElementById("scenario-auto-summary");
   container.innerHTML = "";
-  for (const item of items) {
-    const id = item.id;
-    const checked = storageSet.has(id) ? "checked" : "";
-    const skillNote =
-      item.skills?.length > 0
-        ? `<span class="hint"> — ${escapeHtml(formatSkillList(item.skills))}</span>`
-        : "";
+
+  const entries = state.scenario.scenarioAutoSkills || [];
+  let skillCount = 0;
+  for (const entry of entries) {
+    skillCount += (entry.skills || []).length;
     const div = document.createElement("div");
-    div.className = "checkbox-row";
+    div.className = "event-auto-item";
     div.innerHTML = `
-      <input type="checkbox" id="${key}-${id}" data-id="${id}" ${checked} />
-      <label for="${key}-${id}">${escapeHtml(item.label)}${skillNote}</label>
+      <div class="event-auto-label">${escapeHtml(entry.label)}</div>
+      <div class="hint">${escapeHtml(formatSkillList(entry.skills))}（自動計上）</div>
     `;
     container.appendChild(div);
-    div.querySelector("input").addEventListener("change", (e) => {
-      if (e.target.checked) storageSet.add(id);
-      else storageSet.delete(id);
-      recalc();
+  }
+  summary.textContent = `${skillCount}スキル（自動計上）`;
+}
+
+/** シニア12月 RMJ ラーメン選択（相互排他ラジオ1択） */
+function renderSeniorRmjRadios() {
+  const container = document.getElementById("scenario-senior-rmj");
+  container.innerHTML = "";
+  const rmj = state.scenario.seniorRmjChoice;
+  if (!rmj?.choices?.length) return;
+
+  const group = document.createElement("fieldset");
+  group.className = "event-single-group";
+  const legend = document.createElement("legend");
+  legend.textContent = rmj.label || "シニア12月 超盛況";
+  group.appendChild(legend);
+
+  const defaultId = rmj.defaultChoiceId ?? rmj.choices[0].id;
+  const current = state.ui.seniorRmjChoiceId ?? defaultId;
+
+  for (const choice of rmj.choices) {
+    const row = document.createElement("div");
+    row.className = "radio-row";
+    const inputId = `scn-rmj-${choice.id}`;
+    const checked = current === choice.id ? "checked" : "";
+    const skillNote =
+      choice.skills?.length > 0
+        ? `<span class="hint"> — ${escapeHtml(formatSkillList(choice.skills))}</span>`
+        : "";
+    row.innerHTML = `
+      <input type="radio" name="scenario-senior-rmj" id="${inputId}" value="${escapeHtml(choice.id)}" ${checked} />
+      <label for="${inputId}">${escapeHtml(choice.label)}${skillNote}</label>
+    `;
+    group.appendChild(row);
+    row.querySelector("input").addEventListener("change", (e) => {
+      if (e.target.checked) {
+        state.ui.seniorRmjChoiceId = choice.id;
+        recalc();
+      }
     });
   }
+  container.appendChild(group);
 }
 
 /** 編成に応じたリンクヒント（白 or 金）を表示用に解決 */
@@ -366,7 +402,7 @@ function renderScenarioLinkRadios() {
 }
 
 function buildEnabledScenarioEntryIds() {
-  const enabled = new Set(state.ui.enabledScenarioEntryIds);
+  const enabled = new Set();
   const linkId = state.ui.scenarioLinkChoiceId ?? "link_dotou";
   if (linkId) enabled.add(linkId);
   return enabled;
@@ -396,6 +432,7 @@ function recalc() {
     enabledEventIds: state.ui.enabledEventIds,
     eventChoiceIds: Object.fromEntries(state.ui.eventChoiceIds),
     enabledScenarioEntryIds: buildEnabledScenarioEntryIds(),
+    seniorRmjChoiceId: state.ui.seniorRmjChoiceId,
   });
 
   document.getElementById("total-sp").textContent = plan.total.toLocaleString();
@@ -497,8 +534,9 @@ async function init() {
         supportIds: [null, null, null, null, null, null],
         enabledEventIds: new Set(),
         eventChoiceIds: initEventChoiceIds(events),
-        enabledScenarioEntryIds: new Set(),
         scenarioLinkChoiceId: "link_dotou",
+        seniorRmjChoiceId:
+          scenario.seniorRmjChoice?.defaultChoiceId ?? "ramen_shugyoku",
       },
     };
 
@@ -507,19 +545,10 @@ async function init() {
     renderSupportSlots();
     bindSupportFilters();
 
-    const scenarioOther = [
-      ...(scenario.rmjSkills || []),
-      ...(scenario.endSkills || []),
-      ...(scenario.classicRmj || []),
-    ];
     renderEvents();
     renderScenarioLinkRadios();
-    renderCheckboxes(
-      "scenario-checks",
-      scenarioOther,
-      state.ui.enabledScenarioEntryIds,
-      "scn"
-    );
+    renderSeniorRmjRadios();
+    renderScenarioAuto();
 
     bindOptions();
     recalc();

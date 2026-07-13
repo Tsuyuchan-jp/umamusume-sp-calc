@@ -18,7 +18,8 @@
 | 育成ウマ娘所持スキル | 3 | `CHARA_HINT`。育成ウマ娘覚醒レベルは最大想定で全ランク合算 |
 | イベント | JSON の `hintLevel` | デッキに該当サポカがいるときのみ |
 | シナリオリンク | JSON の `hintLevel` | 選択1件・編成で白/金を切替（`scenarioLink.js`） |
-| シナリオその他 | JSON の `hintLevel` | ユーザーがチェックしたエントリのみ |
+| シナリオ自動 | JSON の `hintLevel` | `scenarioAutoSkills` を常時計上 |
+| シニア12月 RMJ | JSON の `hintLevel` | ラーメン3択ラジオ（`seniorRmjChoice`） |
 | 複数由来 | `max` | `hintResolve.js` |
 
 `skillId` が無いエントリは、`skills.json` の **名前完全一致**で ID 解決を試みる。
@@ -96,6 +97,8 @@ cost(白, whiteHintLv) + cost(金, goldHintLv)
   - リンク対象キャラが育成ウマ娘 ∪ サポカ6枠にいなければ白（`skillWithoutLink`）、いれば金（`skillWithLink`）
   - 複数キャラ条件（たづな＆ハロー）は **OR**（どちらか一方で金）
   - 実装: `app/js/scenarioLink.js`
+- **シナリオ自動計上**（ガチ想定）: `scenarioAutoSkills` を常時計上（クラシック大盛況・超盛況固定・育成終了）
+- **シニア12月 RMJ**: `seniorRmjChoice` ラジオ3択（ラーメン種で選択金が変わる）
 - 参照メモ: https://github.com/mee1080/umasim/blob/main/data/ramen_memo.md
 - 多くの `skillId` は `null`。名前マッチ or 手入力で補完する
 

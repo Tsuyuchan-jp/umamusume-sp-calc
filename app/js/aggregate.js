@@ -45,7 +45,8 @@ function appendEventSkills(hintEntries, skills, label, nameToId) {
  * @param {number} params.inheritBaseSp default 200
  * @param {Set<string>} [params.enabledEventIds] selection=toggle 用（後方互換）
  * @param {Record<string, string|null>} [params.eventChoiceIds] selection=single の選択
- * @param {Set<string>} params.enabledScenarioEntryIds
+ * @param {Set<string>} params.enabledScenarioEntryIds シナリオリンク選択 ID
+ * @param {string} [params.seniorRmjChoiceId] シニア12月ラーメン選択
  */
 export function buildSkillPlan(params) {
   const skillById = new Map(params.skills.map((s) => [s.id, s]));
@@ -123,14 +124,8 @@ export function buildSkillPlan(params) {
     });
   }
 
-  // シナリオその他（RMJ・終了・クラシック）
-  const scenarioOther = [
-    ...(params.scenario.rmjSkills || []),
-    ...(params.scenario.endSkills || []),
-    ...(params.scenario.classicRmj || []),
-  ];
-  for (const entry of scenarioOther) {
-    if (!params.enabledScenarioEntryIds.has(entry.id)) continue;
+  // シナリオ自動計上（ガチ想定: クラシック大盛況・超盛況固定・育成終了）
+  for (const entry of params.scenario.scenarioAutoSkills || []) {
     for (const sk of entry.skills || []) {
       const skillId = sk.skillId ?? nameToId.get(sk.skillName);
       if (!skillId) continue;
@@ -139,6 +134,25 @@ export function buildSkillPlan(params) {
         hintLevel: sk.hintLevel,
         source: `シナリオ: ${entry.label}`,
       });
+    }
+  }
+
+  // シニア12月 超盛況 ラーメン選択金
+  const rmj = params.scenario.seniorRmjChoice;
+  const rmjChoiceId =
+    params.seniorRmjChoiceId ?? rmj?.defaultChoiceId ?? null;
+  if (rmj && rmjChoiceId) {
+    const choice = (rmj.choices || []).find((c) => c.id === rmjChoiceId);
+    if (choice) {
+      for (const sk of choice.skills || []) {
+        const skillId = sk.skillId ?? nameToId.get(sk.skillName);
+        if (!skillId) continue;
+        hintEntries.push({
+          skillId,
+          hintLevel: sk.hintLevel,
+          source: `シナリオ: ${choice.label}`,
+        });
+      }
     }
   }
 
