@@ -15,8 +15,8 @@
 cd C:\Users\PC1\Projects\umamusume-sp-calc
 ```
 
-remote: `https://github.com/AkatsukiTanaka/umamusume-sp-calc.git`  
-公開 URL: https://AkatsukiTanaka.github.io/umamusume-sp-calc/app/
+remote: `https://github.com/Tsuyuchan-jp/umamusume-sp-calc.git`  
+公開 URL: https://Tsuyuchan-jp.github.io/umamusume-sp-calc/app/
 
 ## 2. master.mdb 抽出（ゲーム更新時）
 
@@ -66,7 +66,7 @@ npm run serve
 
 1. リポジトリ **Settings → Pages → Source** を **GitHub Actions** にする
 2. `master` へ push、または Actions から `Deploy GitHub Pages` を再実行
-3. https://AkatsukiTanaka.github.io/umamusume-sp-calc/app/ で合計 SP を確認
+3. https://Tsuyuchan-jp.github.io/umamusume-sp-calc/app/ で合計 SP を確認
 
 `configure-pages` が「Pages site failed / Not Found」になる場合は、Source が Actions 未設定のことが多い。設定後に workflow を rerun する。
 

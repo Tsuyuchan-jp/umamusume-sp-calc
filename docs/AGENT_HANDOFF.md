@@ -16,8 +16,8 @@
 | `data/events.json` | **あり** — 優先11サポカすべて記入済み（32イベント・実機確認済み） |
 | `data/scenarios/toresenken.json` | **あり** — リンク白/金・RMJ自動計上・ラーメン3択（実機通し確認済み） |
 | Python / `py` | `where` 上は WindowsApps の `python.exe` スタブ寄り。`py` 無し。再 extract 時に実体 Python 要確認 |
-| Git | remote: `AkatsukiTanaka/umamusume-sp-calc`（public）。Pages デプロイ運用中 |
-| 公開 URL | **https://AkatsukiTanaka.github.io/umamusume-sp-calc/app/** （2026-07 初回公開・スモークOK） |
+| Git | remote: `Tsuyuchan-jp/umamusume-sp-calc`（public）。Pages デプロイ運用中 |
+| 公開 URL | **https://Tsuyuchan-jp.github.io/umamusume-sp-calc/app/** （2026-07 初回公開・スモークOK） |
 
 **アプリは実用段階・公開済み。** 常用デッキ＋シナリオ（リンク白/金・RMJ・終了）の通し確認は **実機 OK・バグなし**（2026-07）。
 

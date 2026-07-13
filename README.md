@@ -6,13 +6,13 @@
 
 **インストール不要。** 次の URL をブラウザで開くだけです。
 
-**https://AkatsukiTanaka.github.io/umamusume-sp-calc/app/**
+**https://Tsuyuchan-jp.github.io/umamusume-sp-calc/app/**
 
 | 項目 | URL |
 |------|-----|
-| アプリ入口 | https://AkatsukiTanaka.github.io/umamusume-sp-calc/app/ |
-| リポジトリ直下 | https://AkatsukiTanaka.github.io/umamusume-sp-calc/ → `/app/` へ自動移動 |
-| ソース | https://github.com/AkatsukiTanaka/umamusume-sp-calc |
+| アプリ入口 | https://Tsuyuchan-jp.github.io/umamusume-sp-calc/app/ |
+| リポジトリ直下 | https://Tsuyuchan-jp.github.io/umamusume-sp-calc/ → `/app/` へ自動移動 |
+| ソース | https://github.com/Tsuyuchan-jp/umamusume-sp-calc |
 
 ### 制限事項（告知用）
 

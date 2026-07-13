@@ -19,7 +19,7 @@
 - [x] **常用デッキ＋シナリオ通し確認（実機）** — リンク白/金・RMJ・終了・イベント。問題・バグなし（2026-07）
 - [x] 公開前レビュー High/Medium 対応（R01–R10）
 - [x] GitHub Pages 向けデプロイ設定（workflow・ルートリダイレクト・`.nojekyll`）
-- [x] **GitHub Pages 初回公開** — https://AkatsukiTanaka.github.io/umamusume-sp-calc/app/ （スモークOK・2026-07）
+- [x] **GitHub Pages 初回公開** — https://Tsuyuchan-jp.github.io/umamusume-sp-calc/app/ （スモークOK・2026-07）
 
 ## 未完了 / 残作業
 
@@ -70,7 +70,7 @@
 
 1. ~~デプロイ先選定（GitHub Pages）~~ **済**
 2. ~~workflow・ルートリダイレクト~~ **済**
-3. ~~GitHub へ push~~ **済**（`AkatsukiTanaka/umamusume-sp-calc`）
+3. ~~GitHub へ push~~ **済**（`Tsuyuchan-jp/umamusume-sp-calc`）
 4. ~~README を公開利用者向けに整理・確定 URL 記載~~ **済**
 5. ~~Pages デプロイ＋本番スモークテスト~~ **済**（合計SP表示・サポカ変更・ルート→/app/・スマホ幅）
 
