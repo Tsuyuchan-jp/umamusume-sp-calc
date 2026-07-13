@@ -10,6 +10,12 @@ let state = null;
 /** @type {Set<number>} */
 const excludedSkillIds = new Set();
 
+/** 前回の合計SP（差分表示用） */
+let previousTotal = null;
+
+/** 差分ハイライトのタイマー */
+let deltaHideTimer = null;
+
 async function loadJson(path) {
   const res = await fetch(path);
   if (!res.ok) throw new Error(`${path}: ${res.status}`);
@@ -412,6 +418,52 @@ function getSupportIds() {
   return state.ui.supportIds.filter((id) => id != null);
 }
 
+/** 合計SPを画面下部バーと結果パネルに反映し、差分をハイライト */
+function updateTotalDisplay(total) {
+  const formatted = total.toLocaleString();
+  document.getElementById("total-sp").textContent = formatted;
+  document.getElementById("total-sp-bar-value").textContent = formatted;
+
+  const bar = document.getElementById("total-sp-bar");
+  const deltaEl = document.getElementById("total-sp-delta");
+
+  if (deltaHideTimer) {
+    clearTimeout(deltaHideTimer);
+    deltaHideTimer = null;
+  }
+
+  bar.classList.remove("total-sp-bar--flash-up", "total-sp-bar--flash-down");
+  deltaEl.classList.remove("total-sp-delta--up", "total-sp-delta--down", "total-sp-delta--fade");
+
+  if (previousTotal !== null && previousTotal !== total) {
+    const delta = total - previousTotal;
+    const sign = delta > 0 ? "+" : "";
+    deltaEl.textContent = `(${sign}${delta.toLocaleString()})`;
+    deltaEl.hidden = false;
+
+    if (delta > 0) {
+      deltaEl.classList.add("total-sp-delta--up");
+      bar.classList.add("total-sp-bar--flash-up");
+    } else {
+      deltaEl.classList.add("total-sp-delta--down");
+      bar.classList.add("total-sp-bar--flash-down");
+    }
+
+    deltaHideTimer = setTimeout(() => {
+      deltaEl.classList.add("total-sp-delta--fade");
+      bar.classList.remove("total-sp-bar--flash-up", "total-sp-bar--flash-down");
+      setTimeout(() => {
+        deltaEl.hidden = true;
+        deltaEl.classList.remove("total-sp-delta--fade");
+      }, 400);
+    }, 2500);
+  } else if (previousTotal === null) {
+    deltaEl.hidden = true;
+  }
+
+  previousTotal = total;
+}
+
 function recalc() {
   if (!state) return;
 
@@ -435,7 +487,7 @@ function recalc() {
     seniorRmjChoiceId: state.ui.seniorRmjChoiceId,
   });
 
-  document.getElementById("total-sp").textContent = plan.total.toLocaleString();
+  updateTotalDisplay(plan.total);
 
   const tbody = document.getElementById("result-body");
   tbody.innerHTML = "";

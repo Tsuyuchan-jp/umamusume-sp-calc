@@ -8,6 +8,7 @@ body {
   background: #f4f6f8;
   color: #1a1a1a;
   line-height: 1.5;
+  padding-bottom: 4.5rem;
 }
 
 header {
@@ -155,6 +156,71 @@ input[type="search"] {
   font-weight: 700;
   color: #c0392b;
   padding: 0.75rem 0;
+}
+
+/* 画面下部固定の合計SPバー */
+.total-sp-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background: #fff;
+  border-top: 2px solid #c0392b;
+  box-shadow: 0 -2px 12px rgba(0, 0, 0, 0.12);
+}
+
+.total-sp-bar-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0.65rem 1rem;
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.total-sp-bar-label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #444;
+}
+
+.total-sp-bar-value {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #c0392b;
+  font-variant-numeric: tabular-nums;
+  transition: color 0.2s ease;
+}
+
+.total-sp-delta {
+  font-size: 1rem;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  opacity: 1;
+  transition: opacity 0.4s ease;
+}
+
+.total-sp-delta--up {
+  color: #c0392b;
+}
+
+.total-sp-delta--down {
+  color: #27ae60;
+}
+
+.total-sp-bar--flash-up .total-sp-bar-value {
+  color: #e74c3c;
+}
+
+.total-sp-bar--flash-down .total-sp-bar-value {
+  color: #27ae60;
+}
+
+.total-sp-delta--fade {
+  opacity: 0;
 }
 
 table {
