@@ -92,7 +92,15 @@ function extractSupports(db) {
   const variants = loadTextMap(db, TEXT_SUPPORT_VARIANT);
   const chars = loadTextMap(db, TEXT_SUPPORT_CHAR);
   const rarityMap = { 1: "R", 2: "SR", 3: "SSR" };
-  const typeMap = { 1: "speed", 2: "stamina", 3: "power", 4: "guts", 5: "wit", 6: "friend" };
+  // 育成タイプは support_card_type ではなく command_id
+  const typeByCommandId = {
+    0: "friend",
+    101: "speed",
+    102: "stamina",
+    103: "power",
+    105: "guts",
+    106: "wit",
+  };
 
   const hintsByCard = new Map();
   for (const row of db
@@ -131,11 +139,12 @@ function extractSupports(db) {
   const supports = [];
   for (const row of db
     .prepare(
-      `SELECT id, chara_id, rarity, command_id, support_card_type, effect_table_id
+      `SELECT id, chara_id, rarity, command_id, effect_table_id
        FROM support_card_data ORDER BY id`
     )
     .all()) {
     const sid = Number(row.id);
+    const commandId = Number(row.command_id);
     // 75 が無い場合のみ 76+77 で組み立て
     let display = names.get(sid);
     if (!display) {
@@ -151,8 +160,8 @@ function extractSupports(db) {
       characterName: chars.get(sid) || "",
       characterId: Number(row.chara_id),
       rarity: rarityMap[Number(row.rarity)] || String(row.rarity),
-      commandId: Number(row.command_id),
-      type: typeMap[Number(row.support_card_type)] || "unknown",
+      commandId,
+      type: typeByCommandId[commandId] || "unknown",
       hintSkillIds: hintsByCard.get(sid) || [],
       hintLevelUpMax: hintLvUp.get(Number(row.effect_table_id)) || 0,
       eventIds: [],

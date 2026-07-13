@@ -18,19 +18,51 @@ function showError(msg) {
   el.textContent = msg;
 }
 
-function buildSupportOptions(supports, selectedId) {
-  const rarityOrder = { SSR: 0, SR: 1, R: 2 };
-  const sorted = [...supports].sort((a, b) => {
-    const ra = rarityOrder[a.rarity] ?? 9;
-    const rb = rarityOrder[b.rarity] ?? 9;
-    if (ra !== rb) return ra - rb;
-    return a.name.localeCompare(b.name, "ja");
-  });
+const SUPPORT_TYPE_LABELS = {
+  speed: "スピード",
+  stamina: "スタミナ",
+  power: "パワー",
+  guts: "根性",
+  wit: "賢さ",
+  friend: "友人",
+};
+
+function getSupportFilterState() {
+  return {
+    query: normalizeSearchText(document.getElementById("support-search")?.value || "").trim(),
+    ssrOnly: document.getElementById("support-ssr-only")?.checked ?? false,
+    type: document.getElementById("support-type-filter")?.value || "",
+  };
+}
+
+function supportSearchHaystack(s) {
+  return normalizeSearchText(
+    [s.name, s.title, s.characterName, s.rarity, SUPPORT_TYPE_LABELS[s.type] || s.type, s.type]
+      .filter(Boolean)
+      .join(" ")
+  );
+}
+
+function supportMatchesFilters(s, filters, keepId) {
+  if (keepId != null && s.id === keepId) return true;
+  if (filters.ssrOnly && s.rarity !== "SSR") return false;
+  if (filters.type && s.type !== filters.type) return false;
+  if (filters.query && !supportSearchHaystack(s).includes(filters.query)) return false;
+  return true;
+}
+
+function buildSupportOptions(supports, selectedId, occupiedIds) {
+  const filters = getSupportFilterState();
+  const sorted = [...supports].sort((a, b) => b.id - a.id);
   const opts = ['<option value="">— 未選択 —</option>'];
   for (const s of sorted) {
-    const sel = s.id === selectedId ? " selected" : "";
+    const isSelected = s.id === selectedId;
+    if (!isSelected && occupiedIds.has(s.id)) continue;
+    if (!supportMatchesFilters(s, filters, selectedId)) continue;
+    const typeLabel = SUPPORT_TYPE_LABELS[s.type] || s.type;
+    const sel = isSelected ? " selected" : "";
     opts.push(
-      `<option value="${s.id}"${sel}>[${escapeHtml(s.rarity)}] ${escapeHtml(s.name)}</option>`
+      `<option value="${s.id}"${sel}>[${escapeHtml(s.rarity)}][${escapeHtml(typeLabel)}] ${escapeHtml(s.name)}</option>`
     );
   }
   return opts.join("");
@@ -67,11 +99,12 @@ function renderSupportSlots() {
   const selected = state.ui.supportIds;
   container.innerHTML = "";
   for (let i = 0; i < 6; i++) {
+    const occupied = new Set(selected.filter((id, idx) => id != null && idx !== i));
     const wrap = document.createElement("div");
     wrap.innerHTML = `
       <label>枠 ${i + 1}</label>
       <select data-slot="${i}" class="support-select">
-        ${buildSupportOptions(state.supports, selected[i] || "")}
+        ${buildSupportOptions(state.supports, selected[i] || "", occupied)}
       </select>
     `;
     container.appendChild(wrap);
@@ -81,9 +114,20 @@ function renderSupportSlots() {
       const idx = Number(sel.dataset.slot);
       const v = sel.value ? Number(sel.value) : null;
       state.ui.supportIds[idx] = v;
+      renderSupportSlots();
       recalc();
     });
   });
+}
+
+function bindSupportFilters() {
+  const refresh = () => {
+    if (!state) return;
+    renderSupportSlots();
+  };
+  document.getElementById("support-search").addEventListener("input", refresh);
+  document.getElementById("support-ssr-only").addEventListener("change", refresh);
+  document.getElementById("support-type-filter").addEventListener("change", refresh);
 }
 
 function filterCharacterOptions(query) {
@@ -282,6 +326,7 @@ async function init() {
     applyDefaultSupports();
     renderCharacterSelect();
     renderSupportSlots();
+    bindSupportFilters();
 
     const scenarioItems = [
       ...(scenario.linkSkills || []),

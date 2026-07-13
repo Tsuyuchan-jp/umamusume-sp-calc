@@ -7,7 +7,7 @@
     "characterId": 1001,
     "rarity": "R",
     "commandId": 103,
-    "type": "speed",
+    "type": "power",
     "hintSkillIds": [
       200162,
       200232,
@@ -90,7 +90,7 @@
     "characterId": 1006,
     "rarity": "R",
     "commandId": 102,
-    "type": "speed",
+    "type": "stamina",
     "hintSkillIds": [
       200222,
       200332,
@@ -114,7 +114,7 @@
     "characterId": 1007,
     "rarity": "R",
     "commandId": 105,
-    "type": "speed",
+    "type": "guts",
     "hintSkillIds": [
       200622,
       200642,
@@ -142,7 +142,7 @@
     "characterId": 1008,
     "rarity": "R",
     "commandId": 102,
-    "type": "speed",
+    "type": "stamina",
     "hintSkillIds": [
       200032,
       200362,
@@ -185,7 +185,7 @@
     "characterId": 1011,
     "rarity": "R",
     "commandId": 103,
-    "type": "speed",
+    "type": "power",
     "hintSkillIds": [
       200042,
       200282,
@@ -207,7 +207,7 @@
     "characterId": 1013,
     "rarity": "R",
     "commandId": 105,
-    "type": "speed",
+    "type": "guts",
     "hintSkillIds": [
       200062,
       200172,
@@ -229,7 +229,7 @@
     "characterId": 1014,
     "rarity": "R",
     "commandId": 102,
-    "type": "speed",
+    "type": "stamina",
     "hintSkillIds": [
       200132,
       200212,
@@ -250,7 +250,7 @@
     "characterId": 1015,
     "rarity": "R",
     "commandId": 105,
-    "type": "speed",
+    "type": "guts",
     "hintSkillIds": [
       200562,
       200722,
@@ -271,7 +271,7 @@
     "characterId": 1017,
     "rarity": "R",
     "commandId": 106,
-    "type": "speed",
+    "type": "wit",
     "hintSkillIds": [
       200572,
       200831,
@@ -293,7 +293,7 @@
     "characterId": 1020,
     "rarity": "R",
     "commandId": 105,
-    "type": "speed",
+    "type": "guts",
     "hintSkillIds": [
       200252,
       200302,
@@ -313,7 +313,7 @@
     "characterId": 1030,
     "rarity": "R",
     "commandId": 105,
-    "type": "speed",
+    "type": "guts",
     "hintSkillIds": [
       200062,
       200272,
@@ -336,7 +336,7 @@
     "characterId": 1035,
     "rarity": "R",
     "commandId": 103,
-    "type": "speed",
+    "type": "power",
     "hintSkillIds": [
       200152,
       200222,
@@ -394,7 +394,7 @@
     "characterId": 1045,
     "rarity": "R",
     "commandId": 105,
-    "type": "speed",
+    "type": "guts",
     "hintSkillIds": [
       200152,
       200352,
@@ -413,7 +413,7 @@
     "characterId": 1052,
     "rarity": "R",
     "commandId": 103,
-    "type": "speed",
+    "type": "power",
     "hintSkillIds": [],
     "hintLevelUpMax": 0,
     "eventIds": []
@@ -426,7 +426,7 @@
     "characterId": 9001,
     "rarity": "R",
     "commandId": 0,
-    "type": "stamina",
+    "type": "friend",
     "hintSkillIds": [],
     "hintLevelUpMax": 0,
     "eventIds": []
@@ -439,7 +439,7 @@
     "characterId": 9004,
     "rarity": "R",
     "commandId": 0,
-    "type": "stamina",
+    "type": "friend",
     "hintSkillIds": [],
     "hintLevelUpMax": 0,
     "eventIds": []
@@ -452,7 +452,7 @@
     "characterId": 1009,
     "rarity": "R",
     "commandId": 106,
-    "type": "speed",
+    "type": "wit",
     "hintSkillIds": [
       200282,
       200572,
@@ -472,7 +472,7 @@
     "characterId": 1012,
     "rarity": "R",
     "commandId": 102,
-    "type": "speed",
+    "type": "stamina",
     "hintSkillIds": [
       200562,
       200642,
@@ -491,7 +491,7 @@
     "characterId": 1018,
     "rarity": "R",
     "commandId": 103,
-    "type": "speed",
+    "type": "power",
     "hintSkillIds": [
       200472,
       200722,
@@ -511,7 +511,7 @@
     "characterId": 1019,
     "rarity": "R",
     "commandId": 102,
-    "type": "speed",
+    "type": "stamina",
     "hintSkillIds": [
       200442,
       200482,
@@ -531,7 +531,7 @@
     "characterId": 1021,
     "rarity": "R",
     "commandId": 105,
-    "type": "speed",
+    "type": "guts",
     "hintSkillIds": [
       200712,
       200811,
@@ -552,7 +552,7 @@
     "characterId": 1022,
     "rarity": "R",
     "commandId": 106,
-    "type": "speed",
+    "type": "wit",
     "hintSkillIds": [
       200012,
       200192,
@@ -571,7 +571,7 @@
     "characterId": 1023,
     "rarity": "R",
     "commandId": 102,
-    "type": "speed",
+    "type": "stamina",
     "hintSkillIds": [
       200052,
       200162,
@@ -590,7 +590,7 @@
     "characterId": 1024,
     "rarity": "R",
     "commandId": 105,
-    "type": "speed",
+    "type": "guts",
     "hintSkillIds": [
       200142,
       200332,
@@ -610,7 +610,7 @@
     "characterId": 1025,
     "rarity": "R",
     "commandId": 105,
-    "type": "speed",
+    "type": "guts",
     "hintSkillIds": [
       200162,
       200232,
@@ -630,7 +630,7 @@
     "characterId": 1026,
     "rarity": "R",
     "commandId": 102,
-    "type": "speed",
+    "type": "stamina",
     "hintSkillIds": [
       200242,
       200532,
@@ -648,7 +648,7 @@
     "characterId": 1027,
     "rarity": "R",
     "commandId": 102,
-    "type": "speed",
+    "type": "stamina",
     "hintSkillIds": [
       200162,
       200232,
@@ -666,7 +666,7 @@
     "characterId": 1029,
     "rarity": "R",
     "commandId": 103,
-    "type": "speed",
+    "type": "power",
     "hintSkillIds": [
       200042,
       200202,
@@ -684,7 +684,7 @@
     "characterId": 1031,
     "rarity": "R",
     "commandId": 103,
-    "type": "speed",
+    "type": "power",
     "hintSkillIds": [
       200732,
       201082,
@@ -703,7 +703,7 @@
     "characterId": 1032,
     "rarity": "R",
     "commandId": 106,
-    "type": "speed",
+    "type": "wit",
     "hintSkillIds": [
       200722,
       201102,
@@ -721,7 +721,7 @@
     "characterId": 1036,
     "rarity": "R",
     "commandId": 106,
-    "type": "speed",
+    "type": "wit",
     "hintSkillIds": [
       201212,
       201492,
@@ -757,7 +757,7 @@
     "characterId": 1046,
     "rarity": "R",
     "commandId": 102,
-    "type": "speed",
+    "type": "stamina",
     "hintSkillIds": [
       200162,
       200222,
@@ -840,7 +840,7 @@
     "characterId": 1055,
     "rarity": "R",
     "commandId": 106,
-    "type": "speed",
+    "type": "wit",
     "hintSkillIds": [
       200362,
       200462,
@@ -859,7 +859,7 @@
     "characterId": 1056,
     "rarity": "R",
     "commandId": 106,
-    "type": "speed",
+    "type": "wit",
     "hintSkillIds": [
       200092,
       200482,
@@ -880,7 +880,7 @@
     "characterId": 1058,
     "rarity": "R",
     "commandId": 103,
-    "type": "speed",
+    "type": "power",
     "hintSkillIds": [
       200142,
       200152,
@@ -901,7 +901,7 @@
     "characterId": 1059,
     "rarity": "R",
     "commandId": 106,
-    "type": "speed",
+    "type": "wit",
     "hintSkillIds": [
       200062,
       200212,
@@ -920,7 +920,7 @@
     "characterId": 1060,
     "rarity": "R",
     "commandId": 103,
-    "type": "speed",
+    "type": "power",
     "hintSkillIds": [
       200122,
       200342,
@@ -962,7 +962,7 @@
     "characterId": 1005,
     "rarity": "R",
     "commandId": 106,
-    "type": "speed",
+    "type": "wit",
     "hintSkillIds": [
       200182,
       200222,
@@ -1022,7 +1022,7 @@
     "characterId": 1065,
     "rarity": "R",
     "commandId": 102,
-    "type": "speed",
+    "type": "stamina",
     "hintSkillIds": [
       200462,
       200562,
@@ -1043,7 +1043,7 @@
     "characterId": 1063,
     "rarity": "R",
     "commandId": 106,
-    "type": "speed",
+    "type": "wit",
     "hintSkillIds": [
       200442,
       200482,
@@ -1062,7 +1062,7 @@
     "characterId": 1064,
     "rarity": "R",
     "commandId": 103,
-    "type": "speed",
+    "type": "power",
     "hintSkillIds": [
       200042,
       200052,
@@ -1105,7 +1105,7 @@
     "characterId": 1067,
     "rarity": "R",
     "commandId": 105,
-    "type": "speed",
+    "type": "guts",
     "hintSkillIds": [
       200152,
       200212,
@@ -1126,7 +1126,7 @@
     "characterId": 1062,
     "rarity": "R",
     "commandId": 103,
-    "type": "speed",
+    "type": "power",
     "hintSkillIds": [
       200442,
       200472,
@@ -1145,7 +1145,7 @@
     "characterId": 1072,
     "rarity": "R",
     "commandId": 102,
-    "type": "speed",
+    "type": "stamina",
     "hintSkillIds": [
       200462,
       200512,
@@ -1164,7 +1164,7 @@
     "characterId": 1047,
     "rarity": "R",
     "commandId": 105,
-    "type": "speed",
+    "type": "guts",
     "hintSkillIds": [
       200362,
       200452,
@@ -1186,7 +1186,7 @@
     "characterId": 9006,
     "rarity": "R",
     "commandId": 0,
-    "type": "stamina",
+    "type": "friend",
     "hintSkillIds": [],
     "hintLevelUpMax": 0,
     "eventIds": []
@@ -1199,7 +1199,7 @@
     "characterId": 1042,
     "rarity": "R",
     "commandId": 103,
-    "type": "speed",
+    "type": "power",
     "hintSkillIds": [
       200152,
       200472,
@@ -1219,7 +1219,7 @@
     "characterId": 1069,
     "rarity": "R",
     "commandId": 105,
-    "type": "speed",
+    "type": "guts",
     "hintSkillIds": [
       200732,
       201052,
@@ -1255,7 +1255,7 @@
     "characterId": 1028,
     "rarity": "R",
     "commandId": 103,
-    "type": "speed",
+    "type": "power",
     "hintSkillIds": [
       200212,
       200552,
@@ -1275,7 +1275,7 @@
     "characterId": 1053,
     "rarity": "R",
     "commandId": 102,
-    "type": "speed",
+    "type": "stamina",
     "hintSkillIds": [
       200292,
       200362,
@@ -1313,7 +1313,7 @@
     "characterId": 1049,
     "rarity": "R",
     "commandId": 105,
-    "type": "speed",
+    "type": "guts",
     "hintSkillIds": [
       200162,
       200302,
@@ -1336,7 +1336,7 @@
     "characterId": 1034,
     "rarity": "R",
     "commandId": 102,
-    "type": "speed",
+    "type": "stamina",
     "hintSkillIds": [
       200172,
       200202,
@@ -1358,7 +1358,7 @@
     "characterId": 1071,
     "rarity": "R",
     "commandId": 106,
-    "type": "speed",
+    "type": "wit",
     "hintSkillIds": [
       200022,
       200572,
@@ -1377,7 +1377,7 @@
     "characterId": 1048,
     "rarity": "R",
     "commandId": 105,
-    "type": "speed",
+    "type": "guts",
     "hintSkillIds": [
       200302,
       200562,
@@ -1397,7 +1397,7 @@
     "characterId": 1070,
     "rarity": "R",
     "commandId": 103,
-    "type": "speed",
+    "type": "power",
     "hintSkillIds": [
       200162,
       200582,
@@ -1437,7 +1437,7 @@
     "characterId": 1038,
     "rarity": "R",
     "commandId": 106,
-    "type": "speed",
+    "type": "wit",
     "hintSkillIds": [
       200652,
       200911,
@@ -1456,7 +1456,7 @@
     "characterId": 9005,
     "rarity": "R",
     "commandId": 0,
-    "type": "stamina",
+    "type": "friend",
     "hintSkillIds": [],
     "hintLevelUpMax": 0,
     "eventIds": []
@@ -1469,7 +1469,7 @@
     "characterId": 1033,
     "rarity": "R",
     "commandId": 102,
-    "type": "speed",
+    "type": "stamina",
     "hintSkillIds": [
       200632,
       201152,
@@ -1488,7 +1488,7 @@
     "characterId": 1074,
     "rarity": "R",
     "commandId": 105,
-    "type": "speed",
+    "type": "guts",
     "hintSkillIds": [
       200012,
       200762,
@@ -1528,7 +1528,7 @@
     "characterId": 1057,
     "rarity": "R",
     "commandId": 106,
-    "type": "speed",
+    "type": "wit",
     "hintSkillIds": [
       200232,
       200342,
@@ -1549,7 +1549,7 @@
     "characterId": 1085,
     "rarity": "R",
     "commandId": 102,
-    "type": "speed",
+    "type": "stamina",
     "hintSkillIds": [
       200602,
       200672,
@@ -1574,7 +1574,7 @@
     "characterId": 1093,
     "rarity": "R",
     "commandId": 103,
-    "type": "speed",
+    "type": "power",
     "hintSkillIds": [
       200702,
       200972,
@@ -1594,7 +1594,7 @@
     "characterId": 1073,
     "rarity": "R",
     "commandId": 103,
-    "type": "speed",
+    "type": "power",
     "hintSkillIds": [
       200302,
       200722,
@@ -1613,7 +1613,7 @@
     "characterId": 1083,
     "rarity": "R",
     "commandId": 105,
-    "type": "speed",
+    "type": "guts",
     "hintSkillIds": [
       200352,
       200602,
@@ -1635,7 +1635,7 @@
     "characterId": 9008,
     "rarity": "R",
     "commandId": 0,
-    "type": "stamina",
+    "type": "friend",
     "hintSkillIds": [],
     "hintLevelUpMax": 0,
     "eventIds": []
@@ -1648,7 +1648,7 @@
     "characterId": 1084,
     "rarity": "R",
     "commandId": 102,
-    "type": "speed",
+    "type": "stamina",
     "hintSkillIds": [
       200152,
       200642,
@@ -1668,7 +1668,7 @@
     "characterId": 1076,
     "rarity": "R",
     "commandId": 105,
-    "type": "speed",
+    "type": "guts",
     "hintSkillIds": [
       200172,
       200202,
@@ -1691,7 +1691,7 @@
     "characterId": 1078,
     "rarity": "R",
     "commandId": 103,
-    "type": "speed",
+    "type": "power",
     "hintSkillIds": [
       200192,
       200302,
@@ -1735,7 +1735,7 @@
     "characterId": 1086,
     "rarity": "R",
     "commandId": 106,
-    "type": "speed",
+    "type": "wit",
     "hintSkillIds": [
       200362,
       200432,
@@ -1779,7 +1779,7 @@
     "characterId": 1099,
     "rarity": "R",
     "commandId": 105,
-    "type": "speed",
+    "type": "guts",
     "hintSkillIds": [
       201682,
       202262,
@@ -1822,7 +1822,7 @@
     "characterId": 1098,
     "rarity": "R",
     "commandId": 103,
-    "type": "speed",
+    "type": "power",
     "hintSkillIds": [
       200952,
       201532,
@@ -1844,7 +1844,7 @@
     "characterId": 1100,
     "rarity": "R",
     "commandId": 102,
-    "type": "speed",
+    "type": "stamina",
     "hintSkillIds": [
       201072,
       201672,
@@ -1867,7 +1867,7 @@
     "characterId": 9043,
     "rarity": "R",
     "commandId": 0,
-    "type": "stamina",
+    "type": "friend",
     "hintSkillIds": [],
     "hintLevelUpMax": 0,
     "eventIds": []
@@ -1880,7 +1880,7 @@
     "characterId": 1107,
     "rarity": "R",
     "commandId": 103,
-    "type": "speed",
+    "type": "power",
     "hintSkillIds": [
       200252,
       200532,
@@ -1921,7 +1921,7 @@
     "characterId": 1090,
     "rarity": "R",
     "commandId": 103,
-    "type": "speed",
+    "type": "power",
     "hintSkillIds": [
       200032,
       200132,
@@ -1940,7 +1940,7 @@
     "characterId": 1102,
     "rarity": "R",
     "commandId": 105,
-    "type": "speed",
+    "type": "guts",
     "hintSkillIds": [
       200382,
       200492,
@@ -1961,7 +1961,7 @@
     "characterId": 1091,
     "rarity": "R",
     "commandId": 103,
-    "type": "speed",
+    "type": "power",
     "hintSkillIds": [
       200592,
       200602,
@@ -1982,7 +1982,7 @@
     "characterId": 1103,
     "rarity": "R",
     "commandId": 102,
-    "type": "speed",
+    "type": "stamina",
     "hintSkillIds": [
       200432,
       200442,
@@ -2024,7 +2024,7 @@
     "characterId": 1082,
     "rarity": "R",
     "commandId": 106,
-    "type": "speed",
+    "type": "wit",
     "hintSkillIds": [
       200132,
       200432,
@@ -2046,7 +2046,7 @@
     "characterId": 1115,
     "rarity": "R",
     "commandId": 103,
-    "type": "speed",
+    "type": "power",
     "hintSkillIds": [
       200332,
       200492,
@@ -2067,7 +2067,7 @@
     "characterId": 9044,
     "rarity": "R",
     "commandId": 0,
-    "type": "stamina",
+    "type": "friend",
     "hintSkillIds": [],
     "hintLevelUpMax": 0,
     "eventIds": []
@@ -2080,7 +2080,7 @@
     "characterId": 1089,
     "rarity": "R",
     "commandId": 105,
-    "type": "speed",
+    "type": "guts",
     "hintSkillIds": [
       200562,
       200582,
@@ -2102,7 +2102,7 @@
     "characterId": 1105,
     "rarity": "R",
     "commandId": 106,
-    "type": "speed",
+    "type": "wit",
     "hintSkillIds": [
       200132,
       201112,
@@ -2124,7 +2124,7 @@
     "characterId": 1106,
     "rarity": "R",
     "commandId": 105,
-    "type": "speed",
+    "type": "guts",
     "hintSkillIds": [
       200602,
       200742,
@@ -2145,7 +2145,7 @@
     "characterId": 1092,
     "rarity": "R",
     "commandId": 106,
-    "type": "speed",
+    "type": "wit",
     "hintSkillIds": [
       200462,
       201102,
@@ -2167,7 +2167,7 @@
     "characterId": 9002,
     "rarity": "R",
     "commandId": 0,
-    "type": "stamina",
+    "type": "friend",
     "hintSkillIds": [],
     "hintLevelUpMax": 0,
     "eventIds": []
@@ -2180,7 +2180,7 @@
     "characterId": 1081,
     "rarity": "R",
     "commandId": 102,
-    "type": "speed",
+    "type": "stamina",
     "hintSkillIds": [
       201072,
       201661,
@@ -2244,7 +2244,7 @@
     "characterId": 1109,
     "rarity": "R",
     "commandId": 103,
-    "type": "speed",
+    "type": "power",
     "hintSkillIds": [
       200052,
       200582,
@@ -2265,7 +2265,7 @@
     "characterId": 1110,
     "rarity": "R",
     "commandId": 106,
-    "type": "speed",
+    "type": "wit",
     "hintSkillIds": [
       200132,
       200462,
@@ -2285,7 +2285,7 @@
     "characterId": 1128,
     "rarity": "R",
     "commandId": 103,
-    "type": "speed",
+    "type": "power",
     "hintSkillIds": [
       200332,
       200562,
@@ -2308,7 +2308,7 @@
     "characterId": 1096,
     "rarity": "R",
     "commandId": 103,
-    "type": "speed",
+    "type": "power",
     "hintSkillIds": [
       200302,
       200372,
@@ -2329,7 +2329,7 @@
     "characterId": 1114,
     "rarity": "R",
     "commandId": 103,
-    "type": "speed",
+    "type": "power",
     "hintSkillIds": [
       200342,
       200372,
@@ -2374,7 +2374,7 @@
     "characterId": 1075,
     "rarity": "R",
     "commandId": 106,
-    "type": "speed",
+    "type": "wit",
     "hintSkillIds": [
       200172,
       200592,
@@ -2398,7 +2398,7 @@
     "characterId": 1112,
     "rarity": "R",
     "commandId": 102,
-    "type": "speed",
+    "type": "stamina",
     "hintSkillIds": [
       200462,
       200502,
@@ -2444,7 +2444,7 @@
     "characterId": 1130,
     "rarity": "R",
     "commandId": 106,
-    "type": "speed",
+    "type": "wit",
     "hintSkillIds": [
       200142,
       200342,
@@ -2465,7 +2465,7 @@
     "characterId": 1131,
     "rarity": "R",
     "commandId": 102,
-    "type": "speed",
+    "type": "stamina",
     "hintSkillIds": [
       200132,
       200702,
@@ -2486,7 +2486,7 @@
     "characterId": 1080,
     "rarity": "R",
     "commandId": 103,
-    "type": "speed",
+    "type": "power",
     "hintSkillIds": [
       201601,
       201661,
@@ -2510,7 +2510,7 @@
     "characterId": 1134,
     "rarity": "R",
     "commandId": 105,
-    "type": "speed",
+    "type": "guts",
     "hintSkillIds": [
       200352,
       200462,
@@ -2533,7 +2533,7 @@
     "characterId": 1111,
     "rarity": "R",
     "commandId": 106,
-    "type": "speed",
+    "type": "wit",
     "hintSkillIds": [
       200132,
       200502,
@@ -2554,7 +2554,7 @@
     "characterId": 9049,
     "rarity": "R",
     "commandId": 0,
-    "type": "stamina",
+    "type": "friend",
     "hintSkillIds": [],
     "hintLevelUpMax": 0,
     "eventIds": []
@@ -2588,7 +2588,7 @@
     "characterId": 1117,
     "rarity": "R",
     "commandId": 106,
-    "type": "speed",
+    "type": "wit",
     "hintSkillIds": [
       200012,
       200182,
@@ -2613,7 +2613,7 @@
     "characterId": 1135,
     "rarity": "R",
     "commandId": 103,
-    "type": "speed",
+    "type": "power",
     "hintSkillIds": [
       200332,
       201591,
@@ -2664,7 +2664,7 @@
     "characterId": 1133,
     "rarity": "R",
     "commandId": 106,
-    "type": "speed",
+    "type": "wit",
     "hintSkillIds": [
       200142,
       200482,
@@ -2711,7 +2711,7 @@
     "characterId": 1121,
     "rarity": "R",
     "commandId": 106,
-    "type": "speed",
+    "type": "wit",
     "hintSkillIds": [
       200152,
       200362,
@@ -2758,7 +2758,7 @@
     "characterId": 9050,
     "rarity": "R",
     "commandId": 0,
-    "type": "stamina",
+    "type": "friend",
     "hintSkillIds": [],
     "hintLevelUpMax": 0,
     "eventIds": []
@@ -2771,7 +2771,7 @@
     "characterId": 1127,
     "rarity": "R",
     "commandId": 105,
-    "type": "speed",
+    "type": "guts",
     "hintSkillIds": [
       201182,
       202012,
@@ -2796,7 +2796,7 @@
     "characterId": 1138,
     "rarity": "R",
     "commandId": 106,
-    "type": "speed",
+    "type": "wit",
     "hintSkillIds": [
       200362,
       200462,
@@ -2823,7 +2823,7 @@
     "characterId": 1139,
     "rarity": "R",
     "commandId": 0,
-    "type": "stamina",
+    "type": "friend",
     "hintSkillIds": [],
     "hintLevelUpMax": 0,
     "eventIds": []
@@ -2836,7 +2836,7 @@
     "characterId": 1136,
     "rarity": "R",
     "commandId": 103,
-    "type": "speed",
+    "type": "power",
     "hintSkillIds": [
       200602,
       200612,
@@ -2908,7 +2908,7 @@
     "characterId": 1005,
     "rarity": "SR",
     "commandId": 106,
-    "type": "speed",
+    "type": "wit",
     "hintSkillIds": [
       200182,
       200222,
@@ -2927,7 +2927,7 @@
     "characterId": 1009,
     "rarity": "SR",
     "commandId": 106,
-    "type": "speed",
+    "type": "wit",
     "hintSkillIds": [
       200282,
       200572,
@@ -2947,7 +2947,7 @@
     "characterId": 1012,
     "rarity": "SR",
     "commandId": 102,
-    "type": "speed",
+    "type": "stamina",
     "hintSkillIds": [
       200562,
       200642,
@@ -2966,7 +2966,7 @@
     "characterId": 1018,
     "rarity": "SR",
     "commandId": 103,
-    "type": "speed",
+    "type": "power",
     "hintSkillIds": [
       200472,
       200722,
@@ -2986,7 +2986,7 @@
     "characterId": 1019,
     "rarity": "SR",
     "commandId": 102,
-    "type": "speed",
+    "type": "stamina",
     "hintSkillIds": [
       200442,
       200482,
@@ -3006,7 +3006,7 @@
     "characterId": 1023,
     "rarity": "SR",
     "commandId": 102,
-    "type": "speed",
+    "type": "stamina",
     "hintSkillIds": [
       200052,
       200162,
@@ -3025,7 +3025,7 @@
     "characterId": 1024,
     "rarity": "SR",
     "commandId": 105,
-    "type": "speed",
+    "type": "guts",
     "hintSkillIds": [
       200142,
       200332,
@@ -3045,7 +3045,7 @@
     "characterId": 1025,
     "rarity": "SR",
     "commandId": 105,
-    "type": "speed",
+    "type": "guts",
     "hintSkillIds": [
       200162,
       200232,
@@ -3065,7 +3065,7 @@
     "characterId": 1026,
     "rarity": "SR",
     "commandId": 102,
-    "type": "speed",
+    "type": "stamina",
     "hintSkillIds": [
       200242,
       200532,
@@ -3083,7 +3083,7 @@
     "characterId": 1027,
     "rarity": "SR",
     "commandId": 102,
-    "type": "speed",
+    "type": "stamina",
     "hintSkillIds": [
       200162,
       200232,
@@ -3101,7 +3101,7 @@
     "characterId": 1029,
     "rarity": "SR",
     "commandId": 103,
-    "type": "speed",
+    "type": "power",
     "hintSkillIds": [
       200042,
       200202,
@@ -3119,7 +3119,7 @@
     "characterId": 1032,
     "rarity": "SR",
     "commandId": 106,
-    "type": "speed",
+    "type": "wit",
     "hintSkillIds": [
       200722,
       201102,
@@ -3177,7 +3177,7 @@
     "characterId": 1055,
     "rarity": "SR",
     "commandId": 106,
-    "type": "speed",
+    "type": "wit",
     "hintSkillIds": [
       200362,
       200462,
@@ -3196,7 +3196,7 @@
     "characterId": 1056,
     "rarity": "SR",
     "commandId": 106,
-    "type": "speed",
+    "type": "wit",
     "hintSkillIds": [
       200092,
       200482,
@@ -3217,7 +3217,7 @@
     "characterId": 1058,
     "rarity": "SR",
     "commandId": 103,
-    "type": "speed",
+    "type": "power",
     "hintSkillIds": [
       200142,
       200152,
@@ -3238,7 +3238,7 @@
     "characterId": 1059,
     "rarity": "SR",
     "commandId": 106,
-    "type": "speed",
+    "type": "wit",
     "hintSkillIds": [
       200062,
       200212,
@@ -3257,7 +3257,7 @@
     "characterId": 1060,
     "rarity": "SR",
     "commandId": 103,
-    "type": "speed",
+    "type": "power",
     "hintSkillIds": [
       200122,
       200342,
@@ -3299,7 +3299,7 @@
     "characterId": 9004,
     "rarity": "SR",
     "commandId": 0,
-    "type": "stamina",
+    "type": "friend",
     "hintSkillIds": [],
     "hintLevelUpMax": 0,
     "eventIds": []
@@ -3312,7 +3312,7 @@
     "characterId": 1021,
     "rarity": "SR",
     "commandId": 103,
-    "type": "speed",
+    "type": "power",
     "hintSkillIds": [
       200712,
       200811,
@@ -3354,7 +3354,7 @@
     "characterId": 1065,
     "rarity": "SR",
     "commandId": 102,
-    "type": "speed",
+    "type": "stamina",
     "hintSkillIds": [
       200462,
       200562,
@@ -3375,7 +3375,7 @@
     "characterId": 1063,
     "rarity": "SR",
     "commandId": 106,
-    "type": "speed",
+    "type": "wit",
     "hintSkillIds": [
       200442,
       200482,
@@ -3394,7 +3394,7 @@
     "characterId": 1060,
     "rarity": "SR",
     "commandId": 106,
-    "type": "speed",
+    "type": "wit",
     "hintSkillIds": [
       200122,
       200342,
@@ -3416,7 +3416,7 @@
     "characterId": 1051,
     "rarity": "SR",
     "commandId": 102,
-    "type": "speed",
+    "type": "stamina",
     "hintSkillIds": [
       200052,
       200132,
@@ -3435,7 +3435,7 @@
     "characterId": 1047,
     "rarity": "SR",
     "commandId": 105,
-    "type": "speed",
+    "type": "guts",
     "hintSkillIds": [
       200362,
       200452,
@@ -3457,7 +3457,7 @@
     "characterId": 1042,
     "rarity": "SR",
     "commandId": 103,
-    "type": "speed",
+    "type": "power",
     "hintSkillIds": [
       200152,
       200472,
@@ -3477,7 +3477,7 @@
     "characterId": 1031,
     "rarity": "SR",
     "commandId": 106,
-    "type": "speed",
+    "type": "wit",
     "hintSkillIds": [
       200732,
       201082,
@@ -3514,7 +3514,7 @@
     "characterId": 1034,
     "rarity": "SR",
     "commandId": 102,
-    "type": "speed",
+    "type": "stamina",
     "hintSkillIds": [
       200172,
       200202,
@@ -3555,7 +3555,7 @@
     "characterId": 1071,
     "rarity": "SR",
     "commandId": 106,
-    "type": "speed",
+    "type": "wit",
     "hintSkillIds": [
       200022,
       200572,
@@ -3574,7 +3574,7 @@
     "characterId": 1048,
     "rarity": "SR",
     "commandId": 105,
-    "type": "speed",
+    "type": "guts",
     "hintSkillIds": [
       200302,
       200562,
@@ -3594,7 +3594,7 @@
     "characterId": 1064,
     "rarity": "SR",
     "commandId": 105,
-    "type": "speed",
+    "type": "guts",
     "hintSkillIds": [
       200332,
       200742,
@@ -3616,7 +3616,7 @@
     "characterId": 1022,
     "rarity": "SR",
     "commandId": 102,
-    "type": "speed",
+    "type": "stamina",
     "hintSkillIds": [
       200012,
       200192,
@@ -3635,7 +3635,7 @@
     "characterId": 1070,
     "rarity": "SR",
     "commandId": 103,
-    "type": "speed",
+    "type": "power",
     "hintSkillIds": [
       200162,
       200582,
@@ -3676,7 +3676,7 @@
     "characterId": 1027,
     "rarity": "SR",
     "commandId": 105,
-    "type": "speed",
+    "type": "guts",
     "hintSkillIds": [
       200602,
       200722,
@@ -3693,7 +3693,7 @@
     "characterId": 1033,
     "rarity": "SR",
     "commandId": 103,
-    "type": "speed",
+    "type": "power",
     "hintSkillIds": [
       200632,
       201152,
@@ -3712,7 +3712,7 @@
     "characterId": 1041,
     "rarity": "SR",
     "commandId": 102,
-    "type": "speed",
+    "type": "stamina",
     "hintSkillIds": [
       200652,
       200791,
@@ -3734,7 +3734,7 @@
     "characterId": 1001,
     "rarity": "SR",
     "commandId": 102,
-    "type": "speed",
+    "type": "stamina",
     "hintSkillIds": [
       200162,
       200512,
@@ -3774,7 +3774,7 @@
     "characterId": 1046,
     "rarity": "SR",
     "commandId": 103,
-    "type": "speed",
+    "type": "power",
     "hintSkillIds": [
       200162,
       200222,
@@ -3795,7 +3795,7 @@
     "characterId": 1044,
     "rarity": "SR",
     "commandId": 106,
-    "type": "speed",
+    "type": "wit",
     "hintSkillIds": [
       200452,
       201162,
@@ -3816,7 +3816,7 @@
     "characterId": 1003,
     "rarity": "SR",
     "commandId": 105,
-    "type": "speed",
+    "type": "guts",
     "hintSkillIds": [
       200452,
       200492,
@@ -3836,7 +3836,7 @@
     "characterId": 1006,
     "rarity": "SR",
     "commandId": 103,
-    "type": "speed",
+    "type": "power",
     "hintSkillIds": [
       200342,
       200492,
@@ -3858,7 +3858,7 @@
     "characterId": 1040,
     "rarity": "SR",
     "commandId": 106,
-    "type": "speed",
+    "type": "wit",
     "hintSkillIds": [
       200232,
       200302,
@@ -3877,7 +3877,7 @@
     "characterId": 1020,
     "rarity": "SR",
     "commandId": 106,
-    "type": "speed",
+    "type": "wit",
     "hintSkillIds": [
       200532,
       200542,
@@ -3897,7 +3897,7 @@
     "characterId": 1093,
     "rarity": "SR",
     "commandId": 103,
-    "type": "speed",
+    "type": "power",
     "hintSkillIds": [
       200702,
       200972,
@@ -3917,7 +3917,7 @@
     "characterId": 1073,
     "rarity": "SR",
     "commandId": 103,
-    "type": "speed",
+    "type": "power",
     "hintSkillIds": [
       200302,
       200722,
@@ -3936,7 +3936,7 @@
     "characterId": 1077,
     "rarity": "SR",
     "commandId": 102,
-    "type": "speed",
+    "type": "stamina",
     "hintSkillIds": [
       200012,
       200142,
@@ -3955,7 +3955,7 @@
     "characterId": 1015,
     "rarity": "SR",
     "commandId": 105,
-    "type": "speed",
+    "type": "guts",
     "hintSkillIds": [
       200142,
       200352,
@@ -4020,7 +4020,7 @@
     "characterId": 1059,
     "rarity": "SR",
     "commandId": 103,
-    "type": "speed",
+    "type": "power",
     "hintSkillIds": [
       200012,
       200142,
@@ -4040,7 +4040,7 @@
     "characterId": 1017,
     "rarity": "SR",
     "commandId": 105,
-    "type": "speed",
+    "type": "guts",
     "hintSkillIds": [
       200831,
       200861,
@@ -4062,7 +4062,7 @@
     "characterId": 1032,
     "rarity": "SR",
     "commandId": 102,
-    "type": "speed",
+    "type": "stamina",
     "hintSkillIds": [
       200012,
       200042,
@@ -4085,7 +4085,7 @@
     "characterId": 1028,
     "rarity": "SR",
     "commandId": 102,
-    "type": "speed",
+    "type": "stamina",
     "hintSkillIds": [
       200212,
       200342,
@@ -4106,7 +4106,7 @@
     "characterId": 1007,
     "rarity": "SR",
     "commandId": 105,
-    "type": "speed",
+    "type": "guts",
     "hintSkillIds": [
       200622,
       200642,
@@ -4144,7 +4144,7 @@
     "characterId": 1004,
     "rarity": "SR",
     "commandId": 106,
-    "type": "speed",
+    "type": "wit",
     "hintSkillIds": [
       200042,
       200532,
@@ -4187,7 +4187,7 @@
     "characterId": 1098,
     "rarity": "SR",
     "commandId": 103,
-    "type": "speed",
+    "type": "power",
     "hintSkillIds": [
       200952,
       201532,
@@ -4209,7 +4209,7 @@
     "characterId": 1011,
     "rarity": "SR",
     "commandId": 102,
-    "type": "speed",
+    "type": "stamina",
     "hintSkillIds": [
       200592,
       200612,
@@ -4229,7 +4229,7 @@
     "characterId": 1068,
     "rarity": "SR",
     "commandId": 105,
-    "type": "speed",
+    "type": "guts",
     "hintSkillIds": [
       200332,
       200352,
@@ -4250,7 +4250,7 @@
     "characterId": 1010,
     "rarity": "SR",
     "commandId": 106,
-    "type": "speed",
+    "type": "wit",
     "hintSkillIds": [
       200682,
       201042,
@@ -4269,7 +4269,7 @@
     "characterId": 1060,
     "rarity": "SR",
     "commandId": 105,
-    "type": "speed",
+    "type": "guts",
     "hintSkillIds": [
       200602,
       201162,
@@ -4309,7 +4309,7 @@
     "characterId": 1090,
     "rarity": "SR",
     "commandId": 103,
-    "type": "speed",
+    "type": "power",
     "hintSkillIds": [
       200032,
       200132,
@@ -4328,7 +4328,7 @@
     "characterId": 1103,
     "rarity": "SR",
     "commandId": 102,
-    "type": "speed",
+    "type": "stamina",
     "hintSkillIds": [
       200432,
       200442,
@@ -4349,7 +4349,7 @@
     "characterId": 1084,
     "rarity": "SR",
     "commandId": 106,
-    "type": "speed",
+    "type": "wit",
     "hintSkillIds": [
       200362,
       200502,
@@ -4391,7 +4391,7 @@
     "characterId": 1072,
     "rarity": "SR",
     "commandId": 105,
-    "type": "speed",
+    "type": "guts",
     "hintSkillIds": [
       200472,
       200512,
@@ -4412,7 +4412,7 @@
     "characterId": 1107,
     "rarity": "SR",
     "commandId": 103,
-    "type": "speed",
+    "type": "power",
     "hintSkillIds": [
       200032,
       200372,
@@ -4434,7 +4434,7 @@
     "characterId": 1036,
     "rarity": "SR",
     "commandId": 102,
-    "type": "speed",
+    "type": "stamina",
     "hintSkillIds": [
       200372,
       200632,
@@ -4454,7 +4454,7 @@
     "characterId": 1092,
     "rarity": "SR",
     "commandId": 106,
-    "type": "speed",
+    "type": "wit",
     "hintSkillIds": [
       200462,
       201102,
@@ -4496,7 +4496,7 @@
     "characterId": 1055,
     "rarity": "SR",
     "commandId": 103,
-    "type": "speed",
+    "type": "power",
     "hintSkillIds": [
       200012,
       200372,
@@ -4517,7 +4517,7 @@
     "characterId": 1076,
     "rarity": "SR",
     "commandId": 106,
-    "type": "speed",
+    "type": "wit",
     "hintSkillIds": [
       200442,
       200502,
@@ -4538,7 +4538,7 @@
     "characterId": 1082,
     "rarity": "SR",
     "commandId": 102,
-    "type": "speed",
+    "type": "stamina",
     "hintSkillIds": [
       200132,
       200462,
@@ -4580,7 +4580,7 @@
     "characterId": 1086,
     "rarity": "SR",
     "commandId": 105,
-    "type": "speed",
+    "type": "guts",
     "hintSkillIds": [
       200462,
       200732,
@@ -4601,7 +4601,7 @@
     "characterId": 1130,
     "rarity": "SR",
     "commandId": 106,
-    "type": "speed",
+    "type": "wit",
     "hintSkillIds": [
       200142,
       200342,
@@ -4622,7 +4622,7 @@
     "characterId": 1013,
     "rarity": "SR",
     "commandId": 103,
-    "type": "speed",
+    "type": "power",
     "hintSkillIds": [
       200472,
       200482,
@@ -4665,7 +4665,7 @@
     "characterId": 1112,
     "rarity": "SR",
     "commandId": 102,
-    "type": "speed",
+    "type": "stamina",
     "hintSkillIds": [
       200462,
       200502,
@@ -4687,7 +4687,7 @@
     "characterId": 1134,
     "rarity": "SR",
     "commandId": 105,
-    "type": "speed",
+    "type": "guts",
     "hintSkillIds": [
       200352,
       200462,
@@ -4710,7 +4710,7 @@
     "characterId": 1039,
     "rarity": "SR",
     "commandId": 103,
-    "type": "speed",
+    "type": "power",
     "hintSkillIds": [
       200342,
       201132,
@@ -4731,7 +4731,7 @@
     "characterId": 1054,
     "rarity": "SR",
     "commandId": 106,
-    "type": "speed",
+    "type": "wit",
     "hintSkillIds": [
       200162,
       200652,
@@ -4776,7 +4776,7 @@
     "characterId": 1099,
     "rarity": "SR",
     "commandId": 102,
-    "type": "speed",
+    "type": "stamina",
     "hintSkillIds": [
       201332,
       201631,
@@ -4820,7 +4820,7 @@
     "characterId": 1067,
     "rarity": "SR",
     "commandId": 105,
-    "type": "speed",
+    "type": "guts",
     "hintSkillIds": [
       200202,
       201402,
@@ -4843,7 +4843,7 @@
     "characterId": 1136,
     "rarity": "SR",
     "commandId": 103,
-    "type": "speed",
+    "type": "power",
     "hintSkillIds": [
       200602,
       200612,
@@ -4865,7 +4865,7 @@
     "characterId": 1010,
     "rarity": "SR",
     "commandId": 103,
-    "type": "speed",
+    "type": "power",
     "hintSkillIds": [
       200162,
       201352,
@@ -4887,7 +4887,7 @@
     "characterId": 1045,
     "rarity": "SR",
     "commandId": 102,
-    "type": "speed",
+    "type": "stamina",
     "hintSkillIds": [
       200352,
       200752,
@@ -4908,7 +4908,7 @@
     "characterId": 1012,
     "rarity": "SR",
     "commandId": 106,
-    "type": "speed",
+    "type": "wit",
     "hintSkillIds": [
       201452,
       202492,
@@ -4929,7 +4929,7 @@
     "characterId": 1071,
     "rarity": "SR",
     "commandId": 105,
-    "type": "speed",
+    "type": "guts",
     "hintSkillIds": [
       200582,
       200732,
@@ -4973,7 +4973,7 @@
     "characterId": 1001,
     "rarity": "SSR",
     "commandId": 103,
-    "type": "speed",
+    "type": "power",
     "hintSkillIds": [
       200162,
       200232,
@@ -5037,7 +5037,7 @@
     "characterId": 1007,
     "rarity": "SSR",
     "commandId": 105,
-    "type": "speed",
+    "type": "guts",
     "hintSkillIds": [
       200622,
       200642,
@@ -5065,7 +5065,7 @@
     "characterId": 1008,
     "rarity": "SSR",
     "commandId": 102,
-    "type": "speed",
+    "type": "stamina",
     "hintSkillIds": [
       200032,
       200362,
@@ -5088,7 +5088,7 @@
     "characterId": 1011,
     "rarity": "SSR",
     "commandId": 103,
-    "type": "speed",
+    "type": "power",
     "hintSkillIds": [
       200042,
       200282,
@@ -5110,7 +5110,7 @@
     "characterId": 1014,
     "rarity": "SSR",
     "commandId": 102,
-    "type": "speed",
+    "type": "stamina",
     "hintSkillIds": [
       200132,
       200212,
@@ -5131,7 +5131,7 @@
     "characterId": 1020,
     "rarity": "SSR",
     "commandId": 105,
-    "type": "speed",
+    "type": "guts",
     "hintSkillIds": [
       200252,
       200302,
@@ -5151,7 +5151,7 @@
     "characterId": 1021,
     "rarity": "SSR",
     "commandId": 105,
-    "type": "speed",
+    "type": "guts",
     "hintSkillIds": [
       200712,
       200811,
@@ -5172,7 +5172,7 @@
     "characterId": 1022,
     "rarity": "SSR",
     "commandId": 106,
-    "type": "speed",
+    "type": "wit",
     "hintSkillIds": [
       200012,
       200192,
@@ -5191,7 +5191,7 @@
     "characterId": 1031,
     "rarity": "SSR",
     "commandId": 103,
-    "type": "speed",
+    "type": "power",
     "hintSkillIds": [
       200732,
       201082,
@@ -5210,7 +5210,7 @@
     "characterId": 1035,
     "rarity": "SSR",
     "commandId": 103,
-    "type": "speed",
+    "type": "power",
     "hintSkillIds": [
       200152,
       200222,
@@ -5229,7 +5229,7 @@
     "characterId": 1036,
     "rarity": "SSR",
     "commandId": 106,
-    "type": "speed",
+    "type": "wit",
     "hintSkillIds": [
       201212,
       201492,
@@ -5285,7 +5285,7 @@
     "characterId": 1045,
     "rarity": "SSR",
     "commandId": 105,
-    "type": "speed",
+    "type": "guts",
     "hintSkillIds": [
       200152,
       200352,
@@ -5304,7 +5304,7 @@
     "characterId": 1046,
     "rarity": "SSR",
     "commandId": 102,
-    "type": "speed",
+    "type": "stamina",
     "hintSkillIds": [
       200162,
       200222,
@@ -5345,7 +5345,7 @@
     "characterId": 1052,
     "rarity": "SSR",
     "commandId": 103,
-    "type": "speed",
+    "type": "power",
     "hintSkillIds": [],
     "hintLevelUpMax": 0,
     "eventIds": []
@@ -5379,7 +5379,7 @@
     "characterId": 9001,
     "rarity": "SSR",
     "commandId": 0,
-    "type": "stamina",
+    "type": "friend",
     "hintSkillIds": [],
     "hintLevelUpMax": 0,
     "eventIds": []
@@ -5392,7 +5392,7 @@
     "characterId": 1013,
     "rarity": "SSR",
     "commandId": 105,
-    "type": "speed",
+    "type": "guts",
     "hintSkillIds": [
       200062,
       200162,
@@ -5416,7 +5416,7 @@
     "characterId": 1030,
     "rarity": "SSR",
     "commandId": 105,
-    "type": "speed",
+    "type": "guts",
     "hintSkillIds": [
       200062,
       200272,
@@ -5439,7 +5439,7 @@
     "characterId": 1006,
     "rarity": "SSR",
     "commandId": 102,
-    "type": "speed",
+    "type": "stamina",
     "hintSkillIds": [
       200222,
       200332,
@@ -5504,7 +5504,7 @@
     "characterId": 1064,
     "rarity": "SSR",
     "commandId": 103,
-    "type": "speed",
+    "type": "power",
     "hintSkillIds": [
       200042,
       200052,
@@ -5547,7 +5547,7 @@
     "characterId": 1067,
     "rarity": "SSR",
     "commandId": 105,
-    "type": "speed",
+    "type": "guts",
     "hintSkillIds": [
       200152,
       200212,
@@ -5568,7 +5568,7 @@
     "characterId": 1062,
     "rarity": "SSR",
     "commandId": 103,
-    "type": "speed",
+    "type": "power",
     "hintSkillIds": [
       200442,
       200472,
@@ -5587,7 +5587,7 @@
     "characterId": 1029,
     "rarity": "SSR",
     "commandId": 106,
-    "type": "speed",
+    "type": "wit",
     "hintSkillIds": [
       200042,
       200202,
@@ -5605,7 +5605,7 @@
     "characterId": 1072,
     "rarity": "SSR",
     "commandId": 102,
-    "type": "speed",
+    "type": "stamina",
     "hintSkillIds": [
       200462,
       200512,
@@ -5624,7 +5624,7 @@
     "characterId": 1035,
     "rarity": "SSR",
     "commandId": 102,
-    "type": "speed",
+    "type": "stamina",
     "hintSkillIds": [
       200152,
       200222,
@@ -5643,7 +5643,7 @@
     "characterId": 1030,
     "rarity": "SSR",
     "commandId": 102,
-    "type": "speed",
+    "type": "stamina",
     "hintSkillIds": [
       200062,
       200272,
@@ -5666,7 +5666,7 @@
     "characterId": 9006,
     "rarity": "SSR",
     "commandId": 0,
-    "type": "stamina",
+    "type": "friend",
     "hintSkillIds": [],
     "hintLevelUpMax": 0,
     "eventIds": []
@@ -5679,7 +5679,7 @@
     "characterId": 1017,
     "rarity": "SSR",
     "commandId": 103,
-    "type": "speed",
+    "type": "power",
     "hintSkillIds": [
       200012,
       200042,
@@ -5705,7 +5705,7 @@
     "characterId": 1069,
     "rarity": "SSR",
     "commandId": 105,
-    "type": "speed",
+    "type": "guts",
     "hintSkillIds": [
       200732,
       201052,
@@ -5741,7 +5741,7 @@
     "characterId": 1028,
     "rarity": "SSR",
     "commandId": 103,
-    "type": "speed",
+    "type": "power",
     "hintSkillIds": [
       200212,
       200552,
@@ -5761,7 +5761,7 @@
     "characterId": 1059,
     "rarity": "SSR",
     "commandId": 106,
-    "type": "speed",
+    "type": "wit",
     "hintSkillIds": [
       200062,
       200212,
@@ -5780,7 +5780,7 @@
     "characterId": 1053,
     "rarity": "SSR",
     "commandId": 102,
-    "type": "speed",
+    "type": "stamina",
     "hintSkillIds": [
       200292,
       200362,
@@ -5800,7 +5800,7 @@
     "characterId": 1049,
     "rarity": "SSR",
     "commandId": 105,
-    "type": "speed",
+    "type": "guts",
     "hintSkillIds": [
       200162,
       200302,
@@ -5866,7 +5866,7 @@
     "characterId": 1035,
     "rarity": "SSR",
     "commandId": 105,
-    "type": "speed",
+    "type": "guts",
     "hintSkillIds": [
       200152,
       200222,
@@ -5885,7 +5885,7 @@
     "characterId": 1009,
     "rarity": "SSR",
     "commandId": 102,
-    "type": "speed",
+    "type": "stamina",
     "hintSkillIds": [
       200282,
       200572,
@@ -5905,7 +5905,7 @@
     "characterId": 1027,
     "rarity": "SSR",
     "commandId": 103,
-    "type": "speed",
+    "type": "power",
     "hintSkillIds": [
       200162,
       200232,
@@ -5923,7 +5923,7 @@
     "characterId": 9008,
     "rarity": "SSR",
     "commandId": 0,
-    "type": "stamina",
+    "type": "friend",
     "hintSkillIds": [],
     "hintLevelUpMax": 0,
     "eventIds": []
@@ -5956,7 +5956,7 @@
     "characterId": 1060,
     "rarity": "SSR",
     "commandId": 106,
-    "type": "speed",
+    "type": "wit",
     "hintSkillIds": [
       200122,
       200342,
@@ -5978,7 +5978,7 @@
     "characterId": 1020,
     "rarity": "SSR",
     "commandId": 106,
-    "type": "speed",
+    "type": "wit",
     "hintSkillIds": [
       200252,
       200302,
@@ -5998,7 +5998,7 @@
     "characterId": 1061,
     "rarity": "SSR",
     "commandId": 102,
-    "type": "speed",
+    "type": "stamina",
     "hintSkillIds": [
       200152,
       200222,
@@ -6046,7 +6046,7 @@
     "characterId": 1003,
     "rarity": "SSR",
     "commandId": 102,
-    "type": "speed",
+    "type": "stamina",
     "hintSkillIds": [
       200452,
       200492,
@@ -6066,7 +6066,7 @@
     "characterId": 1026,
     "rarity": "SSR",
     "commandId": 105,
-    "type": "speed",
+    "type": "guts",
     "hintSkillIds": [
       200242,
       200532,
@@ -6084,7 +6084,7 @@
     "characterId": 1066,
     "rarity": "SSR",
     "commandId": 103,
-    "type": "speed",
+    "type": "power",
     "hintSkillIds": [
       200282,
       200292,
@@ -6104,7 +6104,7 @@
     "characterId": 1023,
     "rarity": "SSR",
     "commandId": 106,
-    "type": "speed",
+    "type": "wit",
     "hintSkillIds": [
       200052,
       200162,
@@ -6123,7 +6123,7 @@
     "characterId": 1002,
     "rarity": "SSR",
     "commandId": 105,
-    "type": "speed",
+    "type": "guts",
     "hintSkillIds": [
       200432,
       200532,
@@ -6146,7 +6146,7 @@
     "characterId": 1063,
     "rarity": "SSR",
     "commandId": 103,
-    "type": "speed",
+    "type": "power",
     "hintSkillIds": [
       200442,
       200482,
@@ -6165,7 +6165,7 @@
     "characterId": 1021,
     "rarity": "SSR",
     "commandId": 102,
-    "type": "speed",
+    "type": "stamina",
     "hintSkillIds": [
       200712,
       200811,
@@ -6208,7 +6208,7 @@
     "characterId": 1026,
     "rarity": "SSR",
     "commandId": 106,
-    "type": "speed",
+    "type": "wit",
     "hintSkillIds": [
       200242,
       200532,
@@ -6226,7 +6226,7 @@
     "characterId": 1017,
     "rarity": "SSR",
     "commandId": 0,
-    "type": "power",
+    "type": "friend",
     "hintSkillIds": [],
     "hintLevelUpMax": 0,
     "eventIds": []
@@ -6239,7 +6239,7 @@
     "characterId": 1038,
     "rarity": "SSR",
     "commandId": 106,
-    "type": "speed",
+    "type": "wit",
     "hintSkillIds": [
       200652,
       200911,
@@ -6258,7 +6258,7 @@
     "characterId": 1016,
     "rarity": "SSR",
     "commandId": 105,
-    "type": "speed",
+    "type": "guts",
     "hintSkillIds": [
       200012,
       200572,
@@ -6280,7 +6280,7 @@
     "characterId": 1029,
     "rarity": "SSR",
     "commandId": 103,
-    "type": "speed",
+    "type": "power",
     "hintSkillIds": [
       200042,
       200202,
@@ -6298,7 +6298,7 @@
     "characterId": 1065,
     "rarity": "SSR",
     "commandId": 102,
-    "type": "speed",
+    "type": "stamina",
     "hintSkillIds": [
       200462,
       200562,
@@ -6339,7 +6339,7 @@
     "characterId": 1050,
     "rarity": "SSR",
     "commandId": 106,
-    "type": "speed",
+    "type": "wit",
     "hintSkillIds": [
       200442,
       200482,
@@ -6360,7 +6360,7 @@
     "characterId": 1055,
     "rarity": "SSR",
     "commandId": 102,
-    "type": "speed",
+    "type": "stamina",
     "hintSkillIds": [
       200362,
       200462,
@@ -6379,7 +6379,7 @@
     "characterId": 1025,
     "rarity": "SSR",
     "commandId": 105,
-    "type": "speed",
+    "type": "guts",
     "hintSkillIds": [
       200162,
       200232,
@@ -6422,7 +6422,7 @@
     "characterId": 1033,
     "rarity": "SSR",
     "commandId": 102,
-    "type": "speed",
+    "type": "stamina",
     "hintSkillIds": [
       200632,
       201152,
@@ -6462,7 +6462,7 @@
     "characterId": 1058,
     "rarity": "SSR",
     "commandId": 105,
-    "type": "speed",
+    "type": "guts",
     "hintSkillIds": [
       200142,
       200152,
@@ -6483,7 +6483,7 @@
     "characterId": 9005,
     "rarity": "SSR",
     "commandId": 0,
-    "type": "stamina",
+    "type": "friend",
     "hintSkillIds": [],
     "hintLevelUpMax": 0,
     "eventIds": []
@@ -6496,7 +6496,7 @@
     "characterId": 1001,
     "rarity": "SSR",
     "commandId": 0,
-    "type": "power",
+    "type": "friend",
     "hintSkillIds": [],
     "hintLevelUpMax": 0,
     "eventIds": []
@@ -6509,7 +6509,7 @@
     "characterId": 1051,
     "rarity": "SSR",
     "commandId": 106,
-    "type": "speed",
+    "type": "wit",
     "hintSkillIds": [
       200052,
       200132,
@@ -6528,7 +6528,7 @@
     "characterId": 1041,
     "rarity": "SSR",
     "commandId": 103,
-    "type": "speed",
+    "type": "power",
     "hintSkillIds": [
       200652,
       200791,
@@ -6570,7 +6570,7 @@
     "characterId": 1019,
     "rarity": "SSR",
     "commandId": 102,
-    "type": "speed",
+    "type": "stamina",
     "hintSkillIds": [
       200022,
       201032,
@@ -6611,7 +6611,7 @@
     "characterId": 1074,
     "rarity": "SSR",
     "commandId": 105,
-    "type": "speed",
+    "type": "guts",
     "hintSkillIds": [
       200012,
       200762,
@@ -6630,7 +6630,7 @@
     "characterId": 1067,
     "rarity": "SSR",
     "commandId": 106,
-    "type": "speed",
+    "type": "wit",
     "hintSkillIds": [
       200592,
       201212,
@@ -6650,7 +6650,7 @@
     "characterId": 1055,
     "rarity": "SSR",
     "commandId": 103,
-    "type": "speed",
+    "type": "power",
     "hintSkillIds": [
       200362,
       200462,
@@ -6669,7 +6669,7 @@
     "characterId": 1017,
     "rarity": "SSR",
     "commandId": 105,
-    "type": "speed",
+    "type": "guts",
     "hintSkillIds": [
       200831,
       200861,
@@ -6691,7 +6691,7 @@
     "characterId": 1070,
     "rarity": "SSR",
     "commandId": 106,
-    "type": "speed",
+    "type": "wit",
     "hintSkillIds": [
       200162,
       201112,
@@ -6729,7 +6729,7 @@
     "characterId": 1009,
     "rarity": "SSR",
     "commandId": 102,
-    "type": "speed",
+    "type": "stamina",
     "hintSkillIds": [
       200282,
       200572,
@@ -6748,7 +6748,7 @@
     "characterId": 1053,
     "rarity": "SSR",
     "commandId": 103,
-    "type": "speed",
+    "type": "power",
     "hintSkillIds": [
       200292,
       200512,
@@ -6791,7 +6791,7 @@
     "characterId": 1039,
     "rarity": "SSR",
     "commandId": 102,
-    "type": "speed",
+    "type": "stamina",
     "hintSkillIds": [
       200132,
       200572,
@@ -6809,7 +6809,7 @@
     "characterId": 1057,
     "rarity": "SSR",
     "commandId": 106,
-    "type": "speed",
+    "type": "wit",
     "hintSkillIds": [
       200232,
       200342,
@@ -6830,7 +6830,7 @@
     "characterId": 1052,
     "rarity": "SSR",
     "commandId": 102,
-    "type": "speed",
+    "type": "stamina",
     "hintSkillIds": [],
     "hintLevelUpMax": 0,
     "eventIds": []
@@ -6843,7 +6843,7 @@
     "characterId": 1063,
     "rarity": "SSR",
     "commandId": 105,
-    "type": "speed",
+    "type": "guts",
     "hintSkillIds": [
       200482,
       200592,
@@ -6864,7 +6864,7 @@
     "characterId": 1030,
     "rarity": "SSR",
     "commandId": 106,
-    "type": "speed",
+    "type": "wit",
     "hintSkillIds": [
       200742,
       201322,
@@ -6906,7 +6906,7 @@
     "characterId": 1014,
     "rarity": "SSR",
     "commandId": 103,
-    "type": "speed",
+    "type": "power",
     "hintSkillIds": [
       200132,
       200572,
@@ -6927,7 +6927,7 @@
     "characterId": 1062,
     "rarity": "SSR",
     "commandId": 106,
-    "type": "speed",
+    "type": "wit",
     "hintSkillIds": [
       200352,
       200442,
@@ -6947,7 +6947,7 @@
     "characterId": 1047,
     "rarity": "SSR",
     "commandId": 105,
-    "type": "speed",
+    "type": "guts",
     "hintSkillIds": [
       200032,
       200722,
@@ -6967,7 +6967,7 @@
     "characterId": 1001,
     "rarity": "SSR",
     "commandId": 103,
-    "type": "speed",
+    "type": "power",
     "hintSkillIds": [
       200012,
       200042,
@@ -6987,7 +6987,7 @@
     "characterId": 1018,
     "rarity": "SSR",
     "commandId": 102,
-    "type": "speed",
+    "type": "stamina",
     "hintSkillIds": [
       200931,
       200941,
@@ -7031,7 +7031,7 @@
     "characterId": 1049,
     "rarity": "SSR",
     "commandId": 106,
-    "type": "speed",
+    "type": "wit",
     "hintSkillIds": [
       200162,
       200182,
@@ -7057,7 +7057,7 @@
     "characterId": 1069,
     "rarity": "SSR",
     "commandId": 103,
-    "type": "speed",
+    "type": "power",
     "hintSkillIds": [
       200182,
       201032,
@@ -7078,7 +7078,7 @@
     "characterId": 1025,
     "rarity": "SSR",
     "commandId": 105,
-    "type": "speed",
+    "type": "guts",
     "hintSkillIds": [
       200742,
       201172,
@@ -7099,7 +7099,7 @@
     "characterId": 1003,
     "rarity": "SSR",
     "commandId": 106,
-    "type": "speed",
+    "type": "wit",
     "hintSkillIds": [
       200282,
       200332,
@@ -7121,7 +7121,7 @@
     "characterId": 1066,
     "rarity": "SSR",
     "commandId": 103,
-    "type": "speed",
+    "type": "power",
     "hintSkillIds": [
       200282,
       200292,
@@ -7142,7 +7142,7 @@
     "characterId": 1023,
     "rarity": "SSR",
     "commandId": 105,
-    "type": "speed",
+    "type": "guts",
     "hintSkillIds": [
       200052,
       200162,
@@ -7167,7 +7167,7 @@
     "characterId": 1085,
     "rarity": "SSR",
     "commandId": 102,
-    "type": "speed",
+    "type": "stamina",
     "hintSkillIds": [
       200602,
       200672,
@@ -7192,7 +7192,7 @@
     "characterId": 1064,
     "rarity": "SSR",
     "commandId": 105,
-    "type": "speed",
+    "type": "guts",
     "hintSkillIds": [
       200532,
       200552,
@@ -7237,7 +7237,7 @@
     "characterId": 1043,
     "rarity": "SSR",
     "commandId": 103,
-    "type": "speed",
+    "type": "power",
     "hintSkillIds": [
       200582,
       200851,
@@ -7260,7 +7260,7 @@
     "characterId": 1083,
     "rarity": "SSR",
     "commandId": 105,
-    "type": "speed",
+    "type": "guts",
     "hintSkillIds": [
       200352,
       200602,
@@ -7301,7 +7301,7 @@
     "characterId": 1072,
     "rarity": "SSR",
     "commandId": 103,
-    "type": "speed",
+    "type": "power",
     "hintSkillIds": [
       200462,
       200512,
@@ -7363,7 +7363,7 @@
     "characterId": 1016,
     "rarity": "SSR",
     "commandId": 102,
-    "type": "speed",
+    "type": "stamina",
     "hintSkillIds": [
       200012,
       200152,
@@ -7387,7 +7387,7 @@
     "characterId": 1018,
     "rarity": "SSR",
     "commandId": 106,
-    "type": "speed",
+    "type": "wit",
     "hintSkillIds": [
       200132,
       200202,
@@ -7409,7 +7409,7 @@
     "characterId": 1076,
     "rarity": "SSR",
     "commandId": 105,
-    "type": "speed",
+    "type": "guts",
     "hintSkillIds": [
       200172,
       200202,
@@ -7432,7 +7432,7 @@
     "characterId": 1078,
     "rarity": "SSR",
     "commandId": 103,
-    "type": "speed",
+    "type": "power",
     "hintSkillIds": [
       200192,
       200302,
@@ -7455,7 +7455,7 @@
     "characterId": 1001,
     "rarity": "SSR",
     "commandId": 105,
-    "type": "speed",
+    "type": "guts",
     "hintSkillIds": [
       200022,
       200132,
@@ -7479,7 +7479,7 @@
     "characterId": 1044,
     "rarity": "SSR",
     "commandId": 106,
-    "type": "speed",
+    "type": "wit",
     "hintSkillIds": [
       200781,
       201162,
@@ -7501,7 +7501,7 @@
     "characterId": 1011,
     "rarity": "SSR",
     "commandId": 102,
-    "type": "speed",
+    "type": "stamina",
     "hintSkillIds": [
       200202,
       200222,
@@ -7520,7 +7520,7 @@
     "characterId": 1093,
     "rarity": "SSR",
     "commandId": 103,
-    "type": "speed",
+    "type": "power",
     "hintSkillIds": [
       200702,
       200972,
@@ -7562,7 +7562,7 @@
     "characterId": 1054,
     "rarity": "SSR",
     "commandId": 102,
-    "type": "speed",
+    "type": "stamina",
     "hintSkillIds": [
       200232,
       200492,
@@ -7583,7 +7583,7 @@
     "characterId": 1028,
     "rarity": "SSR",
     "commandId": 106,
-    "type": "speed",
+    "type": "wit",
     "hintSkillIds": [
       200212,
       200552,
@@ -7603,7 +7603,7 @@
     "characterId": 1086,
     "rarity": "SSR",
     "commandId": 106,
-    "type": "speed",
+    "type": "wit",
     "hintSkillIds": [
       200362,
       200432,
@@ -7649,7 +7649,7 @@
     "characterId": 1083,
     "rarity": "SSR",
     "commandId": 103,
-    "type": "speed",
+    "type": "power",
     "hintSkillIds": [
       201112,
       201392,
@@ -7669,7 +7669,7 @@
     "characterId": 9040,
     "rarity": "SSR",
     "commandId": 0,
-    "type": "power",
+    "type": "friend",
     "hintSkillIds": [],
     "hintLevelUpMax": 0,
     "eventIds": []
@@ -7682,7 +7682,7 @@
     "characterId": 1060,
     "rarity": "SSR",
     "commandId": 102,
-    "type": "speed",
+    "type": "stamina",
     "hintSkillIds": [
       200122,
       200332,
@@ -7704,7 +7704,7 @@
     "characterId": 1013,
     "rarity": "SSR",
     "commandId": 105,
-    "type": "speed",
+    "type": "guts",
     "hintSkillIds": [
       200062,
       200162,
@@ -7748,7 +7748,7 @@
     "characterId": 1026,
     "rarity": "SSR",
     "commandId": 106,
-    "type": "speed",
+    "type": "wit",
     "hintSkillIds": [
       200022,
       200152,
@@ -7771,7 +7771,7 @@
     "characterId": 1076,
     "rarity": "SSR",
     "commandId": 105,
-    "type": "speed",
+    "type": "guts",
     "hintSkillIds": [
       200172,
       200352,
@@ -7793,7 +7793,7 @@
     "characterId": 1063,
     "rarity": "SSR",
     "commandId": 102,
-    "type": "speed",
+    "type": "stamina",
     "hintSkillIds": [
       200482,
       200592,
@@ -7812,7 +7812,7 @@
     "characterId": 1084,
     "rarity": "SSR",
     "commandId": 102,
-    "type": "speed",
+    "type": "stamina",
     "hintSkillIds": [
       200152,
       200642,
@@ -7832,7 +7832,7 @@
     "characterId": 1006,
     "rarity": "SSR",
     "commandId": 106,
-    "type": "speed",
+    "type": "wit",
     "hintSkillIds": [
       200222,
       200332,
@@ -7879,7 +7879,7 @@
     "characterId": 1009,
     "rarity": "SSR",
     "commandId": 103,
-    "type": "speed",
+    "type": "power",
     "hintSkillIds": [
       200432,
       200712,
@@ -7903,7 +7903,7 @@
     "characterId": 1087,
     "rarity": "SSR",
     "commandId": 106,
-    "type": "speed",
+    "type": "wit",
     "hintSkillIds": [
       200432,
       200532,
@@ -7924,7 +7924,7 @@
     "characterId": 1008,
     "rarity": "SSR",
     "commandId": 105,
-    "type": "speed",
+    "type": "guts",
     "hintSkillIds": [
       200032,
       200382,
@@ -7944,7 +7944,7 @@
     "characterId": 1024,
     "rarity": "SSR",
     "commandId": 102,
-    "type": "speed",
+    "type": "stamina",
     "hintSkillIds": [
       200462,
       200492,
@@ -7965,7 +7965,7 @@
     "characterId": 1015,
     "rarity": "SSR",
     "commandId": 106,
-    "type": "speed",
+    "type": "wit",
     "hintSkillIds": [
       200042,
       200362,
@@ -7988,7 +7988,7 @@
     "characterId": 1040,
     "rarity": "SSR",
     "commandId": 103,
-    "type": "speed",
+    "type": "power",
     "hintSkillIds": [
       201042,
       201072,
@@ -8033,7 +8033,7 @@
     "characterId": 1065,
     "rarity": "SSR",
     "commandId": 106,
-    "type": "speed",
+    "type": "wit",
     "hintSkillIds": [
       200152,
       200182,
@@ -8055,7 +8055,7 @@
     "characterId": 1100,
     "rarity": "SSR",
     "commandId": 102,
-    "type": "speed",
+    "type": "stamina",
     "hintSkillIds": [
       201072,
       201672,
@@ -8078,7 +8078,7 @@
     "characterId": 1025,
     "rarity": "SSR",
     "commandId": 106,
-    "type": "speed",
+    "type": "wit",
     "hintSkillIds": [
       200742,
       201172,
@@ -8099,7 +8099,7 @@
     "characterId": 1094,
     "rarity": "SSR",
     "commandId": 103,
-    "type": "speed",
+    "type": "power",
     "hintSkillIds": [
       200592,
       200602,
@@ -8143,7 +8143,7 @@
     "characterId": 9043,
     "rarity": "SSR",
     "commandId": 0,
-    "type": "stamina",
+    "type": "friend",
     "hintSkillIds": [],
     "hintLevelUpMax": 0,
     "eventIds": []
@@ -8178,7 +8178,7 @@
     "characterId": 1033,
     "rarity": "SSR",
     "commandId": 105,
-    "type": "speed",
+    "type": "guts",
     "hintSkillIds": [
       200622,
       200632,
@@ -8197,7 +8197,7 @@
     "characterId": 1049,
     "rarity": "SSR",
     "commandId": 106,
-    "type": "speed",
+    "type": "wit",
     "hintSkillIds": [
       200462,
       200512,
@@ -8217,7 +8217,7 @@
     "characterId": 1012,
     "rarity": "SSR",
     "commandId": 102,
-    "type": "speed",
+    "type": "stamina",
     "hintSkillIds": [
       200332,
       200492,
@@ -8237,7 +8237,7 @@
     "characterId": 1084,
     "rarity": "SSR",
     "commandId": 105,
-    "type": "speed",
+    "type": "guts",
     "hintSkillIds": [
       200032,
       200362,
@@ -8259,7 +8259,7 @@
     "characterId": 1107,
     "rarity": "SSR",
     "commandId": 103,
-    "type": "speed",
+    "type": "power",
     "hintSkillIds": [
       200252,
       200532,
@@ -8321,7 +8321,7 @@
     "characterId": 1073,
     "rarity": "SSR",
     "commandId": 102,
-    "type": "speed",
+    "type": "stamina",
     "hintSkillIds": [
       200512,
       200582,
@@ -8341,7 +8341,7 @@
     "characterId": 1061,
     "rarity": "SSR",
     "commandId": 103,
-    "type": "speed",
+    "type": "power",
     "hintSkillIds": [
       200612,
       200652,
@@ -8362,7 +8362,7 @@
     "characterId": 1052,
     "rarity": "SSR",
     "commandId": 102,
-    "type": "speed",
+    "type": "stamina",
     "hintSkillIds": [],
     "hintLevelUpMax": 0,
     "eventIds": []
@@ -8375,7 +8375,7 @@
     "characterId": 1013,
     "rarity": "SSR",
     "commandId": 106,
-    "type": "speed",
+    "type": "wit",
     "hintSkillIds": [
       200582,
       201312,
@@ -8397,7 +8397,7 @@
     "characterId": 1102,
     "rarity": "SSR",
     "commandId": 105,
-    "type": "speed",
+    "type": "guts",
     "hintSkillIds": [
       200382,
       200492,
@@ -8439,7 +8439,7 @@
     "characterId": 1086,
     "rarity": "SSR",
     "commandId": 102,
-    "type": "speed",
+    "type": "stamina",
     "hintSkillIds": [
       200012,
       200722,
@@ -8464,7 +8464,7 @@
     "characterId": 1027,
     "rarity": "SSR",
     "commandId": 103,
-    "type": "speed",
+    "type": "power",
     "hintSkillIds": [
       200142,
       200202,
@@ -8484,7 +8484,7 @@
     "characterId": 1091,
     "rarity": "SSR",
     "commandId": 103,
-    "type": "speed",
+    "type": "power",
     "hintSkillIds": [
       200592,
       200602,
@@ -8526,7 +8526,7 @@
     "characterId": 1067,
     "rarity": "SSR",
     "commandId": 106,
-    "type": "speed",
+    "type": "wit",
     "hintSkillIds": [
       200342,
       200452,
@@ -8548,7 +8548,7 @@
     "characterId": 1068,
     "rarity": "SSR",
     "commandId": 0,
-    "type": "power",
+    "type": "friend",
     "hintSkillIds": [],
     "hintLevelUpMax": 0,
     "eventIds": []
@@ -8561,7 +8561,7 @@
     "characterId": 1066,
     "rarity": "SSR",
     "commandId": 105,
-    "type": "speed",
+    "type": "guts",
     "hintSkillIds": [
       200282,
       200462,
@@ -8585,7 +8585,7 @@
     "characterId": 1099,
     "rarity": "SSR",
     "commandId": 105,
-    "type": "speed",
+    "type": "guts",
     "hintSkillIds": [
       201682,
       202262,
@@ -8605,7 +8605,7 @@
     "characterId": 1035,
     "rarity": "SSR",
     "commandId": 102,
-    "type": "speed",
+    "type": "stamina",
     "hintSkillIds": [
       200022,
       200492,
@@ -8646,7 +8646,7 @@
     "characterId": 1082,
     "rarity": "SSR",
     "commandId": 106,
-    "type": "speed",
+    "type": "wit",
     "hintSkillIds": [
       200132,
       200432,
@@ -8689,7 +8689,7 @@
     "characterId": 1115,
     "rarity": "SSR",
     "commandId": 103,
-    "type": "speed",
+    "type": "power",
     "hintSkillIds": [
       200332,
       200492,
@@ -8710,7 +8710,7 @@
     "characterId": 9044,
     "rarity": "SSR",
     "commandId": 0,
-    "type": "stamina",
+    "type": "friend",
     "hintSkillIds": [],
     "hintLevelUpMax": 0,
     "eventIds": []
@@ -8723,7 +8723,7 @@
     "characterId": 1068,
     "rarity": "SSR",
     "commandId": 103,
-    "type": "speed",
+    "type": "power",
     "hintSkillIds": [
       200062,
       200432,
@@ -8743,7 +8743,7 @@
     "characterId": 1108,
     "rarity": "SSR",
     "commandId": 105,
-    "type": "speed",
+    "type": "guts",
     "hintSkillIds": [
       200472,
       200512,
@@ -8761,7 +8761,7 @@
     "characterId": 1102,
     "rarity": "SSR",
     "commandId": 102,
-    "type": "speed",
+    "type": "stamina",
     "hintSkillIds": [
       200462,
       200492,
@@ -8801,7 +8801,7 @@
     "characterId": 1089,
     "rarity": "SSR",
     "commandId": 105,
-    "type": "speed",
+    "type": "guts",
     "hintSkillIds": [
       200562,
       200582,
@@ -8823,7 +8823,7 @@
     "characterId": 1109,
     "rarity": "SSR",
     "commandId": 103,
-    "type": "speed",
+    "type": "power",
     "hintSkillIds": [
       200052,
       200582,
@@ -8844,7 +8844,7 @@
     "characterId": 1093,
     "rarity": "SSR",
     "commandId": 102,
-    "type": "speed",
+    "type": "stamina",
     "hintSkillIds": [
       200182,
       200652,
@@ -8886,7 +8886,7 @@
     "characterId": 1053,
     "rarity": "SSR",
     "commandId": 102,
-    "type": "speed",
+    "type": "stamina",
     "hintSkillIds": [
       200032,
       200632,
@@ -8907,7 +8907,7 @@
     "characterId": 1105,
     "rarity": "SSR",
     "commandId": 106,
-    "type": "speed",
+    "type": "wit",
     "hintSkillIds": [
       200132,
       201112,
@@ -8929,7 +8929,7 @@
     "characterId": 1106,
     "rarity": "SSR",
     "commandId": 105,
-    "type": "speed",
+    "type": "guts",
     "hintSkillIds": [
       200602,
       200742,
@@ -8950,7 +8950,7 @@
     "characterId": 1096,
     "rarity": "SSR",
     "commandId": 103,
-    "type": "speed",
+    "type": "power",
     "hintSkillIds": [
       200302,
       200372,
@@ -8971,7 +8971,7 @@
     "characterId": 1050,
     "rarity": "SSR",
     "commandId": 106,
-    "type": "speed",
+    "type": "wit",
     "hintSkillIds": [
       200642,
       201452,
@@ -8993,7 +8993,7 @@
     "characterId": 1008,
     "rarity": "SSR",
     "commandId": 103,
-    "type": "speed",
+    "type": "power",
     "hintSkillIds": [
       200022,
       200332,
@@ -9014,7 +9014,7 @@
     "characterId": 1094,
     "rarity": "SSR",
     "commandId": 102,
-    "type": "speed",
+    "type": "stamina",
     "hintSkillIds": [
       200032,
       200482,
@@ -9035,7 +9035,7 @@
     "characterId": 1020,
     "rarity": "SSR",
     "commandId": 102,
-    "type": "speed",
+    "type": "stamina",
     "hintSkillIds": [
       200012,
       201112,
@@ -9097,7 +9097,7 @@
     "characterId": 9002,
     "rarity": "SSR",
     "commandId": 0,
-    "type": "stamina",
+    "type": "friend",
     "hintSkillIds": [],
     "hintLevelUpMax": 0,
     "eventIds": []
@@ -9110,7 +9110,7 @@
     "characterId": 1051,
     "rarity": "SSR",
     "commandId": 102,
-    "type": "speed",
+    "type": "stamina",
     "hintSkillIds": [
       200362,
       201601,
@@ -9130,7 +9130,7 @@
     "characterId": 1092,
     "rarity": "SSR",
     "commandId": 105,
-    "type": "speed",
+    "type": "guts",
     "hintSkillIds": [
       200492,
       200562,
@@ -9176,7 +9176,7 @@
     "characterId": 1098,
     "rarity": "SSR",
     "commandId": 106,
-    "type": "speed",
+    "type": "wit",
     "hintSkillIds": [
       200022,
       201601,
@@ -9199,7 +9199,7 @@
     "characterId": 1100,
     "rarity": "SSR",
     "commandId": 105,
-    "type": "speed",
+    "type": "guts",
     "hintSkillIds": [
       200472,
       201682,
@@ -9237,7 +9237,7 @@
     "characterId": 1022,
     "rarity": "SSR",
     "commandId": 103,
-    "type": "speed",
+    "type": "power",
     "hintSkillIds": [
       200182,
       200382,
@@ -9281,7 +9281,7 @@
     "characterId": 1114,
     "rarity": "SSR",
     "commandId": 103,
-    "type": "speed",
+    "type": "power",
     "hintSkillIds": [
       200342,
       200372,
@@ -9302,7 +9302,7 @@
     "characterId": 1110,
     "rarity": "SSR",
     "commandId": 106,
-    "type": "speed",
+    "type": "wit",
     "hintSkillIds": [
       200132,
       200462,
@@ -9322,7 +9322,7 @@
     "characterId": 1010,
     "rarity": "SSR",
     "commandId": 106,
-    "type": "speed",
+    "type": "wit",
     "hintSkillIds": [
       200682,
       201042,
@@ -9344,7 +9344,7 @@
     "characterId": 1005,
     "rarity": "SSR",
     "commandId": 103,
-    "type": "speed",
+    "type": "power",
     "hintSkillIds": [
       201322,
       201661,
@@ -9365,7 +9365,7 @@
     "characterId": 1083,
     "rarity": "SSR",
     "commandId": 106,
-    "type": "speed",
+    "type": "wit",
     "hintSkillIds": [
       200462,
       200472,
@@ -9386,7 +9386,7 @@
     "characterId": 1067,
     "rarity": "SSR",
     "commandId": 105,
-    "type": "speed",
+    "type": "guts",
     "hintSkillIds": [
       200512,
       200742,
@@ -9407,7 +9407,7 @@
     "characterId": 1081,
     "rarity": "SSR",
     "commandId": 102,
-    "type": "speed",
+    "type": "stamina",
     "hintSkillIds": [
       201072,
       201661,
@@ -9430,7 +9430,7 @@
     "characterId": 1012,
     "rarity": "SSR",
     "commandId": 103,
-    "type": "speed",
+    "type": "power",
     "hintSkillIds": [
       200632,
       200642,
@@ -9473,7 +9473,7 @@
     "characterId": 1056,
     "rarity": "SSR",
     "commandId": 103,
-    "type": "speed",
+    "type": "power",
     "hintSkillIds": [
       201412,
       201422,
@@ -9493,7 +9493,7 @@
     "characterId": 1036,
     "rarity": "SSR",
     "commandId": 105,
-    "type": "speed",
+    "type": "guts",
     "hintSkillIds": [
       200142,
       200332,
@@ -9514,7 +9514,7 @@
     "characterId": 1009,
     "rarity": "SSR",
     "commandId": 106,
-    "type": "speed",
+    "type": "wit",
     "hintSkillIds": [
       200362,
       201252,
@@ -9538,7 +9538,7 @@
     "characterId": 1083,
     "rarity": "SSR",
     "commandId": 102,
-    "type": "speed",
+    "type": "stamina",
     "hintSkillIds": [
       200592,
       201392,
@@ -9560,7 +9560,7 @@
     "characterId": 1019,
     "rarity": "SSR",
     "commandId": 106,
-    "type": "speed",
+    "type": "wit",
     "hintSkillIds": [
       201032,
       201042,
@@ -9604,7 +9604,7 @@
     "characterId": 1015,
     "rarity": "SSR",
     "commandId": 102,
-    "type": "speed",
+    "type": "stamina",
     "hintSkillIds": [
       200352,
       200462,
@@ -9624,7 +9624,7 @@
     "characterId": 1128,
     "rarity": "SSR",
     "commandId": 103,
-    "type": "speed",
+    "type": "power",
     "hintSkillIds": [
       200332,
       200562,
@@ -9647,7 +9647,7 @@
     "characterId": 1017,
     "rarity": "SSR",
     "commandId": 106,
-    "type": "speed",
+    "type": "wit",
     "hintSkillIds": [
       201102,
       201591,
@@ -9670,7 +9670,7 @@
     "characterId": 1071,
     "rarity": "SSR",
     "commandId": 102,
-    "type": "speed",
+    "type": "stamina",
     "hintSkillIds": [
       200022,
       201322,
@@ -9737,7 +9737,7 @@
     "characterId": 1038,
     "rarity": "SSR",
     "commandId": 103,
-    "type": "speed",
+    "type": "power",
     "hintSkillIds": [
       200432,
       200652,
@@ -9760,7 +9760,7 @@
     "characterId": 1063,
     "rarity": "SSR",
     "commandId": 106,
-    "type": "speed",
+    "type": "wit",
     "hintSkillIds": [
       201032,
       201042,
@@ -9783,7 +9783,7 @@
     "characterId": 1060,
     "rarity": "SSR",
     "commandId": 105,
-    "type": "speed",
+    "type": "guts",
     "hintSkillIds": [
       200442,
       200472,
@@ -9805,7 +9805,7 @@
     "characterId": 1094,
     "rarity": "SSR",
     "commandId": 105,
-    "type": "speed",
+    "type": "guts",
     "hintSkillIds": [
       200032,
       200502,
@@ -9827,7 +9827,7 @@
     "characterId": 9047,
     "rarity": "SSR",
     "commandId": 0,
-    "type": "power",
+    "type": "friend",
     "hintSkillIds": [],
     "hintLevelUpMax": 0,
     "eventIds": []
@@ -9864,7 +9864,7 @@
     "characterId": 1131,
     "rarity": "SSR",
     "commandId": 102,
-    "type": "speed",
+    "type": "stamina",
     "hintSkillIds": [
       200132,
       200702,
@@ -9885,7 +9885,7 @@
     "characterId": 1074,
     "rarity": "SSR",
     "commandId": 105,
-    "type": "speed",
+    "type": "guts",
     "hintSkillIds": [
       200172,
       201172,
@@ -9910,7 +9910,7 @@
     "characterId": 1008,
     "rarity": "SSR",
     "commandId": 102,
-    "type": "speed",
+    "type": "stamina",
     "hintSkillIds": [
       200022,
       201112,
@@ -9980,7 +9980,7 @@
     "characterId": 1075,
     "rarity": "SSR",
     "commandId": 106,
-    "type": "speed",
+    "type": "wit",
     "hintSkillIds": [
       200172,
       200592,
@@ -10004,7 +10004,7 @@
     "characterId": 1080,
     "rarity": "SSR",
     "commandId": 103,
-    "type": "speed",
+    "type": "power",
     "hintSkillIds": [
       201601,
       201661,
@@ -10028,7 +10028,7 @@
     "characterId": 1114,
     "rarity": "SSR",
     "commandId": 102,
-    "type": "speed",
+    "type": "stamina",
     "hintSkillIds": [
       201102,
       201462,
@@ -10052,7 +10052,7 @@
     "characterId": 1081,
     "rarity": "SSR",
     "commandId": 103,
-    "type": "speed",
+    "type": "power",
     "hintSkillIds": [
       200462,
       200502,
@@ -10074,7 +10074,7 @@
     "characterId": 1002,
     "rarity": "SSR",
     "commandId": 103,
-    "type": "speed",
+    "type": "power",
     "hintSkillIds": [
       200452,
       200542,
@@ -10122,7 +10122,7 @@
     "characterId": 1112,
     "rarity": "SSR",
     "commandId": 106,
-    "type": "speed",
+    "type": "wit",
     "hintSkillIds": [
       201042,
       201072,
@@ -10145,7 +10145,7 @@
     "characterId": 1111,
     "rarity": "SSR",
     "commandId": 106,
-    "type": "speed",
+    "type": "wit",
     "hintSkillIds": [
       200132,
       200502,
@@ -10166,7 +10166,7 @@
     "characterId": 1021,
     "rarity": "SSR",
     "commandId": 102,
-    "type": "speed",
+    "type": "stamina",
     "hintSkillIds": [
       200492,
       200512,
@@ -10188,7 +10188,7 @@
     "characterId": 9049,
     "rarity": "SSR",
     "commandId": 0,
-    "type": "stamina",
+    "type": "friend",
     "hintSkillIds": [],
     "hintLevelUpMax": 0,
     "eventIds": []
@@ -10201,7 +10201,7 @@
     "characterId": 1027,
     "rarity": "SSR",
     "commandId": 105,
-    "type": "speed",
+    "type": "guts",
     "hintSkillIds": [
       200602,
       201392,
@@ -10267,7 +10267,7 @@
     "characterId": 1117,
     "rarity": "SSR",
     "commandId": 106,
-    "type": "speed",
+    "type": "wit",
     "hintSkillIds": [
       200012,
       200182,
@@ -10292,7 +10292,7 @@
     "characterId": 1108,
     "rarity": "SSR",
     "commandId": 105,
-    "type": "speed",
+    "type": "guts",
     "hintSkillIds": [
       200642,
       201452,
@@ -10316,7 +10316,7 @@
     "characterId": 1091,
     "rarity": "SSR",
     "commandId": 102,
-    "type": "speed",
+    "type": "stamina",
     "hintSkillIds": [
       201062,
       201072,
@@ -10337,7 +10337,7 @@
     "characterId": 1135,
     "rarity": "SSR",
     "commandId": 103,
-    "type": "speed",
+    "type": "power",
     "hintSkillIds": [
       200332,
       201591,
@@ -10388,7 +10388,7 @@
     "characterId": 1133,
     "rarity": "SSR",
     "commandId": 106,
-    "type": "speed",
+    "type": "wit",
     "hintSkillIds": [
       200142,
       200482,
@@ -10435,7 +10435,7 @@
     "characterId": 1121,
     "rarity": "SSR",
     "commandId": 106,
-    "type": "speed",
+    "type": "wit",
     "hintSkillIds": [
       200152,
       200362,
@@ -10480,7 +10480,7 @@
     "characterId": 1085,
     "rarity": "SSR",
     "commandId": 103,
-    "type": "speed",
+    "type": "power",
     "hintSkillIds": [
       200192,
       200602,
@@ -10505,7 +10505,7 @@
     "characterId": 1005,
     "rarity": "SSR",
     "commandId": 103,
-    "type": "speed",
+    "type": "power",
     "hintSkillIds": [
       200362,
       200492,
@@ -10555,7 +10555,7 @@
     "characterId": 1048,
     "rarity": "SSR",
     "commandId": 102,
-    "type": "speed",
+    "type": "stamina",
     "hintSkillIds": [
       200032,
       200602,
@@ -10577,7 +10577,7 @@
     "characterId": 1134,
     "rarity": "SSR",
     "commandId": 105,
-    "type": "speed",
+    "type": "guts",
     "hintSkillIds": [
       200172,
       200352,
@@ -10628,7 +10628,7 @@
     "characterId": 9050,
     "rarity": "SSR",
     "commandId": 0,
-    "type": "stamina",
+    "type": "friend",
     "hintSkillIds": [],
     "hintLevelUpMax": 0,
     "eventIds": []
@@ -10641,7 +10641,7 @@
     "characterId": 1026,
     "rarity": "SSR",
     "commandId": 102,
-    "type": "speed",
+    "type": "stamina",
     "hintSkillIds": [
       200132,
       200452,
@@ -10667,7 +10667,7 @@
     "characterId": 1007,
     "rarity": "SSR",
     "commandId": 105,
-    "type": "speed",
+    "type": "guts",
     "hintSkillIds": [
       200202,
       200642,
@@ -10694,7 +10694,7 @@
     "characterId": 1127,
     "rarity": "SSR",
     "commandId": 105,
-    "type": "speed",
+    "type": "guts",
     "hintSkillIds": [
       201182,
       202012,
@@ -10719,7 +10719,7 @@
     "characterId": 1115,
     "rarity": "SSR",
     "commandId": 105,
-    "type": "speed",
+    "type": "guts",
     "hintSkillIds": [
       201492,
       202022,
@@ -10741,7 +10741,7 @@
     "characterId": 1034,
     "rarity": "SSR",
     "commandId": 105,
-    "type": "speed",
+    "type": "guts",
     "hintSkillIds": [
       200012,
       201172,
@@ -10794,7 +10794,7 @@
     "characterId": 1022,
     "rarity": "SSR",
     "commandId": 102,
-    "type": "speed",
+    "type": "stamina",
     "hintSkillIds": [
       200202,
       200362,
@@ -10822,7 +10822,7 @@
     "characterId": 1124,
     "rarity": "SSR",
     "commandId": 103,
-    "type": "speed",
+    "type": "power",
     "hintSkillIds": [
       200282,
       200342,
@@ -10844,7 +10844,7 @@
     "characterId": 1061,
     "rarity": "SSR",
     "commandId": 103,
-    "type": "speed",
+    "type": "power",
     "hintSkillIds": [
       200592,
       200602,
@@ -10896,7 +10896,7 @@
     "characterId": 1105,
     "rarity": "SSR",
     "commandId": 102,
-    "type": "speed",
+    "type": "stamina",
     "hintSkillIds": [
       201611,
       201631,
@@ -10922,7 +10922,7 @@
     "characterId": 1002,
     "rarity": "SSR",
     "commandId": 106,
-    "type": "speed",
+    "type": "wit",
     "hintSkillIds": [
       200022,
       200432,
@@ -10945,7 +10945,7 @@
     "characterId": 1138,
     "rarity": "SSR",
     "commandId": 106,
-    "type": "speed",
+    "type": "wit",
     "hintSkillIds": [
       200362,
       200462,
@@ -10972,7 +10972,7 @@
     "characterId": 1139,
     "rarity": "SSR",
     "commandId": 0,
-    "type": "stamina",
+    "type": "friend",
     "hintSkillIds": [],
     "hintLevelUpMax": 0,
     "eventIds": []
@@ -11035,7 +11035,7 @@
     "characterId": 1075,
     "rarity": "SSR",
     "commandId": 103,
-    "type": "speed",
+    "type": "power",
     "hintSkillIds": [
       200172,
       201591,
@@ -11061,7 +11061,7 @@
     "characterId": 1112,
     "rarity": "SSR",
     "commandId": 103,
-    "type": "speed",
+    "type": "power",
     "hintSkillIds": [
       200172,
       201082,
@@ -11087,7 +11087,7 @@
     "characterId": 1134,
     "rarity": "SSR",
     "commandId": 102,
-    "type": "speed",
+    "type": "stamina",
     "hintSkillIds": [
       200472,
       200562,
@@ -11109,7 +11109,7 @@
     "characterId": 1087,
     "rarity": "SSR",
     "commandId": 103,
-    "type": "speed",
+    "type": "power",
     "hintSkillIds": [
       200192,
       200962,
@@ -11137,7 +11137,7 @@
     "characterId": 1019,
     "rarity": "SSR",
     "commandId": 102,
-    "type": "speed",
+    "type": "stamina",
     "hintSkillIds": [
       200602,
       201382,
@@ -11192,7 +11192,7 @@
     "characterId": 1032,
     "rarity": "SSR",
     "commandId": 103,
-    "type": "speed",
+    "type": "power",
     "hintSkillIds": [
       200572,
       201322,
@@ -11214,7 +11214,7 @@
     "characterId": 1069,
     "rarity": "SSR",
     "commandId": 105,
-    "type": "speed",
+    "type": "guts",
     "hintSkillIds": [
       200562,
       200722,
@@ -11241,7 +11241,7 @@
     "characterId": 1131,
     "rarity": "SSR",
     "commandId": 102,
-    "type": "speed",
+    "type": "stamina",
     "hintSkillIds": [
       201032,
       201042,
@@ -11294,7 +11294,7 @@
     "characterId": 1128,
     "rarity": "SSR",
     "commandId": 105,
-    "type": "speed",
+    "type": "guts",
     "hintSkillIds": [
       200332,
       200572,
@@ -11317,7 +11317,7 @@
     "characterId": 1058,
     "rarity": "SSR",
     "commandId": 105,
-    "type": "speed",
+    "type": "guts",
     "hintSkillIds": [
       200332,
       200352,
@@ -11342,7 +11342,7 @@
     "characterId": 9001,
     "rarity": "SSR",
     "commandId": 0,
-    "type": "stamina",
+    "type": "friend",
     "hintSkillIds": [],
     "hintLevelUpMax": 0,
     "eventIds": []
@@ -11355,7 +11355,7 @@
     "characterId": 1060,
     "rarity": "SSR",
     "commandId": 106,
-    "type": "speed",
+    "type": "wit",
     "hintSkillIds": [
       201382,
       201392,

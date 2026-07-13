@@ -83,7 +83,15 @@ def extract_supports(conn: sqlite3.Connection) -> list[dict]:
     chars = load_text_map(conn, TEXT_SUPPORT_CHAR)
 
     rarity_map = {1: "R", 2: "SR", 3: "SSR"}
-    type_map = {1: "speed", 2: "stamina", 3: "power", 4: "guts", 5: "wit", 6: "friend"}
+    # 育成タイプは support_card_type ではなく command_id
+    type_by_command_id = {
+        0: "friend",
+        101: "speed",
+        102: "stamina",
+        103: "power",
+        105: "guts",
+        106: "wit",
+    }
 
     hints_by_card: dict[int, list[int]] = defaultdict(list)
     for row in conn.execute(
@@ -115,12 +123,13 @@ def extract_supports(conn: sqlite3.Connection) -> list[dict]:
     supports = []
     for row in conn.execute(
         """
-        SELECT id, chara_id, rarity, command_id, support_card_type, effect_table_id
+        SELECT id, chara_id, rarity, command_id, effect_table_id
         FROM support_card_data
         ORDER BY id
         """
     ):
         sid = int(row[0])
+        command_id = int(row[3])
         display = names.get(sid, f"support_{sid}")
         if sid in variants and variants[sid]:
             display = f"[{variants[sid]}] {display}"
@@ -133,10 +142,10 @@ def extract_supports(conn: sqlite3.Connection) -> list[dict]:
                 "name": display,
                 "characterId": int(row[1]),
                 "rarity": rarity_map.get(int(row[2]), str(row[2])),
-                "commandId": int(row[3]),
-                "type": type_map.get(int(row[4]), "unknown"),
+                "commandId": command_id,
+                "type": type_by_command_id.get(command_id, "unknown"),
                 "hintSkillIds": hints_by_card.get(sid, []),
-                "hintLevelUpMax": hint_lv_up.get(int(row[5]), 0),
+                "hintLevelUpMax": hint_lv_up.get(int(row[4]), 0),
                 "eventIds": [],
             }
         )

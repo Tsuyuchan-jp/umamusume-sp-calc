@@ -72,7 +72,7 @@ python scripts/extract_mdb.py --mdb "D:\...\master.mdb"
 
 **supports.json** 1件:
 
-- `id`, `name`（`[バリアント] 名前` 形式）、`characterId`, `rarity`, `type`
+- `id`, `name`（`[バリアント] 名前` 形式）、`characterId`, `rarity`, `type`（`command_id` 由来: speed/stamina/power/guts/wit/friend）
 - `hintSkillIds` — 訓練ヒント（自動）。イベントはここには入らない
 - `eventIds` — 現状空配列（将来用）
 

@@ -33,6 +33,30 @@
           </div>
         </div>
         <label>サポートカード（6枚）</label>
+        <div class="support-filters">
+          <input
+            type="search"
+            id="support-search"
+            placeholder="サポカ名で検索（ひらがな可）"
+            autocomplete="off"
+          />
+          <label class="checkbox-row support-filter-check">
+            <input type="checkbox" id="support-ssr-only" />
+            SSRのみ
+          </label>
+          <label class="support-type-label">
+            タイプ
+            <select id="support-type-filter">
+              <option value="">すべて</option>
+              <option value="speed">スピード</option>
+              <option value="stamina">スタミナ</option>
+              <option value="power">パワー</option>
+              <option value="guts">根性</option>
+              <option value="wit">賢さ</option>
+              <option value="friend">友人</option>
+            </select>
+          </label>
+        </div>
         <div class="support-slots" id="support-slots"></div>
       </section>
 
