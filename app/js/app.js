@@ -447,31 +447,30 @@ function bindOptions() {
   );
 }
 
-/** 常用サポカをタイトル優先で初期選択 */
+/** 優先サポカ表示名からカードを検索 */
+function findSupportByDisplayName(priorityName) {
+  const titleMatch = priorityName.match(/\[(.+?)\]/);
+  const title = titleMatch?.[1];
+  const charName = priorityName.replace(/\[.*?\]\s*/, "").trim();
+  return state.supports.find(
+    (s) =>
+      (title && (s.title === title || s.name.includes(`[${title}]`))) ||
+      s.name.includes(charName)
+  );
+}
+
+/** サポカ6枠の初期選択（1〜4: 未選択、5: フォーエバーヤング、6: たづな） */
 function applyDefaultSupports() {
-  const ids = [];
-  const fromIds = state.events.prioritySupportIds || [];
-  for (const id of fromIds) {
-    if (ids.length >= 6) break;
-    if (state.supports.some((s) => s.id === id) && !ids.includes(id)) {
-      ids.push(id);
-    }
-  }
-  if (ids.length < 6) {
-    for (const pname of state.events.prioritySupportNames || []) {
-      if (ids.length >= 6) break;
-      const titleMatch = pname.match(/\[(.+?)\]/);
-      const title = titleMatch?.[1];
-      const found = state.supports.find(
-        (s) =>
-          (title && (s.title === title || s.name.includes(`[${title}]`))) ||
-          s.name.includes(pname.replace(/\[.*?\]\s*/, "").trim())
-      );
-      if (found && !ids.includes(found.id)) ids.push(found.id);
-    }
-  }
-  while (ids.length < 6) ids.push(null);
-  state.ui.supportIds = ids.slice(0, 6);
+  const young = findSupportByDisplayName("[Innovator] フォーエバーヤング");
+  const tazuna = findSupportByDisplayName("[一杯のノスタルジア] 駿川たづな");
+  state.ui.supportIds = [
+    null,
+    null,
+    null,
+    null,
+    young?.id ?? null,
+    tazuna?.id ?? null,
+  ];
 }
 
 async function init() {
