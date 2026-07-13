@@ -143,7 +143,7 @@
   ],
   "seniorRmjChoice": {
     "label": "シニア12月 超盛況（ラーメン選択）",
-    "defaultChoiceId": "ramen_shugyoku",
+    "defaultChoiceId": "ramen_yokubari",
     "choices": [
       {
         "id": "ramen_special",

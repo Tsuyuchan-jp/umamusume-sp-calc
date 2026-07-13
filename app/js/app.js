@@ -536,7 +536,7 @@ async function init() {
         eventChoiceIds: initEventChoiceIds(events),
         scenarioLinkChoiceId: "link_dotou",
         seniorRmjChoiceId:
-          scenario.seniorRmjChoice?.defaultChoiceId ?? "ramen_shugyoku",
+          scenario.seniorRmjChoice?.defaultChoiceId ?? "ramen_yokubari",
       },
     };
 
