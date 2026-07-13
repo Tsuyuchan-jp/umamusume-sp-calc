@@ -155,7 +155,8 @@
         {
           "skillName": "極上の感謝を！",
           "hintLevel": 2,
-          "defaultOn": false
+          "defaultOn": false,
+          "skillId": 210391
         }
       ]
     },
@@ -166,7 +167,8 @@
         {
           "skillName": "恩返し、召し上がれ",
           "hintLevel": 3,
-          "defaultOn": false
+          "defaultOn": false,
+          "skillId": 210392
         }
       ]
     }

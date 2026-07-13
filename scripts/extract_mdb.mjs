@@ -13,6 +13,7 @@ const DATA_DIR = path.join(ROOT, "data");
 
 const DEFAULT_CANDIDATES = [
   path.join(process.env.USERPROFILE || "", "AppData/LocalLow/Cygames/umamusume/master/master.mdb"),
+  path.join(process.env.USERPROFILE || "", "Documents/google antigravity/umamusume-skill-emulator/master.mdb"),
   "D:/DMM/umamusumeDMM/Umamusume/umamusume_Data/Persistent/master/master.mdb",
   "D:/Umamusume/umamusume_Data/Persistent/master/master.mdb",
 ];

@@ -1628,6 +1628,17 @@
     "upperSkillId": null
   },
   {
+    "id": 101341,
+    "name": "いずれあなたに咲くフローラ",
+    "baseSp": 0,
+    "rarity": 5,
+    "groupId": 10134,
+    "groupRate": 1,
+    "iconId": 0,
+    "lowerSkillId": null,
+    "upperSkillId": null
+  },
+  {
     "id": 101351,
     "name": "黄金を訪ねて",
     "baseSp": 0,
@@ -2860,6 +2871,17 @@
     "upperSkillId": null
   },
   {
+    "id": 120221,
+    "name": "麗走一直！ラーメン道",
+    "baseSp": 0,
+    "rarity": 5,
+    "groupId": 12022,
+    "groupRate": 1,
+    "iconId": 0,
+    "lowerSkillId": null,
+    "upperSkillId": null
+  },
+  {
     "id": 120231,
     "name": "勝利ヘ至ル累積",
     "baseSp": 0,
@@ -3054,6 +3076,17 @@
     "groupId": 12068,
     "groupRate": 1,
     "iconId": 20013,
+    "lowerSkillId": null,
+    "upperSkillId": null
+  },
+  {
+    "id": 120771,
+    "name": "一杯全力、お届けします！",
+    "baseSp": 0,
+    "rarity": 5,
+    "groupId": 12077,
+    "groupRate": 1,
+    "iconId": 0,
     "lowerSkillId": null,
     "upperSkillId": null
   },
@@ -10582,6 +10615,17 @@
     "upperSkillId": 203631
   },
   {
+    "id": 203641,
+    "name": "曙光",
+    "baseSp": 180,
+    "rarity": 2,
+    "groupId": 20364,
+    "groupRate": 2,
+    "iconId": 0,
+    "lowerSkillId": 203642,
+    "upperSkillId": null
+  },
+  {
     "id": 203642,
     "name": "光明",
     "baseSp": 180,
@@ -10590,7 +10634,7 @@
     "groupRate": 1,
     "iconId": 20011,
     "lowerSkillId": null,
-    "upperSkillId": null
+    "upperSkillId": 203641
   },
   {
     "id": 203651,
@@ -12012,6 +12056,28 @@
     "upperSkillId": 204381
   },
   {
+    "id": 204391,
+    "name": "悠々自適",
+    "baseSp": 190,
+    "rarity": 2,
+    "groupId": 20439,
+    "groupRate": 2,
+    "iconId": 0,
+    "lowerSkillId": 204392,
+    "upperSkillId": null
+  },
+  {
+    "id": 204392,
+    "name": "息抜き上手",
+    "baseSp": 190,
+    "rarity": 1,
+    "groupId": 20439,
+    "groupRate": 1,
+    "iconId": 0,
+    "lowerSkillId": null,
+    "upperSkillId": 204391
+  },
+  {
     "id": 204401,
     "name": "秘められた最強",
     "baseSp": 0,
@@ -12105,6 +12171,17 @@
     "baseSp": 160,
     "rarity": 1,
     "groupId": 20446,
+    "groupRate": 1,
+    "iconId": 0,
+    "lowerSkillId": null,
+    "upperSkillId": null
+  },
+  {
+    "id": 204472,
+    "name": "奮い立つ心",
+    "baseSp": 180,
+    "rarity": 1,
+    "groupId": 20447,
     "groupRate": 1,
     "iconId": 0,
     "lowerSkillId": null,
@@ -12615,6 +12692,28 @@
     "iconId": 20331,
     "lowerSkillId": null,
     "upperSkillId": 210381
+  },
+  {
+    "id": 210391,
+    "name": "極上の感謝を！",
+    "baseSp": 200,
+    "rarity": 2,
+    "groupId": 21039,
+    "groupRate": 2,
+    "iconId": 20362,
+    "lowerSkillId": 210392,
+    "upperSkillId": null
+  },
+  {
+    "id": 210392,
+    "name": "恩返し、召し上がれ",
+    "baseSp": 200,
+    "rarity": 1,
+    "groupId": 21039,
+    "groupRate": 1,
+    "iconId": 20361,
+    "lowerSkillId": null,
+    "upperSkillId": 210391
   },
   {
     "id": 300011,
@@ -13240,6 +13339,72 @@
     "groupId": 41305,
     "groupRate": 1,
     "iconId": 20346,
+    "lowerSkillId": null,
+    "upperSkillId": null
+  },
+  {
+    "id": 414011,
+    "name": "バリカタ、一丁上がり！",
+    "baseSp": 0,
+    "rarity": 6,
+    "groupId": 41401,
+    "groupRate": 1,
+    "iconId": 20366,
+    "lowerSkillId": null,
+    "upperSkillId": null
+  },
+  {
+    "id": 414021,
+    "name": "じっくり仕込みの一杯",
+    "baseSp": 0,
+    "rarity": 6,
+    "groupId": 41402,
+    "groupRate": 1,
+    "iconId": 20376,
+    "lowerSkillId": null,
+    "upperSkillId": null
+  },
+  {
+    "id": 414031,
+    "name": "麺の極意、見つけたり",
+    "baseSp": 0,
+    "rarity": 6,
+    "groupId": 41403,
+    "groupRate": 1,
+    "iconId": 20366,
+    "lowerSkillId": null,
+    "upperSkillId": null
+  },
+  {
+    "id": 414041,
+    "name": "湯切りの妙技",
+    "baseSp": 0,
+    "rarity": 6,
+    "groupId": 41404,
+    "groupRate": 1,
+    "iconId": 20366,
+    "lowerSkillId": null,
+    "upperSkillId": null
+  },
+  {
+    "id": 414051,
+    "name": "秘伝の味変アレンジ！",
+    "baseSp": 0,
+    "rarity": 6,
+    "groupId": 41405,
+    "groupRate": 1,
+    "iconId": 20366,
+    "lowerSkillId": null,
+    "upperSkillId": null
+  },
+  {
+    "id": 414061,
+    "name": "元気特盛りのおもてなし",
+    "baseSp": 0,
+    "rarity": 6,
+    "groupId": 41406,
+    "groupRate": 1,
+    "iconId": 20366,
     "lowerSkillId": null,
     "upperSkillId": null
   },
@@ -14630,6 +14795,17 @@
     "upperSkillId": null
   },
   {
+    "id": 901341,
+    "name": "いずれあなたに咲くフローラ",
+    "baseSp": 200,
+    "rarity": 1,
+    "groupId": 90134,
+    "groupRate": 2,
+    "iconId": 0,
+    "lowerSkillId": null,
+    "upperSkillId": null
+  },
+  {
     "id": 901351,
     "name": "黄金を訪ねて",
     "baseSp": 200,
@@ -15862,6 +16038,17 @@
     "upperSkillId": null
   },
   {
+    "id": 920221,
+    "name": "麗走一直！ラーメン道",
+    "baseSp": 200,
+    "rarity": 1,
+    "groupId": 92022,
+    "groupRate": 2,
+    "iconId": 0,
+    "lowerSkillId": null,
+    "upperSkillId": null
+  },
+  {
     "id": 920231,
     "name": "勝利ヘ至ル累積",
     "baseSp": 200,
@@ -16056,6 +16243,17 @@
     "groupId": 92068,
     "groupRate": 2,
     "iconId": 20011,
+    "lowerSkillId": null,
+    "upperSkillId": null
+  },
+  {
+    "id": 920771,
+    "name": "一杯全力、お届けします！",
+    "baseSp": 200,
+    "rarity": 1,
+    "groupId": 92077,
+    "groupRate": 2,
+    "iconId": 0,
     "lowerSkillId": null,
     "upperSkillId": null
   },
@@ -17772,6 +17970,28 @@
     "groupId": 10220222,
     "groupRate": 1,
     "iconId": 20046,
+    "lowerSkillId": null,
+    "upperSkillId": null
+  },
+  {
+    "id": 102203111,
+    "name": "替え玉一丁、承ります♪",
+    "baseSp": 0,
+    "rarity": 6,
+    "groupId": 10220311,
+    "groupRate": 1,
+    "iconId": 0,
+    "lowerSkillId": null,
+    "upperSkillId": null
+  },
+  {
+    "id": 102203211,
+    "name": "熱々、上等！へいお待ち！",
+    "baseSp": 0,
+    "rarity": 6,
+    "groupId": 10220321,
+    "groupRate": 1,
+    "iconId": 0,
     "lowerSkillId": null,
     "upperSkillId": null
   },
@@ -20900,6 +21120,28 @@
     "upperSkillId": null
   },
   {
+    "id": 107703111,
+    "name": "湯気立つ勝負道",
+    "baseSp": 0,
+    "rarity": 6,
+    "groupId": 10770311,
+    "groupRate": 1,
+    "iconId": 0,
+    "lowerSkillId": null,
+    "upperSkillId": null
+  },
+  {
+    "id": 107703211,
+    "name": "いざ、開店です！",
+    "baseSp": 0,
+    "rarity": 6,
+    "groupId": 10770321,
+    "groupRate": 1,
+    "iconId": 0,
+    "lowerSkillId": null,
+    "upperSkillId": null
+  },
+  {
     "id": 107801111,
     "name": "ウインドシアー",
     "baseSp": 0,
@@ -22418,6 +22660,17 @@
     "upperSkillId": null
   },
   {
+    "id": 111701121,
+    "name": "凱歌へのプレパラシオン",
+    "baseSp": 0,
+    "rarity": 6,
+    "groupId": 11170112,
+    "groupRate": 1,
+    "iconId": 0,
+    "lowerSkillId": null,
+    "upperSkillId": null
+  },
+  {
     "id": 111701211,
     "name": "邁進アン・レール",
     "baseSp": 0,
@@ -22755,6 +23008,28 @@
     "groupId": 11330121,
     "groupRate": 1,
     "iconId": 20046,
+    "lowerSkillId": null,
+    "upperSkillId": null
+  },
+  {
+    "id": 113401111,
+    "name": "舞いひらく花路",
+    "baseSp": 0,
+    "rarity": 6,
+    "groupId": 11340111,
+    "groupRate": 1,
+    "iconId": 0,
+    "lowerSkillId": null,
+    "upperSkillId": null
+  },
+  {
+    "id": 113401211,
+    "name": "想い束ね、前へ",
+    "baseSp": 0,
+    "rarity": 6,
+    "groupId": 11340121,
+    "groupRate": 1,
+    "iconId": 0,
     "lowerSkillId": null,
     "upperSkillId": null
   },

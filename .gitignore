@@ -1,5 +1,12 @@
+# Python
 __pycache__/
 *.pyc
+
+# OS
 .DS_Store
 Thumbs.db
+
+# Local
 .cache/
+node_modules/
+.serve/

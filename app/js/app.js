@@ -19,10 +19,19 @@ function showError(msg) {
 }
 
 function buildSupportOptions(supports, selectedId) {
+  const rarityOrder = { SSR: 0, SR: 1, R: 2 };
+  const sorted = [...supports].sort((a, b) => {
+    const ra = rarityOrder[a.rarity] ?? 9;
+    const rb = rarityOrder[b.rarity] ?? 9;
+    if (ra !== rb) return ra - rb;
+    return a.name.localeCompare(b.name, "ja");
+  });
   const opts = ['<option value="">— 未選択 —</option>'];
-  for (const s of supports) {
+  for (const s of sorted) {
     const sel = s.id === selectedId ? " selected" : "";
-    opts.push(`<option value="${s.id}"${sel}>${escapeHtml(s.name)}</option>`);
+    opts.push(
+      `<option value="${s.id}"${sel}>[${escapeHtml(s.rarity)}] ${escapeHtml(s.name)}</option>`
+    );
   }
   return opts.join("");
 }
@@ -172,20 +181,26 @@ function bindOptions() {
   );
 }
 
-/** 常用サポカ名で初期選択 */
+/** 常用サポカをタイトル優先で初期選択 */
 function applyDefaultSupports() {
-  const priority = state.events.prioritySupportNames || [];
   const ids = [];
-  for (const name of priority.slice(0, 6)) {
-    const found = state.supports.find((s) => s.name.includes(name.replace(/\[|\]/g, "").slice(0, 8)) || name.slice(0, 6));
-    if (found) ids.push(found.id);
+  const fromIds = state.events.prioritySupportIds || [];
+  for (const id of fromIds) {
+    if (ids.length >= 6) break;
+    if (state.supports.some((s) => s.id === id) && !ids.includes(id)) {
+      ids.push(id);
+    }
   }
-  // 名前部分一致で再試行
   if (ids.length < 6) {
-    for (const pname of priority) {
+    for (const pname of state.events.prioritySupportNames || []) {
       if (ids.length >= 6) break;
-      const core = pname.replace(/\[.*?\]\s*/, "").trim();
-      const found = state.supports.find((s) => s.name.includes(core));
+      const titleMatch = pname.match(/\[(.+?)\]/);
+      const title = titleMatch?.[1];
+      const found = state.supports.find(
+        (s) =>
+          (title && (s.title === title || s.name.includes(`[${title}]`))) ||
+          s.name.includes(pname.replace(/\[.*?\]\s*/, "").trim())
+      );
       if (found && !ids.includes(found.id)) ids.push(found.id);
     }
   }
