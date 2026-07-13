@@ -861,19 +861,12 @@
       "supportNameMatch": "スマイル・エバーアフター",
       "id": "evt_gran_mile_way",
       "label": "グラン ゴー・マイル・ウェイ",
-      "selection": "single",
-      "defaultChoiceId": "mile_line",
-      "choices": [
+      "selection": "auto",
+      "skills": [
         {
-          "id": "mile_line",
-          "label": "① マイル直線○ Lv1",
-          "skills": [
-            {
-              "skillName": "マイル直線○",
-              "hintLevel": 1,
-              "skillId": 201032
-            }
-          ]
+          "skillName": "マイル直線○",
+          "hintLevel": 1,
+          "skillId": 201032
         }
       ]
     },
@@ -912,19 +905,12 @@
       "supportNameMatch": "賑やかな未来を乗せて走れ！",
       "id": "evt_chiyo_spring",
       "label": "チヨノ いつか咲く、その日まで……",
-      "selection": "single",
-      "defaultChoiceId": "spring",
-      "choices": [
+      "selection": "auto",
+      "skills": [
         {
-          "id": "spring",
-          "label": "① 春ウマ娘○ Lv1",
-          "skills": [
-            {
-              "skillName": "春ウマ娘○",
-              "hintLevel": 1,
-              "skillId": 200172
-            }
-          ]
+          "skillName": "春ウマ娘○",
+          "hintLevel": 1,
+          "skillId": 200172
         }
       ]
     },
@@ -1009,19 +995,12 @@
       "supportNameMatch": "単焦点でつかまえて",
       "id": "evt_aman_mimamori",
       "label": "マーチャン いつもそばから見つめてる",
-      "selection": "single",
-      "defaultChoiceId": "capture",
-      "choices": [
+      "selection": "auto",
+      "skills": [
         {
-          "id": "capture",
-          "label": "① 捕捉 Lv1",
-          "skills": [
-            {
-              "skillName": "捕捉",
-              "hintLevel": 1,
-              "skillId": 203582
-            }
-          ]
+          "skillName": "捕捉",
+          "hintLevel": 1,
+          "skillId": 203582
         }
       ]
     },
@@ -1029,19 +1008,12 @@
       "supportNameMatch": "単焦点でつかまえて",
       "id": "evt_aman_photo",
       "label": "マーチャン いつも写真から見つめてる",
-      "selection": "single",
-      "defaultChoiceId": "kehai",
-      "choices": [
+      "selection": "auto",
+      "skills": [
         {
-          "id": "kehai",
-          "label": "① 軽い足取り Lv2",
-          "skills": [
-            {
-              "skillName": "軽い足取り",
-              "hintLevel": 2,
-              "skillId": 202042
-            }
-          ]
+          "skillName": "軽い足取り",
+          "hintLevel": 2,
+          "skillId": 202042
         }
       ]
     },
@@ -1098,19 +1070,12 @@
       "supportNameMatch": "白に至る純真",
       "id": "evt_tact_survival",
       "label": "タクト 私を育てた場所",
-      "selection": "single",
-      "defaultChoiceId": "ichi",
-      "choices": [
+      "selection": "auto",
+      "skills": [
         {
-          "id": "ichi",
-          "label": "① 一歩ずつ前へ Lv1",
-          "skills": [
-            {
-              "skillName": "一歩ずつ前へ",
-              "hintLevel": 1,
-              "skillId": 203362
-            }
-          ]
+          "skillName": "一歩ずつ前へ",
+          "hintLevel": 1,
+          "skillId": 203362
         }
       ]
     },
@@ -1118,19 +1083,12 @@
       "supportNameMatch": "響け、二人の凱歌",
       "id": "evt_mars_kanshin",
       "label": "マルシュ 募る不安",
-      "selection": "single",
-      "defaultChoiceId": "kokoro",
-      "choices": [
+      "selection": "auto",
+      "skills": [
         {
-          "id": "kokoro",
-          "label": "① 心惹かれて Lv1",
-          "skills": [
-            {
-              "skillName": "心惹かれて",
-              "hintLevel": 1,
-              "skillId": 203852
-            }
-          ]
+          "skillName": "心惹かれて",
+          "hintLevel": 1,
+          "skillId": 203852
         }
       ]
     },
@@ -1156,19 +1114,12 @@
       "supportNameMatch": "響け、二人の凱歌",
       "id": "evt_mars_koe",
       "label": "マルシュ 溢れている愛",
-      "selection": "single",
-      "defaultChoiceId": "kyo",
-      "choices": [
+      "selection": "auto",
+      "skills": [
         {
-          "id": "kyo",
-          "label": "① 轟く足音 Lv1",
-          "skills": [
-            {
-              "skillName": "轟く足音",
-              "hintLevel": 1,
-              "skillId": 204102
-            }
-          ]
+          "skillName": "轟く足音",
+          "hintLevel": 1,
+          "skillId": 204102
         }
       ]
     },
@@ -1176,19 +1127,12 @@
       "supportNameMatch": "星跨ぐメッセージ",
       "id": "evt_neo_signal",
       "label": "ネオ Forシグナル100%",
-      "selection": "single",
-      "defaultChoiceId": "ichi",
-      "choices": [
+      "selection": "auto",
+      "skills": [
         {
-          "id": "ichi",
-          "label": "① 一歩ずつ前へ Lv1",
-          "skills": [
-            {
-              "skillName": "一歩ずつ前へ",
-              "hintLevel": 1,
-              "skillId": 203362
-            }
-          ]
+          "skillName": "一歩ずつ前へ",
+          "hintLevel": 1,
+          "skillId": 203362
         }
       ]
     },
@@ -1214,19 +1158,12 @@
       "supportNameMatch": "星跨ぐメッセージ",
       "id": "evt_neo_encounter",
       "label": "ネオ 観測者との遭遇",
-      "selection": "single",
-      "defaultChoiceId": "shutsu",
-      "choices": [
+      "selection": "auto",
+      "skills": [
         {
-          "id": "shutsu",
-          "label": "① 進出開始 Lv1",
-          "skills": [
-            {
-              "skillName": "進出開始",
-              "hintLevel": 1,
-              "skillId": 202622
-            }
-          ]
+          "skillName": "進出開始",
+          "hintLevel": 1,
+          "skillId": 202622
         }
       ]
     },
@@ -1247,19 +1184,12 @@
       "supportNameMatch": "私のためのショッピング",
       "id": "evt_king_ikikoi",
       "label": "キング 学ぶは、一流の息抜き！",
-      "selection": "single",
-      "defaultChoiceId": "oshi",
-      "choices": [
+      "selection": "auto",
+      "skills": [
         {
-          "id": "oshi",
-          "label": "① 押し通る！ Lv1",
-          "skills": [
-            {
-              "skillName": "押し通る！",
-              "hintLevel": 1,
-              "skillId": 203592
-            }
-          ]
+          "skillName": "押し通る！",
+          "hintLevel": 1,
+          "skillId": 203592
         }
       ]
     },
@@ -1285,19 +1215,12 @@
       "supportNameMatch": "私のためのショッピング",
       "id": "evt_king_advice",
       "label": "キング 助言する権利をあげる！",
-      "selection": "single",
-      "defaultChoiceId": "matsubi",
-      "choices": [
+      "selection": "auto",
+      "skills": [
         {
-          "id": "matsubi",
-          "label": "① 末脚 Lv1",
-          "skills": [
-            {
-              "skillName": "末脚",
-              "hintLevel": 1,
-              "skillId": 200512
-            }
-          ]
+          "skillName": "末脚",
+          "hintLevel": 1,
+          "skillId": 200512
         }
       ]
     },
@@ -1305,19 +1228,12 @@
       "supportNameMatch": "故郷に錦を飾るんでい！",
       "id": "evt_inari_iki",
       "label": "イナリ 粋の魅せ方、魂で語れ",
-      "selection": "single",
-      "defaultChoiceId": "dai",
-      "choices": [
+      "selection": "auto",
+      "skills": [
         {
-          "id": "dai",
-          "label": "① 大急ぎ Lv1",
-          "skills": [
-            {
-              "skillName": "大急ぎ",
-              "hintLevel": 1,
-              "skillId": 202592
-            }
-          ]
+          "skillName": "大急ぎ",
+          "hintLevel": 1,
+          "skillId": 202592
         }
       ]
     },
@@ -1343,19 +1259,12 @@
       "supportNameMatch": "故郷に錦を飾るんでい！",
       "id": "evt_inari_kyoto",
       "label": "イナリ 神輿だワッショイ",
-      "selection": "single",
-      "defaultChoiceId": "kyoto",
-      "choices": [
+      "selection": "auto",
+      "skills": [
         {
-          "id": "kyoto",
-          "label": "① 京都レース場○ Lv1",
-          "skills": [
-            {
-              "skillName": "京都レース場○",
-              "hintLevel": 1,
-              "skillId": 200062
-            }
-          ]
+          "skillName": "京都レース場○",
+          "hintLevel": 1,
+          "skillId": 200062
         }
       ]
     },
@@ -1363,19 +1272,12 @@
       "supportNameMatch": "ぬくもりのノエル",
       "id": "evt_pheno_mame",
       "label": "フェノーメノ マメちん堕落計画！",
-      "selection": "single",
-      "defaultChoiceId": "jichido",
-      "choices": [
+      "selection": "auto",
+      "skills": [
         {
-          "id": "jichido",
-          "label": "① 地道に重ねて Lv1",
-          "skills": [
-            {
-              "skillName": "地道に重ねて",
-              "hintLevel": 1,
-              "skillId": 203412
-            }
-          ]
+          "skillName": "地道に重ねて",
+          "hintLevel": 1,
+          "skillId": 203412
         }
       ]
     },
@@ -1401,19 +1303,12 @@
       "supportNameMatch": "ぬくもりのノエル",
       "id": "evt_pheno_kowamote",
       "label": "フェノーメノ あぶないコワモテ刑事？",
-      "selection": "single",
-      "defaultChoiceId": "nerai",
-      "choices": [
+      "selection": "auto",
+      "skills": [
         {
-          "id": "nerai",
-          "label": "① 狙いを定めて Lv1",
-          "skills": [
-            {
-              "skillName": "狙いを定めて",
-              "hintLevel": 1,
-              "skillId": 202772
-            }
-          ]
+          "skillName": "狙いを定めて",
+          "hintLevel": 1,
+          "skillId": 202772
         }
       ]
     },
@@ -1421,19 +1316,12 @@
       "supportNameMatch": "激録！爆走トナカイ事件",
       "id": "evt_gold_kyozo",
       "label": "ゴルシ 虚像をぶち壊せ",
-      "selection": "single",
-      "defaultChoiceId": "kiki",
-      "choices": [
+      "selection": "auto",
+      "skills": [
         {
-          "id": "kiki",
-          "label": "① 好機を捉えて Lv1",
-          "skills": [
-            {
-              "skillName": "好機を捉えて",
-              "hintLevel": 1,
-              "skillId": 202972
-            }
-          ]
+          "skillName": "好機を捉えて",
+          "hintLevel": 1,
+          "skillId": 202972
         }
       ]
     },
@@ -1459,19 +1347,12 @@
       "supportNameMatch": "激録！爆走トナカイ事件",
       "id": "evt_gold_yakisoba",
       "label": "ゴルシ 甦れ！ゴルシ印のソース焼きそば！",
-      "selection": "single",
-      "defaultChoiceId": "hanshin",
-      "choices": [
+      "selection": "auto",
+      "skills": [
         {
-          "id": "hanshin",
-          "label": "① 阪神レース場○ Lv1",
-          "skills": [
-            {
-              "skillName": "阪神レース場○",
-              "hintLevel": 1,
-              "skillId": 200052
-            }
-          ]
+          "skillName": "阪神レース場○",
+          "hintLevel": 1,
+          "skillId": 200052
         }
       ]
     },
@@ -1479,19 +1360,12 @@
       "supportNameMatch": "無機の闘志",
       "id": "evt_bourbon_hatsu",
       "label": "ブルボン 発火:熱を帯びて",
-      "selection": "single",
-      "defaultChoiceId": "position",
-      "choices": [
+      "selection": "auto",
+      "skills": [
         {
-          "id": "position",
-          "label": "① ポジションセンス Lv1",
-          "skills": [
-            {
-              "skillName": "ポジションセンス",
-              "hintLevel": 1,
-              "skillId": 200452
-            }
-          ]
+          "skillName": "ポジションセンス",
+          "hintLevel": 1,
+          "skillId": 200452
         }
       ]
     },
@@ -1517,19 +1391,12 @@
       "supportNameMatch": "無機の闘志",
       "id": "evt_bourbon_order",
       "label": "ブルボン 命令は守らなければならない",
-      "selection": "single",
-      "defaultChoiceId": "focus",
-      "choices": [
+      "selection": "auto",
+      "skills": [
         {
-          "id": "focus",
-          "label": "① 集中力 Lv1",
-          "skills": [
-            {
-              "skillName": "集中力",
-              "hintLevel": 1,
-              "skillId": 200432
-            }
-          ]
+          "skillName": "集中力",
+          "hintLevel": 1,
+          "skillId": 200432
         }
       ]
     },
@@ -1555,19 +1422,12 @@
       "supportNameMatch": "決意のフローラ",
       "id": "evt_karen_chowa",
       "label": "カレン 争いの種は咲かせない",
-      "selection": "single",
-      "defaultChoiceId": "takami",
-      "choices": [
+      "selection": "auto",
+      "skills": [
         {
-          "id": "takami",
-          "label": "① さらなる高みへ Lv1",
-          "skills": [
-            {
-              "skillName": "さらなる高みへ",
-              "hintLevel": 1,
-              "skillId": 203122
-            }
-          ]
+          "skillName": "さらなる高みへ",
+          "hintLevel": 1,
+          "skillId": 203122
         }
       ]
     },
@@ -1588,19 +1448,12 @@
       "supportNameMatch": "壇上より魔法を込めて",
       "id": "evt_fuji_sleight",
       "label": "フジ スライハンド",
-      "selection": "single",
-      "defaultChoiceId": "ryuko",
-      "choices": [
+      "selection": "auto",
+      "skills": [
         {
-          "id": "ryuko",
-          "label": "① 流星光底 Lv1",
-          "skills": [
-            {
-              "skillName": "流星光底",
-              "hintLevel": 1,
-              "skillId": 202981
-            }
-          ]
+          "skillName": "流星光底",
+          "hintLevel": 1,
+          "skillId": 202981
         }
       ]
     },
@@ -1608,19 +1461,12 @@
       "supportNameMatch": "壇上より魔法を込めて",
       "id": "evt_fuji_miss",
       "label": "フジ ミスディレクション",
-      "selection": "single",
-      "defaultChoiceId": "nukedashi",
-      "choices": [
+      "selection": "auto",
+      "skills": [
         {
-          "id": "nukedashi",
-          "label": "① 抜け出し準備 Lv1",
-          "skills": [
-            {
-              "skillName": "抜け出し準備",
-              "hintLevel": 1,
-              "skillId": 200582
-            }
-          ]
+          "skillName": "抜け出し準備",
+          "hintLevel": 1,
+          "skillId": 200582
         }
       ]
     },
@@ -1641,19 +1487,12 @@
       "supportNameMatch": "Inseparable",
       "id": "evt_ruby_ganka",
       "label": "ルビー 華麗なる旋律",
-      "selection": "single",
-      "defaultChoiceId": "tsume",
-      "choices": [
+      "selection": "auto",
+      "skills": [
         {
-          "id": "tsume",
-          "label": "① 詰め寄り Lv1",
-          "skills": [
-            {
-              "skillName": "詰め寄り",
-              "hintLevel": 1,
-              "skillId": 200672
-            }
-          ]
+          "skillName": "詰め寄り",
+          "hintLevel": 1,
+          "skillId": 200672
         }
       ]
     },
@@ -1679,19 +1518,12 @@
       "supportNameMatch": "カルストンライトオ、猫です",
       "id": "evt_carlton_saisoku",
       "label": "ライトオ 『最速』はすばらしい",
-      "selection": "single",
-      "defaultChoiceId": "chokusen_course",
-      "choices": [
+      "selection": "auto",
+      "skills": [
         {
-          "id": "chokusen_course",
-          "label": "① 直線コース○ Lv1",
-          "skills": [
-            {
-              "skillName": "直線コース○",
-              "hintLevel": 1,
-              "skillId": 202992
-            }
-          ]
+          "skillName": "直線コース○",
+          "hintLevel": 1,
+          "skillId": 202992
         }
       ]
     },
@@ -1699,19 +1531,12 @@
       "supportNameMatch": "カルストンライトオ、猫です",
       "id": "evt_carlton_massugu",
       "label": "ライトオ 『真っ直ぐ』はすばらしい",
-      "selection": "single",
-      "defaultChoiceId": "chokusen2",
-      "choices": [
+      "selection": "auto",
+      "skills": [
         {
-          "id": "chokusen2",
-          "label": "① 直線巧者 Lv1",
-          "skills": [
-            {
-              "skillName": "直線巧者",
-              "hintLevel": 1,
-              "skillId": 200362
-            }
-          ]
+          "skillName": "直線巧者",
+          "hintLevel": 1,
+          "skillId": 200362
         }
       ]
     },
@@ -1719,19 +1544,12 @@
       "supportNameMatch": "氷結晶の静域",
       "id": "evt_groove_kyuukou",
       "label": "アドマイヤ 孤高の休日",
-      "selection": "single",
-      "defaultChoiceId": "overflow",
-      "choices": [
+      "selection": "auto",
+      "skills": [
         {
-          "id": "overflow",
-          "label": "① 溢れる情熱 Lv1",
-          "skills": [
-            {
-              "skillName": "溢れる情熱",
-              "hintLevel": 1,
-              "skillId": 202612
-            }
-          ]
+          "skillName": "溢れる情熱",
+          "hintLevel": 1,
+          "skillId": 202612
         }
       ]
     },
@@ -1757,19 +1575,12 @@
       "supportNameMatch": "氷結晶の静域",
       "id": "evt_groove_wan",
       "label": "アドマイヤ ひとりが好きなクラスメイトさん",
-      "selection": "single",
-      "defaultChoiceId": "wan",
-      "choices": [
+      "selection": "auto",
+      "skills": [
         {
-          "id": "wan",
-          "label": "① ワンチャンス Lv1",
-          "skills": [
-            {
-              "skillName": "ワンチャンス",
-              "hintLevel": 1,
-              "skillId": 202082
-            }
-          ]
+          "skillName": "ワンチャンス",
+          "hintLevel": 1,
+          "skillId": 202082
         }
       ]
     },
@@ -1777,19 +1588,12 @@
       "supportNameMatch": "気まぐれ渡り星",
       "id": "evt_stay_over17",
       "label": "ステイ Over 17 Lights",
-      "selection": "single",
-      "defaultChoiceId": "hirui",
-      "choices": [
+      "selection": "auto",
+      "skills": [
         {
-          "id": "hirui",
-          "label": "① 比類なき Lv1",
-          "skills": [
-            {
-              "skillName": "比類なき",
-              "hintLevel": 1,
-              "skillId": 203502
-            }
-          ]
+          "skillName": "比類なき",
+          "hintLevel": 1,
+          "skillId": 203502
         }
       ]
     },
@@ -1838,19 +1642,12 @@
       "supportNameMatch": "気まぐれ渡り星",
       "id": "evt_stay_kin",
       "label": "ステイ 黄金を探し求めて",
-      "selection": "single",
-      "defaultChoiceId": "chokusen",
-      "choices": [
+      "selection": "auto",
+      "skills": [
         {
-          "id": "chokusen",
-          "label": "① 直線巧者 Lv1",
-          "skills": [
-            {
-              "skillName": "直線巧者",
-              "hintLevel": 1,
-              "skillId": 200362
-            }
-          ]
+          "skillName": "直線巧者",
+          "hintLevel": 1,
+          "skillId": 200362
         }
       ]
     },
@@ -1858,24 +1655,17 @@
       "supportNameMatch": "Tranquillo",
       "id": "evt_dura_kawaii_power",
       "label": "ドゥラ 可愛いの真の力！",
-      "selection": "single",
-      "defaultChoiceId": "pafe",
-      "choices": [
+      "selection": "auto",
+      "skills": [
         {
-          "id": "pafe",
-          "label": "① 飛翔脚 Lv1 + 残影 Lv1",
-          "skills": [
-            {
-              "skillName": "飛翔脚",
-              "hintLevel": 1,
-              "skillId": 202901
-            },
-            {
-              "skillName": "残影",
-              "hintLevel": 1,
-              "skillId": 203751
-            }
-          ]
+          "skillName": "飛翔脚",
+          "hintLevel": 1,
+          "skillId": 202901
+        },
+        {
+          "skillName": "残影",
+          "hintLevel": 1,
+          "skillId": 203751
         }
       ]
     },
@@ -1883,19 +1673,12 @@
       "supportNameMatch": "Tranquillo",
       "id": "evt_dura_ou",
       "label": "ドゥラ 追うべき背中",
-      "selection": "single",
-      "defaultChoiceId": "ignition",
-      "choices": [
+      "selection": "auto",
+      "skills": [
         {
-          "id": "ignition",
-          "label": "① イグニッション Lv1",
-          "skills": [
-            {
-              "skillName": "イグニッション",
-              "hintLevel": 1,
-              "skillId": 202602
-            }
-          ]
+          "skillName": "イグニッション",
+          "hintLevel": 1,
+          "skillId": 202602
         }
       ]
     },
@@ -1903,19 +1686,12 @@
       "supportNameMatch": "水面のプリンシパル",
       "id": "evt_win_near",
       "label": "バリア 潜在的ソウルメイト",
-      "selection": "single",
-      "defaultChoiceId": "hirui",
-      "choices": [
+      "selection": "auto",
+      "skills": [
         {
-          "id": "hirui",
-          "label": "① 比類なき Lv1",
-          "skills": [
-            {
-              "skillName": "比類なき",
-              "hintLevel": 1,
-              "skillId": 203502
-            }
-          ]
+          "skillName": "比類なき",
+          "hintLevel": 1,
+          "skillId": 203502
         }
       ]
     },
@@ -1941,19 +1717,12 @@
       "supportNameMatch": "水面のプリンシパル",
       "id": "evt_win_gran",
       "label": "バリア グラン・ジュテ～いつの日か～",
-      "selection": "single",
-      "defaultChoiceId": "chokyori",
-      "choices": [
+      "selection": "auto",
+      "skills": [
         {
-          "id": "chokyori",
-          "label": "① 長距離コーナー○ Lv1",
-          "skills": [
-            {
-              "skillName": "長距離コーナー○",
-              "hintLevel": 1,
-              "skillId": 201182
-            }
-          ]
+          "skillName": "長距離コーナー○",
+          "hintLevel": 1,
+          "skillId": 201182
         }
       ]
     },
@@ -1974,19 +1743,12 @@
       "supportNameMatch": "瞳に闘志を胸に勝利の渇望を",
       "id": "evt_ryan_pace",
       "label": "ライアン あくまで薦められただけ",
-      "selection": "single",
-      "defaultChoiceId": "pace",
-      "choices": [
+      "selection": "auto",
+      "skills": [
         {
-          "id": "pace",
-          "label": "① ペースキープ Lv1",
-          "skills": [
-            {
-              "skillName": "ペースキープ",
-              "hintLevel": 1,
-              "skillId": 200472
-            }
-          ]
+          "skillName": "ペースキープ",
+          "hintLevel": 1,
+          "skillId": 200472
         }
       ]
     },
@@ -2066,19 +1828,12 @@
       "supportNameMatch": "白き稲妻の如く",
       "id": "evt_tamamo_lose",
       "label": "タマモ 負けられん戦い！",
-      "selection": "single",
-      "defaultChoiceId": "uma",
-      "choices": [
+      "selection": "auto",
+      "skills": [
         {
-          "id": "uma",
-          "label": "① ウマ込み冷静 Lv1",
-          "skills": [
-            {
-              "skillName": "ウマ込み冷静",
-              "hintLevel": 1,
-              "skillId": 200482
-            }
-          ]
+          "skillName": "ウマ込み冷静",
+          "hintLevel": 1,
+          "skillId": 200482
         }
       ]
     },
@@ -2104,19 +1859,12 @@
       "supportNameMatch": "Unveiled Dream",
       "id": "evt_line_wakuwaku",
       "label": "ライン ワクワクでキラキラな夢",
-      "selection": "single",
-      "defaultChoiceId": "mile_corner",
-      "choices": [
+      "selection": "auto",
+      "skills": [
         {
-          "id": "mile_corner",
-          "label": "① マイルコーナー○ Lv1",
-          "skills": [
-            {
-              "skillName": "マイルコーナー○",
-              "hintLevel": 1,
-              "skillId": 201042
-            }
-          ]
+          "skillName": "マイルコーナー○",
+          "hintLevel": 1,
+          "skillId": 201042
         }
       ]
     },
@@ -2155,19 +1903,12 @@
       "supportNameMatch": "無垢の白妙",
       "id": "evt_muku_survival",
       "label": "タクト 私を育てた場所",
-      "selection": "single",
-      "defaultChoiceId": "ichi",
-      "choices": [
+      "selection": "auto",
+      "skills": [
         {
-          "id": "ichi",
-          "label": "① 一歩ずつ前へ Lv1",
-          "skills": [
-            {
-              "skillName": "一歩ずつ前へ",
-              "hintLevel": 1,
-              "skillId": 203362
-            }
-          ]
+          "skillName": "一歩ずつ前へ",
+          "hintLevel": 1,
+          "skillId": 203362
         }
       ]
     },
@@ -2175,19 +1916,12 @@
       "supportNameMatch": "誘うは夢心地",
       "id": "evt_dj_shop",
       "label": "ドリーム それはただただ咲き誇る",
-      "selection": "single",
-      "defaultChoiceId": "kaikaku",
-      "choices": [
+      "selection": "auto",
+      "skills": [
         {
-          "id": "kaikaku",
-          "label": "① 打開策 Lv2",
-          "skills": [
-            {
-              "skillName": "打開策",
-              "hintLevel": 2,
-              "skillId": 202382
-            }
-          ]
+          "skillName": "打開策",
+          "hintLevel": 2,
+          "skillId": 202382
         }
       ]
     },
@@ -2195,24 +1929,17 @@
       "supportNameMatch": "誘うは夢心地",
       "id": "evt_dj_bloom",
       "label": "ドリーム そして今日も花が咲く",
-      "selection": "single",
-      "defaultChoiceId": "kanzen",
-      "choices": [
+      "selection": "auto",
+      "skills": [
         {
-          "id": "kanzen",
-          "label": "① 完全燃焼 Lv1 + 肉薄 Lv1",
-          "skills": [
-            {
-              "skillName": "完全燃焼",
-              "hintLevel": 1,
-              "skillId": 202881
-            },
-            {
-              "skillName": "肉薄",
-              "hintLevel": 1,
-              "skillId": 202931
-            }
-          ]
+          "skillName": "完全燃焼",
+          "hintLevel": 1,
+          "skillId": 202881
+        },
+        {
+          "skillName": "肉薄",
+          "hintLevel": 1,
+          "skillId": 202931
         }
       ]
     },
@@ -2220,19 +1947,12 @@
       "supportNameMatch": "誘うは夢心地",
       "id": "evt_dj_imouto",
       "label": "ドリーム 用意周到で妹想い",
-      "selection": "single",
-      "defaultChoiceId": "tsu",
-      "choices": [
+      "selection": "auto",
+      "skills": [
         {
-          "id": "tsu",
-          "label": "① 推力十分 Lv1",
-          "skills": [
-            {
-              "skillName": "推力十分",
-              "hintLevel": 1,
-              "skillId": 202902
-            }
-          ]
+          "skillName": "推力十分",
+          "hintLevel": 1,
+          "skillId": 202902
         }
       ]
     },
@@ -2281,19 +2001,12 @@
       "supportNameMatch": "世界を変える眼差し",
       "id": "evt_almond_mental",
       "label": "アーモンド アーモンドアイは見逃さない",
-      "selection": "single",
-      "defaultChoiceId": "kou",
-      "choices": [
+      "selection": "auto",
+      "skills": [
         {
-          "id": "kou",
-          "label": "① 品行方正 Lv1",
-          "skills": [
-            {
-              "skillName": "品行方正",
-              "hintLevel": 1,
-              "skillId": 202742
-            }
-          ]
+          "skillName": "品行方正",
+          "hintLevel": 1,
+          "skillId": 202742
         }
       ]
     }

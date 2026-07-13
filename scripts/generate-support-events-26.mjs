@@ -1,9 +1,9 @@
 import { writeFileSync } from "fs";
 import {
-  formatEventChoices,
   formatEventLabel,
   NEW_MATCHES,
 } from "./format_event_choice_labels.mjs";
+import { normalizeEventSelection } from "./event_selection.mjs";
 
 const skill = (skillName, hintLevel) => ({
   skillName: skillName.replace(/◯/g, "○"),
@@ -194,20 +194,10 @@ const raw = [
   withMeta(30242, "世界を変える眼差し", { id: "evt_almond_mental", label: "アーモンドアイは見逃さない", selection: "single", defaultChoiceId: "kou", choices: [{ id: "kou", label: "そのメンタル、見習いたいな", skills: [skill("品行方正", 1)] }, { id: "other", label: "（非ヒント選択肢）", skills: [] }] }),
 ];
 
-// 旧11種と同形式に整形（イベント名=短縮名+イベント、選択肢=① スキル Lv）
+// 旧11種ルールで selection 正規化 + 表示名
 const events = raw.map((e) => {
-  const label = formatEventLabel(e.supportNameMatch, e.label);
-  if (e.selection === "single" && e.choices?.length) {
-    const choices = formatEventChoices(e.choices);
-    if (choices.length === 0) {
-      throw new Error(`${e.id}: ヒント付き選択肢が0件`);
-    }
-    if (!choices.some((c) => c.id === e.defaultChoiceId)) {
-      throw new Error(`${e.id}: defaultChoiceId が choices に無い`);
-    }
-    return { ...e, label, choices };
-  }
-  return { ...e, label };
+  const labeled = { ...e, label: formatEventLabel(e.supportNameMatch, e.label) };
+  return normalizeEventSelection(labeled);
 });
 
 // NEW_MATCHES と raw の整合確認

@@ -2,10 +2,8 @@
  * support-events-research-26.json を events.json にマージし skillId を解決する
  */
 import fs from "node:fs";
-import {
-  formatEventChoices,
-  formatEventLabel,
-} from "./format_event_choice_labels.mjs";
+import { formatEventLabel } from "./format_event_choice_labels.mjs";
+import { normalizeEventSelection } from "./event_selection.mjs";
 
 const skills = JSON.parse(fs.readFileSync("./data/skills.json", "utf8"));
 const supports = JSON.parse(fs.readFileSync("./data/supports.json", "utf8"));
@@ -30,24 +28,15 @@ function resolveSkills(list) {
 
 function toEventEntry(raw) {
   const { supportId: _sid, _source, _note, ...evt } = raw;
-  const out = { ...evt };
+  let out = { ...evt };
   out.label = formatEventLabel(out.supportNameMatch, out.label);
+  out = normalizeEventSelection(out);
   if (out.skills) out.skills = resolveSkills(out.skills);
   if (out.choices) {
-    out.choices = formatEventChoices(
-      out.choices.map((c) => ({
-        ...c,
-        skills: resolveSkills(c.skills),
-      }))
-    );
-    if (out.choices.length === 0) {
-      throw new Error(`event ${out.id}: ヒント付き選択肢が0件`);
-    }
-    if (!out.choices.some((c) => c.id === out.defaultChoiceId)) {
-      throw new Error(
-        `event ${out.id}: defaultChoiceId "${out.defaultChoiceId}" が choices に無い`
-      );
-    }
+    out.choices = out.choices.map((c) => ({
+      ...c,
+      skills: resolveSkills(c.skills),
+    }));
   }
   return out;
 }
@@ -99,7 +88,6 @@ for (const t of NEW_TITLES) {
     console.error("support not found:", t);
     process.exit(1);
   }
-  // prioritySupportNames は [タイトル] キャラ名 形式（スペースあり）
   const m = hit.name.match(/^\[([^\]]+)\](.+)$/);
   const display = m ? `[${m[1]}] ${m[2].trim()}` : hit.name;
   newNames.push(display);
