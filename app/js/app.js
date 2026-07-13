@@ -464,6 +464,21 @@ function updateTotalDisplay(total) {
   previousTotal = total;
 }
 
+function renderPlanWarnings(unresolved) {
+  const el = document.getElementById("plan-warnings");
+  if (!el) return;
+  if (!unresolved?.length) {
+    el.hidden = true;
+    el.textContent = "";
+    return;
+  }
+  el.hidden = false;
+  el.textContent =
+    "未解決スキル（合計から除外されています）: " +
+    unresolved.map((u) => `${u.skillName}（${u.context}）`).join("、");
+  console.warn("未解決スキル:", unresolved);
+}
+
 function recalc() {
   if (!state) return;
 
@@ -487,6 +502,7 @@ function recalc() {
     seniorRmjChoiceId: state.ui.seniorRmjChoiceId,
   });
 
+  renderPlanWarnings(plan.unresolved);
   updateTotalDisplay(plan.total);
 
   const tbody = document.getElementById("result-body");
@@ -616,8 +632,12 @@ async function init() {
   } catch (e) {
     showError(
       `データの読み込みに失敗しました: ${e.message}\n\n` +
-        "1. python scripts/extract_mdb.py を実行して data/*.json を生成\n" +
-        "2. app フォルダで python -m http.server 8080 を起動して http://localhost:8080 を開く"
+        "対処:\n" +
+        "1. リポジトリ直下で npm run serve を実行\n" +
+        "2. ブラウザで http://localhost:8080/app/ を開く\n" +
+        "3. data/*.json が無い場合は npm run extract を実行\n\n" +
+        "※ index.html をダブルクリック（file://）では動きません。\n" +
+        "※ app/ だけをサイトルートにすると ../data/ が読めません。"
     );
     console.error(e);
   }

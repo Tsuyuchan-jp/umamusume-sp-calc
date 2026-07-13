@@ -8,11 +8,11 @@
 
 - [x] プロジェクト骨格（README, .gitignore, docs）
 - [x] `scripts/extract_mdb.mjs` / `.py`（スキル / サポカ / 育成ウマ娘抽出）
-- [x] **初回 extract 成功** — skills 2078 / supports 539 / characters 258（`data/meta.json`）
+- [x] **初回 extract 成功** — skills 2103 / supports 543 / characters 261（`data/meta.json`）
 - [x] `scripts/test_sp.mjs` / `verify_data.mjs`
 - [x] 計算コア: `spCost` / `hintResolve` / `goldLower` / `aggregate`
 - [x] UI: 育成ウマ娘・6枠サポカ（検索・絞込）・切れ者・継承・イベント/シナリオ・除外・合計表示
-- [x] `data/events.json` — 優先11サポカ・33イベント（`auto` / `single`、実機確認済み）
+- [x] `data/events.json` — 優先11サポカ・32イベント（`auto` / `single`、実機確認済み）
 - [x] `data/scenarios/toresenken.json` — リンク白/金・RMJ自動計上・ラーメン3択・終了スキル（skillId 確定）
 - [x] 常用デッキでのイベント表示・SP変化の実機確認
 - [x] 育成ウマ娘所持スキル・白→金コストの実機確認（固有・覚醒進化はデータ源で自然に整合）
@@ -23,7 +23,7 @@
 | 項目 | 状態 | メモ |
 |------|------|------|
 | UX 改善 | 任意 | 結果の由来表示、初期デッキ6枚化など。プリセットは当面スコープ外 |
-| 回帰テスト拡充 | 任意 | 実機確認済みケースを `npm test` に落とす（現状はコスト式のみ） |
+| 回帰テスト拡充 | 一部済 | デフォルト編成・リンク白/金を `npm test` に追加（2026-07） |
 | 表記ゆれ・名前マッチ | 必要時 | `verify_data.mjs` で検出したとき修正 |
 | 既定 AppData の mdb | 無し | 再 extract は DMM パスを `--mdb` で指定 |
 | Python 実体 / PATH | 注意 | WindowsApps スタブの可能性。再 extract は Node 推奨 |

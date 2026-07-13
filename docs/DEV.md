@@ -50,22 +50,33 @@ node scripts/test_sp.mjs
 
 ## 3. ローカルサーバー
 
-`file://` だと `fetch` が失敗することがある。
+`file://` で `index.html` を直接開くと `fetch` が失敗する。**HTTP サーバー必須**。
+
+**推奨**（README と同じ）— リポジトリ直下を配信し、`/app/` を開く:
 
 ```powershell
-cd C:\Users\PC1\Projects\umamusume-sp-calc\app
+cd C:\Users\PC1\Projects\umamusume-sp-calc
+npm run serve
+```
+
+ブラウザ: http://localhost:8080/app/
+
+`app/js/app.js` は `../data/*.json` を読むため、**配信ルートはリポジトリ直下**であること。`app/` だけをルートにするとデータが 404 になる。
+
+代替（Python）:
+
+```powershell
+cd C:\Users\PC1\Projects\umamusume-sp-calc
 python -m http.server 8080
 ```
 
-ブラウザ: http://localhost:8080
+ブラウザ: http://localhost:8080/app/（上記と同じくリポジトリ直下を配信すること）
 
-Python が無い場合の代替例:
+## 4. 静的ホスト公開（GitHub Pages / Cloudflare Pages 等）
 
-```powershell
-npx --yes serve -l 8080
-```
-
-（Node が入っている場合）
+- **サイトルート = リポジトリ直下**（`data/` と `app/` が同階層で見えること）
+- 入口 URL は **`/app/`**（`app/` だけをルートにしない）
+- `fetch("../data/...")` の相対パスが壊れないよう、サブパス公開時はベースパス設定を確認する
 
 ## Python / py が PATH に無いとき
 
@@ -120,6 +131,6 @@ git commit -m "feat: 変更内容の要約"
 | 症状 | 原因 | 対処 |
 |------|------|------|
 | ロードエラー | skills 等が無い | extract 実行 |
-| CORS / fetch 失敗 | file:// で開いた | http.server 使用 |
+| CORS / fetch 失敗 | file:// で開いた / `app/` のみ配信 | リポジトリ直下で `npm run serve` → `/app/` |
 | `python` 不明 | PATH | 上記トラブルシュート |
 | イベントが効かない | skillId/名前不一致 or サポカ未選択 | events.json とデッキを確認 |

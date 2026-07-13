@@ -16,9 +16,18 @@ function isEventSupportInDeck(evt, supportIds, supportById) {
     .some((s) => s && s.name.includes(evt.supportNameMatch));
 }
 
-function appendEventSkills(hintEntries, skills, label, nameToId) {
+function resolveSkillRef(sk, nameToId, unresolved, context) {
+  const skillId = sk.skillId ?? nameToId.get(sk.skillName);
+  if (!skillId) {
+    unresolved.push({ skillName: sk.skillName ?? "(名前なし)", context });
+    return null;
+  }
+  return skillId;
+}
+
+function appendEventSkills(hintEntries, skills, label, nameToId, unresolved) {
   for (const sk of skills || []) {
-    const skillId = sk.skillId ?? nameToId.get(sk.skillName);
+    const skillId = resolveSkillRef(sk, nameToId, unresolved, `イベント: ${label}`);
     if (!skillId) continue;
     hintEntries.push({
       skillId,
@@ -52,6 +61,7 @@ export function buildSkillPlan(params) {
   const skillById = new Map(params.skills.map((s) => [s.id, s]));
   const supportById = new Map(params.supports.map((s) => [s.id, s]));
   const nameToId = new Map(params.skills.map((s) => [s.name, s.id]));
+  const unresolved = [];
 
   const hintEntries = [];
 
@@ -92,16 +102,16 @@ export function buildSkillPlan(params) {
 
     const selection = evt.selection ?? "toggle";
     if (selection === "auto") {
-      appendEventSkills(hintEntries, evt.skills, evt.label, nameToId);
+      appendEventSkills(hintEntries, evt.skills, evt.label, nameToId, unresolved);
     } else if (selection === "single") {
       const choiceId = params.eventChoiceIds?.[evt.id];
       if (!choiceId || choiceId === "none") continue;
       const choice = (evt.choices || []).find((c) => c.id === choiceId);
       if (choice) {
-        appendEventSkills(hintEntries, choice.skills, `${evt.label}`, nameToId);
+        appendEventSkills(hintEntries, choice.skills, `${evt.label}`, nameToId, unresolved);
       }
     } else if (params.enabledEventIds?.has(evt.id)) {
-      appendEventSkills(hintEntries, evt.skills, evt.label, nameToId);
+      appendEventSkills(hintEntries, evt.skills, evt.label, nameToId, unresolved);
     }
   }
 
@@ -115,7 +125,12 @@ export function buildSkillPlan(params) {
     if (!params.enabledScenarioEntryIds.has(entry.id)) continue;
     const sk = resolveLinkSkill(entry, deckLinkIds);
     if (!sk) continue;
-    const skillId = sk.skillId ?? nameToId.get(sk.skillName);
+    const skillId = resolveSkillRef(
+      sk,
+      nameToId,
+      unresolved,
+      `シナリオリンク: ${entry.label}`
+    );
     if (!skillId) continue;
     hintEntries.push({
       skillId,
@@ -127,7 +142,12 @@ export function buildSkillPlan(params) {
   // シナリオ自動計上（ガチ想定: クラシック大盛況・超盛況固定・育成終了）
   for (const entry of params.scenario.scenarioAutoSkills || []) {
     for (const sk of entry.skills || []) {
-      const skillId = sk.skillId ?? nameToId.get(sk.skillName);
+      const skillId = resolveSkillRef(
+        sk,
+        nameToId,
+        unresolved,
+        `シナリオ自動: ${entry.label}`
+      );
       if (!skillId) continue;
       hintEntries.push({
         skillId,
@@ -145,7 +165,12 @@ export function buildSkillPlan(params) {
     const choice = (rmj.choices || []).find((c) => c.id === rmjChoiceId);
     if (choice) {
       for (const sk of choice.skills || []) {
-        const skillId = sk.skillId ?? nameToId.get(sk.skillName);
+        const skillId = resolveSkillRef(
+          sk,
+          nameToId,
+          unresolved,
+          `シナリオRMJ: ${choice.label}`
+        );
         if (!skillId) continue;
         hintEntries.push({
           skillId,
@@ -172,11 +197,21 @@ export function buildSkillPlan(params) {
     if (!excluded) {
       total += acq.cost;
     }
+
+    // 金行表示時は下位スキルの由来も併記する
+    const sources = [...(hint?.sources ?? [])];
+    if (acq.includesLower && acq.lowerSkillId) {
+      const lowerHint = hintMap.get(acq.lowerSkillId);
+      for (const src of lowerHint?.sources ?? []) {
+        if (!sources.includes(src)) sources.push(src);
+      }
+    }
+
     rows.push({
       skillId,
       name: skill.name,
       hintLevel: hint?.hintLevel ?? 0,
-      sources: hint?.sources ?? [],
+      sources,
       baseSp: skill.baseSp,
       cost: acq.cost,
       includesLower: acq.includesLower,
@@ -208,5 +243,5 @@ export function buildSkillPlan(params) {
     });
   }
 
-  return { rows, total, hintMap };
+  return { rows, total, hintMap, unresolved };
 }

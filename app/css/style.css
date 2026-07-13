@@ -263,6 +263,14 @@ tr.excluded td {
   border-radius: 4px;
 }
 
+.warning {
+  color: #9a6700;
+  background: #fef9e7;
+  padding: 0.75rem;
+  border-radius: 4px;
+  border: 1px solid #f39c12;
+}
+
 .hint {
   font-size: 0.8rem;
   color: #666;

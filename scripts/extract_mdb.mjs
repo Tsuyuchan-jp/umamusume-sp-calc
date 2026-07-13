@@ -13,10 +13,24 @@ const DATA_DIR = path.join(ROOT, "data");
 
 const DEFAULT_CANDIDATES = [
   path.join(process.env.USERPROFILE || "", "AppData/LocalLow/Cygames/umamusume/master/master.mdb"),
-  path.join(process.env.USERPROFILE || "", "Documents/google antigravity/umamusume-skill-emulator/master.mdb"),
   "D:/DMM/umamusumeDMM/Umamusume/umamusume_Data/Persistent/master/master.mdb",
   "D:/Umamusume/umamusume_Data/Persistent/master/master.mdb",
 ];
+
+/** meta.json 用: 個人絶対パスを汎用表記へ */
+function formatMetaSource(mdbPath) {
+  const normalized = mdbPath.replace(/\\/g, "/");
+  if (normalized.includes("AppData/LocalLow/Cygames")) {
+    return "%USERPROFILE%/AppData/LocalLow/Cygames/umamusume/master/master.mdb";
+  }
+  if (normalized.includes("DMM/umamusumeDMM")) {
+    return "D:/DMM/umamusumeDMM/Umamusume/umamusume_Data/Persistent/master/master.mdb";
+  }
+  if (normalized.includes("Umamusume/umamusume_Data/Persistent")) {
+    return "D:/Umamusume/umamusume_Data/Persistent/master/master.mdb";
+  }
+  return path.basename(mdbPath);
+}
 
 const TEXT_SKILL_NAME = 47;
 const TEXT_SUPPORT_NAME = 75;
@@ -279,7 +293,7 @@ function main() {
   writeJson(path.join(DATA_DIR, "supports.json"), supports);
   writeJson(path.join(DATA_DIR, "characters.json"), characters);
   writeJson(path.join(DATA_DIR, "meta.json"), {
-    source: mdbPath,
+    source: formatMetaSource(mdbPath),
     extractedAt: new Date().toISOString(),
     skillCount: skills.length,
     supportCount: supports.length,

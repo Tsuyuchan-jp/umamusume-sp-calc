@@ -10,10 +10,10 @@
 |------|------|
 | アプリ骨格 (`app/`) | **あり** — SP計算・UI・集計ロジック実装済み |
 | `scripts/extract_mdb.py` / `.mjs` | **あり**（再 extract は Node `.mjs` 推奨） |
-| `data/skills.json` 等 | **あり** — skills 2078 / supports 539 / characters 258（`meta.json` 参照） |
+| `data/skills.json` 等 | **あり** — skills 2103 / supports 543 / characters 261（`meta.json` 参照） |
 | extract 元 mdb | `D:\DMM\umamusumeDMM\Umamusume\umamusume_Data\Persistent\master\master.mdb` |
 | 既定 AppData の mdb | **無し** — `%USERPROFILE%\AppData\LocalLow\Cygames\...` には無い |
-| `data/events.json` | **あり** — 優先11サポカすべて記入済み（33イベント・実機確認済み） |
+| `data/events.json` | **あり** — 優先11サポカすべて記入済み（32イベント・実機確認済み） |
 | `data/scenarios/toresenken.json` | **あり** — リンク白/金・RMJ自動計上・ラーメン3択（実機通し確認済み） |
 | Python / `py` | `where` 上は WindowsApps の `python.exe` スタブ寄り。`py` 無し。再 extract 時に実体 Python 要確認 |
 | Git | リポジトリ初期化済み |

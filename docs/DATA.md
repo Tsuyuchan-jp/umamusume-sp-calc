@@ -16,7 +16,7 @@ data/
 **現状（確認済み）**: extract 済み。
 
 - `skills.json` / `supports.json` / `characters.json` / `meta.json` **あり**
-- `meta.json` 例: skillCount 2078, supportCount 539, characterCount 258
+- `meta.json` 例: skillCount 2103, supportCount 543, characterCount 261
 - 抽出元: `D:\DMM\umamusumeDMM\Umamusume\umamusume_Data\Persistent\master\master.mdb`
 - `events.json` / `toresenken.json` は手メンテ継続（優先11サポカのイベントは記入済み）
 - **実機通し確認済み**（2026-07）: 常用デッキ＋イベント＋シナリオリンク白/金＋RMJ自動計上／ラーメン3択＋終了。問題・バグなし
