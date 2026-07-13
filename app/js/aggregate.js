@@ -1,5 +1,9 @@
 import { resolveHintLevels } from "./hintResolve.js";
-import { calcAcquisitionCost, filterDisplaySkills } from "./goldLower.js";
+import {
+  calcAcquisitionCost,
+  filterDisplaySkills,
+  getEffectiveHintLevel,
+} from "./goldLower.js";
 import { calcSkillCost } from "./spCost.js";
 import {
   getDeckLinkCharacterIds,
@@ -191,18 +195,16 @@ export function buildSkillPlan(params) {
   for (const skillId of displayIds) {
     const skill = skillById.get(skillId);
     if (!skill) continue;
-    const hint = hintMap.get(skillId);
     const acq = calcAcquisitionCost(skill, skillById, hintMap, params.fastLearner);
     const excluded = params.excludedSkillIds.has(skillId);
     if (!excluded) {
       total += acq.cost;
     }
 
-    // 金行表示時は下位スキルの由来も併記する
-    const sources = [...(hint?.sources ?? [])];
-    if (acq.includesLower && acq.lowerSkillId) {
-      const lowerHint = hintMap.get(acq.lowerSkillId);
-      for (const src of lowerHint?.sources ?? []) {
+    // 合算行はチェーン内スキルの由来を併記する
+    const sources = [];
+    for (const cid of acq.chainSkillIds || [skillId]) {
+      for (const src of hintMap.get(cid)?.sources ?? []) {
         if (!sources.includes(src)) sources.push(src);
       }
     }
@@ -210,7 +212,7 @@ export function buildSkillPlan(params) {
     rows.push({
       skillId,
       name: skill.name,
-      hintLevel: hint?.hintLevel ?? 0,
+      hintLevel: getEffectiveHintLevel(skill, skillById, hintMap),
       sources,
       baseSp: skill.baseSp,
       cost: acq.cost,
@@ -218,6 +220,7 @@ export function buildSkillPlan(params) {
       lowerSkillId: acq.lowerSkillId,
       lowerCost: acq.lowerCost,
       goldOnlyCost: acq.goldOnlyCost,
+      chainCosts: acq.chainCosts,
       rarity: skill.rarity,
       excluded,
     });

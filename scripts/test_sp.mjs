@@ -1,6 +1,9 @@
 import fs from "node:fs";
 import { calcSkillCost } from "../app/js/spCost.js";
-import { calcAcquisitionCost } from "../app/js/goldLower.js";
+import {
+  calcAcquisitionCost,
+  filterDisplaySkills,
+} from "../app/js/goldLower.js";
 import { buildSkillPlan } from "../app/js/aggregate.js";
 import {
   getDeckLinkCharacterIds,
@@ -32,8 +35,20 @@ assertEq(calcSkillCost(170, 5), 102, "Lv5");
 assertEq(calcSkillCost(170, 5, true), 85, "Lv5+切れ者");
 
 // 実機検証: 強者の証 Lv2 + さらなる高みへ Lv0
-const white = { id: 1, baseSp: 170, lowerSkillId: null, upperSkillId: 2 };
-const gold = { id: 2, baseSp: 170, lowerSkillId: 1, upperSkillId: null };
+const white = {
+  id: 1,
+  baseSp: 170,
+  rarity: 1,
+  lowerSkillId: null,
+  upperSkillId: 2,
+};
+const gold = {
+  id: 2,
+  baseSp: 170,
+  rarity: 2,
+  lowerSkillId: 1,
+  upperSkillId: null,
+};
 const byId = new Map([
   [1, white],
   [2, gold],
@@ -46,15 +61,58 @@ const acq = calcAcquisitionCost(gold, byId, hintMap, false);
 assertEq(acq.cost, 306, "金直接購入B");
 assertEq(acq.lowerCost, 170, "下位A");
 assertEq(acq.goldOnlyCost, 136, "金のみC");
+assertEq(acq.chainCosts.join("+"), "170+136", "白金 chainCosts");
 
 // --- 実データ統合テスト ---
 const skills = JSON.parse(fs.readFileSync("./data/skills.json", "utf8"));
 const supports = JSON.parse(fs.readFileSync("./data/supports.json", "utf8"));
 const characters = JSON.parse(fs.readFileSync("./data/characters.json", "utf8"));
 const events = JSON.parse(fs.readFileSync("./data/events.json", "utf8"));
-const scenario = JSON.parse(fs.readFileSync("./data/scenarios/toresenken.json", "utf8"));
+const scenario = JSON.parse(
+  fs.readFileSync("./data/scenarios/toresenken.json", "utf8")
+);
+const skillById = new Map(skills.map((s) => [s.id, s]));
 
-const top = characters.find((c) => c.name === "[万福龍湯伝・頂]ナリタトップロード");
+const senkouO = skills.find((s) => s.name === "先行直線○");
+const senkouD = skills.find((s) => s.name === "先行直線◎");
+const yujin = skills.find((s) => s.name === "勇迅一閃");
+assertTruthy(senkouO && senkouD && yujin, "先行直線○/◎/勇迅一閃");
+
+// ○のみ → ◎表示・○+◎（ヒントは○準拠）
+{
+  const ids = filterDisplaySkills([senkouO.id], skillById);
+  assertEq(ids.length, 1, "○のみ display件数");
+  assertEq(ids[0], senkouD.id, "○のみ → ◎へ繰り上げ");
+  const hm = new Map([[senkouO.id, { hintLevel: 5 }]]);
+  const a = calcAcquisitionCost(senkouD, skillById, hm, false);
+  assertEq(a.cost, 162, "○のみ → ◎合算 cost");
+  assertEq(a.chainCosts.join("+"), "78+84", "○のみ chainCosts");
+}
+
+// ○ Lv5 + 金 Lv1 → 金のみ表示・○+◎+金 = 297（実機ショップ未取得時）
+{
+  const ids = filterDisplaySkills([senkouO.id, yujin.id], skillById);
+  assertEq(ids.length, 1, "○+金 display件数");
+  assertEq(ids[0], yujin.id, "○+金 → 金表示");
+  const hm = new Map([
+    [senkouO.id, { hintLevel: 5 }],
+    [yujin.id, { hintLevel: 1 }],
+  ]);
+  const a = calcAcquisitionCost(yujin, skillById, hm, false);
+  assertEq(a.cost, 297, "勇迅一閃 未取得フルチェーン");
+  assertEq(a.chainCosts.join("+"), "78+84+135", "勇迅一閃 chainCosts");
+}
+
+// ◎ ID にだけヒントがあっても ○ 準拠で同じ合算
+{
+  const hm = new Map([[senkouD.id, { hintLevel: 5 }]]);
+  const a = calcAcquisitionCost(senkouD, skillById, hm, false);
+  assertEq(a.cost, 162, "◎IDヒントでも○準拠合算");
+}
+
+const top = characters.find(
+  (c) => c.name === "[万福龍湯伝・頂]ナリタトップロード"
+);
 const young = supports.find((s) => s.title === "Innovator");
 const tazuna = supports.find((s) => s.title === "一杯のノスタルジア");
 const dotou = supports.find((s) => s.name.includes("その執念は怒濤が如く"));
@@ -102,9 +160,11 @@ const jichu = defaultPlan.rows.find((r) => r.name === "時中の妙");
 assertTruthy(jichu, "時中の妙が結果に含まれる");
 assertEq(jichu.cost, 256, "時中の妙 cost");
 assertEq(jichu.includesLower, true, "時中の妙 includesLower");
-assertFalsy(defaultPlan.rows.find((r) => r.name === "中盤巧者"), "中盤巧者は金行に統合され非表示");
+assertFalsy(
+  defaultPlan.rows.find((r) => r.name === "中盤巧者"),
+  "中盤巧者は金行に統合され非表示"
+);
 
-// 下位由来が金行に併記される
 assertTruthy(
   jichu.sources.some((s) => s.includes("たづな")),
   "時中の妙に下位（たづな）由来が併記"
@@ -113,23 +173,39 @@ assertTruthy(
 const ore = defaultPlan.rows.find((r) => r.name === "折れない心");
 assertTruthy(ore, "デフォルトリンクは折れない心（白）");
 assertEq(ore.cost, 162, "折れない心 cost");
-assertFalsy(defaultPlan.rows.find((r) => r.name === "ネバーギブアップ"), "ネバーギブアップは非表示");
+assertFalsy(
+  defaultPlan.rows.find((r) => r.name === "ネバーギブアップ"),
+  "ネバーギブアップは非表示"
+);
 
-// ドトウ編成でリンク金に切替
 const dotouPlan = makePlan([dotou.id, young.id, tazuna.id]);
 const never = dotouPlan.rows.find((r) => r.name === "ネバーギブアップ");
 assertTruthy(never, "ドトウ編成でネバーギブアップ");
 assertEq(never.cost, 342, "ネバーギブアップ cost");
 assertEq(never.includesLower, true, "ネバーギブアップ includesLower");
-assertFalsy(dotouPlan.rows.find((r) => r.name === "折れない心"), "折れない心は非表示");
+assertFalsy(
+  dotouPlan.rows.find((r) => r.name === "折れない心"),
+  "折れない心は非表示"
+);
 
-// scenarioLink 単体
 const supportById = new Map(supports.map((s) => [s.id, s]));
-const deckIds = getDeckLinkCharacterIds(top.id, [young.id, tazuna.id], supportById);
+const deckIds = getDeckLinkCharacterIds(
+  top.id,
+  [young.id, tazuna.id],
+  supportById
+);
 const linkDotou = scenario.linkSkills.find((e) => e.id === "link_dotou");
-assertEq(resolveLinkSkill(linkDotou, deckIds).skillName, "折れない心", "リンク白解決");
+assertEq(
+  resolveLinkSkill(linkDotou, deckIds).skillName,
+  "折れない心",
+  "リンク白解決"
+);
 
-const deckWithDotou = getDeckLinkCharacterIds(top.id, [dotou.id, young.id, tazuna.id], supportById);
+const deckWithDotou = getDeckLinkCharacterIds(
+  top.id,
+  [dotou.id, young.id, tazuna.id],
+  supportById
+);
 assertEq(
   resolveLinkSkill(linkDotou, deckWithDotou).skillName,
   "ネバーギブアップ",

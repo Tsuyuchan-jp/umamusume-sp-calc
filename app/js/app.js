@@ -544,8 +544,8 @@ function recalc() {
     const included =
       row.skillId == null || !excludedSkillIds.has(row.skillId);
     const costDetail =
-      row.includesLower && row.lowerCost != null
-        ? `${row.cost} <span class="hint">(白${row.lowerCost}+金${row.goldOnlyCost})</span>`
+      row.includesLower && Array.isArray(row.chainCosts) && row.chainCosts.length > 1
+        ? `${row.cost} <span class="hint">(${row.chainCosts.join("+")})</span>`
         : String(row.cost);
 
     tr.innerHTML = `

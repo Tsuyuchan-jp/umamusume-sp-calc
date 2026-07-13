@@ -69,7 +69,7 @@ app.js (loadJson) ──► buildSkillPlan(aggregate.js)
 |----------|------|
 | `spCost.js` | 割引テーブルと `calcSkillCost` |
 | `hintResolve.js` | skillId → max hintLv + sources |
-| `goldLower.js` | 金取得コスト合算、表示用白除外 |
+| `goldLower.js` | グループ内チェーン合算（白+金 / ○+◎+金）、○→◎繰り上げ、表示フィルタ |
 | `aggregate.js` | 全由来のヒント収集と合計 |
 | `app.js` | UI バインド、JSON 読込、再計算 |
 
