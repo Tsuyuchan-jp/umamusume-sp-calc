@@ -1,0 +1,2118 @@
+[
+  {
+    "supportId": 30301,
+    "supportNameMatch": "スマイル・エバーアフター",
+    "_source": {
+      "gameWith": "https://gamewith.jp/uma-musume/article/show/561921",
+      "game8": "https://game8.jp/umamusume/785657",
+      "uTools": "https://xn--gck1f423k.xn--1bvt37a.tools/supports/30301"
+    },
+    "id": "evt_gran_seicho",
+    "label": "成長のヒント",
+    "selection": "auto",
+    "skills": [
+      {
+        "skillName": "足任せ",
+        "hintLevel": 4,
+        "skillId": null
+      }
+    ]
+  },
+  {
+    "supportId": 30301,
+    "supportNameMatch": "スマイル・エバーアフター",
+    "_source": {
+      "gameWith": "https://gamewith.jp/uma-musume/article/show/561921",
+      "game8": "https://game8.jp/umamusume/785657",
+      "uTools": "https://xn--gck1f423k.xn--1bvt37a.tools/supports/30301"
+    },
+    "id": "evt_gran_muse_final",
+    "label": "最強のミューズへ",
+    "selection": "auto",
+    "skills": [
+      {
+        "skillName": "天真爛漫",
+        "hintLevel": 1,
+        "skillId": null
+      },
+      {
+        "skillName": "元気溌剌",
+        "hintLevel": 2,
+        "skillId": null
+      }
+    ]
+  },
+  {
+    "supportId": 30301,
+    "supportNameMatch": "スマイル・エバーアフター",
+    "_source": {
+      "gameWith": "https://gamewith.jp/uma-musume/article/show/561921",
+      "game8": "https://game8.jp/umamusume/785657",
+      "uTools": "https://xn--gck1f423k.xn--1bvt37a.tools/supports/30301"
+    },
+    "id": "evt_gran_mile_way",
+    "label": "ゴー・マイル・ウェイ",
+    "selection": "single",
+    "defaultChoiceId": "mile_line",
+    "choices": [
+      {
+        "id": "other",
+        "label": "力強いマイルへの情熱を感じるな",
+        "skills": []
+      },
+      {
+        "id": "mile_line",
+        "label": "マイル一直線、って感じだな！",
+        "skills": [
+          {
+            "skillName": "マイル直線○",
+            "hintLevel": 1,
+            "skillId": null
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "supportId": 30301,
+    "supportNameMatch": "スマイル・エバーアフター",
+    "_source": {
+      "gameWith": "https://gamewith.jp/uma-musume/article/show/561921",
+      "game8": "https://game8.jp/umamusume/785657",
+      "uTools": "https://xn--gck1f423k.xn--1bvt37a.tools/supports/30301"
+    },
+    "id": "evt_gran_milestone",
+    "label": "勝利へのマイルストーン",
+    "selection": "auto",
+    "skills": [
+      {
+        "skillName": "ハイピッチ",
+        "hintLevel": 1,
+        "skillId": null
+      }
+    ],
+    "_note": "Game8のみ掲載（GameWith未確認）"
+  },
+  {
+    "supportId": 30300,
+    "supportNameMatch": "賑やかな未来を乗せて走れ！",
+    "_source": {
+      "gameWith": "https://gamewith.jp/uma-musume/article/show/560385",
+      "game8": null,
+      "uTools": "https://xn--gck1f423k.xn--1bvt37a.tools/supports/30300"
+    },
+    "id": "evt_chiyo_dosukoi",
+    "label": "どすこいカード列伝！",
+    "selection": "auto",
+    "skills": [
+      {
+        "skillName": "強者の証",
+        "hintLevel": 2,
+        "skillId": null
+      },
+      {
+        "skillName": "継続は力なり",
+        "hintLevel": 2,
+        "skillId": null
+      }
+    ]
+  },
+  {
+    "supportId": 30300,
+    "supportNameMatch": "賑やかな未来を乗せて走れ！",
+    "_source": {
+      "gameWith": "https://gamewith.jp/uma-musume/article/show/560385",
+      "game8": null,
+      "uTools": "https://xn--gck1f423k.xn--1bvt37a.tools/supports/30300"
+    },
+    "id": "evt_chiyo_spring",
+    "label": "いつか咲く、その日まで……",
+    "selection": "single",
+    "defaultChoiceId": "spring",
+    "choices": [
+      {
+        "id": "self",
+        "label": "自分らしさも大事かと",
+        "skills": []
+      },
+      {
+        "id": "spring",
+        "label": "きっとなれる！",
+        "skills": [
+          {
+            "skillName": "春ウマ娘○",
+            "hintLevel": 1,
+            "skillId": null
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "supportId": 30296,
+    "supportNameMatch": "単焦点でつかまえて",
+    "_source": {
+      "gameWith": "https://gamewith.jp/uma-musume/article/show/555216",
+      "game8": null,
+      "uTools": "https://xn--gck1f423k.xn--1bvt37a.tools/supports/30296"
+    },
+    "id": "evt_aman_tuber",
+    "label": "ターちゃんマーちゃん、行くのです！",
+    "selection": "single",
+    "defaultChoiceId": "rival",
+    "choices": [
+      {
+        "id": "walk",
+        "label": "お散歩動画",
+        "skills": []
+      },
+      {
+        "id": "rival",
+        "label": "ライバルコンビへ突撃動画",
+        "skills": [
+          {
+            "skillName": "危険回避",
+            "hintLevel": 1,
+            "skillId": null
+          }
+        ]
+      },
+      {
+        "id": "edit",
+        "label": "いっそ編集風景を動画に！",
+        "skills": [
+          {
+            "skillName": "スプリントギア",
+            "hintLevel": 1,
+            "skillId": null
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "supportId": 30296,
+    "supportNameMatch": "単焦点でつかまえて",
+    "_source": {
+      "gameWith": "https://gamewith.jp/uma-musume/article/show/555216",
+      "game8": null,
+      "uTools": "https://xn--gck1f423k.xn--1bvt37a.tools/supports/30296"
+    },
+    "id": "evt_aman_kaori",
+    "label": "この香りが残りますように",
+    "selection": "single",
+    "defaultChoiceId": "gold",
+    "choices": [
+      {
+        "id": "doll",
+        "label": "あの人形って……",
+        "skills": [
+          {
+            "skillName": "匠のステアリング",
+            "hintLevel": 2,
+            "skillId": null
+          },
+          {
+            "skillName": "圧倒",
+            "hintLevel": 1,
+            "skillId": null
+          }
+        ]
+      },
+      {
+        "id": "gold",
+        "label": "あ、アストンマーチャン？",
+        "skills": [
+          {
+            "skillName": "押せ押せムード",
+            "hintLevel": 5,
+            "skillId": null
+          },
+          {
+            "skillName": "海の加護",
+            "hintLevel": 5,
+            "skillId": null
+          },
+          {
+            "skillName": "いつまでも健やかに",
+            "hintLevel": 5,
+            "skillId": null
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "supportId": 30296,
+    "supportNameMatch": "単焦点でつかまえて",
+    "_source": {
+      "gameWith": "https://gamewith.jp/uma-musume/article/show/555216",
+      "game8": null,
+      "uTools": "https://xn--gck1f423k.xn--1bvt37a.tools/supports/30296"
+    },
+    "id": "evt_aman_mimamori",
+    "label": "いつもそばから見つめてる",
+    "selection": "single",
+    "defaultChoiceId": "capture",
+    "choices": [
+      {
+        "id": "cute",
+        "label": "かわいくって、癒される",
+        "skills": []
+      },
+      {
+        "id": "capture",
+        "label": "見張られているようで、きびきび走れそう",
+        "skills": [
+          {
+            "skillName": "捕捉",
+            "hintLevel": 1,
+            "skillId": null
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "supportId": 30296,
+    "supportNameMatch": "単焦点でつかまえて",
+    "_source": {
+      "gameWith": "https://gamewith.jp/uma-musume/article/show/555216",
+      "game8": null,
+      "uTools": "https://xn--gck1f423k.xn--1bvt37a.tools/supports/30296"
+    },
+    "id": "evt_aman_photo",
+    "label": "いつも写真から見つめてる",
+    "selection": "single",
+    "defaultChoiceId": "kehai",
+    "choices": [
+      {
+        "id": "other",
+        "label": "（非ヒント選択肢）",
+        "skills": []
+      },
+      {
+        "id": "kehai",
+        "label": "華麗な辻写りの極意が知りたい",
+        "skills": [
+          {
+            "skillName": "軽い足取り",
+            "hintLevel": 2,
+            "skillId": null
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "supportId": 30293,
+    "supportNameMatch": "白に至る純真",
+    "_source": {
+      "gameWith": "https://gamewith.jp/uma-musume/article/show/551777",
+      "game8": null,
+      "uTools": "https://xn--gck1f423k.xn--1bvt37a.tools/supports/30293"
+    },
+    "id": "evt_tact_tsutae",
+    "label": "伝え、繋いで",
+    "selection": "single",
+    "defaultChoiceId": "ashikari",
+    "choices": [
+      {
+        "id": "other",
+        "label": "たくましいんだね！",
+        "skills": []
+      },
+      {
+        "id": "taguru",
+        "label": "まだまだ伸びしろがありそうだ……！",
+        "skills": [
+          {
+            "skillName": "滾る想い",
+            "hintLevel": 1,
+            "skillId": null
+          }
+        ]
+      },
+      {
+        "id": "ashikari",
+        "label": "ふたりを尊敬してるんだね",
+        "skills": [
+          {
+            "skillName": "足がかり",
+            "hintLevel": 1,
+            "skillId": null
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "supportId": 30293,
+    "supportNameMatch": "白に至る純真",
+    "_source": {
+      "gameWith": "https://gamewith.jp/uma-musume/article/show/551777",
+      "game8": null,
+      "uTools": "https://xn--gck1f423k.xn--1bvt37a.tools/supports/30293"
+    },
+    "id": "evt_tact_cinderella",
+    "label": "シンデレラの行く末",
+    "selection": "auto",
+    "skills": [
+      {
+        "skillName": "闘争本能",
+        "hintLevel": 1,
+        "skillId": null
+      },
+      {
+        "skillName": "燃ゆる魂",
+        "hintLevel": 1,
+        "skillId": null
+      }
+    ]
+  },
+  {
+    "supportId": 30293,
+    "supportNameMatch": "白に至る純真",
+    "_source": {
+      "gameWith": "https://gamewith.jp/uma-musume/article/show/551777",
+      "game8": null,
+      "uTools": "https://xn--gck1f423k.xn--1bvt37a.tools/supports/30293"
+    },
+    "id": "evt_tact_survival",
+    "label": "私を育てた場所",
+    "selection": "single",
+    "defaultChoiceId": "ichi",
+    "choices": [
+      {
+        "id": "sensei",
+        "label": "はい先生！",
+        "skills": []
+      },
+      {
+        "id": "ichi",
+        "label": "匠のサバイバルスキルだ……",
+        "skills": [
+          {
+            "skillName": "一歩ずつ前へ",
+            "hintLevel": 1,
+            "skillId": null
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "supportId": 30292,
+    "supportNameMatch": "響け、二人の凱歌",
+    "_source": {
+      "gameWith": "https://gamewith.jp/uma-musume/article/show/548286",
+      "game8": null,
+      "uTools": "https://xn--gck1f423k.xn--1bvt37a.tools/supports/30292"
+    },
+    "id": "evt_mars_kanshin",
+    "label": "募る不安",
+    "selection": "single",
+    "defaultChoiceId": "kokoro",
+    "choices": [
+      {
+        "id": "other",
+        "label": "（非ヒント選択肢）",
+        "skills": []
+      },
+      {
+        "id": "kokoro",
+        "label": "バズった絵はどんな気持ちで描いたの？",
+        "skills": [
+          {
+            "skillName": "心惹かれて",
+            "hintLevel": 1,
+            "skillId": null
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "supportId": 30292,
+    "supportNameMatch": "響け、二人の凱歌",
+    "_source": {
+      "gameWith": "https://gamewith.jp/uma-musume/article/show/548286",
+      "game8": null,
+      "uTools": "https://xn--gck1f423k.xn--1bvt37a.tools/supports/30292"
+    },
+    "id": "evt_mars_ai",
+    "label": "重なる愛",
+    "selection": "auto",
+    "skills": [
+      {
+        "skillName": "点滴穿石",
+        "hintLevel": 1,
+        "skillId": null
+      },
+      {
+        "skillName": "優雅な砂浴び",
+        "hintLevel": 1,
+        "skillId": null
+      }
+    ]
+  },
+  {
+    "supportId": 30292,
+    "supportNameMatch": "響け、二人の凱歌",
+    "_source": {
+      "gameWith": "https://gamewith.jp/uma-musume/article/show/548286",
+      "game8": null,
+      "uTools": "https://xn--gck1f423k.xn--1bvt37a.tools/supports/30292"
+    },
+    "id": "evt_mars_koe",
+    "label": "溢れている愛",
+    "selection": "single",
+    "defaultChoiceId": "kyo",
+    "choices": [
+      {
+        "id": "other",
+        "label": "（非ヒント選択肢）",
+        "skills": []
+      },
+      {
+        "id": "kyo",
+        "label": "マルシュロレーヌの絵を描いてみるとか？",
+        "skills": [
+          {
+            "skillName": "轟く足音",
+            "hintLevel": 1,
+            "skillId": null
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "supportId": 30287,
+    "supportNameMatch": "星跨ぐメッセージ",
+    "_source": {
+      "gameWith": "https://gamewith.jp/uma-musume/article/show/541893",
+      "game8": null,
+      "uTools": "https://xn--gck1f423k.xn--1bvt37a.tools/supports/30287"
+    },
+    "id": "evt_neo_signal",
+    "label": "Forシグナル100%",
+    "selection": "single",
+    "defaultChoiceId": "ichi",
+    "choices": [
+      {
+        "id": "other",
+        "label": "（非ヒント選択肢）",
+        "skills": []
+      },
+      {
+        "id": "ichi",
+        "label": "……もしかして困ってる？",
+        "skills": [
+          {
+            "skillName": "一歩ずつ前へ",
+            "hintLevel": 1,
+            "skillId": null
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "supportId": 30287,
+    "supportNameMatch": "星跨ぐメッセージ",
+    "_source": {
+      "gameWith": "https://gamewith.jp/uma-musume/article/show/541893",
+      "game8": null,
+      "uTools": "https://xn--gck1f423k.xn--1bvt37a.tools/supports/30287"
+    },
+    "id": "evt_neo_crewmate",
+    "label": "You Areクルーメイト",
+    "selection": "auto",
+    "skills": [
+      {
+        "skillName": "ルミネセンス",
+        "hintLevel": 1,
+        "skillId": null
+      },
+      {
+        "skillName": "怜悧清澄",
+        "hintLevel": 2,
+        "skillId": null
+      }
+    ]
+  },
+  {
+    "supportId": 30287,
+    "supportNameMatch": "星跨ぐメッセージ",
+    "_source": {
+      "gameWith": "https://gamewith.jp/uma-musume/article/show/541893",
+      "game8": null,
+      "uTools": "https://xn--gck1f423k.xn--1bvt37a.tools/supports/30287"
+    },
+    "id": "evt_neo_encounter",
+    "label": "観測者との遭遇",
+    "selection": "single",
+    "defaultChoiceId": "shutsu",
+    "choices": [
+      {
+        "id": "other",
+        "label": "（非ヒント選択肢）",
+        "skills": []
+      },
+      {
+        "id": "shutsu",
+        "label": "外宇宙進出には夢があるよな！",
+        "skills": [
+          {
+            "skillName": "進出開始",
+            "hintLevel": 1,
+            "skillId": null
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "supportId": 30286,
+    "supportNameMatch": "吉兆招福チョコ来たる",
+    "_source": {
+      "gameWith": "https://gamewith.jp/uma-musume/article/show/541892",
+      "game8": null,
+      "uTools": "https://xn--gck1f423k.xn--1bvt37a.tools/supports/30286"
+    },
+    "id": "evt_fuku_kitto",
+    "label": "吉日・良縁ハグハグ！",
+    "selection": "auto",
+    "skills": [
+      {
+        "skillName": "快刀乱麻",
+        "hintLevel": 2,
+        "skillId": null
+      }
+    ]
+  },
+  {
+    "supportId": 30285,
+    "supportNameMatch": "私のためのショッピング",
+    "_source": {
+      "gameWith": "https://gamewith.jp/uma-musume/article/show/538641",
+      "game8": null,
+      "uTools": "https://xn--gck1f423k.xn--1bvt37a.tools/supports/30285"
+    },
+    "id": "evt_king_ikikoi",
+    "label": "学ぶは、一流の息抜き！",
+    "selection": "single",
+    "defaultChoiceId": "oshi",
+    "choices": [
+      {
+        "id": "other",
+        "label": "いま感じてる充実感と同じ？",
+        "skills": []
+      },
+      {
+        "id": "oshi",
+        "label": "自分のことも助けなきゃ",
+        "skills": [
+          {
+            "skillName": "押し通る！",
+            "hintLevel": 1,
+            "skillId": null
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "supportId": 30285,
+    "supportNameMatch": "私のためのショッピング",
+    "_source": {
+      "gameWith": "https://gamewith.jp/uma-musume/article/show/538641",
+      "game8": null,
+      "uTools": "https://xn--gck1f423k.xn--1bvt37a.tools/supports/30285"
+    },
+    "id": "evt_king_ren",
+    "label": "学びを繋げて",
+    "selection": "auto",
+    "skills": [
+      {
+        "skillName": "突撃魂",
+        "hintLevel": 1,
+        "skillId": null
+      },
+      {
+        "skillName": "有志竟成",
+        "hintLevel": 1,
+        "skillId": null
+      }
+    ]
+  },
+  {
+    "supportId": 30285,
+    "supportNameMatch": "私のためのショッピング",
+    "_source": {
+      "gameWith": "https://gamewith.jp/uma-musume/article/show/538641",
+      "game8": null,
+      "uTools": "https://xn--gck1f423k.xn--1bvt37a.tools/supports/30285"
+    },
+    "id": "evt_king_advice",
+    "label": "助言する権利をあげる！",
+    "selection": "single",
+    "defaultChoiceId": "matsubi",
+    "choices": [
+      {
+        "id": "other",
+        "label": "昨今の根性論について討論する",
+        "skills": []
+      },
+      {
+        "id": "matsubi",
+        "label": "仕掛けるタイミングについて話す",
+        "skills": [
+          {
+            "skillName": "末脚",
+            "hintLevel": 1,
+            "skillId": null
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "supportId": 30281,
+    "supportNameMatch": "故郷に錦を飾るんでい！",
+    "_source": {
+      "gameWith": "https://gamewith.jp/uma-musume/article/show/534224",
+      "game8": null,
+      "uTools": "https://xn--gck1f423k.xn--1bvt37a.tools/supports/30281"
+    },
+    "id": "evt_inari_iki",
+    "label": "粋の魅せ方、魂で語れ",
+    "selection": "single",
+    "defaultChoiceId": "dai",
+    "choices": [
+      {
+        "id": "dai",
+        "label": "似たもの……みんなギャルっぽいとか？",
+        "skills": [
+          {
+            "skillName": "大急ぎ",
+            "hintLevel": 1,
+            "skillId": null
+          }
+        ]
+      },
+      {
+        "id": "other",
+        "label": "確かに！みんな“粋“な感じだね！",
+        "skills": []
+      }
+    ]
+  },
+  {
+    "supportId": 30281,
+    "supportNameMatch": "故郷に錦を飾るんでい！",
+    "_source": {
+      "gameWith": "https://gamewith.jp/uma-musume/article/show/534224",
+      "game8": null,
+      "uTools": "https://xn--gck1f423k.xn--1bvt37a.tools/supports/30281"
+    },
+    "id": "evt_inari_namida",
+    "label": "熱き涙の理由",
+    "selection": "auto",
+    "skills": [
+      {
+        "skillName": "無我夢中",
+        "hintLevel": 1,
+        "skillId": null
+      },
+      {
+        "skillName": "用意周到",
+        "hintLevel": 1,
+        "skillId": null
+      }
+    ]
+  },
+  {
+    "supportId": 30281,
+    "supportNameMatch": "故郷に錦を飾るんでい！",
+    "_source": {
+      "gameWith": "https://gamewith.jp/uma-musume/article/show/534224",
+      "game8": null,
+      "uTools": "https://xn--gck1f423k.xn--1bvt37a.tools/supports/30281"
+    },
+    "id": "evt_inari_kyoto",
+    "label": "神輿だワッショイ",
+    "selection": "single",
+    "defaultChoiceId": "kyoto",
+    "choices": [
+      {
+        "id": "other",
+        "label": "突き進む躍動感？",
+        "skills": []
+      },
+      {
+        "id": "kyoto",
+        "label": "観客がいないからでは？",
+        "skills": [
+          {
+            "skillName": "京都レース場○",
+            "hintLevel": 1,
+            "skillId": null
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "supportId": 30279,
+    "supportNameMatch": "ぬくもりのノエル",
+    "_source": {
+      "gameWith": "https://gamewith.jp/uma-musume/article/show/531843",
+      "game8": null,
+      "uTools": "https://xn--gck1f423k.xn--1bvt37a.tools/supports/30279"
+    },
+    "id": "evt_pheno_mame",
+    "label": "マメちん堕落計画！",
+    "selection": "single",
+    "defaultChoiceId": "jichido",
+    "choices": [
+      {
+        "id": "jichido",
+        "label": "ゴールドシップのようにもっと自由に",
+        "skills": [
+          {
+            "skillName": "地道に重ねて",
+            "hintLevel": 1,
+            "skillId": null
+          }
+        ]
+      },
+      {
+        "id": "other",
+        "label": "ナカヤマフェスタのように肩の力を抜いて",
+        "skills": []
+      }
+    ]
+  },
+  {
+    "supportId": 30279,
+    "supportNameMatch": "ぬくもりのノエル",
+    "_source": {
+      "gameWith": "https://gamewith.jp/uma-musume/article/show/531843",
+      "game8": null,
+      "uTools": "https://xn--gck1f423k.xn--1bvt37a.tools/supports/30279"
+    },
+    "id": "evt_pheno_kisei",
+    "label": "いかなる時も矜持は揺るがず",
+    "selection": "auto",
+    "skills": [
+      {
+        "skillName": "真打",
+        "hintLevel": 1,
+        "skillId": null
+      },
+      {
+        "skillName": "一点集中",
+        "hintLevel": 1,
+        "skillId": null
+      }
+    ]
+  },
+  {
+    "supportId": 30279,
+    "supportNameMatch": "ぬくもりのノエル",
+    "_source": {
+      "gameWith": "https://gamewith.jp/uma-musume/article/show/531843",
+      "game8": null,
+      "uTools": "https://xn--gck1f423k.xn--1bvt37a.tools/supports/30279"
+    },
+    "id": "evt_pheno_kowamote",
+    "label": "あぶないコワモテ刑事？",
+    "selection": "single",
+    "defaultChoiceId": "nerai",
+    "choices": [
+      {
+        "id": "other",
+        "label": "気持ちが伝わってよかったね",
+        "skills": []
+      },
+      {
+        "id": "nerai",
+        "label": "名演だったね、おまわりさん！",
+        "skills": [
+          {
+            "skillName": "狙いを定めて",
+            "hintLevel": 1,
+            "skillId": null
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "supportId": 30278,
+    "supportNameMatch": "激録！爆走トナカイ事件",
+    "_source": {
+      "gameWith": "https://gamewith.jp/uma-musume/article/show/531844",
+      "game8": null,
+      "uTools": "https://xn--gck1f423k.xn--1bvt37a.tools/supports/30278"
+    },
+    "id": "evt_gold_kyozo",
+    "label": "虚像をぶち壊せ",
+    "selection": "single",
+    "defaultChoiceId": "kiki",
+    "choices": [
+      {
+        "id": "kiki",
+        "label": "これなら問題なさそうだな",
+        "skills": [
+          {
+            "skillName": "好機を捉えて",
+            "hintLevel": 1,
+            "skillId": null
+          }
+        ]
+      },
+      {
+        "id": "other",
+        "label": "とにかくみんな無事で何よりだよ",
+        "skills": []
+      }
+    ]
+  },
+  {
+    "supportId": 30278,
+    "supportNameMatch": "激録！爆走トナカイ事件",
+    "_source": {
+      "gameWith": "https://gamewith.jp/uma-musume/article/show/531844",
+      "game8": null,
+      "uTools": "https://xn--gck1f423k.xn--1bvt37a.tools/supports/30278"
+    },
+    "id": "evt_gold_ougon",
+    "label": "黄金二人旅",
+    "selection": "auto",
+    "skills": [
+      {
+        "skillName": "迫る影",
+        "hintLevel": 1,
+        "skillId": null
+      },
+      {
+        "skillName": "心頭滅却",
+        "hintLevel": 1,
+        "skillId": null
+      }
+    ]
+  },
+  {
+    "supportId": 30278,
+    "supportNameMatch": "激録！爆走トナカイ事件",
+    "_source": {
+      "gameWith": "https://gamewith.jp/uma-musume/article/show/531844",
+      "game8": null,
+      "uTools": "https://xn--gck1f423k.xn--1bvt37a.tools/supports/30278"
+    },
+    "id": "evt_gold_yakisoba",
+    "label": "甦れ！ゴルシ印のソース焼きそば！",
+    "selection": "single",
+    "defaultChoiceId": "hanshin",
+    "choices": [
+      {
+        "id": "other",
+        "label": "……味に磨きをかけたら？",
+        "skills": []
+      },
+      {
+        "id": "hanshin",
+        "label": "……明石焼きを売ったら？",
+        "skills": [
+          {
+            "skillName": "阪神レース場○",
+            "hintLevel": 1,
+            "skillId": null
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "supportId": 30277,
+    "supportNameMatch": "無機の闘志",
+    "_source": {
+      "gameWith": "https://gamewith.jp/uma-musume/article/show/528906",
+      "game8": null,
+      "uTools": "https://xn--gck1f423k.xn--1bvt37a.tools/supports/30277"
+    },
+    "id": "evt_bourbon_hatsu",
+    "label": "発火:熱を帯びて",
+    "selection": "single",
+    "defaultChoiceId": "position",
+    "choices": [
+      {
+        "id": "position",
+        "label": "(またすごい気迫だ……！)",
+        "skills": [
+          {
+            "skillName": "ポジションセンス",
+            "hintLevel": 1,
+            "skillId": null
+          }
+        ]
+      },
+      {
+        "id": "other",
+        "label": "(追い込んでるけど……大丈夫かな)",
+        "skills": []
+      }
+    ]
+  },
+  {
+    "supportId": 30277,
+    "supportNameMatch": "無機の闘志",
+    "_source": {
+      "gameWith": "https://gamewith.jp/uma-musume/article/show/528906",
+      "game8": null,
+      "uTools": "https://xn--gck1f423k.xn--1bvt37a.tools/supports/30277"
+    },
+    "id": "evt_bourbon_hibana",
+    "label": "火花:夢焦がれ",
+    "selection": "auto",
+    "skills": [
+      {
+        "skillName": "先手必勝",
+        "hintLevel": 1,
+        "skillId": null
+      },
+      {
+        "skillName": "傑出",
+        "hintLevel": 1,
+        "skillId": null
+      }
+    ]
+  },
+  {
+    "supportId": 30277,
+    "supportNameMatch": "無機の闘志",
+    "_source": {
+      "gameWith": "https://gamewith.jp/uma-musume/article/show/528906",
+      "game8": null,
+      "uTools": "https://xn--gck1f423k.xn--1bvt37a.tools/supports/30277"
+    },
+    "id": "evt_bourbon_order",
+    "label": "命令は守らなければならない",
+    "selection": "single",
+    "defaultChoiceId": "focus",
+    "choices": [
+      {
+        "id": "focus",
+        "label": "開店直前から待機しておこう",
+        "skills": [
+          {
+            "skillName": "集中力",
+            "hintLevel": 1,
+            "skillId": null
+          }
+        ]
+      },
+      {
+        "id": "other",
+        "label": "昼休みになったらダッシュ！",
+        "skills": []
+      }
+    ]
+  },
+  {
+    "supportId": 30274,
+    "supportNameMatch": "決意のフローラ",
+    "_source": {
+      "gameWith": "https://gamewith.jp/uma-musume/article/show/522600",
+      "game8": null,
+      "uTools": "https://xn--gck1f423k.xn--1bvt37a.tools/supports/30274"
+    },
+    "id": "evt_karen_masou",
+    "label": "奏で合う幸福",
+    "selection": "auto",
+    "skills": [
+      {
+        "skillName": "円弧のマエストロ",
+        "hintLevel": 1,
+        "skillId": null
+      },
+      {
+        "skillName": "開花",
+        "hintLevel": 1,
+        "skillId": null
+      }
+    ]
+  },
+  {
+    "supportId": 30274,
+    "supportNameMatch": "決意のフローラ",
+    "_source": {
+      "gameWith": "https://gamewith.jp/uma-musume/article/show/522600",
+      "game8": null,
+      "uTools": "https://xn--gck1f423k.xn--1bvt37a.tools/supports/30274"
+    },
+    "id": "evt_karen_chowa",
+    "label": "争いの種は咲かせない",
+    "selection": "single",
+    "defaultChoiceId": "takami",
+    "choices": [
+      {
+        "id": "other",
+        "label": "君を見ていると、なんとなくわかる",
+        "skills": []
+      },
+      {
+        "id": "takami",
+        "label": "その『調和』が、優しさに繋がってるのかも",
+        "skills": [
+          {
+            "skillName": "さらなる高みへ",
+            "hintLevel": 1,
+            "skillId": null
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "supportId": 30271,
+    "supportNameMatch": "壇上より魔法を込めて",
+    "_source": {
+      "gameWith": "https://gamewith.jp/uma-musume/article/show/521035",
+      "game8": null,
+      "uTools": "https://xn--gck1f423k.xn--1bvt37a.tools/supports/30271"
+    },
+    "id": "evt_fuji_maho",
+    "label": "魔法使いの秘密",
+    "selection": "auto",
+    "skills": [
+      {
+        "skillName": "不抜の気概",
+        "hintLevel": 2,
+        "skillId": null
+      }
+    ]
+  },
+  {
+    "supportId": 30271,
+    "supportNameMatch": "壇上より魔法を込めて",
+    "_source": {
+      "gameWith": "https://gamewith.jp/uma-musume/article/show/521035",
+      "game8": null,
+      "uTools": "https://xn--gck1f423k.xn--1bvt37a.tools/supports/30271"
+    },
+    "id": "evt_fuji_sleight",
+    "label": "スライハンド",
+    "selection": "single",
+    "defaultChoiceId": "ryuko",
+    "choices": [
+      {
+        "id": "other",
+        "label": "さっきこっそり入れ――",
+        "skills": []
+      },
+      {
+        "id": "ryuko",
+        "label": "すごいマジックパワーだ……！",
+        "skills": [
+          {
+            "skillName": "流星光底",
+            "hintLevel": 1,
+            "skillId": null
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "supportId": 30271,
+    "supportNameMatch": "壇上より魔法を込めて",
+    "_source": {
+      "gameWith": "https://gamewith.jp/uma-musume/article/show/521035",
+      "game8": null,
+      "uTools": "https://xn--gck1f423k.xn--1bvt37a.tools/supports/30271"
+    },
+    "id": "evt_fuji_miss",
+    "label": "ミスディレクション",
+    "selection": "single",
+    "defaultChoiceId": "nukedashi",
+    "choices": [
+      {
+        "id": "nukedashi",
+        "label": "最終コーナーのコツ",
+        "skills": [
+          {
+            "skillName": "抜け出し準備",
+            "hintLevel": 1,
+            "skillId": null
+          }
+        ]
+      },
+      {
+        "id": "other",
+        "label": "走りのテクニック",
+        "skills": []
+      }
+    ]
+  },
+  {
+    "supportId": 30270,
+    "supportNameMatch": "Inseparable",
+    "_source": {
+      "gameWith": "https://gamewith.jp/uma-musume/article/show/517684",
+      "game8": null,
+      "uTools": "https://xn--gck1f423k.xn--1bvt37a.tools/supports/30270"
+    },
+    "id": "evt_ruby_akadama",
+    "label": "紅玉の誓約",
+    "selection": "auto",
+    "skills": [
+      {
+        "skillName": "至宝の輝き",
+        "hintLevel": 2,
+        "skillId": null
+      }
+    ]
+  },
+  {
+    "supportId": 30270,
+    "supportNameMatch": "Inseparable",
+    "_source": {
+      "gameWith": "https://gamewith.jp/uma-musume/article/show/517684",
+      "game8": null,
+      "uTools": "https://xn--gck1f423k.xn--1bvt37a.tools/supports/30270"
+    },
+    "id": "evt_ruby_ganka",
+    "label": "華麗なる旋律",
+    "selection": "single",
+    "defaultChoiceId": "tsume",
+    "choices": [
+      {
+        "id": "other",
+        "label": "言葉を尽くしてスキルを褒める！",
+        "skills": []
+      },
+      {
+        "id": "tsume",
+        "label": "素直な気持ちを勢いよく伝える！",
+        "skills": [
+          {
+            "skillName": "詰め寄り",
+            "hintLevel": 1,
+            "skillId": null
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "supportId": 30267,
+    "supportNameMatch": "カルストンライトオ、猫です",
+    "_source": {
+      "gameWith": "https://gamewith.jp/uma-musume/article/show/515324",
+      "game8": null,
+      "uTools": "https://xn--gck1f423k.xn--1bvt37a.tools/supports/30267"
+    },
+    "id": "evt_carlton_sokyu",
+    "label": "速い&真っ直ぐは世界を救う！",
+    "selection": "auto",
+    "skills": [
+      {
+        "skillName": "意気衝天",
+        "hintLevel": 1,
+        "skillId": null
+      },
+      {
+        "skillName": "問答無用",
+        "hintLevel": 1,
+        "skillId": null
+      }
+    ]
+  },
+  {
+    "supportId": 30267,
+    "supportNameMatch": "カルストンライトオ、猫です",
+    "_source": {
+      "gameWith": "https://gamewith.jp/uma-musume/article/show/515324",
+      "game8": null,
+      "uTools": "https://xn--gck1f423k.xn--1bvt37a.tools/supports/30267"
+    },
+    "id": "evt_carlton_saisoku",
+    "label": "『最速』はすばらしい",
+    "selection": "single",
+    "defaultChoiceId": "chokusen_course",
+    "choices": [
+      {
+        "id": "chokusen_course",
+        "label": "動画を止めないと……！",
+        "skills": [
+          {
+            "skillName": "直線コース○",
+            "hintLevel": 1,
+            "skillId": null
+          }
+        ]
+      },
+      {
+        "id": "other",
+        "label": "お、落ち着いて……！！",
+        "skills": []
+      }
+    ]
+  },
+  {
+    "supportId": 30267,
+    "supportNameMatch": "カルストンライトオ、猫です",
+    "_source": {
+      "gameWith": "https://gamewith.jp/uma-musume/article/show/515324",
+      "game8": null,
+      "uTools": "https://xn--gck1f423k.xn--1bvt37a.tools/supports/30267"
+    },
+    "id": "evt_carlton_massugu",
+    "label": "『真っ直ぐ』はすばらしい",
+    "selection": "single",
+    "defaultChoiceId": "chokusen2",
+    "choices": [
+      {
+        "id": "chokusen2",
+        "label": "真っ直ぐな形のソファを選ぼう！",
+        "skills": [
+          {
+            "skillName": "直線巧者",
+            "hintLevel": 1,
+            "skillId": null
+          }
+        ]
+      },
+      {
+        "id": "other",
+        "label": "やっぱり巻き尺を買おう！",
+        "skills": []
+      }
+    ]
+  },
+  {
+    "supportId": 30265,
+    "supportNameMatch": "氷結晶の静域",
+    "_source": {
+      "gameWith": "https://gamewith.jp/uma-musume/article/show/514478",
+      "game8": null,
+      "uTools": "https://xn--gck1f423k.xn--1bvt37a.tools/supports/30265"
+    },
+    "id": "evt_groove_kyuukou",
+    "label": "孤高の休日",
+    "selection": "single",
+    "defaultChoiceId": "overflow",
+    "choices": [
+      {
+        "id": "other",
+        "label": "傘持ってないなら貸すよ",
+        "skills": []
+      },
+      {
+        "id": "overflow",
+        "label": "……何があった？大丈夫？",
+        "skills": [
+          {
+            "skillName": "溢れる情熱",
+            "hintLevel": 1,
+            "skillId": null
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "supportId": 30265,
+    "supportNameMatch": "氷結晶の静域",
+    "_source": {
+      "gameWith": "https://gamewith.jp/uma-musume/article/show/514478",
+      "game8": null,
+      "uTools": "https://xn--gck1f423k.xn--1bvt37a.tools/supports/30265"
+    },
+    "id": "evt_groove_shomei",
+    "label": "孤高の証明",
+    "selection": "auto",
+    "skills": [
+      {
+        "skillName": "天賦の才",
+        "hintLevel": 1,
+        "skillId": null
+      },
+      {
+        "skillName": "才色兼備",
+        "hintLevel": 1,
+        "skillId": null
+      }
+    ]
+  },
+  {
+    "supportId": 30265,
+    "supportNameMatch": "氷結晶の静域",
+    "_source": {
+      "gameWith": "https://gamewith.jp/uma-musume/article/show/514478",
+      "game8": null,
+      "uTools": "https://xn--gck1f423k.xn--1bvt37a.tools/supports/30265"
+    },
+    "id": "evt_groove_wan",
+    "label": "ひとりが好きなクラスメイトさん",
+    "selection": "single",
+    "defaultChoiceId": "wan",
+    "choices": [
+      {
+        "id": "wan",
+        "label": "すごい力作だな",
+        "skills": [
+          {
+            "skillName": "ワンチャンス",
+            "hintLevel": 1,
+            "skillId": null
+          }
+        ]
+      },
+      {
+        "id": "other",
+        "label": "トレーナーの間でも話題だからな",
+        "skills": []
+      }
+    ]
+  },
+  {
+    "supportId": 30264,
+    "supportNameMatch": "気まぐれ渡り星",
+    "_source": {
+      "gameWith": "https://gamewith.jp/uma-musume/article/show/514477",
+      "game8": null,
+      "uTools": "https://xn--gck1f423k.xn--1bvt37a.tools/supports/30264"
+    },
+    "id": "evt_stay_over17",
+    "label": "Over 17 Lights",
+    "selection": "single",
+    "defaultChoiceId": "hirui",
+    "choices": [
+      {
+        "id": "hirui",
+        "label": "大レースに勝利した？",
+        "skills": [
+          {
+            "skillName": "比類なき",
+            "hintLevel": 1,
+            "skillId": null
+          }
+        ]
+      },
+      {
+        "id": "other",
+        "label": "海の幸をいっぱい食べた？",
+        "skills": []
+      }
+    ]
+  },
+  {
+    "supportId": 30264,
+    "supportNameMatch": "気まぐれ渡り星",
+    "_source": {
+      "gameWith": "https://gamewith.jp/uma-musume/article/show/514477",
+      "game8": null,
+      "uTools": "https://xn--gck1f423k.xn--1bvt37a.tools/supports/30264"
+    },
+    "id": "evt_stay_shinryou",
+    "label": "新しい旅へ",
+    "selection": "single",
+    "defaultChoiceId": "unknown",
+    "choices": [
+      {
+        "id": "unknown",
+        "label": "まったく未知の旅を（大成功想定）",
+        "skills": [
+          {
+            "skillName": "ネバーギブアップ",
+            "hintLevel": 2,
+            "skillId": null
+          },
+          {
+            "skillName": "好奇心",
+            "hintLevel": 2,
+            "skillId": null
+          }
+        ]
+      },
+      {
+        "id": "past",
+        "label": "かつての旅をもう一度（大成功想定）",
+        "skills": [
+          {
+            "skillName": "ネバーギブアップ",
+            "hintLevel": 2,
+            "skillId": null
+          },
+          {
+            "skillName": "自由奔放",
+            "hintLevel": 2,
+            "skillId": null
+          }
+        ]
+      }
+    ],
+    "_note": "成功時は各ヒントLv+1"
+  },
+  {
+    "supportId": 30264,
+    "supportNameMatch": "気まぐれ渡り星",
+    "_source": {
+      "gameWith": "https://gamewith.jp/uma-musume/article/show/514477",
+      "game8": null,
+      "uTools": "https://xn--gck1f423k.xn--1bvt37a.tools/supports/30264"
+    },
+    "id": "evt_stay_kin",
+    "label": "黄金を探し求めて",
+    "selection": "single",
+    "defaultChoiceId": "chokusen",
+    "choices": [
+      {
+        "id": "chokusen",
+        "label": "また次の旅、かな",
+        "skills": [
+          {
+            "skillName": "直線巧者",
+            "hintLevel": 1,
+            "skillId": null
+          }
+        ]
+      },
+      {
+        "id": "other",
+        "label": "（非ヒント選択肢）",
+        "skills": []
+      }
+    ]
+  },
+  {
+    "supportId": 30262,
+    "supportNameMatch": "Tranquillo",
+    "_source": {
+      "gameWith": "https://gamewith.jp/uma-musume/article/show/511947",
+      "game8": null,
+      "uTools": "https://xn--gck1f423k.xn--1bvt37a.tools/supports/30262"
+    },
+    "id": "evt_dura_kawaii_power",
+    "label": "可愛いの真の力！",
+    "selection": "single",
+    "defaultChoiceId": "pafe",
+    "choices": [
+      {
+        "id": "pafe",
+        "label": "ふたりとも、パフェのおかわりする？",
+        "skills": [
+          {
+            "skillName": "飛翔脚",
+            "hintLevel": 1,
+            "skillId": null
+          },
+          {
+            "skillName": "残影",
+            "hintLevel": 1,
+            "skillId": null
+          }
+        ]
+      },
+      {
+        "id": "other",
+        "label": "それでいうと、笑顔は――",
+        "skills": []
+      }
+    ],
+    "_note": "GameWith表記は飛影だが所持スキルは残影"
+  },
+  {
+    "supportId": 30262,
+    "supportNameMatch": "Tranquillo",
+    "_source": {
+      "gameWith": "https://gamewith.jp/uma-musume/article/show/511947",
+      "game8": null,
+      "uTools": "https://xn--gck1f423k.xn--1bvt37a.tools/supports/30262"
+    },
+    "id": "evt_dura_ou",
+    "label": "追うべき背中",
+    "selection": "single",
+    "defaultChoiceId": "ignition",
+    "choices": [
+      {
+        "id": "other",
+        "label": "……体が心配になるよ",
+        "skills": []
+      },
+      {
+        "id": "ignition",
+        "label": "じゃあ、走りで調子が戻ればいいな",
+        "skills": [
+          {
+            "skillName": "イグニッション",
+            "hintLevel": 1,
+            "skillId": null
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "supportId": 30261,
+    "supportNameMatch": "水面のプリンシパル",
+    "_source": {
+      "gameWith": "https://gamewith.jp/uma-musume/article/show/511948",
+      "game8": null,
+      "uTools": "https://xn--gck1f423k.xn--1bvt37a.tools/supports/30261"
+    },
+    "id": "evt_win_near",
+    "label": "潜在的ソウルメイト",
+    "selection": "single",
+    "defaultChoiceId": "hirui",
+    "choices": [
+      {
+        "id": "hirui",
+        "label": "寄り道してきた？",
+        "skills": [
+          {
+            "skillName": "比類なき",
+            "hintLevel": 1,
+            "skillId": null
+          }
+        ]
+      },
+      {
+        "id": "other",
+        "label": "はちみーは、水分補給に向かないよ……",
+        "skills": []
+      }
+    ]
+  },
+  {
+    "supportId": 30261,
+    "supportNameMatch": "水面のプリンシパル",
+    "_source": {
+      "gameWith": "https://gamewith.jp/uma-musume/article/show/511948",
+      "game8": null,
+      "uTools": "https://xn--gck1f423k.xn--1bvt37a.tools/supports/30261"
+    },
+    "id": "evt_win_cheer",
+    "label": "大衆的チアフレンド",
+    "selection": "auto",
+    "skills": [
+      {
+        "skillName": "エネルギッシュ",
+        "hintLevel": 1,
+        "skillId": null
+      },
+      {
+        "skillName": "内的体験",
+        "hintLevel": 1,
+        "skillId": null
+      }
+    ]
+  },
+  {
+    "supportId": 30261,
+    "supportNameMatch": "水面のプリンシパル",
+    "_source": {
+      "gameWith": "https://gamewith.jp/uma-musume/article/show/511948",
+      "game8": null,
+      "uTools": "https://xn--gck1f423k.xn--1bvt37a.tools/supports/30261"
+    },
+    "id": "evt_win_gran",
+    "label": "グラン・ジュテ～いつの日か～",
+    "selection": "single",
+    "defaultChoiceId": "chokyori",
+    "choices": [
+      {
+        "id": "other",
+        "label": "もう終わり……？",
+        "skills": []
+      },
+      {
+        "id": "chokyori",
+        "label": "マ、マイペースだな。オルフェーヴルは",
+        "skills": [
+          {
+            "skillName": "長距離コーナー○",
+            "hintLevel": 1,
+            "skillId": null
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "supportId": 30258,
+    "supportNameMatch": "瞳に闘志を胸に勝利の渇望を",
+    "_source": {
+      "gameWith": "https://gamewith.jp/uma-musume/article/show/507006",
+      "game8": null,
+      "uTools": "https://xn--gck1f423k.xn--1bvt37a.tools/supports/30258"
+    },
+    "id": "evt_ryan_muscle",
+    "label": "マッスル、ただひたすらに",
+    "selection": "auto",
+    "skills": [
+      {
+        "skillName": "秘めた闘魂",
+        "hintLevel": 2,
+        "skillId": null
+      }
+    ]
+  },
+  {
+    "supportId": 30258,
+    "supportNameMatch": "瞳に闘志を胸に勝利の渇望を",
+    "_source": {
+      "gameWith": "https://gamewith.jp/uma-musume/article/show/507006",
+      "game8": null,
+      "uTools": "https://xn--gck1f423k.xn--1bvt37a.tools/supports/30258"
+    },
+    "id": "evt_ryan_pace",
+    "label": "あくまで薦められただけ",
+    "selection": "single",
+    "defaultChoiceId": "pace",
+    "choices": [
+      {
+        "id": "pace",
+        "label": "ペースを考えたほうがいいよ",
+        "skills": [
+          {
+            "skillName": "ペースキープ",
+            "hintLevel": 1,
+            "skillId": null
+          }
+        ]
+      },
+      {
+        "id": "other",
+        "label": "一気読みは体力使うよ？",
+        "skills": []
+      }
+    ]
+  },
+  {
+    "supportId": 30256,
+    "supportNameMatch": "白き稲妻の如く",
+    "_source": {
+      "gameWith": "https://gamewith.jp/uma-musume/article/show/504763",
+      "game8": null,
+      "uTools": "https://xn--gck1f423k.xn--1bvt37a.tools/supports/30256"
+    },
+    "id": "evt_tamamo_dareka",
+    "label": "誰かの道を照らすなら",
+    "selection": "single",
+    "defaultChoiceId": "slip",
+    "choices": [
+      {
+        "id": "slip",
+        "label": "それ、あの子には伝えたのか？",
+        "skills": [
+          {
+            "skillName": "スリップストリーム",
+            "hintLevel": 1,
+            "skillId": null
+          }
+        ]
+      },
+      {
+        "id": "joshu",
+        "label": "面倒見がいい先輩だね",
+        "skills": [
+          {
+            "skillName": "序盤巧者",
+            "hintLevel": 1,
+            "skillId": null
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "supportId": 30256,
+    "supportNameMatch": "白き稲妻の如く",
+    "_source": {
+      "gameWith": "https://gamewith.jp/uma-musume/article/show/504763",
+      "game8": null,
+      "uTools": "https://xn--gck1f423k.xn--1bvt37a.tools/supports/30256"
+    },
+    "id": "evt_tamamo_tooku",
+    "label": "遠くで光るその走り",
+    "selection": "single",
+    "defaultChoiceId": "mirai",
+    "choices": [
+      {
+        "id": "mirai",
+        "label": "将来が楽しみだ！",
+        "skills": [
+          {
+            "skillName": "神速",
+            "hintLevel": 2,
+            "skillId": null
+          },
+          {
+            "skillName": "真骨頂",
+            "hintLevel": 1,
+            "skillId": null
+          }
+        ]
+      },
+      {
+        "id": "omo",
+        "label": "君の想いは、継がれたみたいだな",
+        "skills": [
+          {
+            "skillName": "神速",
+            "hintLevel": 2,
+            "skillId": null
+          },
+          {
+            "skillName": "悠久走破",
+            "hintLevel": 1,
+            "skillId": null
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "supportId": 30256,
+    "supportNameMatch": "白き稲妻の如く",
+    "_source": {
+      "gameWith": "https://gamewith.jp/uma-musume/article/show/504763",
+      "game8": null,
+      "uTools": "https://xn--gck1f423k.xn--1bvt37a.tools/supports/30256"
+    },
+    "id": "evt_tamamo_lose",
+    "label": "負けられん戦い！",
+    "selection": "single",
+    "defaultChoiceId": "uma",
+    "choices": [
+      {
+        "id": "uma",
+        "label": "人の流れを掴め！",
+        "skills": [
+          {
+            "skillName": "ウマ込み冷静",
+            "hintLevel": 1,
+            "skillId": null
+          }
+        ]
+      },
+      {
+        "id": "other",
+        "label": "ライバルをよく観察しよう",
+        "skills": []
+      }
+    ]
+  },
+  {
+    "supportId": 30253,
+    "supportNameMatch": "Unveiled Dream",
+    "_source": {
+      "gameWith": "https://gamewith.jp/uma-musume/article/show/499940",
+      "game8": null,
+      "uTools": "https://xn--gck1f423k.xn--1bvt37a.tools/supports/30253"
+    },
+    "id": "evt_line_letter",
+    "label": "拝啓、お父さん",
+    "selection": "auto",
+    "skills": [
+      {
+        "skillName": "ギアチェンジ",
+        "hintLevel": 1,
+        "skillId": null
+      },
+      {
+        "skillName": "ハイボルテージ",
+        "hintLevel": 1,
+        "skillId": null
+      }
+    ]
+  },
+  {
+    "supportId": 30253,
+    "supportNameMatch": "Unveiled Dream",
+    "_source": {
+      "gameWith": "https://gamewith.jp/uma-musume/article/show/499940",
+      "game8": null,
+      "uTools": "https://xn--gck1f423k.xn--1bvt37a.tools/supports/30253"
+    },
+    "id": "evt_line_wakuwaku",
+    "label": "ワクワクでキラキラな夢",
+    "selection": "single",
+    "defaultChoiceId": "mile_corner",
+    "choices": [
+      {
+        "id": "mile_corner",
+        "label": "もっと先輩の研究をするとかかな",
+        "skills": [
+          {
+            "skillName": "マイルコーナー○",
+            "hintLevel": 1,
+            "skillId": null
+          }
+        ]
+      },
+      {
+        "id": "other",
+        "label": "早くトレーニングコースへ行こう！",
+        "skills": []
+      }
+    ]
+  },
+  {
+    "supportId": 30248,
+    "supportNameMatch": "無垢の白妙",
+    "_source": {
+      "gameWith": "https://gamewith.jp/uma-musume/article/show/492831",
+      "game8": null,
+      "uTools": "https://xn--gck1f423k.xn--1bvt37a.tools/supports/30248"
+    },
+    "id": "evt_muku_earth",
+    "label": "母なる大地の教え",
+    "selection": "auto",
+    "skills": [
+      {
+        "skillName": "しとやかな足取り",
+        "hintLevel": 1,
+        "skillId": null
+      }
+    ]
+  },
+  {
+    "supportId": 30248,
+    "supportNameMatch": "無垢の白妙",
+    "_source": {
+      "gameWith": "https://gamewith.jp/uma-musume/article/show/492831",
+      "game8": null,
+      "uTools": "https://xn--gck1f423k.xn--1bvt37a.tools/supports/30248"
+    },
+    "id": "evt_muku_wild",
+    "label": "Innocent Wildflower",
+    "selection": "auto",
+    "skills": [
+      {
+        "skillName": "独立独歩",
+        "hintLevel": 1,
+        "skillId": null
+      },
+      {
+        "skillName": "迅速果断",
+        "hintLevel": 1,
+        "skillId": null
+      }
+    ]
+  },
+  {
+    "supportId": 30248,
+    "supportNameMatch": "無垢の白妙",
+    "_source": {
+      "gameWith": "https://gamewith.jp/uma-musume/article/show/492831",
+      "game8": null,
+      "uTools": "https://xn--gck1f423k.xn--1bvt37a.tools/supports/30248"
+    },
+    "id": "evt_muku_survival",
+    "label": "私を育てた場所",
+    "selection": "single",
+    "defaultChoiceId": "ichi",
+    "choices": [
+      {
+        "id": "other",
+        "label": "はい先生！",
+        "skills": []
+      },
+      {
+        "id": "ichi",
+        "label": "匠のサバイバルスキルだ……",
+        "skills": [
+          {
+            "skillName": "一歩ずつ前へ",
+            "hintLevel": 1,
+            "skillId": null
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "supportId": 30246,
+    "supportNameMatch": "誘うは夢心地",
+    "_source": {
+      "gameWith": "https://gamewith.jp/uma-musume/article/show/491827",
+      "game8": null,
+      "uTools": "https://xn--gck1f423k.xn--1bvt37a.tools/supports/30246"
+    },
+    "id": "evt_dj_shop",
+    "label": "それはただただ咲き誇る",
+    "selection": "single",
+    "defaultChoiceId": "kaikaku",
+    "choices": [
+      {
+        "id": "kaikaku",
+        "label": "ドリームジャーニー、こういうお店来るんだ",
+        "skills": [
+          {
+            "skillName": "打開策",
+            "hintLevel": 2,
+            "skillId": null
+          }
+        ]
+      },
+      {
+        "id": "other",
+        "label": "（非ヒント選択肢）",
+        "skills": []
+      }
+    ]
+  },
+  {
+    "supportId": 30246,
+    "supportNameMatch": "誘うは夢心地",
+    "_source": {
+      "gameWith": "https://gamewith.jp/uma-musume/article/show/491827",
+      "game8": null,
+      "uTools": "https://xn--gck1f423k.xn--1bvt37a.tools/supports/30246"
+    },
+    "id": "evt_dj_bloom",
+    "label": "そして今日も花が咲く",
+    "selection": "single",
+    "defaultChoiceId": "kanzen",
+    "choices": [
+      {
+        "id": "kanzen",
+        "label": "そんなものいらないよ",
+        "skills": [
+          {
+            "skillName": "完全燃焼",
+            "hintLevel": 1,
+            "skillId": null
+          },
+          {
+            "skillName": "肉薄",
+            "hintLevel": 1,
+            "skillId": null
+          }
+        ]
+      },
+      {
+        "id": "other",
+        "label": "（非ヒント選択肢）",
+        "skills": []
+      }
+    ]
+  },
+  {
+    "supportId": 30246,
+    "supportNameMatch": "誘うは夢心地",
+    "_source": {
+      "gameWith": "https://gamewith.jp/uma-musume/article/show/491827",
+      "game8": null,
+      "uTools": "https://xn--gck1f423k.xn--1bvt37a.tools/supports/30246"
+    },
+    "id": "evt_dj_imouto",
+    "label": "用意周到で妹想い",
+    "selection": "single",
+    "defaultChoiceId": "tsu",
+    "choices": [
+      {
+        "id": "tsu",
+        "label": "いや……お姉ちゃんは大変だね",
+        "skills": [
+          {
+            "skillName": "推力十分",
+            "hintLevel": 1,
+            "skillId": null
+          }
+        ]
+      },
+      {
+        "id": "other",
+        "label": "（非ヒント選択肢）",
+        "skills": []
+      }
+    ]
+  },
+  {
+    "supportId": 30242,
+    "supportNameMatch": "世界を変える眼差し",
+    "_source": {
+      "gameWith": "https://gamewith.jp/uma-musume/article/show/485769",
+      "game8": null,
+      "uTools": "https://xn--gck1f423k.xn--1bvt37a.tools/supports/30242"
+    },
+    "id": "evt_almond_endless",
+    "label": "果てしなきアーモンドアイ",
+    "selection": "single",
+    "defaultChoiceId": "symboli",
+    "choices": [
+      {
+        "id": "symboli",
+        "label": "シンボリルドルフらの反応を見る（大成功想定）",
+        "skills": [
+          {
+            "skillName": "シンギュラリティ",
+            "hintLevel": 2,
+            "skillId": null
+          },
+          {
+            "skillName": "才気爆発",
+            "hintLevel": 2,
+            "skillId": null
+          }
+        ]
+      },
+      {
+        "id": "around",
+        "label": "周囲の反応を見る（大成功想定）",
+        "skills": [
+          {
+            "skillName": "ハヤテ一文字",
+            "hintLevel": 2,
+            "skillId": null
+          },
+          {
+            "skillName": "弧線のプロフェッサー",
+            "hintLevel": 2,
+            "skillId": null
+          }
+        ]
+      }
+    ],
+    "_note": "失敗時は各ヒントLv+1"
+  },
+  {
+    "supportId": 30242,
+    "supportNameMatch": "世界を変える眼差し",
+    "_source": {
+      "gameWith": "https://gamewith.jp/uma-musume/article/show/485769",
+      "game8": null,
+      "uTools": "https://xn--gck1f423k.xn--1bvt37a.tools/supports/30242"
+    },
+    "id": "evt_almond_mental",
+    "label": "アーモンドアイは見逃さない",
+    "selection": "single",
+    "defaultChoiceId": "kou",
+    "choices": [
+      {
+        "id": "kou",
+        "label": "そのメンタル、見習いたいな",
+        "skills": [
+          {
+            "skillName": "品行方正",
+            "hintLevel": 1,
+            "skillId": null
+          }
+        ]
+      },
+      {
+        "id": "other",
+        "label": "（非ヒント選択肢）",
+        "skills": []
+      }
+    ]
+  }
+]
