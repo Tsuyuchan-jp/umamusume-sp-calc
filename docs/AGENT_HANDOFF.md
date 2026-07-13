@@ -57,8 +57,9 @@
 ## ファイルの場所
 
 ```
-docs/GAME_UPDATE_RUNBOOK.md  ゲーム更新時の運用チェックリスト（extract・events・デプロイ）
 docs/AGENT_HANDOFF.md   ← 今ここ
+docs/GAME_UPDATE_RUNBOOK.md  ゲーム更新時の運用チェックリスト（extract・events・デプロイ）
+docs/PRIORITY_SUPPORTS.md   イベント対応サポカ37種（利用者向け表・開発者向け id）
 docs/CHANGELOG.md        公開版の更新履歴
 docs/GLOSSARY.md        用語（育成ウマ娘所持スキル / 覚醒進化 など）
 docs/MODEL_SELECTION.md 推奨言語モデル（4択・Quota節約）
@@ -80,20 +81,7 @@ scripts/extract_mdb.py  同上（代替）
 
 ## 優先サポカ（events.json 対象）
 
-計 **37種**（`prioritySupportNames` 参照）。イベント **102件**（抽出100 + preserve 2）。
-
-1. [一杯のノスタルジア] 駿川たづな
-2. [その執念は怒濤が如く] メイショウドトウ
-3. [永久の誓い、永久の輝き] サトノダイヤモンド
-4. [刀光散らしてClash！] タップダンスシチー
-5. [全てに挑む勇ましき者] アグネスデジタル
-6. [白に至る覚悟] デアリングハート
-7. [Innovator] フォーエバーヤング
-8. [ゆかし、きらめきの旅路] ファインモーション
-9. [心覚えし、京の華] エアグルーヴ
-10. [天才的ユートピア] トウカイテイオー
-11. [Zirkus der Träume] エイシンフラッシュ
-12.〜37. 追加26枚 — 詳細は `data/events.json` の `prioritySupportNames`
+計 **37種**。イベント **102件**（抽出100 + preserve 2）。**一覧**: [PRIORITY_SUPPORTS.md](./PRIORITY_SUPPORTS.md) / [data/priority-supports.json](../data/priority-supports.json)
 
 ## エージェントへの指示（短縮）
 

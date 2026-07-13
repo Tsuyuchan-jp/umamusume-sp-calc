@@ -179,6 +179,14 @@ node scripts/apply_extracted_events.mjs --dry-run
 | `data/scenarios/toresenken.json` | トレセン軒の新スキル・リンク・RMJ・終了スキルがパッチで変わったとき |
 | `npm run bind-priority` | **優先37のメンバー自体が変わった**ときのみ（通常は不要） |
 
+優先37の一覧を更新したら:
+
+```powershell
+npm run render:priority-supports
+```
+
+（`bind-priority` 実行時は自動で再生成されます）
+
 全539サポカのイベント網羅は **スコープ外**（優先37のみ）。
 
 ### 5. ローカルでアプリ確認
@@ -257,5 +265,6 @@ events.json ──► app/（fetch）
 | [UTOOLS_EVENT_PARSE.md](./UTOOLS_EVENT_PARSE.md) | U-tools SSR のパース仕様 |
 | [AGENT_HANDOFF.md](./AGENT_HANDOFF.md) | エージェント向け最短ブリーフ |
 | [CHANGELOG.md](./CHANGELOG.md) | 公開版の変更履歴（データ更新も記録推奨） |
+| [PRIORITY_SUPPORTS.md](./PRIORITY_SUPPORTS.md) | イベント対応サポカ37種の一覧 |
 
 データ更新を公開したら、`CHANGELOG.md` に `### 変更` で件数やパッチ日を1行追記しておくと後から追いやすい。

@@ -10,6 +10,7 @@
     "test": "node scripts/test_sp.mjs",
     "verify": "node scripts/verify_data.mjs",
     "bind-priority": "node scripts/bind_priority.mjs",
+    "render:priority-supports": "node scripts/render_priority_supports.mjs",
     "extract:events": "node scripts/extract_support_events.mjs",
     "compare:events": "node scripts/compare_events_golden.mjs",
     "apply:events": "node scripts/apply_extracted_events.mjs",

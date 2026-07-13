@@ -29,7 +29,7 @@
 
 - **シナリオはトレセン軒のみ**（当面固定）
 - **シナリオスキルはガチ想定** — 盛況段階の切替はなし（常に大盛況／超盛況＋終了を計上）
-- **イベントは優先37サポカ** — 全サポカ網羅ではない
+- **イベントは優先37サポカ** — 全サポカ網羅ではない（[一覧](docs/PRIORITY_SUPPORTS.md)）
 - HTML をローカルでダブルクリックしても動きません（公開 URL か、開発者向けの HTTP 配信が必要）
 
 ## 機能
@@ -47,7 +47,8 @@
 **ゲーム本パッチ後のデータ更新手順**は [docs/GAME_UPDATE_RUNBOOK.md](docs/GAME_UPDATE_RUNBOOK.md) を参照。
 
 用語は [docs/GLOSSARY.md](docs/GLOSSARY.md)、仕様は [docs/spec.md](docs/spec.md)。  
-更新履歴は [docs/CHANGELOG.md](docs/CHANGELOG.md)。
+更新履歴は [docs/CHANGELOG.md](docs/CHANGELOG.md)。  
+イベント対応サポカ37種の一覧は [docs/PRIORITY_SUPPORTS.md](docs/PRIORITY_SUPPORTS.md)（JSON: [data/priority-supports.json](data/priority-supports.json)）。
 
 ## 免責
 

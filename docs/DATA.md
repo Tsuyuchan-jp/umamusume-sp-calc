@@ -11,6 +11,7 @@ data/
   characters.json      # extract 生成
   meta.json            # extract 生成（件数・ソースパス）
   events.json          # U-tools+mdb 抽出正本（+ preserve 2件）
+  priority-supports.json  # イベント対応37種のエクスポート（render:priority-supports で生成）
   events.extracted.json
   events.preserve.json
   events.id-aliases.json
@@ -159,7 +160,7 @@ npm run compare:events    # ゴールデン比較レポート
 
 ### 優先サポカ一覧
 
-`events.json` の `prioritySupportNames` を正とする（計37種）。旧11種に加え、グランアレグリア・アーモンドアイほか24枚を追加（2026-07）。
+`events.json` の `prioritySupportNames` を正とする（計37種）。**一覧表**は [PRIORITY_SUPPORTS.md](./PRIORITY_SUPPORTS.md) / [priority-supports.json](../data/priority-supports.json)（`npm run render:priority-supports` で再生成）。
 
 ## 手メンテ: scenarios/toresenken.json
 
