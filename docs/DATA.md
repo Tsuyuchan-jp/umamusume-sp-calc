@@ -18,7 +18,7 @@ data/
 - `skills.json` / `supports.json` / `characters.json` / `meta.json` **あり**
 - `meta.json` 例: skillCount 2078, supportCount 539, characterCount 258
 - 抽出元: `D:\DMM\umamusumeDMM\Umamusume\umamusume_Data\Persistent\master\master.mdb`
-- `events.json` / `toresenken.json` は手メンテ継続（たづな以外のイベントは未記入）
+- `events.json` / `toresenken.json` は手メンテ継続（優先11サポカのイベントは記入済み）
 
 ## master.mdb → extract
 
@@ -123,7 +123,7 @@ python scripts/extract_mdb.py --mdb "D:\...\master.mdb"
 | `toggle` | チェックボックス（後方互換） | ON のとき `skills` を加算 |
 
 - `skillId` は extract 後に埋めると確実。無くても `skillName` 完全一致で解決を試す
-- **現状**: たづな・メイショウドトウのイベント記入済み（2/11）。残り9枚
+- **現状**: 優先11サポカすべて記入済み（11/11）
 
 ### 優先サポカ一覧
 

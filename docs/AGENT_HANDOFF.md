@@ -11,20 +11,19 @@
 | `data/skills.json` 等 | **あり** — skills 2078 / supports 539 / characters 258（`meta.json` 参照） |
 | extract 元 mdb | `D:\DMM\umamusumeDMM\Umamusume\umamusume_Data\Persistent\master\master.mdb` |
 | 既定 AppData の mdb | **無し** — `%USERPROFILE%\AppData\LocalLow\Cygames\...` には無い |
-| `data/events.json` | **あり** — たづな stubs のみ（11枚中1枚分） |
+| `data/events.json` | **あり** — 優先11サポカすべて記入済み（33イベント） |
 | `data/scenarios/toresenken.json` | **あり** — skillId はほぼ `null`（名前マッチ前提） |
 | Python / `py` | `where` 上は WindowsApps の `python.exe` スタブ寄り。`py` 無し。再 extract 時に実体 Python 要確認 |
 | Git | リポジトリ初期化済み。初回コミット前後を `git log` で確認 |
 
-**アプリはデータ読込可能な状態まで来ている。** 残りはイベント充実・シナリオ ID 補完・通し確認。
+**アプリはデータ読込可能な状態。** 次は実デッキ通し確認・固有除外検証。
 
 ## 次にやること（優先順）
 
-1. ローカルサーバーで `app/` を開き、合計SPが出ることを確認（[DEV.md](./DEV.md)）。
-2. **`events.json` を優先11サポカ分まで埋める**（たづな以外が未着手）。
-3. **`toresenken.json` の skillId を skills.json から補完**（または名前マッチで動くことを確認）。
-4. 固有本体除外・進化前金計上を、実データでスポット検証。
-5. ゲーム更新時は DMM パスの mdb を `--mdb` 指定して再 extract（既定 AppData パスは空の可能性）。
+1. ローカルサーバーで `app/` を開き、常用6枚デッキでイベント表示・SP変化を確認（[DEV.md](./DEV.md)）。
+2. **`toresenken.json` の skillId を skills.json から補完**（または名前マッチで動くことを確認）。
+3. 固有本体除外・進化前金計上を、実データでスポット検証。
+4. ゲーム更新時は DMM パスの mdb を `--mdb` 指定して再 extract（既定 AppData パスは空の可能性）。
 
 ## 非交渉ルール（変えない）
 
