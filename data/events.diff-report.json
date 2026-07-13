@@ -1,0 +1,4671 @@
+{
+  "comparedAt": "2026-07-13T15:29:45.932Z",
+  "handCount": 102,
+  "extractedCount": 100,
+  "counts": {
+    "match": 96,
+    "conflict": 0,
+    "extracted_only": 4,
+    "hand_only": 6
+  },
+  "old11": {
+    "match": 28,
+    "conflict": 0,
+    "hand_only": 4,
+    "extracted_only": 4
+  },
+  "old11Conflicts": [],
+  "old11HandOnly": [],
+  "handOnly": [
+    {
+      "side": "hand",
+      "id": "evt_tazuna_oodate5",
+      "supportNameMatch": "一杯のノスタルジア",
+      "label": "たづな お出かけ5回目",
+      "selection": "auto",
+      "skills": [
+        {
+          "skillName": "お先に失礼っ！",
+          "hintLevel": 3,
+          "skillId": 201662
+        }
+      ],
+      "skillPayload": "id:201662\u00003"
+    },
+    {
+      "side": "hand",
+      "id": "evt_tazuna_newyear",
+      "supportNameMatch": "一杯のノスタルジア",
+      "label": "たづな クラシック正月",
+      "selection": "auto",
+      "skills": [
+        {
+          "skillName": "中盤巧者",
+          "hintLevel": 3,
+          "skillId": 202792
+        }
+      ],
+      "skillPayload": "id:202792\u00003"
+    },
+    {
+      "side": "hand",
+      "id": "evt_young_dreams",
+      "supportNameMatch": "Innovator",
+      "label": "ヤング Dreams are Forever（連続3・成功時）",
+      "selection": "single",
+      "choices": [
+        {
+          "id": "dirt",
+          "label": "① 二段構え Lv1 + アプローチ Lv1 + コール&レスポンス Lv1 + イノベーション Lv1",
+          "skills": [
+            {
+              "skillName": "二段構え",
+              "hintLevel": 1,
+              "skillId": 202832
+            },
+            {
+              "skillName": "アプローチ",
+              "hintLevel": 1,
+              "skillId": 204192
+            },
+            {
+              "skillName": "コール&レスポンス",
+              "hintLevel": 1,
+              "skillId": 202831
+            },
+            {
+              "skillName": "イノベーション",
+              "hintLevel": 1,
+              "skillId": 204191
+            }
+          ]
+        },
+        {
+          "id": "general",
+          "label": "② 尻尾の滝登り Lv1 + 前人未到 Lv1",
+          "skills": [
+            {
+              "skillName": "尻尾の滝登り",
+              "hintLevel": 1,
+              "skillId": 201612
+            },
+            {
+              "skillName": "前人未到",
+              "hintLevel": 1,
+              "skillId": 204181
+            }
+          ]
+        }
+      ],
+      "skillPayload": "id:201612\u00001|id:204181\u00001||id:202831\u00001|id:202832\u00001|id:204191\u00001|id:204192\u00001"
+    },
+    {
+      "side": "hand",
+      "id": "evt_groove_makeup",
+      "supportNameMatch": "心覚えし、京の華",
+      "label": "グルーヴ そのメイクは誰がために（連続3・金2択）",
+      "selection": "single",
+      "choices": [
+        {
+          "id": "osu_kin",
+          "label": "① 王手 Lv2 + 千鍛万錬 Lv1",
+          "skills": [
+            {
+              "skillName": "王手",
+              "hintLevel": 2,
+              "skillId": 202711
+            },
+            {
+              "skillName": "千鍛万錬",
+              "hintLevel": 1,
+              "skillId": 204031
+            }
+          ]
+        },
+        {
+          "id": "kin_kin",
+          "label": "② 千鍛万錬 Lv2 + 錦上添花 Lv2",
+          "skills": [
+            {
+              "skillName": "千鍛万錬",
+              "hintLevel": 2,
+              "skillId": 204031
+            },
+            {
+              "skillName": "錦上添花",
+              "hintLevel": 2,
+              "skillId": 204041
+            }
+          ]
+        }
+      ],
+      "skillPayload": "id:202711\u00002|id:204031\u00001||id:204031\u00002|id:204041\u00002"
+    },
+    {
+      "side": "hand",
+      "id": "evt_gran_seicho",
+      "supportNameMatch": "スマイル・エバーアフター",
+      "label": "グラン 成長のヒント",
+      "selection": "auto",
+      "skills": [
+        {
+          "skillName": "足任せ",
+          "hintLevel": 4,
+          "skillId": 203542
+        }
+      ],
+      "skillPayload": "id:203542\u00004"
+    },
+    {
+      "side": "hand",
+      "id": "evt_fuji_sleight",
+      "supportNameMatch": "壇上より魔法を込めて",
+      "label": "フジ スライハンド",
+      "selection": "auto",
+      "skills": [
+        {
+          "skillName": "流星光底",
+          "hintLevel": 1,
+          "skillId": 202981
+        }
+      ],
+      "skillPayload": "id:202981\u00001"
+    }
+  ],
+  "results": [
+    {
+      "status": "match",
+      "hand": {
+        "side": "hand",
+        "id": "evt_young_light",
+        "supportNameMatch": "Innovator",
+        "label": "ヤング やっちゃお！イノベーション",
+        "selection": "auto",
+        "skills": [
+          {
+            "skillName": "灯を胸に",
+            "hintLevel": 1,
+            "skillId": 204052
+          }
+        ],
+        "skillPayload": "id:204052\u00001"
+      },
+      "extracted": {
+        "side": "extracted",
+        "id": "evt_30289_801138002",
+        "supportNameMatch": "Innovator",
+        "label": "ヤング やっちゃお！イノベーション！",
+        "selection": "auto",
+        "skills": [
+          {
+            "skillName": "灯を胸に",
+            "hintLevel": 1,
+            "skillId": 204052
+          }
+        ],
+        "skillPayload": "id:204052\u00001"
+      },
+      "matchKey": "skill"
+    },
+    {
+      "status": "match",
+      "hand": {
+        "side": "hand",
+        "id": "evt_young_vitality",
+        "supportNameMatch": "Innovator",
+        "label": "ヤング Young & Unstoppable",
+        "selection": "auto",
+        "skills": [
+          {
+            "skillName": "バイタリティ",
+            "hintLevel": 1,
+            "skillId": 203982
+          }
+        ],
+        "skillPayload": "id:203982\u00001"
+      },
+      "extracted": {
+        "side": "extracted",
+        "id": "evt_30289_830289001",
+        "supportNameMatch": "Innovator",
+        "label": "ヤング Young & Unstoppable",
+        "selection": "auto",
+        "skills": [
+          {
+            "skillName": "バイタリティ",
+            "hintLevel": 1,
+            "skillId": 203982
+          }
+        ],
+        "skillPayload": "id:203982\u00001"
+      },
+      "matchKey": "name"
+    },
+    {
+      "status": "extracted_only",
+      "extracted": {
+        "side": "extracted",
+        "id": "evt_30289_830289003",
+        "supportNameMatch": "Innovator",
+        "label": "ヤング Dreams are Forever",
+        "selection": "single",
+        "choices": [
+          {
+            "id": "c001_2028312+2028325+204191",
+            "label": "① 二段構え Lv5 + アプローチ Lv5 + コール&レスポンス Lv2 + イノベーション Lv2",
+            "skills": [
+              {
+                "skillName": "二段構え",
+                "hintLevel": 5,
+                "skillId": 202832
+              },
+              {
+                "skillName": "アプローチ",
+                "hintLevel": 5,
+                "skillId": 204192
+              },
+              {
+                "skillName": "コール&レスポンス",
+                "hintLevel": 2,
+                "skillId": 202831
+              },
+              {
+                "skillName": "イノベーション",
+                "hintLevel": 2,
+                "skillId": 204191
+              }
+            ]
+          },
+          {
+            "id": "c002_2016122+2041812",
+            "label": "② 尻尾の滝登り Lv2 + 前人未到 Lv2",
+            "skills": [
+              {
+                "skillName": "尻尾の滝登り",
+                "hintLevel": 2,
+                "skillId": 201612
+              },
+              {
+                "skillName": "前人未到",
+                "hintLevel": 2,
+                "skillId": 204181
+              }
+            ]
+          }
+        ],
+        "skillPayload": "id:201612\u00002|id:204181\u00002||id:202831\u00002|id:202832\u00005|id:204191\u00002|id:204192\u00005"
+      }
+    },
+    {
+      "status": "match",
+      "hand": {
+        "side": "hand",
+        "id": "evt_ruby_ganka",
+        "supportNameMatch": "Inseparable",
+        "label": "ルビー 華麗なる旋律",
+        "selection": "auto",
+        "skills": [
+          {
+            "skillName": "詰め寄り",
+            "hintLevel": 1,
+            "skillId": 200672
+          }
+        ],
+        "skillPayload": "id:200672\u00001"
+      },
+      "extracted": {
+        "side": "extracted",
+        "id": "evt_30270_801085002",
+        "supportNameMatch": "Inseparable",
+        "label": "ルビー 華麗なる旋律",
+        "selection": "auto",
+        "skills": [
+          {
+            "skillName": "詰め寄り",
+            "hintLevel": 1,
+            "skillId": 200672
+          }
+        ],
+        "skillPayload": "id:200672\u00001"
+      },
+      "matchKey": "name"
+    },
+    {
+      "status": "match",
+      "hand": {
+        "side": "hand",
+        "id": "evt_ruby_akadama",
+        "supportNameMatch": "Inseparable",
+        "label": "ルビー 紅玉の誓約",
+        "selection": "auto",
+        "skills": [
+          {
+            "skillName": "至宝の輝き",
+            "hintLevel": 2,
+            "skillId": 203911
+          }
+        ],
+        "skillPayload": "id:203911\u00002"
+      },
+      "extracted": {
+        "side": "extracted",
+        "id": "evt_30270_830270001",
+        "supportNameMatch": "Inseparable",
+        "label": "ルビー 紅玉の誓約",
+        "selection": "auto",
+        "skills": [
+          {
+            "skillName": "至宝の輝き",
+            "hintLevel": 2,
+            "skillId": 203911
+          }
+        ],
+        "skillPayload": "id:203911\u00002"
+      },
+      "matchKey": "name"
+    },
+    {
+      "status": "match",
+      "hand": {
+        "side": "hand",
+        "id": "evt_dura_ou",
+        "supportNameMatch": "Tranquillo",
+        "label": "ドゥラ 追うべき背中",
+        "selection": "auto",
+        "skills": [
+          {
+            "skillName": "イグニッション",
+            "hintLevel": 1,
+            "skillId": 202602
+          }
+        ],
+        "skillPayload": "id:202602\u00001"
+      },
+      "extracted": {
+        "side": "extracted",
+        "id": "evt_30262_801108002",
+        "supportNameMatch": "Tranquillo",
+        "label": "ドゥラ 追うべき背中",
+        "selection": "auto",
+        "skills": [
+          {
+            "skillName": "イグニッション",
+            "hintLevel": 1,
+            "skillId": 202602
+          }
+        ],
+        "skillPayload": "id:202602\u00001"
+      },
+      "matchKey": "name"
+    },
+    {
+      "status": "match",
+      "hand": {
+        "side": "hand",
+        "id": "evt_dura_kawaii_power",
+        "supportNameMatch": "Tranquillo",
+        "label": "ドゥラ 可愛いの真の力！",
+        "selection": "auto",
+        "skills": [
+          {
+            "skillName": "飛翔脚",
+            "hintLevel": 1,
+            "skillId": 202901
+          },
+          {
+            "skillName": "残影",
+            "hintLevel": 1,
+            "skillId": 203751
+          }
+        ],
+        "skillPayload": "id:202901\u00001|id:203751\u00001"
+      },
+      "extracted": {
+        "side": "extracted",
+        "id": "evt_30262_830262003",
+        "supportNameMatch": "Tranquillo",
+        "label": "ドゥラ 可愛いの真の力！",
+        "selection": "auto",
+        "skills": [
+          {
+            "skillName": "飛翔脚",
+            "hintLevel": 1,
+            "skillId": 202901
+          },
+          {
+            "skillName": "残影",
+            "hintLevel": 1,
+            "skillId": 203751
+          }
+        ],
+        "skillPayload": "id:202901\u00001|id:203751\u00001"
+      },
+      "matchKey": "name"
+    },
+    {
+      "status": "match",
+      "hand": {
+        "side": "hand",
+        "id": "evt_line_wakuwaku",
+        "supportNameMatch": "Unveiled Dream",
+        "label": "ライン ワクワクでキラキラな夢",
+        "selection": "auto",
+        "skills": [
+          {
+            "skillName": "マイルコーナー○",
+            "hintLevel": 1,
+            "skillId": 201042
+          }
+        ],
+        "skillPayload": "id:201042\u00001"
+      },
+      "extracted": {
+        "side": "extracted",
+        "id": "evt_30253_801109001",
+        "supportNameMatch": "Unveiled Dream",
+        "label": "ライン ワクワクでキラキラな夢",
+        "selection": "auto",
+        "skills": [
+          {
+            "skillName": "マイルコーナー○",
+            "hintLevel": 1,
+            "skillId": 201042
+          }
+        ],
+        "skillPayload": "id:201042\u00001"
+      },
+      "matchKey": "name"
+    },
+    {
+      "status": "match",
+      "hand": {
+        "side": "hand",
+        "id": "evt_line_letter",
+        "supportNameMatch": "Unveiled Dream",
+        "label": "ライン 拝啓、お父さん",
+        "selection": "auto",
+        "skills": [
+          {
+            "skillName": "ギアチェンジ",
+            "hintLevel": 1,
+            "skillId": 201051
+          },
+          {
+            "skillName": "ハイボルテージ",
+            "hintLevel": 1,
+            "skillId": 202671
+          }
+        ],
+        "skillPayload": "id:201051\u00001|id:202671\u00001"
+      },
+      "extracted": {
+        "side": "extracted",
+        "id": "evt_30253_830253003",
+        "supportNameMatch": "Unveiled Dream",
+        "label": "ライン 拝啓、お父さん",
+        "selection": "auto",
+        "skills": [
+          {
+            "skillName": "ギアチェンジ",
+            "hintLevel": 1,
+            "skillId": 201051
+          },
+          {
+            "skillName": "ハイボルテージ",
+            "hintLevel": 1,
+            "skillId": 202671
+          }
+        ],
+        "skillPayload": "id:201051\u00001|id:202671\u00001"
+      },
+      "matchKey": "name"
+    },
+    {
+      "status": "match",
+      "hand": {
+        "side": "hand",
+        "id": "evt_flash_shop",
+        "supportNameMatch": "Zirkus der Träume",
+        "label": "フラッシュ 想定外への対応",
+        "selection": "auto",
+        "skills": [
+          {
+            "skillName": "徹底マーク○",
+            "hintLevel": 1,
+            "skillId": 200292
+          }
+        ],
+        "skillPayload": "id:200292\u00001"
+      },
+      "extracted": {
+        "side": "extracted",
+        "id": "evt_30272_801037002",
+        "supportNameMatch": "Zirkus der Träume",
+        "label": "フラッシュ 想定外への対応",
+        "selection": "auto",
+        "skills": [
+          {
+            "skillName": "徹底マーク○",
+            "hintLevel": 1,
+            "skillId": 200292
+          }
+        ],
+        "skillPayload": "id:200292\u00001"
+      },
+      "matchKey": "name"
+    },
+    {
+      "status": "match",
+      "hand": {
+        "side": "hand",
+        "id": "evt_flash_try",
+        "supportNameMatch": "Zirkus der Träume",
+        "label": "フラッシュ 美しきトライ",
+        "selection": "auto",
+        "skills": [
+          {
+            "skillName": "下準備",
+            "hintLevel": 1,
+            "skillId": 203332
+          }
+        ],
+        "skillPayload": "id:203332\u00001"
+      },
+      "extracted": {
+        "side": "extracted",
+        "id": "evt_30272_830272002",
+        "supportNameMatch": "Zirkus der Träume",
+        "label": "フラッシュ 美しきトライ",
+        "selection": "auto",
+        "skills": [
+          {
+            "skillName": "下準備",
+            "hintLevel": 1,
+            "skillId": 203332
+          }
+        ],
+        "skillPayload": "id:203332\u00001"
+      },
+      "matchKey": "name"
+    },
+    {
+      "status": "match",
+      "hand": {
+        "side": "hand",
+        "id": "evt_flash_fruit",
+        "supportNameMatch": "Zirkus der Träume",
+        "label": "フラッシュ 美しき結実（連続3）",
+        "selection": "single",
+        "choices": [
+          {
+            "id": "gold",
+            "label": "① 千里の道 Lv1 + 陽炎 Lv1",
+            "skills": [
+              {
+                "skillName": "千里の道",
+                "hintLevel": 1,
+                "skillId": 202641
+              },
+              {
+                "skillName": "陽炎",
+                "hintLevel": 1,
+                "skillId": 203671
+              }
+            ]
+          },
+          {
+            "id": "scenario",
+            "label": "② レースの真髄・速 Lv5 + 前だけ見据えて Lv5 + 綺羅星 Lv5",
+            "skills": [
+              {
+                "skillName": "レースの真髄・速",
+                "hintLevel": 5,
+                "skillId": 210091
+              },
+              {
+                "skillName": "前だけ見据えて",
+                "hintLevel": 5,
+                "skillId": 210082
+              },
+              {
+                "skillName": "綺羅星",
+                "hintLevel": 5,
+                "skillId": 210062
+              }
+            ]
+          }
+        ],
+        "skillPayload": "id:202641\u00001|id:203671\u00001||id:210062\u00005|id:210082\u00005|id:210091\u00005"
+      },
+      "extracted": {
+        "side": "extracted",
+        "id": "evt_30272_830272003",
+        "supportNameMatch": "Zirkus der Träume",
+        "label": "フラッシュ 美しき結実",
+        "selection": "single",
+        "choices": [
+          {
+            "id": "c001_2026411+2036711",
+            "label": "① 千里の道 Lv1 + 陽炎 Lv1",
+            "skills": [
+              {
+                "skillName": "千里の道",
+                "hintLevel": 1,
+                "skillId": 202641
+              },
+              {
+                "skillName": "陽炎",
+                "hintLevel": 1,
+                "skillId": 203671
+              }
+            ]
+          },
+          {
+            "id": "c002_2100625+2100825+210091",
+            "label": "② レースの真髄・速 Lv5 + 前だけ見据えて Lv5 + 綺羅星 Lv5",
+            "skills": [
+              {
+                "skillName": "レースの真髄・速",
+                "hintLevel": 5,
+                "skillId": 210091
+              },
+              {
+                "skillName": "前だけ見据えて",
+                "hintLevel": 5,
+                "skillId": 210082
+              },
+              {
+                "skillName": "綺羅星",
+                "hintLevel": 5,
+                "skillId": 210062
+              }
+            ]
+          }
+        ],
+        "skillPayload": "id:202641\u00001|id:203671\u00001||id:210062\u00005|id:210082\u00005|id:210091\u00005"
+      },
+      "matchKey": "skill"
+    },
+    {
+      "status": "match",
+      "hand": {
+        "side": "hand",
+        "id": "evt_carlton_massugu",
+        "supportNameMatch": "カルストンライトオ、猫です",
+        "label": "ライトオ 『真っ直ぐ』はすばらしい",
+        "selection": "auto",
+        "skills": [
+          {
+            "skillName": "直線巧者",
+            "hintLevel": 1,
+            "skillId": 200362
+          }
+        ],
+        "skillPayload": "id:200362\u00001"
+      },
+      "extracted": {
+        "side": "extracted",
+        "id": "evt_30267_801120001",
+        "supportNameMatch": "カルストンライトオ、猫です",
+        "label": "ライトオ 『真っ直ぐ』はすばらしい",
+        "selection": "auto",
+        "skills": [
+          {
+            "skillName": "直線巧者",
+            "hintLevel": 1,
+            "skillId": 200362
+          }
+        ],
+        "skillPayload": "id:200362\u00001"
+      },
+      "matchKey": "name"
+    },
+    {
+      "status": "match",
+      "hand": {
+        "side": "hand",
+        "id": "evt_carlton_saisoku",
+        "supportNameMatch": "カルストンライトオ、猫です",
+        "label": "ライトオ 『最速』はすばらしい",
+        "selection": "auto",
+        "skills": [
+          {
+            "skillName": "直線コース○",
+            "hintLevel": 1,
+            "skillId": 202992
+          }
+        ],
+        "skillPayload": "id:202992\u00001"
+      },
+      "extracted": {
+        "side": "extracted",
+        "id": "evt_30267_801120002",
+        "supportNameMatch": "カルストンライトオ、猫です",
+        "label": "ライトオ 『最速』はすばらしい",
+        "selection": "auto",
+        "skills": [
+          {
+            "skillName": "直線コース○",
+            "hintLevel": 1,
+            "skillId": 202992
+          }
+        ],
+        "skillPayload": "id:202992\u00001"
+      },
+      "matchKey": "name"
+    },
+    {
+      "status": "match",
+      "hand": {
+        "side": "hand",
+        "id": "evt_carlton_sokyu",
+        "supportNameMatch": "カルストンライトオ、猫です",
+        "label": "ライトオ 速い&真っ直ぐは世界を救う！",
+        "selection": "auto",
+        "skills": [
+          {
+            "skillName": "意気衝天",
+            "hintLevel": 1,
+            "skillId": 202041
+          },
+          {
+            "skillName": "問答無用",
+            "hintLevel": 1,
+            "skillId": 203881
+          }
+        ],
+        "skillPayload": "id:202041\u00001|id:203881\u00001"
+      },
+      "extracted": {
+        "side": "extracted",
+        "id": "evt_30267_830267003",
+        "supportNameMatch": "カルストンライトオ、猫です",
+        "label": "ライトオ 速い＆真っ直ぐは世界を救う！",
+        "selection": "auto",
+        "skills": [
+          {
+            "skillName": "意気衝天",
+            "hintLevel": 1,
+            "skillId": 202041
+          },
+          {
+            "skillName": "問答無用",
+            "hintLevel": 1,
+            "skillId": 203881
+          }
+        ],
+        "skillPayload": "id:202041\u00001|id:203881\u00001"
+      },
+      "matchKey": "name"
+    },
+    {
+      "status": "match",
+      "hand": {
+        "side": "hand",
+        "id": "evt_gran_mile_way",
+        "supportNameMatch": "スマイル・エバーアフター",
+        "label": "グラン ゴー・マイル・ウェイ",
+        "selection": "auto",
+        "skills": [
+          {
+            "skillName": "マイル直線○",
+            "hintLevel": 1,
+            "skillId": 201032
+          }
+        ],
+        "skillPayload": "id:201032\u00001"
+      },
+      "extracted": {
+        "side": "extracted",
+        "id": "evt_30301_801131002",
+        "supportNameMatch": "スマイル・エバーアフター",
+        "label": "グラン ゴー・マイル・ウェイ、です！",
+        "selection": "auto",
+        "skills": [
+          {
+            "skillName": "マイル直線○",
+            "hintLevel": 1,
+            "skillId": 201032
+          }
+        ],
+        "skillPayload": "id:201032\u00001"
+      },
+      "matchKey": "skill"
+    },
+    {
+      "status": "match",
+      "hand": {
+        "side": "hand",
+        "id": "evt_gran_milestone",
+        "supportNameMatch": "スマイル・エバーアフター",
+        "label": "グラン 勝利へのマイルストーン",
+        "selection": "auto",
+        "skills": [
+          {
+            "skillName": "ハイピッチ",
+            "hintLevel": 1,
+            "skillId": 203352
+          }
+        ],
+        "skillPayload": "id:203352\u00001"
+      },
+      "extracted": {
+        "side": "extracted",
+        "id": "evt_30301_830301002",
+        "supportNameMatch": "スマイル・エバーアフター",
+        "label": "グラン 勝利へのマイルストーン",
+        "selection": "auto",
+        "skills": [
+          {
+            "skillName": "ハイピッチ",
+            "hintLevel": 1,
+            "skillId": 203352
+          }
+        ],
+        "skillPayload": "id:203352\u00001"
+      },
+      "matchKey": "name"
+    },
+    {
+      "status": "match",
+      "hand": {
+        "side": "hand",
+        "id": "evt_gran_muse_final",
+        "supportNameMatch": "スマイル・エバーアフター",
+        "label": "グラン 最強のミューズへ",
+        "selection": "auto",
+        "skills": [
+          {
+            "skillName": "天真爛漫",
+            "hintLevel": 1,
+            "skillId": 203541
+          },
+          {
+            "skillName": "元気溌剌",
+            "hintLevel": 2,
+            "skillId": 204171
+          }
+        ],
+        "skillPayload": "id:203541\u00001|id:204171\u00002"
+      },
+      "extracted": {
+        "side": "extracted",
+        "id": "evt_30301_830301003",
+        "supportNameMatch": "スマイル・エバーアフター",
+        "label": "グラン 最強のミューズへ",
+        "selection": "auto",
+        "skills": [
+          {
+            "skillName": "天真爛漫",
+            "hintLevel": 1,
+            "skillId": 203541
+          },
+          {
+            "skillName": "元気溌剌",
+            "hintLevel": 2,
+            "skillId": 204171
+          }
+        ],
+        "skillPayload": "id:203541\u00001|id:204171\u00002"
+      },
+      "matchKey": "name"
+    },
+    {
+      "status": "match",
+      "hand": {
+        "side": "hand",
+        "id": "evt_dotou_call",
+        "supportNameMatch": "その執念は怒濤が如く",
+        "label": "ドトウ イベントB（呼び込み）",
+        "selection": "auto",
+        "skills": [
+          {
+            "skillName": "先行コーナー○",
+            "hintLevel": 1,
+            "skillId": 201322
+          }
+        ],
+        "skillPayload": "id:201322\u00001"
+      },
+      "extracted": {
+        "side": "extracted",
+        "id": "evt_30304_801058002",
+        "supportNameMatch": "その執念は怒濤が如く",
+        "label": "ドトウ にんじん……買ってくださいっ",
+        "selection": "auto",
+        "skills": [
+          {
+            "skillName": "先行コーナー○",
+            "hintLevel": 1,
+            "skillId": 201322
+          }
+        ],
+        "skillPayload": "id:201322\u00001"
+      },
+      "matchKey": "skill"
+    },
+    {
+      "status": "match",
+      "hand": {
+        "side": "hand",
+        "id": "evt_dotou_umalike",
+        "supportNameMatch": "その執念は怒濤が如く",
+        "label": "ドトウ イベントA（ウマ好み）",
+        "selection": "auto",
+        "skills": [
+          {
+            "skillName": "ウマ好み",
+            "hintLevel": 1,
+            "skillId": 201591
+          }
+        ],
+        "skillPayload": "id:201591\u00001"
+      },
+      "extracted": {
+        "side": "extracted",
+        "id": "evt_30304_830304002",
+        "supportNameMatch": "その執念は怒濤が如く",
+        "label": "ドトウ 美味しい楽しいファンサービス",
+        "selection": "auto",
+        "skills": [
+          {
+            "skillName": "ウマ好み",
+            "hintLevel": 1,
+            "skillId": 201591
+          }
+        ],
+        "skillPayload": "id:201591\u00001"
+      },
+      "matchKey": "skill"
+    },
+    {
+      "status": "match",
+      "hand": {
+        "side": "hand",
+        "id": "evt_dotou_chain",
+        "supportNameMatch": "その執念は怒濤が如く",
+        "label": "ドトウ イベントC（連続・最終選択）",
+        "selection": "single",
+        "choices": [
+          {
+            "id": "ou",
+            "label": "① 弧線のプロフェッサー Lv2 + パスファインダー Lv1",
+            "skills": [
+              {
+                "skillName": "弧線のプロフェッサー",
+                "hintLevel": 2,
+                "skillId": 200331
+              },
+              {
+                "skillName": "パスファインダー",
+                "hintLevel": 1,
+                "skillId": 203651
+              }
+            ]
+          },
+          {
+            "id": "dawn",
+            "label": "② パスファインダー Lv1 + 曙光 Lv2",
+            "skills": [
+              {
+                "skillName": "パスファインダー",
+                "hintLevel": 1,
+                "skillId": 203651
+              },
+              {
+                "skillName": "曙光",
+                "hintLevel": 2,
+                "skillId": 203641
+              }
+            ]
+          },
+          {
+            "id": "yuyu",
+            "label": "③ パスファインダー Lv1 + 悠々自適 Lv2",
+            "skills": [
+              {
+                "skillName": "パスファインダー",
+                "hintLevel": 1,
+                "skillId": 203651
+              },
+              {
+                "skillName": "悠々自適",
+                "hintLevel": 2,
+                "skillId": 204391
+              }
+            ]
+          }
+        ],
+        "skillPayload": "id:200331\u00002|id:203651\u00001||id:203641\u00002|id:203651\u00001||id:203651\u00001|id:204391\u00002"
+      },
+      "extracted": {
+        "side": "extracted",
+        "id": "evt_30304_830304003",
+        "supportNameMatch": "その執念は怒濤が如く",
+        "label": "ドトウ 覇王と共に歩む道",
+        "selection": "single",
+        "choices": [
+          {
+            "id": "c001_2003312+2036511",
+            "label": "① 弧線のプロフェッサー Lv2 + パスファインダー Lv1",
+            "skills": [
+              {
+                "skillName": "弧線のプロフェッサー",
+                "hintLevel": 2,
+                "skillId": 200331
+              },
+              {
+                "skillName": "パスファインダー",
+                "hintLevel": 1,
+                "skillId": 203651
+              }
+            ]
+          },
+          {
+            "id": "c002_2036412+2036511",
+            "label": "② パスファインダー Lv1 + 曙光 Lv2",
+            "skills": [
+              {
+                "skillName": "パスファインダー",
+                "hintLevel": 1,
+                "skillId": 203651
+              },
+              {
+                "skillName": "曙光",
+                "hintLevel": 2,
+                "skillId": 203641
+              }
+            ]
+          },
+          {
+            "id": "c003_2036511+2043912",
+            "label": "③ パスファインダー Lv1 + 悠々自適 Lv2",
+            "skills": [
+              {
+                "skillName": "パスファインダー",
+                "hintLevel": 1,
+                "skillId": 203651
+              },
+              {
+                "skillName": "悠々自適",
+                "hintLevel": 2,
+                "skillId": 204391
+              }
+            ]
+          }
+        ],
+        "skillPayload": "id:200331\u00002|id:203651\u00001||id:203641\u00002|id:203651\u00001||id:203651\u00001|id:204391\u00002"
+      },
+      "matchKey": "skill"
+    },
+    {
+      "status": "match",
+      "hand": {
+        "side": "hand",
+        "id": "evt_pheno_kowamote",
+        "supportNameMatch": "ぬくもりのノエル",
+        "label": "フェノーメノ あぶないコワモテ刑事？",
+        "selection": "auto",
+        "skills": [
+          {
+            "skillName": "狙いを定めて",
+            "hintLevel": 1,
+            "skillId": 202772
+          }
+        ],
+        "skillPayload": "id:202772\u00001"
+      },
+      "extracted": {
+        "side": "extracted",
+        "id": "evt_30279_801127002",
+        "supportNameMatch": "ぬくもりのノエル",
+        "label": "フェノーメノ あぶないコワモテ刑事？",
+        "selection": "auto",
+        "skills": [
+          {
+            "skillName": "狙いを定めて",
+            "hintLevel": 1,
+            "skillId": 202772
+          }
+        ],
+        "skillPayload": "id:202772\u00001"
+      },
+      "matchKey": "name"
+    },
+    {
+      "status": "match",
+      "hand": {
+        "side": "hand",
+        "id": "evt_pheno_mame",
+        "supportNameMatch": "ぬくもりのノエル",
+        "label": "フェノーメノ マメちん堕落計画！",
+        "selection": "auto",
+        "skills": [
+          {
+            "skillName": "地道に重ねて",
+            "hintLevel": 1,
+            "skillId": 203412
+          }
+        ],
+        "skillPayload": "id:203412\u00001"
+      },
+      "extracted": {
+        "side": "extracted",
+        "id": "evt_30279_830279002",
+        "supportNameMatch": "ぬくもりのノエル",
+        "label": "フェノーメノ マメちん堕落計画！",
+        "selection": "auto",
+        "skills": [
+          {
+            "skillName": "地道に重ねて",
+            "hintLevel": 1,
+            "skillId": 203412
+          }
+        ],
+        "skillPayload": "id:203412\u00001"
+      },
+      "matchKey": "name"
+    },
+    {
+      "status": "match",
+      "hand": {
+        "side": "hand",
+        "id": "evt_pheno_kisei",
+        "supportNameMatch": "ぬくもりのノエル",
+        "label": "フェノーメノ いかなる時も矜持は揺るがず",
+        "selection": "auto",
+        "skills": [
+          {
+            "skillName": "真打",
+            "hintLevel": 1,
+            "skillId": 202011
+          },
+          {
+            "skillName": "一点集中",
+            "hintLevel": 1,
+            "skillId": 202771
+          }
+        ],
+        "skillPayload": "id:202011\u00001|id:202771\u00001"
+      },
+      "extracted": {
+        "side": "extracted",
+        "id": "evt_30279_830279003",
+        "supportNameMatch": "ぬくもりのノエル",
+        "label": "フェノーメノ いかなる時も、矜持は揺るがず",
+        "selection": "auto",
+        "skills": [
+          {
+            "skillName": "真打",
+            "hintLevel": 1,
+            "skillId": 202011
+          },
+          {
+            "skillName": "一点集中",
+            "hintLevel": 1,
+            "skillId": 202771
+          }
+        ],
+        "skillPayload": "id:202011\u00001|id:202771\u00001"
+      },
+      "matchKey": "skill"
+    },
+    {
+      "status": "match",
+      "hand": {
+        "side": "hand",
+        "id": "evt_fine_corner",
+        "supportNameMatch": "ゆかし、きらめきの旅路",
+        "label": "ファイン 思い出クローバー",
+        "selection": "auto",
+        "skills": [
+          {
+            "skillName": "コーナー巧者○",
+            "hintLevel": 1,
+            "skillId": 200332
+          }
+        ],
+        "skillPayload": "id:200332\u00001"
+      },
+      "extracted": {
+        "side": "extracted",
+        "id": "evt_30283_801022002",
+        "supportNameMatch": "ゆかし、きらめきの旅路",
+        "label": "ファイン 思い出クローバー",
+        "selection": "auto",
+        "skills": [
+          {
+            "skillName": "コーナー巧者○",
+            "hintLevel": 1,
+            "skillId": 200332
+          }
+        ],
+        "skillPayload": "id:200332\u00001"
+      },
+      "matchKey": "name"
+    },
+    {
+      "status": "match",
+      "hand": {
+        "side": "hand",
+        "id": "evt_fine_step",
+        "supportNameMatch": "ゆかし、きらめきの旅路",
+        "label": "ファイン ロイヤル推し活ライフ",
+        "selection": "auto",
+        "skills": [
+          {
+            "skillName": "素直な一歩",
+            "hintLevel": 1,
+            "skillId": 203032
+          }
+        ],
+        "skillPayload": "id:203032\u00001"
+      },
+      "extracted": {
+        "side": "extracted",
+        "id": "evt_30283_830283002",
+        "supportNameMatch": "ゆかし、きらめきの旅路",
+        "label": "ファイン ロイヤル推し活ライフ",
+        "selection": "auto",
+        "skills": [
+          {
+            "skillName": "素直な一歩",
+            "hintLevel": 1,
+            "skillId": 203032
+          }
+        ],
+        "skillPayload": "id:203032\u00001"
+      },
+      "matchKey": "name"
+    },
+    {
+      "status": "match",
+      "hand": {
+        "side": "hand",
+        "id": "evt_fine_look",
+        "supportNameMatch": "ゆかし、きらめきの旅路",
+        "label": "ファイン Look at me（連続3）",
+        "selection": "single",
+        "choices": [
+          {
+            "id": "gold",
+            "label": "① かっとばせ！ Lv1 + 順風満帆 Lv1",
+            "skills": [
+              {
+                "skillName": "かっとばせ！",
+                "hintLevel": 1,
+                "skillId": 202761
+              },
+              {
+                "skillName": "順風満帆",
+                "hintLevel": 1,
+                "skillId": 204071
+              }
+            ]
+          },
+          {
+            "id": "scenario",
+            "label": "② 気持ちを乗せて Lv5 + レースの真髄・体 Lv5 + 陽の加護 Lv5",
+            "skills": [
+              {
+                "skillName": "気持ちを乗せて",
+                "hintLevel": 5,
+                "skillId": 204072
+              },
+              {
+                "skillName": "レースの真髄・体",
+                "hintLevel": 5,
+                "skillId": 210101
+              },
+              {
+                "skillName": "陽の加護",
+                "hintLevel": 5,
+                "skillId": 210262
+              }
+            ]
+          }
+        ],
+        "skillPayload": "id:202761\u00001|id:204071\u00001||id:204072\u00005|id:210101\u00005|id:210262\u00005"
+      },
+      "extracted": {
+        "side": "extracted",
+        "id": "evt_30283_830283003",
+        "supportNameMatch": "ゆかし、きらめきの旅路",
+        "label": "ファイン Look at me",
+        "selection": "single",
+        "choices": [
+          {
+            "id": "c001_2027611+2040711",
+            "label": "① かっとばせ！ Lv1 + 順風満帆 Lv1",
+            "skills": [
+              {
+                "skillName": "かっとばせ！",
+                "hintLevel": 1,
+                "skillId": 202761
+              },
+              {
+                "skillName": "順風満帆",
+                "hintLevel": 1,
+                "skillId": 204071
+              }
+            ]
+          },
+          {
+            "id": "c002_2040725+2101015+210262",
+            "label": "② 気持ちを乗せて Lv5 + レースの真髄・体 Lv5 + 陽の加護 Lv5",
+            "skills": [
+              {
+                "skillName": "気持ちを乗せて",
+                "hintLevel": 5,
+                "skillId": 204072
+              },
+              {
+                "skillName": "レースの真髄・体",
+                "hintLevel": 5,
+                "skillId": 210101
+              },
+              {
+                "skillName": "陽の加護",
+                "hintLevel": 5,
+                "skillId": 210262
+              }
+            ]
+          }
+        ],
+        "skillPayload": "id:202761\u00001|id:204071\u00001||id:204072\u00005|id:210101\u00005|id:210262\u00005"
+      },
+      "matchKey": "skill"
+    },
+    {
+      "status": "extracted_only",
+      "extracted": {
+        "side": "extracted",
+        "id": "evt_30305_809001004",
+        "supportNameMatch": "一杯のノスタルジア",
+        "label": "たづな 情熱のふたり",
+        "selection": "auto",
+        "skills": [
+          {
+            "skillName": "展開窺い",
+            "hintLevel": 1,
+            "skillId": 200692
+          }
+        ],
+        "skillPayload": "id:200692\u00001"
+      }
+    },
+    {
+      "status": "extracted_only",
+      "extracted": {
+        "side": "extracted",
+        "id": "evt_30305_809001011",
+        "supportNameMatch": "一杯のノスタルジア",
+        "label": "たづな たづなとの絆・憧れを託して",
+        "selection": "auto",
+        "skills": [
+          {
+            "skillName": "尻尾上がり",
+            "hintLevel": 3,
+            "skillId": 201611
+          }
+        ],
+        "skillPayload": "id:201611\u00003"
+      }
+    },
+    {
+      "status": "match",
+      "hand": {
+        "side": "hand",
+        "id": "evt_diamond_nigetam",
+        "supportNameMatch": "永久の誓い、永久の輝き",
+        "label": "ダイヤ 新しいもの、大好きです！",
+        "selection": "auto",
+        "skills": [
+          {
+            "skillName": "逃げためらい",
+            "hintLevel": 1,
+            "skillId": 200851
+          }
+        ],
+        "skillPayload": "id:200851\u00001"
+      },
+      "extracted": {
+        "side": "extracted",
+        "id": "evt_30302_801067002",
+        "supportNameMatch": "永久の誓い、永久の輝き",
+        "label": "ダイヤ 難しいこと、大好きです！",
+        "selection": "auto",
+        "skills": [
+          {
+            "skillName": "逃げためらい",
+            "hintLevel": 1,
+            "skillId": 200851
+          }
+        ],
+        "skillPayload": "id:200851\u00001"
+      },
+      "matchKey": "skill"
+    },
+    {
+      "status": "match",
+      "hand": {
+        "side": "hand",
+        "id": "evt_diamond_gamushara",
+        "supportNameMatch": "永久の誓い、永久の輝き",
+        "label": "ダイヤ まず、知るより始めよう",
+        "selection": "auto",
+        "skills": [
+          {
+            "skillName": "がむしゃら",
+            "hintLevel": 1,
+            "skillId": 202422
+          }
+        ],
+        "skillPayload": "id:202422\u00001"
+      },
+      "extracted": {
+        "side": "extracted",
+        "id": "evt_30302_830302002",
+        "supportNameMatch": "永久の誓い、永久の輝き",
+        "label": "ダイヤ まず、知るより始めよう",
+        "selection": "auto",
+        "skills": [
+          {
+            "skillName": "がむしゃら",
+            "hintLevel": 1,
+            "skillId": 202422
+          }
+        ],
+        "skillPayload": "id:202422\u00001"
+      },
+      "matchKey": "name"
+    },
+    {
+      "status": "match",
+      "hand": {
+        "side": "hand",
+        "id": "evt_diamond_chain",
+        "supportNameMatch": "永久の誓い、永久の輝き",
+        "label": "ダイヤ そして、未来を誓う（連続3・金分岐）",
+        "selection": "single",
+        "choices": [
+          {
+            "id": "rensa",
+            "label": "① 連鎖反応 Lv1 + 一所懸命 Lv1",
+            "skills": [
+              {
+                "skillName": "連鎖反応",
+                "hintLevel": 1,
+                "skillId": 203241
+              },
+              {
+                "skillName": "一所懸命",
+                "hintLevel": 1,
+                "skillId": 203561
+              }
+            ]
+          },
+          {
+            "id": "kouki",
+            "label": "② 一所懸命 Lv1 + 光輝燦然 Lv1",
+            "skills": [
+              {
+                "skillName": "一所懸命",
+                "hintLevel": 1,
+                "skillId": 203561
+              },
+              {
+                "skillName": "光輝燦然",
+                "hintLevel": 1,
+                "skillId": 204381
+              }
+            ]
+          }
+        ],
+        "skillPayload": "id:203241\u00001|id:203561\u00001||id:203561\u00001|id:204381\u00001"
+      },
+      "extracted": {
+        "side": "extracted",
+        "id": "evt_30302_830302003",
+        "supportNameMatch": "永久の誓い、永久の輝き",
+        "label": "ダイヤ そして、未来を誓う",
+        "selection": "single",
+        "choices": [
+          {
+            "id": "c001_2032411+2035611",
+            "label": "① 連鎖反応 Lv1 + 一所懸命 Lv1",
+            "skills": [
+              {
+                "skillName": "連鎖反応",
+                "hintLevel": 1,
+                "skillId": 203241
+              },
+              {
+                "skillName": "一所懸命",
+                "hintLevel": 1,
+                "skillId": 203561
+              }
+            ]
+          },
+          {
+            "id": "c002_2035611+2043811",
+            "label": "② 一所懸命 Lv1 + 光輝燦然 Lv1",
+            "skills": [
+              {
+                "skillName": "一所懸命",
+                "hintLevel": 1,
+                "skillId": 203561
+              },
+              {
+                "skillName": "光輝燦然",
+                "hintLevel": 1,
+                "skillId": 204381
+              }
+            ]
+          }
+        ],
+        "skillPayload": "id:203241\u00001|id:203561\u00001||id:203561\u00001|id:204381\u00001"
+      },
+      "matchKey": "skill"
+    },
+    {
+      "status": "match",
+      "hand": {
+        "side": "hand",
+        "id": "evt_stay_kin",
+        "supportNameMatch": "気まぐれ渡り星",
+        "label": "ステイ 黄金を探し求めて",
+        "selection": "auto",
+        "skills": [
+          {
+            "skillName": "直線巧者",
+            "hintLevel": 1,
+            "skillId": 200362
+          }
+        ],
+        "skillPayload": "id:200362\u00001"
+      },
+      "extracted": {
+        "side": "extracted",
+        "id": "evt_30264_801135001",
+        "supportNameMatch": "気まぐれ渡り星",
+        "label": "ステイ 黄金を探し求めて",
+        "selection": "auto",
+        "skills": [
+          {
+            "skillName": "直線巧者",
+            "hintLevel": 1,
+            "skillId": 200362
+          }
+        ],
+        "skillPayload": "id:200362\u00001"
+      },
+      "matchKey": "name"
+    },
+    {
+      "status": "match",
+      "hand": {
+        "side": "hand",
+        "id": "evt_stay_over17",
+        "supportNameMatch": "気まぐれ渡り星",
+        "label": "ステイ Over 17 Lights",
+        "selection": "auto",
+        "skills": [
+          {
+            "skillName": "比類なき",
+            "hintLevel": 1,
+            "skillId": 203502
+          }
+        ],
+        "skillPayload": "id:203502\u00001"
+      },
+      "extracted": {
+        "side": "extracted",
+        "id": "evt_30264_830264002",
+        "supportNameMatch": "気まぐれ渡り星",
+        "label": "ステイ Over 17 Lights",
+        "selection": "auto",
+        "skills": [
+          {
+            "skillName": "比類なき",
+            "hintLevel": 1,
+            "skillId": 203502
+          }
+        ],
+        "skillPayload": "id:203502\u00001"
+      },
+      "matchKey": "name"
+    },
+    {
+      "status": "match",
+      "hand": {
+        "side": "hand",
+        "id": "evt_stay_shinryou",
+        "supportNameMatch": "気まぐれ渡り星",
+        "label": "ステイ 新しい旅へ",
+        "selection": "single",
+        "choices": [
+          {
+            "id": "unknown",
+            "label": "① ネバーギブアップ Lv2 + 好奇心 Lv2",
+            "skills": [
+              {
+                "skillName": "ネバーギブアップ",
+                "hintLevel": 2,
+                "skillId": 202721
+              },
+              {
+                "skillName": "好奇心",
+                "hintLevel": 2,
+                "skillId": 203851
+              }
+            ]
+          },
+          {
+            "id": "past",
+            "label": "② ネバーギブアップ Lv2 + 自由奔放 Lv2",
+            "skills": [
+              {
+                "skillName": "ネバーギブアップ",
+                "hintLevel": 2,
+                "skillId": 202721
+              },
+              {
+                "skillName": "自由奔放",
+                "hintLevel": 2,
+                "skillId": 203861
+              }
+            ]
+          }
+        ],
+        "skillPayload": "id:202721\u00002|id:203851\u00002||id:202721\u00002|id:203861\u00002"
+      },
+      "extracted": {
+        "side": "extracted",
+        "id": "evt_30264_830264003",
+        "supportNameMatch": "気まぐれ渡り星",
+        "label": "ステイ 新しい旅へ",
+        "selection": "single",
+        "choices": [
+          {
+            "id": "c001_2027212+2038512",
+            "label": "① ネバーギブアップ Lv2 + 好奇心 Lv2",
+            "skills": [
+              {
+                "skillName": "ネバーギブアップ",
+                "hintLevel": 2,
+                "skillId": 202721
+              },
+              {
+                "skillName": "好奇心",
+                "hintLevel": 2,
+                "skillId": 203851
+              }
+            ]
+          },
+          {
+            "id": "c002_2027212+2038612",
+            "label": "② ネバーギブアップ Lv2 + 自由奔放 Lv2",
+            "skills": [
+              {
+                "skillName": "ネバーギブアップ",
+                "hintLevel": 2,
+                "skillId": 202721
+              },
+              {
+                "skillName": "自由奔放",
+                "hintLevel": 2,
+                "skillId": 203861
+              }
+            ]
+          }
+        ],
+        "skillPayload": "id:202721\u00002|id:203851\u00002||id:202721\u00002|id:203861\u00002"
+      },
+      "matchKey": "name"
+    },
+    {
+      "status": "match",
+      "hand": {
+        "side": "hand",
+        "id": "evt_fuku_kitto",
+        "supportNameMatch": "吉兆招福チョコ来たる",
+        "label": "フクキタル 吉日・良縁ハグハグ！",
+        "selection": "auto",
+        "skills": [
+          {
+            "skillName": "快刀乱麻",
+            "hintLevel": 2,
+            "skillId": 203701
+          }
+        ],
+        "skillPayload": "id:203701\u00002"
+      },
+      "extracted": {
+        "side": "extracted",
+        "id": "evt_30286_830286001",
+        "supportNameMatch": "吉兆招福チョコ来たる",
+        "label": "フクキタル 吉日・良縁ハグハグ！",
+        "selection": "auto",
+        "skills": [
+          {
+            "skillName": "快刀乱麻",
+            "hintLevel": 2,
+            "skillId": 203701
+          }
+        ],
+        "skillPayload": "id:203701\u00002"
+      },
+      "matchKey": "name"
+    },
+    {
+      "status": "match",
+      "hand": {
+        "side": "hand",
+        "id": "evt_mars_koe",
+        "supportNameMatch": "響け、二人の凱歌",
+        "label": "マルシュ 溢れている愛",
+        "selection": "auto",
+        "skills": [
+          {
+            "skillName": "轟く足音",
+            "hintLevel": 1,
+            "skillId": 204102
+          }
+        ],
+        "skillPayload": "id:204102\u00001"
+      },
+      "extracted": {
+        "side": "extracted",
+        "id": "evt_30292_801140002",
+        "supportNameMatch": "響け、二人の凱歌",
+        "label": "マルシュ 溢れている愛",
+        "selection": "auto",
+        "skills": [
+          {
+            "skillName": "轟く足音",
+            "hintLevel": 1,
+            "skillId": 204102
+          }
+        ],
+        "skillPayload": "id:204102\u00001"
+      },
+      "matchKey": "name"
+    },
+    {
+      "status": "match",
+      "hand": {
+        "side": "hand",
+        "id": "evt_mars_kanshin",
+        "supportNameMatch": "響け、二人の凱歌",
+        "label": "マルシュ 募る不安",
+        "selection": "auto",
+        "skills": [
+          {
+            "skillName": "心惹かれて",
+            "hintLevel": 1,
+            "skillId": 203852
+          }
+        ],
+        "skillPayload": "id:203852\u00001"
+      },
+      "extracted": {
+        "side": "extracted",
+        "id": "evt_30292_830292002",
+        "supportNameMatch": "響け、二人の凱歌",
+        "label": "マルシュ 募る『不安』",
+        "selection": "auto",
+        "skills": [
+          {
+            "skillName": "心惹かれて",
+            "hintLevel": 1,
+            "skillId": 203852
+          }
+        ],
+        "skillPayload": "id:203852\u00001"
+      },
+      "matchKey": "skill"
+    },
+    {
+      "status": "match",
+      "hand": {
+        "side": "hand",
+        "id": "evt_mars_ai",
+        "supportNameMatch": "響け、二人の凱歌",
+        "label": "マルシュ 重なる愛",
+        "selection": "auto",
+        "skills": [
+          {
+            "skillName": "点滴穿石",
+            "hintLevel": 1,
+            "skillId": 203611
+          },
+          {
+            "skillName": "優雅な砂浴び",
+            "hintLevel": 1,
+            "skillId": 202301
+          }
+        ],
+        "skillPayload": "id:202301\u00001|id:203611\u00001"
+      },
+      "extracted": {
+        "side": "extracted",
+        "id": "evt_30292_830292003",
+        "supportNameMatch": "響け、二人の凱歌",
+        "label": "マルシュ 重なる『愛』",
+        "selection": "auto",
+        "skills": [
+          {
+            "skillName": "点滴穿石",
+            "hintLevel": 1,
+            "skillId": 203611
+          },
+          {
+            "skillName": "優雅な砂浴び",
+            "hintLevel": 1,
+            "skillId": 202301
+          }
+        ],
+        "skillPayload": "id:202301\u00001|id:203611\u00001"
+      },
+      "matchKey": "skill"
+    },
+    {
+      "status": "match",
+      "hand": {
+        "side": "hand",
+        "id": "evt_gold_yakisoba",
+        "supportNameMatch": "激録！爆走トナカイ事件",
+        "label": "ゴルシ 甦れ！ゴルシ印のソース焼きそば！",
+        "selection": "auto",
+        "skills": [
+          {
+            "skillName": "阪神レース場○",
+            "hintLevel": 1,
+            "skillId": 200052
+          }
+        ],
+        "skillPayload": "id:200052\u00001"
+      },
+      "extracted": {
+        "side": "extracted",
+        "id": "evt_30278_801007002",
+        "supportNameMatch": "激録！爆走トナカイ事件",
+        "label": "ゴルシ 甦れ！　ゴルシ印のソース焼きそば！",
+        "selection": "auto",
+        "skills": [
+          {
+            "skillName": "阪神レース場○",
+            "hintLevel": 1,
+            "skillId": 200052
+          }
+        ],
+        "skillPayload": "id:200052\u00001"
+      },
+      "matchKey": "skill"
+    },
+    {
+      "status": "match",
+      "hand": {
+        "side": "hand",
+        "id": "evt_gold_kyozo",
+        "supportNameMatch": "激録！爆走トナカイ事件",
+        "label": "ゴルシ 虚像をぶち壊せ",
+        "selection": "auto",
+        "skills": [
+          {
+            "skillName": "好機を捉えて",
+            "hintLevel": 1,
+            "skillId": 202972
+          }
+        ],
+        "skillPayload": "id:202972\u00001"
+      },
+      "extracted": {
+        "side": "extracted",
+        "id": "evt_30278_830278002",
+        "supportNameMatch": "激録！爆走トナカイ事件",
+        "label": "ゴルシ 虚像をぶち壊せ",
+        "selection": "auto",
+        "skills": [
+          {
+            "skillName": "好機を捉えて",
+            "hintLevel": 1,
+            "skillId": 202972
+          }
+        ],
+        "skillPayload": "id:202972\u00001"
+      },
+      "matchKey": "name"
+    },
+    {
+      "status": "match",
+      "hand": {
+        "side": "hand",
+        "id": "evt_gold_ougon",
+        "supportNameMatch": "激録！爆走トナカイ事件",
+        "label": "ゴルシ 黄金二人旅",
+        "selection": "auto",
+        "skills": [
+          {
+            "skillName": "迫る影",
+            "hintLevel": 1,
+            "skillId": 200641
+          },
+          {
+            "skillName": "心頭滅却",
+            "hintLevel": 1,
+            "skillId": 202891
+          }
+        ],
+        "skillPayload": "id:200641\u00001|id:202891\u00001"
+      },
+      "extracted": {
+        "side": "extracted",
+        "id": "evt_30278_830278003",
+        "supportNameMatch": "激録！爆走トナカイ事件",
+        "label": "ゴルシ 黄金二人旅",
+        "selection": "auto",
+        "skills": [
+          {
+            "skillName": "迫る影",
+            "hintLevel": 1,
+            "skillId": 200641
+          },
+          {
+            "skillName": "心頭滅却",
+            "hintLevel": 1,
+            "skillId": 202891
+          }
+        ],
+        "skillPayload": "id:200641\u00001|id:202891\u00001"
+      },
+      "matchKey": "name"
+    },
+    {
+      "status": "match",
+      "hand": {
+        "side": "hand",
+        "id": "evt_karen_chowa",
+        "supportNameMatch": "決意のフローラ",
+        "label": "カレン 争いの種は咲かせない",
+        "selection": "auto",
+        "skills": [
+          {
+            "skillName": "さらなる高みへ",
+            "hintLevel": 1,
+            "skillId": 203122
+          }
+        ],
+        "skillPayload": "id:203122\u00001"
+      },
+      "extracted": {
+        "side": "extracted",
+        "id": "evt_30274_801134001",
+        "supportNameMatch": "決意のフローラ",
+        "label": "カレン 争いの種は咲かせない",
+        "selection": "auto",
+        "skills": [
+          {
+            "skillName": "さらなる高みへ",
+            "hintLevel": 1,
+            "skillId": 203122
+          }
+        ],
+        "skillPayload": "id:203122\u00001"
+      },
+      "matchKey": "name"
+    },
+    {
+      "status": "match",
+      "hand": {
+        "side": "hand",
+        "id": "evt_karen_masou",
+        "supportNameMatch": "決意のフローラ",
+        "label": "カレン 奏で合う幸福",
+        "selection": "auto",
+        "skills": [
+          {
+            "skillName": "円弧のマエストロ",
+            "hintLevel": 1,
+            "skillId": 200351
+          },
+          {
+            "skillName": "開花",
+            "hintLevel": 1,
+            "skillId": 203991
+          }
+        ],
+        "skillPayload": "id:200351\u00001|id:203991\u00001"
+      },
+      "extracted": {
+        "side": "extracted",
+        "id": "evt_30274_830274003",
+        "supportNameMatch": "決意のフローラ",
+        "label": "カレン 奏で合う幸福",
+        "selection": "auto",
+        "skills": [
+          {
+            "skillName": "円弧のマエストロ",
+            "hintLevel": 1,
+            "skillId": 200351
+          },
+          {
+            "skillName": "開花",
+            "hintLevel": 1,
+            "skillId": 203991
+          }
+        ],
+        "skillPayload": "id:200351\u00001|id:203991\u00001"
+      },
+      "matchKey": "name"
+    },
+    {
+      "status": "match",
+      "hand": {
+        "side": "hand",
+        "id": "evt_inari_kyoto",
+        "supportNameMatch": "故郷に錦を飾るんでい！",
+        "label": "イナリ 神輿だワッショイ",
+        "selection": "auto",
+        "skills": [
+          {
+            "skillName": "京都レース場○",
+            "hintLevel": 1,
+            "skillId": 200062
+          }
+        ],
+        "skillPayload": "id:200062\u00001"
+      },
+      "extracted": {
+        "side": "extracted",
+        "id": "evt_30281_801034002",
+        "supportNameMatch": "故郷に錦を飾るんでい！",
+        "label": "イナリ 神輿だワッショイ",
+        "selection": "auto",
+        "skills": [
+          {
+            "skillName": "京都レース場○",
+            "hintLevel": 1,
+            "skillId": 200062
+          }
+        ],
+        "skillPayload": "id:200062\u00001"
+      },
+      "matchKey": "name"
+    },
+    {
+      "status": "match",
+      "hand": {
+        "side": "hand",
+        "id": "evt_inari_iki",
+        "supportNameMatch": "故郷に錦を飾るんでい！",
+        "label": "イナリ 粋の魅せ方、魂で語れ",
+        "selection": "auto",
+        "skills": [
+          {
+            "skillName": "大急ぎ",
+            "hintLevel": 1,
+            "skillId": 202592
+          }
+        ],
+        "skillPayload": "id:202592\u00001"
+      },
+      "extracted": {
+        "side": "extracted",
+        "id": "evt_30281_830281002",
+        "supportNameMatch": "故郷に錦を飾るんでい！",
+        "label": "イナリ 粋の魅せ方、魂で語れ",
+        "selection": "auto",
+        "skills": [
+          {
+            "skillName": "大急ぎ",
+            "hintLevel": 1,
+            "skillId": 202592
+          }
+        ],
+        "skillPayload": "id:202592\u00001"
+      },
+      "matchKey": "name"
+    },
+    {
+      "status": "match",
+      "hand": {
+        "side": "hand",
+        "id": "evt_inari_namida",
+        "supportNameMatch": "故郷に錦を飾るんでい！",
+        "label": "イナリ 熱き涙の理由",
+        "selection": "auto",
+        "skills": [
+          {
+            "skillName": "無我夢中",
+            "hintLevel": 1,
+            "skillId": 202421
+          },
+          {
+            "skillName": "用意周到",
+            "hintLevel": 1,
+            "skillId": 203331
+          }
+        ],
+        "skillPayload": "id:202421\u00001|id:203331\u00001"
+      },
+      "extracted": {
+        "side": "extracted",
+        "id": "evt_30281_830281003",
+        "supportNameMatch": "故郷に錦を飾るんでい！",
+        "label": "イナリ 熱き涙の理由",
+        "selection": "auto",
+        "skills": [
+          {
+            "skillName": "無我夢中",
+            "hintLevel": 1,
+            "skillId": 202421
+          },
+          {
+            "skillName": "用意周到",
+            "hintLevel": 1,
+            "skillId": 203331
+          }
+        ],
+        "skillPayload": "id:202421\u00001|id:203331\u00001"
+      },
+      "matchKey": "name"
+    },
+    {
+      "status": "match",
+      "hand": {
+        "side": "hand",
+        "id": "evt_king_advice",
+        "supportNameMatch": "私のためのショッピング",
+        "label": "キング 助言する権利をあげる！",
+        "selection": "auto",
+        "skills": [
+          {
+            "skillName": "末脚",
+            "hintLevel": 1,
+            "skillId": 200512
+          }
+        ],
+        "skillPayload": "id:200512\u00001"
+      },
+      "extracted": {
+        "side": "extracted",
+        "id": "evt_30285_801061002",
+        "supportNameMatch": "私のためのショッピング",
+        "label": "キング 助言する権利をあげる！",
+        "selection": "auto",
+        "skills": [
+          {
+            "skillName": "末脚",
+            "hintLevel": 1,
+            "skillId": 200512
+          }
+        ],
+        "skillPayload": "id:200512\u00001"
+      },
+      "matchKey": "name"
+    },
+    {
+      "status": "match",
+      "hand": {
+        "side": "hand",
+        "id": "evt_king_ikikoi",
+        "supportNameMatch": "私のためのショッピング",
+        "label": "キング 学ぶは、一流の息抜き！",
+        "selection": "auto",
+        "skills": [
+          {
+            "skillName": "押し通る！",
+            "hintLevel": 1,
+            "skillId": 203592
+          }
+        ],
+        "skillPayload": "id:203592\u00001"
+      },
+      "extracted": {
+        "side": "extracted",
+        "id": "evt_30285_830285002",
+        "supportNameMatch": "私のためのショッピング",
+        "label": "キング 学ぶは、一流の息抜き！",
+        "selection": "auto",
+        "skills": [
+          {
+            "skillName": "押し通る！",
+            "hintLevel": 1,
+            "skillId": 203592
+          }
+        ],
+        "skillPayload": "id:203592\u00001"
+      },
+      "matchKey": "name"
+    },
+    {
+      "status": "match",
+      "hand": {
+        "side": "hand",
+        "id": "evt_king_ren",
+        "supportNameMatch": "私のためのショッピング",
+        "label": "キング 学びを繋げて",
+        "selection": "auto",
+        "skills": [
+          {
+            "skillName": "突撃魂",
+            "hintLevel": 1,
+            "skillId": 202621
+          },
+          {
+            "skillName": "有志竟成",
+            "hintLevel": 1,
+            "skillId": 204131
+          }
+        ],
+        "skillPayload": "id:202621\u00001|id:204131\u00001"
+      },
+      "extracted": {
+        "side": "extracted",
+        "id": "evt_30285_830285003",
+        "supportNameMatch": "私のためのショッピング",
+        "label": "キング 学びを繋げて",
+        "selection": "auto",
+        "skills": [
+          {
+            "skillName": "突撃魂",
+            "hintLevel": 1,
+            "skillId": 202621
+          },
+          {
+            "skillName": "有志竟成",
+            "hintLevel": 1,
+            "skillId": 204131
+          }
+        ],
+        "skillPayload": "id:202621\u00001|id:204131\u00001"
+      },
+      "matchKey": "name"
+    },
+    {
+      "status": "match",
+      "hand": {
+        "side": "hand",
+        "id": "evt_groove_taiki",
+        "supportNameMatch": "心覚えし、京の華",
+        "label": "グルーヴ 峻厳にして優渥",
+        "selection": "auto",
+        "skills": [
+          {
+            "skillName": "臨機応変",
+            "hintLevel": 1,
+            "skillId": 200502
+          }
+        ],
+        "skillPayload": "id:200502\u00001"
+      },
+      "extracted": {
+        "side": "extracted",
+        "id": "evt_30282_801018001",
+        "supportNameMatch": "心覚えし、京の華",
+        "label": "グルーヴ 峻厳にして優渥",
+        "selection": "auto",
+        "skills": [
+          {
+            "skillName": "臨機応変",
+            "hintLevel": 1,
+            "skillId": 200502
+          }
+        ],
+        "skillPayload": "id:200502\u00001"
+      },
+      "matchKey": "name"
+    },
+    {
+      "status": "match",
+      "hand": {
+        "side": "hand",
+        "id": "evt_groove_shadow",
+        "supportNameMatch": "心覚えし、京の華",
+        "label": "グルーヴ そのアイシャドウは繋がって（連続2・白3択）",
+        "selection": "single",
+        "choices": [
+          {
+            "id": "yume",
+            "label": "① 夢への挑戦 Lv2",
+            "skills": [
+              {
+                "skillName": "夢への挑戦",
+                "hintLevel": 2,
+                "skillId": 203632
+              }
+            ]
+          },
+          {
+            "id": "jibun",
+            "label": "② 己を信じて Lv2",
+            "skills": [
+              {
+                "skillName": "己を信じて",
+                "hintLevel": 2,
+                "skillId": 203422
+              }
+            ]
+          },
+          {
+            "id": "junbi",
+            "label": "③ 下準備 Lv2",
+            "skills": [
+              {
+                "skillName": "下準備",
+                "hintLevel": 2,
+                "skillId": 203332
+              }
+            ]
+          }
+        ],
+        "skillPayload": "id:203332\u00002||id:203422\u00002||id:203632\u00002"
+      },
+      "extracted": {
+        "side": "extracted",
+        "id": "evt_30282_830282002",
+        "supportNameMatch": "心覚えし、京の華",
+        "label": "グルーヴ そのアイシャドウは繋がって",
+        "selection": "single",
+        "choices": [
+          {
+            "id": "c001_2036322",
+            "label": "① 夢への挑戦 Lv2",
+            "skills": [
+              {
+                "skillName": "夢への挑戦",
+                "hintLevel": 2,
+                "skillId": 203632
+              }
+            ]
+          },
+          {
+            "id": "c002_2034222",
+            "label": "② 己を信じて Lv2",
+            "skills": [
+              {
+                "skillName": "己を信じて",
+                "hintLevel": 2,
+                "skillId": 203422
+              }
+            ]
+          },
+          {
+            "id": "c003_2033322",
+            "label": "③ 下準備 Lv2",
+            "skills": [
+              {
+                "skillName": "下準備",
+                "hintLevel": 2,
+                "skillId": 203332
+              }
+            ]
+          }
+        ],
+        "skillPayload": "id:203332\u00002||id:203422\u00002||id:203632\u00002"
+      },
+      "matchKey": "skill"
+    },
+    {
+      "status": "extracted_only",
+      "extracted": {
+        "side": "extracted",
+        "id": "evt_30282_830282003",
+        "supportNameMatch": "心覚えし、京の華",
+        "label": "グルーヴ そのメイクは誰がために",
+        "selection": "single",
+        "choices": [
+          {
+            "id": "c001_2027112+2040311",
+            "label": "① 王手 Lv2 + 千鍛万錬 Lv1",
+            "skills": [
+              {
+                "skillName": "王手",
+                "hintLevel": 2,
+                "skillId": 202711
+              },
+              {
+                "skillName": "千鍛万錬",
+                "hintLevel": 1,
+                "skillId": 204031
+              }
+            ]
+          },
+          {
+            "id": "c002_2040312+2040411",
+            "label": "② 千鍛万錬 Lv2 + 錦上添花 Lv1",
+            "skills": [
+              {
+                "skillName": "千鍛万錬",
+                "hintLevel": 2,
+                "skillId": 204031
+              },
+              {
+                "skillName": "錦上添花",
+                "hintLevel": 1,
+                "skillId": 204041
+              }
+            ]
+          }
+        ],
+        "skillPayload": "id:202711\u00002|id:204031\u00001||id:204031\u00002|id:204041\u00001"
+      }
+    },
+    {
+      "status": "match",
+      "hand": {
+        "side": "hand",
+        "id": "evt_win_gran",
+        "supportNameMatch": "水面のプリンシパル",
+        "label": "バリア グラン・ジュテ～いつの日か～",
+        "selection": "auto",
+        "skills": [
+          {
+            "skillName": "長距離コーナー○",
+            "hintLevel": 1,
+            "skillId": 201182
+          }
+        ],
+        "skillPayload": "id:201182\u00001"
+      },
+      "extracted": {
+        "side": "extracted",
+        "id": "evt_30261_801117002",
+        "supportNameMatch": "水面のプリンシパル",
+        "label": "バリア グラン・ジュテ～いつの日か～",
+        "selection": "auto",
+        "skills": [
+          {
+            "skillName": "長距離コーナー○",
+            "hintLevel": 1,
+            "skillId": 201182
+          }
+        ],
+        "skillPayload": "id:201182\u00001"
+      },
+      "matchKey": "name"
+    },
+    {
+      "status": "match",
+      "hand": {
+        "side": "hand",
+        "id": "evt_win_near",
+        "supportNameMatch": "水面のプリンシパル",
+        "label": "バリア 潜在的ソウルメイト",
+        "selection": "auto",
+        "skills": [
+          {
+            "skillName": "比類なき",
+            "hintLevel": 1,
+            "skillId": 203502
+          }
+        ],
+        "skillPayload": "id:203502\u00001"
+      },
+      "extracted": {
+        "side": "extracted",
+        "id": "evt_30261_830261002",
+        "supportNameMatch": "水面のプリンシパル",
+        "label": "バリア 潜在的ソウルメイト",
+        "selection": "auto",
+        "skills": [
+          {
+            "skillName": "比類なき",
+            "hintLevel": 1,
+            "skillId": 203502
+          }
+        ],
+        "skillPayload": "id:203502\u00001"
+      },
+      "matchKey": "name"
+    },
+    {
+      "status": "match",
+      "hand": {
+        "side": "hand",
+        "id": "evt_win_cheer",
+        "supportNameMatch": "水面のプリンシパル",
+        "label": "バリア 大衆的チアフレンド",
+        "selection": "auto",
+        "skills": [
+          {
+            "skillName": "エネルギッシュ",
+            "hintLevel": 1,
+            "skillId": 203731
+          },
+          {
+            "skillName": "内的体験",
+            "hintLevel": 1,
+            "skillId": 200751
+          }
+        ],
+        "skillPayload": "id:200751\u00001|id:203731\u00001"
+      },
+      "extracted": {
+        "side": "extracted",
+        "id": "evt_30261_830261003",
+        "supportNameMatch": "水面のプリンシパル",
+        "label": "バリア 大衆的チアフレンド",
+        "selection": "auto",
+        "skills": [
+          {
+            "skillName": "エネルギッシュ",
+            "hintLevel": 1,
+            "skillId": 203731
+          },
+          {
+            "skillName": "内的体験",
+            "hintLevel": 1,
+            "skillId": 200751
+          }
+        ],
+        "skillPayload": "id:200751\u00001|id:203731\u00001"
+      },
+      "matchKey": "name"
+    },
+    {
+      "status": "match",
+      "hand": {
+        "side": "hand",
+        "id": "evt_almond_mental",
+        "supportNameMatch": "世界を変える眼差し",
+        "label": "アーモンド アーモンドアイは見逃さない",
+        "selection": "auto",
+        "skills": [
+          {
+            "skillName": "品行方正",
+            "hintLevel": 1,
+            "skillId": 202742
+          }
+        ],
+        "skillPayload": "id:202742\u00001"
+      },
+      "extracted": {
+        "side": "extracted",
+        "id": "evt_30242_801129002",
+        "supportNameMatch": "世界を変える眼差し",
+        "label": "アーモンド アーモンドアイは見逃さない",
+        "selection": "auto",
+        "skills": [
+          {
+            "skillName": "品行方正",
+            "hintLevel": 1,
+            "skillId": 202742
+          }
+        ],
+        "skillPayload": "id:202742\u00001"
+      },
+      "matchKey": "name"
+    },
+    {
+      "status": "match",
+      "hand": {
+        "side": "hand",
+        "id": "evt_almond_endless",
+        "supportNameMatch": "世界を変える眼差し",
+        "label": "アーモンド 果てしなきアーモンドアイ",
+        "selection": "single",
+        "choices": [
+          {
+            "id": "symboli",
+            "label": "① シンギュラリティ Lv2 + 才気煥発 Lv2",
+            "skills": [
+              {
+                "skillName": "シンギュラリティ",
+                "hintLevel": 2,
+                "skillId": 202701
+              },
+              {
+                "skillName": "才気煥発",
+                "hintLevel": 2,
+                "skillId": 203431
+              }
+            ]
+          },
+          {
+            "id": "around",
+            "label": "② ハヤテ一文字 Lv2 + 弧線のプロフェッサー Lv2",
+            "skills": [
+              {
+                "skillName": "ハヤテ一文字",
+                "hintLevel": 2,
+                "skillId": 200361
+              },
+              {
+                "skillName": "弧線のプロフェッサー",
+                "hintLevel": 2,
+                "skillId": 200331
+              }
+            ]
+          }
+        ],
+        "skillPayload": "id:200331\u00002|id:200361\u00002||id:202701\u00002|id:203431\u00002"
+      },
+      "extracted": {
+        "side": "extracted",
+        "id": "evt_30242_830242003",
+        "supportNameMatch": "世界を変える眼差し",
+        "label": "アーモンド 果てしなきアーモンドアイ",
+        "selection": "single",
+        "choices": [
+          {
+            "id": "c001_2027012+2034312",
+            "label": "① シンギュラリティ Lv2 + 才気煥発 Lv2",
+            "skills": [
+              {
+                "skillName": "シンギュラリティ",
+                "hintLevel": 2,
+                "skillId": 202701
+              },
+              {
+                "skillName": "才気煥発",
+                "hintLevel": 2,
+                "skillId": 203431
+              }
+            ]
+          },
+          {
+            "id": "c002_2003312+2003612",
+            "label": "② ハヤテ一文字 Lv2 + 弧線のプロフェッサー Lv2",
+            "skills": [
+              {
+                "skillName": "ハヤテ一文字",
+                "hintLevel": 2,
+                "skillId": 200361
+              },
+              {
+                "skillName": "弧線のプロフェッサー",
+                "hintLevel": 2,
+                "skillId": 200331
+              }
+            ]
+          }
+        ],
+        "skillPayload": "id:200331\u00002|id:200361\u00002||id:202701\u00002|id:203431\u00002"
+      },
+      "matchKey": "name"
+    },
+    {
+      "status": "match",
+      "hand": {
+        "side": "hand",
+        "id": "evt_neo_encounter",
+        "supportNameMatch": "星跨ぐメッセージ",
+        "label": "ネオ 観測者との遭遇",
+        "selection": "auto",
+        "skills": [
+          {
+            "skillName": "進出開始",
+            "hintLevel": 1,
+            "skillId": 202622
+          }
+        ],
+        "skillPayload": "id:202622\u00001"
+      },
+      "extracted": {
+        "side": "extracted",
+        "id": "evt_30287_801105002",
+        "supportNameMatch": "星跨ぐメッセージ",
+        "label": "ネオ “観測者”との遭遇",
+        "selection": "auto",
+        "skills": [
+          {
+            "skillName": "進出開始",
+            "hintLevel": 1,
+            "skillId": 202622
+          }
+        ],
+        "skillPayload": "id:202622\u00001"
+      },
+      "matchKey": "skill"
+    },
+    {
+      "status": "match",
+      "hand": {
+        "side": "hand",
+        "id": "evt_neo_signal",
+        "supportNameMatch": "星跨ぐメッセージ",
+        "label": "ネオ Forシグナル100%",
+        "selection": "auto",
+        "skills": [
+          {
+            "skillName": "一歩ずつ前へ",
+            "hintLevel": 1,
+            "skillId": 203362
+          }
+        ],
+        "skillPayload": "id:203362\u00001"
+      },
+      "extracted": {
+        "side": "extracted",
+        "id": "evt_30287_830287002",
+        "supportNameMatch": "星跨ぐメッセージ",
+        "label": "ネオ For “シグナル”100％",
+        "selection": "auto",
+        "skills": [
+          {
+            "skillName": "一歩ずつ前へ",
+            "hintLevel": 1,
+            "skillId": 203362
+          }
+        ],
+        "skillPayload": "id:203362\u00001"
+      },
+      "matchKey": "skill"
+    },
+    {
+      "status": "match",
+      "hand": {
+        "side": "hand",
+        "id": "evt_neo_crewmate",
+        "supportNameMatch": "星跨ぐメッセージ",
+        "label": "ネオ You Areクルーメイト",
+        "selection": "auto",
+        "skills": [
+          {
+            "skillName": "ルミネセンス",
+            "hintLevel": 1,
+            "skillId": 202601
+          },
+          {
+            "skillName": "怜悧清澄",
+            "hintLevel": 2,
+            "skillId": 203141
+          }
+        ],
+        "skillPayload": "id:202601\u00001|id:203141\u00002"
+      },
+      "extracted": {
+        "side": "extracted",
+        "id": "evt_30287_830287003",
+        "supportNameMatch": "星跨ぐメッセージ",
+        "label": "ネオ You Are “クルーメイト”",
+        "selection": "auto",
+        "skills": [
+          {
+            "skillName": "ルミネセンス",
+            "hintLevel": 1,
+            "skillId": 202601
+          },
+          {
+            "skillName": "怜悧清澄",
+            "hintLevel": 2,
+            "skillId": 203141
+          }
+        ],
+        "skillPayload": "id:202601\u00001|id:203141\u00002"
+      },
+      "matchKey": "skill"
+    },
+    {
+      "status": "match",
+      "hand": {
+        "side": "hand",
+        "id": "evt_digital_emo",
+        "supportNameMatch": "全てに挑む勇ましき者",
+        "label": "デジタル エモのためなら雨の中でも！",
+        "selection": "single",
+        "choices": [
+          {
+            "id": "ame",
+            "label": "① 雨の日○ Lv1",
+            "skills": [
+              {
+                "skillName": "雨の日○",
+                "hintLevel": 1,
+                "skillId": 200232
+              }
+            ]
+          },
+          {
+            "id": "dou",
+            "label": "② 道悪○ Lv1",
+            "skills": [
+              {
+                "skillName": "道悪○",
+                "hintLevel": 1,
+                "skillId": 200162
+              }
+            ]
+          }
+        ],
+        "skillPayload": "id:200162\u00001||id:200232\u00001"
+      },
+      "extracted": {
+        "side": "extracted",
+        "id": "evt_30297_801019002",
+        "supportNameMatch": "全てに挑む勇ましき者",
+        "label": "デジタル エモのためなら雨の中でも！",
+        "selection": "single",
+        "choices": [
+          {
+            "id": "c002_2001621",
+            "label": "① 道悪○ Lv1",
+            "skills": [
+              {
+                "skillName": "道悪○",
+                "hintLevel": 1,
+                "skillId": 200162
+              }
+            ]
+          },
+          {
+            "id": "c001_2002321",
+            "label": "② 雨の日○ Lv1",
+            "skills": [
+              {
+                "skillName": "雨の日○",
+                "hintLevel": 1,
+                "skillId": 200232
+              }
+            ]
+          }
+        ],
+        "skillPayload": "id:200162\u00001||id:200232\u00001"
+      },
+      "matchKey": "name"
+    },
+    {
+      "status": "match",
+      "hand": {
+        "side": "hand",
+        "id": "evt_digital_me",
+        "supportNameMatch": "全てに挑む勇ましき者",
+        "label": "デジタル おお！汝目覚めよ！（連続2）",
+        "selection": "auto",
+        "skills": [
+          {
+            "skillName": "一歩ずつ前へ",
+            "hintLevel": 1,
+            "skillId": 203362
+          }
+        ],
+        "skillPayload": "id:203362\u00001"
+      },
+      "extracted": {
+        "side": "extracted",
+        "id": "evt_30297_830297002",
+        "supportNameMatch": "全てに挑む勇ましき者",
+        "label": "デジタル おお！汝目覚めよ！",
+        "selection": "auto",
+        "skills": [
+          {
+            "skillName": "一歩ずつ前へ",
+            "hintLevel": 1,
+            "skillId": 203362
+          }
+        ],
+        "skillPayload": "id:203362\u00001"
+      },
+      "matchKey": "skill"
+    },
+    {
+      "status": "match",
+      "hand": {
+        "side": "hand",
+        "id": "evt_digital_yuuo",
+        "supportNameMatch": "全てに挑む勇ましき者",
+        "label": "デジタル 逃げぬ者、戦う者（連続3）",
+        "selection": "auto",
+        "skills": [
+          {
+            "skillName": "勇往邁進",
+            "hintLevel": 1,
+            "skillId": 202151
+          },
+          {
+            "skillName": "一騎当千",
+            "hintLevel": 2,
+            "skillId": 204351
+          }
+        ],
+        "skillPayload": "id:202151\u00001|id:204351\u00002"
+      },
+      "extracted": {
+        "side": "extracted",
+        "id": "evt_30297_830297003",
+        "supportNameMatch": "全てに挑む勇ましき者",
+        "label": "デジタル 逃げぬ者、戦う者。すなわち汝。",
+        "selection": "auto",
+        "skills": [
+          {
+            "skillName": "勇往邁進",
+            "hintLevel": 1,
+            "skillId": 202151
+          },
+          {
+            "skillName": "一騎当千",
+            "hintLevel": 2,
+            "skillId": 204351
+          }
+        ],
+        "skillPayload": "id:202151\u00001|id:204351\u00002"
+      },
+      "matchKey": "skill"
+    },
+    {
+      "status": "match",
+      "hand": {
+        "side": "hand",
+        "id": "evt_aman_photo",
+        "supportNameMatch": "単焦点でつかまえて",
+        "label": "マーチャン いつも写真から見つめてる",
+        "selection": "auto",
+        "skills": [
+          {
+            "skillName": "軽い足取り",
+            "hintLevel": 2,
+            "skillId": 202042
+          }
+        ],
+        "skillPayload": "id:202042\u00002"
+      },
+      "extracted": {
+        "side": "extracted",
+        "id": "evt_30296_801087002",
+        "supportNameMatch": "単焦点でつかまえて",
+        "label": "マーチャン いつも写真から見つめてる",
+        "selection": "auto",
+        "skills": [
+          {
+            "skillName": "軽い足取り",
+            "hintLevel": 2,
+            "skillId": 202042
+          }
+        ],
+        "skillPayload": "id:202042\u00002"
+      },
+      "matchKey": "name"
+    },
+    {
+      "status": "match",
+      "hand": {
+        "side": "hand",
+        "id": "evt_aman_tuber",
+        "supportNameMatch": "単焦点でつかまえて",
+        "label": "マーチャン ターちゃんマーちゃん、行くのです！",
+        "selection": "single",
+        "choices": [
+          {
+            "id": "rival",
+            "label": "① 危険回避 Lv1",
+            "skills": [
+              {
+                "skillName": "危険回避",
+                "hintLevel": 1,
+                "skillId": 201262
+              }
+            ]
+          },
+          {
+            "id": "edit",
+            "label": "② スプリントギア Lv1",
+            "skills": [
+              {
+                "skillName": "スプリントギア",
+                "hintLevel": 1,
+                "skillId": 200652
+              }
+            ]
+          }
+        ],
+        "skillPayload": "id:200652\u00001||id:201262\u00001"
+      },
+      "extracted": {
+        "side": "extracted",
+        "id": "evt_30296_830296002",
+        "supportNameMatch": "単焦点でつかまえて",
+        "label": "マーチャン ターちゃんマーちゃん、行くのです！",
+        "selection": "single",
+        "choices": [
+          {
+            "id": "c002_2012621",
+            "label": "① 危険回避 Lv1",
+            "skills": [
+              {
+                "skillName": "危険回避",
+                "hintLevel": 1,
+                "skillId": 201262
+              }
+            ]
+          },
+          {
+            "id": "c003_2006521",
+            "label": "② スプリントギア Lv1",
+            "skills": [
+              {
+                "skillName": "スプリントギア",
+                "hintLevel": 1,
+                "skillId": 200652
+              }
+            ]
+          }
+        ],
+        "skillPayload": "id:200652\u00001||id:201262\u00001"
+      },
+      "matchKey": "name"
+    },
+    {
+      "status": "match",
+      "hand": {
+        "side": "hand",
+        "id": "evt_aman_kaori",
+        "supportNameMatch": "単焦点でつかまえて",
+        "label": "マーチャン この香りが残りますように",
+        "selection": "single",
+        "choices": [
+          {
+            "id": "doll",
+            "label": "① 匠のステアリング Lv2 + 圧倒 Lv1",
+            "skills": [
+              {
+                "skillName": "匠のステアリング",
+                "hintLevel": 2,
+                "skillId": 204271
+              },
+              {
+                "skillName": "圧倒",
+                "hintLevel": 1,
+                "skillId": 204311
+              }
+            ]
+          },
+          {
+            "id": "gold",
+            "label": "② 押せ押せムード Lv5 + 海の加護 Lv5 + いつまでも健やかに Lv5",
+            "skills": [
+              {
+                "skillName": "押せ押せムード",
+                "hintLevel": 5,
+                "skillId": 204312
+              },
+              {
+                "skillName": "海の加護",
+                "hintLevel": 5,
+                "skillId": 210272
+              },
+              {
+                "skillName": "いつまでも健やかに",
+                "hintLevel": 5,
+                "skillId": 210322
+              }
+            ]
+          }
+        ],
+        "skillPayload": "id:204271\u00002|id:204311\u00001||id:204312\u00005|id:210272\u00005|id:210322\u00005"
+      },
+      "extracted": {
+        "side": "extracted",
+        "id": "evt_30296_830296003",
+        "supportNameMatch": "単焦点でつかまえて",
+        "label": "マーチャン この香りが残りますように",
+        "selection": "single",
+        "choices": [
+          {
+            "id": "c001_2042712+2043111",
+            "label": "① 匠のステアリング Lv2 + 圧倒 Lv1",
+            "skills": [
+              {
+                "skillName": "匠のステアリング",
+                "hintLevel": 2,
+                "skillId": 204271
+              },
+              {
+                "skillName": "圧倒",
+                "hintLevel": 1,
+                "skillId": 204311
+              }
+            ]
+          },
+          {
+            "id": "c002_2043125+2102725+210322",
+            "label": "② 押せ押せムード Lv5 + 海の加護 Lv5 + いつまでも健やかに Lv5",
+            "skills": [
+              {
+                "skillName": "押せ押せムード",
+                "hintLevel": 5,
+                "skillId": 204312
+              },
+              {
+                "skillName": "海の加護",
+                "hintLevel": 5,
+                "skillId": 210272
+              },
+              {
+                "skillName": "いつまでも健やかに",
+                "hintLevel": 5,
+                "skillId": 210322
+              }
+            ]
+          }
+        ],
+        "skillPayload": "id:204271\u00002|id:204311\u00001||id:204312\u00005|id:210272\u00005|id:210322\u00005"
+      },
+      "matchKey": "name"
+    },
+    {
+      "status": "match",
+      "hand": {
+        "side": "hand",
+        "id": "evt_fuji_miss",
+        "supportNameMatch": "壇上より魔法を込めて",
+        "label": "フジ ミスディレクション",
+        "selection": "auto",
+        "skills": [
+          {
+            "skillName": "抜け出し準備",
+            "hintLevel": 1,
+            "skillId": 200582
+          }
+        ],
+        "skillPayload": "id:200582\u00001"
+      },
+      "extracted": {
+        "side": "extracted",
+        "id": "evt_30271_801005002",
+        "supportNameMatch": "壇上より魔法を込めて",
+        "label": "フジ ミスディレクション",
+        "selection": "auto",
+        "skills": [
+          {
+            "skillName": "抜け出し準備",
+            "hintLevel": 1,
+            "skillId": 200582
+          }
+        ],
+        "skillPayload": "id:200582\u00001"
+      },
+      "matchKey": "name"
+    },
+    {
+      "status": "match",
+      "hand": {
+        "side": "hand",
+        "id": "evt_fuji_maho",
+        "supportNameMatch": "壇上より魔法を込めて",
+        "label": "フジ 魔法使いの秘密",
+        "selection": "auto",
+        "skills": [
+          {
+            "skillName": "不抜の気概",
+            "hintLevel": 2,
+            "skillId": 203961
+          }
+        ],
+        "skillPayload": "id:203961\u00002"
+      },
+      "extracted": {
+        "side": "extracted",
+        "id": "evt_30271_830271001",
+        "supportNameMatch": "壇上より魔法を込めて",
+        "label": "フジ 魔法使いの秘密",
+        "selection": "auto",
+        "skills": [
+          {
+            "skillName": "不抜の気概",
+            "hintLevel": 2,
+            "skillId": 203961
+          }
+        ],
+        "skillPayload": "id:203961\u00002"
+      },
+      "matchKey": "name"
+    },
+    {
+      "status": "match",
+      "hand": {
+        "side": "hand",
+        "id": "evt_teo_weapon",
+        "supportNameMatch": "天才的ユートピア",
+        "label": "テイオー ボクの武器",
+        "selection": "auto",
+        "skills": [
+          {
+            "skillName": "先行直線○",
+            "hintLevel": 1,
+            "skillId": 201312
+          }
+        ],
+        "skillPayload": "id:201312\u00001"
+      },
+      "extracted": {
+        "side": "extracted",
+        "id": "evt_30275_801003002",
+        "supportNameMatch": "天才的ユートピア",
+        "label": "テイオー ボクの武器",
+        "selection": "auto",
+        "skills": [
+          {
+            "skillName": "先行直線○",
+            "hintLevel": 1,
+            "skillId": 201312
+          }
+        ],
+        "skillPayload": "id:201312\u00001"
+      },
+      "matchKey": "name"
+    },
+    {
+      "status": "match",
+      "hand": {
+        "side": "hand",
+        "id": "evt_teo_koukou",
+        "supportNameMatch": "天才的ユートピア",
+        "label": "テイオー 孝行はしたい時分に（連続2）",
+        "selection": "single",
+        "choices": [
+          {
+            "id": "hirui",
+            "label": "① 比類なき Lv1",
+            "skills": [
+              {
+                "skillName": "比類なき",
+                "hintLevel": 1,
+                "skillId": 203502
+              }
+            ]
+          },
+          {
+            "id": "yaku",
+            "label": "② 躍動 Lv1",
+            "skills": [
+              {
+                "skillName": "躍動",
+                "hintLevel": 1,
+                "skillId": 203432
+              }
+            ]
+          }
+        ],
+        "skillPayload": "id:203432\u00001||id:203502\u00001"
+      },
+      "extracted": {
+        "side": "extracted",
+        "id": "evt_30275_830275002",
+        "supportNameMatch": "天才的ユートピア",
+        "label": "テイオー 孝行はしたい時分に",
+        "selection": "single",
+        "choices": [
+          {
+            "id": "c001_2035021",
+            "label": "① 比類なき Lv1",
+            "skills": [
+              {
+                "skillName": "比類なき",
+                "hintLevel": 1,
+                "skillId": 203502
+              }
+            ]
+          },
+          {
+            "id": "c002_2034321",
+            "label": "② 躍動 Lv1",
+            "skills": [
+              {
+                "skillName": "躍動",
+                "hintLevel": 1,
+                "skillId": 203432
+              }
+            ]
+          }
+        ],
+        "skillPayload": "id:203432\u00001||id:203502\u00001"
+      },
+      "matchKey": "skill"
+    },
+    {
+      "status": "match",
+      "hand": {
+        "side": "hand",
+        "id": "evt_teo_weather",
+        "supportNameMatch": "天才的ユートピア",
+        "label": "テイオー まったり孝行日和（連続3・金2択）",
+        "selection": "single",
+        "choices": [
+          {
+            "id": "seisei",
+            "label": "① 迸る気迫 Lv2 + 正々堂々 Lv1",
+            "skills": [
+              {
+                "skillName": "迸る気迫",
+                "hintLevel": 2,
+                "skillId": 204001
+              },
+              {
+                "skillName": "正々堂々",
+                "hintLevel": 1,
+                "skillId": 203421
+              }
+            ]
+          },
+          {
+            "id": "yume",
+            "label": "② 迸る気迫 Lv2 + 夢の舞台へ Lv1",
+            "skills": [
+              {
+                "skillName": "迸る気迫",
+                "hintLevel": 2,
+                "skillId": 204001
+              },
+              {
+                "skillName": "夢の舞台へ",
+                "hintLevel": 1,
+                "skillId": 203441
+              }
+            ]
+          }
+        ],
+        "skillPayload": "id:203421\u00001|id:204001\u00002||id:203441\u00001|id:204001\u00002"
+      },
+      "extracted": {
+        "side": "extracted",
+        "id": "evt_30275_830275003",
+        "supportNameMatch": "天才的ユートピア",
+        "label": "テイオー まったり孝行日和",
+        "selection": "single",
+        "choices": [
+          {
+            "id": "c001_2034211+2040012",
+            "label": "① 迸る気迫 Lv2 + 正々堂々 Lv1",
+            "skills": [
+              {
+                "skillName": "迸る気迫",
+                "hintLevel": 2,
+                "skillId": 204001
+              },
+              {
+                "skillName": "正々堂々",
+                "hintLevel": 1,
+                "skillId": 203421
+              }
+            ]
+          },
+          {
+            "id": "c002_2034411+2040012",
+            "label": "② 迸る気迫 Lv2 + 夢の舞台へ Lv1",
+            "skills": [
+              {
+                "skillName": "迸る気迫",
+                "hintLevel": 2,
+                "skillId": 204001
+              },
+              {
+                "skillName": "夢の舞台へ",
+                "hintLevel": 1,
+                "skillId": 203441
+              }
+            ]
+          }
+        ],
+        "skillPayload": "id:203421\u00001|id:204001\u00002||id:203441\u00001|id:204001\u00002"
+      },
+      "matchKey": "skill"
+    },
+    {
+      "status": "match",
+      "hand": {
+        "side": "hand",
+        "id": "evt_taiki_sentou",
+        "supportNameMatch": "刀光散らしてClash！",
+        "label": "シチー いざ求めん、夢多きTreasure",
+        "selection": "auto",
+        "skills": [
+          {
+            "skillName": "先頭プライド",
+            "hintLevel": 1,
+            "skillId": 201272
+          }
+        ],
+        "skillPayload": "id:201272\u00001"
+      },
+      "extracted": {
+        "side": "extracted",
+        "id": "evt_30298_801107002",
+        "supportNameMatch": "刀光散らしてClash！",
+        "label": "シチー いざ求めん、夢多きTreasure",
+        "selection": "auto",
+        "skills": [
+          {
+            "skillName": "先頭プライド",
+            "hintLevel": 1,
+            "skillId": 201272
+          }
+        ],
+        "skillPayload": "id:201272\u00001"
+      },
+      "matchKey": "name"
+    },
+    {
+      "status": "match",
+      "hand": {
+        "side": "hand",
+        "id": "evt_taiki_nigeru",
+        "supportNameMatch": "刀光散らしてClash！",
+        "label": "シチー 心のカギは",
+        "selection": "auto",
+        "skills": [
+          {
+            "skillName": "逃げるが勝ち！",
+            "hintLevel": 1,
+            "skillId": 204092
+          }
+        ],
+        "skillPayload": "id:204092\u00001"
+      },
+      "extracted": {
+        "side": "extracted",
+        "id": "evt_30298_830298002",
+        "supportNameMatch": "刀光散らしてClash！",
+        "label": "シチー 心のカギは",
+        "selection": "auto",
+        "skills": [
+          {
+            "skillName": "逃げるが勝ち！",
+            "hintLevel": 1,
+            "skillId": 204092
+          }
+        ],
+        "skillPayload": "id:204092\u00001"
+      },
+      "matchKey": "name"
+    },
+    {
+      "status": "match",
+      "hand": {
+        "side": "hand",
+        "id": "evt_taiki_chain",
+        "supportNameMatch": "刀光散らしてClash！",
+        "label": "シチー 仲間というロマン（連続3・金3択）",
+        "selection": "single",
+        "choices": [
+          {
+            "id": "conc_top",
+            "label": "① コンセントレーション Lv1 + トップランナー Lv2",
+            "skills": [
+              {
+                "skillName": "コンセントレーション",
+                "hintLevel": 1,
+                "skillId": 200431
+              },
+              {
+                "skillName": "トップランナー",
+                "hintLevel": 2,
+                "skillId": 201271
+              }
+            ]
+          },
+          {
+            "id": "conc_hiryu",
+            "label": "② コンセントレーション Lv1 + 飛竜乗雲 Lv2",
+            "skills": [
+              {
+                "skillName": "コンセントレーション",
+                "hintLevel": 1,
+                "skillId": 200431
+              },
+              {
+                "skillName": "飛竜乗雲",
+                "hintLevel": 2,
+                "skillId": 203401
+              }
+            ]
+          },
+          {
+            "id": "top_hiryu",
+            "label": "③ トップランナー Lv2 + 飛竜乗雲 Lv1",
+            "skills": [
+              {
+                "skillName": "トップランナー",
+                "hintLevel": 2,
+                "skillId": 201271
+              },
+              {
+                "skillName": "飛竜乗雲",
+                "hintLevel": 1,
+                "skillId": 203401
+              }
+            ]
+          }
+        ],
+        "skillPayload": "id:200431\u00001|id:201271\u00002||id:200431\u00001|id:203401\u00002||id:201271\u00002|id:203401\u00001"
+      },
+      "extracted": {
+        "side": "extracted",
+        "id": "evt_30298_830298003",
+        "supportNameMatch": "刀光散らしてClash！",
+        "label": "シチー 仲間というロマン",
+        "selection": "single",
+        "choices": [
+          {
+            "id": "c001_2004311+2012712",
+            "label": "① コンセントレーション Lv1 + トップランナー Lv2",
+            "skills": [
+              {
+                "skillName": "コンセントレーション",
+                "hintLevel": 1,
+                "skillId": 200431
+              },
+              {
+                "skillName": "トップランナー",
+                "hintLevel": 2,
+                "skillId": 201271
+              }
+            ]
+          },
+          {
+            "id": "c002_2004311+2034012",
+            "label": "② コンセントレーション Lv1 + 飛竜乗雲 Lv2",
+            "skills": [
+              {
+                "skillName": "コンセントレーション",
+                "hintLevel": 1,
+                "skillId": 200431
+              },
+              {
+                "skillName": "飛竜乗雲",
+                "hintLevel": 2,
+                "skillId": 203401
+              }
+            ]
+          },
+          {
+            "id": "c003_2012712+2034011",
+            "label": "③ トップランナー Lv2 + 飛竜乗雲 Lv1",
+            "skills": [
+              {
+                "skillName": "トップランナー",
+                "hintLevel": 2,
+                "skillId": 201271
+              },
+              {
+                "skillName": "飛竜乗雲",
+                "hintLevel": 1,
+                "skillId": 203401
+              }
+            ]
+          }
+        ],
+        "skillPayload": "id:200431\u00001|id:201271\u00002||id:200431\u00001|id:203401\u00002||id:201271\u00002|id:203401\u00001"
+      },
+      "matchKey": "skill"
+    },
+    {
+      "status": "match",
+      "hand": {
+        "side": "hand",
+        "id": "evt_ryan_pace",
+        "supportNameMatch": "瞳に闘志を胸に勝利の渇望を",
+        "label": "ライアン あくまで薦められただけ",
+        "selection": "auto",
+        "skills": [
+          {
+            "skillName": "ペースキープ",
+            "hintLevel": 1,
+            "skillId": 200472
+          }
+        ],
+        "skillPayload": "id:200472\u00001"
+      },
+      "extracted": {
+        "side": "extracted",
+        "id": "evt_30258_801027002",
+        "supportNameMatch": "瞳に闘志を胸に勝利の渇望を",
+        "label": "ライアン あくまで薦められただけ",
+        "selection": "auto",
+        "skills": [
+          {
+            "skillName": "ペースキープ",
+            "hintLevel": 1,
+            "skillId": 200472
+          }
+        ],
+        "skillPayload": "id:200472\u00001"
+      },
+      "matchKey": "name"
+    },
+    {
+      "status": "match",
+      "hand": {
+        "side": "hand",
+        "id": "evt_ryan_muscle",
+        "supportNameMatch": "瞳に闘志を胸に勝利の渇望を",
+        "label": "ライアン マッスル、ただひたすらに",
+        "selection": "auto",
+        "skills": [
+          {
+            "skillName": "秘めた闘魂",
+            "hintLevel": 2,
+            "skillId": 203681
+          }
+        ],
+        "skillPayload": "id:203681\u00002"
+      },
+      "extracted": {
+        "side": "extracted",
+        "id": "evt_30258_830258001",
+        "supportNameMatch": "瞳に闘志を胸に勝利の渇望を",
+        "label": "ライアン マッスル、ただひたすらに",
+        "selection": "auto",
+        "skills": [
+          {
+            "skillName": "秘めた闘魂",
+            "hintLevel": 2,
+            "skillId": 203681
+          }
+        ],
+        "skillPayload": "id:203681\u00002"
+      },
+      "matchKey": "name"
+    },
+    {
+      "status": "match",
+      "hand": {
+        "side": "hand",
+        "id": "evt_chiyo_spring",
+        "supportNameMatch": "賑やかな未来を乗せて走れ！",
+        "label": "チヨノ いつか咲く、その日まで……",
+        "selection": "auto",
+        "skills": [
+          {
+            "skillName": "春ウマ娘○",
+            "hintLevel": 1,
+            "skillId": 200172
+          }
+        ],
+        "skillPayload": "id:200172\u00001"
+      },
+      "extracted": {
+        "side": "extracted",
+        "id": "evt_30300_801069002",
+        "supportNameMatch": "賑やかな未来を乗せて走れ！",
+        "label": "チヨノ いつか咲く、その日まで……",
+        "selection": "auto",
+        "skills": [
+          {
+            "skillName": "春ウマ娘○",
+            "hintLevel": 1,
+            "skillId": 200172
+          }
+        ],
+        "skillPayload": "id:200172\u00001"
+      },
+      "matchKey": "name"
+    },
+    {
+      "status": "match",
+      "hand": {
+        "side": "hand",
+        "id": "evt_chiyo_dosukoi",
+        "supportNameMatch": "賑やかな未来を乗せて走れ！",
+        "label": "チヨノ どすこいカード列伝！",
+        "selection": "auto",
+        "skills": [
+          {
+            "skillName": "強者の証",
+            "hintLevel": 2,
+            "skillId": 203121
+          },
+          {
+            "skillName": "継続は力なり",
+            "hintLevel": 2,
+            "skillId": 204331
+          }
+        ],
+        "skillPayload": "id:203121\u00002|id:204331\u00002"
+      },
+      "extracted": {
+        "side": "extracted",
+        "id": "evt_30300_830300001",
+        "supportNameMatch": "賑やかな未来を乗せて走れ！",
+        "label": "チヨノ どすこいカード列伝！",
+        "selection": "auto",
+        "skills": [
+          {
+            "skillName": "強者の証",
+            "hintLevel": 2,
+            "skillId": 203121
+          },
+          {
+            "skillName": "継続は力なり",
+            "hintLevel": 2,
+            "skillId": 204331
+          }
+        ],
+        "skillPayload": "id:203121\u00002|id:204331\u00002"
+      },
+      "matchKey": "name"
+    },
+    {
+      "status": "match",
+      "hand": {
+        "side": "hand",
+        "id": "evt_tamamo_lose",
+        "supportNameMatch": "白き稲妻の如く",
+        "label": "タマモ 負けられん戦い！",
+        "selection": "auto",
+        "skills": [
+          {
+            "skillName": "ウマ込み冷静",
+            "hintLevel": 1,
+            "skillId": 200482
+          }
+        ],
+        "skillPayload": "id:200482\u00001"
+      },
+      "extracted": {
+        "side": "extracted",
+        "id": "evt_30256_801021002",
+        "supportNameMatch": "白き稲妻の如く",
+        "label": "タマモ 負けられん戦い！",
+        "selection": "auto",
+        "skills": [
+          {
+            "skillName": "ウマ込み冷静",
+            "hintLevel": 1,
+            "skillId": 200482
+          }
+        ],
+        "skillPayload": "id:200482\u00001"
+      },
+      "matchKey": "name"
+    },
+    {
+      "status": "match",
+      "hand": {
+        "side": "hand",
+        "id": "evt_tamamo_dareka",
+        "supportNameMatch": "白き稲妻の如く",
+        "label": "タマモ 誰かの道を照らすなら",
+        "selection": "single",
+        "choices": [
+          {
+            "id": "slip",
+            "label": "① スリップストリーム Lv1",
+            "skills": [
+              {
+                "skillName": "スリップストリーム",
+                "hintLevel": 1,
+                "skillId": 201651
+              }
+            ]
+          },
+          {
+            "id": "joshu",
+            "label": "② 序盤巧者 Lv1",
+            "skills": [
+              {
+                "skillName": "序盤巧者",
+                "hintLevel": 1,
+                "skillId": 202802
+              }
+            ]
+          }
+        ],
+        "skillPayload": "id:201651\u00001||id:202802\u00001"
+      },
+      "extracted": {
+        "side": "extracted",
+        "id": "evt_30256_830256002",
+        "supportNameMatch": "白き稲妻の如く",
+        "label": "タマモ 誰かの道を照らすなら",
+        "selection": "single",
+        "choices": [
+          {
+            "id": "c001_2016511",
+            "label": "① スリップストリーム Lv1",
+            "skills": [
+              {
+                "skillName": "スリップストリーム",
+                "hintLevel": 1,
+                "skillId": 201651
+              }
+            ]
+          },
+          {
+            "id": "c002_2028021",
+            "label": "② 序盤巧者 Lv1",
+            "skills": [
+              {
+                "skillName": "序盤巧者",
+                "hintLevel": 1,
+                "skillId": 202802
+              }
+            ]
+          }
+        ],
+        "skillPayload": "id:201651\u00001||id:202802\u00001"
+      },
+      "matchKey": "name"
+    },
+    {
+      "status": "match",
+      "hand": {
+        "side": "hand",
+        "id": "evt_tamamo_tooku",
+        "supportNameMatch": "白き稲妻の如く",
+        "label": "タマモ 遠くで光るその走り",
+        "selection": "single",
+        "choices": [
+          {
+            "id": "mirai",
+            "label": "① 神速 Lv2 + 真骨頂 Lv1",
+            "skills": [
+              {
+                "skillName": "神速",
+                "hintLevel": 2,
+                "skillId": 202551
+              },
+              {
+                "skillName": "真骨頂",
+                "hintLevel": 1,
+                "skillId": 203361
+              }
+            ]
+          },
+          {
+            "id": "omo",
+            "label": "② 神速 Lv2 + 悠久走破 Lv1",
+            "skills": [
+              {
+                "skillName": "神速",
+                "hintLevel": 2,
+                "skillId": 202551
+              },
+              {
+                "skillName": "悠久走破",
+                "hintLevel": 1,
+                "skillId": 203661
+              }
+            ]
+          }
+        ],
+        "skillPayload": "id:202551\u00002|id:203361\u00001||id:202551\u00002|id:203661\u00001"
+      },
+      "extracted": {
+        "side": "extracted",
+        "id": "evt_30256_830256003",
+        "supportNameMatch": "白き稲妻の如く",
+        "label": "タマモ 遠くで光るその走り",
+        "selection": "single",
+        "choices": [
+          {
+            "id": "c001_2025512+2033611",
+            "label": "① 神速 Lv2 + 真骨頂 Lv1",
+            "skills": [
+              {
+                "skillName": "神速",
+                "hintLevel": 2,
+                "skillId": 202551
+              },
+              {
+                "skillName": "真骨頂",
+                "hintLevel": 1,
+                "skillId": 203361
+              }
+            ]
+          },
+          {
+            "id": "c002_2025512+2036611",
+            "label": "② 神速 Lv2 + 悠久走破 Lv1",
+            "skills": [
+              {
+                "skillName": "神速",
+                "hintLevel": 2,
+                "skillId": 202551
+              },
+              {
+                "skillName": "悠久走破",
+                "hintLevel": 1,
+                "skillId": 203661
+              }
+            ]
+          }
+        ],
+        "skillPayload": "id:202551\u00002|id:203361\u00001||id:202551\u00002|id:203661\u00001"
+      },
+      "matchKey": "name"
+    },
+    {
+      "status": "match",
+      "hand": {
+        "side": "hand",
+        "id": "evt_heart_aggressive",
+        "supportNameMatch": "白に至る覚悟",
+        "label": "ハート Away in the Mountains",
+        "selection": "auto",
+        "skills": [
+          {
+            "skillName": "アグレッシブ",
+            "hintLevel": 1,
+            "skillId": 203222
+          }
+        ],
+        "skillPayload": "id:203222\u00001"
+      },
+      "extracted": {
+        "side": "extracted",
+        "id": "evt_30294_801112002",
+        "supportNameMatch": "白に至る覚悟",
+        "label": "ハート Away in the Mountains",
+        "selection": "auto",
+        "skills": [
+          {
+            "skillName": "アグレッシブ",
+            "hintLevel": 1,
+            "skillId": 203222
+          }
+        ],
+        "skillPayload": "id:203222\u00001"
+      },
+      "matchKey": "name"
+    },
+    {
+      "status": "match",
+      "hand": {
+        "side": "hand",
+        "id": "evt_heart_charm",
+        "supportNameMatch": "白に至る覚悟",
+        "label": "ハート もっとも輝く『魅力』（連続2・白金分岐）",
+        "selection": "single",
+        "choices": [
+          {
+            "id": "mukou",
+            "label": "① 向こう見ず Lv1",
+            "skills": [
+              {
+                "skillName": "向こう見ず",
+                "hintLevel": 1,
+                "skillId": 202502
+              }
+            ]
+          },
+          {
+            "id": "shinnen",
+            "label": "② 揺るがぬ信念 Lv1",
+            "skills": [
+              {
+                "skillName": "揺るがぬ信念",
+                "hintLevel": 1,
+                "skillId": 203052
+              }
+            ]
+          }
+        ],
+        "skillPayload": "id:202502\u00001||id:203052\u00001"
+      },
+      "extracted": {
+        "side": "extracted",
+        "id": "evt_30294_830294002",
+        "supportNameMatch": "白に至る覚悟",
+        "label": "ハート もっとも輝く『魅力』",
+        "selection": "single",
+        "choices": [
+          {
+            "id": "c002_2025021",
+            "label": "① 向こう見ず Lv1",
+            "skills": [
+              {
+                "skillName": "向こう見ず",
+                "hintLevel": 1,
+                "skillId": 202502
+              }
+            ]
+          },
+          {
+            "id": "c003_2030521",
+            "label": "② 揺るがぬ信念 Lv1",
+            "skills": [
+              {
+                "skillName": "揺るがぬ信念",
+                "hintLevel": 1,
+                "skillId": 203052
+              }
+            ]
+          }
+        ],
+        "skillPayload": "id:202502\u00001||id:203052\u00001"
+      },
+      "matchKey": "skill"
+    },
+    {
+      "status": "match",
+      "hand": {
+        "side": "hand",
+        "id": "evt_heart_stack",
+        "supportNameMatch": "白に至る覚悟",
+        "label": "ハート 積み重ねられた『今』（連続3）",
+        "selection": "auto",
+        "skills": [
+          {
+            "skillName": "優位形成",
+            "hintLevel": 1,
+            "skillId": 202531
+          },
+          {
+            "skillName": "十全十美",
+            "hintLevel": 1,
+            "skillId": 202741
+          }
+        ],
+        "skillPayload": "id:202531\u00001|id:202741\u00001"
+      },
+      "extracted": {
+        "side": "extracted",
+        "id": "evt_30294_830294003",
+        "supportNameMatch": "白に至る覚悟",
+        "label": "ハート 積み重ねられた『今』",
+        "selection": "auto",
+        "skills": [
+          {
+            "skillName": "優位形成",
+            "hintLevel": 1,
+            "skillId": 202531
+          },
+          {
+            "skillName": "十全十美",
+            "hintLevel": 1,
+            "skillId": 202741
+          }
+        ],
+        "skillPayload": "id:202531\u00001|id:202741\u00001"
+      },
+      "matchKey": "skill"
+    },
+    {
+      "status": "match",
+      "hand": {
+        "side": "hand",
+        "id": "evt_tact_survival",
+        "supportNameMatch": "白に至る純真",
+        "label": "タクト 私を育てた場所",
+        "selection": "auto",
+        "skills": [
+          {
+            "skillName": "一歩ずつ前へ",
+            "hintLevel": 1,
+            "skillId": 203362
+          }
+        ],
+        "skillPayload": "id:203362\u00001"
+      },
+      "extracted": {
+        "side": "extracted",
+        "id": "evt_30293_801075002",
+        "supportNameMatch": "白に至る純真",
+        "label": "タクト 私を育てた場所",
+        "selection": "auto",
+        "skills": [
+          {
+            "skillName": "一歩ずつ前へ",
+            "hintLevel": 1,
+            "skillId": 203362
+          }
+        ],
+        "skillPayload": "id:203362\u00001"
+      },
+      "matchKey": "name"
+    },
+    {
+      "status": "match",
+      "hand": {
+        "side": "hand",
+        "id": "evt_tact_tsutae",
+        "supportNameMatch": "白に至る純真",
+        "label": "タクト 伝え、繋いで",
+        "selection": "single",
+        "choices": [
+          {
+            "id": "taguru",
+            "label": "① 滾る想い Lv1",
+            "skills": [
+              {
+                "skillName": "滾る想い",
+                "hintLevel": 1,
+                "skillId": 202962
+              }
+            ]
+          },
+          {
+            "id": "ashikari",
+            "label": "② 足がかり Lv1",
+            "skills": [
+              {
+                "skillName": "足がかり",
+                "hintLevel": 1,
+                "skillId": 203572
+              }
+            ]
+          }
+        ],
+        "skillPayload": "id:202962\u00001||id:203572\u00001"
+      },
+      "extracted": {
+        "side": "extracted",
+        "id": "evt_30293_830293002",
+        "supportNameMatch": "白に至る純真",
+        "label": "タクト 伝え、繋いで",
+        "selection": "single",
+        "choices": [
+          {
+            "id": "c002_2029621",
+            "label": "① 滾る想い Lv1",
+            "skills": [
+              {
+                "skillName": "滾る想い",
+                "hintLevel": 1,
+                "skillId": 202962
+              }
+            ]
+          },
+          {
+            "id": "c003_2035721",
+            "label": "② 足がかり Lv1",
+            "skills": [
+              {
+                "skillName": "足がかり",
+                "hintLevel": 1,
+                "skillId": 203572
+              }
+            ]
+          }
+        ],
+        "skillPayload": "id:202962\u00001||id:203572\u00001"
+      },
+      "matchKey": "name"
+    },
+    {
+      "status": "match",
+      "hand": {
+        "side": "hand",
+        "id": "evt_tact_cinderella",
+        "supportNameMatch": "白に至る純真",
+        "label": "タクト シンデレラの行く末",
+        "selection": "auto",
+        "skills": [
+          {
+            "skillName": "闘争本能",
+            "hintLevel": 1,
+            "skillId": 203791
+          },
+          {
+            "skillName": "燃ゆる魂",
+            "hintLevel": 1,
+            "skillId": 204051
+          }
+        ],
+        "skillPayload": "id:203791\u00001|id:204051\u00001"
+      },
+      "extracted": {
+        "side": "extracted",
+        "id": "evt_30293_830293003",
+        "supportNameMatch": "白に至る純真",
+        "label": "タクト シンデレラの行く末",
+        "selection": "auto",
+        "skills": [
+          {
+            "skillName": "闘争本能",
+            "hintLevel": 1,
+            "skillId": 203791
+          },
+          {
+            "skillName": "燃ゆる魂",
+            "hintLevel": 1,
+            "skillId": 204051
+          }
+        ],
+        "skillPayload": "id:203791\u00001|id:204051\u00001"
+      },
+      "matchKey": "name"
+    },
+    {
+      "status": "match",
+      "hand": {
+        "side": "hand",
+        "id": "evt_groove_wan",
+        "supportNameMatch": "氷結晶の静域",
+        "label": "アドマイヤ ひとりが好きなクラスメイトさん",
+        "selection": "auto",
+        "skills": [
+          {
+            "skillName": "ワンチャンス",
+            "hintLevel": 1,
+            "skillId": 202082
+          }
+        ],
+        "skillPayload": "id:202082\u00001"
+      },
+      "extracted": {
+        "side": "extracted",
+        "id": "evt_30265_801118002",
+        "supportNameMatch": "氷結晶の静域",
+        "label": "アドマイヤ ひとりが好きなクラスメイトさん",
+        "selection": "auto",
+        "skills": [
+          {
+            "skillName": "ワンチャンス",
+            "hintLevel": 1,
+            "skillId": 202082
+          }
+        ],
+        "skillPayload": "id:202082\u00001"
+      },
+      "matchKey": "name"
+    },
+    {
+      "status": "match",
+      "hand": {
+        "side": "hand",
+        "id": "evt_groove_kyuukou",
+        "supportNameMatch": "氷結晶の静域",
+        "label": "アドマイヤ 孤高の休日",
+        "selection": "auto",
+        "skills": [
+          {
+            "skillName": "溢れる情熱",
+            "hintLevel": 1,
+            "skillId": 202612
+          }
+        ],
+        "skillPayload": "id:202612\u00001"
+      },
+      "extracted": {
+        "side": "extracted",
+        "id": "evt_30265_830265002",
+        "supportNameMatch": "氷結晶の静域",
+        "label": "アドマイヤ 孤高の休日",
+        "selection": "auto",
+        "skills": [
+          {
+            "skillName": "溢れる情熱",
+            "hintLevel": 1,
+            "skillId": 202612
+          }
+        ],
+        "skillPayload": "id:202612\u00001"
+      },
+      "matchKey": "name"
+    },
+    {
+      "status": "match",
+      "hand": {
+        "side": "hand",
+        "id": "evt_groove_shomei",
+        "supportNameMatch": "氷結晶の静域",
+        "label": "アドマイヤ 孤高の証明",
+        "selection": "auto",
+        "skills": [
+          {
+            "skillName": "天賦の才",
+            "hintLevel": 1,
+            "skillId": 203831
+          },
+          {
+            "skillName": "才色兼備",
+            "hintLevel": 1,
+            "skillId": 203841
+          }
+        ],
+        "skillPayload": "id:203831\u00001|id:203841\u00001"
+      },
+      "extracted": {
+        "side": "extracted",
+        "id": "evt_30265_830265003",
+        "supportNameMatch": "氷結晶の静域",
+        "label": "アドマイヤ 孤高の証明",
+        "selection": "auto",
+        "skills": [
+          {
+            "skillName": "天賦の才",
+            "hintLevel": 1,
+            "skillId": 203831
+          },
+          {
+            "skillName": "才色兼備",
+            "hintLevel": 1,
+            "skillId": 203841
+          }
+        ],
+        "skillPayload": "id:203831\u00001|id:203841\u00001"
+      },
+      "matchKey": "name"
+    },
+    {
+      "status": "match",
+      "hand": {
+        "side": "hand",
+        "id": "evt_bourbon_order",
+        "supportNameMatch": "無機の闘志",
+        "label": "ブルボン 命令は守らなければならない",
+        "selection": "auto",
+        "skills": [
+          {
+            "skillName": "集中力",
+            "hintLevel": 1,
+            "skillId": 200432
+          }
+        ],
+        "skillPayload": "id:200432\u00001"
+      },
+      "extracted": {
+        "side": "extracted",
+        "id": "evt_30277_801026002",
+        "supportNameMatch": "無機の闘志",
+        "label": "ブルボン 命令は守らなければならない",
+        "selection": "auto",
+        "skills": [
+          {
+            "skillName": "集中力",
+            "hintLevel": 1,
+            "skillId": 200432
+          }
+        ],
+        "skillPayload": "id:200432\u00001"
+      },
+      "matchKey": "name"
+    },
+    {
+      "status": "match",
+      "hand": {
+        "side": "hand",
+        "id": "evt_bourbon_hatsu",
+        "supportNameMatch": "無機の闘志",
+        "label": "ブルボン 発火:熱を帯びて",
+        "selection": "auto",
+        "skills": [
+          {
+            "skillName": "ポジションセンス",
+            "hintLevel": 1,
+            "skillId": 200452
+          }
+        ],
+        "skillPayload": "id:200452\u00001"
+      },
+      "extracted": {
+        "side": "extracted",
+        "id": "evt_30277_830277002",
+        "supportNameMatch": "無機の闘志",
+        "label": "ブルボン 発火：熱を帯びて",
+        "selection": "auto",
+        "skills": [
+          {
+            "skillName": "ポジションセンス",
+            "hintLevel": 1,
+            "skillId": 200452
+          }
+        ],
+        "skillPayload": "id:200452\u00001"
+      },
+      "matchKey": "name"
+    },
+    {
+      "status": "match",
+      "hand": {
+        "side": "hand",
+        "id": "evt_bourbon_hibana",
+        "supportNameMatch": "無機の闘志",
+        "label": "ブルボン 火花:夢焦がれ",
+        "selection": "auto",
+        "skills": [
+          {
+            "skillName": "先手必勝",
+            "hintLevel": 1,
+            "skillId": 200531
+          },
+          {
+            "skillName": "傑出",
+            "hintLevel": 1,
+            "skillId": 203461
+          }
+        ],
+        "skillPayload": "id:200531\u00001|id:203461\u00001"
+      },
+      "extracted": {
+        "side": "extracted",
+        "id": "evt_30277_830277003",
+        "supportNameMatch": "無機の闘志",
+        "label": "ブルボン 火炎：夢焦がれ",
+        "selection": "auto",
+        "skills": [
+          {
+            "skillName": "先手必勝",
+            "hintLevel": 1,
+            "skillId": 200531
+          },
+          {
+            "skillName": "傑出",
+            "hintLevel": 1,
+            "skillId": 203461
+          }
+        ],
+        "skillPayload": "id:200531\u00001|id:203461\u00001"
+      },
+      "matchKey": "skill"
+    },
+    {
+      "status": "match",
+      "hand": {
+        "side": "hand",
+        "id": "evt_muku_survival",
+        "supportNameMatch": "無垢の白妙",
+        "label": "タクト 私を育てた場所",
+        "selection": "auto",
+        "skills": [
+          {
+            "skillName": "一歩ずつ前へ",
+            "hintLevel": 1,
+            "skillId": 203362
+          }
+        ],
+        "skillPayload": "id:203362\u00001"
+      },
+      "extracted": {
+        "side": "extracted",
+        "id": "evt_30248_801075002",
+        "supportNameMatch": "無垢の白妙",
+        "label": "タクト 私を育てた場所",
+        "selection": "auto",
+        "skills": [
+          {
+            "skillName": "一歩ずつ前へ",
+            "hintLevel": 1,
+            "skillId": 203362
+          }
+        ],
+        "skillPayload": "id:203362\u00001"
+      },
+      "matchKey": "name"
+    },
+    {
+      "status": "match",
+      "hand": {
+        "side": "hand",
+        "id": "evt_muku_earth",
+        "supportNameMatch": "無垢の白妙",
+        "label": "タクト 母なる大地の教え",
+        "selection": "auto",
+        "skills": [
+          {
+            "skillName": "しとやかな足取り",
+            "hintLevel": 1,
+            "skillId": 202532
+          }
+        ],
+        "skillPayload": "id:202532\u00001"
+      },
+      "extracted": {
+        "side": "extracted",
+        "id": "evt_30248_830248002",
+        "supportNameMatch": "無垢の白妙",
+        "label": "タクト 母なる大地の教え",
+        "selection": "auto",
+        "skills": [
+          {
+            "skillName": "しとやかな足取り",
+            "hintLevel": 1,
+            "skillId": 202532
+          }
+        ],
+        "skillPayload": "id:202532\u00001"
+      },
+      "matchKey": "name"
+    },
+    {
+      "status": "match",
+      "hand": {
+        "side": "hand",
+        "id": "evt_muku_wild",
+        "supportNameMatch": "無垢の白妙",
+        "label": "タクト Innocent Wildflower",
+        "selection": "auto",
+        "skills": [
+          {
+            "skillName": "独立独歩",
+            "hintLevel": 1,
+            "skillId": 203591
+          },
+          {
+            "skillName": "迅速果断",
+            "hintLevel": 1,
+            "skillId": 200591
+          }
+        ],
+        "skillPayload": "id:200591\u00001|id:203591\u00001"
+      },
+      "extracted": {
+        "side": "extracted",
+        "id": "evt_30248_830248003",
+        "supportNameMatch": "無垢の白妙",
+        "label": "タクト Innocent Wildflower",
+        "selection": "auto",
+        "skills": [
+          {
+            "skillName": "独立独歩",
+            "hintLevel": 1,
+            "skillId": 203591
+          },
+          {
+            "skillName": "迅速果断",
+            "hintLevel": 1,
+            "skillId": 200591
+          }
+        ],
+        "skillPayload": "id:200591\u00001|id:203591\u00001"
+      },
+      "matchKey": "name"
+    },
+    {
+      "status": "match",
+      "hand": {
+        "side": "hand",
+        "id": "evt_dj_imouto",
+        "supportNameMatch": "誘うは夢心地",
+        "label": "ドリーム 用意周到で妹想い",
+        "selection": "auto",
+        "skills": [
+          {
+            "skillName": "推力十分",
+            "hintLevel": 1,
+            "skillId": 202902
+          }
+        ],
+        "skillPayload": "id:202902\u00001"
+      },
+      "extracted": {
+        "side": "extracted",
+        "id": "evt_30246_801119002",
+        "supportNameMatch": "誘うは夢心地",
+        "label": "ドリーム 用意周到で妹想い",
+        "selection": "auto",
+        "skills": [
+          {
+            "skillName": "推力十分",
+            "hintLevel": 1,
+            "skillId": 202902
+          }
+        ],
+        "skillPayload": "id:202902\u00001"
+      },
+      "matchKey": "name"
+    },
+    {
+      "status": "match",
+      "hand": {
+        "side": "hand",
+        "id": "evt_dj_shop",
+        "supportNameMatch": "誘うは夢心地",
+        "label": "ドリーム それはただただ咲き誇る",
+        "selection": "auto",
+        "skills": [
+          {
+            "skillName": "打開策",
+            "hintLevel": 2,
+            "skillId": 202382
+          }
+        ],
+        "skillPayload": "id:202382\u00002"
+      },
+      "extracted": {
+        "side": "extracted",
+        "id": "evt_30246_830246002",
+        "supportNameMatch": "誘うは夢心地",
+        "label": "ドリーム それはただただ咲き誇る",
+        "selection": "auto",
+        "skills": [
+          {
+            "skillName": "打開策",
+            "hintLevel": 2,
+            "skillId": 202382
+          }
+        ],
+        "skillPayload": "id:202382\u00002"
+      },
+      "matchKey": "name"
+    },
+    {
+      "status": "match",
+      "hand": {
+        "side": "hand",
+        "id": "evt_dj_bloom",
+        "supportNameMatch": "誘うは夢心地",
+        "label": "ドリーム そして今日も花が咲く",
+        "selection": "auto",
+        "skills": [
+          {
+            "skillName": "完全燃焼",
+            "hintLevel": 1,
+            "skillId": 202881
+          },
+          {
+            "skillName": "肉薄",
+            "hintLevel": 1,
+            "skillId": 202931
+          }
+        ],
+        "skillPayload": "id:202881\u00001|id:202931\u00001"
+      },
+      "extracted": {
+        "side": "extracted",
+        "id": "evt_30246_830246003",
+        "supportNameMatch": "誘うは夢心地",
+        "label": "ドリーム そして今日も花が咲く",
+        "selection": "auto",
+        "skills": [
+          {
+            "skillName": "完全燃焼",
+            "hintLevel": 1,
+            "skillId": 202881
+          },
+          {
+            "skillName": "肉薄",
+            "hintLevel": 1,
+            "skillId": 202931
+          }
+        ],
+        "skillPayload": "id:202881\u00001|id:202931\u00001"
+      },
+      "matchKey": "name"
+    }
+  ]
+}

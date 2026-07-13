@@ -126,7 +126,9 @@ python scripts/extract_mdb.py --mdb "D:\...\master.mdb"
 | `toggle` | チェックボックス（後方互換） | ON のとき `skills` を加算 |
 
 - `skillId` は extract 後に埋めると確実。無くても `skillName` 完全一致で解決を試す
-- **現状**: 優先37サポカ記入済み（37/37・103イベント）。追加26枚は GameWith / U-tools 照合（2026-07）
+- **現状**: 優先37サポカ記入済み（37/37・102イベント）。手メンテ正本
+- **Phase A（2026-07-14）**: `npm run extract:events` → `data/events.extracted.json`（100件・U-tools+mdb）。`npm run compare:events` → ゴールデン比較。`events.json` は未置換
+- **Phase B（未着手）**: `events.json` を抽出結果で置換。設計: [EVENT_EXTRACT_DESIGN.md](./EVENT_EXTRACT_DESIGN.md)
 
 ### 優先サポカ一覧
 
@@ -165,5 +167,5 @@ python scripts/extract_mdb.py --mdb "D:\...\master.mdb"
 | スキル baseSp・上下位 | mdb 自動 |
 | サポカ訓練ヒント | mdb 自動 |
 | 育成ウマ娘所持スキル | mdb 自動（`available_skill_set`） |
-| サポカイベントの金・追加スキル | **events.json 手メンテ** |
+| サポカイベントの金・追加スキル | **events.json 手メンテ**（Phase B で `events.extracted.json` 置換予定） |
 | シナリオ固有 | **toresenken.json 手メンテ** |

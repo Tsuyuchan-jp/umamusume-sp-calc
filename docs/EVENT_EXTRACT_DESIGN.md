@@ -1,6 +1,6 @@
 # 設計レビュー: サポカイベント抽出（優先37置換）
 
-**状態**: **設計承認済み**（2026-07-14）  
+**状態**: **Phase A 完了**（2026-07-14） / Phase B 未着手  
 **ゴール**: 優先37サポカの `events.json` を U-tools + mdb 抽出で置換する  
 **調査日**: 2026-07-14  
 **mdb**: `D:/DMM/umamusumeDMM/Umamusume/umamusume_Data/Persistent/master/master.mdb`  

@@ -10,6 +10,8 @@
     "test": "node scripts/test_sp.mjs",
     "verify": "node scripts/verify_data.mjs",
     "bind-priority": "node scripts/bind_priority.mjs",
+    "extract:events": "node scripts/extract_support_events.mjs",
+    "compare:events": "node scripts/compare_events_golden.mjs",
     "merge-support-events": "node scripts/merge_support_events.mjs",
     "reclassify-support-events": "node scripts/reclassify_support_events.mjs",
     "serve": "npx --yes serve . -l 8080"

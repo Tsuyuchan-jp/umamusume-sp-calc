@@ -75,11 +75,14 @@
 4. ~~README を公開利用者向けに整理・確定 URL 記載~~ **済**
 5. ~~Pages デプロイ＋本番スモークテスト~~ **済**（合計SP表示・サポカ変更・ルート→/app/・スマホ幅）
 
-### Phase F — イベント正本化（優先37のみ）— 設計承認済み・未着手
+### Phase F — イベント正本化（優先37のみ）
 
-1. U-tools + mdb 抽出パイプライン（`extract_support_events.mjs`）
-2. 現行 `events.json` とのゴールデン比較
-3. 優先37サポカの手メンテ置換（最終ゴール）
+| 段階 | 状態 |
+|------|------|
+| **Phase A** 抽出パイプライン + ゴールデン比較 | **完了**（2026-07-14） |
+| **Phase B** `events.json` 置換 | **未着手** |
+
+Phase A 成果: `extract_support_events.mjs`, `compare_events_golden.mjs`, `npm run extract:events` / `compare:events`。U-tools パース仕様: [UTOOLS_EVENT_PARSE.md](./UTOOLS_EVENT_PARSE.md)
 
 詳細: [EVENT_EXTRACT_DESIGN.md](./EVENT_EXTRACT_DESIGN.md)
 
