@@ -296,11 +296,15 @@ function renderCheckboxes(containerId, items, storageSet, key) {
   for (const item of items) {
     const id = item.id;
     const checked = storageSet.has(id) ? "checked" : "";
+    const skillNote =
+      item.skills?.length > 0
+        ? `<span class="hint"> — ${escapeHtml(formatSkillList(item.skills))}</span>`
+        : "";
     const div = document.createElement("div");
     div.className = "checkbox-row";
     div.innerHTML = `
       <input type="checkbox" id="${key}-${id}" data-id="${id}" ${checked} />
-      <label for="${key}-${id}">${escapeHtml(item.label)}</label>
+      <label for="${key}-${id}">${escapeHtml(item.label)}${skillNote}</label>
     `;
     container.appendChild(div);
     div.querySelector("input").addEventListener("change", (e) => {

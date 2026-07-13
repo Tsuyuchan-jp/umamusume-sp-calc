@@ -138,6 +138,11 @@ input[type="search"] {
   margin: 0;
 }
 
+.checkbox-row label {
+  margin: 0;
+  font-weight: normal;
+}
+
 .options-row {
   display: flex;
   flex-wrap: wrap;
