@@ -1,7 +1,12 @@
 import { calcSkillCost } from "./spCost.js";
 
+/** 購入チェーンに含めるスキルか（group_rate < 0 の×等は除外） */
+export function isChainMember(skill) {
+  return skill != null && (skill.groupRate == null || skill.groupRate >= 0);
+}
+
 /**
- * グループ内の最下位スキル（○ / 白）まで辿る
+ * グループ内の購入チェーン上の最下位まで辿る
  * @param {object} skill
  * @param {Map<number, object>} skillById
  */
@@ -12,7 +17,7 @@ export function getChainRoot(skill, skillById) {
     if (seen.has(cur.id)) break;
     seen.add(cur.id);
     const lower = skillById.get(cur.lowerSkillId);
-    if (!lower) break;
+    if (!isChainMember(lower)) break;
     cur = lower;
   }
   return cur;
@@ -31,26 +36,25 @@ export function getEffectiveHintLevel(skill, skillById, hintMap) {
     return hintMap.get(skill.id)?.hintLevel ?? 0;
   }
 
-  // rarity 1: ルートから白帯が続く間のヒントの max
   const root = getChainRoot(skill, skillById);
   let maxLv = 0;
   let cur = root;
   const seen = new Set();
-  while (cur && cur.rarity === 1) {
+  while (cur && cur.rarity === 1 && isChainMember(cur)) {
     if (seen.has(cur.id)) break;
     seen.add(cur.id);
     const lv = hintMap.get(cur.id)?.hintLevel ?? 0;
     if (lv > maxLv) maxLv = lv;
     if (cur.upperSkillId == null) break;
     const up = skillById.get(cur.upperSkillId);
-    if (!up || up.rarity !== 1) break;
+    if (!up || up.rarity !== 1 || !isChainMember(up)) break;
     cur = up;
   }
   return maxLv;
 }
 
 /**
- * skill 以下（自身含む）の下位チェーンを根→自身の順で返す
+ * skill 以下（自身含む）の購入チェーンを根→自身の順で返す（×は含めない）
  * @param {object} skill
  * @param {Map<number, object>} skillById
  */
@@ -58,12 +62,14 @@ export function getLowerChain(skill, skillById) {
   const chain = [];
   let cur = skill;
   const seen = new Set();
-  while (cur) {
+  while (cur && isChainMember(cur)) {
     if (seen.has(cur.id)) break;
     seen.add(cur.id);
     chain.push(cur);
     if (cur.lowerSkillId == null) break;
-    cur = skillById.get(cur.lowerSkillId);
+    const lower = skillById.get(cur.lowerSkillId);
+    if (!isChainMember(lower)) break;
+    cur = lower;
   }
   chain.reverse();
   return chain;
@@ -109,7 +115,7 @@ export function calcAcquisitionCost(skill, skillById, hintMap, fastLearner) {
 
 /**
  * ○のみヒント時に rarity1 の直上（◎）へ繰り上げ、上位がある下位行は非表示。
- * 金（rarity2）への自動繰り上げはしない。
+ * 金（rarity2）への自動繰り上げはしない。×からの繰り上げはしない。
  * @param {number[]} skillIds
  * @param {Map<number, object>} skillById
  * @returns {number[]}
@@ -117,25 +123,27 @@ export function calcAcquisitionCost(skill, skillById, hintMap, fastLearner) {
 export function filterDisplaySkills(skillIds, skillById) {
   const ids = new Set(skillIds);
 
-  // ○ → ◎ のみ自動追加（直上かつ rarity 1）
   for (const id of [...ids]) {
     const s = skillById.get(id);
-    if (!s?.upperSkillId) continue;
+    if (!s?.upperSkillId || !isChainMember(s)) continue;
     const up = skillById.get(s.upperSkillId);
-    if (up && up.rarity === 1) {
+    if (up && up.rarity === 1 && isChainMember(up)) {
       ids.add(up.id);
     }
   }
 
-  // グループ内により上位が計画にある行は隠す
   return [...ids].filter((id) => {
-    let cur = skillById.get(id);
+    const skill = skillById.get(id);
+    if (!skill || !isChainMember(skill)) return true;
+    let cur = skill;
     const seen = new Set();
     while (cur?.upperSkillId != null) {
       if (seen.has(cur.id)) break;
       seen.add(cur.id);
+      const up = skillById.get(cur.upperSkillId);
+      if (!up || !isChainMember(up)) break;
       if (ids.has(cur.upperSkillId)) return false;
-      cur = skillById.get(cur.upperSkillId);
+      cur = up;
     }
     return true;
   });

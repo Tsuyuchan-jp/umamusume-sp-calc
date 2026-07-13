@@ -63,16 +63,16 @@ def extract_skills(conn: sqlite3.Connection) -> list[dict]:
             }
         )
 
-    # 上下位リンク（group_rate 昇順）
+    # 上下位リンク（group_rate 昇順・購入対象のみ）
     id_to_skill = {s["id"]: s for s in skill_rows}
     for gid, members in groups.items():
-        members.sort(key=lambda x: x[0])
-        for i, (_, skill_id) in enumerate(members):
+        purchasable = sorted((m for m in members if m[0] >= 0), key=lambda x: x[0])
+        for i, (_, skill_id) in enumerate(purchasable):
             s = id_to_skill[skill_id]
             if i > 0:
-                s["lowerSkillId"] = members[i - 1][1]
-            if i < len(members) - 1:
-                s["upperSkillId"] = members[i + 1][1]
+                s["lowerSkillId"] = purchasable[i - 1][1]
+            if i < len(purchasable) - 1:
+                s["upperSkillId"] = purchasable[i + 1][1]
 
     return sorted(skill_rows, key=lambda x: x["id"])
 

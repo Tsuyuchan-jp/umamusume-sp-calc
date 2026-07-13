@@ -110,6 +110,33 @@ assertTruthy(senkouO && senkouD && yujin, "先行直線○/◎/勇迅一閃");
   assertEq(a.cost, 162, "◎IDヒントでも○準拠合算");
 }
 
+// ×（group_rate < 0）は購入チェーンに含めない
+const fuyuO = skills.find((s) => s.name === "冬ウマ娘○");
+const fuyuD = skills.find((s) => s.name === "冬ウマ娘◎");
+const prof = skills.find((s) => s.name === "弧線のプロフェッサー");
+const cornerO = skills.find((s) => s.name === "コーナー巧者○");
+assertTruthy(fuyuO && fuyuD && prof && cornerO, "冬ウマ娘・弧線グループ");
+
+{
+  const hm = new Map([[fuyuO.id, { hintLevel: 5 }]]);
+  const a = calcAcquisitionCost(fuyuD, skillById, hm, false);
+  assertEq(a.chainCosts.length, 2, "冬ウマ娘◎ chain段数");
+  assertEq(a.cost, 120, "冬ウマ娘◎ cost");
+  assertEq(a.chainCosts.join("+"), "54+66", "冬ウマ娘◎ chainCosts");
+  assertFalsy(
+    a.chainSkillIds.some((id) => skillById.get(id)?.name === "冬ウマ娘×"),
+    "冬ウマ娘×はチェーン外"
+  );
+}
+
+{
+  const hm = new Map([[cornerO.id, { hintLevel: 2 }]]);
+  const a = calcAcquisitionCost(prof, skillById, hm, false);
+  assertEq(a.chainCosts.length, 2, "弧線のプロフェッサー chain段数");
+  assertEq(a.cost, 324, "弧線のプロフェッサー cost");
+  assertEq(a.chainCosts.join("+"), "144+180", "弧線 chainCosts");
+}
+
 const top = characters.find(
   (c) => c.name === "[万福龍湯伝・頂]ナリタトップロード"
 );

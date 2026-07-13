@@ -33,6 +33,13 @@ node scripts/extract_mdb.mjs --mdb "D:\DMM\umamusumeDMM\Umamusume\umamusume_Data
 成功すると `data/skills.json`, `supports.json`, `characters.json`, `meta.json` が更新される。  
 `events.json` / `toresenken.json` は上書きされない。
 
+`skills.json` の `lowerSkillId` / `upperSkillId` は **`group_rate >= 0` のみ**リンクする（`group_rate < 0` の × は購入チェーン外）。  
+既存 JSON のリンクだけ直す場合:
+
+```powershell
+node scripts/relink_skills.mjs
+```
+
 ```powershell
 npm run verify
 npm test

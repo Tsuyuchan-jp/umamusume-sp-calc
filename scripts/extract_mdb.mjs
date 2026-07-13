@@ -89,11 +89,12 @@ function extractSkills(db) {
 
   const byId = new Map(skillRows.map((s) => [s.id, s]));
   for (const members of groups.values()) {
-    members.sort((a, b) => a[0] - b[0]);
-    for (let i = 0; i < members.length; i++) {
-      const s = byId.get(members[i][1]);
-      if (i > 0) s.lowerSkillId = members[i - 1][1];
-      if (i < members.length - 1) s.upperSkillId = members[i + 1][1];
+    // group_rate < 0 は劣位（×）で購入チェーンに含めない
+    const purchasable = members.filter(([gr]) => gr >= 0).sort((a, b) => a[0] - b[0]);
+    for (let i = 0; i < purchasable.length; i++) {
+      const s = byId.get(purchasable[i][1]);
+      if (i > 0) s.lowerSkillId = purchasable[i - 1][1];
+      if (i < purchasable.length - 1) s.upperSkillId = purchasable[i + 1][1];
     }
   }
 

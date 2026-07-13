@@ -3109,7 +3109,7 @@
     "groupId": 20001,
     "groupRate": 1,
     "iconId": 10011,
-    "lowerSkillId": 200013,
+    "lowerSkillId": null,
     "upperSkillId": 200011
   },
   {
@@ -3121,7 +3121,7 @@
     "groupRate": -1,
     "iconId": 10014,
     "lowerSkillId": null,
-    "upperSkillId": 200012
+    "upperSkillId": null
   },
   {
     "id": 200014,
@@ -3153,7 +3153,7 @@
     "groupId": 20002,
     "groupRate": 1,
     "iconId": 10011,
-    "lowerSkillId": 200023,
+    "lowerSkillId": null,
     "upperSkillId": 200021
   },
   {
@@ -3165,7 +3165,7 @@
     "groupRate": -1,
     "iconId": 10014,
     "lowerSkillId": null,
-    "upperSkillId": 200022
+    "upperSkillId": null
   },
   {
     "id": 200024,
@@ -3197,7 +3197,7 @@
     "groupId": 20003,
     "groupRate": 1,
     "iconId": 10021,
-    "lowerSkillId": 200033,
+    "lowerSkillId": null,
     "upperSkillId": 200031
   },
   {
@@ -3209,7 +3209,7 @@
     "groupRate": -1,
     "iconId": 10024,
     "lowerSkillId": null,
-    "upperSkillId": 200032
+    "upperSkillId": null
   },
   {
     "id": 200034,
@@ -3241,7 +3241,7 @@
     "groupId": 20004,
     "groupRate": 1,
     "iconId": 10021,
-    "lowerSkillId": 200043,
+    "lowerSkillId": null,
     "upperSkillId": 200041
   },
   {
@@ -3253,7 +3253,7 @@
     "groupRate": -1,
     "iconId": 10024,
     "lowerSkillId": null,
-    "upperSkillId": 200042
+    "upperSkillId": null
   },
   {
     "id": 200051,
@@ -3274,7 +3274,7 @@
     "groupId": 20005,
     "groupRate": 1,
     "iconId": 10021,
-    "lowerSkillId": 200053,
+    "lowerSkillId": null,
     "upperSkillId": 200051
   },
   {
@@ -3286,7 +3286,7 @@
     "groupRate": -1,
     "iconId": 10024,
     "lowerSkillId": null,
-    "upperSkillId": 200052
+    "upperSkillId": null
   },
   {
     "id": 200061,
@@ -3307,7 +3307,7 @@
     "groupId": 20006,
     "groupRate": 1,
     "iconId": 10021,
-    "lowerSkillId": 200063,
+    "lowerSkillId": null,
     "upperSkillId": 200061
   },
   {
@@ -3319,7 +3319,7 @@
     "groupRate": -1,
     "iconId": 10024,
     "lowerSkillId": null,
-    "upperSkillId": 200062
+    "upperSkillId": null
   },
   {
     "id": 200064,
@@ -3351,7 +3351,7 @@
     "groupId": 20007,
     "groupRate": 1,
     "iconId": 10021,
-    "lowerSkillId": 200073,
+    "lowerSkillId": null,
     "upperSkillId": 200071
   },
   {
@@ -3363,7 +3363,7 @@
     "groupRate": -1,
     "iconId": 10024,
     "lowerSkillId": null,
-    "upperSkillId": 200072
+    "upperSkillId": null
   },
   {
     "id": 200081,
@@ -3384,7 +3384,7 @@
     "groupId": 20008,
     "groupRate": 1,
     "iconId": 10021,
-    "lowerSkillId": 200083,
+    "lowerSkillId": null,
     "upperSkillId": 200081
   },
   {
@@ -3396,7 +3396,7 @@
     "groupRate": -1,
     "iconId": 10024,
     "lowerSkillId": null,
-    "upperSkillId": 200082
+    "upperSkillId": null
   },
   {
     "id": 200091,
@@ -3417,7 +3417,7 @@
     "groupId": 20009,
     "groupRate": 1,
     "iconId": 10021,
-    "lowerSkillId": 200093,
+    "lowerSkillId": null,
     "upperSkillId": 200091
   },
   {
@@ -3429,7 +3429,7 @@
     "groupRate": -1,
     "iconId": 10024,
     "lowerSkillId": null,
-    "upperSkillId": 200092
+    "upperSkillId": null
   },
   {
     "id": 200101,
@@ -3450,7 +3450,7 @@
     "groupId": 20010,
     "groupRate": 1,
     "iconId": 10021,
-    "lowerSkillId": 200103,
+    "lowerSkillId": null,
     "upperSkillId": 200101
   },
   {
@@ -3462,7 +3462,7 @@
     "groupRate": -1,
     "iconId": 10024,
     "lowerSkillId": null,
-    "upperSkillId": 200102
+    "upperSkillId": null
   },
   {
     "id": 200111,
@@ -3483,7 +3483,7 @@
     "groupId": 20011,
     "groupRate": 1,
     "iconId": 10021,
-    "lowerSkillId": 200113,
+    "lowerSkillId": null,
     "upperSkillId": 200111
   },
   {
@@ -3495,7 +3495,7 @@
     "groupRate": -1,
     "iconId": 10024,
     "lowerSkillId": null,
-    "upperSkillId": 200112
+    "upperSkillId": null
   },
   {
     "id": 200121,
@@ -3516,7 +3516,7 @@
     "groupId": 20012,
     "groupRate": 1,
     "iconId": 10021,
-    "lowerSkillId": 200123,
+    "lowerSkillId": null,
     "upperSkillId": 200121
   },
   {
@@ -3528,7 +3528,7 @@
     "groupRate": -1,
     "iconId": 10024,
     "lowerSkillId": null,
-    "upperSkillId": 200122
+    "upperSkillId": null
   },
   {
     "id": 200131,
@@ -3549,7 +3549,7 @@
     "groupId": 20013,
     "groupRate": 1,
     "iconId": 10021,
-    "lowerSkillId": 200133,
+    "lowerSkillId": null,
     "upperSkillId": 200131
   },
   {
@@ -3561,7 +3561,7 @@
     "groupRate": -1,
     "iconId": 10024,
     "lowerSkillId": null,
-    "upperSkillId": 200132
+    "upperSkillId": null
   },
   {
     "id": 200141,
@@ -3582,7 +3582,7 @@
     "groupId": 20014,
     "groupRate": 1,
     "iconId": 10021,
-    "lowerSkillId": 200143,
+    "lowerSkillId": null,
     "upperSkillId": 200141
   },
   {
@@ -3594,7 +3594,7 @@
     "groupRate": -1,
     "iconId": 10024,
     "lowerSkillId": null,
-    "upperSkillId": 200142
+    "upperSkillId": null
   },
   {
     "id": 200151,
@@ -3615,7 +3615,7 @@
     "groupId": 20015,
     "groupRate": 1,
     "iconId": 10031,
-    "lowerSkillId": 200153,
+    "lowerSkillId": null,
     "upperSkillId": 200151
   },
   {
@@ -3627,7 +3627,7 @@
     "groupRate": -1,
     "iconId": 10034,
     "lowerSkillId": null,
-    "upperSkillId": 200152
+    "upperSkillId": null
   },
   {
     "id": 200154,
@@ -3659,7 +3659,7 @@
     "groupId": 20016,
     "groupRate": 1,
     "iconId": 10031,
-    "lowerSkillId": 200163,
+    "lowerSkillId": null,
     "upperSkillId": 200161
   },
   {
@@ -3671,7 +3671,7 @@
     "groupRate": -1,
     "iconId": 10034,
     "lowerSkillId": null,
-    "upperSkillId": 200162
+    "upperSkillId": null
   },
   {
     "id": 200164,
@@ -3703,7 +3703,7 @@
     "groupId": 20017,
     "groupRate": 1,
     "iconId": 10011,
-    "lowerSkillId": 200173,
+    "lowerSkillId": null,
     "upperSkillId": 200171
   },
   {
@@ -3715,7 +3715,7 @@
     "groupRate": -1,
     "iconId": 10014,
     "lowerSkillId": null,
-    "upperSkillId": 200172
+    "upperSkillId": null
   },
   {
     "id": 200174,
@@ -3747,7 +3747,7 @@
     "groupId": 20018,
     "groupRate": 1,
     "iconId": 10011,
-    "lowerSkillId": 200183,
+    "lowerSkillId": null,
     "upperSkillId": 200181
   },
   {
@@ -3759,7 +3759,7 @@
     "groupRate": -1,
     "iconId": 10014,
     "lowerSkillId": null,
-    "upperSkillId": 200182
+    "upperSkillId": null
   },
   {
     "id": 200184,
@@ -3791,7 +3791,7 @@
     "groupId": 20019,
     "groupRate": 1,
     "iconId": 10011,
-    "lowerSkillId": 200193,
+    "lowerSkillId": null,
     "upperSkillId": 200191
   },
   {
@@ -3803,7 +3803,7 @@
     "groupRate": -1,
     "iconId": 10014,
     "lowerSkillId": null,
-    "upperSkillId": 200192
+    "upperSkillId": null
   },
   {
     "id": 200194,
@@ -3835,7 +3835,7 @@
     "groupId": 20020,
     "groupRate": 1,
     "iconId": 10011,
-    "lowerSkillId": 200203,
+    "lowerSkillId": null,
     "upperSkillId": 200201
   },
   {
@@ -3847,7 +3847,7 @@
     "groupRate": -1,
     "iconId": 10014,
     "lowerSkillId": null,
-    "upperSkillId": 200202
+    "upperSkillId": null
   },
   {
     "id": 200204,
@@ -3923,7 +3923,7 @@
     "groupId": 20023,
     "groupRate": 1,
     "iconId": 10041,
-    "lowerSkillId": 200233,
+    "lowerSkillId": null,
     "upperSkillId": 200231
   },
   {
@@ -3935,7 +3935,7 @@
     "groupRate": -1,
     "iconId": 10044,
     "lowerSkillId": null,
-    "upperSkillId": 200232
+    "upperSkillId": null
   },
   {
     "id": 200241,
@@ -3978,7 +3978,7 @@
     "groupId": 20025,
     "groupRate": 1,
     "iconId": 10051,
-    "lowerSkillId": 200253,
+    "lowerSkillId": null,
     "upperSkillId": 200251
   },
   {
@@ -3990,7 +3990,7 @@
     "groupRate": -1,
     "iconId": 10054,
     "lowerSkillId": null,
-    "upperSkillId": 200252
+    "upperSkillId": null
   },
   {
     "id": 200261,
@@ -4011,7 +4011,7 @@
     "groupId": 20026,
     "groupRate": 1,
     "iconId": 10011,
-    "lowerSkillId": 200263,
+    "lowerSkillId": null,
     "upperSkillId": 200261
   },
   {
@@ -4023,7 +4023,7 @@
     "groupRate": -1,
     "iconId": 10014,
     "lowerSkillId": null,
-    "upperSkillId": 200262
+    "upperSkillId": null
   },
   {
     "id": 200271,
@@ -4066,7 +4066,7 @@
     "groupId": 20028,
     "groupRate": 1,
     "iconId": 10031,
-    "lowerSkillId": 200283,
+    "lowerSkillId": null,
     "upperSkillId": 200281
   },
   {
@@ -4078,7 +4078,7 @@
     "groupRate": -1,
     "iconId": 10034,
     "lowerSkillId": null,
-    "upperSkillId": 200282
+    "upperSkillId": null
   },
   {
     "id": 200291,
@@ -4165,7 +4165,7 @@
     "groupId": 20033,
     "groupRate": 1,
     "iconId": 20011,
-    "lowerSkillId": 200333,
+    "lowerSkillId": null,
     "upperSkillId": 200331
   },
   {
@@ -4177,7 +4177,7 @@
     "groupRate": -1,
     "iconId": 20014,
     "lowerSkillId": null,
-    "upperSkillId": 200332
+    "upperSkillId": null
   },
   {
     "id": 200341,
@@ -4198,7 +4198,7 @@
     "groupId": 20034,
     "groupRate": 1,
     "iconId": 20041,
-    "lowerSkillId": 200343,
+    "lowerSkillId": null,
     "upperSkillId": 200341
   },
   {
@@ -4210,7 +4210,7 @@
     "groupRate": -1,
     "iconId": 20044,
     "lowerSkillId": null,
-    "upperSkillId": 200342
+    "upperSkillId": null
   },
   {
     "id": 200351,
@@ -4231,7 +4231,7 @@
     "groupId": 20035,
     "groupRate": 1,
     "iconId": 20021,
-    "lowerSkillId": 200353,
+    "lowerSkillId": null,
     "upperSkillId": 200351
   },
   {
@@ -4243,7 +4243,7 @@
     "groupRate": -1,
     "iconId": 20024,
     "lowerSkillId": null,
-    "upperSkillId": 200352
+    "upperSkillId": null
   },
   {
     "id": 200361,
@@ -4374,7 +4374,7 @@
     "groupId": 20043,
     "groupRate": 1,
     "iconId": 20061,
-    "lowerSkillId": 200433,
+    "lowerSkillId": null,
     "upperSkillId": 200431
   },
   {
@@ -4386,7 +4386,7 @@
     "groupRate": -1,
     "iconId": 20064,
     "lowerSkillId": null,
-    "upperSkillId": 200432
+    "upperSkillId": null
   },
   {
     "id": 200441,
@@ -5320,7 +5320,7 @@
     "groupId": 20095,
     "groupRate": 1,
     "iconId": 10021,
-    "lowerSkillId": 200953,
+    "lowerSkillId": null,
     "upperSkillId": 200951
   },
   {
@@ -5332,7 +5332,7 @@
     "groupRate": -1,
     "iconId": 10024,
     "lowerSkillId": null,
-    "upperSkillId": 200952
+    "upperSkillId": null
   },
   {
     "id": 200961,
@@ -7553,7 +7553,7 @@
     "groupId": 20220,
     "groupRate": 1,
     "iconId": 10021,
-    "lowerSkillId": 202203,
+    "lowerSkillId": null,
     "upperSkillId": 202201
   },
   {
@@ -7565,7 +7565,7 @@
     "groupRate": -1,
     "iconId": 10024,
     "lowerSkillId": null,
-    "upperSkillId": 202202
+    "upperSkillId": null
   },
   {
     "id": 202211,
@@ -7586,7 +7586,7 @@
     "groupId": 20221,
     "groupRate": 1,
     "iconId": 10021,
-    "lowerSkillId": 202213,
+    "lowerSkillId": null,
     "upperSkillId": 202211
   },
   {
@@ -7598,7 +7598,7 @@
     "groupRate": -1,
     "iconId": 10024,
     "lowerSkillId": null,
-    "upperSkillId": 202212
+    "upperSkillId": null
   },
   {
     "id": 202221,
@@ -7619,7 +7619,7 @@
     "groupId": 20222,
     "groupRate": 1,
     "iconId": 10021,
-    "lowerSkillId": 202223,
+    "lowerSkillId": null,
     "upperSkillId": 202221
   },
   {
@@ -7631,7 +7631,7 @@
     "groupRate": -1,
     "iconId": 10024,
     "lowerSkillId": null,
-    "upperSkillId": 202222
+    "upperSkillId": null
   },
   {
     "id": 202231,
@@ -7652,7 +7652,7 @@
     "groupId": 20223,
     "groupRate": 1,
     "iconId": 10051,
-    "lowerSkillId": 202233,
+    "lowerSkillId": null,
     "upperSkillId": 202231
   },
   {
@@ -7664,7 +7664,7 @@
     "groupRate": -1,
     "iconId": 10054,
     "lowerSkillId": null,
-    "upperSkillId": 202232
+    "upperSkillId": null
   },
   {
     "id": 202241,
@@ -7685,7 +7685,7 @@
     "groupId": 20224,
     "groupRate": 1,
     "iconId": 10051,
-    "lowerSkillId": 202243,
+    "lowerSkillId": null,
     "upperSkillId": 202241
   },
   {
@@ -7697,7 +7697,7 @@
     "groupRate": -1,
     "iconId": 10054,
     "lowerSkillId": null,
-    "upperSkillId": 202242
+    "upperSkillId": null
   },
   {
     "id": 202251,
@@ -7718,7 +7718,7 @@
     "groupId": 20225,
     "groupRate": 1,
     "iconId": 10011,
-    "lowerSkillId": 202253,
+    "lowerSkillId": null,
     "upperSkillId": 202251
   },
   {
@@ -7730,7 +7730,7 @@
     "groupRate": -1,
     "iconId": 10014,
     "lowerSkillId": null,
-    "upperSkillId": 202252
+    "upperSkillId": null
   },
   {
     "id": 202254,
@@ -7850,7 +7850,7 @@
     "groupId": 20230,
     "groupRate": 1,
     "iconId": 20011,
-    "lowerSkillId": 202303,
+    "lowerSkillId": null,
     "upperSkillId": 202301
   },
   {
@@ -7862,7 +7862,7 @@
     "groupRate": -1,
     "iconId": 20014,
     "lowerSkillId": null,
-    "upperSkillId": 202302
+    "upperSkillId": null
   },
   {
     "id": 202311,
@@ -7960,7 +7960,7 @@
     "groupId": 20234,
     "groupRate": 1,
     "iconId": 10011,
-    "lowerSkillId": 202344,
+    "lowerSkillId": null,
     "upperSkillId": 202342
   },
   {
@@ -7972,7 +7972,7 @@
     "groupRate": -1,
     "iconId": 10014,
     "lowerSkillId": null,
-    "upperSkillId": 202343
+    "upperSkillId": null
   },
   {
     "id": 202351,
@@ -8785,7 +8785,7 @@
     "groupId": 20273,
     "groupRate": 1,
     "iconId": 10021,
-    "lowerSkillId": 202733,
+    "lowerSkillId": null,
     "upperSkillId": 202731
   },
   {
@@ -8797,7 +8797,7 @@
     "groupRate": -1,
     "iconId": 10024,
     "lowerSkillId": null,
-    "upperSkillId": 202732
+    "upperSkillId": null
   },
   {
     "id": 202734,
@@ -9335,7 +9335,7 @@
     "groupId": 20299,
     "groupRate": 1,
     "iconId": 10011,
-    "lowerSkillId": 202993,
+    "lowerSkillId": null,
     "upperSkillId": 202991
   },
   {
@@ -9347,7 +9347,7 @@
     "groupRate": -1,
     "iconId": 10014,
     "lowerSkillId": null,
-    "upperSkillId": 202992
+    "upperSkillId": null
   },
   {
     "id": 203001,
@@ -11777,7 +11777,7 @@
     "groupId": 20423,
     "groupRate": 1,
     "iconId": 10021,
-    "lowerSkillId": 204234,
+    "lowerSkillId": null,
     "upperSkillId": 204232
   },
   {
@@ -11789,7 +11789,7 @@
     "groupRate": -1,
     "iconId": 10024,
     "lowerSkillId": null,
-    "upperSkillId": 204233
+    "upperSkillId": null
   },
   {
     "id": 204242,
@@ -11810,7 +11810,7 @@
     "groupId": 20424,
     "groupRate": 1,
     "iconId": 10021,
-    "lowerSkillId": 204244,
+    "lowerSkillId": null,
     "upperSkillId": 204242
   },
   {
@@ -11822,7 +11822,7 @@
     "groupRate": -1,
     "iconId": 10024,
     "lowerSkillId": null,
-    "upperSkillId": 204243
+    "upperSkillId": null
   },
   {
     "id": 204251,

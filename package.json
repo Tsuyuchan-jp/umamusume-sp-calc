@@ -6,6 +6,7 @@
   "description": "ウマ娘 取得可能スキル全習得の理論必要SP算出ツール",
   "scripts": {
     "extract": "node scripts/extract_mdb.mjs",
+    "relink-skills": "node scripts/relink_skills.mjs",
     "test": "node scripts/test_sp.mjs",
     "verify": "node scripts/verify_data.mjs",
     "bind-priority": "node scripts/bind_priority.mjs",

@@ -69,7 +69,7 @@ python scripts/extract_mdb.py --mdb "D:\...\master.mdb"
 **skills.json** 1件:
 
 - `id`, `name`, `baseSp`, `rarity`, `groupId`, `groupRate`, `iconId`
-- `lowerSkillId` / `upperSkillId` — 同一 `groupId` 内を `group_rate` 昇順でリンク（白↔金、○↔◎↔金 など）
+- `lowerSkillId` / `upperSkillId` — 同一 `groupId` 内を `group_rate` 昇順でリンク（白↔金、○↔◎↔金 など）。**`group_rate < 0`（× 等）は購入チェーン外**
 
 **supports.json** 1件:
 

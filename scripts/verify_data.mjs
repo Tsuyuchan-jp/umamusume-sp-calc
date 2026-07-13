@@ -55,6 +55,17 @@ for (const s of skills) {
 }
 ok(`lower/upper 参照切れ: lower=${missingLower} upper=${missingUpper}`);
 
+let negativeLinked = 0;
+for (const s of skills) {
+  if (s.groupRate < 0 && (s.lowerSkillId != null || s.upperSkillId != null)) {
+    negativeLinked++;
+    if (negativeLinked <= 3) {
+      fail(`skills: group_rate<0 がリンク済み (${s.name})`);
+    }
+  }
+}
+ok(`group_rate<0 未リンク: ${negativeLinked} 件`);
+
 // events.json
 const supportNameMatches = new Set();
 for (const evt of events.events || []) {
