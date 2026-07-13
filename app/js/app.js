@@ -205,6 +205,8 @@ function initEventChoiceIds(events) {
 
 function renderEvents() {
   const autoContainer = document.getElementById("event-auto");
+  const autoCollapse = document.getElementById("event-auto-collapse");
+  const autoSummary = document.getElementById("event-auto-summary");
   const singleContainer = document.getElementById("event-single");
   const emptyHint = document.getElementById("event-empty-hint");
   autoContainer.innerHTML = "";
@@ -213,9 +215,18 @@ function renderEvents() {
   const events = (state.events.events || []).filter(isEventSupportInDeck);
   if (events.length === 0) {
     emptyHint.hidden = false;
+    autoCollapse.hidden = true;
     return;
   }
   emptyHint.hidden = true;
+
+  const autoEvents = events.filter((evt) => evt.selection === "auto");
+  if (autoEvents.length === 0) {
+    autoCollapse.hidden = true;
+  } else {
+    autoCollapse.hidden = false;
+    autoSummary.textContent = `${autoEvents.length}件（自動計上）`;
+  }
 
   for (const evt of events) {
     if (evt.selection === "auto") {

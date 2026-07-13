@@ -204,6 +204,54 @@ tr.excluded td {
   color: #333;
 }
 
+.collapse-section {
+  margin: 0.5rem 0 0.75rem;
+  border: 1px solid #e8e8e8;
+  border-radius: 4px;
+  background: #fafafa;
+}
+
+.collapse-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding: 0.45rem 0.65rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #333;
+  cursor: pointer;
+  list-style: none;
+  user-select: none;
+}
+
+.collapse-summary::-webkit-details-marker {
+  display: none;
+}
+
+.collapse-summary::before {
+  content: "▶";
+  flex-shrink: 0;
+  font-size: 0.65rem;
+  color: #888;
+  transition: transform 0.15s ease;
+}
+
+.collapse-section[open] > .collapse-summary::before {
+  transform: rotate(90deg);
+}
+
+.collapse-meta {
+  font-size: 0.8rem;
+  font-weight: normal;
+  color: #666;
+}
+
+.collapse-body {
+  padding: 0 0.65rem 0.5rem;
+  border-top: 1px solid #eee;
+}
+
 .event-section {
   margin-bottom: 0.5rem;
 }

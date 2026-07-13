@@ -91,8 +91,13 @@
       <section class="panel">
         <h2>イベント・シナリオスキル</h2>
         <p class="hint">サポカイベントはデッキ編成に応じて表示されます。</p>
-        <h3 class="subsection-title">サポカイベント（自動）</h3>
-        <div id="event-auto" class="event-section"></div>
+        <details id="event-auto-collapse" class="collapse-section">
+          <summary class="collapse-summary">
+            <span>サポカイベント（自動）</span>
+            <span id="event-auto-summary" class="collapse-meta"></span>
+          </summary>
+          <div id="event-auto" class="event-section collapse-body"></div>
+        </details>
         <h3 class="subsection-title">サポカイベント（選択）</h3>
         <div id="event-single" class="event-section"></div>
         <p id="event-empty-hint" class="hint" hidden>
