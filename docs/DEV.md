@@ -110,6 +110,11 @@ git commit -m "feat: 変更内容の要約"
 - **push は明示依頼時のみ**
 - 秘密情報（`.env` 等）はコミットしない
 
+## エージェント / チャット運用
+
+次にやることが決まっているとき、エージェントは **実装着手前に推奨言語モデル（4択）を提示する**（Quota 節約優先）。  
+詳細: [MODEL_SELECTION.md](./MODEL_SELECTION.md) / `.cursor/rules/model-recommendation.mdc`
+
 ## よくある失敗
 
 | 症状 | 原因 | 対処 |

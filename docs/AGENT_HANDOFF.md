@@ -45,6 +45,7 @@
 
 ```
 docs/AGENT_HANDOFF.md   ← 今ここ
+docs/MODEL_SELECTION.md 推奨言語モデル（4択・Quota節約）
 docs/REQUIREMENTS.md    確定要件
 docs/spec.md            計算仕様（詳細）
 docs/DATA.md            mdb / JSON / 優先サポカ
@@ -74,6 +75,7 @@ scripts/extract_mdb.py  master.mdb → JSON
 
 1. このファイルと `REQUIREMENTS.md` / `spec.md` を読む。
 2. `data/meta.json` と `skills.json` の有無を確認してから作業する。
-3. 変更したら必ずコミット（メッセージ例: `feat/fix/chore: …` / ドキュメントなら `docs: …`）。
-4. 計算式・ヒントLv・継承スコープ・トレセン軒固定は勝手に変えない。変えるなら要件ドキュメントも更新する。
-5. 再 extract は Python より **Node の `scripts/extract_mdb.mjs`** が実績あり（DMM パス候補内蔵）。
+3. **次タスクが具体化されているとき、実装着手前に推奨言語モデルを必ず提示する**（[MODEL_SELECTION.md](./MODEL_SELECTION.md) / `.cursor/rules/model-recommendation.mdc`）。
+4. 変更したら必ずコミット（メッセージ例: `feat/fix/chore: …` / ドキュメントなら `docs: …`）。
+5. 計算式・ヒントLv・継承スコープ・トレセン軒固定は勝手に変えない。変えるなら要件ドキュメントも更新する。
+6. 再 extract は Python より **Node の `scripts/extract_mdb.mjs`** が実績あり（DMM パス候補内蔵）。
