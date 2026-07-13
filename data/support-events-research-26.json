@@ -8,7 +8,7 @@
       "uTools": "https://xn--gck1f423k.xn--1bvt37a.tools/supports/30301"
     },
     "id": "evt_gran_seicho",
-    "label": "成長のヒント",
+    "label": "グラン 成長のヒント",
     "selection": "auto",
     "skills": [
       {
@@ -27,7 +27,7 @@
       "uTools": "https://xn--gck1f423k.xn--1bvt37a.tools/supports/30301"
     },
     "id": "evt_gran_muse_final",
-    "label": "最強のミューズへ",
+    "label": "グラン 最強のミューズへ",
     "selection": "auto",
     "skills": [
       {
@@ -51,18 +51,13 @@
       "uTools": "https://xn--gck1f423k.xn--1bvt37a.tools/supports/30301"
     },
     "id": "evt_gran_mile_way",
-    "label": "ゴー・マイル・ウェイ",
+    "label": "グラン ゴー・マイル・ウェイ",
     "selection": "single",
     "defaultChoiceId": "mile_line",
     "choices": [
       {
-        "id": "other",
-        "label": "① 力強いマイルへの情熱を感じるな",
-        "skills": []
-      },
-      {
         "id": "mile_line",
-        "label": "② マイル一直線、って感じだな！ — マイル直線○ Lv1",
+        "label": "① マイル直線○ Lv1",
         "skills": [
           {
             "skillName": "マイル直線○",
@@ -82,7 +77,7 @@
       "uTools": "https://xn--gck1f423k.xn--1bvt37a.tools/supports/30301"
     },
     "id": "evt_gran_milestone",
-    "label": "勝利へのマイルストーン",
+    "label": "グラン 勝利へのマイルストーン",
     "selection": "auto",
     "skills": [
       {
@@ -102,7 +97,7 @@
       "uTools": "https://xn--gck1f423k.xn--1bvt37a.tools/supports/30300"
     },
     "id": "evt_chiyo_dosukoi",
-    "label": "どすこいカード列伝！",
+    "label": "チヨノ どすこいカード列伝！",
     "selection": "auto",
     "skills": [
       {
@@ -126,18 +121,13 @@
       "uTools": "https://xn--gck1f423k.xn--1bvt37a.tools/supports/30300"
     },
     "id": "evt_chiyo_spring",
-    "label": "いつか咲く、その日まで……",
+    "label": "チヨノ いつか咲く、その日まで……",
     "selection": "single",
     "defaultChoiceId": "spring",
     "choices": [
       {
-        "id": "self",
-        "label": "① 自分らしさも大事かと",
-        "skills": []
-      },
-      {
         "id": "spring",
-        "label": "② きっとなれる！ — 春ウマ娘○ Lv1",
+        "label": "① 春ウマ娘○ Lv1",
         "skills": [
           {
             "skillName": "春ウマ娘○",
@@ -157,18 +147,13 @@
       "uTools": "https://xn--gck1f423k.xn--1bvt37a.tools/supports/30296"
     },
     "id": "evt_aman_tuber",
-    "label": "ターちゃんマーちゃん、行くのです！",
+    "label": "マーチャン ターちゃんマーちゃん、行くのです！",
     "selection": "single",
     "defaultChoiceId": "rival",
     "choices": [
       {
-        "id": "walk",
-        "label": "① お散歩動画",
-        "skills": []
-      },
-      {
         "id": "rival",
-        "label": "② ライバルコンビへ突撃動画 — 危険回避 Lv1",
+        "label": "① 危険回避 Lv1",
         "skills": [
           {
             "skillName": "危険回避",
@@ -179,7 +164,7 @@
       },
       {
         "id": "edit",
-        "label": "③ いっそ編集風景を動画に！ — スプリントギア Lv1",
+        "label": "② スプリントギア Lv1",
         "skills": [
           {
             "skillName": "スプリントギア",
@@ -199,13 +184,13 @@
       "uTools": "https://xn--gck1f423k.xn--1bvt37a.tools/supports/30296"
     },
     "id": "evt_aman_kaori",
-    "label": "この香りが残りますように",
+    "label": "マーチャン この香りが残りますように",
     "selection": "single",
     "defaultChoiceId": "gold",
     "choices": [
       {
         "id": "doll",
-        "label": "① あの人形って…… — 匠のステアリング Lv2 + 圧倒 Lv1",
+        "label": "① 匠のステアリング Lv2 + 圧倒 Lv1",
         "skills": [
           {
             "skillName": "匠のステアリング",
@@ -221,7 +206,7 @@
       },
       {
         "id": "gold",
-        "label": "② あ、アストンマーチャン？ — 押せ押せムード Lv5 + 海の加護 Lv5 + いつまでも健やかに Lv5",
+        "label": "② 押せ押せムード Lv5 + 海の加護 Lv5 + いつまでも健やかに Lv5",
         "skills": [
           {
             "skillName": "押せ押せムード",
@@ -251,18 +236,13 @@
       "uTools": "https://xn--gck1f423k.xn--1bvt37a.tools/supports/30296"
     },
     "id": "evt_aman_mimamori",
-    "label": "いつもそばから見つめてる",
+    "label": "マーチャン いつもそばから見つめてる",
     "selection": "single",
     "defaultChoiceId": "capture",
     "choices": [
       {
-        "id": "cute",
-        "label": "① かわいくって、癒される",
-        "skills": []
-      },
-      {
         "id": "capture",
-        "label": "② 見張られているようで、きびきび走れそう — 捕捉 Lv1",
+        "label": "① 捕捉 Lv1",
         "skills": [
           {
             "skillName": "捕捉",
@@ -282,18 +262,13 @@
       "uTools": "https://xn--gck1f423k.xn--1bvt37a.tools/supports/30296"
     },
     "id": "evt_aman_photo",
-    "label": "いつも写真から見つめてる",
+    "label": "マーチャン いつも写真から見つめてる",
     "selection": "single",
     "defaultChoiceId": "kehai",
     "choices": [
       {
-        "id": "other",
-        "label": "① （ステータスのみ）",
-        "skills": []
-      },
-      {
         "id": "kehai",
-        "label": "② 華麗な辻写りの極意が知りたい — 軽い足取り Lv2",
+        "label": "① 軽い足取り Lv2",
         "skills": [
           {
             "skillName": "軽い足取り",
@@ -313,18 +288,13 @@
       "uTools": "https://xn--gck1f423k.xn--1bvt37a.tools/supports/30293"
     },
     "id": "evt_tact_tsutae",
-    "label": "伝え、繋いで",
+    "label": "タクト 伝え、繋いで",
     "selection": "single",
     "defaultChoiceId": "ashikari",
     "choices": [
       {
-        "id": "other",
-        "label": "① たくましいんだね！",
-        "skills": []
-      },
-      {
         "id": "taguru",
-        "label": "② まだまだ伸びしろがありそうだ……！ — 滾る想い Lv1",
+        "label": "① 滾る想い Lv1",
         "skills": [
           {
             "skillName": "滾る想い",
@@ -335,7 +305,7 @@
       },
       {
         "id": "ashikari",
-        "label": "③ ふたりを尊敬してるんだね — 足がかり Lv1",
+        "label": "② 足がかり Lv1",
         "skills": [
           {
             "skillName": "足がかり",
@@ -355,7 +325,7 @@
       "uTools": "https://xn--gck1f423k.xn--1bvt37a.tools/supports/30293"
     },
     "id": "evt_tact_cinderella",
-    "label": "シンデレラの行く末",
+    "label": "タクト シンデレラの行く末",
     "selection": "auto",
     "skills": [
       {
@@ -379,18 +349,13 @@
       "uTools": "https://xn--gck1f423k.xn--1bvt37a.tools/supports/30293"
     },
     "id": "evt_tact_survival",
-    "label": "私を育てた場所",
+    "label": "タクト 私を育てた場所",
     "selection": "single",
     "defaultChoiceId": "ichi",
     "choices": [
       {
-        "id": "sensei",
-        "label": "① はい先生！",
-        "skills": []
-      },
-      {
         "id": "ichi",
-        "label": "② 匠のサバイバルスキルだ…… — 一歩ずつ前へ Lv1",
+        "label": "① 一歩ずつ前へ Lv1",
         "skills": [
           {
             "skillName": "一歩ずつ前へ",
@@ -410,18 +375,13 @@
       "uTools": "https://xn--gck1f423k.xn--1bvt37a.tools/supports/30292"
     },
     "id": "evt_mars_kanshin",
-    "label": "募る不安",
+    "label": "マルシュ 募る不安",
     "selection": "single",
     "defaultChoiceId": "kokoro",
     "choices": [
       {
-        "id": "other",
-        "label": "① （ステータスのみ）",
-        "skills": []
-      },
-      {
         "id": "kokoro",
-        "label": "② バズった絵はどんな気持ちで描いたの？ — 心惹かれて Lv1",
+        "label": "① 心惹かれて Lv1",
         "skills": [
           {
             "skillName": "心惹かれて",
@@ -441,7 +401,7 @@
       "uTools": "https://xn--gck1f423k.xn--1bvt37a.tools/supports/30292"
     },
     "id": "evt_mars_ai",
-    "label": "重なる愛",
+    "label": "マルシュ 重なる愛",
     "selection": "auto",
     "skills": [
       {
@@ -465,18 +425,13 @@
       "uTools": "https://xn--gck1f423k.xn--1bvt37a.tools/supports/30292"
     },
     "id": "evt_mars_koe",
-    "label": "溢れている愛",
+    "label": "マルシュ 溢れている愛",
     "selection": "single",
     "defaultChoiceId": "kyo",
     "choices": [
       {
-        "id": "other",
-        "label": "① （ステータスのみ）",
-        "skills": []
-      },
-      {
         "id": "kyo",
-        "label": "② マルシュロレーヌの絵を描いてみるとか？ — 轟く足音 Lv1",
+        "label": "① 轟く足音 Lv1",
         "skills": [
           {
             "skillName": "轟く足音",
@@ -496,18 +451,13 @@
       "uTools": "https://xn--gck1f423k.xn--1bvt37a.tools/supports/30287"
     },
     "id": "evt_neo_signal",
-    "label": "Forシグナル100%",
+    "label": "ネオ Forシグナル100%",
     "selection": "single",
     "defaultChoiceId": "ichi",
     "choices": [
       {
-        "id": "other",
-        "label": "① （ステータスのみ）",
-        "skills": []
-      },
-      {
         "id": "ichi",
-        "label": "② ……もしかして困ってる？ — 一歩ずつ前へ Lv1",
+        "label": "① 一歩ずつ前へ Lv1",
         "skills": [
           {
             "skillName": "一歩ずつ前へ",
@@ -527,7 +477,7 @@
       "uTools": "https://xn--gck1f423k.xn--1bvt37a.tools/supports/30287"
     },
     "id": "evt_neo_crewmate",
-    "label": "You Areクルーメイト",
+    "label": "ネオ You Areクルーメイト",
     "selection": "auto",
     "skills": [
       {
@@ -551,18 +501,13 @@
       "uTools": "https://xn--gck1f423k.xn--1bvt37a.tools/supports/30287"
     },
     "id": "evt_neo_encounter",
-    "label": "観測者との遭遇",
+    "label": "ネオ 観測者との遭遇",
     "selection": "single",
     "defaultChoiceId": "shutsu",
     "choices": [
       {
-        "id": "other",
-        "label": "① （ステータスのみ）",
-        "skills": []
-      },
-      {
         "id": "shutsu",
-        "label": "② 外宇宙進出には夢があるよな！ — 進出開始 Lv1",
+        "label": "① 進出開始 Lv1",
         "skills": [
           {
             "skillName": "進出開始",
@@ -582,7 +527,7 @@
       "uTools": "https://xn--gck1f423k.xn--1bvt37a.tools/supports/30286"
     },
     "id": "evt_fuku_kitto",
-    "label": "吉日・良縁ハグハグ！",
+    "label": "フクキタル 吉日・良縁ハグハグ！",
     "selection": "auto",
     "skills": [
       {
@@ -601,18 +546,13 @@
       "uTools": "https://xn--gck1f423k.xn--1bvt37a.tools/supports/30285"
     },
     "id": "evt_king_ikikoi",
-    "label": "学ぶは、一流の息抜き！",
+    "label": "キング 学ぶは、一流の息抜き！",
     "selection": "single",
     "defaultChoiceId": "oshi",
     "choices": [
       {
-        "id": "other",
-        "label": "① いま感じてる充実感と同じ？",
-        "skills": []
-      },
-      {
         "id": "oshi",
-        "label": "② 自分のことも助けなきゃ — 押し通る！ Lv1",
+        "label": "① 押し通る！ Lv1",
         "skills": [
           {
             "skillName": "押し通る！",
@@ -632,7 +572,7 @@
       "uTools": "https://xn--gck1f423k.xn--1bvt37a.tools/supports/30285"
     },
     "id": "evt_king_ren",
-    "label": "学びを繋げて",
+    "label": "キング 学びを繋げて",
     "selection": "auto",
     "skills": [
       {
@@ -656,18 +596,13 @@
       "uTools": "https://xn--gck1f423k.xn--1bvt37a.tools/supports/30285"
     },
     "id": "evt_king_advice",
-    "label": "助言する権利をあげる！",
+    "label": "キング 助言する権利をあげる！",
     "selection": "single",
     "defaultChoiceId": "matsubi",
     "choices": [
       {
-        "id": "other",
-        "label": "① 昨今の根性論について討論する",
-        "skills": []
-      },
-      {
         "id": "matsubi",
-        "label": "② 仕掛けるタイミングについて話す — 末脚 Lv1",
+        "label": "① 末脚 Lv1",
         "skills": [
           {
             "skillName": "末脚",
@@ -687,13 +622,13 @@
       "uTools": "https://xn--gck1f423k.xn--1bvt37a.tools/supports/30281"
     },
     "id": "evt_inari_iki",
-    "label": "粋の魅せ方、魂で語れ",
+    "label": "イナリ 粋の魅せ方、魂で語れ",
     "selection": "single",
     "defaultChoiceId": "dai",
     "choices": [
       {
         "id": "dai",
-        "label": "① 似たもの……みんなギャルっぽいとか？ — 大急ぎ Lv1",
+        "label": "① 大急ぎ Lv1",
         "skills": [
           {
             "skillName": "大急ぎ",
@@ -701,11 +636,6 @@
             "skillId": null
           }
         ]
-      },
-      {
-        "id": "other",
-        "label": "② 確かに！みんな“粋“な感じだね！",
-        "skills": []
       }
     ]
   },
@@ -718,7 +648,7 @@
       "uTools": "https://xn--gck1f423k.xn--1bvt37a.tools/supports/30281"
     },
     "id": "evt_inari_namida",
-    "label": "熱き涙の理由",
+    "label": "イナリ 熱き涙の理由",
     "selection": "auto",
     "skills": [
       {
@@ -742,18 +672,13 @@
       "uTools": "https://xn--gck1f423k.xn--1bvt37a.tools/supports/30281"
     },
     "id": "evt_inari_kyoto",
-    "label": "神輿だワッショイ",
+    "label": "イナリ 神輿だワッショイ",
     "selection": "single",
     "defaultChoiceId": "kyoto",
     "choices": [
       {
-        "id": "other",
-        "label": "① 突き進む躍動感？",
-        "skills": []
-      },
-      {
         "id": "kyoto",
-        "label": "② 観客がいないからでは？ — 京都レース場○ Lv1",
+        "label": "① 京都レース場○ Lv1",
         "skills": [
           {
             "skillName": "京都レース場○",
@@ -773,13 +698,13 @@
       "uTools": "https://xn--gck1f423k.xn--1bvt37a.tools/supports/30279"
     },
     "id": "evt_pheno_mame",
-    "label": "マメちん堕落計画！",
+    "label": "フェノーメノ マメちん堕落計画！",
     "selection": "single",
     "defaultChoiceId": "jichido",
     "choices": [
       {
         "id": "jichido",
-        "label": "① ゴールドシップのようにもっと自由に — 地道に重ねて Lv1",
+        "label": "① 地道に重ねて Lv1",
         "skills": [
           {
             "skillName": "地道に重ねて",
@@ -787,11 +712,6 @@
             "skillId": null
           }
         ]
-      },
-      {
-        "id": "other",
-        "label": "② ナカヤマフェスタのように肩の力を抜いて",
-        "skills": []
       }
     ]
   },
@@ -804,7 +724,7 @@
       "uTools": "https://xn--gck1f423k.xn--1bvt37a.tools/supports/30279"
     },
     "id": "evt_pheno_kisei",
-    "label": "いかなる時も矜持は揺るがず",
+    "label": "フェノーメノ いかなる時も矜持は揺るがず",
     "selection": "auto",
     "skills": [
       {
@@ -828,18 +748,13 @@
       "uTools": "https://xn--gck1f423k.xn--1bvt37a.tools/supports/30279"
     },
     "id": "evt_pheno_kowamote",
-    "label": "あぶないコワモテ刑事？",
+    "label": "フェノーメノ あぶないコワモテ刑事？",
     "selection": "single",
     "defaultChoiceId": "nerai",
     "choices": [
       {
-        "id": "other",
-        "label": "① 気持ちが伝わってよかったね",
-        "skills": []
-      },
-      {
         "id": "nerai",
-        "label": "② 名演だったね、おまわりさん！ — 狙いを定めて Lv1",
+        "label": "① 狙いを定めて Lv1",
         "skills": [
           {
             "skillName": "狙いを定めて",
@@ -859,13 +774,13 @@
       "uTools": "https://xn--gck1f423k.xn--1bvt37a.tools/supports/30278"
     },
     "id": "evt_gold_kyozo",
-    "label": "虚像をぶち壊せ",
+    "label": "ゴルシ 虚像をぶち壊せ",
     "selection": "single",
     "defaultChoiceId": "kiki",
     "choices": [
       {
         "id": "kiki",
-        "label": "① これなら問題なさそうだな — 好機を捉えて Lv1",
+        "label": "① 好機を捉えて Lv1",
         "skills": [
           {
             "skillName": "好機を捉えて",
@@ -873,11 +788,6 @@
             "skillId": null
           }
         ]
-      },
-      {
-        "id": "other",
-        "label": "② とにかくみんな無事で何よりだよ",
-        "skills": []
       }
     ]
   },
@@ -890,7 +800,7 @@
       "uTools": "https://xn--gck1f423k.xn--1bvt37a.tools/supports/30278"
     },
     "id": "evt_gold_ougon",
-    "label": "黄金二人旅",
+    "label": "ゴルシ 黄金二人旅",
     "selection": "auto",
     "skills": [
       {
@@ -914,18 +824,13 @@
       "uTools": "https://xn--gck1f423k.xn--1bvt37a.tools/supports/30278"
     },
     "id": "evt_gold_yakisoba",
-    "label": "甦れ！ゴルシ印のソース焼きそば！",
+    "label": "ゴルシ 甦れ！ゴルシ印のソース焼きそば！",
     "selection": "single",
     "defaultChoiceId": "hanshin",
     "choices": [
       {
-        "id": "other",
-        "label": "① ……味に磨きをかけたら？",
-        "skills": []
-      },
-      {
         "id": "hanshin",
-        "label": "② ……明石焼きを売ったら？ — 阪神レース場○ Lv1",
+        "label": "① 阪神レース場○ Lv1",
         "skills": [
           {
             "skillName": "阪神レース場○",
@@ -945,13 +850,13 @@
       "uTools": "https://xn--gck1f423k.xn--1bvt37a.tools/supports/30277"
     },
     "id": "evt_bourbon_hatsu",
-    "label": "発火:熱を帯びて",
+    "label": "ブルボン 発火:熱を帯びて",
     "selection": "single",
     "defaultChoiceId": "position",
     "choices": [
       {
         "id": "position",
-        "label": "① (またすごい気迫だ……！) — ポジションセンス Lv1",
+        "label": "① ポジションセンス Lv1",
         "skills": [
           {
             "skillName": "ポジションセンス",
@@ -959,11 +864,6 @@
             "skillId": null
           }
         ]
-      },
-      {
-        "id": "other",
-        "label": "② (追い込んでるけど……大丈夫かな)",
-        "skills": []
       }
     ]
   },
@@ -976,7 +876,7 @@
       "uTools": "https://xn--gck1f423k.xn--1bvt37a.tools/supports/30277"
     },
     "id": "evt_bourbon_hibana",
-    "label": "火花:夢焦がれ",
+    "label": "ブルボン 火花:夢焦がれ",
     "selection": "auto",
     "skills": [
       {
@@ -1000,13 +900,13 @@
       "uTools": "https://xn--gck1f423k.xn--1bvt37a.tools/supports/30277"
     },
     "id": "evt_bourbon_order",
-    "label": "命令は守らなければならない",
+    "label": "ブルボン 命令は守らなければならない",
     "selection": "single",
     "defaultChoiceId": "focus",
     "choices": [
       {
         "id": "focus",
-        "label": "① 開店直前から待機しておこう — 集中力 Lv1",
+        "label": "① 集中力 Lv1",
         "skills": [
           {
             "skillName": "集中力",
@@ -1014,11 +914,6 @@
             "skillId": null
           }
         ]
-      },
-      {
-        "id": "other",
-        "label": "② 昼休みになったらダッシュ！",
-        "skills": []
       }
     ]
   },
@@ -1031,7 +926,7 @@
       "uTools": "https://xn--gck1f423k.xn--1bvt37a.tools/supports/30274"
     },
     "id": "evt_karen_masou",
-    "label": "奏で合う幸福",
+    "label": "カレン 奏で合う幸福",
     "selection": "auto",
     "skills": [
       {
@@ -1055,18 +950,13 @@
       "uTools": "https://xn--gck1f423k.xn--1bvt37a.tools/supports/30274"
     },
     "id": "evt_karen_chowa",
-    "label": "争いの種は咲かせない",
+    "label": "カレン 争いの種は咲かせない",
     "selection": "single",
     "defaultChoiceId": "takami",
     "choices": [
       {
-        "id": "other",
-        "label": "① 君を見ていると、なんとなくわかる",
-        "skills": []
-      },
-      {
         "id": "takami",
-        "label": "② その『調和』が、優しさに繋がってるのかも — さらなる高みへ Lv1",
+        "label": "① さらなる高みへ Lv1",
         "skills": [
           {
             "skillName": "さらなる高みへ",
@@ -1086,7 +976,7 @@
       "uTools": "https://xn--gck1f423k.xn--1bvt37a.tools/supports/30271"
     },
     "id": "evt_fuji_maho",
-    "label": "魔法使いの秘密",
+    "label": "フジ 魔法使いの秘密",
     "selection": "auto",
     "skills": [
       {
@@ -1105,18 +995,13 @@
       "uTools": "https://xn--gck1f423k.xn--1bvt37a.tools/supports/30271"
     },
     "id": "evt_fuji_sleight",
-    "label": "スライハンド",
+    "label": "フジ スライハンド",
     "selection": "single",
     "defaultChoiceId": "ryuko",
     "choices": [
       {
-        "id": "other",
-        "label": "① さっきこっそり入れ――",
-        "skills": []
-      },
-      {
         "id": "ryuko",
-        "label": "② すごいマジックパワーだ……！ — 流星光底 Lv1",
+        "label": "① 流星光底 Lv1",
         "skills": [
           {
             "skillName": "流星光底",
@@ -1136,13 +1021,13 @@
       "uTools": "https://xn--gck1f423k.xn--1bvt37a.tools/supports/30271"
     },
     "id": "evt_fuji_miss",
-    "label": "ミスディレクション",
+    "label": "フジ ミスディレクション",
     "selection": "single",
     "defaultChoiceId": "nukedashi",
     "choices": [
       {
         "id": "nukedashi",
-        "label": "① 最終コーナーのコツ — 抜け出し準備 Lv1",
+        "label": "① 抜け出し準備 Lv1",
         "skills": [
           {
             "skillName": "抜け出し準備",
@@ -1150,11 +1035,6 @@
             "skillId": null
           }
         ]
-      },
-      {
-        "id": "other",
-        "label": "② 走りのテクニック",
-        "skills": []
       }
     ]
   },
@@ -1167,7 +1047,7 @@
       "uTools": "https://xn--gck1f423k.xn--1bvt37a.tools/supports/30270"
     },
     "id": "evt_ruby_akadama",
-    "label": "紅玉の誓約",
+    "label": "ルビー 紅玉の誓約",
     "selection": "auto",
     "skills": [
       {
@@ -1186,18 +1066,13 @@
       "uTools": "https://xn--gck1f423k.xn--1bvt37a.tools/supports/30270"
     },
     "id": "evt_ruby_ganka",
-    "label": "華麗なる旋律",
+    "label": "ルビー 華麗なる旋律",
     "selection": "single",
     "defaultChoiceId": "tsume",
     "choices": [
       {
-        "id": "other",
-        "label": "① 言葉を尽くしてスキルを褒める！",
-        "skills": []
-      },
-      {
         "id": "tsume",
-        "label": "② 素直な気持ちを勢いよく伝える！ — 詰め寄り Lv1",
+        "label": "① 詰め寄り Lv1",
         "skills": [
           {
             "skillName": "詰め寄り",
@@ -1217,7 +1092,7 @@
       "uTools": "https://xn--gck1f423k.xn--1bvt37a.tools/supports/30267"
     },
     "id": "evt_carlton_sokyu",
-    "label": "速い&真っ直ぐは世界を救う！",
+    "label": "ライトオ 速い&真っ直ぐは世界を救う！",
     "selection": "auto",
     "skills": [
       {
@@ -1241,13 +1116,13 @@
       "uTools": "https://xn--gck1f423k.xn--1bvt37a.tools/supports/30267"
     },
     "id": "evt_carlton_saisoku",
-    "label": "『最速』はすばらしい",
+    "label": "ライトオ 『最速』はすばらしい",
     "selection": "single",
     "defaultChoiceId": "chokusen_course",
     "choices": [
       {
         "id": "chokusen_course",
-        "label": "① 動画を止めないと……！ — 直線コース○ Lv1",
+        "label": "① 直線コース○ Lv1",
         "skills": [
           {
             "skillName": "直線コース○",
@@ -1255,11 +1130,6 @@
             "skillId": null
           }
         ]
-      },
-      {
-        "id": "other",
-        "label": "② お、落ち着いて……！！",
-        "skills": []
       }
     ]
   },
@@ -1272,13 +1142,13 @@
       "uTools": "https://xn--gck1f423k.xn--1bvt37a.tools/supports/30267"
     },
     "id": "evt_carlton_massugu",
-    "label": "『真っ直ぐ』はすばらしい",
+    "label": "ライトオ 『真っ直ぐ』はすばらしい",
     "selection": "single",
     "defaultChoiceId": "chokusen2",
     "choices": [
       {
         "id": "chokusen2",
-        "label": "① 真っ直ぐな形のソファを選ぼう！ — 直線巧者 Lv1",
+        "label": "① 直線巧者 Lv1",
         "skills": [
           {
             "skillName": "直線巧者",
@@ -1286,11 +1156,6 @@
             "skillId": null
           }
         ]
-      },
-      {
-        "id": "other",
-        "label": "② やっぱり巻き尺を買おう！",
-        "skills": []
       }
     ]
   },
@@ -1303,18 +1168,13 @@
       "uTools": "https://xn--gck1f423k.xn--1bvt37a.tools/supports/30265"
     },
     "id": "evt_groove_kyuukou",
-    "label": "孤高の休日",
+    "label": "アドマイヤ 孤高の休日",
     "selection": "single",
     "defaultChoiceId": "overflow",
     "choices": [
       {
-        "id": "other",
-        "label": "① 傘持ってないなら貸すよ",
-        "skills": []
-      },
-      {
         "id": "overflow",
-        "label": "② ……何があった？大丈夫？ — 溢れる情熱 Lv1",
+        "label": "① 溢れる情熱 Lv1",
         "skills": [
           {
             "skillName": "溢れる情熱",
@@ -1334,7 +1194,7 @@
       "uTools": "https://xn--gck1f423k.xn--1bvt37a.tools/supports/30265"
     },
     "id": "evt_groove_shomei",
-    "label": "孤高の証明",
+    "label": "アドマイヤ 孤高の証明",
     "selection": "auto",
     "skills": [
       {
@@ -1358,13 +1218,13 @@
       "uTools": "https://xn--gck1f423k.xn--1bvt37a.tools/supports/30265"
     },
     "id": "evt_groove_wan",
-    "label": "ひとりが好きなクラスメイトさん",
+    "label": "アドマイヤ ひとりが好きなクラスメイトさん",
     "selection": "single",
     "defaultChoiceId": "wan",
     "choices": [
       {
         "id": "wan",
-        "label": "① すごい力作だな — ワンチャンス Lv1",
+        "label": "① ワンチャンス Lv1",
         "skills": [
           {
             "skillName": "ワンチャンス",
@@ -1372,11 +1232,6 @@
             "skillId": null
           }
         ]
-      },
-      {
-        "id": "other",
-        "label": "② トレーナーの間でも話題だからな",
-        "skills": []
       }
     ]
   },
@@ -1389,13 +1244,13 @@
       "uTools": "https://xn--gck1f423k.xn--1bvt37a.tools/supports/30264"
     },
     "id": "evt_stay_over17",
-    "label": "Over 17 Lights",
+    "label": "ステイ Over 17 Lights",
     "selection": "single",
     "defaultChoiceId": "hirui",
     "choices": [
       {
         "id": "hirui",
-        "label": "① 大レースに勝利した？ — 比類なき Lv1",
+        "label": "① 比類なき Lv1",
         "skills": [
           {
             "skillName": "比類なき",
@@ -1403,11 +1258,6 @@
             "skillId": null
           }
         ]
-      },
-      {
-        "id": "other",
-        "label": "② 海の幸をいっぱい食べた？",
-        "skills": []
       }
     ]
   },
@@ -1420,13 +1270,13 @@
       "uTools": "https://xn--gck1f423k.xn--1bvt37a.tools/supports/30264"
     },
     "id": "evt_stay_shinryou",
-    "label": "新しい旅へ",
+    "label": "ステイ 新しい旅へ",
     "selection": "single",
     "defaultChoiceId": "unknown",
     "choices": [
       {
         "id": "unknown",
-        "label": "① まったく未知の旅を（大成功想定） — ネバーギブアップ Lv2 + 好奇心 Lv2",
+        "label": "① ネバーギブアップ Lv2 + 好奇心 Lv2",
         "skills": [
           {
             "skillName": "ネバーギブアップ",
@@ -1442,7 +1292,7 @@
       },
       {
         "id": "past",
-        "label": "② かつての旅をもう一度（大成功想定） — ネバーギブアップ Lv2 + 自由奔放 Lv2",
+        "label": "② ネバーギブアップ Lv2 + 自由奔放 Lv2",
         "skills": [
           {
             "skillName": "ネバーギブアップ",
@@ -1468,13 +1318,13 @@
       "uTools": "https://xn--gck1f423k.xn--1bvt37a.tools/supports/30264"
     },
     "id": "evt_stay_kin",
-    "label": "黄金を探し求めて",
+    "label": "ステイ 黄金を探し求めて",
     "selection": "single",
     "defaultChoiceId": "chokusen",
     "choices": [
       {
         "id": "chokusen",
-        "label": "① また次の旅、かな — 直線巧者 Lv1",
+        "label": "① 直線巧者 Lv1",
         "skills": [
           {
             "skillName": "直線巧者",
@@ -1482,11 +1332,6 @@
             "skillId": null
           }
         ]
-      },
-      {
-        "id": "other",
-        "label": "② （ステータスのみ）",
-        "skills": []
       }
     ]
   },
@@ -1499,13 +1344,13 @@
       "uTools": "https://xn--gck1f423k.xn--1bvt37a.tools/supports/30262"
     },
     "id": "evt_dura_kawaii_power",
-    "label": "可愛いの真の力！",
+    "label": "ドゥラ 可愛いの真の力！",
     "selection": "single",
     "defaultChoiceId": "pafe",
     "choices": [
       {
         "id": "pafe",
-        "label": "① ふたりとも、パフェのおかわりする？ — 飛翔脚 Lv1 + 残影 Lv1",
+        "label": "① 飛翔脚 Lv1 + 残影 Lv1",
         "skills": [
           {
             "skillName": "飛翔脚",
@@ -1518,11 +1363,6 @@
             "skillId": null
           }
         ]
-      },
-      {
-        "id": "other",
-        "label": "② それでいうと、笑顔は――",
-        "skills": []
       }
     ],
     "_note": "GameWith表記は飛影だが所持スキルは残影"
@@ -1536,18 +1376,13 @@
       "uTools": "https://xn--gck1f423k.xn--1bvt37a.tools/supports/30262"
     },
     "id": "evt_dura_ou",
-    "label": "追うべき背中",
+    "label": "ドゥラ 追うべき背中",
     "selection": "single",
     "defaultChoiceId": "ignition",
     "choices": [
       {
-        "id": "other",
-        "label": "① ……体が心配になるよ",
-        "skills": []
-      },
-      {
         "id": "ignition",
-        "label": "② じゃあ、走りで調子が戻ればいいな — イグニッション Lv1",
+        "label": "① イグニッション Lv1",
         "skills": [
           {
             "skillName": "イグニッション",
@@ -1567,13 +1402,13 @@
       "uTools": "https://xn--gck1f423k.xn--1bvt37a.tools/supports/30261"
     },
     "id": "evt_win_near",
-    "label": "潜在的ソウルメイト",
+    "label": "バリア 潜在的ソウルメイト",
     "selection": "single",
     "defaultChoiceId": "hirui",
     "choices": [
       {
         "id": "hirui",
-        "label": "① 寄り道してきた？ — 比類なき Lv1",
+        "label": "① 比類なき Lv1",
         "skills": [
           {
             "skillName": "比類なき",
@@ -1581,11 +1416,6 @@
             "skillId": null
           }
         ]
-      },
-      {
-        "id": "other",
-        "label": "② はちみーは、水分補給に向かないよ……",
-        "skills": []
       }
     ]
   },
@@ -1598,7 +1428,7 @@
       "uTools": "https://xn--gck1f423k.xn--1bvt37a.tools/supports/30261"
     },
     "id": "evt_win_cheer",
-    "label": "大衆的チアフレンド",
+    "label": "バリア 大衆的チアフレンド",
     "selection": "auto",
     "skills": [
       {
@@ -1622,18 +1452,13 @@
       "uTools": "https://xn--gck1f423k.xn--1bvt37a.tools/supports/30261"
     },
     "id": "evt_win_gran",
-    "label": "グラン・ジュテ～いつの日か～",
+    "label": "バリア グラン・ジュテ～いつの日か～",
     "selection": "single",
     "defaultChoiceId": "chokyori",
     "choices": [
       {
-        "id": "other",
-        "label": "① もう終わり……？",
-        "skills": []
-      },
-      {
         "id": "chokyori",
-        "label": "② マ、マイペースだな。オルフェーヴルは — 長距離コーナー○ Lv1",
+        "label": "① 長距離コーナー○ Lv1",
         "skills": [
           {
             "skillName": "長距離コーナー○",
@@ -1653,7 +1478,7 @@
       "uTools": "https://xn--gck1f423k.xn--1bvt37a.tools/supports/30258"
     },
     "id": "evt_ryan_muscle",
-    "label": "マッスル、ただひたすらに",
+    "label": "ライアン マッスル、ただひたすらに",
     "selection": "auto",
     "skills": [
       {
@@ -1672,13 +1497,13 @@
       "uTools": "https://xn--gck1f423k.xn--1bvt37a.tools/supports/30258"
     },
     "id": "evt_ryan_pace",
-    "label": "あくまで薦められただけ",
+    "label": "ライアン あくまで薦められただけ",
     "selection": "single",
     "defaultChoiceId": "pace",
     "choices": [
       {
         "id": "pace",
-        "label": "① ペースを考えたほうがいいよ — ペースキープ Lv1",
+        "label": "① ペースキープ Lv1",
         "skills": [
           {
             "skillName": "ペースキープ",
@@ -1686,11 +1511,6 @@
             "skillId": null
           }
         ]
-      },
-      {
-        "id": "other",
-        "label": "② 一気読みは体力使うよ？",
-        "skills": []
       }
     ]
   },
@@ -1703,13 +1523,13 @@
       "uTools": "https://xn--gck1f423k.xn--1bvt37a.tools/supports/30256"
     },
     "id": "evt_tamamo_dareka",
-    "label": "誰かの道を照らすなら",
+    "label": "タマモ 誰かの道を照らすなら",
     "selection": "single",
     "defaultChoiceId": "slip",
     "choices": [
       {
         "id": "slip",
-        "label": "① それ、あの子には伝えたのか？ — スリップストリーム Lv1",
+        "label": "① スリップストリーム Lv1",
         "skills": [
           {
             "skillName": "スリップストリーム",
@@ -1720,7 +1540,7 @@
       },
       {
         "id": "joshu",
-        "label": "② 面倒見がいい先輩だね — 序盤巧者 Lv1",
+        "label": "② 序盤巧者 Lv1",
         "skills": [
           {
             "skillName": "序盤巧者",
@@ -1740,13 +1560,13 @@
       "uTools": "https://xn--gck1f423k.xn--1bvt37a.tools/supports/30256"
     },
     "id": "evt_tamamo_tooku",
-    "label": "遠くで光るその走り",
+    "label": "タマモ 遠くで光るその走り",
     "selection": "single",
     "defaultChoiceId": "mirai",
     "choices": [
       {
         "id": "mirai",
-        "label": "① 将来が楽しみだ！ — 神速 Lv2 + 真骨頂 Lv1",
+        "label": "① 神速 Lv2 + 真骨頂 Lv1",
         "skills": [
           {
             "skillName": "神速",
@@ -1762,7 +1582,7 @@
       },
       {
         "id": "omo",
-        "label": "② 君の想いは、継がれたみたいだな — 神速 Lv2 + 悠久走破 Lv1",
+        "label": "② 神速 Lv2 + 悠久走破 Lv1",
         "skills": [
           {
             "skillName": "神速",
@@ -1787,13 +1607,13 @@
       "uTools": "https://xn--gck1f423k.xn--1bvt37a.tools/supports/30256"
     },
     "id": "evt_tamamo_lose",
-    "label": "負けられん戦い！",
+    "label": "タマモ 負けられん戦い！",
     "selection": "single",
     "defaultChoiceId": "uma",
     "choices": [
       {
         "id": "uma",
-        "label": "① 人の流れを掴め！ — ウマ込み冷静 Lv1",
+        "label": "① ウマ込み冷静 Lv1",
         "skills": [
           {
             "skillName": "ウマ込み冷静",
@@ -1801,11 +1621,6 @@
             "skillId": null
           }
         ]
-      },
-      {
-        "id": "other",
-        "label": "② ライバルをよく観察しよう",
-        "skills": []
       }
     ]
   },
@@ -1818,7 +1633,7 @@
       "uTools": "https://xn--gck1f423k.xn--1bvt37a.tools/supports/30253"
     },
     "id": "evt_line_letter",
-    "label": "拝啓、お父さん",
+    "label": "ライン 拝啓、お父さん",
     "selection": "auto",
     "skills": [
       {
@@ -1842,13 +1657,13 @@
       "uTools": "https://xn--gck1f423k.xn--1bvt37a.tools/supports/30253"
     },
     "id": "evt_line_wakuwaku",
-    "label": "ワクワクでキラキラな夢",
+    "label": "ライン ワクワクでキラキラな夢",
     "selection": "single",
     "defaultChoiceId": "mile_corner",
     "choices": [
       {
         "id": "mile_corner",
-        "label": "① もっと先輩の研究をするとかかな — マイルコーナー○ Lv1",
+        "label": "① マイルコーナー○ Lv1",
         "skills": [
           {
             "skillName": "マイルコーナー○",
@@ -1856,11 +1671,6 @@
             "skillId": null
           }
         ]
-      },
-      {
-        "id": "other",
-        "label": "② 早くトレーニングコースへ行こう！",
-        "skills": []
       }
     ]
   },
@@ -1873,7 +1683,7 @@
       "uTools": "https://xn--gck1f423k.xn--1bvt37a.tools/supports/30248"
     },
     "id": "evt_muku_earth",
-    "label": "母なる大地の教え",
+    "label": "タクト 母なる大地の教え",
     "selection": "auto",
     "skills": [
       {
@@ -1892,7 +1702,7 @@
       "uTools": "https://xn--gck1f423k.xn--1bvt37a.tools/supports/30248"
     },
     "id": "evt_muku_wild",
-    "label": "Innocent Wildflower",
+    "label": "タクト Innocent Wildflower",
     "selection": "auto",
     "skills": [
       {
@@ -1916,18 +1726,13 @@
       "uTools": "https://xn--gck1f423k.xn--1bvt37a.tools/supports/30248"
     },
     "id": "evt_muku_survival",
-    "label": "私を育てた場所",
+    "label": "タクト 私を育てた場所",
     "selection": "single",
     "defaultChoiceId": "ichi",
     "choices": [
       {
-        "id": "other",
-        "label": "① はい先生！",
-        "skills": []
-      },
-      {
         "id": "ichi",
-        "label": "② 匠のサバイバルスキルだ…… — 一歩ずつ前へ Lv1",
+        "label": "① 一歩ずつ前へ Lv1",
         "skills": [
           {
             "skillName": "一歩ずつ前へ",
@@ -1947,13 +1752,13 @@
       "uTools": "https://xn--gck1f423k.xn--1bvt37a.tools/supports/30246"
     },
     "id": "evt_dj_shop",
-    "label": "それはただただ咲き誇る",
+    "label": "ドリーム それはただただ咲き誇る",
     "selection": "single",
     "defaultChoiceId": "kaikaku",
     "choices": [
       {
         "id": "kaikaku",
-        "label": "① ドリームジャーニー、こういうお店来るんだ — 打開策 Lv2",
+        "label": "① 打開策 Lv2",
         "skills": [
           {
             "skillName": "打開策",
@@ -1961,11 +1766,6 @@
             "skillId": null
           }
         ]
-      },
-      {
-        "id": "other",
-        "label": "② （ステータスのみ）",
-        "skills": []
       }
     ]
   },
@@ -1978,13 +1778,13 @@
       "uTools": "https://xn--gck1f423k.xn--1bvt37a.tools/supports/30246"
     },
     "id": "evt_dj_bloom",
-    "label": "そして今日も花が咲く",
+    "label": "ドリーム そして今日も花が咲く",
     "selection": "single",
     "defaultChoiceId": "kanzen",
     "choices": [
       {
         "id": "kanzen",
-        "label": "① そんなものいらないよ — 完全燃焼 Lv1 + 肉薄 Lv1",
+        "label": "① 完全燃焼 Lv1 + 肉薄 Lv1",
         "skills": [
           {
             "skillName": "完全燃焼",
@@ -1997,11 +1797,6 @@
             "skillId": null
           }
         ]
-      },
-      {
-        "id": "other",
-        "label": "② （ステータスのみ）",
-        "skills": []
       }
     ]
   },
@@ -2014,13 +1809,13 @@
       "uTools": "https://xn--gck1f423k.xn--1bvt37a.tools/supports/30246"
     },
     "id": "evt_dj_imouto",
-    "label": "用意周到で妹想い",
+    "label": "ドリーム 用意周到で妹想い",
     "selection": "single",
     "defaultChoiceId": "tsu",
     "choices": [
       {
         "id": "tsu",
-        "label": "① いや……お姉ちゃんは大変だね — 推力十分 Lv1",
+        "label": "① 推力十分 Lv1",
         "skills": [
           {
             "skillName": "推力十分",
@@ -2028,11 +1823,6 @@
             "skillId": null
           }
         ]
-      },
-      {
-        "id": "other",
-        "label": "② （ステータスのみ）",
-        "skills": []
       }
     ]
   },
@@ -2045,13 +1835,13 @@
       "uTools": "https://xn--gck1f423k.xn--1bvt37a.tools/supports/30242"
     },
     "id": "evt_almond_endless",
-    "label": "果てしなきアーモンドアイ",
+    "label": "アーモンド 果てしなきアーモンドアイ",
     "selection": "single",
     "defaultChoiceId": "symboli",
     "choices": [
       {
         "id": "symboli",
-        "label": "① シンボリルドルフらの反応を見る（大成功想定） — シンギュラリティ Lv2 + 才気煥発 Lv2",
+        "label": "① シンギュラリティ Lv2 + 才気煥発 Lv2",
         "skills": [
           {
             "skillName": "シンギュラリティ",
@@ -2067,7 +1857,7 @@
       },
       {
         "id": "around",
-        "label": "② 周囲の反応を見る（大成功想定） — ハヤテ一文字 Lv2 + 弧線のプロフェッサー Lv2",
+        "label": "② ハヤテ一文字 Lv2 + 弧線のプロフェッサー Lv2",
         "skills": [
           {
             "skillName": "ハヤテ一文字",
@@ -2093,13 +1883,13 @@
       "uTools": "https://xn--gck1f423k.xn--1bvt37a.tools/supports/30242"
     },
     "id": "evt_almond_mental",
-    "label": "アーモンドアイは見逃さない",
+    "label": "アーモンド アーモンドアイは見逃さない",
     "selection": "single",
     "defaultChoiceId": "kou",
     "choices": [
       {
         "id": "kou",
-        "label": "① そのメンタル、見習いたいな — 品行方正 Lv1",
+        "label": "① 品行方正 Lv1",
         "skills": [
           {
             "skillName": "品行方正",
@@ -2107,11 +1897,6 @@
             "skillId": null
           }
         ]
-      },
-      {
-        "id": "other",
-        "label": "② （ステータスのみ）",
-        "skills": []
       }
     ]
   }

@@ -2,7 +2,10 @@
  * support-events-research-26.json を events.json にマージし skillId を解決する
  */
 import fs from "node:fs";
-import { formatEventChoices } from "./format_event_choice_labels.mjs";
+import {
+  formatEventChoices,
+  formatEventLabel,
+} from "./format_event_choice_labels.mjs";
 
 const skills = JSON.parse(fs.readFileSync("./data/skills.json", "utf8"));
 const supports = JSON.parse(fs.readFileSync("./data/supports.json", "utf8"));
@@ -28,15 +31,23 @@ function resolveSkills(list) {
 function toEventEntry(raw) {
   const { supportId: _sid, _source, _note, ...evt } = raw;
   const out = { ...evt };
+  out.label = formatEventLabel(out.supportNameMatch, out.label);
   if (out.skills) out.skills = resolveSkills(out.skills);
   if (out.choices) {
-    out.choices = out.choices.map((c) => ({
-      ...c,
-      skills: resolveSkills(c.skills),
-    }));
-  }
-  if (out.choices) {
-    out.choices = formatEventChoices(out.choices);
+    out.choices = formatEventChoices(
+      out.choices.map((c) => ({
+        ...c,
+        skills: resolveSkills(c.skills),
+      }))
+    );
+    if (out.choices.length === 0) {
+      throw new Error(`event ${out.id}: ヒント付き選択肢が0件`);
+    }
+    if (!out.choices.some((c) => c.id === out.defaultChoiceId)) {
+      throw new Error(
+        `event ${out.id}: defaultChoiceId "${out.defaultChoiceId}" が choices に無い`
+      );
+    }
   }
   return out;
 }
