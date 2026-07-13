@@ -292,9 +292,13 @@ function renderEvents() {
         row.className = "radio-row";
         const inputId = `evt-${evt.id}-${choice.id}`;
         const checked = current === choice.id ? "checked" : "";
+        const skillNote =
+          choice.skills?.length > 0 && !choice.label.includes(" Lv")
+            ? `<span class="hint"> — ${escapeHtml(formatSkillList(choice.skills))}</span>`
+            : "";
         row.innerHTML = `
           <input type="radio" name="evt-${evt.id}" id="${inputId}" value="${escapeHtml(choice.id)}" ${checked} />
-          <label for="${inputId}">${escapeHtml(choice.label)}</label>
+          <label for="${inputId}">${escapeHtml(choice.label)}${skillNote}</label>
         `;
         group.appendChild(row);
         row.querySelector("input").addEventListener("change", (e) => {

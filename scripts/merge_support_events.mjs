@@ -2,6 +2,7 @@
  * support-events-research-26.json を events.json にマージし skillId を解決する
  */
 import fs from "node:fs";
+import { formatEventChoices } from "./format_event_choice_labels.mjs";
 
 const skills = JSON.parse(fs.readFileSync("./data/skills.json", "utf8"));
 const supports = JSON.parse(fs.readFileSync("./data/supports.json", "utf8"));
@@ -33,6 +34,9 @@ function toEventEntry(raw) {
       ...c,
       skills: resolveSkills(c.skills),
     }));
+  }
+  if (out.choices) {
+    out.choices = formatEventChoices(out.choices);
   }
   return out;
 }

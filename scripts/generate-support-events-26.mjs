@@ -1,4 +1,5 @@
 import { writeFileSync } from "fs";
+import { formatEventChoices } from "./format_event_choice_labels.mjs";
 
 const skill = (skillName, hintLevel) => ({
   skillName: skillName.replace(/◯/g, "○"),
@@ -189,13 +190,10 @@ const raw = [
   withMeta(30242, "世界を変える眼差し", { id: "evt_almond_mental", label: "アーモンドアイは見逃さない", selection: "single", defaultChoiceId: "kou", choices: [{ id: "kou", label: "そのメンタル、見習いたいな", skills: [skill("品行方正", 1)] }, { id: "other", label: "（非ヒント選択肢）", skills: [] }] }),
 ];
 
-// ヒント無し選択肢をchoicesから除外（空skillsのchoiceは残して分岐表現）
+// 選択肢ラベルにヒントLv表記を付与
 const events = raw.map((e) => {
-  if (e.selection === "single" && e.choices) {
-    const hintChoices = e.choices.filter((c) => c.skills.length > 0);
-    if (hintChoices.length === 1 && e.choices.length === 2) {
-      // 1択のみヒント → そのまま
-    }
+  if (e.selection === "single" && e.choices?.length) {
+    return { ...e, choices: formatEventChoices(e.choices) };
   }
   return e;
 });
