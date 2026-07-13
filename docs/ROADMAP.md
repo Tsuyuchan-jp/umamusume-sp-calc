@@ -19,12 +19,12 @@
 - [x] **常用デッキ＋シナリオ通し確認（実機）** — リンク白/金・RMJ・終了・イベント。問題・バグなし（2026-07）
 - [x] 公開前レビュー High/Medium 対応（R01–R10）
 - [x] GitHub Pages 向けデプロイ設定（workflow・ルートリダイレクト・`.nojekyll`）
+- [x] **GitHub Pages 初回公開** — https://AkatsukiTanaka.github.io/umamusume-sp-calc/app/ （スモークOK・2026-07）
 
 ## 未完了 / 残作業
 
 | 項目 | 状態 | メモ |
 |------|------|------|
-| **GitHub Pages 初回デプロイ** | 進行中 | remote 済。verify OK・deploy は Pages Source 未設定で一度失敗。Actions 設定後に rerun |
 | UX 改善 | 任意 | 結果の由来表示、初期デッキ6枚化など。プリセットは当面スコープ外 |
 | 回帰テスト拡充 | 一部済 | デフォルト編成・リンク白/金を `npm test` に追加（2026-07） |
 | 表記ゆれ・名前マッチ | 必要時 | `verify_data.mjs` で検出したとき修正 |
@@ -66,13 +66,13 @@
 2. 初期値を常用デッキ6枚に揃える
 3. （需要が明確なら）プリセット — 現状スコープ外
 
-### Phase E — 公開 🔄
+### Phase E — 公開 ✅
 
 1. ~~デプロイ先選定（GitHub Pages）~~ **済**
 2. ~~workflow・ルートリダイレクト~~ **済**
 3. ~~GitHub へ push~~ **済**（`AkatsukiTanaka/umamusume-sp-calc`）
 4. ~~README を公開利用者向けに整理・確定 URL 記載~~ **済**
-5. Pages Source=GitHub Actions 確認 → デプロイ成功 → 本番スモークテスト — **次**
+5. ~~Pages デプロイ＋本番スモークテスト~~ **済**（合計SP表示・サポカ変更・ルート→/app/・スマホ幅）
 
 ## スコープ外（当面やらない）
 

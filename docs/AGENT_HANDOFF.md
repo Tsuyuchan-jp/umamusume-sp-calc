@@ -16,17 +16,17 @@
 | `data/events.json` | **あり** — 優先11サポカすべて記入済み（32イベント・実機確認済み） |
 | `data/scenarios/toresenken.json` | **あり** — リンク白/金・RMJ自動計上・ラーメン3択（実機通し確認済み） |
 | Python / `py` | `where` 上は WindowsApps の `python.exe` スタブ寄り。`py` 無し。再 extract 時に実体 Python 要確認 |
-| Git | remote: `AkatsukiTanaka/umamusume-sp-calc`（public）。Pages workflow あり |
-| 公開 URL | https://AkatsukiTanaka.github.io/umamusume-sp-calc/app/ （初回デプロイ進行中） |
+| Git | remote: `AkatsukiTanaka/umamusume-sp-calc`（public）。Pages デプロイ運用中 |
+| 公開 URL | **https://AkatsukiTanaka.github.io/umamusume-sp-calc/app/** （2026-07 初回公開・スモークOK） |
 
-**アプリは実用段階。** 常用デッキ＋シナリオ（リンク白/金・RMJ・終了）の通し確認は **実機 OK・バグなし**（2026-07）。
+**アプリは実用段階・公開済み。** 常用デッキ＋シナリオ（リンク白/金・RMJ・終了）の通し確認は **実機 OK・バグなし**（2026-07）。
 
 ## 次にやること（優先順）
 
-1. **GitHub Pages 初回デプロイ完了** — Settings で Source=GitHub Actions を確認 → 失敗 run を rerun → `/app/` スモークテスト → README URL 確定済み
-2. UX 改善（結果の由来表示・初期デッキ6枚化など。プリセットは当面スコープ外）
-3. 実機で確認したケースの回帰テスト追加（`npm test` 拡充）
-4. ゲーム更新時は DMM パスの mdb を `--mdb` 指定して再 extract
+1. UX 改善（結果の由来表示・初期デッキ6枚化など。プリセットは当面スコープ外）
+2. 実機で確認したケースの回帰テスト追加（`npm test` 拡充）
+3. ゲーム更新時は DMM パスの mdb を `--mdb` 指定して再 extract
+4. （運用）`master` push で Pages 自動デプロイ。失敗時は Settings → Pages Source=GitHub Actions を確認
 
 ## 非交渉ルール（変えない）
 
