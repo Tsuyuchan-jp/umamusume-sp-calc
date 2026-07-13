@@ -77,6 +77,7 @@ mdb は白・金それぞれ別 `baseSp` を持つ（合算済みではない）
 - **継承固有オプション**: 汎用行のみ。個数 2–6、baseSp 既定 200、ヒント一律 1–5。親名・固有名は出さない（スコープ最小化）
 - **シナリオ**: 当面 **トレセン軒のみ**（約4ヶ月想定）。参考: [umasim ramen_memo.md](https://github.com/mee1080/umasim/blob/main/data/ramen_memo.md)
 - **イベント**: 優先37サポカ分。**U-tools + mdb 抽出**が正本（`npm run extract:events` → `apply:events`）。例外2件は `events.preserve.json`。全サポカ一括はスコープ外。訓練ヒントは mdb 自動。
+- **サポカ UI 絞込**: 「イベント対応のみ」はデフォルト ON（`prioritySupportIds` で id 照合。名前マッチは使わない）。選択中カードはその枠に残す。
 
 ## 優先サポカ（events.json 対象・37種）
 

@@ -86,7 +86,7 @@ app.js (loadJson) ──► buildSkillPlan(aggregate.js)
 | `goldLower.js` | グループ内チェーン合算（白+金 / ○+◎+金）、○→◎繰り上げ、表示フィルタ |
 | `scenarioLink.js` | シナリオリンク白/金の編成連動解決 |
 | `aggregate.js` | 全由来のヒント収集と合計 |
-| `app.js` | UI バインド、JSON 読込、再計算 |
+| `app.js` | UI バインド、JSON 読込、サポカ絞込（イベント対応／SSR／タイプ／検索）、再計算 |
 
 ## 設計上の注意
 

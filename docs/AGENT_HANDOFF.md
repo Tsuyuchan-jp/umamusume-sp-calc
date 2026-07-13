@@ -17,13 +17,14 @@
 | `data/scenarios/toresenken.json` | **あり** — リンク白/金・RMJ自動計上・ラーメン3択（実機通し確認済み） |
 | Python / `py` | `where` 上は WindowsApps の `python.exe` スタブ寄り。`py` 無し。再 extract 時に実体 Python 要確認 |
 | Git | remote: `Tsuyuchan-jp/umamusume-sp-calc`（public）。Pages デプロイ運用中 |
-| 公開 URL | **https://Tsuyuchan-jp.github.io/umamusume-sp-calc/app/** （v0.1.3・2026-07） |
+| 公開 URL | **https://Tsuyuchan-jp.github.io/umamusume-sp-calc/app/** （v0.1.4・2026-07） |
+| サポカ絞込 | **イベント対応のみ**（デフォルト ON・`prioritySupportIds`）＋ SSR／タイプ／検索 |
 
 **アプリは実用段階・公開済み。** 常用デッキ＋シナリオ（リンク白/金・RMJ・終了）の通し確認は **実機 OK・バグなし**（2026-07）。
 
 ## 次にやること（優先順）
 
-1. UX 改善（結果の由来表示・初期デッキ6枚化など。プリセットは当面スコープ外）
+1. UX 改善（結果の由来表示・初期デッキ6枚化など。プリセットは当面スコープ外。※イベント対応フィルタは v0.1.4 で実装済み）
 2. 実機で確認したケースの回帰テスト追加（`npm test` 拡充）
 3. ゲーム更新時: `npm run extract`（mdb）→ `npm run extract:events` → `npm run apply:events`
 4. （運用）`master` push で Pages 自動デプロイ。失敗時は Settings → Pages Source=GitHub Actions を確認
@@ -51,6 +52,7 @@
 - **リンク（シニア9月前半）**: ラジオ1択・相互排他・未選択なし（デフォルト `link_dotou`）。編成連動で白/金切替（育成ウマ娘 ∪ サポカ6枠。たづな＆ハローは OR）。実装: `app/js/scenarioLink.js`
 - **RMJ / 終了（ガチ想定）**: 盛況チェックは廃止。`scenarioAutoSkills` で自動計上（クラシック大盛況・シニア超盛況固定・育成終了）。シニア12月は `seniorRmjChoice` ラーメン3択（デフォルト: よくばり → いいとこ入った！）
 - **初期値**: 育成ウマ娘 `[万福龍湯伝・頂]ナリタトップロード` / サポカ枠5 ヤング・枠6 たづな（枠1–4 未選択）/ 継承固有 個数4・ヒントLv3
+- **サポカ絞込**: 「イベント対応のみ」デフォルト ON（`prioritySupportIds`）。選択中カードは keep。実装: `app.js` の `getSupportFilterState` / `supportMatchesFilters`
 
 ## ファイルの場所
 

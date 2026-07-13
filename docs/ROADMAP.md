@@ -11,7 +11,7 @@
 - [x] **初回 extract 成功** — skills 2103 / supports 543 / characters 261（`data/meta.json`）
 - [x] `scripts/test_sp.mjs` / `verify_data.mjs`
 - [x] 計算コア: `spCost` / `hintResolve` / `goldLower` / `aggregate`
-- [x] UI: 育成ウマ娘・6枠サポカ（検索・絞込）・切れ者・継承・イベント/シナリオ・除外・合計表示
+- [x] UI: 育成ウマ娘・6枠サポカ（検索・絞込・イベント対応のみデフォルトON）・切れ者・継承・イベント/シナリオ・除外・合計表示
 - [x] `data/events.json` — 優先37サポカ・**102イベント**（U-tools+mdb 抽出正本 + preserve 2）
 - [x] **イベント正本化 Phase F** — 抽出パイプライン・ゴールデン比較・`events.json` 置換（2026-07-14）
 - [x] `data/scenarios/toresenken.json` — リンク白/金・RMJ自動計上・ラーメン3択・終了スキル（skillId 確定）
@@ -22,6 +22,7 @@
 - [x] GitHub Pages 向けデプロイ設定（workflow・ルートリダイレクト・`.nojekyll`）
 - [x] **GitHub Pages 初回公開** — https://Tsuyuchan-jp.github.io/umamusume-sp-calc/app/ （スモークOK・2026-07）
 - [x] **v0.1.3** — イベント U-tools 抽出正本化
+- [x] **v0.1.4** — サポカ「イベント対応のみ」フィルタ（デフォルト ON）
 
 ## 未完了 / 残作業
 
