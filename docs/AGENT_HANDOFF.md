@@ -13,7 +13,7 @@
 | `data/skills.json` 等 | **あり** — skills 2103 / supports 543 / characters 261（`meta.json` 参照） |
 | extract 元 mdb | `D:\DMM\umamusumeDMM\Umamusume\umamusume_Data\Persistent\master\master.mdb` |
 | 既定 AppData の mdb | **無し** — `%USERPROFILE%\AppData\LocalLow\Cygames\...` には無い |
-| `data/events.json` | **あり** — 優先37サポカ記入済み（103イベント・旧11種は実機確認済み、追加26種は攻略サイト照合） |
+| `data/events.json` | **あり** — 優先37サポカ記入済み（102イベント・旧11種は実機確認済み、追加26種は攻略サイト照合）。**次**: U-tools+mdb 抽出で置換（[EVENT_EXTRACT_DESIGN.md](./EVENT_EXTRACT_DESIGN.md) 承認済み） |
 | `data/scenarios/toresenken.json` | **あり** — リンク白/金・RMJ自動計上・ラーメン3択（実機通し確認済み） |
 | Python / `py` | `where` 上は WindowsApps の `python.exe` スタブ寄り。`py` 無し。再 extract 時に実体 Python 要確認 |
 | Git | remote: `Tsuyuchan-jp/umamusume-sp-calc`（public）。Pages デプロイ運用中 |
@@ -23,10 +23,11 @@
 
 ## 次にやること（優先順）
 
-1. UX 改善（結果の由来表示・初期デッキ6枚化など。プリセットは当面スコープ外）
-2. 実機で確認したケースの回帰テスト追加（`npm test` 拡充）
-3. ゲーム更新時は DMM パスの mdb を `--mdb` 指定して再 extract
-4. （運用）`master` push で Pages 自動デプロイ。失敗時は Settings → Pages Source=GitHub Actions を確認
+1. **優先37のイベント抽出置換**（Phase F）— `extract_support_events.mjs`、ゴールデン比較、`events.json` 置換。設計: [EVENT_EXTRACT_DESIGN.md](./EVENT_EXTRACT_DESIGN.md)
+2. UX 改善（結果の由来表示・初期デッキ6枚化など。プリセットは当面スコープ外）
+3. 実機で確認したケースの回帰テスト追加（`npm test` 拡充）
+4. ゲーム更新時は DMM パスの mdb を `--mdb` 指定して再 extract
+5. （運用）`master` push で Pages 自動デプロイ。失敗時は Settings → Pages Source=GitHub Actions を確認
 
 ## 非交渉ルール（変えない）
 
@@ -43,7 +44,7 @@
 - **固有スキル・覚醒進化**: 現行 extract（`available_skill_set`）で実機と整合。専用除外ロジックは不要（[GLOSSARY.md](./GLOSSARY.md)）
 - **育成ウマ娘覚醒レベル**: 最大想定で所持スキル全合算
 - **継承固有**: 汎用行のみ（親名・スキル名なし）、個数 2–6、baseSp 200、ヒント一律 1–5。
-- **イベントは優先サポカから手メンテ**（全カード一括ではない）。サポカヒント自体は mdb 自動抽出。
+- **イベントは優先37サポカのみ**（全539枚はスコープ外・撤回）。現状は手メンテ、次は U-tools+mdb 抽出で置換予定。訓練ヒントは mdb 自動。
 - **Git**: ワークスペース変更のたびにコミット。PowerShell では `git add .` と `git commit` を**別ステップ**（`&&` 禁止）。push は明示依頼時のみ。
 
 ## シナリオ・UI の要点（トレセン軒）
@@ -65,6 +66,7 @@ docs/DATA.md            mdb / JSON / 優先サポカ
 docs/ARCHITECTURE.md    構成とデータフロー
 docs/DEV.md             セットアップ・トラブルシュート
 docs/ROADMAP.md         完了 / 残り
+docs/EVENT_EXTRACT_DESIGN.md  イベント抽出設計（承認済み・優先37置換）
 app/                    ブラウザアプリ
 data/                   JSON（手メンテ + extract 生成）
 scripts/extract_mdb.mjs master.mdb → JSON（推奨）
