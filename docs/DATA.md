@@ -145,12 +145,12 @@ python scripts/extract_mdb.py --mdb "D:\...\master.mdb"
 
 グループ:
 
-- `linkSkills` — リンク条件付きヒント
+- `linkSkills` — シナリオリンク（**7種は相互排他・UI はラジオ1択**）
 - `rmjSkills` — シニア12月 盛況段階の選択金など
 - `endSkills` — 育成終了スキル
 - `classicRmj` — クラシック12月 大盛況など
 
-各エントリは UI で ON/OFF。`skillId: null` のままなら名前マッチ依存。
+`linkSkills` 以外はチェックボックスで ON/OFF（複数選択可）。
 
 参考: https://github.com/mee1080/umasim/blob/main/data/ramen_memo.md
 

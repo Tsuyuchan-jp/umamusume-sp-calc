@@ -298,6 +298,53 @@ function renderCheckboxes(containerId, items, storageSet, key) {
   }
 }
 
+/** シナリオリンク（7種）は相互排他のラジオ1択 */
+function renderScenarioLinkRadios() {
+  const container = document.getElementById("scenario-link");
+  container.innerHTML = "";
+  const links = state.scenario.linkSkills || [];
+  if (links.length === 0) return;
+
+  const group = document.createElement("fieldset");
+  group.className = "event-single-group";
+  const legend = document.createElement("legend");
+  legend.textContent = "シナリオリンク";
+  group.appendChild(legend);
+
+  const current = state.ui.scenarioLinkChoiceId ?? "none";
+  const choices = [...links, { id: "none", label: "未選択（リンクなし）", skills: [] }];
+
+  for (const entry of choices) {
+    const row = document.createElement("div");
+    row.className = "radio-row";
+    const inputId = `scn-link-${entry.id}`;
+    const checked = current === entry.id ? "checked" : "";
+    const skillNote =
+      entry.skills?.length > 0
+        ? `<span class="hint"> — ${escapeHtml(formatSkillList(entry.skills))}</span>`
+        : "";
+    row.innerHTML = `
+      <input type="radio" name="scenario-link" id="${inputId}" value="${escapeHtml(entry.id)}" ${checked} />
+      <label for="${inputId}">${escapeHtml(entry.label)}${skillNote}</label>
+    `;
+    group.appendChild(row);
+    row.querySelector("input").addEventListener("change", (e) => {
+      if (e.target.checked) {
+        state.ui.scenarioLinkChoiceId = entry.id;
+        recalc();
+      }
+    });
+  }
+  container.appendChild(group);
+}
+
+function buildEnabledScenarioEntryIds() {
+  const enabled = new Set(state.ui.enabledScenarioEntryIds);
+  const linkId = state.ui.scenarioLinkChoiceId;
+  if (linkId && linkId !== "none") enabled.add(linkId);
+  return enabled;
+}
+
 function getSupportIds() {
   return state.ui.supportIds.filter((id) => id != null);
 }
@@ -321,7 +368,7 @@ function recalc() {
     inheritBaseSp: Number(document.getElementById("inherit-base").value) || 200,
     enabledEventIds: state.ui.enabledEventIds,
     eventChoiceIds: Object.fromEntries(state.ui.eventChoiceIds),
-    enabledScenarioEntryIds: state.ui.enabledScenarioEntryIds,
+    enabledScenarioEntryIds: buildEnabledScenarioEntryIds(),
   });
 
   document.getElementById("total-sp").textContent = plan.total.toLocaleString();
@@ -426,6 +473,7 @@ async function init() {
         enabledEventIds: new Set(),
         eventChoiceIds: initEventChoiceIds(events),
         enabledScenarioEntryIds: new Set(),
+        scenarioLinkChoiceId: "none",
       },
     };
 
@@ -434,16 +482,16 @@ async function init() {
     renderSupportSlots();
     bindSupportFilters();
 
-    const scenarioItems = [
-      ...(scenario.linkSkills || []),
+    const scenarioOther = [
       ...(scenario.rmjSkills || []),
       ...(scenario.endSkills || []),
       ...(scenario.classicRmj || []),
     ];
     renderEvents();
+    renderScenarioLinkRadios();
     renderCheckboxes(
       "scenario-checks",
-      scenarioItems,
+      scenarioOther,
       state.ui.enabledScenarioEntryIds,
       "scn"
     );
