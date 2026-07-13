@@ -90,17 +90,17 @@ cost(白, whiteHintLv) + cost(金, goldHintLv)
 
 ## シナリオ（トレセン軒）
 
-- 当面このシナリオのみ。データ: `data/scenarios/toresenken.json`
-- リンク / 盛況段階 / 終了スキル / クラシック盛況などを **選択式 ON/OFF**
+- 当面このシナリオのみ。データ: `data/scenarios/toresenken.json`（`version: 3`、skillId 埋済み）
+- 盛況段階のチェック ON/OFF は廃止（ガチ想定の自動計上に統一）
 - **シナリオリンク（シニア9月前半）**:
-  - UI はラジオ1択（常に全リンク表示）。選択1件につきヒントは白 or 金の **1スキルのみ**
+  - UI はラジオ1択（常に全リンク表示・未選択なし）。選択1件につきヒントは白 or 金の **1スキルのみ**
   - リンク対象キャラが育成ウマ娘 ∪ サポカ6枠にいなければ白（`skillWithoutLink`）、いれば金（`skillWithLink`）
   - 複数キャラ条件（たづな＆ハロー）は **OR**（どちらか一方で金）
   - 実装: `app/js/scenarioLink.js`
 - **シナリオ自動計上**（ガチ想定）: `scenarioAutoSkills` を常時計上（クラシック大盛況・超盛況固定・育成終了）
-- **シニア12月 RMJ**: `seniorRmjChoice` ラジオ3択（ラーメン種で選択金が変わる）
+- **シニア12月 RMJ**: `seniorRmjChoice` ラジオ3択（ラーメン種で選択金が変わる。デフォルト: よくばり）
 - 参照メモ: https://github.com/mee1080/umasim/blob/main/data/ramen_memo.md
-- 多くの `skillId` は `null`。名前マッチ or 手入力で補完する
+- 常用デッキ＋シナリオの通し確認は **実機 OK**（2026-07）
 
 ## イベント
 

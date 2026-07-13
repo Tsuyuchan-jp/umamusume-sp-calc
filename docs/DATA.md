@@ -19,6 +19,7 @@ data/
 - `meta.json` 例: skillCount 2078, supportCount 539, characterCount 258
 - 抽出元: `D:\DMM\umamusumeDMM\Umamusume\umamusume_Data\Persistent\master\master.mdb`
 - `events.json` / `toresenken.json` は手メンテ継続（優先11サポカのイベントは記入済み）
+- **実機通し確認済み**（2026-07）: 常用デッキ＋イベント＋シナリオリンク白/金＋RMJ自動計上／ラーメン3択＋終了。問題・バグなし
 
 ## master.mdb → extract
 
@@ -143,18 +144,27 @@ python scripts/extract_mdb.py --mdb "D:\...\master.mdb"
 
 ## 手メンテ: scenarios/toresenken.json
 
+`version: 3`。シナリオスキルの `skillId` は埋済み（実機通し確認済み）。
+
 グループ:
 
-- `linkSkills` — シナリオリンク（**相互排他・UI はラジオ1択**。未選択なし。デフォルト: メイショウドトウ）
+- `linkSkills` — シナリオリンク（**相互排他・UI はラジオ1択**。未選択なし。デフォルト: `link_dotou`）
   - シニア9月前半イベント。選んだリンクにつきヒントは **1スキルのみ**
   - デフォルトは `skillWithoutLink`（白）。リンク対象キャラが **育成ウマ娘または6枠サポカ** にいれば `skillWithLink`（金）
   - `requiresLinkCharacterId` — 単一キャラ（`supports.characterId` / 育成カードの `floor(id/100)`）
   - `requiresLinkCharacterIds` — 複数キャラは **OR**（いずれか1人いれば金。たづな＆ハロー用）
+  - 実装: `app/js/scenarioLink.js`
 - `scenarioAutoSkills` — ガチ想定で常に計上（UI は折りたたみ確認用）
-  - クラシック12月 大盛況 / シニア12月 超盛況固定 / 育成終了 大盛況以上
+  - クラシック12月 大盛況 → 時中の妙 Lv1
+  - シニア12月 超盛況固定 → ペースキープ Lv2 / 深呼吸 Lv2 / 恩返し、召し上がれ Lv3
+  - 育成終了（大盛況以上）→ 極上の感謝を！ Lv2
+  - 注: 「恩返し」と「極上の感謝を！」は白/金ペアのため、一覧では金行に合算表示（`goldLower`）
 - `seniorRmjChoice` — シニア12月 超盛況のラーメン3択（ラジオ1択・選択金 Lv2）
+  - スペシャル → 火事場のバ鹿力
+  - よくばり → いいとこ入った！（`defaultChoiceId`: `ramen_yokubari`）
+  - 珠玉 → 好奇心
 
-旧 `rmjSkills` / `endSkills` / `classicRmj`（チェック ON/OFF）は廃止。
+旧 `rmjSkills` / `endSkills` / `classicRmj`（チェック ON/OFF）は廃止。盛況段階チェックボックスも廃止。
 
 参考: https://github.com/mee1080/umasim/blob/main/data/ramen_memo.md
 
