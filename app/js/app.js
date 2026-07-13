@@ -44,6 +44,24 @@ function escapeHtml(s) {
     .replace(/"/g, "&quot;");
 }
 
+/** [衣装]キャラ名 → キャラ名[衣装] */
+function formatCharacterDisplayName(name) {
+  const m = String(name).match(/^\[([^\]]+)\](.+)$/);
+  if (!m) return name;
+  return `${m[2]}[${m[1]}]`;
+}
+
+/** ひらがなをカタカナへ（検索照合用） */
+function toKatakana(s) {
+  return String(s).replace(/[\u3041-\u3096]/g, (ch) =>
+    String.fromCharCode(ch.charCodeAt(0) + 0x60)
+  );
+}
+
+function normalizeSearchText(s) {
+  return toKatakana(s).toLowerCase();
+}
+
 function renderSupportSlots() {
   const container = document.getElementById("support-slots");
   const selected = state.ui.supportIds;
@@ -68,17 +86,44 @@ function renderSupportSlots() {
   });
 }
 
+function filterCharacterOptions(query) {
+  const sel = document.getElementById("character-select");
+  const q = normalizeSearchText(query).trim();
+  const selectedId = String(state.ui.characterId);
+  for (const opt of sel.options) {
+    const hay = opt.dataset.searchText || "";
+    // 選択中は常に表示（フィルタ外でも値を見失わない）
+    opt.hidden = q !== "" && opt.value !== selectedId && !hay.includes(q);
+  }
+}
+
 function renderCharacterSelect() {
   const sel = document.getElementById("character-select");
-  sel.innerHTML = state.characters
-    .map(
-      (c) =>
-        `<option value="${c.id}"${c.id === state.ui.characterId ? " selected" : ""}>${escapeHtml(c.name)}</option>`
-    )
+  const search = document.getElementById("character-search");
+
+  const sorted = [...state.characters]
+    .map((c) => ({
+      ...c,
+      displayName: formatCharacterDisplayName(c.name),
+    }))
+    .sort((a, b) => a.displayName.localeCompare(b.displayName, "ja"));
+
+  sel.innerHTML = sorted
+    .map((c) => {
+      const selected = c.id === state.ui.characterId ? " selected" : "";
+      const searchText = normalizeSearchText(c.displayName);
+      return `<option value="${c.id}" data-search-text="${escapeHtml(searchText)}"${selected}>${escapeHtml(c.displayName)}</option>`;
+    })
     .join("");
+
   sel.addEventListener("change", () => {
     state.ui.characterId = Number(sel.value);
+    filterCharacterOptions(search.value);
     recalc();
+  });
+
+  search.addEventListener("input", () => {
+    filterCharacterOptions(search.value);
   });
 }
 

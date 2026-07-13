@@ -69,12 +69,17 @@ label {
 }
 
 select,
-input[type="number"] {
+input[type="number"],
+input[type="search"] {
   width: 100%;
   padding: 0.4rem 0.5rem;
   margin-bottom: 0.75rem;
   border: 1px solid #ccc;
   border-radius: 4px;
+}
+
+#character-search {
+  margin-bottom: 0.35rem;
 }
 
 .support-slots {
