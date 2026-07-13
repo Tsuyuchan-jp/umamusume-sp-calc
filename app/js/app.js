@@ -499,6 +499,14 @@ function findSupportByTitle(title, options = {}) {
   });
 }
 
+/** 育成ウマ娘の初期選択 */
+function applyDefaultCharacter() {
+  const found = state.characters.find(
+    (c) => c.name === "[万福龍湯伝・頂]ナリタトップロード"
+  );
+  state.ui.characterId = found?.id ?? state.characters[0]?.id ?? 0;
+}
+
 /** サポカ6枠の初期選択（1〜4: 未選択、5: フォーエバーヤング、6: たづな） */
 function applyDefaultSupports() {
   const young = findSupportByTitle("Innovator", { rarity: "SSR", type: "wit" });
@@ -530,7 +538,7 @@ async function init() {
       events,
       scenario,
       ui: {
-        characterId: characters[0]?.id ?? 0,
+        characterId: 0,
         supportIds: [null, null, null, null, null, null],
         enabledEventIds: new Set(),
         eventChoiceIds: initEventChoiceIds(events),
@@ -540,6 +548,7 @@ async function init() {
       },
     };
 
+    applyDefaultCharacter();
     applyDefaultSupports();
     renderCharacterSelect();
     renderSupportSlots();
