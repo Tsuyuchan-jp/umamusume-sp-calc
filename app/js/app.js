@@ -447,22 +447,21 @@ function bindOptions() {
   );
 }
 
-/** 優先サポカ表示名からカードを検索 */
-function findSupportByDisplayName(priorityName) {
-  const titleMatch = priorityName.match(/\[(.+?)\]/);
-  const title = titleMatch?.[1];
-  const charName = priorityName.replace(/\[.*?\]\s*/, "").trim();
-  return state.supports.find(
-    (s) =>
-      (title && (s.title === title || s.name.includes(`[${title}]`))) ||
-      s.name.includes(charName)
-  );
+/** タイトル（＋任意でレアリティ・タイプ）でサポカを検索 */
+function findSupportByTitle(title, options = {}) {
+  const { rarity, type } = options;
+  return state.supports.find((s) => {
+    if (s.title !== title && !s.name.startsWith(`[${title}]`)) return false;
+    if (rarity && s.rarity !== rarity) return false;
+    if (type && s.type !== type) return false;
+    return true;
+  });
 }
 
 /** サポカ6枠の初期選択（1〜4: 未選択、5: フォーエバーヤング、6: たづな） */
 function applyDefaultSupports() {
-  const young = findSupportByDisplayName("[Innovator] フォーエバーヤング");
-  const tazuna = findSupportByDisplayName("[一杯のノスタルジア] 駿川たづな");
+  const young = findSupportByTitle("Innovator", { rarity: "SSR", type: "wit" });
+  const tazuna = findSupportByTitle("一杯のノスタルジア", { rarity: "SSR", type: "friend" });
   state.ui.supportIds = [
     null,
     null,
