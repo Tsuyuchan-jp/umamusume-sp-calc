@@ -1,114 +1,99 @@
 {
-  "version": 1,
+  "version": 2,
   "scenarioId": "toresenken",
   "name": "らっしゃい！トレセン軒！",
-  "description": "mee1080/umasim ramen_memo.md ベース。選択式でON/OFF。",
+  "description": "mee1080/umasim ramen_memo.md ベース。選択式でON/OFF。リンクはシニア9月前半: 非編成=白・編成=金。",
   "linkSkills": [
     {
       "id": "link_fine_motion",
       "label": "ファインモーションリンク",
-      "requiresLinkCharacterId": 1045,
-      "skills": [
-        {
-          "skillId": 201312,
-          "skillName": "先行直線○",
-          "hintLevel": 1,
-          "defaultOn": false
-        },
-        {
-          "skillId": 201313,
-          "skillName": "勇迅一閃",
-          "hintLevel": 1,
-          "defaultOn": false
-        }
-      ],
-      "note": "skillId は extract 後に名前マッチで補完予定"
+      "requiresLinkCharacterId": 1022,
+      "skillWithoutLink": {
+        "skillId": 201312,
+        "skillName": "先行直線○",
+        "hintLevel": 1
+      },
+      "skillWithLink": {
+        "skillId": 201313,
+        "skillName": "勇迅一閃",
+        "hintLevel": 1
+      }
     },
     {
       "id": "link_top_road",
       "label": "ナリタトップロードリンク",
-      "requiresLinkCharacterId": 1123,
-      "skills": [
-        {
-          "skillName": "長距離直線○",
-          "hintLevel": 1,
-          "defaultOn": false,
-          "skillId": 201172
-        },
-        {
-          "skillName": "烈風一閃",
-          "hintLevel": 1,
-          "defaultOn": false,
-          "skillId": 201173
-        }
-      ]
+      "requiresLinkCharacterId": 1077,
+      "skillWithoutLink": {
+        "skillId": 201172,
+        "skillName": "長距離直線○",
+        "hintLevel": 1
+      },
+      "skillWithLink": {
+        "skillId": 201173,
+        "skillName": "烈風一閃",
+        "hintLevel": 1
+      }
     },
     {
       "id": "link_calstone",
       "label": "カルストンライトオリンク",
-      "requiresLinkCharacterId": 1146,
-      "skills": [
-        {
-          "skillName": "弾ける足取り",
-          "hintLevel": 1,
-          "defaultOn": false,
-          "skillId": 203872
-        },
-        {
-          "skillName": "閃く雷光",
-          "hintLevel": 1,
-          "defaultOn": false,
-          "skillId": 203871
-        }
-      ]
+      "requiresLinkCharacterId": 1120,
+      "skillWithoutLink": {
+        "skillId": 203872,
+        "skillName": "弾ける足取り",
+        "hintLevel": 1
+      },
+      "skillWithLink": {
+        "skillId": 203871,
+        "skillName": "閃く雷光",
+        "hintLevel": 1
+      }
     },
     {
       "id": "link_dotou",
       "label": "メイショウドトウリンク",
       "requiresLinkCharacterId": 1058,
-      "skills": [
-        {
-          "skillName": "ネバーギブアップ",
-          "hintLevel": 1,
-          "defaultOn": false,
-          "skillId": 202721
-        }
-      ]
+      "skillWithoutLink": {
+        "skillId": 202722,
+        "skillName": "折れない心",
+        "hintLevel": 1
+      },
+      "skillWithLink": {
+        "skillId": 202721,
+        "skillName": "ネバーギブアップ",
+        "hintLevel": 1
+      }
     },
     {
       "id": "link_nature",
       "label": "ナイスネイチャリンク",
       "requiresLinkCharacterId": 1060,
-      "skills": [
-        {
-          "skillName": "中距離直線○",
-          "hintLevel": 1,
-          "defaultOn": false,
-          "skillId": 201102
-        },
-        {
-          "skillName": "光芒一閃",
-          "hintLevel": 1,
-          "defaultOn": false,
-          "skillId": 201103
-        }
-      ]
+      "skillWithoutLink": {
+        "skillId": 201102,
+        "skillName": "中距離直線○",
+        "hintLevel": 1
+      },
+      "skillWithLink": {
+        "skillId": 201103,
+        "skillName": "光芒一閃",
+        "hintLevel": 1
+      }
     },
     {
       "id": "link_tazuna_halo",
       "label": "たづな＆ハローリンク",
-      "requiresLinkCharacterIds": [
-        9001,
-        9002
-      ],
-      "skills": [
-        {
-          "skillName": "英俊豪傑",
-          "hintLevel": 1,
-          "defaultOn": false,
-          "skillId": 203501
-        }
-      ]
+      "requiresLinkCharacterIds": [9001, 9008],
+      "note": "requiresLinkCharacterIds は OR（たづなまたはハローのどちらかいれば金）",
+      "skillWithoutLink": {
+        "skillId": 203502,
+        "skillName": "比類なき",
+        "hintLevel": 1
+      },
+      "skillWithLink": {
+        "skillId": 203501,
+        "skillName": "英俊豪傑",
+        "hintLevel": 1
+      }
     }
   ],
   "rmjSkills": [

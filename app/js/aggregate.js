@@ -1,6 +1,10 @@
 import { resolveHintLevels } from "./hintResolve.js";
 import { calcAcquisitionCost, filterDisplaySkills } from "./goldLower.js";
 import { calcSkillCost } from "./spCost.js";
+import {
+  getDeckLinkCharacterIds,
+  resolveLinkSkill,
+} from "./scenarioLink.js";
 
 const TRAINING_HINT = 5;
 const CHARA_HINT = 3;
@@ -100,14 +104,32 @@ export function buildSkillPlan(params) {
     }
   }
 
-  // シナリオ（全グループ平坦化）
-  const scenarioGroups = [
-    ...(params.scenario.linkSkills || []),
+  // シナリオリンク（選択1件・編成に応じて白 or 金の1スキルのみ）
+  const deckLinkIds = getDeckLinkCharacterIds(
+    params.characterId,
+    params.supportIds,
+    supportById
+  );
+  for (const entry of params.scenario.linkSkills || []) {
+    if (!params.enabledScenarioEntryIds.has(entry.id)) continue;
+    const sk = resolveLinkSkill(entry, deckLinkIds);
+    if (!sk) continue;
+    const skillId = sk.skillId ?? nameToId.get(sk.skillName);
+    if (!skillId) continue;
+    hintEntries.push({
+      skillId,
+      hintLevel: sk.hintLevel,
+      source: `シナリオ: ${entry.label}`,
+    });
+  }
+
+  // シナリオその他（RMJ・終了・クラシック）
+  const scenarioOther = [
     ...(params.scenario.rmjSkills || []),
     ...(params.scenario.endSkills || []),
     ...(params.scenario.classicRmj || []),
   ];
-  for (const entry of scenarioGroups) {
+  for (const entry of scenarioOther) {
     if (!params.enabledScenarioEntryIds.has(entry.id)) continue;
     for (const sk of entry.skills || []) {
       const skillId = sk.skillId ?? nameToId.get(sk.skillName);

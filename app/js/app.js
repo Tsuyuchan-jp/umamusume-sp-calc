@@ -1,4 +1,8 @@
 import { buildSkillPlan } from "./aggregate.js";
+import {
+  getDeckLinkCharacterIds,
+  resolveLinkSkill,
+} from "./scenarioLink.js";
 
 /** @type {object|null} */
 let state = null;
@@ -116,6 +120,7 @@ function renderSupportSlots() {
       state.ui.supportIds[idx] = v;
       renderSupportSlots();
       renderEvents();
+      renderScenarioLinkRadios();
       recalc();
     });
   });
@@ -164,6 +169,7 @@ function renderCharacterSelect() {
   sel.addEventListener("change", () => {
     state.ui.characterId = Number(sel.value);
     filterCharacterOptions(search.value);
+    renderScenarioLinkRadios();
     recalc();
   });
 
@@ -294,7 +300,18 @@ function renderCheckboxes(containerId, items, storageSet, key) {
   }
 }
 
-/** シナリオリンクは相互排他のラジオ1択（未選択なし） */
+/** 編成に応じたリンクヒント（白 or 金）を表示用に解決 */
+function getResolvedLinkSkill(linkEntry) {
+  const supportById = new Map(state.supports.map((s) => [s.id, s]));
+  const deckIds = getDeckLinkCharacterIds(
+    state.ui.characterId,
+    getSupportIds(),
+    supportById
+  );
+  return resolveLinkSkill(linkEntry, deckIds);
+}
+
+/** シナリオリンクは相互排他のラジオ1択（未選択なし・常に全リンク表示） */
 function renderScenarioLinkRadios() {
   const container = document.getElementById("scenario-link");
   container.innerHTML = "";
@@ -304,7 +321,7 @@ function renderScenarioLinkRadios() {
   const group = document.createElement("fieldset");
   group.className = "event-single-group";
   const legend = document.createElement("legend");
-  legend.textContent = "シナリオリンク";
+  legend.textContent = "シナリオリンク（シニア9月前半）";
   group.appendChild(legend);
 
   const current = state.ui.scenarioLinkChoiceId ?? "link_dotou";
@@ -314,10 +331,10 @@ function renderScenarioLinkRadios() {
     row.className = "radio-row";
     const inputId = `scn-link-${entry.id}`;
     const checked = current === entry.id ? "checked" : "";
-    const skillNote =
-      entry.skills?.length > 0
-        ? `<span class="hint"> — ${escapeHtml(formatSkillList(entry.skills))}</span>`
-        : "";
+    const resolved = getResolvedLinkSkill(entry);
+    const skillNote = resolved
+      ? `<span class="hint"> — ${escapeHtml(resolved.skillName)} Lv${resolved.hintLevel}</span>`
+      : "";
     row.innerHTML = `
       <input type="radio" name="scenario-link" id="${inputId}" value="${escapeHtml(entry.id)}" ${checked} />
       <label for="${inputId}">${escapeHtml(entry.label)}${skillNote}</label>

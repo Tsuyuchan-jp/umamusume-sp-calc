@@ -146,6 +146,10 @@ python scripts/extract_mdb.py --mdb "D:\...\master.mdb"
 グループ:
 
 - `linkSkills` — シナリオリンク（**相互排他・UI はラジオ1択**。未選択なし。デフォルト: メイショウドトウ）
+  - シニア9月前半イベント。選んだリンクにつきヒントは **1スキルのみ**
+  - デフォルトは `skillWithoutLink`（白）。リンク対象キャラが **育成ウマ娘または6枠サポカ** にいれば `skillWithLink`（金）
+  - `requiresLinkCharacterId` — 単一キャラ（`supports.characterId` / 育成カードの `floor(id/100)`）
+  - `requiresLinkCharacterIds` — 複数キャラは **OR**（いずれか1人いれば金。たづな＆ハロー用）
 - `rmjSkills` — シニア12月 盛況段階の選択金など
 - `endSkills` — 育成終了スキル
 - `classicRmj` — クラシック12月 大盛況など

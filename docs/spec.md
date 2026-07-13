@@ -17,7 +17,8 @@
 | サポカ訓練ヒント | 5 | `aggregate.js` 定数 `TRAINING_HINT` |
 | 育成ウマ娘所持スキル | 3 | `CHARA_HINT`。育成ウマ娘覚醒レベルは最大想定で全ランク合算 |
 | イベント | JSON の `hintLevel` | デッキに該当サポカがいるときのみ |
-| シナリオ | JSON の `hintLevel` | ユーザーがチェックしたエントリのみ |
+| シナリオリンク | JSON の `hintLevel` | 選択1件・編成で白/金を切替（`scenarioLink.js`） |
+| シナリオその他 | JSON の `hintLevel` | ユーザーがチェックしたエントリのみ |
 | 複数由来 | `max` | `hintResolve.js` |
 
 `skillId` が無いエントリは、`skills.json` の **名前完全一致**で ID 解決を試みる。
@@ -90,6 +91,11 @@ cost(白, whiteHintLv) + cost(金, goldHintLv)
 
 - 当面このシナリオのみ。データ: `data/scenarios/toresenken.json`
 - リンク / 盛況段階 / 終了スキル / クラシック盛況などを **選択式 ON/OFF**
+- **シナリオリンク（シニア9月前半）**:
+  - UI はラジオ1択（常に全リンク表示）。選択1件につきヒントは白 or 金の **1スキルのみ**
+  - リンク対象キャラが育成ウマ娘 ∪ サポカ6枠にいなければ白（`skillWithoutLink`）、いれば金（`skillWithLink`）
+  - 複数キャラ条件（たづな＆ハロー）は **OR**（どちらか一方で金）
+  - 実装: `app/js/scenarioLink.js`
 - 参照メモ: https://github.com/mee1080/umasim/blob/main/data/ramen_memo.md
 - 多くの `skillId` は `null`。名前マッチ or 手入力で補完する
 

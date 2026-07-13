@@ -216,12 +216,14 @@ function writeJson(filePath, data) {
 
 function resolveSkillIdsByName(skills, events, scenario) {
   const byName = new Map(skills.map((s) => [s.name, s.id]));
-  const resolveSkills = (list) => {
-    for (const sk of list || []) {
-      if (!sk.skillId && sk.skillName && byName.has(sk.skillName)) {
-        sk.skillId = byName.get(sk.skillName);
-      }
+  const resolveOne = (sk) => {
+    if (!sk) return;
+    if (!sk.skillId && sk.skillName && byName.has(sk.skillName)) {
+      sk.skillId = byName.get(sk.skillName);
     }
+  };
+  const resolveSkills = (list) => {
+    for (const sk of list || []) resolveOne(sk);
   };
   const resolveEvents = (list) => {
     for (const evt of list || []) {
@@ -235,6 +237,9 @@ function resolveSkillIdsByName(skills, events, scenario) {
   const resolveList = (list) => {
     for (const entry of list || []) {
       resolveSkills(entry.skills);
+      // シナリオリンク: 白/金の単体フィールド
+      resolveOne(entry.skillWithoutLink);
+      resolveOne(entry.skillWithLink);
     }
   };
   resolveList(scenario.linkSkills);
