@@ -40,6 +40,76 @@
           "skillId": 202792
         }
       ]
+    },
+    {
+      "id": "evt_dotou_route_ou",
+      "supportNameMatch": "その執念は怒濤が如く",
+      "label": "ドトウ 連続（すっかり人気者→霸王と共に歩む）",
+      "skills": [
+        {
+          "skillName": "弧線のプロフェッサー",
+          "hintLevel": 2,
+          "defaultOn": true,
+          "skillId": 200331
+        },
+        {
+          "skillName": "パスファインダー",
+          "hintLevel": 1,
+          "defaultOn": true,
+          "skillId": 203651
+        }
+      ]
+    },
+    {
+      "id": "evt_dotou_route_good",
+      "supportNameMatch": "その執念は怒濤が如く",
+      "label": "ドトウ 連続（何かいいことがあったのか）",
+      "skills": [
+        {
+          "skillName": "曙光",
+          "hintLevel": 2,
+          "defaultOn": true,
+          "skillId": 203641
+        },
+        {
+          "skillName": "パスファインダー",
+          "hintLevel": 1,
+          "defaultOn": true,
+          "skillId": 203651
+        },
+        {
+          "skillName": "悠々自適",
+          "hintLevel": 2,
+          "defaultOn": true,
+          "skillId": 204391
+        }
+      ]
+    },
+    {
+      "id": "evt_dotou_call",
+      "supportNameMatch": "その執念は怒濤が如く",
+      "label": "ドトウ 呼び込み（人の多いところで）",
+      "skills": [
+        {
+          "skillName": "先行コーナー○",
+          "hintLevel": 1,
+          "defaultOn": true,
+          "skillId": 201322
+        }
+      ]
+    },
+    {
+      "id": "evt_dotou_popular",
+      "supportNameMatch": "その執念は怒濤が如く",
+      "label": "ドトウ 連続（すっかり人気者・ウマ好み）",
+      "skills": [
+        {
+          "skillName": "ウマ好み",
+          "hintLevel": 1,
+          "defaultOn": true,
+          "skillId": 201591
+        }
+      ]
     }
   ],
   "prioritySupports": [
