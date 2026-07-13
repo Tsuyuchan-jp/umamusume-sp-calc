@@ -6,7 +6,7 @@
   "linkSkills": [
     {
       "id": "link_fine_motion",
-      "label": "ファインモーションリンク（シニア9月）",
+      "label": "ファインモーションリンク",
       "requiresLinkCharacterId": 1045,
       "skills": [
         {
