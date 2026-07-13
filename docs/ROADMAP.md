@@ -24,7 +24,7 @@
 
 | 項目 | 状態 | メモ |
 |------|------|------|
-| **GitHub Pages 初回デプロイ** | 設定済・未 push | remote 未設定。push → Pages を GitHub Actions に → スモークテスト |
+| **GitHub Pages 初回デプロイ** | 進行中 | remote 済。verify OK・deploy は Pages Source 未設定で一度失敗。Actions 設定後に rerun |
 | UX 改善 | 任意 | 結果の由来表示、初期デッキ6枚化など。プリセットは当面スコープ外 |
 | 回帰テスト拡充 | 一部済 | デフォルト編成・リンク白/金を `npm test` に追加（2026-07） |
 | 表記ゆれ・名前マッチ | 必要時 | `verify_data.mjs` で検出したとき修正 |
@@ -70,8 +70,9 @@
 
 1. ~~デプロイ先選定（GitHub Pages）~~ **済**
 2. ~~workflow・ルートリダイレクト~~ **済**
-3. GitHub へ push・Pages 有効化・本番スモークテスト — **次**
-4. README に確定 URL を記載 — push 後
+3. ~~GitHub へ push~~ **済**（`AkatsukiTanaka/umamusume-sp-calc`）
+4. ~~README を公開利用者向けに整理・確定 URL 記載~~ **済**
+5. Pages Source=GitHub Actions 確認 → デプロイ成功 → 本番スモークテスト — **次**
 
 ## スコープ外（当面やらない）
 
@@ -79,4 +80,4 @@
 - 全サポカのイベント網羅
 - 継承固有の個別名前・親指定
 - 常用デッキのクイック選択プリセット
-- Electron / クラウドホスト必須化
+- Electron / クラウドホスト必須化（※ GitHub Pages での静的公開は実施）

@@ -36,6 +36,9 @@ jobs:
       - uses: actions/checkout@v4
       - name: Setup Pages
         uses: actions/configure-pages@v5
+        with:
+          # 初回デプロイ前に Pages サイトが無い場合でも有効化を試みる
+          enablement: true
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
