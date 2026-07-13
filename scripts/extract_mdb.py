@@ -83,13 +83,13 @@ def extract_supports(conn: sqlite3.Connection) -> list[dict]:
     chars = load_text_map(conn, TEXT_SUPPORT_CHAR)
 
     rarity_map = {1: "R", 2: "SR", 3: "SSR"}
-    # 育成タイプは support_card_type ではなく command_id
+    # 育成タイプは support_card_type ではなく command_id（実機照合済み）
     type_by_command_id = {
         0: "friend",
         101: "speed",
-        102: "stamina",
-        103: "power",
-        105: "guts",
+        102: "power",
+        103: "guts",
+        105: "stamina",
         106: "wit",
     }
 

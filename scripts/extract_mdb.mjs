@@ -92,13 +92,13 @@ function extractSupports(db) {
   const variants = loadTextMap(db, TEXT_SUPPORT_VARIANT);
   const chars = loadTextMap(db, TEXT_SUPPORT_CHAR);
   const rarityMap = { 1: "R", 2: "SR", 3: "SSR" };
-  // 育成タイプは support_card_type ではなく command_id
+  // 育成タイプは support_card_type ではなく command_id（実機照合済み）
   const typeByCommandId = {
     0: "friend",
     101: "speed",
-    102: "stamina",
-    103: "power",
-    105: "guts",
+    102: "power",
+    103: "guts",
+    105: "stamina",
     106: "wit",
   };
 
