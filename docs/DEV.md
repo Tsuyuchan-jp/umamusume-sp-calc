@@ -20,6 +20,8 @@ remote: `https://github.com/Tsuyuchan-jp/umamusume-sp-calc.git`
 
 ## 2. master.mdb 抽出（ゲーム更新時）
 
+**ゲーム更新時の全体手順（チェックリスト正本）**: [GAME_UPDATE_RUNBOOK.md](./GAME_UPDATE_RUNBOOK.md)
+
 **推奨: Node.js**
 
 ```powershell

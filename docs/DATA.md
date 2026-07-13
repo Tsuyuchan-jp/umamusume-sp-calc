@@ -1,5 +1,7 @@
 # データ
 
+ゲーム更新時の再 extract 手順: [GAME_UPDATE_RUNBOOK.md](./GAME_UPDATE_RUNBOOK.md)
+
 ## ディレクトリ概要
 
 ```

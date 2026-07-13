@@ -26,7 +26,7 @@
 
 1. UX 改善（結果の由来表示・初期デッキ6枚化など。プリセットは当面スコープ外。※イベント対応フィルタは v0.1.4 で実装済み）
 2. 実機で確認したケースの回帰テスト追加（`npm test` 拡充）
-3. ゲーム更新時: `npm run extract`（mdb）→ `npm run extract:events` → `npm run apply:events`
+3. ゲーム更新時: [GAME_UPDATE_RUNBOOK.md](./GAME_UPDATE_RUNBOOK.md) に従い extract → events → verify → push
 4. （運用）`master` push で Pages 自動デプロイ。失敗時は Settings → Pages Source=GitHub Actions を確認
 
 ## 非交渉ルール（変えない）
@@ -57,6 +57,7 @@
 ## ファイルの場所
 
 ```
+docs/GAME_UPDATE_RUNBOOK.md  ゲーム更新時の運用チェックリスト（extract・events・デプロイ）
 docs/AGENT_HANDOFF.md   ← 今ここ
 docs/CHANGELOG.md        公開版の更新履歴
 docs/GLOSSARY.md        用語（育成ウマ娘所持スキル / 覚醒進化 など）
@@ -102,4 +103,4 @@ scripts/extract_mdb.py  同上（代替）
 4. 変更したら必ずコミット（メッセージ例: `feat/fix/chore: …` / ドキュメントなら `docs: …`）。
 5. 計算式・ヒントLv・継承スコープ・トレセン軒固定は勝手に変えない。変えるなら要件ドキュメントも更新する。
 6. 再 extract は Python より **Node の `scripts/extract_mdb.mjs`** が実績あり（DMM パス候補内蔵）。
-7. サポカイベント再生成は **`npm run extract:events` → `npm run apply:events`**（U-tools 要ネットワーク or raw キャッシュ）。
+7. サポカイベント再生成は **`npm run extract:events` → `npm run apply:events`**（手順全体: [GAME_UPDATE_RUNBOOK.md](./GAME_UPDATE_RUNBOOK.md)）。

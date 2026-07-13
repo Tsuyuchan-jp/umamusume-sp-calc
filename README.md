@@ -43,7 +43,8 @@
 
 ## 開発者向け
 
-ローカル起動・データ再抽出・イベント再生成・テスト・GitHub Pages の技術メモは [docs/DEV.md](docs/DEV.md) を参照。
+ローカル起動・データ再抽出・イベント再生成・テスト・GitHub Pages の技術メモは [docs/DEV.md](docs/DEV.md) を参照。  
+**ゲーム本パッチ後のデータ更新手順**は [docs/GAME_UPDATE_RUNBOOK.md](docs/GAME_UPDATE_RUNBOOK.md) を参照。
 
 用語は [docs/GLOSSARY.md](docs/GLOSSARY.md)、仕様は [docs/spec.md](docs/spec.md)。  
 更新履歴は [docs/CHANGELOG.md](docs/CHANGELOG.md)。

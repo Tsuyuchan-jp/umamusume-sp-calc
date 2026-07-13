@@ -63,7 +63,7 @@
 
 1. ~~常用デッキ + シナリオの通し確認~~ **済**（実機 OK・バグなし）
 2. 金+白の実機例を別スキルでも再確認（回帰: `npm test`）— 任意拡充
-3. ゲーム更新時の mdb 再 extract 手順の定着 — パッチ時
+3. ゲーム更新時の mdb 再 extract 手順の定着 — **済**（[GAME_UPDATE_RUNBOOK.md](./GAME_UPDATE_RUNBOOK.md)）
 
 ### Phase D — UX（任意）
 
