@@ -1,4 +1,4 @@
-/** 馬場・距離・作戦の発動条件タグと絞込マッチ */
+/** バ場・距離・作戦の発動条件タグと絞込マッチ */
 
 const GROUND_MAP = { 1: "turf", 2: "dirt" };
 const DISTANCE_MAP = { 1: "short", 2: "mile", 3: "mid", 4: "long" };

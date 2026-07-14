@@ -97,7 +97,7 @@ npm run compare:events    # ゴールデン比較レポート
 
 - `id`, `name`, `baseSp`, `rarity`, `groupId`, `groupRate`, `iconId`
 - `lowerSkillId` / `upperSkillId` — 同一 `groupId` 内を `group_rate` 昇順でリンク（白↔金、○↔◎↔金 など）。**`group_rate < 0`（× 等）は購入チェーン外**
-- `activation` — `skill_data` の `precondition_1/2`・`condition_1/2` から抽出した発動条件タグ（馬場・距離・作戦）。絞込 UI と結果表の条件バッジに使用
+- `activation` — `skill_data` の `precondition_1/2`・`condition_1/2` から抽出した発動条件タグ（バ場・距離・作戦）。絞込 UI と結果表の条件バッジに使用
   - `branches`: OR 分岐の配列（各分岐は `grounds` / `distances` / `styles`。空配列＝その軸に制約なし）
   - `tags`: 表示用の和集合（`turf`/`dirt`, `short`/`mile`/`mid`/`long`, `nige`/`senko`/`sashi`/`oikomi`）
   - パース実装: `app/js/skillActivation.js`（extract からも import）
