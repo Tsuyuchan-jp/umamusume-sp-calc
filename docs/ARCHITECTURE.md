@@ -87,7 +87,7 @@ app.js (loadJson) ──► buildSkillPlan(aggregate.js)
 | `skillActivation.js` | 発動条件タグのパース・絞込互換判定・チェーン OR マージ |
 | `scenarioLink.js` | シナリオリンク白/金の編成連動解決 |
 | `aggregate.js` | 全由来のヒント収集と合計 |
-| `app.js` | UI バインド、JSON 読込、サポカ絞込、結果スキル絞込、説明書ダイアログ、再計算 |
+| `app.js` | UI バインド、JSON 読込、サポカ絞込、結果スキル絞込・件数表示、説明書ダイアログ、再計算 |
 
 ## 設計上の注意
 

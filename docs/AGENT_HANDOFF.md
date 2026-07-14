@@ -20,16 +20,18 @@
 | 公開 URL | **https://Tsuyuchan-jp.github.io/umamusume-sp-calc/app/** （v0.1.6・2026-07） |
 | サポカ絞込 | **イベント対応のみ**（デフォルト ON・`prioritySupportIds`）＋ SSR／タイプ／検索 |
 | 結果スキル絞込 | **バ場／距離／作戦**（未選択＝全 ON）。`skills.json` の `activation` で自動除外＋条件バッジ表示。実装: `skillActivation.js` / `app.js` |
+| 結果スキル件数 | 見出し右 **「スキル数 N/M」**（ON＝`!excluded`、全件＝`rows.length`・継承固有含む）。実装: `updateSkillCountDisplay` / `recalc` |
 | 説明書 UI | ヘッダー右 **「使い方」** → `<dialog>`（5セクション・実機確認済み） |
 
 **アプリは実用段階・公開済み。** 常用デッキ＋シナリオ（リンク白/金・RMJ・終了）の通し確認は **実機 OK・バグなし**（2026-07）。
 
 ## 次にやること（優先順）
 
-1. UX 改善（結果の由来表示・初期デッキ6枚化など。プリセットは当面スコープ外。※イベント対応フィルタ v0.1.4・説明書 v0.1.5・結果スキル絞込 v0.1.6 で実装済み）
-2. 実機で確認したケースの回帰テスト追加（`npm test` 拡充）
-3. ゲーム更新時: [GAME_UPDATE_RUNBOOK.md](./GAME_UPDATE_RUNBOOK.md) に従い extract → events → verify → push
-4. （運用）`master` push で Pages 自動デプロイ。失敗時は Settings → Pages Source=GitHub Actions を確認
+1. **結果スキル絞込のデッキ変更連動** — 絞込選択中にサポカ入替・追加すると新規スキルに絞込が効かない既知の UX 問題（設計レビュー待ち）
+2. UX 改善（結果の由来表示・初期デッキ6枚化など。プリセットは当面スコープ外。※イベント対応フィルタ v0.1.4・説明書 v0.1.5・結果スキル絞込 v0.1.6・スキル数表示で実装済み）
+3. 実機で確認したケースの回帰テスト追加（`npm test` 拡充）
+4. ゲーム更新時: [GAME_UPDATE_RUNBOOK.md](./GAME_UPDATE_RUNBOOK.md) に従い extract → events → verify → push
+5. （運用）`master` push で Pages 自動デプロイ。失敗時は Settings → Pages Source=GitHub Actions を確認
 
 ## 非交渉ルール（変えない）
 
@@ -56,6 +58,7 @@
 - **初期値**: 育成ウマ娘 `[万福龍湯伝・頂]ナリタトップロード` / サポカ枠5 ヤング・枠6 たづな（枠1–4 未選択）/ 継承固有 個数4・ヒントLv3
 - **サポカ絞込**: 「イベント対応のみ」デフォルト ON（`prioritySupportIds`）。選択中カードは keep。実装: `app.js` の `getSupportFilterState` / `supportMatchesFilters`
 - **結果スキル絞込**: バ場／距離／作戦（未選択＝全 ON）。絞込変更で `excludedSkillIds` を再計算（手動「含める」もリセット）。実装: `skillActivation.js` / `applySkillFilterExclusions`
+- **結果スキル件数**: 見出し右 `スキル数 N/M`（ON＝`!row.excluded`、全件＝`plan.rows.length`・継承固有含む）。`recalc` で更新
 - **説明書モーダル**: ヘッダー `#help-open` → `#help-dialog`（`bindHelpDialog`）。本文は `index.html` 内直書き（`docs/` と自動同期しない）
 
 ## ファイルの場所
