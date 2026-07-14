@@ -4,6 +4,21 @@
 
 形式は [Keep a Changelog](https://keepachangelog.com/ja/1.0.0/) に近いが、セマンティックバージョニングは緩め（`0.1.x` = 公開後の軽量改修）。
 
+## [0.1.6] — 2026-07-14
+
+### 追加
+
+- 結果スキル一覧に **発動条件タグ**（バ場・距離・作戦）と **レギュ絞込**（バ場／距離／作戦）。非互換スキルを合計から自動除外（手動「含める」は絞込変更でリセット）。実機確認済み
+- `skills.json` の `activation` フィールド（mdb `skill_data` 条件から extract）
+- `app/js/skillActivation.js`、`scripts/patch_skill_activation.mjs`、`scripts/test_skill_activation.mjs`
+
+### 変更
+
+- バージョン表記を **v0.1.6**
+- 絞込 UI の「馬場」表記をゲーム内表記の **「バ場」** に統一
+
+---
+
 ## [0.1.5] — 2026-07-14
 
 ### 追加

@@ -17,15 +17,16 @@
 | `data/scenarios/toresenken.json` | **あり** — リンク白/金・RMJ自動計上・ラーメン3択（実機通し確認済み） |
 | Python / `py` | `where` 上は WindowsApps の `python.exe` スタブ寄り。`py` 無し。再 extract 時に実体 Python 要確認 |
 | Git | remote: `Tsuyuchan-jp/umamusume-sp-calc`（public）。Pages デプロイ運用中 |
-| 公開 URL | **https://Tsuyuchan-jp.github.io/umamusume-sp-calc/app/** （v0.1.5・2026-07） |
+| 公開 URL | **https://Tsuyuchan-jp.github.io/umamusume-sp-calc/app/** （v0.1.6・2026-07） |
 | サポカ絞込 | **イベント対応のみ**（デフォルト ON・`prioritySupportIds`）＋ SSR／タイプ／検索 |
+| 結果スキル絞込 | **バ場／距離／作戦**（未選択＝全 ON）。`skills.json` の `activation` で自動除外＋条件バッジ表示。実装: `skillActivation.js` / `app.js` |
 | 説明書 UI | ヘッダー右 **「使い方」** → `<dialog>`（5セクション・実機確認済み） |
 
 **アプリは実用段階・公開済み。** 常用デッキ＋シナリオ（リンク白/金・RMJ・終了）の通し確認は **実機 OK・バグなし**（2026-07）。
 
 ## 次にやること（優先順）
 
-1. UX 改善（結果の由来表示・初期デッキ6枚化など。プリセットは当面スコープ外。※イベント対応フィルタは v0.1.4・説明書モーダルは v0.1.5 で実装済み）
+1. UX 改善（結果の由来表示・初期デッキ6枚化など。プリセットは当面スコープ外。※イベント対応フィルタ v0.1.4・説明書 v0.1.5・結果スキル絞込 v0.1.6 で実装済み）
 2. 実機で確認したケースの回帰テスト追加（`npm test` 拡充）
 3. ゲーム更新時: [GAME_UPDATE_RUNBOOK.md](./GAME_UPDATE_RUNBOOK.md) に従い extract → events → verify → push
 4. （運用）`master` push で Pages 自動デプロイ。失敗時は Settings → Pages Source=GitHub Actions を確認
@@ -54,6 +55,7 @@
 - **RMJ / 終了（ガチ想定）**: 盛況チェックは廃止。`scenarioAutoSkills` で自動計上（クラシック大盛況・シニア超盛況固定・育成終了）。シニア12月は `seniorRmjChoice` ラーメン3択（デフォルト: よくばり → いいとこ入った！）
 - **初期値**: 育成ウマ娘 `[万福龍湯伝・頂]ナリタトップロード` / サポカ枠5 ヤング・枠6 たづな（枠1–4 未選択）/ 継承固有 個数4・ヒントLv3
 - **サポカ絞込**: 「イベント対応のみ」デフォルト ON（`prioritySupportIds`）。選択中カードは keep。実装: `app.js` の `getSupportFilterState` / `supportMatchesFilters`
+- **結果スキル絞込**: バ場／距離／作戦（未選択＝全 ON）。絞込変更で `excludedSkillIds` を再計算（手動「含める」もリセット）。実装: `skillActivation.js` / `applySkillFilterExclusions`
 - **説明書モーダル**: ヘッダー `#help-open` → `#help-dialog`（`bindHelpDialog`）。本文は `index.html` 内直書き（`docs/` と自動同期しない）
 
 ## ファイルの場所
@@ -75,7 +77,8 @@ docs/EVENT_EXTRACT_DESIGN.md  イベント抽出設計（Phase B 完了）
 docs/UTOOLS_EVENT_PARSE.md    U-tools SSR パース仕様
 app/                    ブラウザアプリ
 data/                   JSON（extract 生成 + シナリオ手メンテ）
-scripts/extract_mdb.mjs master.mdb → skills/supports/characters（推奨）
+scripts/extract_mdb.mjs master.mdb → skills/supports/characters（推奨・`activation` 付与）
+scripts/patch_skill_activation.mjs 既存 skills.json へ activation のみ付与
 scripts/extract_support_events.mjs  U-tools+mdb → events.extracted.json
 scripts/apply_extracted_events.mjs  events.json へ反映
 scripts/extract_mdb.py  同上（代替）

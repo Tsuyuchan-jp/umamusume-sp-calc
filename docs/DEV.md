@@ -32,8 +32,14 @@ node scripts/extract_mdb.mjs --mdb "D:\DMM\umamusumeDMM\Umamusume\umamusume_Data
 
 既定で次を順に探す: AppData 既定 → DMM Persistent → `D:\Umamusume\...`
 
-成功すると `data/skills.json`, `supports.json`, `characters.json`, `meta.json` が更新される。  
+成功すると `data/skills.json`, `supports.json`, `characters.json`, `meta.json` が更新される（`skills.json` には `activation` も付与）。  
 `events.json` / `toresenken.json` は `extract_mdb` では上書きされない。
+
+発動条件タグ（`activation`）だけ既存 `skills.json` に付与する場合:
+
+```powershell
+npm run patch:activation
+```
 
 `skills.json` の `lowerSkillId` / `upperSkillId` は **`group_rate >= 0` のみ**リンクする（`group_rate < 0` の × は購入チェーン外）。  
 既存 JSON のリンクだけ直す場合:
