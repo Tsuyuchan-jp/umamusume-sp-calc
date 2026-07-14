@@ -17,7 +17,7 @@
 | `data/scenarios/toresenken.json` | **あり** — リンク白/金・RMJ自動計上・ラーメン3択（実機通し確認済み） |
 | Python / `py` | `where` 上は WindowsApps の `python.exe` スタブ寄り。`py` 無し。再 extract 時に実体 Python 要確認 |
 | Git | remote: `Tsuyuchan-jp/umamusume-sp-calc`（public）。Pages デプロイ運用中 |
-| 公開 URL | **https://Tsuyuchan-jp.github.io/umamusume-sp-calc/app/** （v0.1.4・2026-07） |
+| 公開 URL | **https://Tsuyuchan-jp.github.io/umamusume-sp-calc/app/** （v0.1.5・2026-07） |
 | サポカ絞込 | **イベント対応のみ**（デフォルト ON・`prioritySupportIds`）＋ SSR／タイプ／検索 |
 | 説明書 UI | ヘッダー右 **「使い方」** → `<dialog>`（5セクション・実機確認済み） |
 
@@ -25,7 +25,7 @@
 
 ## 次にやること（優先順）
 
-1. UX 改善（結果の由来表示・初期デッキ6枚化など。プリセットは当面スコープ外。※イベント対応フィルタ・説明書モーダルは v0.1.4 で実装済み）
+1. UX 改善（結果の由来表示・初期デッキ6枚化など。プリセットは当面スコープ外。※イベント対応フィルタは v0.1.4・説明書モーダルは v0.1.5 で実装済み）
 2. 実機で確認したケースの回帰テスト追加（`npm test` 拡充）
 3. ゲーム更新時: [GAME_UPDATE_RUNBOOK.md](./GAME_UPDATE_RUNBOOK.md) に従い extract → events → verify → push
 4. （運用）`master` push で Pages 自動デプロイ。失敗時は Settings → Pages Source=GitHub Actions を確認
