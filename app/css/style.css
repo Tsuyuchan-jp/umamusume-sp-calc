@@ -516,11 +516,28 @@ tr.excluded td {
   align-items: flex-end;
 }
 
-.skill-filter-label {
+.skill-filter-label,
+.skill-filter-action {
   display: flex;
   flex-direction: column;
   gap: 0.2rem;
+  margin-bottom: 0;
   font-size: 0.85rem;
+}
+
+.skill-filter-action__spacer {
+  visibility: hidden;
+  user-select: none;
+}
+
+.skill-filter-label select,
+.skill-filter-apply {
+  box-sizing: border-box;
+  font-size: inherit;
+  line-height: 1.25;
+  padding: 0.4rem 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
 }
 
 .skill-filter-label select {
@@ -529,12 +546,10 @@ tr.excluded td {
 }
 
 .skill-filter-apply {
-  padding: 0.4rem 1rem;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+  padding-left: 1rem;
+  padding-right: 1rem;
   background: #f0f0f0;
   color: #888;
-  font-size: 0.85rem;
   cursor: not-allowed;
   white-space: nowrap;
 }

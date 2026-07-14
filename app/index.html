@@ -364,15 +364,18 @@
                 <option value="oikomi">追込</option>
               </select>
             </label>
-            <button
-              type="button"
-              id="skill-filter-apply"
-              class="skill-filter-apply"
-              disabled
-              aria-describedby="skill-filter-pending"
-            >
-              適用
-            </button>
+            <div class="skill-filter-action">
+              <span class="skill-filter-action__spacer" aria-hidden="true">作戦</span>
+              <button
+                type="button"
+                id="skill-filter-apply"
+                class="skill-filter-apply"
+                disabled
+                aria-describedby="skill-filter-pending"
+              >
+                適用
+              </button>
+            </div>
           </div>
           <p id="skill-filter-pending" class="skill-filter-box__status" hidden>
             未適用の絞込があります
