@@ -17,7 +17,7 @@
 | `data/scenarios/toresenken.json` | **あり** — リンク白/金・RMJ自動計上・ラーメン3択（実機通し確認済み） |
 | Python / `py` | `where` 上は WindowsApps の `python.exe` スタブ寄り。`py` 無し。再 extract 時に実体 Python 要確認 |
 | Git | remote: `Tsuyuchan-jp/umamusume-sp-calc`（public）。Pages デプロイ運用中 |
-| 公開 URL | **https://Tsuyuchan-jp.github.io/umamusume-sp-calc/app/** （v0.1.6・2026-07） |
+| 公開 URL | **https://Tsuyuchan-jp.github.io/umamusume-sp-calc/app/** （v0.1.7・2026-07） |
 | サポカ絞込 | **イベント対応のみ**（デフォルト ON・`prioritySupportIds`）＋ SSR／タイプ／検索 |
 | 結果スキル絞込 | **バ場／距離／作戦**＋**適用ボタン**（draft/committed）。確定済み絞込を編成変更時に新規 skillId へ増分適用。実装: `skillActivation.js` / `app.js` |
 | 結果スキル件数 | 見出し右 **「スキル数 N/M」**（ON＝`!excluded`、全件＝`rows.length`・継承固有含む）。実装: `updateSkillCountDisplay` / `recalc` |

@@ -1,6 +1,6 @@
 {
   "name": "umamusume-sp-calc",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "private": true,
   "type": "module",
   "description": "ウマ娘 取得可能スキル全習得の理論必要SP算出ツール",
