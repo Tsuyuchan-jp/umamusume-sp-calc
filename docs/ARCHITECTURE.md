@@ -86,10 +86,11 @@ app.js (loadJson) ──► buildSkillPlan(aggregate.js)
 | `goldLower.js` | グループ内チェーン合算（白+金 / ○+◎+金）、○→◎繰り上げ、表示フィルタ |
 | `scenarioLink.js` | シナリオリンク白/金の編成連動解決 |
 | `aggregate.js` | 全由来のヒント収集と合計 |
-| `app.js` | UI バインド、JSON 読込、サポカ絞込（イベント対応／SSR／タイプ／検索）、再計算 |
+| `app.js` | UI バインド、JSON 読込、サポカ絞込（イベント対応／SSR／タイプ／検索）、説明書ダイアログ、再計算 |
 
 ## 設計上の注意
 
 - サポカ **訓練ヒントは mdb 自動**、**イベントスキルヒントは U-tools+mdb 抽出**（`events.preserve.json` で少数例外）— 混ぜない
 - シナリオはトレセン軒固定（UI に切替なし）
+- ユーザー向け説明はヘッダー「使い方」`<dialog>`（`index.html` + `bindHelpDialog`）。開発者向け詳細は `docs/spec.md` 等
 - extract 失敗時は `app.js` が `#load-error` に手順を表示

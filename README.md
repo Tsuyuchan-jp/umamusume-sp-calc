@@ -25,6 +25,8 @@
 3. イベント／シナリオ（リンク・ラーメン等）を必要なら調整
 4. 画面下部の**合計 SP**を確認（除外・切れ者・継承固有も可）
 
+わからないときは、画面上部ヘッダー右の **「使い方」** から説明書（ヒントLvの算出・よくある疑問など）を開けます。
+
 ## 注意
 
 - **シナリオはトレセン軒のみ**（当面固定）
@@ -40,6 +42,7 @@
 - 金＋白コスト合算（実機検証済み）
 - 切れ者トグル・スキル除外
 - 継承固有（汎用行・2〜6本・baseSp200・一律Lv）
+- ヘッダー **「使い方」** 説明書モーダル（ヒントLv・FAQ・制限事項）
 
 ## 開発者向け
 
@@ -49,6 +52,10 @@
 用語は [docs/GLOSSARY.md](docs/GLOSSARY.md)、仕様は [docs/spec.md](docs/spec.md)。  
 更新履歴は [docs/CHANGELOG.md](docs/CHANGELOG.md)。  
 イベント対応サポカ37種の一覧は [docs/PRIORITY_SUPPORTS.md](docs/PRIORITY_SUPPORTS.md)（JSON: [data/priority-supports.json](data/priority-supports.json)）。
+
+## フィードバック
+
+不具合や要望は [GitHub リポジトリ](https://github.com/Tsuyuchan-jp/umamusume-sp-calc) をご参照ください。あわせて、製作者の [note](https://note.com/limber_alpaca292) や [X（DM）](https://x.com/tsuyurasu) からもお知らせいただけます。
 
 ## 免責
 
