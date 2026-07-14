@@ -530,6 +530,15 @@ function updateTotalDisplay(total) {
   previousTotal = total;
 }
 
+/** 結果見出し右の「含める ON/全件」を更新 */
+function updateSkillCountDisplay(plan) {
+  const el = document.getElementById("skill-count-meta");
+  if (!el) return;
+  const totalCount = plan.rows.length;
+  const onCount = plan.rows.filter((r) => !r.excluded).length;
+  el.textContent = `含める ${onCount}/${totalCount}`;
+}
+
 function getSkillFilterState() {
   return {
     ground: document.getElementById("skill-filter-ground")?.value || "",
@@ -624,6 +633,7 @@ function recalc({ resetFilterExclusions = false } = {}) {
 
   renderPlanWarnings(plan.unresolved);
   updateTotalDisplay(plan.total);
+  updateSkillCountDisplay(plan);
 
   const tbody = document.getElementById("result-body");
   tbody.innerHTML = "";
