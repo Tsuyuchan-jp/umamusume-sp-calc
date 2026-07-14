@@ -3,6 +3,13 @@ import {
   getDeckLinkCharacterIds,
   resolveLinkSkill,
 } from "./scenarioLink.js";
+import {
+  formatActivationTagLabels,
+  getDisplayActivation,
+  hasActivationConstraints,
+  isSkillCompatible,
+  isSkillFilterActive,
+} from "./skillActivation.js";
 
 /** @type {object|null} */
 let state = null;
@@ -523,6 +530,53 @@ function updateTotalDisplay(total) {
   previousTotal = total;
 }
 
+function getSkillFilterState() {
+  return {
+    ground: document.getElementById("skill-filter-ground")?.value || "",
+    distance: document.getElementById("skill-filter-distance")?.value || "",
+    style: document.getElementById("skill-filter-style")?.value || "",
+  };
+}
+
+function getSkillByIdMap() {
+  return new Map(state.skills.map((s) => [s.id, s]));
+}
+
+/** 絞込に基づき excludedSkillIds を全置換 */
+function applySkillFilterExclusions(plan) {
+  excludedSkillIds.clear();
+  const filter = getSkillFilterState();
+  if (!isSkillFilterActive(filter)) return;
+
+  const skillById = getSkillByIdMap();
+  for (const row of plan.rows) {
+    if (row.isInherit || row.skillId == null) continue;
+    const activation = getDisplayActivation(
+      row.skillId,
+      row.chainSkillIds || [row.skillId],
+      skillById
+    );
+    if (!isSkillCompatible(activation, filter)) {
+      excludedSkillIds.add(row.skillId);
+    }
+  }
+}
+
+function renderActivationTags(row) {
+  if (row.isInherit || row.skillId == null) return "—";
+  const skillById = getSkillByIdMap();
+  const activation = getDisplayActivation(
+    row.skillId,
+    row.chainSkillIds || [row.skillId],
+    skillById
+  );
+  if (!hasActivationConstraints(activation.tags)) return "—";
+  const labels = formatActivationTagLabels(activation.tags);
+  return labels
+    .map((label) => `<span class="badge badge--condition">${escapeHtml(label)}</span>`)
+    .join("");
+}
+
 function renderPlanWarnings(unresolved) {
   const el = document.getElementById("plan-warnings");
   if (!el) return;
@@ -538,10 +592,10 @@ function renderPlanWarnings(unresolved) {
   console.warn("未解決スキル:", unresolved);
 }
 
-function recalc() {
+function recalc({ resetFilterExclusions = false } = {}) {
   if (!state) return;
 
-  const plan = buildSkillPlan({
+  const planParams = {
     skills: state.skills,
     supports: state.supports,
     characters: state.characters,
@@ -559,7 +613,14 @@ function recalc() {
     eventChoiceIds: Object.fromEntries(state.ui.eventChoiceIds),
     enabledScenarioEntryIds: buildEnabledScenarioEntryIds(),
     seniorRmjChoiceId: state.ui.seniorRmjChoiceId,
-  });
+  };
+
+  let plan = buildSkillPlan(planParams);
+
+  if (resetFilterExclusions) {
+    applySkillFilterExclusions(plan);
+    plan = buildSkillPlan({ ...planParams, excludedSkillIds });
+  }
 
   renderPlanWarnings(plan.unresolved);
   updateTotalDisplay(plan.total);
@@ -571,7 +632,6 @@ function recalc() {
     if (row.skillId != null && excludedSkillIds.has(row.skillId)) {
       tr.classList.add("excluded");
     }
-    const checkId = row.skillId ?? `inherit-${row.name}`;
     const included =
       row.skillId == null || !excludedSkillIds.has(row.skillId);
     const costDetail =
@@ -588,6 +648,7 @@ function recalc() {
         }
       </td>
       <td>${escapeHtml(row.name)}</td>
+      <td class="skill-condition-cell">${renderActivationTags(row)}</td>
       <td>${row.hintLevel}</td>
       <td>${costDetail}</td>
       <td>${row.sources.map((s) => `<span class="badge">${escapeHtml(s)}</span>`).join("")}</td>
@@ -604,6 +665,16 @@ function recalc() {
       });
     }
   }
+}
+
+function bindSkillFilters() {
+  ["skill-filter-ground", "skill-filter-distance", "skill-filter-style"].forEach(
+    (id) => {
+      document.getElementById(id)?.addEventListener("change", () => {
+        recalc({ resetFilterExclusions: true });
+      });
+    }
+  );
 }
 
 function bindOptions() {
@@ -692,6 +763,7 @@ async function init() {
     renderScenarioAuto();
 
     bindOptions();
+    bindSkillFilters();
     recalc();
   } catch (e) {
     showError(

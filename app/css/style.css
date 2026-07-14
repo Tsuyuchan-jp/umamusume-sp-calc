@@ -477,6 +477,33 @@ tr.excluded td {
   margin-right: 0.25rem;
 }
 
+.badge--condition {
+  background: #e8f4fc;
+  color: #1a5276;
+}
+
+.skill-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 1.25rem;
+  margin: 0.75rem 0 0.25rem;
+}
+
+.skill-filter-label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  font-size: 0.85rem;
+}
+
+.skill-filter-label select {
+  min-width: 6.5rem;
+}
+
+.skill-condition-cell {
+  white-space: nowrap;
+}
+
 .error {
   color: #c0392b;
   background: #fdecea;

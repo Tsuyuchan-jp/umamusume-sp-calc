@@ -52,7 +52,7 @@ node scripts/extract_mdb.mjs --mdb "D:\DMM\umamusumeDMM\Umamusume\umamusume_Data
 python scripts/extract_mdb.py --mdb "D:\...\master.mdb"
 ```
 
-補助: `scripts/verify_data.mjs`（優先サポカ名・スキル解決の目視）、`scripts/test_sp.mjs`（コスト式回帰）
+補助: `scripts/verify_data.mjs`（優先サポカ名・スキル解決の目視）、`scripts/test_sp.mjs`（コスト式回帰）、`scripts/test_skill_activation.mjs`（発動条件タグ・絞込マッチ）
 
 ### サポカイベント（U-tools + mdb）
 
@@ -83,7 +83,7 @@ npm run compare:events    # ゴールデン比較レポート
 | スキル説明 | 48（抽出では未使用） |
 | サポカ名 | 75 / バリアント 76 / キャラ名寄せ 77 |
 | ウマ娘名 | 6 |
-| スキル本体 | `skill_data`（id, rarity, group_id, group_rate, icon_id） |
+| スキル本体 | `skill_data`（id, rarity, group_id, group_rate, icon_id, precondition_*, condition_*） |
 | 必要SP | `single_mode_skill_need_point`（need_skill_point → `baseSp`） |
 | サポカヒント | `single_mode_hint_gain`（`hint_gain_type = 0` → `hintSkillIds`） |
 | ヒントLvアップ上限 | `support_card_effect_table` type **17** → `hintLevelUpMax` |
@@ -97,6 +97,10 @@ npm run compare:events    # ゴールデン比較レポート
 
 - `id`, `name`, `baseSp`, `rarity`, `groupId`, `groupRate`, `iconId`
 - `lowerSkillId` / `upperSkillId` — 同一 `groupId` 内を `group_rate` 昇順でリンク（白↔金、○↔◎↔金 など）。**`group_rate < 0`（× 等）は購入チェーン外**
+- `activation` — `skill_data` の `precondition_1/2`・`condition_1/2` から抽出した発動条件タグ（馬場・距離・作戦）。絞込 UI と結果表の条件バッジに使用
+  - `branches`: OR 分岐の配列（各分岐は `grounds` / `distances` / `styles`。空配列＝その軸に制約なし）
+  - `tags`: 表示用の和集合（`turf`/`dirt`, `short`/`mile`/`mid`/`long`, `nige`/`senko`/`sashi`/`oikomi`）
+  - パース実装: `app/js/skillActivation.js`（extract からも import）
 
 **supports.json** 1件:
 

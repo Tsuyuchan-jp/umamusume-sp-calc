@@ -6,6 +6,7 @@ import { DatabaseSync } from "node:sqlite";
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { parseSkillActivation } from "../app/js/skillActivation.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(__dirname, "..");
@@ -64,7 +65,11 @@ function extractSkills(db) {
 
   const groups = new Map();
   const skillsRaw = db
-    .prepare("SELECT id, rarity, group_id, group_rate, icon_id FROM skill_data")
+    .prepare(
+      `SELECT id, rarity, group_id, group_rate, icon_id,
+              precondition_1, condition_1, precondition_2, condition_2
+       FROM skill_data`
+    )
     .all();
 
   const skillRows = [];
@@ -84,6 +89,12 @@ function extractSkills(db) {
       iconId: Number(row.icon_id),
       lowerSkillId: null,
       upperSkillId: null,
+      activation: parseSkillActivation(
+        row.precondition_1,
+        row.condition_1,
+        row.precondition_2,
+        row.condition_2
+      ),
     });
   }
 

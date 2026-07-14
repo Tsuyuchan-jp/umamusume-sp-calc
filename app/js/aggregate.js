@@ -221,6 +221,7 @@ export function buildSkillPlan(params) {
       lowerCost: acq.lowerCost,
       goldOnlyCost: acq.goldOnlyCost,
       chainCosts: acq.chainCosts,
+      chainSkillIds: acq.chainSkillIds,
       rarity: skill.rarity,
       excluded,
     });

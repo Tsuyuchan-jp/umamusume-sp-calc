@@ -81,6 +81,12 @@ git push
 npm run extract
 ```
 
+フル extract の代わりに、既存 `skills.json` へ `activation` だけ付与する場合:
+
+```powershell
+npm run patch:activation
+```
+
 パスを指定する場合:
 
 ```powershell
@@ -91,7 +97,7 @@ node scripts/extract_mdb.mjs --mdb "D:\DMM\umamusumeDMM\Umamusume\umamusume_Data
 
 | ファイル | 内容 |
 |----------|------|
-| `data/skills.json` | スキル定義・上下位リンク |
+| `data/skills.json` | スキル定義・上下位リンク・発動条件タグ（`activation`） |
 | `data/supports.json` | サポカ・訓練ヒント |
 | `data/characters.json` | 育成ウマ娘・覚醒スキル |
 | `data/meta.json` | 件数・抽出元パス・日時 |
@@ -115,7 +121,7 @@ npm test
 ```
 
 - `verify`: 優先サポカ名の解決など簡易チェック
-- `test`: SP コスト式・デフォルト編成・リンク白/金などの回帰
+- `test`: SP コスト式・デフォルト編成・リンク白/金・発動条件タグ絞込などの回帰
 
 失敗したら **apply / push 前に** 原因を切り分ける（新スキル id・表記ゆれ・テスト期待値の更新が必要なことがある）。
 
