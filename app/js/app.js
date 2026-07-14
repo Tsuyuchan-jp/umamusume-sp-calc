@@ -4,11 +4,13 @@ import {
   resolveLinkSkill,
 } from "./scenarioLink.js";
 import {
+  applyFullFilterExclusions,
+  applyIncrementalFilterExclusions,
+  collectPlanSkillIds,
   formatActivationTagLabels,
   getDisplayActivation,
   hasActivationConstraints,
-  isSkillCompatible,
-  isSkillFilterActive,
+  skillFiltersEqual,
 } from "./skillActivation.js";
 
 /** @type {object|null} */
@@ -16,6 +18,12 @@ let state = null;
 
 /** @type {Set<number>} */
 const excludedSkillIds = new Set();
+
+/** 確定済みレギュ絞込（適用ボタンで更新） */
+let committedSkillFilter = { ground: "", distance: "", style: "" };
+
+/** 前回 plan の skillId 集合（増分絞込用） */
+let previousPlanSkillIds = new Set();
 
 /** イベントヒント対応サポカ id（events.json の prioritySupportIds） */
 /** @type {Set<number>} */
@@ -539,7 +547,7 @@ function updateSkillCountDisplay(plan) {
   el.textContent = `スキル数 ${onCount}/${totalCount}`;
 }
 
-function getSkillFilterState() {
+function getDraftSkillFilterState() {
   return {
     ground: document.getElementById("skill-filter-ground")?.value || "",
     distance: document.getElementById("skill-filter-distance")?.value || "",
@@ -551,24 +559,17 @@ function getSkillByIdMap() {
   return new Map(state.skills.map((s) => [s.id, s]));
 }
 
-/** 絞込に基づき excludedSkillIds を全置換 */
-function applySkillFilterExclusions(plan) {
-  excludedSkillIds.clear();
-  const filter = getSkillFilterState();
-  if (!isSkillFilterActive(filter)) return;
+/** 絞込ボックスの未適用表示を更新 */
+function updateSkillFilterBoxUI() {
+  const box = document.getElementById("skill-filter-box");
+  const btn = document.getElementById("skill-filter-apply");
+  const status = document.getElementById("skill-filter-pending");
+  if (!box || !btn) return;
 
-  const skillById = getSkillByIdMap();
-  for (const row of plan.rows) {
-    if (row.isInherit || row.skillId == null) continue;
-    const activation = getDisplayActivation(
-      row.skillId,
-      row.chainSkillIds || [row.skillId],
-      skillById
-    );
-    if (!isSkillCompatible(activation, filter)) {
-      excludedSkillIds.add(row.skillId);
-    }
-  }
+  const pending = !skillFiltersEqual(getDraftSkillFilterState(), committedSkillFilter);
+  box.classList.toggle("skill-filter-box--pending", pending);
+  btn.disabled = !pending;
+  if (status) status.hidden = !pending;
 }
 
 function renderActivationTags(row) {
@@ -625,11 +626,29 @@ function recalc({ resetFilterExclusions = false } = {}) {
   };
 
   let plan = buildSkillPlan(planParams);
+  const skillById = getSkillByIdMap();
 
   if (resetFilterExclusions) {
-    applySkillFilterExclusions(plan);
+    applyFullFilterExclusions(
+      excludedSkillIds,
+      plan.rows,
+      committedSkillFilter,
+      skillById
+    );
+    plan = buildSkillPlan({ ...planParams, excludedSkillIds });
+    previousPlanSkillIds = collectPlanSkillIds(plan.rows);
+  } else {
+    previousPlanSkillIds = applyIncrementalFilterExclusions(
+      excludedSkillIds,
+      plan.rows,
+      previousPlanSkillIds,
+      committedSkillFilter,
+      skillById
+    );
     plan = buildSkillPlan({ ...planParams, excludedSkillIds });
   }
+
+  updateSkillFilterBoxUI();
 
   renderPlanWarnings(plan.unresolved);
   updateTotalDisplay(plan.total);
@@ -678,13 +697,16 @@ function recalc({ resetFilterExclusions = false } = {}) {
 }
 
 function bindSkillFilters() {
+  const onDraftChange = () => updateSkillFilterBoxUI();
   ["skill-filter-ground", "skill-filter-distance", "skill-filter-style"].forEach(
     (id) => {
-      document.getElementById(id)?.addEventListener("change", () => {
-        recalc({ resetFilterExclusions: true });
-      });
+      document.getElementById(id)?.addEventListener("change", onDraftChange);
     }
   );
+  document.getElementById("skill-filter-apply")?.addEventListener("click", () => {
+    committedSkillFilter = getDraftSkillFilterState();
+    recalc({ resetFilterExclusions: true });
+  });
 }
 
 function bindOptions() {
@@ -774,6 +796,7 @@ async function init() {
 
     bindOptions();
     bindSkillFilters();
+    committedSkillFilter = getDraftSkillFilterState();
     recalc();
   } catch (e) {
     showError(

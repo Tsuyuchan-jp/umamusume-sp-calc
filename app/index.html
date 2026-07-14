@@ -169,7 +169,7 @@
               A. その表示行（およびまとめて表示している下位スキル）が合計から外れます。対人レギュで取らないスキル向けです。
             </p>
             <p><strong>Q. 結果のバ場・距離・作戦の絞込は？</strong><br />
-              A. レギュに合わないスキルを自動で合計から除外します。絞込を変えると「含める」の手動変更はやり直されます（ゲームのスキル取得画面と同様）。
+              A. レギュに合わないスキルを自動で合計から除外します。セレクトを変えただけでは反映されず、「適用」で確定します。確定時に「含める」の手動変更はやり直されます（ゲームのスキル取得画面の決定に相当）。編成変更で追加されたスキルには、確定済みの絞込が自動でかかります。
             </p>
             <p><strong>Q. スタミナやスピードの最終値は出る？</strong><br />
               A. 出ません。対象は <strong>スキル習得のSP</strong> のみです。
@@ -333,38 +333,53 @@
           <span id="skill-count-meta" class="skill-count-meta">スキル数 —</span>
         </div>
         <div class="total-box">合計必要SP: <span id="total-sp">—</span></div>
-        <div class="skill-filters">
-          <label class="skill-filter-label">
-            バ場
-            <select id="skill-filter-ground">
-              <option value="">未選択</option>
-              <option value="turf">芝</option>
-              <option value="dirt">ダート</option>
-            </select>
-          </label>
-          <label class="skill-filter-label">
-            距離
-            <select id="skill-filter-distance">
-              <option value="">未選択</option>
-              <option value="short">短距離</option>
-              <option value="mile">マイル</option>
-              <option value="mid">中距離</option>
-              <option value="long">長距離</option>
-            </select>
-          </label>
-          <label class="skill-filter-label">
-            作戦
-            <select id="skill-filter-style">
-              <option value="">未選択</option>
-              <option value="nige">逃げ</option>
-              <option value="senko">先行</option>
-              <option value="sashi">差し</option>
-              <option value="oikomi">追込</option>
-            </select>
-          </label>
+        <div id="skill-filter-box" class="skill-filter-box" aria-live="polite">
+          <div class="skill-filter-box__title">レギュ絞込</div>
+          <div class="skill-filters">
+            <label class="skill-filter-label">
+              バ場
+              <select id="skill-filter-ground">
+                <option value="">未選択</option>
+                <option value="turf">芝</option>
+                <option value="dirt">ダート</option>
+              </select>
+            </label>
+            <label class="skill-filter-label">
+              距離
+              <select id="skill-filter-distance">
+                <option value="">未選択</option>
+                <option value="short">短距離</option>
+                <option value="mile">マイル</option>
+                <option value="mid">中距離</option>
+                <option value="long">長距離</option>
+              </select>
+            </label>
+            <label class="skill-filter-label">
+              作戦
+              <select id="skill-filter-style">
+                <option value="">未選択</option>
+                <option value="nige">逃げ</option>
+                <option value="senko">先行</option>
+                <option value="sashi">差し</option>
+                <option value="oikomi">追込</option>
+              </select>
+            </label>
+            <button
+              type="button"
+              id="skill-filter-apply"
+              class="skill-filter-apply"
+              disabled
+              aria-describedby="skill-filter-pending"
+            >
+              適用
+            </button>
+          </div>
+          <p id="skill-filter-pending" class="skill-filter-box__status" hidden>
+            未適用の絞込があります
+          </p>
         </div>
         <p class="hint">
-          絞込でレギュに合わないスキルを自動で合計から除外します。絞込を変えると「含める」の手動変更はやり直されます。
+          絞込は「適用」で確定します。確定時にレギュに合わないスキルを合計から除外し、「含める」の手動変更はやり直されます。編成変更で追加されたスキルには確定済みの絞込が自動でかかります。
         </p>
         <p class="hint">一覧の「含める」チェックを外すと合計から除外されます。</p>
         <div style="overflow-x: auto; max-height: 480px">

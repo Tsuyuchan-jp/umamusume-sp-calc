@@ -6,6 +6,11 @@ import {
   mergeActivations,
   formatActivationTagLabels,
   branchMatchesFilter,
+  collectPlanSkillIds,
+  getIncompatibleSkillIds,
+  applyIncrementalFilterExclusions,
+  applyFullFilterExclusions,
+  skillFiltersEqual,
 } from "../app/js/skillActivation.js";
 
 function assertEq(actual, expected, label) {
@@ -140,6 +145,83 @@ assertTrue(
 
 // 絞込未選択
 assertTrue(isSkillCompatible(styleOnly, {}), "filter empty");
+
+// skillFiltersEqual
+assertTrue(
+  skillFiltersEqual({ ground: "turf", distance: "", style: "nige" }, {
+    ground: "turf",
+    distance: "",
+    style: "nige",
+  }),
+  "skillFiltersEqual same"
+);
+assertFalse(
+  skillFiltersEqual({ ground: "turf" }, { ground: "dirt" }),
+  "skillFiltersEqual diff ground"
+);
+
+// collectPlanSkillIds
+const sampleRows = [
+  { skillId: 1, isInherit: false },
+  { skillId: 2, isInherit: false },
+  { skillId: null, isInherit: false },
+  { skillId: 99, isInherit: true },
+];
+assertEq(
+  [...collectPlanSkillIds(sampleRows)].sort(),
+  [1, 2],
+  "collectPlanSkillIds"
+);
+
+// 増分絞込: 新規 skillId のみ除外
+const dirtOnly = parseSkillActivation("", "ground_type==2", "", "");
+const skillById = new Map([
+  [10, { id: 10, activation: dirtOnly }],
+  [20, { id: 20, activation: universal }],
+  [30, { id: 30, activation: dirtOnly }],
+]);
+const excluded = new Set();
+const prevIds = new Set([10]);
+const rows = [
+  { skillId: 10, isInherit: false, chainSkillIds: [10] },
+  { skillId: 20, isInherit: false, chainSkillIds: [20] },
+  { skillId: 30, isInherit: false, chainSkillIds: [30] },
+];
+applyIncrementalFilterExclusions(
+  excluded,
+  rows,
+  prevIds,
+  { ground: "turf" },
+  skillById
+);
+assertTrue(excluded.has(30), "incremental: new incompatible skill");
+assertFalse(excluded.has(20), "incremental: new compatible skill untouched");
+assertFalse(excluded.has(10), "incremental: existing skill untouched");
+
+// 増分絞込: 一覧外の除外 ID を prune
+excluded.add(999);
+applyIncrementalFilterExclusions(
+  excluded,
+  rows,
+  prevIds,
+  { ground: "turf" },
+  skillById
+);
+assertFalse(excluded.has(999), "incremental: prune orphan excluded id");
+
+// 全置換絞込
+const excludedFull = new Set([1, 2, 3]);
+const fullRows = [
+  { skillId: 10, isInherit: false, chainSkillIds: [10] },
+  { skillId: 20, isInherit: false, chainSkillIds: [20] },
+];
+applyFullFilterExclusions(
+  excludedFull,
+  fullRows,
+  { ground: "turf" },
+  skillById
+);
+assertEq([...excludedFull].sort(), [10], "full filter: only incompatible ids");
 
 console.log("skillActivation tests passed");
 

@@ -482,11 +482,42 @@ tr.excluded td {
   color: #1a5276;
 }
 
+.skill-filter-box {
+  margin: 0.75rem 0 0.25rem;
+  padding: 0.75rem 1rem;
+  border: 1px solid #e8e8e8;
+  border-radius: 6px;
+  background: #fafafa;
+  transition:
+    border-color 0.15s ease,
+    background-color 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+.skill-filter-box--pending {
+  border-color: #f39c12;
+  background: #fef9e7;
+  box-shadow: 0 0 0 1px rgba(243, 156, 18, 0.15);
+}
+
+.skill-filter-box__title {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #444;
+  margin-bottom: 0.5rem;
+}
+
+.skill-filter-box__status {
+  margin: 0.5rem 0 0;
+  font-size: 0.8rem;
+  color: #9a6700;
+}
+
 .skill-filters {
   display: flex;
   flex-wrap: wrap;
   gap: 0.75rem 1.25rem;
-  margin: 0.75rem 0 0.25rem;
+  align-items: flex-end;
 }
 
 .skill-filter-label {
@@ -498,6 +529,34 @@ tr.excluded td {
 
 .skill-filter-label select {
   min-width: 6.5rem;
+  margin-bottom: 0;
+}
+
+.skill-filter-apply {
+  padding: 0.4rem 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background: #f0f0f0;
+  color: #888;
+  font-size: 0.85rem;
+  cursor: not-allowed;
+  white-space: nowrap;
+}
+
+.skill-filter-apply:not(:disabled) {
+  border-color: #c0392b;
+  background: #c0392b;
+  color: #fff;
+  cursor: pointer;
+}
+
+.skill-filter-apply:not(:disabled):hover {
+  background: #a93226;
+}
+
+.skill-filter-apply:focus-visible {
+  outline: 2px solid #c0392b;
+  outline-offset: 2px;
 }
 
 .skill-condition-cell {

@@ -290,3 +290,96 @@ export function hasActivationConstraints(tags) {
 export function isSkillFilterActive(filter) {
   return Boolean(filter.ground || filter.distance || filter.style);
 }
+
+/** 絞込状態が同一か */
+export function skillFiltersEqual(a, b) {
+  return (
+    (a.ground || "") === (b.ground || "") &&
+    (a.distance || "") === (b.distance || "") &&
+    (a.style || "") === (b.style || "")
+  );
+}
+
+/** plan 行から skillId 集合（継承固有除く） */
+export function collectPlanSkillIds(rows) {
+  const ids = new Set();
+  for (const row of rows) {
+    if (!row.isInherit && row.skillId != null) ids.add(row.skillId);
+  }
+  return ids;
+}
+
+/**
+ * 絞込で非互換な skillId
+ * @param {object[]} rows
+ * @param {{ ground?: string, distance?: string, style?: string }} filter
+ * @param {Map<number, object>} skillById
+ */
+export function getIncompatibleSkillIds(rows, filter, skillById) {
+  const out = new Set();
+  if (!isSkillFilterActive(filter)) return out;
+
+  for (const row of rows) {
+    if (row.isInherit || row.skillId == null) continue;
+    const activation = getDisplayActivation(
+      row.skillId,
+      row.chainSkillIds || [row.skillId],
+      skillById
+    );
+    if (!isSkillCompatible(activation, filter)) {
+      out.add(row.skillId);
+    }
+  }
+  return out;
+}
+
+/**
+ * 一覧外の除外 ID を掃除し、新規 skillId にのみ絞込除外を加算
+ * @param {Set<number>} excludedSkillIds
+ * @param {object[]} rows
+ * @param {Set<number>} previousSkillIds
+ * @param {{ ground?: string, distance?: string, style?: string }} filter
+ * @param {Map<number, object>} skillById
+ * @returns {Set<number>} 現在の skillId 集合
+ */
+export function applyIncrementalFilterExclusions(
+  excludedSkillIds,
+  rows,
+  previousSkillIds,
+  filter,
+  skillById
+) {
+  const currentIds = collectPlanSkillIds(rows);
+  for (const sid of [...excludedSkillIds]) {
+    if (!currentIds.has(sid)) excludedSkillIds.delete(sid);
+  }
+  if (!isSkillFilterActive(filter)) return currentIds;
+
+  for (const row of rows) {
+    if (row.isInherit || row.skillId == null) continue;
+    if (previousSkillIds.has(row.skillId)) continue;
+    const activation = getDisplayActivation(
+      row.skillId,
+      row.chainSkillIds || [row.skillId],
+      skillById
+    );
+    if (!isSkillCompatible(activation, filter)) {
+      excludedSkillIds.add(row.skillId);
+    }
+  }
+  return currentIds;
+}
+
+/**
+ * 確定済み絞込に基づき excludedSkillIds を全置換
+ * @param {Set<number>} excludedSkillIds
+ * @param {object[]} rows
+ * @param {{ ground?: string, distance?: string, style?: string }} filter
+ * @param {Map<number, object>} skillById
+ */
+export function applyFullFilterExclusions(excludedSkillIds, rows, filter, skillById) {
+  excludedSkillIds.clear();
+  for (const sid of getIncompatibleSkillIds(rows, filter, skillById)) {
+    excludedSkillIds.add(sid);
+  }
+}
