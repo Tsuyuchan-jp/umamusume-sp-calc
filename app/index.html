@@ -8,9 +8,188 @@
   </head>
   <body>
     <header>
-      <h1>umamusume-sp-calc<span class="app-version">v0.1.4</span></h1>
-      <p>取得可能スキル全習得の理論必要SP（ヒント想定込み）</p>
+      <div class="header-text">
+        <h1>umamusume-sp-calc<span class="app-version">v0.1.4</span></h1>
+        <p>取得可能スキル全習得の理論必要SP（ヒント想定込み）</p>
+      </div>
+      <button type="button" id="help-open" class="help-open-btn" aria-haspopup="dialog" aria-controls="help-dialog">
+        使い方
+      </button>
     </header>
+
+    <dialog id="help-dialog" class="help-dialog" aria-labelledby="help-dialog-title">
+      <div class="help-dialog__chrome">
+        <h2 id="help-dialog-title" class="help-dialog__title">使い方・説明</h2>
+        <button type="button" id="help-close" class="help-dialog__close" aria-label="閉じる">×</button>
+      </div>
+      <div class="help-dialog__body">
+        <details class="help-section" open>
+          <summary>はじめに</summary>
+          <div class="help-section__content">
+            <p><strong>このツールでできること</strong><br />
+              育成完了時に「取得できるスキルをすべて習得する」ために必要な
+              <strong>理論上の合計 SP</strong> を、編成とヒント想定込みで見積もります。
+            </p>
+            <p><strong>いまの前提（必ず読んでほしいこと）</strong></p>
+            <ul>
+              <li>シナリオは <strong>トレセン軒のみ</strong>（固定）</li>
+              <li><strong>ガチ想定</strong>: クラシック大盛況・シニア超盛況・育成終了スキルは常に含める（盛況のON/OFFはない）</li>
+              <li>サポカの <strong>イベントスキル</strong> は優先 <strong>37種</strong> のみ対応（それ以外は訓練ヒントのみ）</li>
+              <li>非公式・非商用。ゲーム更新後はデータが古くなることがあります</li>
+            </ul>
+          </div>
+        </details>
+
+        <details class="help-section" open>
+          <summary>使い方</summary>
+          <div class="help-section__content">
+            <ol>
+              <li><strong>育成ウマ娘</strong>を選ぶ（覚醒は最大想定。初期値あり）</li>
+              <li>
+                <strong>サポートカードを最大6枚</strong>選ぶ
+                <ul>
+                  <li>初期は「イベント対応のみ」ON。全件を見たいときはチェックを外す</li>
+                  <li>検索・SSR・タイプでも絞れる</li>
+                </ul>
+              </li>
+              <li>
+                <strong>イベント・シナリオ</strong>を必要なら調整
+                <ul>
+                  <li>自動イベントは編成に応じて計上</li>
+                  <li>選択式イベント・シナリオリンク・RMJ（ラーメン）はラジオで1つ選ぶ</li>
+                </ul>
+              </li>
+              <li>
+                必要なら <strong>オプション</strong>
+                <ul>
+                  <li>切れ者（全スキル追加割引）</li>
+                  <li>継承固有（本数・ヒントLv・基準SP）</li>
+                </ul>
+              </li>
+              <li>
+                画面下部（または結果パネル）の <strong>合計 SP</strong> を確認
+                <ul>
+                  <li>結果一覧の「含める」を外すとそのスキルを合計から除外できる</li>
+                </ul>
+              </li>
+            </ol>
+          </div>
+        </details>
+
+        <details class="help-section">
+          <summary>ヒントレベルはどう決まっている？</summary>
+          <div class="help-section__content">
+            <p><strong>一言でいうと</strong><br />
+              同じスキルに複数のヒント由来があるとき、<strong>いちばん高いヒントLv</strong> を使います。
+            </p>
+            <p><strong>由来ごとの目安</strong></p>
+            <div class="help-table-wrap">
+              <table class="help-table">
+                <thead>
+                  <tr>
+                    <th>由来</th>
+                    <th>ヒントLv</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>サポカの訓練ヒント</td>
+                    <td>5（固定）</td>
+                  </tr>
+                  <tr>
+                    <td>育成ウマ娘の所持スキル</td>
+                    <td>3（固定・覚醒最大想定）</td>
+                  </tr>
+                  <tr>
+                    <td>サポカイベント / シナリオリンク / 自動シナリオ / RMJ</td>
+                    <td>データ側の値（選択や編成で変わる）</td>
+                  </tr>
+                  <tr>
+                    <td>継承固有（オプション）</td>
+                    <td>画面で指定した Lv（1〜5）</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <p><strong>SP の計算（イメージ）</strong><br />
+              <code>必要SP ≒ 基準SP ×（1 − ヒント割引 − 切れ者なら10%）</code>（小数点以下切り捨て）
+            </p>
+            <p>ヒント割引の目安:</p>
+            <div class="help-table-wrap">
+              <table class="help-table help-table--compact">
+                <thead>
+                  <tr>
+                    <th>Lv</th>
+                    <th>0</th>
+                    <th>1</th>
+                    <th>2</th>
+                    <th>3</th>
+                    <th>4</th>
+                    <th>5</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>割引</td>
+                    <td>0%</td>
+                    <td>10%</td>
+                    <td>20%</td>
+                    <td>30%</td>
+                    <td>35%</td>
+                    <td>40%</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <p><strong>一覧の見方（よく混乱する点）</strong></p>
+            <ul>
+              <li><strong>白→金</strong>: 白を取らず金を取る想定では、白分＋金分をまとめて金の行に表示することがある</li>
+              <li><strong>○→◎</strong>: ヒントは主に○側。全部取る合計のため、下位のコストを上位行にまとめて表示することがある</li>
+              <li>コストの <code>(78+84+135)</code> のような数字は、その合算の内訳</li>
+            </ul>
+          </div>
+        </details>
+
+        <details class="help-section">
+          <summary>よくある疑問</summary>
+          <div class="help-section__content help-faq">
+            <p><strong>Q. 合計SPは「育成中に稼ぐ必要SP」そのもの？</strong><br />
+              A. 取得可能なスキルをすべて買うための <strong>理論必要量の見積もり</strong>です。レース報酬やイベントで実際にいくら貯まるかは扱いません。
+            </p>
+            <p><strong>Q. イベント非対応のサポカを入れても意味ある？</strong><br />
+              A. <strong>訓練ヒント（Lv5）</strong> は乗ります。イベント由来のスキルは計上されません（イベント欄の「※サポカイベントについて」で対応一覧を確認できます）。
+            </p>
+            <p><strong>Q. シナリオリンクの白と金の違いは？</strong><br />
+              A. リンク条件のキャラが、育成ウマ娘かサポカ6枠にいれば金、いなければ白として計上します。
+            </p>
+            <p><strong>Q. 固有スキル本体は合計に入る？</strong><br />
+              A. 入りません（SP購入リスト外）。<strong>継承固有</strong>だけ、オプションで手動加算できます。
+            </p>
+            <p><strong>Q. 「含める」を外すと何が起きる？</strong><br />
+              A. その表示行（およびまとめて表示している下位スキル）が合計から外れます。対人レギュで取らないスキル向けです。
+            </p>
+            <p><strong>Q. スタミナやスピードの最終値は出る？</strong><br />
+              A. 出ません。対象は <strong>スキル習得のSP</strong> のみです。
+            </p>
+          </div>
+        </details>
+
+        <details class="help-section">
+          <summary>制限と免責</summary>
+          <div class="help-section__content">
+            <ul>
+              <li>シナリオはトレセン軒のみ。ガチ想定（大盛況／超盛況＋終了スキル固定）。イベントは優先37サポカのみ</li>
+              <li>本ツールは非公式です。ゲームデータ・名称等の権利は各権利者に帰属します</li>
+              <li>
+                不具合や要望は
+                <a href="https://github.com/Tsuyuchan-jp/umamusume-sp-calc" target="_blank" rel="noopener noreferrer">GitHub リポジトリ</a>
+                を参照
+              </li>
+            </ul>
+          </div>
+        </details>
+      </div>
+    </dialog>
     <main>
       <div id="load-error" class="panel error" hidden></div>
       <div id="plan-warnings" class="panel warning" hidden></div>

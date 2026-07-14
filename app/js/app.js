@@ -244,6 +244,30 @@ function bindEventScopeDisclosure() {
   });
 }
 
+/** ヘッダー「使い方」→ 説明書ダイアログ */
+function bindHelpDialog() {
+  const dialog = document.getElementById("help-dialog");
+  const openBtn = document.getElementById("help-open");
+  const closeBtn = document.getElementById("help-close");
+  if (!dialog || !openBtn || !closeBtn) return;
+
+  openBtn.addEventListener("click", () => {
+    dialog.showModal();
+    closeBtn.focus();
+  });
+
+  closeBtn.addEventListener("click", () => {
+    dialog.close();
+  });
+
+  // backdrop（ダイアログ外）クリックで閉じる
+  dialog.addEventListener("click", (e) => {
+    if (e.target === dialog) {
+      dialog.close();
+    }
+  });
+}
+
 function renderEvents() {
   const autoContainer = document.getElementById("event-auto");
   const autoCollapse = document.getElementById("event-auto-collapse");
@@ -661,6 +685,7 @@ async function init() {
 
     renderEventScopeNotice();
     bindEventScopeDisclosure();
+    bindHelpDialog();
     renderEvents();
     renderScenarioLinkRadios();
     renderSeniorRmjRadios();
