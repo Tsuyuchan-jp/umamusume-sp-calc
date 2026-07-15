@@ -1,5 +1,10 @@
 import { buildSkillPlan } from "./aggregate.js";
 import {
+  copyTextToClipboard,
+  formatIncludedSkillNames,
+  getIncludedSkillRows,
+} from "./copyIncludedSkills.js";
+import {
   getDeckLinkCharacterIds,
   resolveLinkSkill,
 } from "./scenarioLink.js";
@@ -24,6 +29,12 @@ let committedSkillFilter = { ground: "", distance: "", style: "" };
 
 /** 前回 plan の skillId 集合（増分絞込用） */
 let previousPlanSkillIds = new Set();
+
+/** 直近の計画（コピー用） */
+let currentPlan = null;
+
+/** コピーボタンの既定ラベル */
+let copyIncludedSkillsDefaultLabel = "";
 
 /** イベントヒント対応サポカ id（events.json の prioritySupportIds） */
 /** @type {Set<number>} */
@@ -547,6 +558,30 @@ function updateSkillCountDisplay(plan) {
   el.textContent = `スキル数 ${onCount}/${totalCount}`;
 }
 
+/** 含めるスキルコピーボタンの有効／無効を更新 */
+function updateCopyIncludedSkillsButton(plan) {
+  const btn = document.getElementById("copy-included-skills");
+  if (!btn || btn.dataset.feedback === "1") return;
+  const count = getIncludedSkillRows(plan.rows).length;
+  btn.disabled = count === 0;
+}
+
+/** コピーボタンの一時フィードバック */
+function showCopyIncludedSkillsFeedback(message, isError = false) {
+  const btn = document.getElementById("copy-included-skills");
+  if (!btn) return;
+  btn.dataset.feedback = "1";
+  btn.disabled = true;
+  btn.textContent = message;
+  btn.classList.toggle("copy-included-skills--error", isError);
+  window.setTimeout(() => {
+    delete btn.dataset.feedback;
+    btn.classList.remove("copy-included-skills--error");
+    btn.textContent = copyIncludedSkillsDefaultLabel;
+    if (currentPlan) updateCopyIncludedSkillsButton(currentPlan);
+  }, 2000);
+}
+
 function getDraftSkillFilterState() {
   return {
     ground: document.getElementById("skill-filter-ground")?.value || "",
@@ -650,9 +685,12 @@ function recalc({ resetFilterExclusions = false } = {}) {
 
   updateSkillFilterBoxUI();
 
+  currentPlan = plan;
+
   renderPlanWarnings(plan.unresolved);
   updateTotalDisplay(plan.total);
   updateSkillCountDisplay(plan);
+  updateCopyIncludedSkillsButton(plan);
 
   const tbody = document.getElementById("result-body");
   tbody.innerHTML = "";
@@ -694,6 +732,24 @@ function recalc({ resetFilterExclusions = false } = {}) {
       });
     }
   }
+}
+
+function bindCopyIncludedSkills() {
+  const btn = document.getElementById("copy-included-skills");
+  if (!btn) return;
+  copyIncludedSkillsDefaultLabel = btn.textContent.trim();
+  btn.addEventListener("click", async () => {
+    if (!currentPlan) return;
+    const rows = getIncludedSkillRows(currentPlan.rows);
+    if (!rows.length) return;
+    const text = formatIncludedSkillNames(currentPlan.rows);
+    const ok = await copyTextToClipboard(text);
+    if (ok) {
+      showCopyIncludedSkillsFeedback(`コピーしました（${rows.length}件）`);
+    } else {
+      showCopyIncludedSkillsFeedback("コピーに失敗しました", true);
+    }
+  });
 }
 
 function bindSkillFilters() {
@@ -796,6 +852,7 @@ async function init() {
 
     bindOptions();
     bindSkillFilters();
+    bindCopyIncludedSkills();
     committedSkillFilter = getDraftSkillFilterState();
     recalc();
   } catch (e) {

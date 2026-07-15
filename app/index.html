@@ -9,7 +9,7 @@
   <body>
     <header>
       <div class="header-text">
-        <h1>umamusume-sp-calc<span class="app-version">v0.1.7</span></h1>
+        <h1>umamusume-sp-calc<span class="app-version">v0.1.8</span></h1>
         <p>取得可能スキル全習得の理論必要SP（ヒント想定込み）</p>
       </div>
       <button type="button" id="help-open" class="help-open-btn" aria-haspopup="dialog" aria-controls="help-dialog">
@@ -70,6 +70,7 @@
                 画面下部（または結果パネル）の <strong>合計 SP</strong> を確認
                 <ul>
                   <li>結果一覧の「含める」を外すとそのスキルを合計から除外できる</li>
+                  <li>「含めるスキルをコピー」で、ON のスキル名をカンマ区切りでクリップボードへコピーできる（外部ツール向け）</li>
                 </ul>
               </li>
             </ol>
@@ -167,6 +168,9 @@
             </p>
             <p><strong>Q. 「含める」を外すと何が起きる？</strong><br />
               A. その表示行（およびまとめて表示している下位スキル）が合計から外れます。対人レギュで取らないスキル向けです。
+            </p>
+            <p><strong>Q. 「含めるスキルをコピー」は何が入る？</strong><br />
+              A. 一覧で含めるが ON のスキル名だけを、カンマ区切り1行でクリップボードに入れます。継承固有行は含みません（外部ツールでバ身効率などを計算するためのエクスポート用です）。
             </p>
             <p><strong>Q. 結果のバ場・距離・作戦の絞込は？</strong><br />
               A. レギュに合わないスキルを自動で合計から除外します。セレクトを変えただけでは反映されず、「適用」で確定します。確定時に「含める」の手動変更はやり直されます（ゲームのスキル取得画面の決定に相当）。編成変更で追加されたスキルには、確定済みの絞込が自動でかかります。
@@ -330,7 +334,17 @@
       <section class="panel">
         <div class="result-panel-heading">
           <h2>結果</h2>
-          <span id="skill-count-meta" class="skill-count-meta">スキル数 —</span>
+          <div class="result-panel-heading__meta">
+            <span id="skill-count-meta" class="skill-count-meta">スキル数 —</span>
+            <button
+              type="button"
+              id="copy-included-skills"
+              class="copy-included-skills"
+              disabled
+            >
+              含めるスキルをコピー
+            </button>
+          </div>
         </div>
         <div class="total-box">合計必要SP: <span id="total-sp">—</span></div>
         <div id="skill-filter-box" class="skill-filter-box" aria-live="polite">
