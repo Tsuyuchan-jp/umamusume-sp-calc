@@ -15,6 +15,8 @@ umamusume-sp-calc/
     compare_events_golden.mjs   # ゴールデン比較
     verify_data.mjs             # 抽出データの簡易確認
     test_sp.mjs                 # SPコスト回帰テスト
+    test_skill_activation.mjs   # 発動条件・絞込回帰テスト
+    test_copy_included_skills.mjs # 含めるスキルコピー整形回帰テスト
   data/
     events.json                 # サポカイベント正本（U-tools+mdb 抽出 + preserve）
     events.extracted.json       # 抽出中間物
@@ -36,6 +38,7 @@ umamusume-sp-calc/
       hintResolve.js    # max(hintLv)
       spCost.js         # floor コスト
       goldLower.js      # 金+白・表示フィルタ
+      copyIncludedSkills.js  # 含める ON スキル名の整形・クリップボード
 ```
 
 ## ランタイム構成
@@ -75,6 +78,8 @@ app.js (loadJson) ──► buildSkillPlan(aggregate.js)
                           └─ 継承オプション加算
                           ▼
                      合計SP + 行一覧（除外チェック可）
+                          │
+                          └─ 含める ON 行名をカンマ区切りでクリップボードへ（copyIncludedSkills.js）
 ```
 
 ## モジュール責務
@@ -87,7 +92,8 @@ app.js (loadJson) ──► buildSkillPlan(aggregate.js)
 | `skillActivation.js` | 発動条件タグのパース・絞込互換判定・チェーン OR マージ |
 | `scenarioLink.js` | シナリオリンク白/金の編成連動解決 |
 | `aggregate.js` | 全由来のヒント収集と合計 |
-| `app.js` | UI バインド、JSON 読込、サポカ絞込、結果スキル絞込・件数表示、説明書ダイアログ、再計算 |
+| `copyIncludedSkills.js` | 含める ON 表示行の抽出・カンマ区切り整形・クリップボード書き込み |
+| `app.js` | UI バインド、JSON 読込、サポカ絞込、結果スキル絞込・件数表示・コピー、説明書ダイアログ、再計算 |
 
 ## 設計上の注意
 

@@ -8,7 +8,7 @@
 
 ### 追加
 
-- 結果パネルに **含めるスキルをコピー** ボタン。含める ON の表示行スキル名をカンマ区切り1行でクリップボードへコピー（継承固有は対象外）。`copyIncludedSkills.js` と `test_copy_included_skills.mjs` を追加
+- 結果パネルに **含めるスキルをコピー** ボタン。含める ON の表示行スキル名をカンマ区切り1行でクリップボードへコピー（継承固有は対象外）。`copyIncludedSkills.js` と `test_copy_included_skills.mjs` を追加。実機確認済み
 
 ### 変更
 

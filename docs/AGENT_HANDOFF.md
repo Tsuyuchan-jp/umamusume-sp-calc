@@ -21,7 +21,7 @@
 | サポカ絞込 | **イベント対応のみ**（デフォルト ON・`prioritySupportIds`）＋ SSR／タイプ／検索 |
 | 結果スキル絞込 | **バ場／距離／作戦**＋**適用ボタン**（draft/committed）。確定済み絞込を編成変更時に新規 skillId へ増分適用。実装: `skillActivation.js` / `app.js` |
 | 結果スキル件数 | 見出し右 **「スキル数 N/M」**（ON＝`!excluded`、全件＝`rows.length`・継承固有含む）。実装: `updateSkillCountDisplay` / `recalc` |
-| 含めるスキルコピー | 見出し右ボタン。ON 表示行の `name` をカンマ区切りでクリップボードへ（継承除外）。実装: `copyIncludedSkills.js` / `recalc` |
+| 含めるスキルコピー | 見出し右ボタン。ON 表示行の `name` をカンマ区切りでクリップボードへ（継承除外）。実装: `copyIncludedSkills.js` / `recalc`。実機確認済み |
 | 説明書 UI | ヘッダー右 **「使い方」** → `<dialog>`（5セクション・実機確認済み） |
 
 **アプリは実用段階・公開済み。** 常用デッキ＋シナリオ（リンク白/金・RMJ・終了）の通し確認は **実機 OK・バグなし**（2026-07）。
@@ -59,6 +59,7 @@
 - **サポカ絞込**: 「イベント対応のみ」デフォルト ON（`prioritySupportIds`）。選択中カードは keep。実装: `app.js` の `getSupportFilterState` / `supportMatchesFilters`
 - **結果スキル絞込**: バ場／距離／作戦＋適用ボタン（draft/committed）。適用で全行再除外＋手動リセット。編成変更時は確定済み絞込を新規 skillId に増分適用。実装: `skillActivation.js`（`applyFullFilterExclusions` / `applyIncrementalFilterExclusions`）/ `app.js`
 - **結果スキル件数**: 見出し右 `スキル数 N/M`（ON＝`!row.excluded`、全件＝`plan.rows.length`・継承固有含む）。`recalc` で更新
+- **含めるスキルコピー**: 見出し右ボタン。ON 表示行の `name` をカンマ区切りでクリップボードへ（継承除外）。実装: `copyIncludedSkills.js` / `bindCopyIncludedSkills`
 - **説明書モーダル**: ヘッダー `#help-open` → `#help-dialog`（`bindHelpDialog`）。本文は `index.html` 内直書き（`docs/` と自動同期しない）
 
 ## ファイルの場所
