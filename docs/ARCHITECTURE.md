@@ -93,7 +93,7 @@ app.js (loadJson) ──► buildSkillPlan(aggregate.js)
 | `scenarioLink.js` | シナリオリンク白/金の編成連動解決 |
 | `aggregate.js` | 全由来のヒント収集と合計 |
 | `copyIncludedSkills.js` | 含める ON 表示行の抽出・カンマ区切り整形・クリップボード書き込み |
-| `app.js` | UI バインド、JSON 読込、サポカ絞込、結果スキル絞込・件数表示・コピー、説明書ダイアログ、再計算 |
+| `app.js` | UI バインド、JSON 読込、サポカ絞込、オプション（切れ者・継承・トレヒントLv）、結果スキル絞込・件数表示・コピー、説明書ダイアログ、再計算 |
 
 ## 設計上の注意
 

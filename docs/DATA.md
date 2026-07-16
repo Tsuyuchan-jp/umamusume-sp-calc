@@ -85,7 +85,7 @@ npm run compare:events    # ゴールデン比較レポート
 | ウマ娘名 | 6 |
 | スキル本体 | `skill_data`（id, rarity, group_id, group_rate, icon_id, precondition_*, condition_*） |
 | 必要SP | `single_mode_skill_need_point`（need_skill_point → `baseSp`） |
-| サポカヒント | `single_mode_hint_gain`（`hint_gain_type = 0` → `hintSkillIds`） |
+| サポカトレヒント | `single_mode_hint_gain`（`hint_gain_type = 0` → `hintSkillIds`） |
 | ヒントLvアップ上限 | `support_card_effect_table` type **17** → `hintLevelUpMax` |
 | サポカマスタ | `support_card_data` |
 | カード↔所持スキルセット | `card_data.available_skill_set_id` |
@@ -105,7 +105,7 @@ npm run compare:events    # ゴールデン比較レポート
 **supports.json** 1件:
 
 - `id`, `name`（`[バリアント] 名前` 形式）、`characterId`, `rarity`, `type`（`command_id` 由来: speed/stamina/power/guts/wit/friend）
-- `hintSkillIds` — 訓練ヒント（自動）。イベントはここには入らない
+- `hintSkillIds` — トレヒント対象スキル ID（mdb 自動）。イベントはここには入らない
 - `eventIds` — 現状空配列（将来用）
 
 **characters.json** 1件:
@@ -197,7 +197,7 @@ npm run compare:events    # ゴールデン比較レポート
 | データ | 取得方法 |
 |--------|----------|
 | スキル baseSp・上下位 | mdb 自動 |
-| サポカ訓練ヒント | mdb 自動 |
+| サポカトレヒント（`hintSkillIds`） | mdb 自動。UI で Lv 3–5（既定5） |
 | 育成ウマ娘所持スキル | mdb 自動（`available_skill_set`） |
 | サポカイベントの金・追加スキル | **events.json**（U-tools+mdb 抽出・`npm run extract:events`） |
 | シナリオ固有 | **toresenken.json 手メンテ** |

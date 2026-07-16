@@ -29,7 +29,7 @@
 | データ | 正本 | 備考 |
 |--------|------|------|
 | スキル SP / 上下位 | `master.mdb` → `extract_mdb.mjs` | 自動 |
-| サポカ訓練ヒント | `single_mode_hint_gain` (type=0) | 自動 |
+| サポカトレヒント（`hintSkillIds`） | `single_mode_hint_gain` (type=0) | 自動 |
 | サポカイベントのスキルヒント | `data/events.json` **U-tools+mdb 抽出** | 優先37種・102イベント（preserve 2） |
 | トレセン軒シナリオ | `data/scenarios/toresenken.json` | **別系統・変更しない** |
 

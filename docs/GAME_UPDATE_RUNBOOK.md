@@ -2,7 +2,7 @@
 
 ウマ娘クライアントがパッチされ **`master.mdb` が更新されたあと**、このリポジトリの JSON と公開サイトを追随させる手順です。
 
-**目的**: スキル・サポカ・育成ウマ娘の訓練ヒントと、優先37サポカのイベントデータを最新化し、回帰テストと実機確認のうえ本番（GitHub Pages）へ反映する。
+**目的**: スキル・サポカ・育成ウマ娘のトレヒントと、優先37サポカのイベントデータを最新化し、回帰テストと実機確認のうえ本番（GitHub Pages）へ反映する。
 
 詳細仕様は [DATA.md](./DATA.md)・[EVENT_EXTRACT_DESIGN.md](./EVENT_EXTRACT_DESIGN.md) を参照。このファイルは **作業順の正本** とする。
 
@@ -98,7 +98,7 @@ node scripts/extract_mdb.mjs --mdb "D:\DMM\umamusumeDMM\Umamusume\umamusume_Data
 | ファイル | 内容 |
 |----------|------|
 | `data/skills.json` | スキル定義・上下位リンク・発動条件タグ（`activation`） |
-| `data/supports.json` | サポカ・訓練ヒント |
+| `data/supports.json` | サポカ・トレヒント（`hintSkillIds`） |
 | `data/characters.json` | 育成ウマ娘・覚醒スキル |
 | `data/meta.json` | 件数・抽出元パス・日時 |
 
@@ -127,7 +127,7 @@ npm test
 
 ### 3. サポカイベントの再生成
 
-訓練ヒントは mdb 自動。**イベントのスキルヒント**だけ U-tools + mdb の別パイプライン。
+トレヒントは mdb 自動。**イベントのスキルヒント**だけ U-tools + mdb の別パイプライン。
 
 ```powershell
 npm run extract:events
