@@ -63,8 +63,8 @@
                 必要なら <strong>オプション</strong>
                 <ul>
                   <li>切れ者（全スキル追加割引）</li>
-                  <li>トレヒントLv（編成サポカのトレヒントを一括指定。既定5）</li>
                   <li>継承固有（本数・ヒントLv・基準SP）</li>
+                  <li>トレヒントLv（編成サポカのトレヒントを一括指定。既定5）</li>
                 </ul>
               </li>
               <li>
@@ -266,17 +266,6 @@
           </label>
         </div>
         <div class="options-row" style="margin-top: 0.5rem">
-          <label>
-            トレヒントLv
-            <select id="training-hint-level">
-              <option value="5" selected>5</option>
-              <option value="4">4</option>
-              <option value="3">3</option>
-            </select>
-          </label>
-          <p class="options-note">編成サポカのトレヒントに一律適用（イベント・シナリオ由来は変えません）</p>
-        </div>
-        <div class="options-row" style="margin-top: 0.5rem">
           <label class="checkbox-row">
             <input type="checkbox" id="inherit-enabled" />
             継承固有を含める
@@ -293,6 +282,17 @@
             baseSp
             <input type="number" id="inherit-base" min="1" value="200" style="width: 5rem" />
           </label>
+        </div>
+        <div class="options-row options-row--training-hint" style="margin-top: 0.5rem">
+          <label class="option-inline-label">
+            トレヒントLv
+            <select id="training-hint-level">
+              <option value="5" selected>5</option>
+              <option value="4">4</option>
+              <option value="3">3</option>
+            </select>
+          </label>
+          <p class="options-note">編成サポカのトレヒントに一律適用（イベント・シナリオ由来は変えません）</p>
         </div>
       </section>
 
