@@ -20,7 +20,7 @@
 | 公開 URL | **https://Tsuyuchan-jp.github.io/umamusume-sp-calc/app/** （v0.1.10・2026-07） |
 | サポカ絞込 | **イベント対応のみ**（デフォルト ON・`prioritySupportIds`）＋ SSR／タイプ／検索 |
 | 結果スキル絞込 | **バ場／距離／作戦**＋**適用ボタン**（draft/committed）。確定済み絞込を編成変更時に新規 skillId へ増分適用。実装: `skillActivation.js` / `app.js` |
-| 結果スキル件数 | 見出し右 **「スキル数 N/M」**（ON/全件ともスキル本数。通常行1、継承固有は `skillWeight`＝個数）。実装: `rowSkillWeight` / `updateSkillCountDisplay` / `recalc` |
+| 結果スキル件数 | 見出し右 **「スキル数 N/M」**（ON/全件ともスキル本数。通常行1、継承固有は `skillWeight`＝個数）。実装: `rowSkillWeight` / `updateSkillCountDisplay` / `recalc`。実機確認済み |
 | 含めるスキルコピー | 見出し右ボタン。ON 表示行の `name` をカンマ区切りでクリップボードへ（継承除外）。実装: `copyIncludedSkills.js` / `recalc`。実機確認済み |
 | トレヒントLv | オプション select（3/4/5・既定5）。`aggregate.js` の `trainingHintLevel`。実機確認済み |
 | 説明書 UI | ヘッダー右 **「使い方」** → `<dialog>`（5セクション・実機確認済み） |
@@ -59,7 +59,7 @@
 - **初期値**: 育成ウマ娘 `[万福龍湯伝・頂]ナリタトップロード` / サポカ枠5 ヤング・枠6 たづな（枠1–4 未選択）/ 継承固有 個数4・ヒントLv3
 - **サポカ絞込**: 「イベント対応のみ」デフォルト ON（`prioritySupportIds`）。選択中カードは keep。実装: `app.js` の `getSupportFilterState` / `supportMatchesFilters`
 - **結果スキル絞込**: バ場／距離／作戦＋適用ボタン（draft/committed）。適用で全行再除外＋手動リセット。編成変更時は確定済み絞込を新規 skillId に増分適用。実装: `skillActivation.js`（`applyFullFilterExclusions` / `applyIncrementalFilterExclusions`）/ `app.js`
-- **結果スキル件数**: 見出し右 `スキル数 N/M`（ON/全件ともスキル本数。通常行1、継承固有は個数分）。`recalc` で更新
+- **結果スキル件数**: 見出し右 `スキル数 N/M`（ON/全件ともスキル本数。通常行1、継承固有は個数分）。`recalc` で更新。実機確認済み（v0.1.10）
 - **含めるスキルコピー**: 見出し右ボタン。ON 表示行の `name` をカンマ区切りでクリップボードへ（継承除外）。実装: `copyIncludedSkills.js` / `bindCopyIncludedSkills`
 - **オプション欄**: 切れ者 → 継承固有 → トレヒントLv（`#training-hint-level`）。トレヒント行はラベル・select・注記を1行表示
 - **説明書モーダル**: ヘッダー `#help-open` → `#help-dialog`（`bindHelpDialog`）。本文は `index.html` 内直書き（`docs/` と自動同期しない）
