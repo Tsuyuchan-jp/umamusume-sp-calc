@@ -68,7 +68,7 @@ data/scenarios/toresenken.json ┤
     ▼                           ▼
 app.js (loadJson) ──► buildSkillPlan(aggregate.js)
                           │
-                          ├─ サポカ hintSkillIds → Lv5
+                          ├─ サポカ hintSkillIds → トレヒントLv（オプション、既定5）
                           ├─ 育成ウマ娘所持スキル skillsByAwakening（全ランク合算）→ Lv3
                           ├─ イベント（auto / single）→ JSON hintLv
                           ├─ 有効シナリオ → JSON hintLv
@@ -97,7 +97,7 @@ app.js (loadJson) ──► buildSkillPlan(aggregate.js)
 
 ## 設計上の注意
 
-- サポカ **訓練ヒントは mdb 自動**、**イベントスキルヒントは U-tools+mdb 抽出**（`events.preserve.json` で少数例外）— 混ぜない
+- サポカ **トレヒントは mdb 自動**、**イベントスキルヒントは U-tools+mdb 抽出**（`events.preserve.json` で少数例外）— 混ぜない
 - シナリオはトレセン軒固定（UI に切替なし）
 - ユーザー向け説明はヘッダー「使い方」`<dialog>`（`index.html` + `bindHelpDialog`）。開発者向け詳細は `docs/spec.md` 等
 - extract 失敗時は `app.js` が `#load-error` に手順を表示

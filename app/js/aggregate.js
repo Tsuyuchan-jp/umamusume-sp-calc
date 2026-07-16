@@ -13,6 +13,13 @@ import {
 const TRAINING_HINT = 5;
 const CHARA_HINT = 3;
 
+/** トレヒントLv（3–5）。未指定・不正時は既定5 */
+function normalizeTrainingHintLevel(level) {
+  const n = Number(level);
+  if (!Number.isFinite(n)) return TRAINING_HINT;
+  return Math.max(3, Math.min(5, n | 0));
+}
+
 function isEventSupportInDeck(evt, supportIds, supportById) {
   if (!evt.supportNameMatch) return true;
   return supportIds
@@ -60,8 +67,12 @@ function appendEventSkills(hintEntries, skills, label, nameToId, unresolved) {
  * @param {Record<string, string|null>} [params.eventChoiceIds] selection=single の選択
  * @param {Set<string>} params.enabledScenarioEntryIds シナリオリンク選択 ID
  * @param {string} [params.seniorRmjChoiceId] シニア12月ラーメン選択
+ * @param {number} [params.trainingHintLevel] サポカトレヒントLv（3–5、既定5）
  */
 export function buildSkillPlan(params) {
+  const trainingHintLevel = normalizeTrainingHintLevel(
+    params.trainingHintLevel ?? TRAINING_HINT
+  );
   const skillById = new Map(params.skills.map((s) => [s.id, s]));
   const supportById = new Map(params.supports.map((s) => [s.id, s]));
   const nameToId = new Map(params.skills.map((s) => [s.name, s.id]));
@@ -69,14 +80,14 @@ export function buildSkillPlan(params) {
 
   const hintEntries = [];
 
-  // サポカヒント
+  // サポカトレヒント
   for (const sid of params.supportIds) {
     const sup = supportById.get(sid);
     if (!sup) continue;
     for (const skillId of sup.hintSkillIds || []) {
       hintEntries.push({
         skillId,
-        hintLevel: TRAINING_HINT,
+        hintLevel: trainingHintLevel,
         source: `サポカ: ${sup.name}`,
       });
     }

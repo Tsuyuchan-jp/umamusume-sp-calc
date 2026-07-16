@@ -157,7 +157,7 @@ function defaultEventChoices() {
   );
 }
 
-function makePlan(supportIds) {
+function makePlan(supportIds, trainingHintLevel) {
   return buildSkillPlan({
     skills,
     supports,
@@ -176,12 +176,29 @@ function makePlan(supportIds) {
     eventChoiceIds: defaultEventChoices(),
     enabledScenarioEntryIds: new Set(["link_dotou"]),
     seniorRmjChoiceId: "ramen_yokubari",
+    ...(trainingHintLevel != null ? { trainingHintLevel } : {}),
   });
 }
 
 const defaultPlan = makePlan([young.id, tazuna.id]);
 assertEq(defaultPlan.unresolved.length, 0, "デフォルト未解決スキル");
 assertEq(defaultPlan.total, 4281, "デフォルト合計SP（U-tools 抽出正本・たづな+2イベント追加）");
+
+const gakuen = supports.find((s) => s.title === "トレセン学園");
+assertTruthy(gakuen, "トレヒントのみ検証用サポカ");
+const trainingOnlyPlan5 = makePlan([gakuen.id]);
+const trainingOnlyPlan3 = makePlan([gakuen.id], 3);
+const matsubi5 = trainingOnlyPlan5.rows.find((r) => r.name === "末脚");
+const matsubi3 = trainingOnlyPlan3.rows.find((r) => r.name === "末脚");
+assertTruthy(matsubi5 && matsubi3, "末脚がトレヒント由来で含まれる");
+assertEq(matsubi5.hintLevel, 5, "末脚 トレヒントLv5");
+assertEq(matsubi3.hintLevel, 3, "末脚 トレヒントLv3");
+assertEq(matsubi5.cost, 102, "末脚 cost Lv5");
+assertEq(matsubi3.cost, 118, "末脚 cost Lv3");
+assertTruthy(
+  trainingOnlyPlan3.total > trainingOnlyPlan5.total,
+  "トレヒントLv3は合計SPが増える"
+);
 
 const jichu = defaultPlan.rows.find((r) => r.name === "時中の妙");
 assertTruthy(jichu, "時中の妙が結果に含まれる");

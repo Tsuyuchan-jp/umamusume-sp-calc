@@ -372,6 +372,13 @@ input[type="search"] {
   align-items: center;
 }
 
+.options-note {
+  margin: 0;
+  font-size: 0.85rem;
+  color: #666;
+  flex: 1 1 100%;
+}
+
 .total-box {
   font-size: 1.5rem;
   font-weight: 700;

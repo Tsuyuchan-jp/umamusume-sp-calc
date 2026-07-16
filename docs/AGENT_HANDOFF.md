@@ -17,11 +17,12 @@
 | `data/scenarios/toresenken.json` | **あり** — リンク白/金・RMJ自動計上・ラーメン3択（実機通し確認済み） |
 | Python / `py` | `where` 上は WindowsApps の `python.exe` スタブ寄り。`py` 無し。再 extract 時に実体 Python 要確認 |
 | Git | remote: `Tsuyuchan-jp/umamusume-sp-calc`（public）。Pages デプロイ運用中 |
-| 公開 URL | **https://Tsuyuchan-jp.github.io/umamusume-sp-calc/app/** （v0.1.8・2026-07） |
+| 公開 URL | **https://Tsuyuchan-jp.github.io/umamusume-sp-calc/app/** （v0.1.9・2026-07） |
 | サポカ絞込 | **イベント対応のみ**（デフォルト ON・`prioritySupportIds`）＋ SSR／タイプ／検索 |
 | 結果スキル絞込 | **バ場／距離／作戦**＋**適用ボタン**（draft/committed）。確定済み絞込を編成変更時に新規 skillId へ増分適用。実装: `skillActivation.js` / `app.js` |
 | 結果スキル件数 | 見出し右 **「スキル数 N/M」**（ON＝`!excluded`、全件＝`rows.length`・継承固有含む）。実装: `updateSkillCountDisplay` / `recalc` |
 | 含めるスキルコピー | 見出し右ボタン。ON 表示行の `name` をカンマ区切りでクリップボードへ（継承除外）。実装: `copyIncludedSkills.js` / `recalc`。実機確認済み |
+| トレヒントLv | オプション select（3/4/5・既定5）。`aggregate.js` の `trainingHintLevel` |
 | 説明書 UI | ヘッダー右 **「使い方」** → `<dialog>`（5セクション・実機確認済み） |
 
 **アプリは実用段階・公開済み。** 常用デッキ＋シナリオ（リンク白/金・RMJ・終了）の通し確認は **実機 OK・バグなし**（2026-07）。
@@ -37,7 +38,7 @@
 
 - **ローカル HTML/JS + JSON**。NotebookLM / Electron ではない。
 - **シナリオは当面トレセン軒のみ**（〜4ヶ月想定）。参照: https://github.com/mee1080/umasim/blob/main/data/ramen_memo.md
-- **ヒントLv**: サポカトレ=5 / 育成ウマ娘所持スキル=3（他由来が高ければ max）/ イベント・シナリオ=JSON定義 / 同一スキルは max。
+- **ヒントLv**: サポカトレ=既定5（オプションで3–5）/ 育成ウマ娘所持スキル=3（他由来が高ければ max）/ イベント・シナリオ=JSON定義 / 同一スキルは max。
 - **金+白コスト（実機検証済み）**:
   - `cost = floor(baseSp * (1 - hintDiscount - (切れ者?0.10:0)))`
   - 割引: Lv0=0, 1=10%, 2=20%, 3=30%, 4=35%, 5=40%
@@ -48,7 +49,7 @@
 - **固有スキル・覚醒進化**: 現行 extract（`available_skill_set`）で実機と整合。専用除外ロジックは不要（[GLOSSARY.md](./GLOSSARY.md)）
 - **育成ウマ娘覚醒レベル**: 最大想定で所持スキル全合算
 - **継承固有**: 汎用行のみ（親名・スキル名なし）、個数 2–6、baseSp 200、ヒント一律 1–5。
-- **イベントは優先37サポカのみ**（全539枚はスコープ外）。**正本は U-tools+mdb 抽出**（`events.preserve.json` でたづな2件を例外維持）。訓練ヒントは mdb 自動。
+- **イベントは優先37サポカのみ**（全539枚はスコープ外）。**正本は U-tools+mdb 抽出**（`events.preserve.json` でたづな2件を例外維持）。トレヒントは mdb 自動。
 - **Git**: ワークスペース変更のたびにコミット。PowerShell では `git add .` と `git commit` を**別ステップ**（`&&` 禁止）。push は明示依頼時のみ。
 
 ## シナリオ・UI の要点（トレセン軒）

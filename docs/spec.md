@@ -14,7 +14,7 @@
 
 | 由来 | Lv | 実装 |
 |------|-----|------|
-| サポカ訓練ヒント | 5 | `aggregate.js` 定数 `TRAINING_HINT` |
+| サポカトレヒント | 3–5（既定5） | オプション `trainingHintLevel` → `aggregate.js` |
 | 育成ウマ娘所持スキル | 3 | `CHARA_HINT`。育成ウマ娘覚醒レベルは最大想定で全ランク合算 |
 | イベント | JSON の `hintLevel` | デッキに該当サポカがいるときのみ |
 | シナリオリンク | JSON の `hintLevel` | 選択1件・編成で白/金を切替（`scenarioLink.js`） |
@@ -132,7 +132,7 @@ cost(白, whiteHintLv) + cost(金, goldHintLv)
 ## イベント
 
 - `data/events.json` は **U-tools + mdb 抽出正本**（v0.1.3〜）。`events.preserve.json` でたづなお出かけ/正月2件を例外維持
-- 優先37サポカ・102イベント（訓練ヒントは mdb 自動）
+- 優先37サポカ・102イベント（トレヒントは mdb 自動）
 - 再生成: `npm run extract:events` → `npm run apply:events`（設計: [EVENT_EXTRACT_DESIGN.md](./EVENT_EXTRACT_DESIGN.md)）
 - `supportNameMatch` でデッキ内サポカ名部分一致 → イベント適用
 - `selection: auto` は編成時自動計上、`single` はラジオ1択（排他分岐用）

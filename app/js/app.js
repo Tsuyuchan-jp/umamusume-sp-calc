@@ -654,6 +654,7 @@ function recalc({ resetFilterExclusions = false } = {}) {
     inheritCount: Number(document.getElementById("inherit-count").value) || 0,
     inheritHintLevel: Number(document.getElementById("inherit-hint").value) || 1,
     inheritBaseSp: Number(document.getElementById("inherit-base").value) || 200,
+    trainingHintLevel: Number(document.getElementById("training-hint-level").value) || 5,
     enabledEventIds: state.ui.enabledEventIds,
     eventChoiceIds: Object.fromEntries(state.ui.eventChoiceIds),
     enabledScenarioEntryIds: buildEnabledScenarioEntryIds(),
@@ -766,7 +767,14 @@ function bindSkillFilters() {
 }
 
 function bindOptions() {
-  ["fast-learner", "inherit-enabled", "inherit-count", "inherit-hint", "inherit-base"].forEach(
+  [
+    "fast-learner",
+    "training-hint-level",
+    "inherit-enabled",
+    "inherit-count",
+    "inherit-hint",
+    "inherit-base",
+  ].forEach(
     (id) => {
       document.getElementById(id).addEventListener("change", recalc);
       document.getElementById(id).addEventListener("input", recalc);
