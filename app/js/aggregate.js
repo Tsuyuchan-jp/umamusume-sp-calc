@@ -255,6 +255,7 @@ export function buildSkillPlan(params) {
       baseSp: params.inheritBaseSp,
       cost: inheritCost * params.inheritCount,
       isInherit: true,
+      skillWeight: params.inheritCount,
     });
   }
 

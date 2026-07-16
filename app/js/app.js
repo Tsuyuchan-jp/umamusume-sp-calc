@@ -549,12 +549,22 @@ function updateTotalDisplay(total) {
   previousTotal = total;
 }
 
+/** 結果件数用の行重み（継承固有は個数分、通常行は1） */
+function rowSkillWeight(row) {
+  return row.skillWeight != null ? row.skillWeight : 1;
+}
+
 /** 結果見出し右の「スキル数 ON/全件」を更新 */
 function updateSkillCountDisplay(plan) {
   const el = document.getElementById("skill-count-meta");
   if (!el) return;
-  const totalCount = plan.rows.length;
-  const onCount = plan.rows.filter((r) => !r.excluded).length;
+  let totalCount = 0;
+  let onCount = 0;
+  for (const row of plan.rows) {
+    const w = rowSkillWeight(row);
+    totalCount += w;
+    if (!row.excluded) onCount += w;
+  }
   el.textContent = `スキル数 ${onCount}/${totalCount}`;
 }
 
