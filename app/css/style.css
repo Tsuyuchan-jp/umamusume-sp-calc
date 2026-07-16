@@ -387,14 +387,16 @@ input[type="search"] {
 }
 
 .options-row--training-hint {
-  align-items: baseline;
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: 0.75rem;
 }
 
-.options-note {
+.options-row--training-hint .options-note {
   margin: 0;
   font-size: 0.85rem;
   color: #666;
-  flex: 1 1 100%;
+  white-space: nowrap;
 }
 
 .total-box {
