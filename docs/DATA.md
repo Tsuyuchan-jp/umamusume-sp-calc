@@ -24,7 +24,7 @@ data/
 - `skills.json` / `supports.json` / `characters.json` / `meta.json` **あり**
 - `meta.json` 例: skillCount 2103, supportCount 543, characterCount 261
 - 抽出元: `D:\DMM\umamusumeDMM\Umamusume\umamusume_Data\Persistent\master\master.mdb`
-- `events.json` は **U-tools+mdb 抽出正本**（102件）。`toresenken.json` は手メンテ
+- `events.json` は **U-tools+mdb 抽出正本**（105件・優先38種）。`toresenken.json` は手メンテ
 - **実機通し確認済み**（2026-07）: 常用デッキ＋イベント＋シナリオリンク白/金＋RMJ自動計上／ラーメン3択＋終了。問題・バグなし
 
 ## master.mdb → extract

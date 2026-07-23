@@ -1,6 +1,7 @@
-# 設計レビュー: サポカイベント抽出（優先37置換）
+# 設計レビュー: サポカイベント抽出（優先枠置換）
 
 **状態**: **Phase B 完了**（2026-07-14）— `events.json` を U-tools+mdb 抽出で置換済み  
+**現状（2026-07-23）**: 優先 **38種**・**105イベント**（v0.1.11 でネイチャ小倉愛 +1種・実機確認済み）  
 **ゴール**: ~~優先37サポカの `events.json` を U-tools + mdb 抽出で置換する~~ **達成**  
 **調査日**: 2026-07-14  
 **mdb**: `D:/DMM/umamusumeDMM/Umamusume/umamusume_Data/Persistent/master/master.mdb`  
@@ -30,7 +31,7 @@
 |--------|------|------|
 | スキル SP / 上下位 | `master.mdb` → `extract_mdb.mjs` | 自動 |
 | サポカトレヒント（`hintSkillIds`） | `single_mode_hint_gain` (type=0) | 自動 |
-| サポカイベントのスキルヒント | `data/events.json` **U-tools+mdb 抽出** | 優先37種・102イベント（preserve 2） |
+| サポカイベントのスキルヒント | `data/events.json` **U-tools+mdb 抽出** | 優先38種・105イベント（preserve 2） |
 | トレセン軒シナリオ | `data/scenarios/toresenken.json` | **別系統・変更しない** |
 
 ### 手メンテの痛み
