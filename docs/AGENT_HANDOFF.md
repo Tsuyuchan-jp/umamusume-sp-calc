@@ -17,7 +17,7 @@
 | `data/scenarios/toresenken.json` | **あり** — リンク白/金・RMJ自動計上・ラーメン3択（実機通し確認済み） |
 | Python / `py` | `where` 上は WindowsApps の `python.exe` スタブ寄り。`py` 無し。再 extract 時に実体 Python 要確認 |
 | Git | remote: `Tsuyuchan-jp/umamusume-sp-calc`（public）。Pages デプロイ運用中 |
-| 公開 URL | **https://Tsuyuchan-jp.github.io/umamusume-sp-calc/app/** （v0.1.11・2026-07） |
+| 公開 URL | **https://Tsuyuchan-jp.github.io/umamusume-sp-calc/app/** （v0.1.12・2026-07） |
 | サポカ絞込 | **イベント対応のみ**（デフォルト ON・`prioritySupportIds`）＋ SSR／タイプ／検索 |
 | 結果スキル絞込 | **バ場／距離／作戦**＋**適用ボタン**（draft/committed）。確定済み絞込を編成変更時に新規 skillId へ増分適用。実装: `skillActivation.js` / `app.js` |
 | 結果スキル件数 | 見出し右 **「スキル数 N/M」**（ON/全件ともスキル本数。通常行1、継承固有は `skillWeight`＝個数）。実装: `rowSkillWeight` / `updateSkillCountDisplay` / `recalc`。実機確認済み |
@@ -25,7 +25,7 @@
 | トレヒントLv | オプション select（3/4/5・既定5）。`aggregate.js` の `trainingHintLevel`。実機確認済み |
 | 説明書 UI | ヘッダー右 **「使い方」** → `<dialog>`（5セクション・実機確認済み） |
 
-**アプリは実用段階・公開済み。** 常用デッキ＋シナリオ（リンク白/金・RMJ・終了）の通し確認は **実機 OK・バグなし**（2026-07）。**v0.1.11**（ネイチャ小倉愛・優先38種）も **実機確認済み**（2026-07-23）。
+**アプリは実用段階・公開済み。** 常用デッキ＋シナリオ（リンク白/金・RMJ・終了）の通し確認は **実機 OK・バグなし**（2026-07）。**v0.1.11**（ネイチャ小倉愛・優先38種）は localhost 実機確認済み。**v0.1.12** で Pages の JSON キャッシュ滞留対策。
 
 ## 次にやること（優先順）
 

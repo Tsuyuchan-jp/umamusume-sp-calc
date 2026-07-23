@@ -46,8 +46,14 @@ let previousTotal = null;
 /** 差分ハイライトのタイマー */
 let deltaHideTimer = null;
 
+/** Pages の max-age キャッシュで古い events.json が残るのを防ぐ（版上げ時に更新） */
+const DATA_CACHE_BUST = "0.1.12";
+
 async function loadJson(path) {
-  const res = await fetch(path);
+  const sep = path.includes("?") ? "&" : "?";
+  const url = `${path}${sep}v=${encodeURIComponent(DATA_CACHE_BUST)}`;
+  // no-cache: キャッシュがあっても再検証する（デプロイ直後の古い JSON 滞留を避ける）
+  const res = await fetch(url, { cache: "no-cache" });
   if (!res.ok) throw new Error(`${path}: ${res.status}`);
   return res.json();
 }
