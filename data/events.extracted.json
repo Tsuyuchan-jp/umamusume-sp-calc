@@ -1,15 +1,15 @@
 {
   "version": 2,
-  "description": "U-tools + mdb から抽出（apply 前の中間生成物。正本は events.json）",
-  "extractedAt": "2026-07-13T15:35:41.725Z",
+  "description": "U-tools + mdb から抽出（Phase A 生成物・手メンテ events.json は未置換）",
+  "extractedAt": "2026-07-23T02:08:09.664Z",
   "source": {
     "mdb": "D:/DMM/umamusumeDMM/Umamusume/umamusume_Data/Persistent/master/master.mdb",
     "utoolsCache": "data/events.raw.utools.json",
-    "priorityCount": 37
+    "priorityCount": 38
   },
   "stats": {
-    "total": 100,
-    "auto": 81,
+    "total": 103,
+    "auto": 84,
     "single": 19
   },
   "warnings": [],
@@ -535,7 +535,7 @@
           ]
         }
       ],
-      "defaultChoiceId": "c002_2040725+2101015+210262",
+      "defaultChoiceId": "c001_2027611+2040711",
       "selection": "single"
     },
     {
@@ -1375,7 +1375,7 @@
           ]
         }
       ],
-      "defaultChoiceId": "c001_2035021",
+      "defaultChoiceId": "c002_2034321",
       "selection": "single"
     },
     {
@@ -1941,6 +1941,50 @@
           "skillName": "肉薄",
           "hintLevel": 1,
           "skillId": 202931
+        }
+      ]
+    },
+    {
+      "id": "evt_30306_801060002",
+      "supportNameMatch": "両手いっぱい、小倉愛",
+      "label": "ネイチャ （美味しい）おせっかい",
+      "selection": "auto",
+      "skills": [
+        {
+          "skillName": "ペースアップ",
+          "hintLevel": 1,
+          "skillId": 200462
+        }
+      ]
+    },
+    {
+      "id": "evt_30306_830306002",
+      "supportNameMatch": "両手いっぱい、小倉愛",
+      "label": "ネイチャ 【C+】こだわりリレイション",
+      "selection": "auto",
+      "skills": [
+        {
+          "skillName": "静かな熱",
+          "hintLevel": 1,
+          "skillId": 203672
+        }
+      ]
+    },
+    {
+      "id": "evt_30306_830306003",
+      "supportNameMatch": "両手いっぱい、小倉愛",
+      "label": "ネイチャ 【??】可変的レアリティ",
+      "selection": "auto",
+      "skills": [
+        {
+          "skillName": "突破口",
+          "hintLevel": 1,
+          "skillId": 203571
+        },
+        {
+          "skillName": "秘めた闘魂",
+          "hintLevel": 2,
+          "skillId": 203681
         }
       ]
     }

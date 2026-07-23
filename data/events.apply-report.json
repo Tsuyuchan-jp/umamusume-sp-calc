@@ -1,712 +1,713 @@
 {
-  "appliedAt": "2026-07-13T15:35:41.791Z",
+  "appliedAt": "2026-07-23T02:08:34.099Z",
   "dryRun": false,
   "stats": {
-    "total": 102,
-    "auto": 83,
+    "total": 105,
+    "auto": 86,
     "single": 19
   },
-  "replacedCount": 98,
+  "replacedCount": 100,
   "preserveAdded": [
     "evt_tazuna_oodate5",
     "evt_tazuna_newyear"
   ],
-  "dropped": [
-    {
-      "id": "evt_gran_seicho",
-      "supportNameMatch": "スマイル・エバーアフター",
-      "label": "グラン 成長のヒント",
-      "reason": "U-tools に該当イベント無し（GameWith 誤記疑い）"
-    },
-    {
-      "id": "evt_fuji_sleight",
-      "supportNameMatch": "壇上より魔法を込めて",
-      "label": "フジ スライハンド",
-      "reason": "U-tools ではスライハンドにスキルヒント無し（手メンテ誤登録）"
-    }
-  ],
+  "dropped": [],
   "replaced": [
     {
-      "oldId": "evt_young_light",
+      "oldId": "evt_30289_801138002",
       "newId": "evt_30289_801138002",
       "label": "ヤング やっちゃお！イノベーション！",
-      "matchKey": "skill",
+      "matchKey": "name",
       "payloadMatch": true
     },
     {
-      "oldId": "evt_young_vitality",
+      "oldId": "evt_30289_830289001",
       "newId": "evt_30289_830289001",
       "label": "ヤング Young & Unstoppable",
       "matchKey": "name",
       "payloadMatch": true
     },
     {
-      "oldId": "evt_young_dreams",
+      "oldId": "evt_30289_830289003",
       "newId": "evt_30289_830289003",
       "label": "ヤング Dreams are Forever",
       "matchKey": "name",
-      "payloadMatch": false
+      "payloadMatch": true
     },
     {
-      "oldId": "evt_ruby_ganka",
+      "oldId": "evt_30270_801085002",
       "newId": "evt_30270_801085002",
       "label": "ルビー 華麗なる旋律",
       "matchKey": "name",
       "payloadMatch": true
     },
     {
-      "oldId": "evt_ruby_akadama",
+      "oldId": "evt_30270_830270001",
       "newId": "evt_30270_830270001",
       "label": "ルビー 紅玉の誓約",
       "matchKey": "name",
       "payloadMatch": true
     },
     {
-      "oldId": "evt_dura_ou",
+      "oldId": "evt_30262_801108002",
       "newId": "evt_30262_801108002",
       "label": "ドゥラ 追うべき背中",
       "matchKey": "name",
       "payloadMatch": true
     },
     {
-      "oldId": "evt_dura_kawaii_power",
+      "oldId": "evt_30262_830262003",
       "newId": "evt_30262_830262003",
       "label": "ドゥラ 可愛いの真の力！",
       "matchKey": "name",
       "payloadMatch": true
     },
     {
-      "oldId": "evt_line_wakuwaku",
+      "oldId": "evt_30253_801109001",
       "newId": "evt_30253_801109001",
       "label": "ライン ワクワクでキラキラな夢",
       "matchKey": "name",
       "payloadMatch": true
     },
     {
-      "oldId": "evt_line_letter",
+      "oldId": "evt_30253_830253003",
       "newId": "evt_30253_830253003",
       "label": "ライン 拝啓、お父さん",
       "matchKey": "name",
       "payloadMatch": true
     },
     {
-      "oldId": "evt_flash_shop",
+      "oldId": "evt_30272_801037002",
       "newId": "evt_30272_801037002",
       "label": "フラッシュ 想定外への対応",
       "matchKey": "name",
       "payloadMatch": true
     },
     {
-      "oldId": "evt_flash_try",
+      "oldId": "evt_30272_830272002",
       "newId": "evt_30272_830272002",
       "label": "フラッシュ 美しきトライ",
       "matchKey": "name",
       "payloadMatch": true
     },
     {
-      "oldId": "evt_flash_fruit",
+      "oldId": "evt_30272_830272003",
       "newId": "evt_30272_830272003",
       "label": "フラッシュ 美しき結実",
       "matchKey": "name",
       "payloadMatch": true
     },
     {
-      "oldId": "evt_carlton_massugu",
+      "oldId": "evt_30267_801120001",
       "newId": "evt_30267_801120001",
       "label": "ライトオ 『真っ直ぐ』はすばらしい",
       "matchKey": "name",
       "payloadMatch": true
     },
     {
-      "oldId": "evt_carlton_saisoku",
+      "oldId": "evt_30267_801120002",
       "newId": "evt_30267_801120002",
       "label": "ライトオ 『最速』はすばらしい",
       "matchKey": "name",
       "payloadMatch": true
     },
     {
-      "oldId": "evt_carlton_sokyu",
+      "oldId": "evt_30267_830267003",
       "newId": "evt_30267_830267003",
       "label": "ライトオ 速い＆真っ直ぐは世界を救う！",
       "matchKey": "name",
       "payloadMatch": true
     },
     {
-      "oldId": "evt_gran_mile_way",
+      "oldId": "evt_30301_801131002",
       "newId": "evt_30301_801131002",
       "label": "グラン ゴー・マイル・ウェイ、です！",
-      "matchKey": "skill",
+      "matchKey": "name",
       "payloadMatch": true
     },
     {
-      "oldId": "evt_gran_milestone",
+      "oldId": "evt_30301_830301002",
       "newId": "evt_30301_830301002",
       "label": "グラン 勝利へのマイルストーン",
       "matchKey": "name",
       "payloadMatch": true
     },
     {
-      "oldId": "evt_gran_muse_final",
+      "oldId": "evt_30301_830301003",
       "newId": "evt_30301_830301003",
       "label": "グラン 最強のミューズへ",
       "matchKey": "name",
       "payloadMatch": true
     },
     {
-      "oldId": "evt_dotou_call",
+      "oldId": "evt_30304_801058002",
       "newId": "evt_30304_801058002",
       "label": "ドトウ にんじん……買ってくださいっ",
-      "matchKey": "skill",
+      "matchKey": "name",
       "payloadMatch": true
     },
     {
-      "oldId": "evt_dotou_umalike",
+      "oldId": "evt_30304_830304002",
       "newId": "evt_30304_830304002",
       "label": "ドトウ 美味しい楽しいファンサービス",
-      "matchKey": "skill",
+      "matchKey": "name",
       "payloadMatch": true
     },
     {
-      "oldId": "evt_dotou_chain",
+      "oldId": "evt_30304_830304003",
       "newId": "evt_30304_830304003",
       "label": "ドトウ 覇王と共に歩む道",
-      "matchKey": "skill",
+      "matchKey": "name",
       "payloadMatch": true
     },
     {
-      "oldId": "evt_pheno_kowamote",
+      "oldId": "evt_30279_801127002",
       "newId": "evt_30279_801127002",
       "label": "フェノーメノ あぶないコワモテ刑事？",
       "matchKey": "name",
       "payloadMatch": true
     },
     {
-      "oldId": "evt_pheno_mame",
+      "oldId": "evt_30279_830279002",
       "newId": "evt_30279_830279002",
       "label": "フェノーメノ マメちん堕落計画！",
       "matchKey": "name",
       "payloadMatch": true
     },
     {
-      "oldId": "evt_pheno_kisei",
+      "oldId": "evt_30279_830279003",
       "newId": "evt_30279_830279003",
       "label": "フェノーメノ いかなる時も、矜持は揺るがず",
-      "matchKey": "skill",
+      "matchKey": "name",
       "payloadMatch": true
     },
     {
-      "oldId": "evt_fine_corner",
+      "oldId": "evt_30283_801022002",
       "newId": "evt_30283_801022002",
       "label": "ファイン 思い出クローバー",
       "matchKey": "name",
       "payloadMatch": true
     },
     {
-      "oldId": "evt_fine_step",
+      "oldId": "evt_30283_830283002",
       "newId": "evt_30283_830283002",
       "label": "ファイン ロイヤル推し活ライフ",
       "matchKey": "name",
       "payloadMatch": true
     },
     {
-      "oldId": "evt_fine_look",
+      "oldId": "evt_30283_830283003",
       "newId": "evt_30283_830283003",
       "label": "ファイン Look at me",
       "matchKey": "name",
       "payloadMatch": true
     },
     {
-      "oldId": "evt_diamond_nigetam",
-      "newId": "evt_30302_801067002",
-      "label": "ダイヤ 難しいこと、大好きです！",
-      "matchKey": "skill",
+      "oldId": "evt_30305_809001004",
+      "newId": "evt_30305_809001004",
+      "label": "たづな 情熱のふたり",
+      "matchKey": "name",
       "payloadMatch": true
     },
     {
-      "oldId": "evt_diamond_gamushara",
+      "oldId": "evt_30305_809001011",
+      "newId": "evt_30305_809001011",
+      "label": "たづな たづなとの絆・憧れを託して",
+      "matchKey": "name",
+      "payloadMatch": true
+    },
+    {
+      "oldId": "evt_30302_801067002",
+      "newId": "evt_30302_801067002",
+      "label": "ダイヤ 難しいこと、大好きです！",
+      "matchKey": "name",
+      "payloadMatch": true
+    },
+    {
+      "oldId": "evt_30302_830302002",
       "newId": "evt_30302_830302002",
       "label": "ダイヤ まず、知るより始めよう",
       "matchKey": "name",
       "payloadMatch": true
     },
     {
-      "oldId": "evt_diamond_chain",
+      "oldId": "evt_30302_830302003",
       "newId": "evt_30302_830302003",
       "label": "ダイヤ そして、未来を誓う",
       "matchKey": "name",
       "payloadMatch": true
     },
     {
-      "oldId": "evt_stay_kin",
+      "oldId": "evt_30264_801135001",
       "newId": "evt_30264_801135001",
       "label": "ステイ 黄金を探し求めて",
       "matchKey": "name",
       "payloadMatch": true
     },
     {
-      "oldId": "evt_stay_over17",
+      "oldId": "evt_30264_830264002",
       "newId": "evt_30264_830264002",
       "label": "ステイ Over 17 Lights",
       "matchKey": "name",
       "payloadMatch": true
     },
     {
-      "oldId": "evt_stay_shinryou",
+      "oldId": "evt_30264_830264003",
       "newId": "evt_30264_830264003",
       "label": "ステイ 新しい旅へ",
       "matchKey": "name",
       "payloadMatch": true
     },
     {
-      "oldId": "evt_fuku_kitto",
+      "oldId": "evt_30286_830286001",
       "newId": "evt_30286_830286001",
       "label": "フクキタル 吉日・良縁ハグハグ！",
       "matchKey": "name",
       "payloadMatch": true
     },
     {
-      "oldId": "evt_mars_koe",
+      "oldId": "evt_30292_801140002",
       "newId": "evt_30292_801140002",
       "label": "マルシュ 溢れている愛",
       "matchKey": "name",
       "payloadMatch": true
     },
     {
-      "oldId": "evt_mars_kanshin",
+      "oldId": "evt_30292_830292002",
       "newId": "evt_30292_830292002",
       "label": "マルシュ 募る『不安』",
-      "matchKey": "skill",
+      "matchKey": "name",
       "payloadMatch": true
     },
     {
-      "oldId": "evt_mars_ai",
+      "oldId": "evt_30292_830292003",
       "newId": "evt_30292_830292003",
       "label": "マルシュ 重なる『愛』",
-      "matchKey": "skill",
+      "matchKey": "name",
       "payloadMatch": true
     },
     {
-      "oldId": "evt_gold_yakisoba",
+      "oldId": "evt_30278_801007002",
       "newId": "evt_30278_801007002",
       "label": "ゴルシ 甦れ！　ゴルシ印のソース焼きそば！",
-      "matchKey": "skill",
+      "matchKey": "name",
       "payloadMatch": true
     },
     {
-      "oldId": "evt_gold_kyozo",
+      "oldId": "evt_30278_830278002",
       "newId": "evt_30278_830278002",
       "label": "ゴルシ 虚像をぶち壊せ",
       "matchKey": "name",
       "payloadMatch": true
     },
     {
-      "oldId": "evt_gold_ougon",
+      "oldId": "evt_30278_830278003",
       "newId": "evt_30278_830278003",
       "label": "ゴルシ 黄金二人旅",
       "matchKey": "name",
       "payloadMatch": true
     },
     {
-      "oldId": "evt_karen_chowa",
+      "oldId": "evt_30274_801134001",
       "newId": "evt_30274_801134001",
       "label": "カレン 争いの種は咲かせない",
       "matchKey": "name",
       "payloadMatch": true
     },
     {
-      "oldId": "evt_karen_masou",
+      "oldId": "evt_30274_830274003",
       "newId": "evt_30274_830274003",
       "label": "カレン 奏で合う幸福",
       "matchKey": "name",
       "payloadMatch": true
     },
     {
-      "oldId": "evt_inari_kyoto",
+      "oldId": "evt_30281_801034002",
       "newId": "evt_30281_801034002",
       "label": "イナリ 神輿だワッショイ",
       "matchKey": "name",
       "payloadMatch": true
     },
     {
-      "oldId": "evt_inari_iki",
+      "oldId": "evt_30281_830281002",
       "newId": "evt_30281_830281002",
       "label": "イナリ 粋の魅せ方、魂で語れ",
       "matchKey": "name",
       "payloadMatch": true
     },
     {
-      "oldId": "evt_inari_namida",
+      "oldId": "evt_30281_830281003",
       "newId": "evt_30281_830281003",
       "label": "イナリ 熱き涙の理由",
       "matchKey": "name",
       "payloadMatch": true
     },
     {
-      "oldId": "evt_king_advice",
+      "oldId": "evt_30285_801061002",
       "newId": "evt_30285_801061002",
       "label": "キング 助言する権利をあげる！",
       "matchKey": "name",
       "payloadMatch": true
     },
     {
-      "oldId": "evt_king_ikikoi",
+      "oldId": "evt_30285_830285002",
       "newId": "evt_30285_830285002",
       "label": "キング 学ぶは、一流の息抜き！",
       "matchKey": "name",
       "payloadMatch": true
     },
     {
-      "oldId": "evt_king_ren",
+      "oldId": "evt_30285_830285003",
       "newId": "evt_30285_830285003",
       "label": "キング 学びを繋げて",
       "matchKey": "name",
       "payloadMatch": true
     },
     {
-      "oldId": "evt_groove_taiki",
+      "oldId": "evt_30282_801018001",
       "newId": "evt_30282_801018001",
       "label": "グルーヴ 峻厳にして優渥",
       "matchKey": "name",
       "payloadMatch": true
     },
     {
-      "oldId": "evt_groove_shadow",
+      "oldId": "evt_30282_830282002",
       "newId": "evt_30282_830282002",
       "label": "グルーヴ そのアイシャドウは繋がって",
       "matchKey": "name",
       "payloadMatch": true
     },
     {
-      "oldId": "evt_groove_makeup",
+      "oldId": "evt_30282_830282003",
       "newId": "evt_30282_830282003",
       "label": "グルーヴ そのメイクは誰がために",
       "matchKey": "name",
-      "payloadMatch": false
+      "payloadMatch": true
     },
     {
-      "oldId": "evt_win_gran",
+      "oldId": "evt_30261_801117002",
       "newId": "evt_30261_801117002",
       "label": "バリア グラン・ジュテ～いつの日か～",
       "matchKey": "name",
       "payloadMatch": true
     },
     {
-      "oldId": "evt_win_near",
+      "oldId": "evt_30261_830261002",
       "newId": "evt_30261_830261002",
       "label": "バリア 潜在的ソウルメイト",
       "matchKey": "name",
       "payloadMatch": true
     },
     {
-      "oldId": "evt_win_cheer",
+      "oldId": "evt_30261_830261003",
       "newId": "evt_30261_830261003",
       "label": "バリア 大衆的チアフレンド",
       "matchKey": "name",
       "payloadMatch": true
     },
     {
-      "oldId": "evt_almond_mental",
+      "oldId": "evt_30242_801129002",
       "newId": "evt_30242_801129002",
       "label": "アーモンド アーモンドアイは見逃さない",
       "matchKey": "name",
       "payloadMatch": true
     },
     {
-      "oldId": "evt_almond_endless",
+      "oldId": "evt_30242_830242003",
       "newId": "evt_30242_830242003",
       "label": "アーモンド 果てしなきアーモンドアイ",
       "matchKey": "name",
       "payloadMatch": true
     },
     {
-      "oldId": "evt_neo_encounter",
+      "oldId": "evt_30287_801105002",
       "newId": "evt_30287_801105002",
       "label": "ネオ “観測者”との遭遇",
-      "matchKey": "skill",
+      "matchKey": "name",
       "payloadMatch": true
     },
     {
-      "oldId": "evt_neo_signal",
+      "oldId": "evt_30287_830287002",
       "newId": "evt_30287_830287002",
       "label": "ネオ For “シグナル”100％",
-      "matchKey": "skill",
+      "matchKey": "name",
       "payloadMatch": true
     },
     {
-      "oldId": "evt_neo_crewmate",
+      "oldId": "evt_30287_830287003",
       "newId": "evt_30287_830287003",
       "label": "ネオ You Are “クルーメイト”",
-      "matchKey": "skill",
+      "matchKey": "name",
       "payloadMatch": true
     },
     {
-      "oldId": "evt_digital_emo",
+      "oldId": "evt_30297_801019002",
       "newId": "evt_30297_801019002",
       "label": "デジタル エモのためなら雨の中でも！",
       "matchKey": "name",
       "payloadMatch": true
     },
     {
-      "oldId": "evt_digital_me",
+      "oldId": "evt_30297_830297002",
       "newId": "evt_30297_830297002",
       "label": "デジタル おお！汝目覚めよ！",
       "matchKey": "name",
       "payloadMatch": true
     },
     {
-      "oldId": "evt_digital_yuuo",
+      "oldId": "evt_30297_830297003",
       "newId": "evt_30297_830297003",
       "label": "デジタル 逃げぬ者、戦う者。すなわち汝。",
-      "matchKey": "skill",
+      "matchKey": "name",
       "payloadMatch": true
     },
     {
-      "oldId": "evt_aman_photo",
+      "oldId": "evt_30296_801087002",
       "newId": "evt_30296_801087002",
       "label": "マーチャン いつも写真から見つめてる",
       "matchKey": "name",
       "payloadMatch": true
     },
     {
-      "oldId": "evt_aman_tuber",
+      "oldId": "evt_30296_830296002",
       "newId": "evt_30296_830296002",
       "label": "マーチャン ターちゃんマーちゃん、行くのです！",
       "matchKey": "name",
       "payloadMatch": true
     },
     {
-      "oldId": "evt_aman_kaori",
+      "oldId": "evt_30296_830296003",
       "newId": "evt_30296_830296003",
       "label": "マーチャン この香りが残りますように",
       "matchKey": "name",
       "payloadMatch": true
     },
     {
-      "oldId": "evt_fuji_miss",
+      "oldId": "evt_30271_801005002",
       "newId": "evt_30271_801005002",
       "label": "フジ ミスディレクション",
       "matchKey": "name",
       "payloadMatch": true
     },
     {
-      "oldId": "evt_fuji_maho",
+      "oldId": "evt_30271_830271001",
       "newId": "evt_30271_830271001",
       "label": "フジ 魔法使いの秘密",
       "matchKey": "name",
       "payloadMatch": true
     },
     {
-      "oldId": "evt_teo_weapon",
+      "oldId": "evt_30275_801003002",
       "newId": "evt_30275_801003002",
       "label": "テイオー ボクの武器",
       "matchKey": "name",
       "payloadMatch": true
     },
     {
-      "oldId": "evt_teo_koukou",
+      "oldId": "evt_30275_830275002",
       "newId": "evt_30275_830275002",
       "label": "テイオー 孝行はしたい時分に",
       "matchKey": "name",
       "payloadMatch": true
     },
     {
-      "oldId": "evt_teo_weather",
+      "oldId": "evt_30275_830275003",
       "newId": "evt_30275_830275003",
       "label": "テイオー まったり孝行日和",
       "matchKey": "name",
       "payloadMatch": true
     },
     {
-      "oldId": "evt_taiki_sentou",
+      "oldId": "evt_30298_801107002",
       "newId": "evt_30298_801107002",
       "label": "シチー いざ求めん、夢多きTreasure",
       "matchKey": "name",
       "payloadMatch": true
     },
     {
-      "oldId": "evt_taiki_nigeru",
+      "oldId": "evt_30298_830298002",
       "newId": "evt_30298_830298002",
       "label": "シチー 心のカギは",
       "matchKey": "name",
       "payloadMatch": true
     },
     {
-      "oldId": "evt_taiki_chain",
+      "oldId": "evt_30298_830298003",
       "newId": "evt_30298_830298003",
       "label": "シチー 仲間というロマン",
       "matchKey": "name",
       "payloadMatch": true
     },
     {
-      "oldId": "evt_ryan_pace",
+      "oldId": "evt_30258_801027002",
       "newId": "evt_30258_801027002",
       "label": "ライアン あくまで薦められただけ",
       "matchKey": "name",
       "payloadMatch": true
     },
     {
-      "oldId": "evt_ryan_muscle",
+      "oldId": "evt_30258_830258001",
       "newId": "evt_30258_830258001",
       "label": "ライアン マッスル、ただひたすらに",
       "matchKey": "name",
       "payloadMatch": true
     },
     {
-      "oldId": "evt_chiyo_spring",
+      "oldId": "evt_30300_801069002",
       "newId": "evt_30300_801069002",
       "label": "チヨノ いつか咲く、その日まで……",
       "matchKey": "name",
       "payloadMatch": true
     },
     {
-      "oldId": "evt_chiyo_dosukoi",
+      "oldId": "evt_30300_830300001",
       "newId": "evt_30300_830300001",
       "label": "チヨノ どすこいカード列伝！",
       "matchKey": "name",
       "payloadMatch": true
     },
     {
-      "oldId": "evt_tamamo_lose",
+      "oldId": "evt_30256_801021002",
       "newId": "evt_30256_801021002",
       "label": "タマモ 負けられん戦い！",
       "matchKey": "name",
       "payloadMatch": true
     },
     {
-      "oldId": "evt_tamamo_dareka",
+      "oldId": "evt_30256_830256002",
       "newId": "evt_30256_830256002",
       "label": "タマモ 誰かの道を照らすなら",
       "matchKey": "name",
       "payloadMatch": true
     },
     {
-      "oldId": "evt_tamamo_tooku",
+      "oldId": "evt_30256_830256003",
       "newId": "evt_30256_830256003",
       "label": "タマモ 遠くで光るその走り",
       "matchKey": "name",
       "payloadMatch": true
     },
     {
-      "oldId": "evt_heart_aggressive",
+      "oldId": "evt_30294_801112002",
       "newId": "evt_30294_801112002",
       "label": "ハート Away in the Mountains",
       "matchKey": "name",
       "payloadMatch": true
     },
     {
-      "oldId": "evt_heart_charm",
+      "oldId": "evt_30294_830294002",
       "newId": "evt_30294_830294002",
       "label": "ハート もっとも輝く『魅力』",
       "matchKey": "name",
       "payloadMatch": true
     },
     {
-      "oldId": "evt_heart_stack",
+      "oldId": "evt_30294_830294003",
       "newId": "evt_30294_830294003",
       "label": "ハート 積み重ねられた『今』",
       "matchKey": "name",
       "payloadMatch": true
     },
     {
-      "oldId": "evt_tact_survival",
+      "oldId": "evt_30293_801075002",
       "newId": "evt_30293_801075002",
       "label": "タクト 私を育てた場所",
       "matchKey": "name",
       "payloadMatch": true
     },
     {
-      "oldId": "evt_tact_tsutae",
+      "oldId": "evt_30293_830293002",
       "newId": "evt_30293_830293002",
       "label": "タクト 伝え、繋いで",
       "matchKey": "name",
       "payloadMatch": true
     },
     {
-      "oldId": "evt_tact_cinderella",
+      "oldId": "evt_30293_830293003",
       "newId": "evt_30293_830293003",
       "label": "タクト シンデレラの行く末",
       "matchKey": "name",
       "payloadMatch": true
     },
     {
-      "oldId": "evt_groove_wan",
+      "oldId": "evt_30265_801118002",
       "newId": "evt_30265_801118002",
       "label": "アドマイヤ ひとりが好きなクラスメイトさん",
       "matchKey": "name",
       "payloadMatch": true
     },
     {
-      "oldId": "evt_groove_kyuukou",
+      "oldId": "evt_30265_830265002",
       "newId": "evt_30265_830265002",
       "label": "アドマイヤ 孤高の休日",
       "matchKey": "name",
       "payloadMatch": true
     },
     {
-      "oldId": "evt_groove_shomei",
+      "oldId": "evt_30265_830265003",
       "newId": "evt_30265_830265003",
       "label": "アドマイヤ 孤高の証明",
       "matchKey": "name",
       "payloadMatch": true
     },
     {
-      "oldId": "evt_bourbon_order",
+      "oldId": "evt_30277_801026002",
       "newId": "evt_30277_801026002",
       "label": "ブルボン 命令は守らなければならない",
       "matchKey": "name",
       "payloadMatch": true
     },
     {
-      "oldId": "evt_bourbon_hatsu",
+      "oldId": "evt_30277_830277002",
       "newId": "evt_30277_830277002",
       "label": "ブルボン 発火：熱を帯びて",
       "matchKey": "name",
       "payloadMatch": true
     },
     {
-      "oldId": "evt_bourbon_hibana",
+      "oldId": "evt_30277_830277003",
       "newId": "evt_30277_830277003",
       "label": "ブルボン 火炎：夢焦がれ",
-      "matchKey": "skill",
+      "matchKey": "name",
       "payloadMatch": true
     },
     {
-      "oldId": "evt_muku_survival",
+      "oldId": "evt_30248_801075002",
       "newId": "evt_30248_801075002",
       "label": "タクト 私を育てた場所",
       "matchKey": "name",
       "payloadMatch": true
     },
     {
-      "oldId": "evt_muku_earth",
+      "oldId": "evt_30248_830248002",
       "newId": "evt_30248_830248002",
       "label": "タクト 母なる大地の教え",
       "matchKey": "name",
       "payloadMatch": true
     },
     {
-      "oldId": "evt_muku_wild",
+      "oldId": "evt_30248_830248003",
       "newId": "evt_30248_830248003",
       "label": "タクト Innocent Wildflower",
       "matchKey": "name",
       "payloadMatch": true
     },
     {
-      "oldId": "evt_dj_imouto",
+      "oldId": "evt_30246_801119002",
       "newId": "evt_30246_801119002",
       "label": "ドリーム 用意周到で妹想い",
       "matchKey": "name",
       "payloadMatch": true
     },
     {
-      "oldId": "evt_dj_shop",
+      "oldId": "evt_30246_830246002",
       "newId": "evt_30246_830246002",
       "label": "ドリーム それはただただ咲き誇る",
       "matchKey": "name",
       "payloadMatch": true
     },
     {
-      "oldId": "evt_dj_bloom",
+      "oldId": "evt_30246_830246003",
       "newId": "evt_30246_830246003",
       "label": "ドリーム そして今日も花が咲く",
       "matchKey": "name",

@@ -38,7 +38,8 @@
     "[Unveiled Dream] ラインクラフト",
     "[無垢の白妙] デアリングタクト",
     "[誘うは夢心地] ドリームジャーニー",
-    "[世界を変える眼差し] アーモンドアイ"
+    "[世界を変える眼差し] アーモンドアイ",
+    "[両手いっぱい、小倉愛] ナイスネイチャ"
   ],
   "events": [
     {
@@ -1996,6 +1997,50 @@
           "skillId": 202902
         }
       ]
+    },
+    {
+      "id": "evt_30306_830306003",
+      "supportNameMatch": "両手いっぱい、小倉愛",
+      "label": "ネイチャ 【??】可変的レアリティ",
+      "selection": "auto",
+      "skills": [
+        {
+          "skillName": "突破口",
+          "hintLevel": 1,
+          "skillId": 203571
+        },
+        {
+          "skillName": "秘めた闘魂",
+          "hintLevel": 2,
+          "skillId": 203681
+        }
+      ]
+    },
+    {
+      "id": "evt_30306_830306002",
+      "supportNameMatch": "両手いっぱい、小倉愛",
+      "label": "ネイチャ 【C+】こだわりリレイション",
+      "selection": "auto",
+      "skills": [
+        {
+          "skillName": "静かな熱",
+          "hintLevel": 1,
+          "skillId": 203672
+        }
+      ]
+    },
+    {
+      "id": "evt_30306_801060002",
+      "supportNameMatch": "両手いっぱい、小倉愛",
+      "label": "ネイチャ （美味しい）おせっかい",
+      "selection": "auto",
+      "skills": [
+        {
+          "skillName": "ペースアップ",
+          "hintLevel": 1,
+          "skillId": 200462
+        }
+      ]
     }
   ],
   "prioritySupports": [
@@ -2183,6 +2228,11 @@
       "id": 30242,
       "title": "世界を変える眼差し",
       "name": "[世界を変える眼差し]アーモンドアイ"
+    },
+    {
+      "id": 30306,
+      "title": "両手いっぱい、小倉愛",
+      "name": "[両手いっぱい、小倉愛]ナイスネイチャ"
     }
   ],
   "prioritySupportIds": [
@@ -2222,6 +2272,7 @@
     30253,
     30248,
     30246,
-    30242
+    30242,
+    30306
   ]
 }

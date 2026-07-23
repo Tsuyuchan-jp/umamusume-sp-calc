@@ -1,5 +1,5 @@
 /**
- * events.json の優先37サポカから、ユーザー／開発者向け一覧を生成する。
+ * events.json の優先サポカから、ユーザー／開発者向け一覧を生成する。
  *
  * 出力:
  *   data/priority-supports.json  — 機械可読（id・レア・タイプ付き）
@@ -70,11 +70,12 @@ function buildEntries(eventsDoc, supportsById) {
 }
 
 function renderMarkdown(doc) {
+  const count = doc.count;
   const lines = [
-    "# イベント対応サポカ一覧（37種）",
+    `# イベント対応サポカ一覧（${count}種）`,
     "",
     "サポカイベントのスキルヒントが **このツールで計上される** 対象カードの一覧です。",
-    "トレヒントは全サポカ対応ですが、**イベント由来スキルはこの37枚のみ**です。",
+    `トレヒントは全サポカ対応ですが、**イベント由来スキルはこの${count}枚のみ**です。`,
     "",
     "- **利用者**: 下の表で手持ちデッキが対象か確認できます。アプリ内の「※サポカイベントについて」にも同じ名前が表示されます。",
     "- **開発者**: [data/priority-supports.json](../data/priority-supports.json) が機械可読の正本エクスポートです。元データは `data/events.json` の `prioritySupports` / `prioritySupportIds`。",

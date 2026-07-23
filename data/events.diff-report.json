@@ -1,9 +1,9 @@
 {
-  "comparedAt": "2026-07-13T15:35:41.848Z",
-  "handCount": 102,
-  "extractedCount": 100,
+  "comparedAt": "2026-07-23T02:08:39.326Z",
+  "handCount": 105,
+  "extractedCount": 103,
   "counts": {
-    "match": 100,
+    "match": 103,
     "conflict": 0,
     "extracted_only": 0,
     "hand_only": 2
@@ -4667,6 +4667,118 @@
           }
         ],
         "skillPayload": "id:202881\u00001|id:202931\u00001"
+      },
+      "matchKey": "name"
+    },
+    {
+      "status": "match",
+      "hand": {
+        "side": "hand",
+        "id": "evt_30306_801060002",
+        "supportNameMatch": "両手いっぱい、小倉愛",
+        "label": "ネイチャ （美味しい）おせっかい",
+        "selection": "auto",
+        "skills": [
+          {
+            "skillName": "ペースアップ",
+            "hintLevel": 1,
+            "skillId": 200462
+          }
+        ],
+        "skillPayload": "id:200462\u00001"
+      },
+      "extracted": {
+        "side": "extracted",
+        "id": "evt_30306_801060002",
+        "supportNameMatch": "両手いっぱい、小倉愛",
+        "label": "ネイチャ （美味しい）おせっかい",
+        "selection": "auto",
+        "skills": [
+          {
+            "skillName": "ペースアップ",
+            "hintLevel": 1,
+            "skillId": 200462
+          }
+        ],
+        "skillPayload": "id:200462\u00001"
+      },
+      "matchKey": "name"
+    },
+    {
+      "status": "match",
+      "hand": {
+        "side": "hand",
+        "id": "evt_30306_830306002",
+        "supportNameMatch": "両手いっぱい、小倉愛",
+        "label": "ネイチャ 【C+】こだわりリレイション",
+        "selection": "auto",
+        "skills": [
+          {
+            "skillName": "静かな熱",
+            "hintLevel": 1,
+            "skillId": 203672
+          }
+        ],
+        "skillPayload": "id:203672\u00001"
+      },
+      "extracted": {
+        "side": "extracted",
+        "id": "evt_30306_830306002",
+        "supportNameMatch": "両手いっぱい、小倉愛",
+        "label": "ネイチャ 【C+】こだわりリレイション",
+        "selection": "auto",
+        "skills": [
+          {
+            "skillName": "静かな熱",
+            "hintLevel": 1,
+            "skillId": 203672
+          }
+        ],
+        "skillPayload": "id:203672\u00001"
+      },
+      "matchKey": "name"
+    },
+    {
+      "status": "match",
+      "hand": {
+        "side": "hand",
+        "id": "evt_30306_830306003",
+        "supportNameMatch": "両手いっぱい、小倉愛",
+        "label": "ネイチャ 【??】可変的レアリティ",
+        "selection": "auto",
+        "skills": [
+          {
+            "skillName": "突破口",
+            "hintLevel": 1,
+            "skillId": 203571
+          },
+          {
+            "skillName": "秘めた闘魂",
+            "hintLevel": 2,
+            "skillId": 203681
+          }
+        ],
+        "skillPayload": "id:203571\u00001|id:203681\u00002"
+      },
+      "extracted": {
+        "side": "extracted",
+        "id": "evt_30306_830306003",
+        "supportNameMatch": "両手いっぱい、小倉愛",
+        "label": "ネイチャ 【??】可変的レアリティ",
+        "selection": "auto",
+        "skills": [
+          {
+            "skillName": "突破口",
+            "hintLevel": 1,
+            "skillId": 203571
+          },
+          {
+            "skillName": "秘めた闘魂",
+            "hintLevel": 2,
+            "skillId": 203681
+          }
+        ],
+        "skillPayload": "id:203571\u00001|id:203681\u00002"
       },
       "matchKey": "name"
     }

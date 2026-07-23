@@ -11,7 +11,7 @@ data/
   characters.json      # extract 生成
   meta.json            # extract 生成（件数・ソースパス）
   events.json          # U-tools+mdb 抽出正本（+ preserve 2件）
-  priority-supports.json  # イベント対応37種のエクスポート（render:priority-supports で生成）
+  priority-supports.json  # イベント対応38種のエクスポート（render:priority-supports で生成）
   events.extracted.json
   events.preserve.json
   events.id-aliases.json
@@ -56,7 +56,7 @@ python scripts/extract_mdb.py --mdb "D:\...\master.mdb"
 
 ### サポカイベント（U-tools + mdb）
 
-優先37サポカのイベントスキルヒントは `extract_support_events.mjs` で生成する（`extract_mdb.mjs` とは分離）。
+優先38サポカのイベントスキルヒントは `extract_support_events.mjs` で生成する（`extract_mdb.mjs` とは分離）。
 
 ```powershell
 npm run extract:events    # U-tools fetch → events.extracted.json
@@ -119,7 +119,7 @@ npm run compare:events    # ゴールデン比較レポート
 ```json
 {
   "version": 2,
-  "prioritySupportNames": [ "...37枚..." ],
+  "prioritySupportNames": [ "...38枚..." ],
   "events": [
     {
       "id": "evt_...",
@@ -157,14 +157,14 @@ npm run compare:events    # ゴールデン比較レポート
 | `toggle` | チェックボックス（後方互換） | ON のとき `skills` を加算 |
 
 - `skillId` は extract 後に埋めると確実。無くても `skillName` 完全一致で解決を試す
-- **現状**: 優先37サポカ **102イベント**（auto 83 / single 19）。**U-tools+mdb 抽出正本**（Phase B 完了 2026-07-14）
+- **現状**: 優先38サポカ **105イベント**（auto 86 / single 19）。**U-tools+mdb 抽出正本**
 - **再生成**: `npm run extract:events` → `npm run apply:events`（raw キャッシュ: `events.raw.utools.json`・gitignore）
 - **例外維持**: `data/events.preserve.json`（たづなお出かけ/正月・実機確認済み）
 - **移行記録**: `data/events.id-aliases.json`（旧 id → 新 id）
 
 ### 優先サポカ一覧
 
-`events.json` の `prioritySupportNames` を正とする（計37種）。**一覧表**は [PRIORITY_SUPPORTS.md](./PRIORITY_SUPPORTS.md) / [priority-supports.json](../data/priority-supports.json)（`npm run render:priority-supports` で再生成）。
+`events.json` の `prioritySupportNames` を正とする（計38種）。新規追加は最新の課金必須 SSR を原則とする。**一覧表**は [PRIORITY_SUPPORTS.md](./PRIORITY_SUPPORTS.md) / [priority-supports.json](../data/priority-supports.json)（`npm run render:priority-supports` で再生成）。
 
 ## 手メンテ: scenarios/toresenken.json
 

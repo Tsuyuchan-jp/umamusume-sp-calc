@@ -2,7 +2,7 @@
 
 ウマ娘クライアントがパッチされ **`master.mdb` が更新されたあと**、このリポジトリの JSON と公開サイトを追随させる手順です。
 
-**目的**: スキル・サポカ・育成ウマ娘のトレヒントと、優先37サポカのイベントデータを最新化し、回帰テストと実機確認のうえ本番（GitHub Pages）へ反映する。
+**目的**: スキル・サポカ・育成ウマ娘のトレヒントと、優先38サポカのイベントデータを最新化し、回帰テストと実機確認のうえ本番（GitHub Pages）へ反映する。
 
 詳細仕様は [DATA.md](./DATA.md)・[EVENT_EXTRACT_DESIGN.md](./EVENT_EXTRACT_DESIGN.md) を参照。このファイルは **作業順の正本** とする。
 
@@ -46,7 +46,7 @@ npm run extract
 npm run verify
 npm test
 
-# 2. サポカイベント（優先37・U-tools + mdb）
+# 2. サポカイベント（優先38・U-tools + mdb）
 npm run extract:events
 npm run compare:events
 # → data/events.diff-report.json を確認。旧11 conflict があれば要調査
@@ -183,9 +183,9 @@ node scripts/apply_extracted_events.mjs --dry-run
 | `events.preserve.json` | U-tools に無いが実機で確認済みのイベントを追加・維持 |
 | `events.default-overrides.json` | 選択肢のデフォルトを人が上書きしたいとき |
 | `data/scenarios/toresenken.json` | トレセン軒の新スキル・リンク・RMJ・終了スキルがパッチで変わったとき |
-| `npm run bind-priority` | **優先37のメンバー自体が変わった**ときのみ（通常は不要） |
+| `npm run bind-priority` | **優先枠のメンバー自体が変わった**ときのみ（通常は不要）。新規追加は最新の課金必須 SSR を原則とする |
 
-優先37の一覧を更新したら:
+優先枠の一覧を更新したら:
 
 ```powershell
 npm run render:priority-supports
@@ -193,7 +193,7 @@ npm run render:priority-supports
 
 （`bind-priority` 実行時は自動で再生成されます）
 
-全539サポカのイベント網羅は **スコープ外**（優先37のみ）。
+全539サポカのイベント網羅は **スコープ外**（優先枠のみ）。
 
 ### 5. ローカルでアプリ確認
 
@@ -271,6 +271,6 @@ events.json ──► app/（fetch）
 | [UTOOLS_EVENT_PARSE.md](./UTOOLS_EVENT_PARSE.md) | U-tools SSR のパース仕様 |
 | [AGENT_HANDOFF.md](./AGENT_HANDOFF.md) | エージェント向け最短ブリーフ |
 | [CHANGELOG.md](./CHANGELOG.md) | 公開版の変更履歴（データ更新も記録推奨） |
-| [PRIORITY_SUPPORTS.md](./PRIORITY_SUPPORTS.md) | イベント対応サポカ37種の一覧 |
+| [PRIORITY_SUPPORTS.md](./PRIORITY_SUPPORTS.md) | イベント対応サポカ38種の一覧 |
 
 データ更新を公開したら、`CHANGELOG.md` に `### 変更` で件数やパッチ日を1行追記しておくと後から追いやすい。

@@ -79,13 +79,14 @@ mdb は白・金それぞれ別 `baseSp` を持つ（合算済みではない）
 - **継承固有オプション**: 汎用行のみ。個数 2–6、baseSp 既定 200、ヒント一律 1–5。親名・固有名は出さない（スコープ最小化）
 - **トレヒントLvオプション**: 編成サポカのトレヒントを 3 / 4 / 5 で一括指定（既定5）。イベント・シナリオ由来は変更しない
 - **シナリオ**: 当面 **トレセン軒のみ**（約4ヶ月想定）。参考: [umasim ramen_memo.md](https://github.com/mee1080/umasim/blob/main/data/ramen_memo.md)
-- **イベント**: 優先37サポカ分。**U-tools + mdb 抽出**が正本（`npm run extract:events` → `apply:events`）。例外2件は `events.preserve.json`。全サポカ一括はスコープ外。トレヒントは mdb 自動。
+- **イベント**: 優先38サポカ分。**U-tools + mdb 抽出**が正本（`npm run extract:events` → `apply:events`）。例外2件は `events.preserve.json`。全サポカ一括はスコープ外。トレヒントは mdb 自動。
+- **優先枠の新規追加方針**: ガチ本育成で使う最新の**課金必須 SSR**を原則とする。過去の SR 等は網羅しない。無料配布 SSR は都度判断。
 - **サポカ UI 絞込**: 「イベント対応のみ」はデフォルト ON（`prioritySupportIds` で id 照合。名前マッチは使わない）。選択中カードはその枠に残す。
 - **結果スキル絞込**: バ場／距離／作戦（未選択＝全 ON）。`skills.json` の `activation` で互換判定。セレクト変更は下書きのみ、「適用」で確定（手動「含める」もリセット）。編成変更時は確定済み絞込を新規 skillId に増分適用
 
-## 優先サポカ（events.json 対象・37種）
+## 優先サポカ（events.json 対象・38種）
 
-`events.json` の `prioritySupportNames` を正とする。初期11種に加え24種を追加（2026-07）。一覧は同ファイル参照。
+`events.json` の `prioritySupportNames` を正とする。新規追加は最新の課金必須 SSR を原則とし、過去 SR は対象外。一覧は [PRIORITY_SUPPORTS.md](./PRIORITY_SUPPORTS.md) 参照。
 
 旧11種（実機確認済み）:
 

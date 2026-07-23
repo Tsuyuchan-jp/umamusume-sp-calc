@@ -134,7 +134,7 @@ cost(白, whiteHintLv) + cost(金, goldHintLv)
 ## イベント
 
 - `data/events.json` は **U-tools + mdb 抽出正本**（v0.1.3〜）。`events.preserve.json` でたづなお出かけ/正月2件を例外維持
-- 優先37サポカ・102イベント（トレヒントは mdb 自動）
+- 優先38サポカ・105イベント（トレヒントは mdb 自動）
 - 再生成: `npm run extract:events` → `npm run apply:events`（設計: [EVENT_EXTRACT_DESIGN.md](./EVENT_EXTRACT_DESIGN.md)）
 - `supportNameMatch` でデッキ内サポカ名部分一致 → イベント適用
 - `selection: auto` は編成時自動計上、`single` はラジオ1択（排他分岐用）

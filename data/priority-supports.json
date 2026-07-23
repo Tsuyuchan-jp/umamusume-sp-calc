@@ -2,8 +2,8 @@
   "version": 1,
   "description": "イベントスキルヒント対応サポカ（events.json から生成。手編集しない）",
   "source": "data/events.json",
-  "generatedAt": "2026-07-13T23:53:09.284Z",
-  "count": 37,
+  "generatedAt": "2026-07-23T02:08:00.225Z",
+  "count": 38,
   "supports": [
     {
       "no": 1,
@@ -448,6 +448,18 @@
       "type": "speed",
       "typeLabel": "スピード",
       "supportNameMatch": "世界を変える眼差し"
+    },
+    {
+      "no": 38,
+      "id": 30306,
+      "displayName": "[両手いっぱい、小倉愛] ナイスネイチャ",
+      "title": "両手いっぱい、小倉愛",
+      "name": "[両手いっぱい、小倉愛]ナイスネイチャ",
+      "characterName": "ナイスネイチャ",
+      "rarity": "SSR",
+      "type": "wit",
+      "typeLabel": "賢さ",
+      "supportNameMatch": "両手いっぱい、小倉愛"
     }
   ]
 }
