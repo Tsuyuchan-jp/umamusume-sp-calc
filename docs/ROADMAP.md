@@ -12,7 +12,7 @@
 - [x] `scripts/test_sp.mjs` / `verify_data.mjs`
 - [x] 計算コア: `spCost` / `hintResolve` / `goldLower` / `aggregate`
 - [x] UI: 育成ウマ娘・6枠サポカ（検索・絞込・イベント対応のみデフォルトON）・切れ者・継承・イベント/シナリオ・除外・合計表示
-- [x] `data/events.json` — 優先40サポカ・**105イベント**（U-tools+mdb 抽出正本 + preserve 2。30307/30308 はイベント0）
+- [x] `data/events.json` — 優先40サポカ・**111イベント**（U-tools+mdb + preserve。30307/30308 は GameWith 一時）
 - [x] **イベント正本化 Phase F** — 抽出パイプライン・ゴールデン比較・`events.json` 置換（2026-07-14）
 - [x] `data/scenarios/toresenken.json` — リンク白/金・RMJ自動計上・ラーメン3択・終了スキル（skillId 確定）
 - [x] 常用デッキでのイベント表示・SP変化の実機確認

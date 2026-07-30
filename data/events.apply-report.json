@@ -1,15 +1,21 @@
 {
-  "appliedAt": "2026-07-30T07:56:29.801Z",
+  "appliedAt": "2026-07-30T08:10:47.537Z",
   "dryRun": false,
   "stats": {
-    "total": 105,
-    "auto": 86,
-    "single": 19
+    "total": 111,
+    "auto": 90,
+    "single": 21
   },
   "replacedCount": 103,
   "preserveAdded": [
     "evt_tazuna_oodate5",
-    "evt_tazuna_newyear"
+    "evt_tazuna_newyear",
+    "evt_30307_830307002",
+    "evt_30307_830307003",
+    "evt_30307_801137002",
+    "evt_30308_830308002",
+    "evt_30308_830308003",
+    "evt_30308_801129002"
   ],
   "dropped": [],
   "replaced": [

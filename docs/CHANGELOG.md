@@ -10,7 +10,7 @@
 
 - ゲーム更新追従（DMM `master.mdb`）: skills **2127** / supports **547** / characters **264**
 - 優先サポカ **+2種**（計40種）: `[巻頭カラーの夏]キセキ`（30307）、`[夏空チルタイム]アーモンドアイ`（30308）
-- ※上記2枚は優先枠・フィルタ対応済み。U-tools 未掲載（HTTP 404）のため **イベントスキルヒントは未抽出**（トレヒントのみ）。掲載後に `extract:events` → `apply:events` で取り込み予定
+- 上記2枚のイベント **+6件**（計111・auto 90 / single 21）を `events.preserve.json` に **GameWith 一時手載せ**（[キセキ](https://gamewith.jp/uma-musume/article/show/570425) / [アーモンド](https://gamewith.jp/uma-musume/article/show/570424)）。U-tools 掲載後に extract 置換し preserve から削除予定
 - 見送り: `[天才的ガチエモSUMMER!!]フサイチパンドラ`（30309）は今回優先枠に含めない
 
 ### 変更

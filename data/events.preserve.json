@@ -1,5 +1,5 @@
 {
-  "description": "U-tools 抽出対象外だが実機確認済みで維持するイベント（旧11種・たづなお出かけ/正月）",
+  "description": "U-tools 抽出対象外だが維持するイベント（たづな例外 + GameWith 一時手載せ）",
   "events": [
     {
       "id": "evt_tazuna_oodate5",
@@ -28,6 +28,146 @@
         }
       ],
       "_preserveReason": "U-tools サポカページに無し。旧11種実機確認済み"
+    },
+    {
+      "id": "evt_30307_830307002",
+      "supportNameMatch": "巻頭カラーの夏",
+      "label": "キセキ これがあたしの漫画道",
+      "selection": "auto",
+      "skills": [
+        {
+          "skillName": "覚悟を決めて",
+          "hintLevel": 1,
+          "skillId": 203262
+        }
+      ],
+      "_preserveReason": "一時: GameWith 570425（U-tools 未掲載）。掲載後に extract へ置換し本行を削除予定"
+    },
+    {
+      "id": "evt_30307_830307003",
+      "supportNameMatch": "巻頭カラーの夏",
+      "label": "キセキ 炎のコンテスト",
+      "selection": "single",
+      "defaultChoiceId": "c002_2026812+2044811",
+      "choices": [
+        {
+          "id": "c001_2028212+2044811",
+          "label": "① 万里一空 Lv2 + レースメイカー Lv1",
+          "skills": [
+            {
+              "skillName": "万里一空",
+              "hintLevel": 2,
+              "skillId": 202821
+            },
+            {
+              "skillName": "レースメイカー",
+              "hintLevel": 1,
+              "skillId": 204481
+            }
+          ]
+        },
+        {
+          "id": "c002_2026812+2044811",
+          "label": "② ブチ☆アゲ↑バイブス Lv2 + レースメイカー Lv1",
+          "skills": [
+            {
+              "skillName": "ブチ☆アゲ↑バイブス",
+              "hintLevel": 2,
+              "skillId": 202681
+            },
+            {
+              "skillName": "レースメイカー",
+              "hintLevel": 1,
+              "skillId": 204481
+            }
+          ]
+        }
+      ],
+      "_preserveReason": "一時: GameWith 570425（U-tools 未掲載）。掲載後に extract へ置換し本行を削除予定"
+    },
+    {
+      "id": "evt_30307_801137002",
+      "supportNameMatch": "巻頭カラーの夏",
+      "label": "キセキ 努力の末、掴んだ勝利！",
+      "selection": "auto",
+      "skills": [
+        {
+          "skillName": "道悪○",
+          "hintLevel": 1,
+          "skillId": 200162
+        }
+      ],
+      "_preserveReason": "一時: GameWith 570425（U-tools 未掲載）。掲載後に extract へ置換し本行を削除予定"
+    },
+    {
+      "id": "evt_30308_830308002",
+      "supportNameMatch": "夏空チルタイム",
+      "label": "アーモンド そよ風と烈風のセッション",
+      "selection": "auto",
+      "skills": [
+        {
+          "skillName": "切り替え上手",
+          "hintLevel": 1,
+          "skillId": 203172
+        }
+      ],
+      "_preserveReason": "一時: GameWith 570424（U-tools 未掲載）。掲載後に extract へ置換し本行を削除予定"
+    },
+    {
+      "id": "evt_30308_830308003",
+      "supportNameMatch": "夏空チルタイム",
+      "label": "アーモンド 鳴り響け！エモーション",
+      "selection": "single",
+      "defaultChoiceId": "c001_2036311+2045011",
+      "choices": [
+        {
+          "id": "c001_2036311+2045011",
+          "label": "① 唯一無二 Lv1 + 一石二鳥 Lv1",
+          "skills": [
+            {
+              "skillName": "唯一無二",
+              "hintLevel": 1,
+              "skillId": 203631
+            },
+            {
+              "skillName": "一石二鳥",
+              "hintLevel": 1,
+              "skillId": 204501
+            }
+          ]
+        },
+        {
+          "id": "c002_2000241+2036311",
+          "label": "② 左回りの鬼 Lv1 + 唯一無二 Lv1",
+          "skills": [
+            {
+              "skillName": "左回りの鬼",
+              "hintLevel": 1,
+              "skillId": 200024
+            },
+            {
+              "skillName": "唯一無二",
+              "hintLevel": 1,
+              "skillId": 203631
+            }
+          ]
+        }
+      ],
+      "_preserveReason": "一時: GameWith 570424（U-tools 未掲載）。掲載後に extract へ置換し本行を削除予定"
+    },
+    {
+      "id": "evt_30308_801129002",
+      "supportNameMatch": "夏空チルタイム",
+      "label": "アーモンド アーモンドアイは見逃さない",
+      "selection": "auto",
+      "skills": [
+        {
+          "skillName": "品行方正",
+          "hintLevel": 1,
+          "skillId": 202742
+        }
+      ],
+      "_preserveReason": "一時: GameWith 570424（U-tools 未掲載）。掲載後に extract へ置換し本行を削除予定"
     }
   ]
 }

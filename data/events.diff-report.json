@@ -1,12 +1,12 @@
 {
-  "comparedAt": "2026-07-30T07:56:29.860Z",
-  "handCount": 105,
+  "comparedAt": "2026-07-30T08:10:47.599Z",
+  "handCount": 111,
   "extractedCount": 103,
   "counts": {
     "match": 103,
     "conflict": 0,
     "extracted_only": 0,
-    "hand_only": 2
+    "hand_only": 8
   },
   "old11": {
     "match": 32,
@@ -45,6 +45,150 @@
         }
       ],
       "skillPayload": "id:202792\u00003"
+    },
+    {
+      "side": "hand",
+      "id": "evt_30308_801129002",
+      "supportNameMatch": "夏空チルタイム",
+      "label": "アーモンド アーモンドアイは見逃さない",
+      "selection": "auto",
+      "skills": [
+        {
+          "skillName": "品行方正",
+          "hintLevel": 1,
+          "skillId": 202742
+        }
+      ],
+      "skillPayload": "id:202742\u00001"
+    },
+    {
+      "side": "hand",
+      "id": "evt_30308_830308002",
+      "supportNameMatch": "夏空チルタイム",
+      "label": "アーモンド そよ風と烈風のセッション",
+      "selection": "auto",
+      "skills": [
+        {
+          "skillName": "切り替え上手",
+          "hintLevel": 1,
+          "skillId": 203172
+        }
+      ],
+      "skillPayload": "id:203172\u00001"
+    },
+    {
+      "side": "hand",
+      "id": "evt_30308_830308003",
+      "supportNameMatch": "夏空チルタイム",
+      "label": "アーモンド 鳴り響け！エモーション",
+      "selection": "single",
+      "choices": [
+        {
+          "id": "c001_2036311+2045011",
+          "label": "① 唯一無二 Lv1 + 一石二鳥 Lv1",
+          "skills": [
+            {
+              "skillName": "唯一無二",
+              "hintLevel": 1,
+              "skillId": 203631
+            },
+            {
+              "skillName": "一石二鳥",
+              "hintLevel": 1,
+              "skillId": 204501
+            }
+          ]
+        },
+        {
+          "id": "c002_2000241+2036311",
+          "label": "② 左回りの鬼 Lv1 + 唯一無二 Lv1",
+          "skills": [
+            {
+              "skillName": "左回りの鬼",
+              "hintLevel": 1,
+              "skillId": 200024
+            },
+            {
+              "skillName": "唯一無二",
+              "hintLevel": 1,
+              "skillId": 203631
+            }
+          ]
+        }
+      ],
+      "skillPayload": "id:200024\u00001|id:203631\u00001||id:203631\u00001|id:204501\u00001"
+    },
+    {
+      "side": "hand",
+      "id": "evt_30307_830307002",
+      "supportNameMatch": "巻頭カラーの夏",
+      "label": "キセキ これがあたしの漫画道",
+      "selection": "auto",
+      "skills": [
+        {
+          "skillName": "覚悟を決めて",
+          "hintLevel": 1,
+          "skillId": 203262
+        }
+      ],
+      "skillPayload": "id:203262\u00001"
+    },
+    {
+      "side": "hand",
+      "id": "evt_30307_830307003",
+      "supportNameMatch": "巻頭カラーの夏",
+      "label": "キセキ 炎のコンテスト",
+      "selection": "single",
+      "choices": [
+        {
+          "id": "c001_2028212+2044811",
+          "label": "① 万里一空 Lv2 + レースメイカー Lv1",
+          "skills": [
+            {
+              "skillName": "万里一空",
+              "hintLevel": 2,
+              "skillId": 202821
+            },
+            {
+              "skillName": "レースメイカー",
+              "hintLevel": 1,
+              "skillId": 204481
+            }
+          ]
+        },
+        {
+          "id": "c002_2026812+2044811",
+          "label": "② ブチ☆アゲ↑バイブス Lv2 + レースメイカー Lv1",
+          "skills": [
+            {
+              "skillName": "ブチ☆アゲ↑バイブス",
+              "hintLevel": 2,
+              "skillId": 202681
+            },
+            {
+              "skillName": "レースメイカー",
+              "hintLevel": 1,
+              "skillId": 204481
+            }
+          ]
+        }
+      ],
+      "skillPayload": "id:202681\u00002|id:204481\u00001||id:202821\u00002|id:204481\u00001"
+    },
+    {
+      "side": "hand",
+      "id": "evt_30307_801137002",
+      "supportNameMatch": "巻頭カラーの夏",
+      "label": "キセキ 努力の末、掴んだ勝利！",
+      "selection": "auto",
+      "skills": [
+        {
+          "skillName": "道悪○",
+          "hintLevel": 1,
+          "skillId": 200162
+        }
+      ],
+      "skillPayload": "id:200162\u00001"
     }
   ],
   "results": [

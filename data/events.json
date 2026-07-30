@@ -688,6 +688,140 @@
       ]
     },
     {
+      "id": "evt_30308_801129002",
+      "supportNameMatch": "夏空チルタイム",
+      "label": "アーモンド アーモンドアイは見逃さない",
+      "selection": "auto",
+      "skills": [
+        {
+          "skillName": "品行方正",
+          "hintLevel": 1,
+          "skillId": 202742
+        }
+      ]
+    },
+    {
+      "id": "evt_30308_830308002",
+      "supportNameMatch": "夏空チルタイム",
+      "label": "アーモンド そよ風と烈風のセッション",
+      "selection": "auto",
+      "skills": [
+        {
+          "skillName": "切り替え上手",
+          "hintLevel": 1,
+          "skillId": 203172
+        }
+      ]
+    },
+    {
+      "id": "evt_30308_830308003",
+      "supportNameMatch": "夏空チルタイム",
+      "label": "アーモンド 鳴り響け！エモーション",
+      "selection": "single",
+      "defaultChoiceId": "c001_2036311+2045011",
+      "choices": [
+        {
+          "id": "c001_2036311+2045011",
+          "label": "① 唯一無二 Lv1 + 一石二鳥 Lv1",
+          "skills": [
+            {
+              "skillName": "唯一無二",
+              "hintLevel": 1,
+              "skillId": 203631
+            },
+            {
+              "skillName": "一石二鳥",
+              "hintLevel": 1,
+              "skillId": 204501
+            }
+          ]
+        },
+        {
+          "id": "c002_2000241+2036311",
+          "label": "② 左回りの鬼 Lv1 + 唯一無二 Lv1",
+          "skills": [
+            {
+              "skillName": "左回りの鬼",
+              "hintLevel": 1,
+              "skillId": 200024
+            },
+            {
+              "skillName": "唯一無二",
+              "hintLevel": 1,
+              "skillId": 203631
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "evt_30307_830307002",
+      "supportNameMatch": "巻頭カラーの夏",
+      "label": "キセキ これがあたしの漫画道",
+      "selection": "auto",
+      "skills": [
+        {
+          "skillName": "覚悟を決めて",
+          "hintLevel": 1,
+          "skillId": 203262
+        }
+      ]
+    },
+    {
+      "id": "evt_30307_830307003",
+      "supportNameMatch": "巻頭カラーの夏",
+      "label": "キセキ 炎のコンテスト",
+      "selection": "single",
+      "defaultChoiceId": "c002_2026812+2044811",
+      "choices": [
+        {
+          "id": "c001_2028212+2044811",
+          "label": "① 万里一空 Lv2 + レースメイカー Lv1",
+          "skills": [
+            {
+              "skillName": "万里一空",
+              "hintLevel": 2,
+              "skillId": 202821
+            },
+            {
+              "skillName": "レースメイカー",
+              "hintLevel": 1,
+              "skillId": 204481
+            }
+          ]
+        },
+        {
+          "id": "c002_2026812+2044811",
+          "label": "② ブチ☆アゲ↑バイブス Lv2 + レースメイカー Lv1",
+          "skills": [
+            {
+              "skillName": "ブチ☆アゲ↑バイブス",
+              "hintLevel": 2,
+              "skillId": 202681
+            },
+            {
+              "skillName": "レースメイカー",
+              "hintLevel": 1,
+              "skillId": 204481
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "evt_30307_801137002",
+      "supportNameMatch": "巻頭カラーの夏",
+      "label": "キセキ 努力の末、掴んだ勝利！",
+      "selection": "auto",
+      "skills": [
+        {
+          "skillName": "道悪○",
+          "hintLevel": 1,
+          "skillId": 200162
+        }
+      ]
+    },
+    {
       "id": "evt_30264_830264002",
       "supportNameMatch": "気まぐれ渡り星",
       "label": "ステイ Over 17 Lights",

@@ -10,10 +10,10 @@ data/
   supports.json        # extract 生成
   characters.json      # extract 生成
   meta.json            # extract 生成（件数・ソースパス）
-  events.json          # U-tools+mdb 抽出正本（+ preserve 2件）
+  events.json          # U-tools+mdb 抽出正本（+ preserve）
   priority-supports.json  # イベント対応40種のエクスポート（render:priority-supports で生成）
   events.extracted.json
-  events.preserve.json
+  events.preserve.json # たづな2 + GameWith一時6（30307/30308）
   events.id-aliases.json
   scenarios/
     toresenken.json    # 手メンテ（トレセン軒）
@@ -24,8 +24,9 @@ data/
 - `skills.json` / `supports.json` / `characters.json` / `meta.json` **あり**
 - `meta.json` 例: skillCount 2127, supportCount 547, characterCount 264
 - 抽出元: `D:\DMM\umamusumeDMM\Umamusume\umamusume_Data\Persistent\master\master.mdb`
-- `events.json` は **U-tools+mdb 抽出正本**（105件・優先40種）。`toresenken.json` は手メンテ
-  - 30307 / 30308 は U-tools 未掲載のためイベント0（優先枠・トレヒントのみ）
+- `events.json` は **U-tools+mdb 抽出正本**（111件・優先40種）。`toresenken.json` は手メンテ
+  - 30307 / 30308 は U-tools 未掲載のため **GameWith 一時手載せ**（`events.preserve.json`・6件）。掲載後に置換予定
+  - たづな例外2件も preserve
 - **実機通し確認済み**（2026-07）: 常用デッキ＋イベント＋シナリオリンク白/金＋RMJ自動計上／ラーメン3択＋終了。問題・バグなし
 
 ## master.mdb → extract
@@ -69,7 +70,7 @@ npm run compare:events    # ゴールデン比較レポート
 |----------|------|
 | `events.raw.utools.json` | U-tools 生データ（ローカルキャッシュ・gitignore） |
 | `events.extracted.json` | 正規化済み中間物 |
-| `events.preserve.json` | U-tools 外の例外（たづなお出かけ/正月） |
+| `events.preserve.json` | U-tools 外の例外（たづなお出かけ/正月・30307/30308 の GameWith 一時） |
 | `events.default-overrides.json` | `defaultChoiceId` の人手上書き |
 | `events.id-aliases.json` | 旧 id → 新 id |
 | `events.json` | **アプリ正本** |
@@ -158,9 +159,9 @@ npm run compare:events    # ゴールデン比較レポート
 | `toggle` | チェックボックス（後方互換） | ON のとき `skills` を加算 |
 
 - `skillId` は extract 後に埋めると確実。無くても `skillName` 完全一致で解決を試す
-- **現状**: 優先40サポカ **105イベント**（auto 86 / single 19）。**U-tools+mdb 抽出正本**（30307/30308 は U-tools 未掲載でイベント0）
+- **現状**: 優先40サポカ **111イベント**（auto 90 / single 21）。抽出103 + preserve 8（たづな2 + GameWith一時6）
 - **再生成**: `npm run extract:events` → `npm run apply:events`（raw キャッシュ: `events.raw.utools.json`・gitignore）
-- **例外維持**: `data/events.preserve.json`（たづなお出かけ/正月・実機確認済み）
+- **例外維持**: `data/events.preserve.json`（たづな2・実機確認済み + 30307/30308 の GameWith 一時6）
 - **移行記録**: `data/events.id-aliases.json`（旧 id → 新 id）
 
 ### 優先サポカ一覧

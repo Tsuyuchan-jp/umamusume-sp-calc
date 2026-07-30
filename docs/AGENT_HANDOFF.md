@@ -13,7 +13,7 @@
 | `data/skills.json` 等 | **あり** — skills 2127 / supports 547 / characters 264（`meta.json` 参照） |
 | extract 元 mdb | `D:\DMM\umamusumeDMM\Umamusume\umamusume_Data\Persistent\master\master.mdb` |
 | 既定 AppData の mdb | **無し** — `%USERPROFILE%\AppData\LocalLow\Cygames\...` には無い |
-| `data/events.json` | **あり** — 優先40・105イベント（U-tools+mdb 抽出正本）。例外2件は `events.preserve.json`。30307/30308 は U-tools 未掲載のためイベント0 |
+| `data/events.json` | **あり** — 優先40・111イベント（U-tools+mdb + preserve。30307/30308 は GameWith 一時手載せ6件） |
 | `data/scenarios/toresenken.json` | **あり** — リンク白/金・RMJ自動計上・ラーメン3択（実機通し確認済み） |
 | Python / `py` | `where` 上は WindowsApps の `python.exe` スタブ寄り。`py` 無し。再 extract 時に実体 Python 要確認 |
 | Git | remote: `Tsuyuchan-jp/umamusume-sp-calc`（public）。Pages デプロイ運用中 |
@@ -25,7 +25,7 @@
 | トレヒントLv | オプション select（3/4/5・既定5）。`aggregate.js` の `trainingHintLevel`。実機確認済み |
 | 説明書 UI | ヘッダー右 **「使い方」** → `<dialog>`（5セクション・実機確認済み） |
 
-**アプリは実用段階・公開済み。** 常用デッキ＋シナリオ通し確認は **実機 OK**（2026-07）。**v0.1.13**（ゲーム更新追従・優先40種・キセキ/夏空アーモンド）。30307/30308 のイベントは U-tools 掲載後に再 extract。
+**アプリは実用段階・公開済み。** 常用デッキ＋シナリオ通し確認は **実機 OK**（2026-07）。**v0.1.13**（ゲーム更新追従・優先40種・キセキ/夏空アーモンド。イベントは GameWith 一時手載せ）。U-tools 掲載後に再 extract して preserve 一時分を置換予定。
 
 ## 次にやること（優先順）
 
@@ -92,7 +92,7 @@ scripts/extract_mdb.py  同上（代替）
 
 ## 優先サポカ（events.json 対象）
 
-計 **40種**。イベント **105件**（抽出103 + preserve 2）。30307/30308 は優先枠のみ（U-tools 未掲載でイベント0）。**一覧**: [PRIORITY_SUPPORTS.md](./PRIORITY_SUPPORTS.md) / [data/priority-supports.json](../data/priority-supports.json)
+計 **40種**。イベント **111件**（抽出103 + preserve 8＝たづな2 + GameWith一時6）。**一覧**: [PRIORITY_SUPPORTS.md](./PRIORITY_SUPPORTS.md) / [data/priority-supports.json](../data/priority-supports.json)
 
 ## エージェントへの指示（短縮）
 
