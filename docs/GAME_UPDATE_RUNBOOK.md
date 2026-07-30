@@ -2,7 +2,7 @@
 
 ウマ娘クライアントがパッチされ **`master.mdb` が更新されたあと**、このリポジトリの JSON と公開サイトを追随させる手順です。
 
-**目的**: スキル・サポカ・育成ウマ娘のトレヒントと、優先38サポカのイベントデータを最新化し、回帰テストと実機確認のうえ本番（GitHub Pages）へ反映する。
+**目的**: スキル・サポカ・育成ウマ娘のトレヒントと、優先40サポカのイベントデータを最新化し、回帰テストと実機確認のうえ本番（GitHub Pages）へ反映する。
 
 詳細仕様は [DATA.md](./DATA.md)・[EVENT_EXTRACT_DESIGN.md](./EVENT_EXTRACT_DESIGN.md) を参照。このファイルは **作業順の正本** とする。
 
@@ -46,7 +46,7 @@ npm run extract
 npm run verify
 npm test
 
-# 2. サポカイベント（優先38・U-tools + mdb）
+# 2. サポカイベント（優先40・U-tools + mdb）
 npm run extract:events
 npm run compare:events
 # → data/events.diff-report.json を確認。旧11 conflict があれば要調査
@@ -253,6 +253,7 @@ events.json ──► app/（fetch）
 |------|------|------|
 | `master.mdb が見つかりません` | パス未設定・DL未完了 | `--mdb` で DMM Persistent を指定 |
 | `extract:events` がネットワークエラー | U-tools 未取得 | ネット接続後に再実行。または既存キャッシュで `--cache-only` |
+| `extract:events` で個別カード 404 | U-tools 未掲載 | 警告付きでスキップし続行。優先枠には入れられるがイベント0。掲載後に再実行 |
 | `compare:events` で旧11 conflict | 抽出と実機/U-tools の差 | `events.diff-report.json` を読み、preserve / overrides を検討 |
 | アプリがロードエラー | JSON 欠損 | `npm run extract` |
 | fetch 失敗（ローカル） | `file://` または `app/` のみ配信 | リポジトリ直下で `npm run serve` → `/app/` |
@@ -271,6 +272,6 @@ events.json ──► app/（fetch）
 | [UTOOLS_EVENT_PARSE.md](./UTOOLS_EVENT_PARSE.md) | U-tools SSR のパース仕様 |
 | [AGENT_HANDOFF.md](./AGENT_HANDOFF.md) | エージェント向け最短ブリーフ |
 | [CHANGELOG.md](./CHANGELOG.md) | 公開版の変更履歴（データ更新も記録推奨） |
-| [PRIORITY_SUPPORTS.md](./PRIORITY_SUPPORTS.md) | イベント対応サポカ38種の一覧 |
+| [PRIORITY_SUPPORTS.md](./PRIORITY_SUPPORTS.md) | イベント対応サポカ40種の一覧 |
 
 データ更新を公開したら、`CHANGELOG.md` に `### 変更` で件数やパッチ日を1行追記しておくと後から追いやすい。

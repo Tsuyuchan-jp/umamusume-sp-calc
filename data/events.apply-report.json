@@ -1,12 +1,12 @@
 {
-  "appliedAt": "2026-07-23T02:08:34.099Z",
+  "appliedAt": "2026-07-30T07:56:29.801Z",
   "dryRun": false,
   "stats": {
     "total": 105,
     "auto": 86,
     "single": 19
   },
-  "replacedCount": 100,
+  "replacedCount": 103,
   "preserveAdded": [
     "evt_tazuna_oodate5",
     "evt_tazuna_newyear"
@@ -710,6 +710,27 @@
       "oldId": "evt_30246_830246003",
       "newId": "evt_30246_830246003",
       "label": "ドリーム そして今日も花が咲く",
+      "matchKey": "name",
+      "payloadMatch": true
+    },
+    {
+      "oldId": "evt_30306_801060002",
+      "newId": "evt_30306_801060002",
+      "label": "ネイチャ （美味しい）おせっかい",
+      "matchKey": "name",
+      "payloadMatch": true
+    },
+    {
+      "oldId": "evt_30306_830306002",
+      "newId": "evt_30306_830306002",
+      "label": "ネイチャ 【C+】こだわりリレイション",
+      "matchKey": "name",
+      "payloadMatch": true
+    },
+    {
+      "oldId": "evt_30306_830306003",
+      "newId": "evt_30306_830306003",
+      "label": "ネイチャ 【??】可変的レアリティ",
       "matchKey": "name",
       "payloadMatch": true
     }

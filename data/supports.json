@@ -2901,6 +2901,32 @@
     "eventIds": []
   },
   {
+    "id": 10145,
+    "name": "[トレセン学園]キセキ",
+    "title": "トレセン学園",
+    "characterName": "キセキ",
+    "characterId": 1137,
+    "rarity": "R",
+    "commandId": 105,
+    "type": "stamina",
+    "hintSkillIds": [
+      200352,
+      200452,
+      200532,
+      201601,
+      202012,
+      202682,
+      202812,
+      202822,
+      203642,
+      204092,
+      204482,
+      204492
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
     "id": 20001,
     "name": "[やれやれ、お帰り]フジキセキ",
     "title": "やれやれ、お帰り",
@@ -11370,6 +11396,79 @@
       203812,
       203832,
       204222
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30307,
+    "name": "[巻頭カラーの夏]キセキ",
+    "title": "巻頭カラーの夏",
+    "characterName": "キセキ",
+    "characterId": 1137,
+    "rarity": "SSR",
+    "commandId": 105,
+    "type": "stamina",
+    "hintSkillIds": [
+      200352,
+      200452,
+      200532,
+      201601,
+      202012,
+      202682,
+      202812,
+      202822,
+      203642,
+      204092,
+      204482,
+      204492
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30308,
+    "name": "[夏空チルタイム]アーモンドアイ",
+    "title": "夏空チルタイム",
+    "characterName": "アーモンドアイ",
+    "characterId": 1129,
+    "rarity": "SSR",
+    "commandId": 103,
+    "type": "guts",
+    "hintSkillIds": [
+      200022,
+      200492,
+      201651,
+      201702,
+      202602,
+      202652,
+      203312,
+      203632,
+      203862,
+      204222,
+      204502
+    ],
+    "hintLevelUpMax": 0,
+    "eventIds": []
+  },
+  {
+    "id": 30309,
+    "name": "[天才的ガチエモSUMMER!!]フサイチパンドラ",
+    "title": "天才的ガチエモSUMMER!!",
+    "characterName": "フサイチパンドラ",
+    "characterId": 1113,
+    "rarity": "SSR",
+    "commandId": 106,
+    "type": "wit",
+    "hintSkillIds": [
+      200182,
+      200582,
+      202172,
+      202432,
+      202702,
+      204002,
+      204082,
+      204332
     ],
     "hintLevelUpMax": 0,
     "eventIds": []

@@ -4262,13 +4262,30 @@
       "branches": [
         {
           "grounds": [],
+          "distances": [
+            "mid"
+          ],
+          "styles": []
+        },
+        {
+          "grounds": [],
+          "distances": [
+            "long"
+          ],
+          "styles": []
+        },
+        {
+          "grounds": [],
           "distances": [],
           "styles": []
         }
       ],
       "tags": {
         "grounds": [],
-        "distances": [],
+        "distances": [
+          "mid",
+          "long"
+        ],
         "styles": []
       }
     }
@@ -4428,6 +4445,43 @@
         ],
         "styles": [
           "sashi"
+        ]
+      }
+    }
+  },
+  {
+    "id": 101451,
+    "name": "冠絶タクティクス",
+    "baseSp": 0,
+    "rarity": 5,
+    "groupId": 10145,
+    "groupRate": 1,
+    "iconId": 0,
+    "lowerSkillId": null,
+    "upperSkillId": null,
+    "activation": {
+      "branches": [
+        {
+          "grounds": [],
+          "distances": [],
+          "styles": [
+            "senko"
+          ]
+        },
+        {
+          "grounds": [],
+          "distances": [],
+          "styles": [
+            "oikomi"
+          ]
+        }
+      ],
+      "tags": {
+        "grounds": [],
+        "distances": [],
+        "styles": [
+          "senko",
+          "oikomi"
         ]
       }
     }
@@ -7545,6 +7599,48 @@
     }
   },
   {
+    "id": 120201,
+    "name": "海風にまったり身を任せ",
+    "baseSp": 0,
+    "rarity": 5,
+    "groupId": 12020,
+    "groupRate": 1,
+    "iconId": 0,
+    "lowerSkillId": null,
+    "upperSkillId": null,
+    "activation": {
+      "branches": [
+        {
+          "grounds": [
+            "turf"
+          ],
+          "distances": [],
+          "styles": [
+            "nige"
+          ]
+        },
+        {
+          "grounds": [],
+          "distances": [
+            "mid"
+          ],
+          "styles": []
+        }
+      ],
+      "tags": {
+        "grounds": [
+          "turf"
+        ],
+        "distances": [
+          "mid"
+        ],
+        "styles": [
+          "nige"
+        ]
+      }
+    }
+  },
+  {
     "id": 120221,
     "name": "麗走一直！ラーメン道",
     "baseSp": 0,
@@ -7559,13 +7655,17 @@
         {
           "grounds": [],
           "distances": [],
-          "styles": []
+          "styles": [
+            "senko"
+          ]
         }
       ],
       "tags": {
         "grounds": [],
         "distances": [],
-        "styles": []
+        "styles": [
+          "senko"
+        ]
       }
     }
   },
@@ -8174,6 +8274,48 @@
     }
   },
   {
+    "id": 120741,
+    "name": "夕凪のリトリート・メモリー",
+    "baseSp": 0,
+    "rarity": 5,
+    "groupId": 12074,
+    "groupRate": 1,
+    "iconId": 0,
+    "lowerSkillId": null,
+    "upperSkillId": null,
+    "activation": {
+      "branches": [
+        {
+          "grounds": [],
+          "distances": [
+            "mid"
+          ],
+          "styles": []
+        },
+        {
+          "grounds": [],
+          "distances": [
+            "long"
+          ],
+          "styles": []
+        },
+        {
+          "grounds": [],
+          "distances": [],
+          "styles": []
+        }
+      ],
+      "tags": {
+        "grounds": [],
+        "distances": [
+          "mid",
+          "long"
+        ],
+        "styles": []
+      }
+    }
+  },
+  {
     "id": 120771,
     "name": "一杯全力、お届けします！",
     "baseSp": 0,
@@ -8187,14 +8329,22 @@
       "branches": [
         {
           "grounds": [],
-          "distances": [],
-          "styles": []
+          "distances": [
+            "long"
+          ],
+          "styles": [
+            "senko"
+          ]
         }
       ],
       "tags": {
         "grounds": [],
-        "distances": [],
-        "styles": []
+        "distances": [
+          "long"
+        ],
+        "styles": [
+          "senko"
+        ]
       }
     }
   },
@@ -27580,13 +27730,25 @@
       "branches": [
         {
           "grounds": [],
-          "distances": [],
+          "distances": [
+            "mid"
+          ],
+          "styles": []
+        },
+        {
+          "grounds": [],
+          "distances": [
+            "long"
+          ],
           "styles": []
         }
       ],
       "tags": {
         "grounds": [],
-        "distances": [],
+        "distances": [
+          "mid",
+          "long"
+        ],
         "styles": []
       }
     }
@@ -31605,13 +31767,25 @@
       "branches": [
         {
           "grounds": [],
-          "distances": [],
+          "distances": [
+            "mid"
+          ],
+          "styles": []
+        },
+        {
+          "grounds": [],
+          "distances": [
+            "long"
+          ],
           "styles": []
         }
       ],
       "tags": {
         "grounds": [],
-        "distances": [],
+        "distances": [
+          "mid",
+          "long"
+        ],
         "styles": []
       }
     }
@@ -31630,13 +31804,25 @@
       "branches": [
         {
           "grounds": [],
-          "distances": [],
+          "distances": [
+            "mid"
+          ],
+          "styles": []
+        },
+        {
+          "grounds": [],
+          "distances": [
+            "long"
+          ],
           "styles": []
         }
       ],
       "tags": {
         "grounds": [],
-        "distances": [],
+        "distances": [
+          "mid",
+          "long"
+        ],
         "styles": []
       }
     }
@@ -31902,6 +32088,324 @@
     "groupId": 20447,
     "groupRate": 1,
     "iconId": 0,
+    "lowerSkillId": null,
+    "upperSkillId": null,
+    "activation": {
+      "branches": [
+        {
+          "grounds": [],
+          "distances": [
+            "mid"
+          ],
+          "styles": []
+        },
+        {
+          "grounds": [],
+          "distances": [
+            "long"
+          ],
+          "styles": []
+        }
+      ],
+      "tags": {
+        "grounds": [],
+        "distances": [
+          "mid",
+          "long"
+        ],
+        "styles": []
+      }
+    }
+  },
+  {
+    "id": 204481,
+    "name": "レースメイカー",
+    "baseSp": 170,
+    "rarity": 2,
+    "groupId": 20448,
+    "groupRate": 2,
+    "iconId": 0,
+    "lowerSkillId": 204482,
+    "upperSkillId": null,
+    "activation": {
+      "branches": [
+        {
+          "grounds": [],
+          "distances": [
+            "long"
+          ],
+          "styles": [
+            "nige"
+          ]
+        }
+      ],
+      "tags": {
+        "grounds": [],
+        "distances": [
+          "long"
+        ],
+        "styles": [
+          "nige"
+        ]
+      }
+    }
+  },
+  {
+    "id": 204482,
+    "name": "筆に任せて",
+    "baseSp": 170,
+    "rarity": 1,
+    "groupId": 20448,
+    "groupRate": 1,
+    "iconId": 0,
+    "lowerSkillId": null,
+    "upperSkillId": 204481,
+    "activation": {
+      "branches": [
+        {
+          "grounds": [],
+          "distances": [
+            "long"
+          ],
+          "styles": [
+            "nige"
+          ]
+        }
+      ],
+      "tags": {
+        "grounds": [],
+        "distances": [
+          "long"
+        ],
+        "styles": [
+          "nige"
+        ]
+      }
+    }
+  },
+  {
+    "id": 204492,
+    "name": "ポイントマン",
+    "baseSp": 120,
+    "rarity": 1,
+    "groupId": 20449,
+    "groupRate": 1,
+    "iconId": 0,
+    "lowerSkillId": null,
+    "upperSkillId": null,
+    "activation": {
+      "branches": [
+        {
+          "grounds": [],
+          "distances": [],
+          "styles": [
+            "nige"
+          ]
+        }
+      ],
+      "tags": {
+        "grounds": [],
+        "distances": [],
+        "styles": [
+          "nige"
+        ]
+      }
+    }
+  },
+  {
+    "id": 204501,
+    "name": "一石二鳥",
+    "baseSp": 200,
+    "rarity": 2,
+    "groupId": 20450,
+    "groupRate": 2,
+    "iconId": 0,
+    "lowerSkillId": 204502,
+    "upperSkillId": null,
+    "activation": {
+      "branches": [
+        {
+          "grounds": [],
+          "distances": [
+            "mid"
+          ],
+          "styles": []
+        }
+      ],
+      "tags": {
+        "grounds": [],
+        "distances": [
+          "mid"
+        ],
+        "styles": []
+      }
+    }
+  },
+  {
+    "id": 204502,
+    "name": "ダブルアクセル",
+    "baseSp": 200,
+    "rarity": 1,
+    "groupId": 20450,
+    "groupRate": 1,
+    "iconId": 0,
+    "lowerSkillId": null,
+    "upperSkillId": 204501,
+    "activation": {
+      "branches": [
+        {
+          "grounds": [],
+          "distances": [
+            "mid"
+          ],
+          "styles": []
+        }
+      ],
+      "tags": {
+        "grounds": [],
+        "distances": [
+          "mid"
+        ],
+        "styles": []
+      }
+    }
+  },
+  {
+    "id": 204541,
+    "name": "急先鋒",
+    "baseSp": 170,
+    "rarity": 2,
+    "groupId": 20454,
+    "groupRate": 2,
+    "iconId": 0,
+    "lowerSkillId": 204542,
+    "upperSkillId": null,
+    "activation": {
+      "branches": [
+        {
+          "grounds": [],
+          "distances": [
+            "mid"
+          ],
+          "styles": [
+            "nige"
+          ]
+        }
+      ],
+      "tags": {
+        "grounds": [],
+        "distances": [
+          "mid"
+        ],
+        "styles": [
+          "nige"
+        ]
+      }
+    }
+  },
+  {
+    "id": 204542,
+    "name": "先導者",
+    "baseSp": 170,
+    "rarity": 1,
+    "groupId": 20454,
+    "groupRate": 1,
+    "iconId": 0,
+    "lowerSkillId": null,
+    "upperSkillId": 204541,
+    "activation": {
+      "branches": [
+        {
+          "grounds": [],
+          "distances": [
+            "mid"
+          ],
+          "styles": [
+            "nige"
+          ]
+        }
+      ],
+      "tags": {
+        "grounds": [],
+        "distances": [
+          "mid"
+        ],
+        "styles": [
+          "nige"
+        ]
+      }
+    }
+  },
+  {
+    "id": 204552,
+    "name": "奥の手",
+    "baseSp": 180,
+    "rarity": 1,
+    "groupId": 20455,
+    "groupRate": 1,
+    "iconId": 0,
+    "lowerSkillId": null,
+    "upperSkillId": null,
+    "activation": {
+      "branches": [
+        {
+          "grounds": [],
+          "distances": [],
+          "styles": [
+            "nige"
+          ]
+        }
+      ],
+      "tags": {
+        "grounds": [],
+        "distances": [],
+        "styles": [
+          "nige"
+        ]
+      }
+    }
+  },
+  {
+    "id": 204562,
+    "name": "勝負勘",
+    "baseSp": 120,
+    "rarity": 1,
+    "groupId": 20456,
+    "groupRate": 1,
+    "iconId": 0,
+    "lowerSkillId": null,
+    "upperSkillId": null,
+    "activation": {
+      "branches": [
+        {
+          "grounds": [],
+          "distances": [
+            "mid"
+          ],
+          "styles": [
+            "nige"
+          ]
+        }
+      ],
+      "tags": {
+        "grounds": [],
+        "distances": [
+          "mid"
+        ],
+        "styles": [
+          "nige"
+        ]
+      }
+    }
+  },
+  {
+    "id": 204581,
+    "name": "抱えた動揺",
+    "baseSp": 0,
+    "rarity": 1,
+    "groupId": 20458,
+    "groupRate": -1,
+    "iconId": 20064,
     "lowerSkillId": null,
     "upperSkillId": null,
     "activation": {
@@ -35020,13 +35524,25 @@
       "branches": [
         {
           "grounds": [],
-          "distances": [],
+          "distances": [
+            "mid"
+          ],
+          "styles": []
+        },
+        {
+          "grounds": [],
+          "distances": [
+            "long"
+          ],
           "styles": []
         }
       ],
       "tags": {
         "grounds": [],
-        "distances": [],
+        "distances": [
+          "mid",
+          "long"
+        ],
         "styles": []
       }
     }
@@ -35045,13 +35561,25 @@
       "branches": [
         {
           "grounds": [],
-          "distances": [],
+          "distances": [
+            "mid"
+          ],
+          "styles": []
+        },
+        {
+          "grounds": [],
+          "distances": [
+            "long"
+          ],
           "styles": []
         }
       ],
       "tags": {
         "grounds": [],
-        "distances": [],
+        "distances": [
+          "mid",
+          "long"
+        ],
         "styles": []
       }
     }
@@ -35070,13 +35598,22 @@
       "branches": [
         {
           "grounds": [],
+          "distances": [
+            "mid"
+          ],
+          "styles": []
+        },
+        {
+          "grounds": [],
           "distances": [],
           "styles": []
         }
       ],
       "tags": {
         "grounds": [],
-        "distances": [],
+        "distances": [
+          "mid"
+        ],
         "styles": []
       }
     }
@@ -35095,13 +35632,17 @@
       "branches": [
         {
           "grounds": [],
-          "distances": [],
+          "distances": [
+            "mile"
+          ],
           "styles": []
         }
       ],
       "tags": {
         "grounds": [],
-        "distances": [],
+        "distances": [
+          "mile"
+        ],
         "styles": []
       }
     }
@@ -35120,13 +35661,17 @@
       "branches": [
         {
           "grounds": [],
-          "distances": [],
+          "distances": [
+            "mile"
+          ],
           "styles": []
         }
       ],
       "tags": {
         "grounds": [],
-        "distances": [],
+        "distances": [
+          "mile"
+        ],
         "styles": []
       }
     }
@@ -38819,6 +39364,43 @@
     }
   },
   {
+    "id": 901451,
+    "name": "冠絶タクティクス",
+    "baseSp": 200,
+    "rarity": 1,
+    "groupId": 90145,
+    "groupRate": 2,
+    "iconId": 0,
+    "lowerSkillId": null,
+    "upperSkillId": null,
+    "activation": {
+      "branches": [
+        {
+          "grounds": [],
+          "distances": [],
+          "styles": [
+            "senko"
+          ]
+        },
+        {
+          "grounds": [],
+          "distances": [],
+          "styles": [
+            "oikomi"
+          ]
+        }
+      ],
+      "tags": {
+        "grounds": [],
+        "distances": [],
+        "styles": [
+          "senko",
+          "oikomi"
+        ]
+      }
+    }
+  },
+  {
     "id": 910011,
     "name": "わやかわ♪マリンダイヴ",
     "baseSp": 200,
@@ -41770,6 +42352,39 @@
     }
   },
   {
+    "id": 920201,
+    "name": "海風にまったり身を任せ",
+    "baseSp": 200,
+    "rarity": 1,
+    "groupId": 92020,
+    "groupRate": 2,
+    "iconId": 0,
+    "lowerSkillId": null,
+    "upperSkillId": null,
+    "activation": {
+      "branches": [
+        {
+          "grounds": [
+            "turf"
+          ],
+          "distances": [],
+          "styles": [
+            "nige"
+          ]
+        }
+      ],
+      "tags": {
+        "grounds": [
+          "turf"
+        ],
+        "distances": [],
+        "styles": [
+          "nige"
+        ]
+      }
+    }
+  },
+  {
     "id": 920221,
     "name": "麗走一直！ラーメン道",
     "baseSp": 200,
@@ -41784,13 +42399,17 @@
         {
           "grounds": [],
           "distances": [],
-          "styles": []
+          "styles": [
+            "senko"
+          ]
         }
       ],
       "tags": {
         "grounds": [],
         "distances": [],
-        "styles": []
+        "styles": [
+          "senko"
+        ]
       }
     }
   },
@@ -42363,6 +42982,48 @@
     }
   },
   {
+    "id": 920741,
+    "name": "夕凪のリトリート・メモリー",
+    "baseSp": 200,
+    "rarity": 1,
+    "groupId": 92074,
+    "groupRate": 2,
+    "iconId": 0,
+    "lowerSkillId": null,
+    "upperSkillId": null,
+    "activation": {
+      "branches": [
+        {
+          "grounds": [],
+          "distances": [
+            "mid"
+          ],
+          "styles": []
+        },
+        {
+          "grounds": [],
+          "distances": [
+            "long"
+          ],
+          "styles": []
+        },
+        {
+          "grounds": [],
+          "distances": [],
+          "styles": []
+        }
+      ],
+      "tags": {
+        "grounds": [],
+        "distances": [
+          "mid",
+          "long"
+        ],
+        "styles": []
+      }
+    }
+  },
+  {
     "id": 920771,
     "name": "一杯全力、お届けします！",
     "baseSp": 200,
@@ -42376,14 +43037,22 @@
       "branches": [
         {
           "grounds": [],
-          "distances": [],
-          "styles": []
+          "distances": [
+            "long"
+          ],
+          "styles": [
+            "senko"
+          ]
         }
       ],
       "tags": {
         "grounds": [],
-        "distances": [],
-        "styles": []
+        "distances": [
+          "long"
+        ],
+        "styles": [
+          "senko"
+        ]
       }
     }
   },
@@ -43310,6 +43979,31 @@
         "styles": [
           "nige"
         ]
+      }
+    }
+  },
+  {
+    "id": 100201311,
+    "name": "私だけの世界",
+    "baseSp": 0,
+    "rarity": 6,
+    "groupId": 10020131,
+    "groupRate": 1,
+    "iconId": 0,
+    "lowerSkillId": null,
+    "upperSkillId": null,
+    "activation": {
+      "branches": [
+        {
+          "grounds": [],
+          "distances": [],
+          "styles": []
+        }
+      ],
+      "tags": {
+        "grounds": [],
+        "distances": [],
+        "styles": []
       }
     }
   },
@@ -46621,6 +47315,98 @@
     }
   },
   {
+    "id": 102003111,
+    "name": "のらりくらりdeバカンス♪",
+    "baseSp": 0,
+    "rarity": 6,
+    "groupId": 10200311,
+    "groupRate": 1,
+    "iconId": 0,
+    "lowerSkillId": null,
+    "upperSkillId": null,
+    "activation": {
+      "branches": [
+        {
+          "grounds": [
+            "turf"
+          ],
+          "distances": [
+            "mid"
+          ],
+          "styles": [
+            "nige"
+          ]
+        },
+        {
+          "grounds": [],
+          "distances": [
+            "mid"
+          ],
+          "styles": [
+            "nige"
+          ]
+        }
+      ],
+      "tags": {
+        "grounds": [
+          "turf"
+        ],
+        "distances": [
+          "mid"
+        ],
+        "styles": [
+          "nige"
+        ]
+      }
+    }
+  },
+  {
+    "id": 102003211,
+    "name": "夏風フロントランナー",
+    "baseSp": 0,
+    "rarity": 6,
+    "groupId": 10200321,
+    "groupRate": 1,
+    "iconId": 0,
+    "lowerSkillId": null,
+    "upperSkillId": null,
+    "activation": {
+      "branches": [
+        {
+          "grounds": [
+            "turf"
+          ],
+          "distances": [
+            "mid"
+          ],
+          "styles": [
+            "nige"
+          ]
+        },
+        {
+          "grounds": [],
+          "distances": [
+            "mid"
+          ],
+          "styles": [
+            "nige"
+          ]
+        }
+      ],
+      "tags": {
+        "grounds": [
+          "turf"
+        ],
+        "distances": [
+          "mid"
+        ],
+        "styles": [
+          "nige"
+        ]
+      }
+    }
+  },
+  {
     "id": 102101111,
     "name": "雷騰雲奔",
     "baseSp": 0,
@@ -46979,13 +47765,22 @@
       "branches": [
         {
           "grounds": [],
+          "distances": [
+            "mid"
+          ],
+          "styles": []
+        },
+        {
+          "grounds": [],
           "distances": [],
           "styles": []
         }
       ],
       "tags": {
         "grounds": [],
-        "distances": [],
+        "distances": [
+          "mid"
+        ],
         "styles": []
       }
     }
@@ -47005,13 +47800,17 @@
         {
           "grounds": [],
           "distances": [],
-          "styles": []
+          "styles": [
+            "senko"
+          ]
         }
       ],
       "tags": {
         "grounds": [],
         "distances": [],
-        "styles": []
+        "styles": [
+          "senko"
+        ]
       }
     }
   },
@@ -51761,6 +52560,39 @@
     }
   },
   {
+    "id": 105003221,
+    "name": "不屈のRebellion",
+    "baseSp": 0,
+    "rarity": 6,
+    "groupId": 10500322,
+    "groupRate": 1,
+    "iconId": 0,
+    "lowerSkillId": null,
+    "upperSkillId": null,
+    "activation": {
+      "branches": [
+        {
+          "grounds": [],
+          "distances": [
+            "mid"
+          ],
+          "styles": [
+            "oikomi"
+          ]
+        }
+      ],
+      "tags": {
+        "grounds": [],
+        "distances": [
+          "mid"
+        ],
+        "styles": [
+          "oikomi"
+        ]
+      }
+    }
+  },
+  {
     "id": 105101111,
     "name": "風花疾走",
     "baseSp": 0,
@@ -55303,6 +56135,72 @@
     }
   },
   {
+    "id": 107403111,
+    "name": "浜辺の追いかけっこ",
+    "baseSp": 0,
+    "rarity": 6,
+    "groupId": 10740311,
+    "groupRate": 1,
+    "iconId": 0,
+    "lowerSkillId": null,
+    "upperSkillId": null,
+    "activation": {
+      "branches": [
+        {
+          "grounds": [],
+          "distances": [
+            "mid"
+          ],
+          "styles": []
+        },
+        {
+          "grounds": [],
+          "distances": [
+            "long"
+          ],
+          "styles": []
+        }
+      ],
+      "tags": {
+        "grounds": [],
+        "distances": [
+          "mid",
+          "long"
+        ],
+        "styles": []
+      }
+    }
+  },
+  {
+    "id": 107403211,
+    "name": "薫風もたらすルドベキア",
+    "baseSp": 0,
+    "rarity": 6,
+    "groupId": 10740321,
+    "groupRate": 1,
+    "iconId": 0,
+    "lowerSkillId": null,
+    "upperSkillId": null,
+    "activation": {
+      "branches": [
+        {
+          "grounds": [],
+          "distances": [],
+          "styles": [
+            "sashi"
+          ]
+        }
+      ],
+      "tags": {
+        "grounds": [],
+        "distances": [],
+        "styles": [
+          "sashi"
+        ]
+      }
+    }
+  },
+  {
     "id": 107601111,
     "name": "桜前線進行中！",
     "baseSp": 0,
@@ -55574,14 +56472,22 @@
       "branches": [
         {
           "grounds": [],
-          "distances": [],
-          "styles": []
+          "distances": [
+            "long"
+          ],
+          "styles": [
+            "senko"
+          ]
         }
       ],
       "tags": {
         "grounds": [],
-        "distances": [],
-        "styles": []
+        "distances": [
+          "long"
+        ],
+        "styles": [
+          "senko"
+        ]
       }
     }
   },
@@ -55599,14 +56505,27 @@
       "branches": [
         {
           "grounds": [],
+          "distances": [
+            "long"
+          ],
+          "styles": [
+            "senko"
+          ]
+        },
+        {
+          "grounds": [],
           "distances": [],
           "styles": []
         }
       ],
       "tags": {
         "grounds": [],
-        "distances": [],
-        "styles": []
+        "distances": [
+          "long"
+        ],
+        "styles": [
+          "senko"
+        ]
       }
     }
   },
@@ -60147,14 +61066,22 @@
       "branches": [
         {
           "grounds": [],
-          "distances": [],
-          "styles": []
+          "distances": [
+            "long"
+          ],
+          "styles": [
+            "oikomi"
+          ]
         }
       ],
       "tags": {
         "grounds": [],
-        "distances": [],
-        "styles": []
+        "distances": [
+          "long"
+        ],
+        "styles": [
+          "oikomi"
+        ]
       }
     }
   },
@@ -61324,13 +62251,17 @@
         {
           "grounds": [],
           "distances": [],
-          "styles": []
+          "styles": [
+            "senko"
+          ]
         }
       ],
       "tags": {
         "grounds": [],
         "distances": [],
-        "styles": []
+        "styles": [
+          "senko"
+        ]
       }
     }
   },
@@ -61348,13 +62279,25 @@
       "branches": [
         {
           "grounds": [],
-          "distances": [],
+          "distances": [
+            "mid"
+          ],
+          "styles": []
+        },
+        {
+          "grounds": [],
+          "distances": [
+            "long"
+          ],
           "styles": []
         }
       ],
       "tags": {
         "grounds": [],
-        "distances": [],
+        "distances": [
+          "mid",
+          "long"
+        ],
         "styles": []
       }
     }
@@ -61648,6 +62591,97 @@
           "long"
         ],
         "styles": []
+      }
+    }
+  },
+  {
+    "id": 114501111,
+    "name": "巧妙なるギャンビット",
+    "baseSp": 0,
+    "rarity": 6,
+    "groupId": 11450111,
+    "groupRate": 1,
+    "iconId": 20016,
+    "lowerSkillId": null,
+    "upperSkillId": null,
+    "activation": {
+      "branches": [
+        {
+          "grounds": [
+            "turf"
+          ],
+          "distances": [],
+          "styles": []
+        },
+        {
+          "grounds": [],
+          "distances": [],
+          "styles": []
+        }
+      ],
+      "tags": {
+        "grounds": [
+          "turf"
+        ],
+        "distances": [],
+        "styles": []
+      }
+    }
+  },
+  {
+    "id": 114501211,
+    "name": "強襲トリック",
+    "baseSp": 0,
+    "rarity": 6,
+    "groupId": 11450121,
+    "groupRate": 1,
+    "iconId": 0,
+    "lowerSkillId": null,
+    "upperSkillId": null,
+    "activation": {
+      "branches": [
+        {
+          "grounds": [],
+          "distances": [
+            "mid"
+          ],
+          "styles": [
+            "senko"
+          ]
+        },
+        {
+          "grounds": [],
+          "distances": [
+            "mid"
+          ],
+          "styles": [
+            "oikomi"
+          ]
+        },
+        {
+          "grounds": [],
+          "distances": [],
+          "styles": [
+            "senko"
+          ]
+        },
+        {
+          "grounds": [],
+          "distances": [],
+          "styles": [
+            "oikomi"
+          ]
+        }
+      ],
+      "tags": {
+        "grounds": [],
+        "distances": [
+          "mid"
+        ],
+        "styles": [
+          "senko",
+          "oikomi"
+        ]
       }
     }
   }

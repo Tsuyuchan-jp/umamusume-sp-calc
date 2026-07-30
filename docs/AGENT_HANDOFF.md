@@ -10,14 +10,14 @@
 |------|------|
 | アプリ骨格 (`app/`) | **あり** — SP計算・UI・集計ロジック実装済み |
 | `scripts/extract_mdb.py` / `.mjs` | **あり**（再 extract は Node `.mjs` 推奨） |
-| `data/skills.json` 等 | **あり** — skills 2103 / supports 543 / characters 261（`meta.json` 参照） |
+| `data/skills.json` 等 | **あり** — skills 2127 / supports 547 / characters 264（`meta.json` 参照） |
 | extract 元 mdb | `D:\DMM\umamusumeDMM\Umamusume\umamusume_Data\Persistent\master\master.mdb` |
 | 既定 AppData の mdb | **無し** — `%USERPROFILE%\AppData\LocalLow\Cygames\...` には無い |
-| `data/events.json` | **あり** — 優先38・105イベント（U-tools+mdb 抽出正本）。例外2件は `events.preserve.json` |
+| `data/events.json` | **あり** — 優先40・105イベント（U-tools+mdb 抽出正本）。例外2件は `events.preserve.json`。30307/30308 は U-tools 未掲載のためイベント0 |
 | `data/scenarios/toresenken.json` | **あり** — リンク白/金・RMJ自動計上・ラーメン3択（実機通し確認済み） |
 | Python / `py` | `where` 上は WindowsApps の `python.exe` スタブ寄り。`py` 無し。再 extract 時に実体 Python 要確認 |
 | Git | remote: `Tsuyuchan-jp/umamusume-sp-calc`（public）。Pages デプロイ運用中 |
-| 公開 URL | **https://Tsuyuchan-jp.github.io/umamusume-sp-calc/app/** （v0.1.12・2026-07） |
+| 公開 URL | **https://Tsuyuchan-jp.github.io/umamusume-sp-calc/app/** （v0.1.13・2026-07） |
 | サポカ絞込 | **イベント対応のみ**（デフォルト ON・`prioritySupportIds`）＋ SSR／タイプ／検索 |
 | 結果スキル絞込 | **バ場／距離／作戦**＋**適用ボタン**（draft/committed）。確定済み絞込を編成変更時に新規 skillId へ増分適用。実装: `skillActivation.js` / `app.js` |
 | 結果スキル件数 | 見出し右 **「スキル数 N/M」**（ON/全件ともスキル本数。通常行1、継承固有は `skillWeight`＝個数）。実装: `rowSkillWeight` / `updateSkillCountDisplay` / `recalc`。実機確認済み |
@@ -25,7 +25,7 @@
 | トレヒントLv | オプション select（3/4/5・既定5）。`aggregate.js` の `trainingHintLevel`。実機確認済み |
 | 説明書 UI | ヘッダー右 **「使い方」** → `<dialog>`（5セクション・実機確認済み） |
 
-**アプリは実用段階・公開済み。** 常用デッキ＋シナリオ（リンク白/金・RMJ・終了）の通し確認は **実機 OK・バグなし**（2026-07）。**v0.1.11**（ネイチャ小倉愛・優先38種）は localhost 実機確認済み。**v0.1.12** で Pages の JSON キャッシュ滞留対策。
+**アプリは実用段階・公開済み。** 常用デッキ＋シナリオ通し確認は **実機 OK**（2026-07）。**v0.1.13**（ゲーム更新追従・優先40種・キセキ/夏空アーモンド）。30307/30308 のイベントは U-tools 掲載後に再 extract。
 
 ## 次にやること（優先順）
 
@@ -49,7 +49,7 @@
 - **固有スキル・覚醒進化**: 現行 extract（`available_skill_set`）で実機と整合。専用除外ロジックは不要（[GLOSSARY.md](./GLOSSARY.md)）
 - **育成ウマ娘覚醒レベル**: 最大想定で所持スキル全合算
 - **継承固有**: 汎用行のみ（親名・スキル名なし）、個数 2–6、baseSp 200、ヒント一律 1–5。
-- **イベントは優先38サポカのみ**（全539枚はスコープ外）。**正本は U-tools+mdb 抽出**（`events.preserve.json` でたづな2件を例外維持）。トレヒントは mdb 自動。新規追加は最新の課金必須 SSR を原則とする。
+- **イベントは優先40サポカのみ**（全サポカ網羅はスコープ外）。**正本は U-tools+mdb 抽出**（`events.preserve.json` でたづな2件を例外維持）。トレヒントは mdb 自動。新規追加は最新の課金必須 SSR を原則とする。
 - **Git**: ワークスペース変更のたびにコミット。PowerShell では `git add .` と `git commit` を**別ステップ**（`&&` 禁止）。push は明示依頼時のみ。
 
 ## シナリオ・UI の要点（トレセン軒）
@@ -69,7 +69,7 @@
 ```
 docs/AGENT_HANDOFF.md   ← 今ここ
 docs/GAME_UPDATE_RUNBOOK.md  ゲーム更新時の運用チェックリスト（extract・events・デプロイ）
-docs/PRIORITY_SUPPORTS.md   イベント対応サポカ38種（利用者向け表・開発者向け id）
+docs/PRIORITY_SUPPORTS.md   イベント対応サポカ40種（利用者向け表・開発者向け id）
 docs/CHANGELOG.md        公開版の更新履歴
 docs/GLOSSARY.md        用語（育成ウマ娘所持スキル / 覚醒進化 など）
 docs/MODEL_SELECTION.md 推奨言語モデル（4択・Quota節約）
@@ -92,7 +92,7 @@ scripts/extract_mdb.py  同上（代替）
 
 ## 優先サポカ（events.json 対象）
 
-計 **38種**。イベント **105件**（抽出103 + preserve 2）。**一覧**: [PRIORITY_SUPPORTS.md](./PRIORITY_SUPPORTS.md) / [data/priority-supports.json](../data/priority-supports.json)
+計 **40種**。イベント **105件**（抽出103 + preserve 2）。30307/30308 は優先枠のみ（U-tools 未掲載でイベント0）。**一覧**: [PRIORITY_SUPPORTS.md](./PRIORITY_SUPPORTS.md) / [data/priority-supports.json](../data/priority-supports.json)
 
 ## エージェントへの指示（短縮）
 

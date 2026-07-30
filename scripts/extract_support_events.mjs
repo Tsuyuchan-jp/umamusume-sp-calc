@@ -224,7 +224,19 @@ async function loadRawUtools(cachePath, opts, priorityList) {
       continue;
     }
     console.log(`fetch U-tools: ${p.id} ${p.supportNameMatch}`);
-    supports.push(await fetchUtoolsEvents(p.id));
+    try {
+      supports.push(await fetchUtoolsEvents(p.id));
+    } catch (e) {
+      // 未掲載カード（HTTP 404 等）は空イベントで続行。優先枠メンバー追加は可能にする
+      console.warn(`  skip ${p.id}: ${e.message}`);
+      supports.push({
+        supportCardId: p.id,
+        events: [],
+        fetchedAt: new Date().toISOString(),
+        sourceUrl: null,
+        fetchError: e.message,
+      });
+    }
   }
   return { fetchedAt: new Date().toISOString(), supports };
 }
@@ -275,6 +287,14 @@ async function main() {
     if (!raw) {
       warnings.push({ supportCardId: p.id, message: "U-tools raw 無し" });
       continue;
+    }
+    if (raw.fetchError) {
+      warnings.push({
+        supportCardId: p.id,
+        message: `U-tools 取得失敗: ${raw.fetchError}`,
+      });
+    } else if (!(raw.events || []).length) {
+      warnings.push({ supportCardId: p.id, message: "U-tools イベント0件" });
     }
     for (const utoolsEvt of raw.events || []) {
       try {

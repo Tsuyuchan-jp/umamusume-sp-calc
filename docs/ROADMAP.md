@@ -1,6 +1,6 @@
 # ロードマップ
 
-ディスク上の実状態に基づく（2026-07-23 時点）。
+ディスク上の実状態に基づく（2026-07-30 時点）。
 
 用語は [GLOSSARY.md](./GLOSSARY.md) を参照。
 
@@ -8,11 +8,11 @@
 
 - [x] プロジェクト骨格（README, .gitignore, docs）
 - [x] `scripts/extract_mdb.mjs` / `.py`（スキル / サポカ / 育成ウマ娘抽出）
-- [x] **初回 extract 成功** — skills 2103 / supports 543 / characters 261（`data/meta.json`）
+- [x] **初回 extract 成功** — 以降ゲーム更新で件数増（現行: skills 2127 / supports 547 / characters 264）
 - [x] `scripts/test_sp.mjs` / `verify_data.mjs`
 - [x] 計算コア: `spCost` / `hintResolve` / `goldLower` / `aggregate`
 - [x] UI: 育成ウマ娘・6枠サポカ（検索・絞込・イベント対応のみデフォルトON）・切れ者・継承・イベント/シナリオ・除外・合計表示
-- [x] `data/events.json` — 優先38サポカ・**105イベント**（U-tools+mdb 抽出正本 + preserve 2）
+- [x] `data/events.json` — 優先40サポカ・**105イベント**（U-tools+mdb 抽出正本 + preserve 2。30307/30308 はイベント0）
 - [x] **イベント正本化 Phase F** — 抽出パイプライン・ゴールデン比較・`events.json` 置換（2026-07-14）
 - [x] `data/scenarios/toresenken.json` — リンク白/金・RMJ自動計上・ラーメン3択・終了スキル（skillId 確定）
 - [x] 常用デッキでのイベント表示・SP変化の実機確認
@@ -32,6 +32,7 @@
 - [x] **v0.1.10** — 継承固有をスキル数に個数分カウント（一覧1行のまま・実機確認済み）
 - [x] **v0.1.11** — 優先サポカ +1種（ネイチャ小倉愛・計38種・イベント3件追加・課金必須 SSR 方針明文化・localhost 実機確認済み）
 - [x] **v0.1.12** — Pages 向け JSON fetch のキャッシュ回避（版クエリ + `cache: "no-cache"`）
+- [x] **v0.1.13** — ゲーム更新追従（DMM mdb）・優先 +2種（キセキ/夏空アーモンド・計40種）。U-tools 未掲載のため新2枚のイベントは後追い
 
 ## 未完了 / 残作業
 
@@ -64,7 +65,7 @@
 
 ### Phase B — データ充実 ✅
 
-1. ~~`events.json` 優先サポカ拡充（+26種）~~ **済（2026-07・37種）** → **+1種（v0.1.11・38種）**
+1. ~~`events.json` 優先サポカ拡充（+26種）~~ **済（2026-07・37種）** → **+1種（v0.1.11・38種）** → **+2種（v0.1.13・40種）**
 2. ~~`toresenken.json` の RMJ / リンク / 終了具体化~~ **済**（自動計上＋ラーメン3択）
 3. 名前マッチ漏れ・表記ゆれの修正 — **必要時**
 

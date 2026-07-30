@@ -11,7 +11,7 @@ data/
   characters.json      # extract 生成
   meta.json            # extract 生成（件数・ソースパス）
   events.json          # U-tools+mdb 抽出正本（+ preserve 2件）
-  priority-supports.json  # イベント対応38種のエクスポート（render:priority-supports で生成）
+  priority-supports.json  # イベント対応40種のエクスポート（render:priority-supports で生成）
   events.extracted.json
   events.preserve.json
   events.id-aliases.json
@@ -22,9 +22,10 @@ data/
 **現状（確認済み）**: extract 済み。
 
 - `skills.json` / `supports.json` / `characters.json` / `meta.json` **あり**
-- `meta.json` 例: skillCount 2103, supportCount 543, characterCount 261
+- `meta.json` 例: skillCount 2127, supportCount 547, characterCount 264
 - 抽出元: `D:\DMM\umamusumeDMM\Umamusume\umamusume_Data\Persistent\master\master.mdb`
-- `events.json` は **U-tools+mdb 抽出正本**（105件・優先38種）。`toresenken.json` は手メンテ
+- `events.json` は **U-tools+mdb 抽出正本**（105件・優先40種）。`toresenken.json` は手メンテ
+  - 30307 / 30308 は U-tools 未掲載のためイベント0（優先枠・トレヒントのみ）
 - **実機通し確認済み**（2026-07）: 常用デッキ＋イベント＋シナリオリンク白/金＋RMJ自動計上／ラーメン3択＋終了。問題・バグなし
 
 ## master.mdb → extract
@@ -56,7 +57,7 @@ python scripts/extract_mdb.py --mdb "D:\...\master.mdb"
 
 ### サポカイベント（U-tools + mdb）
 
-優先38サポカのイベントスキルヒントは `extract_support_events.mjs` で生成する（`extract_mdb.mjs` とは分離）。
+優先40サポカのイベントスキルヒントは `extract_support_events.mjs` で生成する（`extract_mdb.mjs` とは分離）。U-tools 個別カードの取得失敗（404 等）は警告付きでスキップし、全体は続行する。
 
 ```powershell
 npm run extract:events    # U-tools fetch → events.extracted.json
@@ -157,14 +158,14 @@ npm run compare:events    # ゴールデン比較レポート
 | `toggle` | チェックボックス（後方互換） | ON のとき `skills` を加算 |
 
 - `skillId` は extract 後に埋めると確実。無くても `skillName` 完全一致で解決を試す
-- **現状**: 優先38サポカ **105イベント**（auto 86 / single 19）。**U-tools+mdb 抽出正本**
+- **現状**: 優先40サポカ **105イベント**（auto 86 / single 19）。**U-tools+mdb 抽出正本**（30307/30308 は U-tools 未掲載でイベント0）
 - **再生成**: `npm run extract:events` → `npm run apply:events`（raw キャッシュ: `events.raw.utools.json`・gitignore）
 - **例外維持**: `data/events.preserve.json`（たづなお出かけ/正月・実機確認済み）
 - **移行記録**: `data/events.id-aliases.json`（旧 id → 新 id）
 
 ### 優先サポカ一覧
 
-`events.json` の `prioritySupportNames` を正とする（計38種）。新規追加は最新の課金必須 SSR を原則とする。**一覧表**は [PRIORITY_SUPPORTS.md](./PRIORITY_SUPPORTS.md) / [priority-supports.json](../data/priority-supports.json)（`npm run render:priority-supports` で再生成）。
+`events.json` の `prioritySupportNames` を正とする（計40種）。新規追加は最新の課金必須 SSR を原則とする。**一覧表**は [PRIORITY_SUPPORTS.md](./PRIORITY_SUPPORTS.md) / [priority-supports.json](../data/priority-supports.json)（`npm run render:priority-supports` で再生成）。
 
 ## 手メンテ: scenarios/toresenken.json
 
