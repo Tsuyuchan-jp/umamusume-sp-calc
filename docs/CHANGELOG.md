@@ -4,13 +4,23 @@
 
 形式は [Keep a Changelog](https://keepachangelog.com/ja/1.0.0/) に近いが、セマンティックバージョニングは緩め（`0.1.x` = 公開後の軽量改修）。
 
+**運用**:
+- 版上げ（リリース）を伴わない変更・後追い TODO は **[Unreleased]** にためる
+- 次の版上げ時に Unreleased の内容をその版の節へ移し、Unreleased を空に戻す（または新しい TODO だけ残す）
+
+## [Unreleased]
+
+### TODO
+
+- **30307 / 30308 の U-tools 化**: U-tools にキセキ（巻頭カラーの夏）・アーモンドアイ（夏空チルタイム）が掲載されたら `npm run extract:events` → `compare:events` → `apply:events` を実行し、`events.preserve.json` から GameWith 一時手載せ6件（`evt_30307_*` / `evt_30308_*`）を削除する。docs の件数・注記も更新する
+
 ## [0.1.13] — 2026-07-30
 
 ### 追加
 
 - ゲーム更新追従（DMM `master.mdb`）: skills **2127** / supports **547** / characters **264**
 - 優先サポカ **+2種**（計40種）: `[巻頭カラーの夏]キセキ`（30307）、`[夏空チルタイム]アーモンドアイ`（30308）
-- 上記2枚のイベント **+6件**（計111・auto 90 / single 21）を `events.preserve.json` に **GameWith 一時手載せ**（[キセキ](https://gamewith.jp/uma-musume/article/show/570425) / [アーモンド](https://gamewith.jp/uma-musume/article/show/570424)）。U-tools 掲載後に extract 置換し preserve から削除予定
+- 上記2枚のイベント **+6件**（計111・auto 90 / single 21）を `events.preserve.json` に **GameWith 一時手載せ**（[キセキ](https://gamewith.jp/uma-musume/article/show/570425) / [アーモンド](https://gamewith.jp/uma-musume/article/show/570424)）。置換手順は [Unreleased](#unreleased) の TODO 参照
 - 見送り: `[天才的ガチエモSUMMER!!]フサイチパンドラ`（30309）は今回優先枠に含めない
 
 ### 変更
@@ -31,6 +41,7 @@
 ### 確認
 
 - Pages 実機確認済み（2026-07-23）
+
 ## [0.1.11] — 2026-07-23
 
 ### 追加
