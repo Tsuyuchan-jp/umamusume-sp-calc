@@ -1,5 +1,13 @@
 import { buildSkillPlan } from "./aggregate.js";
 import {
+  characterImageUrl,
+  getSupportTypeStyle,
+  shortCharacterLabel,
+  shortSupportLabel,
+  supportImageUrl,
+} from "./cardAssets.js";
+import { createCardPicker } from "./cardPicker.js";
+import {
   copyTextToClipboard,
   formatIncludedSkillNames,
   getIncludedSkillRows,
@@ -45,6 +53,12 @@ let previousTotal = null;
 
 /** 差分ハイライトのタイマー */
 let deltaHideTimer = null;
+
+/** カードピッカー */
+let cardPicker = null;
+
+/** 前提チップのイベントを一度だけバインド */
+let premiseChipsBound = false;
 
 /** Pages の max-age キャッシュで古い events.json が残るのを防ぐ（版上げ時に更新） */
 const DATA_CACHE_BUST = "0.1.13";
@@ -99,23 +113,6 @@ function supportMatchesFilters(s, filters, keepId) {
   return true;
 }
 
-function buildSupportOptions(supports, selectedId, occupiedIds) {
-  const filters = getSupportFilterState();
-  const sorted = [...supports].sort((a, b) => b.id - a.id);
-  const opts = ['<option value="">— 未選択 —</option>'];
-  for (const s of sorted) {
-    const isSelected = s.id === selectedId;
-    if (!isSelected && occupiedIds.has(s.id)) continue;
-    if (!supportMatchesFilters(s, filters, selectedId)) continue;
-    const typeLabel = SUPPORT_TYPE_LABELS[s.type] || s.type;
-    const sel = isSelected ? " selected" : "";
-    opts.push(
-      `<option value="${s.id}"${sel}>[${escapeHtml(s.rarity)}][${escapeHtml(typeLabel)}] ${escapeHtml(s.name)}</option>`
-    );
-  }
-  return opts.join("");
-}
-
 function escapeHtml(s) {
   return String(s)
     .replace(/&/g, "&amp;")
@@ -142,38 +139,275 @@ function normalizeSearchText(s) {
   return toKatakana(s).toLowerCase();
 }
 
-function renderSupportSlots() {
-  const container = document.getElementById("support-slots");
-  const selected = state.ui.supportIds;
+function buildCardFaceHtml({ imageUrl, typeStyle, rarity, label, empty = false }) {
+  if (empty) {
+    return '<div class="card-face card-face--empty" aria-hidden="true">＋</div>';
+  }
+  const safeLabel = escapeHtml(label);
+  const safeRarity = escapeHtml(rarity || "");
+  const typeLabel = escapeHtml(typeStyle?.label || "");
+  return `
+    <div class="card-face" style="--card-bg:${typeStyle?.bg || "#e8e8e8"};--card-ink:${typeStyle?.ink || "#1c2420"}">
+      <img class="card-face__img" src="${escapeHtml(imageUrl)}" alt="" loading="lazy"
+        onerror="this.style.display='none';this.nextElementSibling.hidden=false" />
+      <div class="card-face__ph" hidden>
+        <span class="card-face__ph-type">${typeLabel}</span>
+        <span>${safeLabel}</span>
+      </div>
+      ${safeRarity ? `<span class="card-face__rarity">${safeRarity}</span>` : ""}
+      <span class="card-face__label">${safeLabel}</span>
+    </div>
+  `;
+}
+
+function getCharacterById(id) {
+  return state.characters.find((c) => c.id === id);
+}
+
+function getSupportById(id) {
+  return state.supports.find((s) => s.id === id);
+}
+
+function syncHiddenCharacterSelect() {
+  const sel = document.getElementById("character-select");
+  if (!sel || !state) return;
+  if (sel.value !== String(state.ui.characterId)) {
+    sel.value = String(state.ui.characterId);
+  }
+}
+
+function renderDeckCharacter() {
+  const btn = document.getElementById("deck-character");
+  if (!btn || !state) return;
+  const c = getCharacterById(state.ui.characterId);
+  if (!c) {
+    btn.innerHTML = buildCardFaceHtml({ empty: true });
+    return;
+  }
+  const label = formatCharacterDisplayName(c.name);
+  btn.innerHTML = buildCardFaceHtml({
+    imageUrl: characterImageUrl(c.id),
+    typeStyle: { bg: "linear-gradient(160deg,#d4dce4,#8a9aaa)", ink: "#1c2420", label: "ウマ" },
+    rarity: "",
+    label: shortCharacterLabel(c.name),
+  });
+  btn.title = label;
+}
+
+function renderDeckSupports() {
+  const container = document.getElementById("deck-supports");
+  if (!container || !state) return;
   container.innerHTML = "";
   for (let i = 0; i < 6; i++) {
-    const occupied = new Set(selected.filter((id, idx) => id != null && idx !== i));
-    const wrap = document.createElement("div");
-    wrap.innerHTML = `
-      <label>枠 ${i + 1}</label>
-      <select data-slot="${i}" class="support-select">
-        ${buildSupportOptions(state.supports, selected[i] || "", occupied)}
-      </select>
-    `;
-    container.appendChild(wrap);
+    const id = state.ui.supportIds[i];
+    const s = id != null ? getSupportById(id) : null;
+    const btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "deck-slot";
+    btn.dataset.slot = String(i);
+    btn.setAttribute("aria-label", `枠${i + 1}を選択`);
+    if (!s) {
+      btn.innerHTML = buildCardFaceHtml({ empty: true });
+    } else {
+      const typeStyle = getSupportTypeStyle(s.type);
+      btn.innerHTML = buildCardFaceHtml({
+        imageUrl: supportImageUrl(s.id),
+        typeStyle,
+        rarity: s.rarity,
+        label: shortSupportLabel(s),
+      });
+      btn.title = s.name;
+    }
+    btn.addEventListener("click", () => openSupportPicker(i));
+    container.appendChild(btn);
   }
-  container.querySelectorAll(".support-select").forEach((sel) => {
-    sel.addEventListener("change", () => {
-      const idx = Number(sel.dataset.slot);
-      const v = sel.value ? Number(sel.value) : null;
-      state.ui.supportIds[idx] = v;
-      renderSupportSlots();
+}
+
+function renderDeckDashboard() {
+  renderDeckCharacter();
+  renderDeckSupports();
+  updateDeckPremiseChips();
+}
+
+function bindPremiseChipsOnce() {
+  if (premiseChipsBound) return;
+  premiseChipsBound = true;
+
+  document.getElementById("deck-premise")?.addEventListener("click", (e) => {
+    const t = e.target;
+    if (!(t instanceof HTMLElement)) return;
+    if (t.id === "premise-fast-learner" || t.closest("#premise-fast-learner")) {
+      const cb = document.getElementById("fast-learner");
+      if (!cb) return;
+      cb.checked = !cb.checked;
+      updateDeckPremiseChips();
+      updateTotalBarChips();
+      recalc();
+    }
+  });
+
+  document.getElementById("deck-premise")?.addEventListener("change", (e) => {
+    if (e.target?.id === "premise-training-hint") {
+      const hidden = document.getElementById("training-hint-level");
+      if (hidden) hidden.value = e.target.value;
+      updateDeckPremiseChips();
+      updateTotalBarChips();
+      recalc();
+    }
+  });
+
+  document.getElementById("total-sp-bar-chips")?.addEventListener("click", (e) => {
+    const t = e.target;
+    if (!(t instanceof HTMLElement)) return;
+    if (t.id === "bar-premise-fast-learner" || t.closest("#bar-premise-fast-learner")) {
+      const cb = document.getElementById("fast-learner");
+      if (!cb) return;
+      cb.checked = !cb.checked;
+      updateDeckPremiseChips();
+      updateTotalBarChips();
+      recalc();
+    }
+  });
+}
+
+function buildPremiseChipsHtml({ excludedCount = 0 } = {}) {
+  const fast = document.getElementById("fast-learner")?.checked;
+  const trainingLv = document.getElementById("training-hint-level")?.value || "5";
+  const inheritOn = document.getElementById("inherit-enabled")?.checked;
+  const inheritCount = document.getElementById("inherit-count")?.value || "0";
+
+  const fastClass = fast ? "premise-chip premise-chip--on" : "premise-chip";
+  const fastLabel = fast ? "切れ者 ON" : "切れ者 OFF";
+
+  let html = `
+    <button type="button" class="${fastClass}" id="premise-fast-learner" aria-pressed="${fast ? "true" : "false"}">${fastLabel}</button>
+    <span class="premise-chip">トレヒント
+      <select id="premise-training-hint" aria-label="トレヒントLv">
+        <option value="5"${trainingLv === "5" ? " selected" : ""}>Lv5</option>
+        <option value="4"${trainingLv === "4" ? " selected" : ""}>Lv4</option>
+        <option value="3"${trainingLv === "3" ? " selected" : ""}>Lv3</option>
+      </select>
+    </span>
+    <span class="premise-chip${inheritOn ? " premise-chip--on" : ""}">継承 ${inheritOn ? `${inheritCount}個` : "OFF"}</span>
+  `;
+  if (excludedCount > 0) {
+    html += `<span class="premise-chip premise-chip--warn">手動除外 ${excludedCount}</span>`;
+  }
+  return html;
+}
+
+function updateDeckPremiseChips(excludedCount = excludedSkillIds.size) {
+  const el = document.getElementById("deck-premise");
+  if (!el) return;
+  el.innerHTML = buildPremiseChipsHtml({ excludedCount });
+}
+
+function updateTotalBarChips(excludedCount = excludedSkillIds.size) {
+  const el = document.getElementById("total-sp-bar-chips");
+  if (!el) return;
+  const fast = document.getElementById("fast-learner")?.checked;
+  const trainingLv = document.getElementById("training-hint-level")?.value || "5";
+  const fastClass = fast ? "premise-chip premise-chip--on" : "premise-chip";
+  let html = `
+    <button type="button" class="${fastClass}" id="bar-premise-fast-learner">切れ者 ${fast ? "ON" : "OFF"}</button>
+    <span class="premise-chip">トレ Lv${escapeHtml(trainingLv)}</span>
+  `;
+  if (excludedCount > 0) {
+    html += `<span class="premise-chip premise-chip--warn">除外${excludedCount}</span>`;
+  }
+  el.innerHTML = html;
+}
+
+function buildCharacterPickerItems() {
+  return [...state.characters]
+    .map((c) => ({
+      id: c.id,
+      searchText: normalizeSearchText(formatCharacterDisplayName(c.name)),
+      html: buildCardFaceHtml({
+        imageUrl: characterImageUrl(c.id),
+        typeStyle: { bg: "linear-gradient(160deg,#d4dce4,#8a9aaa)", ink: "#1c2420", label: "ウマ" },
+        rarity: "",
+        label: shortCharacterLabel(c.name),
+      }),
+    }))
+    .sort((a, b) => a.searchText.localeCompare(b.searchText, "ja"));
+}
+
+function buildSupportPickerItems(slotIndex) {
+  const occupied = new Set(
+    state.ui.supportIds.filter((id, idx) => id != null && idx !== slotIndex)
+  );
+  const filters = getSupportFilterState();
+  const externalQuery = normalizeSearchText(
+    document.getElementById("support-search")?.value || ""
+  ).trim();
+
+  return [...state.supports]
+    .filter((s) => {
+      if (occupied.has(s.id)) return false;
+      if (!supportMatchesFilters(s, filters, state.ui.supportIds[slotIndex])) return false;
+      if (externalQuery && !supportSearchHaystack(s).includes(externalQuery)) return false;
+      return true;
+    })
+    .sort((a, b) => b.id - a.id)
+    .map((s) => {
+      const typeStyle = getSupportTypeStyle(s.type);
+      return {
+        id: s.id,
+        searchText: supportSearchHaystack(s),
+        html: buildCardFaceHtml({
+          imageUrl: supportImageUrl(s.id),
+          typeStyle,
+          rarity: s.rarity,
+          label: shortSupportLabel(s),
+        }),
+      };
+    });
+}
+
+function openCharacterPicker() {
+  if (!cardPicker) return;
+  cardPicker.open({
+    title: "育成ウマ娘を選択（覚醒Lv5想定）",
+    items: buildCharacterPickerItems(),
+    selectedId: state.ui.characterId,
+    allowClear: false,
+    onPick: (id) => {
+      if (id == null) return;
+      state.ui.characterId = id;
+      syncHiddenCharacterSelect();
+      renderDeckCharacter();
+      renderScenarioLinkRadios();
+      recalc();
+    },
+  });
+}
+
+function openSupportPicker(slotIndex) {
+  if (!cardPicker) return;
+  cardPicker.open({
+    title: `サポートカード 枠${slotIndex + 1}`,
+    items: buildSupportPickerItems(slotIndex),
+    selectedId: state.ui.supportIds[slotIndex],
+    allowClear: true,
+    onPick: (id) => {
+      state.ui.supportIds[slotIndex] = id;
+      renderDeckSupports();
       renderEvents();
       renderScenarioLinkRadios();
       recalc();
-    });
+    },
   });
+}
+
+function renderSupportSlots() {
+  renderDeckDashboard();
 }
 
 function bindSupportFilters() {
   const refresh = () => {
     if (!state) return;
-    renderSupportSlots();
+    renderDeckSupports();
   };
   document.getElementById("support-search").addEventListener("input", refresh);
   document.getElementById("support-event-only").addEventListener("change", refresh);
@@ -181,20 +415,9 @@ function bindSupportFilters() {
   document.getElementById("support-type-filter").addEventListener("change", refresh);
 }
 
-function filterCharacterOptions(query) {
-  const sel = document.getElementById("character-select");
-  const q = normalizeSearchText(query).trim();
-  const selectedId = String(state.ui.characterId);
-  for (const opt of sel.options) {
-    const hay = opt.dataset.searchText || "";
-    // 選択中は常に表示（フィルタ外でも値を見失わない）
-    opt.hidden = q !== "" && opt.value !== selectedId && !hay.includes(q);
-  }
-}
-
 function renderCharacterSelect() {
   const sel = document.getElementById("character-select");
-  const search = document.getElementById("character-search");
+  if (!sel) return;
 
   const sorted = [...state.characters]
     .map((c) => ({
@@ -206,21 +429,11 @@ function renderCharacterSelect() {
   sel.innerHTML = sorted
     .map((c) => {
       const selected = c.id === state.ui.characterId ? " selected" : "";
-      const searchText = normalizeSearchText(c.displayName);
-      return `<option value="${c.id}" data-search-text="${escapeHtml(searchText)}"${selected}>${escapeHtml(c.displayName)}</option>`;
+      return `<option value="${c.id}"${selected}>${escapeHtml(c.displayName)}</option>`;
     })
     .join("");
 
-  sel.addEventListener("change", () => {
-    state.ui.characterId = Number(sel.value);
-    filterCharacterOptions(search.value);
-    renderScenarioLinkRadios();
-    recalc();
-  });
-
-  search.addEventListener("input", () => {
-    filterCharacterOptions(search.value);
-  });
+  renderDeckCharacter();
 }
 
 function formatSkillList(skills) {
@@ -706,6 +919,8 @@ function recalc({ resetFilterExclusions = false } = {}) {
 
   renderPlanWarnings(plan.unresolved);
   updateTotalDisplay(plan.total);
+  updateDeckPremiseChips(excludedSkillIds.size);
+  updateTotalBarChips(excludedSkillIds.size);
   updateSkillCountDisplay(plan);
   updateCopyIncludedSkillsButton(plan);
 
@@ -783,6 +998,11 @@ function bindSkillFilters() {
 }
 
 function bindOptions() {
+  const onOptionChange = () => {
+    updateDeckPremiseChips();
+    updateTotalBarChips();
+    recalc();
+  };
   [
     "fast-learner",
     "training-hint-level",
@@ -790,12 +1010,11 @@ function bindOptions() {
     "inherit-count",
     "inherit-hint",
     "inherit-base",
-  ].forEach(
-    (id) => {
-      document.getElementById(id).addEventListener("change", recalc);
-      document.getElementById(id).addEventListener("input", recalc);
-    }
-  );
+  ].forEach((id) => {
+    const el = document.getElementById(id);
+    el.addEventListener("change", onOptionChange);
+    el.addEventListener("input", onOptionChange);
+  });
 }
 
 /** タイトル（＋任意でレアリティ・タイプ）でサポカを検索 */
@@ -863,7 +1082,20 @@ async function init() {
     applyDefaultCharacter();
     applyDefaultSupports();
     renderCharacterSelect();
-    renderSupportSlots();
+    syncHiddenCharacterSelect();
+
+    cardPicker = createCardPicker({
+      dialog: document.getElementById("card-picker"),
+      titleEl: document.getElementById("card-picker-title"),
+      searchEl: document.getElementById("card-picker-search"),
+      gridEl: document.getElementById("card-picker-grid"),
+      closeBtn: document.getElementById("card-picker-close"),
+      clearBtn: document.getElementById("card-picker-clear"),
+    });
+
+    document.getElementById("deck-character")?.addEventListener("click", openCharacterPicker);
+    bindPremiseChipsOnce();
+    renderDeckDashboard();
     bindSupportFilters();
 
     renderEventScopeNotice();

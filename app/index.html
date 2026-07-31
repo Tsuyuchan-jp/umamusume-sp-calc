@@ -207,65 +207,67 @@
       <div id="load-error" class="panel error" hidden></div>
       <div id="plan-warnings" class="panel warning" hidden></div>
 
-      <section class="panel">
-        <h2>育成設定</h2>
-        <div class="grid-2">
-          <div>
-            <label for="character-select">育成ウマ娘（覚醒Lv5想定）</label>
+      <section class="panel panel--deck">
+        <div class="deck-heading">
+          <h2>編成</h2>
+          <p class="hint deck-heading__scenario">シナリオ: らっしゃい！トレセン軒！（固定）</p>
+        </div>
+        <div class="deck-dashboard">
+          <div class="deck-dashboard__row">
+            <div class="deck-character-wrap">
+              <span class="deck-slot-label">育成ウマ娘</span>
+              <button
+                type="button"
+                id="deck-character"
+                class="deck-slot deck-slot--character"
+                aria-label="育成ウマ娘を選択"
+              ></button>
+            </div>
+            <div class="deck-supports-wrap">
+              <span class="deck-slot-label">サポートカード（6枚）</span>
+              <div class="deck-supports" id="deck-supports"></div>
+            </div>
+          </div>
+          <div id="deck-premise" class="deck-premise" aria-label="計算前提"></div>
+        </div>
+        <details class="deck-filters-collapse">
+          <summary>サポカ検索・絞込（ピッカー用）</summary>
+          <div class="support-filters">
             <input
               type="search"
-              id="character-search"
-              placeholder="名前で検索（ひらがな可）"
+              id="support-search"
+              placeholder="サポカ名で検索（ひらがな可）"
               autocomplete="off"
             />
-            <select id="character-select"></select>
+            <label class="checkbox-row support-filter-check">
+              <input type="checkbox" id="support-event-only" checked />
+              イベント対応のみ
+            </label>
+            <label class="checkbox-row support-filter-check">
+              <input type="checkbox" id="support-ssr-only" />
+              SSRのみ
+            </label>
+            <label class="support-type-label">
+              タイプ
+              <select id="support-type-filter">
+                <option value="">すべて</option>
+                <option value="speed">スピード</option>
+                <option value="stamina">スタミナ</option>
+                <option value="power">パワー</option>
+                <option value="guts">根性</option>
+                <option value="wit">賢さ</option>
+                <option value="friend">友人</option>
+              </select>
+            </label>
           </div>
-          <div>
-            <label>シナリオ</label>
-            <p class="hint">らっしゃい！トレセン軒！（固定）</p>
-          </div>
-        </div>
-        <label>サポートカード（6枚）</label>
-        <div class="support-filters">
-          <input
-            type="search"
-            id="support-search"
-            placeholder="サポカ名で検索（ひらがな可）"
-            autocomplete="off"
-          />
-          <label class="checkbox-row support-filter-check">
-            <input type="checkbox" id="support-event-only" checked />
-            イベント対応のみ
-          </label>
-          <label class="checkbox-row support-filter-check">
-            <input type="checkbox" id="support-ssr-only" />
-            SSRのみ
-          </label>
-          <label class="support-type-label">
-            タイプ
-            <select id="support-type-filter">
-              <option value="">すべて</option>
-              <option value="speed">スピード</option>
-              <option value="stamina">スタミナ</option>
-              <option value="power">パワー</option>
-              <option value="guts">根性</option>
-              <option value="wit">賢さ</option>
-              <option value="friend">友人</option>
-            </select>
-          </label>
-        </div>
-        <div class="support-slots" id="support-slots"></div>
+        </details>
+        <select id="character-select" hidden aria-hidden="true"></select>
       </section>
 
-      <section class="panel">
+      <section class="panel panel--options">
         <h2>オプション</h2>
+        <input type="checkbox" id="fast-learner" hidden aria-hidden="true" />
         <div class="options-row">
-          <label class="checkbox-row">
-            <input type="checkbox" id="fast-learner" />
-            切れ者（全スキル+10%OFF）
-          </label>
-        </div>
-        <div class="options-row" style="margin-top: 0.5rem">
           <label class="checkbox-row">
             <input type="checkbox" id="inherit-enabled" />
             継承固有を含める
@@ -283,17 +285,14 @@
             <input type="number" id="inherit-base" min="1" value="200" style="width: 5rem" />
           </label>
         </div>
-        <div class="options-row options-row--training-hint" style="margin-top: 0.5rem">
-          <label class="option-inline-label">
-            トレヒントLv
-            <select id="training-hint-level">
-              <option value="5" selected>5</option>
-              <option value="4">4</option>
-              <option value="3">3</option>
-            </select>
-          </label>
-          <span class="options-note">編成サポカのトレヒントに一律適用（イベント・シナリオ由来は変えません）</span>
-        </div>
+        <select id="training-hint-level" hidden aria-hidden="true">
+          <option value="5" selected>5</option>
+          <option value="4">4</option>
+          <option value="3">3</option>
+        </select>
+        <p class="hint options-note">
+          切れ者・トレヒントLvは編成欄の前提チップから変更できます。トレヒントは編成サポカに一律適用（イベント・シナリオ由来は変えません）。
+        </p>
       </section>
 
       <section class="panel">
@@ -344,9 +343,9 @@
         </details>
       </section>
 
-      <section class="panel">
+      <section class="panel panel--workbench">
         <div class="result-panel-heading">
-          <h2>結果</h2>
+          <h2>結果（作業台）</h2>
           <div class="result-panel-heading__meta">
             <span id="skill-count-meta" class="skill-count-meta">スキル数 —</span>
             <button
@@ -434,8 +433,28 @@
         <span class="total-sp-bar-label">合計必要SP</span>
         <span id="total-sp-bar-value" class="total-sp-bar-value">—</span>
         <span id="total-sp-delta" class="total-sp-delta" hidden></span>
+        <div id="total-sp-bar-chips" class="total-sp-bar-chips" aria-label="計算前提"></div>
       </div>
     </div>
+
+    <dialog id="card-picker" class="card-picker" aria-labelledby="card-picker-title">
+      <div class="card-picker__chrome">
+        <h2 id="card-picker-title" class="card-picker__title"></h2>
+        <button type="button" id="card-picker-close" class="card-picker__close" aria-label="閉じる">×</button>
+      </div>
+      <input
+        type="search"
+        id="card-picker-search"
+        class="card-picker__search"
+        placeholder="名前で検索（ひらがな可）"
+        autocomplete="off"
+      />
+      <div id="card-picker-grid" class="card-picker__grid"></div>
+      <div class="card-picker__footer">
+        <button type="button" id="card-picker-clear" class="card-picker__clear">選択をクリア</button>
+      </div>
+    </dialog>
+
     <script type="module" src="js/app.js"></script>
   </body>
 </html>
