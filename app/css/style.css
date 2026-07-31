@@ -55,6 +55,13 @@ header p {
   cursor: pointer;
 }
 
+.header-actions {
+  display: flex;
+  flex-shrink: 0;
+  gap: 0.5rem;
+  align-items: flex-start;
+}
+
 .help-open-btn:hover {
   background: rgba(255, 255, 255, 0.12);
 }
@@ -226,6 +233,174 @@ header p {
 
 .help-dialog a {
   color: #1a5f8a;
+}
+
+/* 設計メモリダイアログ（help-dialog と同系統） */
+.memory-dialog {
+  width: min(520px, calc(100vw - 1.5rem));
+  max-height: min(85vh, 640px);
+  margin: auto;
+  padding: 0;
+  border: none;
+  border-radius: 8px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+  color: #1a1a1a;
+}
+
+.memory-dialog::backdrop {
+  background: rgba(0, 0, 0, 0.45);
+}
+
+.memory-dialog__chrome {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.85rem 1rem;
+  background: #2c3e50;
+  color: #fff;
+  border-radius: 8px 8px 0 0;
+}
+
+.memory-dialog__title {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.memory-dialog__close {
+  flex-shrink: 0;
+  width: 2rem;
+  height: 2rem;
+  padding: 0;
+  border: none;
+  border-radius: 4px;
+  background: transparent;
+  color: #fff;
+  font-size: 1.35rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.memory-dialog__close:hover {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.memory-dialog__body {
+  padding: 0.85rem 1rem 1.15rem;
+  overflow-y: auto;
+  max-height: calc(min(85vh, 640px) - 3.25rem);
+  background: #fff;
+  border-radius: 0 0 8px 8px;
+}
+
+.memory-save-row {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 0.85rem;
+}
+
+.memory-save-row input {
+  flex: 1;
+  min-width: 0;
+  padding: 0.4rem 0.55rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 0.9rem;
+}
+
+.memory-save-row button {
+  flex-shrink: 0;
+  padding: 0.4rem 0.75rem;
+  border: 1px solid #1a5f8a;
+  border-radius: 4px;
+  background: #1a5f8a;
+  color: #fff;
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+
+.memory-save-row button:hover {
+  background: #154a6c;
+}
+
+.memory-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.memory-list__empty {
+  margin: 0.5rem 0;
+  color: #888;
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+.memory-item {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding: 0.65rem 0.75rem;
+  border: 1px solid #e8e8e8;
+  border-radius: 6px;
+  background: #fafbfc;
+}
+
+.memory-item__meta {
+  min-width: 0;
+  flex: 1;
+}
+
+.memory-item__name {
+  font-weight: 600;
+  font-size: 0.92rem;
+}
+
+.memory-item__sub {
+  font-size: 0.78rem;
+  color: #666;
+  margin-top: 0.15rem;
+}
+
+.memory-item__actions {
+  display: flex;
+  gap: 0.35rem;
+  flex-shrink: 0;
+}
+
+.memory-item__actions button {
+  padding: 0.3rem 0.55rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background: #fff;
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+
+.memory-item__actions button:hover {
+  background: #f0f3f5;
+}
+
+.memory-item__actions .memory-restore-btn {
+  border-color: #1f6f5a;
+  color: #1f6f5a;
+}
+
+.memory-item__actions .memory-delete-btn {
+  border-color: #c45;
+  color: #c45;
+}
+
+.memory-hint {
+  margin: 0 0 0.75rem;
+  font-size: 0.8rem;
+  color: #666;
 }
 
 @media (max-width: 480px) {
@@ -505,6 +680,7 @@ input[type="search"] {
 .card-face {
   position: relative;
   width: 100%;
+  aspect-ratio: 3 / 4;
   border-radius: 6px;
   overflow: hidden;
   background: var(--card-bg, #e8e8e8);

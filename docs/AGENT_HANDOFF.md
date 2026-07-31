@@ -17,19 +17,20 @@
 | `data/scenarios/toresenken.json` | **あり** — リンク白/金・RMJ自動計上・ラーメン3択（実機通し確認済み） |
 | Python / `py` | `where` 上は WindowsApps の `python.exe` スタブ寄り。`py` 無し。再 extract 時に実体 Python 要確認 |
 | Git | remote: `Tsuyuchan-jp/umamusume-sp-calc`（public）。Pages デプロイ運用中 |
-| 公開 URL | **https://Tsuyuchan-jp.github.io/umamusume-sp-calc/app/** （v0.1.13・2026-07） |
+| 公開 URL | **https://Tsuyuchan-jp.github.io/umamusume-sp-calc/app/** （v0.1.14） |
 | サポカ絞込 | **イベント対応のみ**（デフォルト ON・`prioritySupportIds`）＋ SSR／タイプ／検索 |
 | 結果スキル絞込 | **バ場／距離／作戦**＋**適用ボタン**（draft/committed）。確定済み絞込を編成変更時に新規 skillId へ増分適用。実装: `skillActivation.js` / `app.js` |
 | 結果スキル件数 | 見出し右 **「スキル数 N/M」**（ON/全件ともスキル本数。通常行1、継承固有は `skillWeight`＝個数）。実装: `rowSkillWeight` / `updateSkillCountDisplay` / `recalc`。実機確認済み |
 | 含めるスキルコピー | 見出し右ボタン。ON 表示行の `name` をカンマ区切りでクリップボードへ（継承除外）。実装: `copyIncludedSkills.js` / `recalc`。実機確認済み |
 | トレヒントLv | オプション select（3/4/5・既定5）。`aggregate.js` の `trainingHintLevel`。実機確認済み |
 | 説明書 UI | ヘッダー右 **「使い方」** → `<dialog>`（5セクション・実機確認済み） |
+| 設計メモリ | ヘッダー **「メモリ」** → 編成・前提・除外・レギュを localStorage 保存／復元。実装: `designSnapshot.js` / `designMemory.js` / `app.js` |
 
-**アプリは実用段階・公開済み。** 常用デッキ＋シナリオ通し確認は **実機 OK**（2026-07）。**v0.1.13**（ゲーム更新追従・優先40種・キセキ/夏空アーモンド。イベントは GameWith 一時手載せ）は **実機確認済み**（2026-07-30）。U-tools 掲載後の置換は [CHANGELOG Unreleased](./CHANGELOG.md#unreleased) 参照。
+**アプリは実用段階・公開済み。** 常用デッキ＋シナリオ通し確認は **実機 OK**（2026-07）。**v0.1.13**（ゲーム更新追従・優先40種・キセキ/夏空アーモンド。イベントは GameWith 一時手載せ）は **実機確認済み**（2026-07-30）。**v0.1.14**（ピッカー表示修正・設計メモリ）。U-tools 掲載後の置換は [CHANGELOG Unreleased](./CHANGELOG.md#unreleased) 参照。
 
 ## 次にやること（優先順）
 
-1. UX 改善（結果の由来表示・初期デッキ6枚化など。プリセットは当面スコープ外。※結果スキル絞込の適用ボタン＋デッキ変更連動は 2026-07 実装済み）
+1. UX 改善の残り（画像アセット投入・由来表示強化・初期デッキ6枚化・スクショ。全体デザイン質感パスはメモリ後〜スクショ前）
 2. 実機で確認したケースの回帰テスト追加（`npm test` 拡充）
 3. ゲーム更新時: [GAME_UPDATE_RUNBOOK.md](./GAME_UPDATE_RUNBOOK.md) に従い extract → events → verify → push
 4. （運用）`master` push で Pages 自動デプロイ。失敗時は Settings → Pages Source=GitHub Actions を確認
@@ -81,7 +82,11 @@ docs/DEV.md             セットアップ・トラブルシュート
 docs/ROADMAP.md         完了 / 残り
 docs/EVENT_EXTRACT_DESIGN.md  イベント抽出設計（Phase B 完了）
 docs/UTOOLS_EVENT_PARSE.md    U-tools SSR パース仕様
+docs/ASSETS.md           画像アセット方針（パス規約）
+docs/UX_PHILOSOPHY.md    UX 思想
 app/                    ブラウザアプリ
+app/js/designSnapshot.js  1設計スナップショット境界
+app/js/designMemory.js    設計メモリ（localStorage）
 data/                   JSON（extract 生成 + シナリオ手メンテ）
 scripts/extract_mdb.mjs master.mdb → skills/supports/characters（推奨・`activation` 付与）
 scripts/patch_skill_activation.mjs 既存 skills.json へ activation のみ付与

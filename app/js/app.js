@@ -13,6 +13,15 @@ import {
   getIncludedSkillRows,
 } from "./copyIncludedSkills.js";
 import {
+  applyDesignSnapshot,
+  captureDesignSnapshot,
+} from "./designSnapshot.js";
+import {
+  deleteEntry as deleteMemoryEntry,
+  listEntries as listMemoryEntries,
+  saveEntry as saveMemoryEntry,
+} from "./designMemory.js";
+import {
   getDeckLinkCharacterIds,
   resolveLinkSkill,
 } from "./scenarioLink.js";
@@ -61,7 +70,7 @@ let cardPicker = null;
 let premiseChipsBound = false;
 
 /** Pages の max-age キャッシュで古い events.json が残るのを防ぐ（版上げ時に更新） */
-const DATA_CACHE_BUST = "0.1.13";
+const DATA_CACHE_BUST = "0.1.14";
 
 async function loadJson(path) {
   const sep = path.includes("?") ? "&" : "?";
@@ -509,6 +518,228 @@ function bindHelpDialog() {
   dialog.addEventListener("click", (e) => {
     if (e.target === dialog) {
       dialog.close();
+    }
+  });
+}
+
+/** 計算前提オプションを DOM から収集 */
+function readDesignOptions() {
+  return {
+    fastLearner: document.getElementById("fast-learner")?.checked ?? false,
+    trainingHintLevel: Number(document.getElementById("training-hint-level")?.value) || 5,
+    inheritEnabled: document.getElementById("inherit-enabled")?.checked ?? false,
+    inheritCount: Number(document.getElementById("inherit-count")?.value) || 0,
+    inheritHintLevel: Number(document.getElementById("inherit-hint")?.value) || 1,
+    inheritBaseSp: Number(document.getElementById("inherit-base")?.value) || 200,
+  };
+}
+
+/** 計算前提オプションを DOM へ書き戻し */
+function writeDesignOptions(options = {}) {
+  const fast = document.getElementById("fast-learner");
+  if (fast) fast.checked = Boolean(options.fastLearner);
+
+  const training = document.getElementById("training-hint-level");
+  if (training && options.trainingHintLevel != null) {
+    training.value = String(options.trainingHintLevel);
+  }
+
+  const inheritEnabled = document.getElementById("inherit-enabled");
+  if (inheritEnabled) inheritEnabled.checked = Boolean(options.inheritEnabled);
+
+  const inheritCount = document.getElementById("inherit-count");
+  if (inheritCount && options.inheritCount != null) {
+    inheritCount.value = String(options.inheritCount);
+  }
+
+  const inheritHint = document.getElementById("inherit-hint");
+  if (inheritHint && options.inheritHintLevel != null) {
+    inheritHint.value = String(options.inheritHintLevel);
+  }
+
+  const inheritBase = document.getElementById("inherit-base");
+  if (inheritBase && options.inheritBaseSp != null) {
+    inheritBase.value = String(options.inheritBaseSp);
+  }
+}
+
+/** 確定レギュをドラフト UI に反映 */
+function writeSkillFilterDraft(filter = {}) {
+  const ground = document.getElementById("skill-filter-ground");
+  const distance = document.getElementById("skill-filter-distance");
+  const style = document.getElementById("skill-filter-style");
+  if (ground) ground.value = filter.ground || "";
+  if (distance) distance.value = filter.distance || "";
+  if (style) style.value = filter.style || "";
+}
+
+/** 現在の画面状態をスナップショット化 */
+function captureCurrentDesign() {
+  return captureDesignSnapshot({
+    ui: state.ui,
+    options: readDesignOptions(),
+    excludedSkillIds,
+    committedSkillFilter,
+  });
+}
+
+/**
+ * スナップショットを画面へ復元
+ * @param {object} snapshot
+ * @returns {boolean}
+ */
+function restoreDesign(snapshot) {
+  if (!state) return false;
+  const applied = applyDesignSnapshot(snapshot, state.ui);
+  if (!applied) return false;
+
+  // 未知イベント ID を落とす
+  const knownEventIds = new Set((state.events.events || []).map((e) => e.id));
+  state.ui.enabledEventIds = new Set(
+    [...state.ui.enabledEventIds].filter((id) => knownEventIds.has(id))
+  );
+  for (const id of [...state.ui.eventChoiceIds.keys()]) {
+    if (!knownEventIds.has(id)) state.ui.eventChoiceIds.delete(id);
+  }
+  // single イベントの欠落キーを既定で補完
+  for (const evt of state.events.events || []) {
+    if (evt.selection === "single" && !state.ui.eventChoiceIds.has(evt.id)) {
+      state.ui.eventChoiceIds.set(evt.id, evt.defaultChoiceId ?? "none");
+    }
+  }
+
+  writeDesignOptions(applied.options);
+  excludedSkillIds.clear();
+  for (const id of applied.excludedSkillIds) {
+    const n = Number(id);
+    if (!Number.isNaN(n)) excludedSkillIds.add(n);
+  }
+  committedSkillFilter = {
+    ground: applied.committedSkillFilter.ground || "",
+    distance: applied.committedSkillFilter.distance || "",
+    style: applied.committedSkillFilter.style || "",
+  };
+  writeSkillFilterDraft(committedSkillFilter);
+  previousPlanSkillIds = new Set();
+  previousTotal = null;
+
+  syncHiddenCharacterSelect();
+  renderDeckDashboard();
+  renderEvents();
+  renderScenarioLinkRadios();
+  renderSeniorRmjRadios();
+  updateSkillFilterBoxUI();
+  recalc();
+  return true;
+}
+
+function formatMemoryUpdatedAt(ts) {
+  try {
+    return new Date(ts).toLocaleString("ja-JP", {
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+      hour: "2-digit",
+      minute: "2-digit",
+    });
+  } catch {
+    return "";
+  }
+}
+
+function renderMemoryList() {
+  const list = document.getElementById("memory-list");
+  if (!list) return;
+  const entries = listMemoryEntries();
+  list.innerHTML = "";
+  if (!entries.length) {
+    list.innerHTML = '<li class="memory-list__empty">保存済みの設計はまだありません</li>';
+    return;
+  }
+  for (const entry of entries) {
+    const li = document.createElement("li");
+    li.className = "memory-item";
+    const sp =
+      entry.totalSp == null ? "—" : `${Number(entry.totalSp).toLocaleString("ja-JP")} SP`;
+    li.innerHTML = `
+      <div class="memory-item__meta">
+        <div class="memory-item__name">${escapeHtml(entry.name)}</div>
+        <div class="memory-item__sub">${escapeHtml(formatMemoryUpdatedAt(entry.updatedAt))} · ${escapeHtml(sp)}</div>
+      </div>
+      <div class="memory-item__actions">
+        <button type="button" class="memory-restore-btn" data-id="${escapeHtml(entry.id)}">復元</button>
+        <button type="button" class="memory-delete-btn" data-id="${escapeHtml(entry.id)}">削除</button>
+      </div>
+    `;
+    list.appendChild(li);
+  }
+}
+
+function bindMemoryDialog() {
+  const dialog = document.getElementById("memory-dialog");
+  const openBtn = document.getElementById("memory-open");
+  const closeBtn = document.getElementById("memory-close");
+  const saveBtn = document.getElementById("memory-save-btn");
+  const nameInput = document.getElementById("memory-name-input");
+  const list = document.getElementById("memory-list");
+  if (!dialog || !openBtn || !closeBtn || !saveBtn || !nameInput || !list) return;
+
+  openBtn.addEventListener("click", () => {
+    renderMemoryList();
+    dialog.showModal();
+    nameInput.focus();
+  });
+
+  closeBtn.addEventListener("click", () => dialog.close());
+  dialog.addEventListener("click", (e) => {
+    if (e.target === dialog) dialog.close();
+  });
+
+  saveBtn.addEventListener("click", () => {
+    if (!state) return;
+    const snapshot = captureCurrentDesign();
+    saveMemoryEntry({
+      name: nameInput.value,
+      snapshot,
+      totalSp: currentPlan?.total ?? null,
+    });
+    nameInput.value = "";
+    renderMemoryList();
+  });
+
+  nameInput.addEventListener("keydown", (e) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      saveBtn.click();
+    }
+  });
+
+  list.addEventListener("click", (e) => {
+    const restoreBtn = e.target.closest(".memory-restore-btn");
+    const deleteBtn = e.target.closest(".memory-delete-btn");
+    if (restoreBtn) {
+      const id = restoreBtn.dataset.id;
+      const entries = listMemoryEntries();
+      const entry = entries.find((x) => x.id === id);
+      if (!entry?.snapshot) return;
+      if (!window.confirm(`「${entry.name}」を復元しますか？\n現在の画面状態は上書きされます。`)) {
+        return;
+      }
+      if (restoreDesign(entry.snapshot)) {
+        dialog.close();
+      } else {
+        window.alert("この設計は復元できませんでした（形式が古い可能性があります）。");
+      }
+      return;
+    }
+    if (deleteBtn) {
+      const id = deleteBtn.dataset.id;
+      const entries = listMemoryEntries();
+      const entry = entries.find((x) => x.id === id);
+      if (!entry) return;
+      if (!window.confirm(`「${entry.name}」を削除しますか？`)) return;
+      deleteMemoryEntry(id);
+      renderMemoryList();
     }
   });
 }
@@ -1101,6 +1332,7 @@ async function init() {
     renderEventScopeNotice();
     bindEventScopeDisclosure();
     bindHelpDialog();
+    bindMemoryDialog();
     renderEvents();
     renderScenarioLinkRadios();
     renderSeniorRmjRadios();

@@ -9,13 +9,39 @@
   <body>
     <header>
       <div class="header-text">
-        <h1>umamusume-sp-calc<span class="app-version">v0.1.13</span></h1>
+        <h1>umamusume-sp-calc<span class="app-version">v0.1.14</span></h1>
         <p>取得可能スキル全習得の理論必要SP（ヒント想定込み）</p>
       </div>
-      <button type="button" id="help-open" class="help-open-btn" aria-haspopup="dialog" aria-controls="help-dialog">
-        使い方
-      </button>
+      <div class="header-actions">
+        <button type="button" id="memory-open" class="help-open-btn" aria-haspopup="dialog" aria-controls="memory-dialog">
+          メモリ
+        </button>
+        <button type="button" id="help-open" class="help-open-btn" aria-haspopup="dialog" aria-controls="help-dialog">
+          使い方
+        </button>
+      </div>
     </header>
+
+    <dialog id="memory-dialog" class="memory-dialog" aria-labelledby="memory-dialog-title">
+      <div class="memory-dialog__chrome">
+        <h2 id="memory-dialog-title" class="memory-dialog__title">設計メモリ</h2>
+        <button type="button" id="memory-close" class="memory-dialog__close" aria-label="閉じる">×</button>
+      </div>
+      <div class="memory-dialog__body">
+        <p class="memory-hint">編成・前提・除外・レギュ絞込を1設計として保存し、あとから切り替えられます（このブラウザに保存）。</p>
+        <div class="memory-save-row">
+          <input
+            type="text"
+            id="memory-name-input"
+            placeholder="設計名（例: スピ3スタ1）"
+            maxlength="40"
+            autocomplete="off"
+          />
+          <button type="button" id="memory-save-btn">保存</button>
+        </div>
+        <ul id="memory-list" class="memory-list" aria-label="保存済み設計"></ul>
+      </div>
+    </dialog>
 
     <dialog id="help-dialog" class="help-dialog" aria-labelledby="help-dialog-title">
       <div class="help-dialog__chrome">
@@ -73,6 +99,9 @@
                   <li>結果一覧の「含める」を外すとそのスキルを合計から除外できる</li>
                   <li>「含めるスキルをコピー」で、ON のスキル名をカンマ区切りでクリップボードへコピーできる（外部ツール向け）</li>
                 </ul>
+              </li>
+              <li>
+                ヘッダーの <strong>メモリ</strong> で現在の設計（編成・前提・除外・レギュ）を名前付き保存し、あとから復元できる
               </li>
             </ol>
           </div>

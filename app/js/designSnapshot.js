@@ -1,13 +1,30 @@
 /**
  * 1設計（編成バリアント）の永続化境界。
- * 将来のメモリ／スクショはこの形を保存・復元する。
+ * メモリ／スクショはこの形を保存・復元する。
  */
+
+/**
+ * @param {Map|object} value
+ * @returns {object}
+ */
+function toPlainEventChoiceIds(value) {
+  if (value instanceof Map) return Object.fromEntries(value);
+  return { ...(value || {}) };
+}
+
+/**
+ * @param {object} value
+ * @returns {Map<string, string>}
+ */
+function toEventChoiceMap(value) {
+  return new Map(Object.entries(value || {}));
+}
 
 /**
  * @param {object} params
  * @param {object} params.ui - app の state.ui
  * @param {object} params.options - 切れ者・継承・トレヒント等
- * @param {Set<number>} params.excludedSkillIds
+ * @param {Set<number>|number[]} params.excludedSkillIds
  * @param {object} params.committedSkillFilter
  */
 export function captureDesignSnapshot({
@@ -21,7 +38,7 @@ export function captureDesignSnapshot({
     characterId: ui.characterId,
     supportIds: [...ui.supportIds],
     enabledEventIds: [...ui.enabledEventIds],
-    eventChoiceIds: { ...ui.eventChoiceIds },
+    eventChoiceIds: toPlainEventChoiceIds(ui.eventChoiceIds),
     scenarioLinkChoiceId: ui.scenarioLinkChoiceId,
     seniorRmjChoiceId: ui.seniorRmjChoiceId,
     options: { ...options },
@@ -31,17 +48,23 @@ export function captureDesignSnapshot({
 }
 
 /**
- * スナップショットから UI 状態へ復元（メモリ機能用・将来）
+ * スナップショットから UI 状態へ復元。
+ * ui を書き換えたうえ、非 ui フィールドを戻り値で返す。
  * @param {object} snapshot
  * @param {object} ui - 書き換え対象の state.ui
+ * @returns {{ options: object, excludedSkillIds: number[], committedSkillFilter: object }|false}
  */
 export function applyDesignSnapshot(snapshot, ui) {
   if (!snapshot || snapshot.version !== 1) return false;
   ui.characterId = snapshot.characterId;
   ui.supportIds = [...snapshot.supportIds];
-  ui.enabledEventIds = new Set(snapshot.enabledEventIds);
-  ui.eventChoiceIds = { ...snapshot.eventChoiceIds };
+  ui.enabledEventIds = new Set(snapshot.enabledEventIds || []);
+  ui.eventChoiceIds = toEventChoiceMap(snapshot.eventChoiceIds);
   ui.scenarioLinkChoiceId = snapshot.scenarioLinkChoiceId;
   ui.seniorRmjChoiceId = snapshot.seniorRmjChoiceId;
-  return true;
+  return {
+    options: { ...(snapshot.options || {}) },
+    excludedSkillIds: [...(snapshot.excludedSkillIds || [])],
+    committedSkillFilter: { ...(snapshot.committedSkillFilter || {}) },
+  };
 }

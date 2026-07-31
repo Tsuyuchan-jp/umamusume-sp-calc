@@ -14,6 +14,25 @@
 
 - **30307 / 30308 の U-tools 化**: U-tools にキセキ（巻頭カラーの夏）・アーモンドアイ（夏空チルタイム）が掲載されたら `npm run extract:events` → `compare:events` → `apply:events` を実行し、`events.preserve.json` から GameWith 一時手載せ6件（`evt_30307_*` / `evt_30308_*`）を削除する。docs の件数・注記も更新する
 
+## [0.1.14] — 2026-08-01
+
+### 追加
+
+- **設計メモリ**（ヘッダー「メモリ」）: 編成・前提（切れ者・トレLv・継承）・除外・レギュ絞込を名前付きで localStorage に保存／復元（上限20件）
+- `designMemory.js` / `designSnapshot.js` の完全往復（options・excluded・committed filter）
+
+### 修正
+
+- サポカ／育成ウマ娘ピッカーでカード面が潰れて候補が見えない問題（`.card-face` に `aspect-ratio`）
+
+### 変更
+
+- バージョン表記を **v0.1.14**（`DATA_CACHE_BUST` 同値）
+
+### 確認
+
+- `npm test` 緑（スナップショット往復・メモリ CRUD）
+
 ## [0.1.13] — 2026-07-30
 
 ### 追加
