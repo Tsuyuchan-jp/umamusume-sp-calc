@@ -157,8 +157,9 @@ function buildCardFaceHtml({ imageUrl, typeStyle, rarity, label, empty = false }
   const typeLabel = escapeHtml(typeStyle?.label || "");
   return `
     <div class="card-face" style="--card-bg:${typeStyle?.bg || "#e8e8e8"};--card-ink:${typeStyle?.ink || "#1c2420"}">
-      <img class="card-face__img" src="${escapeHtml(imageUrl)}" alt="" loading="lazy"
-        onerror="this.style.display='none';this.nextElementSibling.hidden=false" />
+      <img class="card-face__img" src="${escapeHtml(imageUrl)}" alt=""
+        onload="this.classList.add('is-loaded');this.nextElementSibling?.setAttribute('hidden','');"
+        onerror="this.classList.add('is-failed');this.nextElementSibling?.removeAttribute('hidden');" />
       <div class="card-face__ph" hidden>
         <span class="card-face__ph-type">${typeLabel}</span>
         <span>${safeLabel}</span>

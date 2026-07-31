@@ -706,11 +706,17 @@ input[type="search"] {
   height: 100%;
   object-fit: cover;
   display: block;
+  z-index: 1;
+}
+
+.card-face__img.is-failed {
+  display: none;
 }
 
 .card-face__ph {
   position: absolute;
   inset: 0;
+  z-index: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -722,6 +728,11 @@ input[type="search"] {
   line-height: 1.2;
   background: var(--card-bg);
   color: var(--card-ink);
+}
+
+/* display:flex が [hidden] を打ち消さないように明示 */
+.card-face__ph[hidden] {
+  display: none !important;
 }
 
 .card-face__ph-type {

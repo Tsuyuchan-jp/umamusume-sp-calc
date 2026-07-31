@@ -14,19 +14,38 @@ const DEFAULT_STYLE = {
   ink: "#1c2420",
 };
 
+/** 画像 URL のキャッシュ回避（追加前の 404 が残るのを防ぐ。版上げ時に更新） */
+const ASSET_CACHE_BUST = "0.1.14a";
+
 /** @param {string} [type] */
 export function getSupportTypeStyle(type) {
   return SUPPORT_TYPE_STYLES[type] || DEFAULT_STYLE;
 }
 
+/**
+ * app/ 配下ページから assets/ への相対 URL（絶対化してベースパス差を吸収）
+ * @param {string} relFromApp 例: supports/30305.webp
+ */
+function assetUrl(relFromApp) {
+  const rel = `../assets/${relFromApp}?v=${ASSET_CACHE_BUST}`;
+  if (typeof window !== "undefined" && window.location?.href) {
+    try {
+      return new URL(rel, window.location.href).href;
+    } catch {
+      /* fall through */
+    }
+  }
+  return rel;
+}
+
 /** サポカ画像 URL（無ければ onerror でプレースホルダ） */
 export function supportImageUrl(supportId) {
-  return `../assets/supports/${supportId}.webp`;
+  return assetUrl(`supports/${supportId}.webp`);
 }
 
 /** 育成ウマ娘画像 URL */
 export function characterImageUrl(characterId) {
-  return `../assets/characters/${characterId}.webp`;
+  return assetUrl(`characters/${characterId}.webp`);
 }
 
 /** カード表示用の短い名前 */
