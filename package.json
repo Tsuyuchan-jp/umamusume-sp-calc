@@ -17,6 +17,8 @@
     "apply:events": "node scripts/apply_extracted_events.mjs",
     "merge-support-events": "node scripts/merge_support_events.mjs",
     "reclassify-support-events": "node scripts/reclassify_support_events.mjs",
+    "assets:extract": "node scripts/run_extract_card_assets.mjs",
+    "assets:import": "node scripts/import_card_assets.mjs",
     "serve": "npx --yes serve . -l 8080"
   }
 }

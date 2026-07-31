@@ -30,10 +30,10 @@
 
 ## 次にやること（優先順）
 
-1. UX 改善の残り（画像アセット投入・由来表示強化・初期デッキ6枚化・スクショ。全体デザイン質感パスはメモリ後〜スクショ前）
+1. UX 改善の残り（由来表示強化・初期デッキ6枚化・全体デザイン質感パス・スクショ。画像 Phase1 は済）
 2. 実機で確認したケースの回帰テスト追加（`npm test` 拡充）
-3. ゲーム更新時: [GAME_UPDATE_RUNBOOK.md](./GAME_UPDATE_RUNBOOK.md) に従い extract → events → verify → push
-4. （運用）`master` push で Pages 自動デプロイ。失敗時は Settings → Pages Source=GitHub Actions を確認
+3. ゲーム更新時: [GAME_UPDATE_RUNBOOK.md](./GAME_UPDATE_RUNBOOK.md) に従い extract → events →（必要なら assets:extract/import）→ verify。**push は v1.0.0 までしない**
+4. （v1.0.0 以降）`master` push で Pages 自動デプロイ
 
 ## 非交渉ルール（変えない）
 
@@ -82,11 +82,12 @@ docs/DEV.md             セットアップ・トラブルシュート
 docs/ROADMAP.md         完了 / 残り
 docs/EVENT_EXTRACT_DESIGN.md  イベント抽出設計（Phase B 完了）
 docs/UTOOLS_EVENT_PARSE.md    U-tools SSR パース仕様
-docs/ASSETS.md           画像アセット方針（パス規約）
-docs/UX_PHILOSOPHY.md    UX 思想
-app/                    ブラウザアプリ
+docs/ASSETS.md           画像アセット方針・抽出／import
 app/js/designSnapshot.js  1設計スナップショット境界
 app/js/designMemory.js    設計メモリ（localStorage）
+scripts/extract_card_assets.py  カード画像抽出（meta+dat）
+scripts/import_card_assets.mjs  flat PNG → webp
+assets/supports|characters/  優先枠 webp（Phase1）
 data/                   JSON（extract 生成 + シナリオ手メンテ）
 scripts/extract_mdb.mjs master.mdb → skills/supports/characters（推奨・`activation` 付与）
 scripts/patch_skill_activation.mjs 既存 skills.json へ activation のみ付与

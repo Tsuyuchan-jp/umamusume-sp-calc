@@ -215,7 +215,12 @@ PowerShell では **`git add .` と `git commit` を別ステップ**（`&&` 禁
 
 ```powershell
 git add .
-git commit -m "chore: ゲーム更新に伴うデータ再 extract（2026-07-14）"
+git commit -m "chore: ゲーム更新に伴うデータ再 extract（YYYY-MM-DD）"
+```
+
+**push 方針（現行）**: UX 思想が完成した **v1.0.0** まで `git push` / Pages 反映は行わない。ローカルコミットのみで復元点を残す。v1.0.0 以降は従来どおり:
+
+```powershell
 git push
 ```
 
@@ -225,6 +230,29 @@ push 後:
 2. https://Tsuyuchan-jp.github.io/umamusume-sp-calc/app/ でヘッダー版と合計 SP をスモーク
 
 Pages が失敗するときは **Settings → Pages → Source = GitHub Actions** を確認（[DEV.md](./DEV.md) 参照）。
+
+---
+
+## カード画像の再 import（優先枠）
+
+詳細は [ASSETS.md](./ASSETS.md)。`master.mdb` の extract とは別系統（`meta` + `dat`）。
+
+優先サポカ追加・カード見た目更新・ゲーム大幅パッチのあと:
+
+```powershell
+# 要: 復号済み meta（.cache 内）と DMM Persistent の dat
+npm run assets:extract
+npm run assets:import
+npm run serve
+# ピッカー・上段で画像表示を確認
+```
+
+| 症状 | 対処 |
+|------|------|
+| `META not found` | ASSETS.md の meta 復号手順。`.cache/.../meta_decrypted` を用意 |
+| `DAT_ROOT not found` | `--dat` で Persistent\dat を指定 |
+| `必須 PNG 欠落` | 先に `assets:extract` 成功を確認 |
+| 一部だけプレースホルダ | 該当 id の meta 名欠落。レポートを確認 |
 
 ---
 
@@ -243,6 +271,11 @@ events.extracted.json
     │ npm run apply:events (+ events.preserve.json)
     ▼
 events.json ──► app/（fetch）
+
+meta + dat（別系統）
+    │ npm run assets:extract → assets:import
+    ▼
+assets/supports|characters/{id}.webp ──► app/（cardAssets.js）
 ```
 
 ---
@@ -272,6 +305,7 @@ events.json ──► app/（fetch）
 | [UTOOLS_EVENT_PARSE.md](./UTOOLS_EVENT_PARSE.md) | U-tools SSR のパース仕様 |
 | [AGENT_HANDOFF.md](./AGENT_HANDOFF.md) | エージェント向け最短ブリーフ |
 | [CHANGELOG.md](./CHANGELOG.md) | 公開版の変更履歴（データ更新も記録推奨） |
+| [ASSETS.md](./ASSETS.md) | カード画像のパス規約・抽出／import |
 | [PRIORITY_SUPPORTS.md](./PRIORITY_SUPPORTS.md) | イベント対応サポカ40種の一覧 |
 
 データ更新を公開したら、`CHANGELOG.md` に `### 変更` で件数やパッチ日を1行追記しておくと後から追いやすい。

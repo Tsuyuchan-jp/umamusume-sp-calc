@@ -10,6 +10,11 @@
 
 ## [Unreleased]
 
+### 追加
+
+- **カード画像 Phase 1**: 優先サポカ40 + 育成 `107703` を `assets/**/{id}.webp` に同梱（約 0.6 MiB）
+- `npm run assets:extract` / `assets:import`（meta+dat → flat PNG → webp）。手順は [ASSETS.md](./ASSETS.md)
+
 ### TODO
 
 - **30307 / 30308 の U-tools 化**: U-tools にキセキ（巻頭カラーの夏）・アーモンドアイ（夏空チルタイム）が掲載されたら `npm run extract:events` → `compare:events` → `apply:events` を実行し、`events.preserve.json` から GameWith 一時手載せ6件（`evt_30307_*` / `evt_30308_*`）を削除する。docs の件数・注記も更新する
