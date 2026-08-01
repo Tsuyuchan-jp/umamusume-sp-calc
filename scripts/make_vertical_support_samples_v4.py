@@ -34,8 +34,8 @@ ASPECT_W, ASPECT_H = 3, 4
 # 右上固定（表示解像度 240x320 基準）
 # サイズは参考図換算47の1.1倍。枠外縁に対しわずかに内側へ（見た目合わせ）
 TYPE_ICON_SIZE = 52
-TYPE_MARGIN_TOP = 2
-TYPE_MARGIN_RIGHT = 2
+TYPE_MARGIN_TOP = 1
+TYPE_MARGIN_RIGHT = 4
 
 AB_KEY = b"\x53\x2B\x46\x31\xE4\xA7\xB9\x47\x3E\x7C\xFB"
 
