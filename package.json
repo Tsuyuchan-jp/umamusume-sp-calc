@@ -21,7 +21,6 @@
     "assets:import": "node scripts/import_card_assets.mjs",
     "samples:vertical-v3": "node scripts/run_make_vertical_support_v3.mjs",
     "samples:vertical-v4": "node scripts/run_make_vertical_support_v4.mjs",
-    "samples:trim": "node scripts/run_make_trim_support_samples.mjs",
     "serve": "npx --yes serve . -l 8080"
   }
 }

@@ -92,11 +92,9 @@ npm run assets:import
 | 育成カード | `outgame/piece/piece_icon_{characterCardId}` |
 
 import 時のサポカ後処理（`scripts/support_vertical_card.py`）:
-- `support_thumb` の枠外パディングを固定 inset で除去（512基準 L10/T3/R10/B12）
-- 左右カットせず縦縮尺（3:4）→ 240×320 にリサイズ
+- `support_thumb` を左右カットせず縦縮尺（3:4）→ 240×320 にリサイズ
 - `assets/type-icons/{type}.webp` を右上固定で合成（size=52 / top=1 / right=4）
 - 共有マスク・レアバッジは載せない
-- 比較試作: `npm run samples:trim` → `.cache/.../compare-trim/`
 
 ### スクリプト
 
@@ -104,7 +102,7 @@ import 時のサポカ後処理（`scripts/support_vertical_card.py`）:
 |----------|------|
 | `scripts/extract_card_assets.py` | meta+dat → flat PNG（サポカは `support_thumb`） |
 | `scripts/run_extract_card_assets.mjs` | venv Python ランチャ |
-| `scripts/support_vertical_card.py` | 枠外トリム + 縦縮尺 + タイプ印合成（本番・試作共通） |
+| `scripts/support_vertical_card.py` | 縦縮尺 + タイプ印合成（本番・試作共通） |
 | `scripts/import_card_images.py` | flat PNG → WebP（サポカ縦合成・キャラ縮小） |
 | `scripts/import_card_assets.mjs` | import ランチャ |
 

@@ -1,4 +1,4 @@
-"""サポカ縦カード合成（support_thumb 枠外トリム + 縦縮尺 + 右上タイプ印）。
+"""サポカ縦カード合成（support_thumb 縦縮尺 + 右上タイプ印）。
 
 v4 試作で確定した処理を本番 import からも使う。
 """
@@ -15,32 +15,12 @@ TYPE_ICONS_DIR = REPO_ROOT / "assets" / "type-icons"
 VERT_W, VERT_H = 240, 320
 ASPECT_W, ASPECT_H = 3, 4
 
-# 512キャンバス上の虹枠外余白（優先40・SSR実測 2026-08-01、σ=0）
-# イラスト左右のクロップではなく、枠外パディング除去のみ。
-FRAME_INSET_LEFT = 10
-FRAME_INSET_TOP = 3
-FRAME_INSET_RIGHT = 10
-FRAME_INSET_BOTTOM = 12
-
-# 右上固定 — 2026-08-01 目視確定。トリム後は再調整が必要な場合あり
+# 右上固定 — 2026-08-01 目視確定・変更しない
 TYPE_ICON_SIZE = 52
 TYPE_MARGIN_TOP = 1
 TYPE_MARGIN_RIGHT = 4
 
 _icon_cache: dict[str, Image.Image] | None = None
-
-
-def trim_frame_padding(src: Image.Image) -> Image.Image:
-    """support_thumb の枠外パディングを固定 inset で除去する。"""
-    img = src.convert("RGBA")
-    w, h = img.size
-    left = FRAME_INSET_LEFT
-    top = FRAME_INSET_TOP
-    right = w - FRAME_INSET_RIGHT
-    bottom = h - FRAME_INSET_BOTTOM
-    if right <= left or bottom <= top:
-        return img
-    return img.crop((left, top, right, bottom))
 
 
 def vertical_stretch_keep_width(src: Image.Image) -> Image.Image:
@@ -107,11 +87,9 @@ def compose_support_vertical_card(
     support_type: str,
     *,
     icons: dict[str, Image.Image] | None = None,
-    trim_frame: bool = True,
 ) -> Image.Image:
     """support_thumb PNG から 240×320 の縦カードを合成する。"""
-    base = trim_frame_padding(thumb) if trim_frame else thumb.convert("RGBA")
-    stretched = vertical_stretch_keep_width(base)
+    stretched = vertical_stretch_keep_width(thumb)
     display = stretched.resize((VERT_W, VERT_H), Image.Resampling.LANCZOS)
     icon_map = icons if icons is not None else load_type_icons()
     icon = icon_map.get(support_type)
