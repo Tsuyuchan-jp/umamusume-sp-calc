@@ -24,6 +24,8 @@
 
 **正本は [TODO.md](./TODO.md)。** 着手・完了のたびに更新する。ここには要約を長く書かない。
 
+**デザイン大改修の会話引継ぎ**: [product/デザイン大改修まとめ.md](./product/デザイン大改修まとめ.md)
+
 ## 非交渉ルール（変えない）
 
 詳細・数式は [spec/REQUIREMENTS.md](./spec/REQUIREMENTS.md) / [spec/calc.md](./spec/calc.md) が正本。ここでは要約のみ。
@@ -42,6 +44,7 @@
 | 要件 / 計算 / 用語 | [spec/](./spec/) |
 | 起動 / 更新 / 画像 / データ | [ops/](./ops/) |
 | UX / 優先40 | [product/](./product/) |
+| デザイン大改修引継ぎ | [product/デザイン大改修まとめ.md](./product/デザイン大改修まとめ.md) |
 | 設計履歴（通常不要） | [archive/](./archive/) |
 
 ## 推奨言語モデル

@@ -33,6 +33,7 @@ AI 新チャットは [AGENT_HANDOFF.md](./AGENT_HANDOFF.md) から。
 | 構成・データフロー | [ops/ARCHITECTURE.md](./ops/ARCHITECTURE.md) |
 | U-tools パース（壊れ時） | [ops/UTOOLS_EVENT_PARSE.md](./ops/UTOOLS_EVENT_PARSE.md) |
 | UX 判断 | [product/UX.md](./product/UX.md) |
+| デザイン大改修の引継ぎ | [product/デザイン大改修まとめ.md](./product/デザイン大改修まとめ.md) |
 | 優先40サポカ一覧 | [product/PRIORITY_SUPPORTS.md](./product/PRIORITY_SUPPORTS.md) |
 | 公開版の履歴 | [CHANGELOG.md](./CHANGELOG.md) |
 
