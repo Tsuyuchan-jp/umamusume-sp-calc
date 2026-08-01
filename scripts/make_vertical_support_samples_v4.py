@@ -31,8 +31,8 @@ SAMPLE_IDS = [30305, 30304, 30302, 30297, 30294, 30289]  # friend/sta/spd/pow/gu
 VERT_W, VERT_H = 240, 320
 ASPECT_W, ASPECT_H = 3, 4
 
-# 右上固定（表示解像度 240x320 基準）
-# サイズは参考図換算47の1.1倍。枠外縁に対しわずかに内側へ（見た目合わせ）
+# 右上固定（表示解像度 240x320 基準）— 2026-08-01 目視確定・変更しない
+# サイズ=参考図換算47×1.1。余白トリム後に上1/右4
 TYPE_ICON_SIZE = 52
 TYPE_MARGIN_TOP = 1
 TYPE_MARGIN_RIGHT = 4
@@ -222,6 +222,7 @@ def write_readme() -> Path:
   - 共有マスクは掛けない（虹枠を削らない）
   - タイプ印: assets/type-icons/{{type}}.webp を右上固定
       size={TYPE_ICON_SIZE}px, margin top={TYPE_MARGIN_TOP}, right={TYPE_MARGIN_RIGHT}
+      ※ 2026-08-01 ユーザー目視で位置・サイズ確定（変更しない）
   - レアバッジは載せない
 
 出力:

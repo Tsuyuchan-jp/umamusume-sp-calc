@@ -152,7 +152,8 @@
 3. ~~部品が揃う範囲で **解決策3の試作**~~ **v3/v4試作済（2026-08-01）**  
    - v3: `support_thumb` 縦縮尺。**本番候補は `{id}_stretch.png`**（共有マスク無し）。`{id}_v3.png` は枠が削れるため不可  
    - v4: stretch + `assets/type-icons/{type}.webp` 右上固定 → `npm run samples:vertical-v4` → `.cache/.../compare-vertical-v4/`  
-   - ユーザー目視で採用可否を判断  
+   - **タイプ印の位置・サイズ確定（240×320基準）**: size=52 / margin top=1 / right=4（余白トリム後）  
+   - ユーザー目視OK。次は優先40量産パイプライン組み込み  
 4. OKなら `assets:extract` / `import` 系を更新し優先40を再生成。ASSETS / GAME_UPDATE 更新  
 5. NGまたは部品不足なら **解決策4に縮退**（A: card_s正方形維持 等）を明示提案  
 6. 変更は都度コミット。**push しない**
