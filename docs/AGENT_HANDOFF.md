@@ -30,7 +30,7 @@
 
 ## 次にやること（優先順）
 
-1. UX 改善の残り（由来表示強化・初期デッキ6枚化・全体デザイン質感パス・スクショ。画像 Phase1 は済）
+1. UX 改善の残り（由来表示強化・初期デッキ6枚化・全体デザイン質感パス・スクショ）。**サポカ縦カード画像は [SUPPORT_CARD_IMAGE_TASK.md](./SUPPORT_CARD_IMAGE_TASK.md) で別チケット継続**
 2. 実機で確認したケースの回帰テスト追加（`npm test` 拡充）
 3. ゲーム更新時: [GAME_UPDATE_RUNBOOK.md](./GAME_UPDATE_RUNBOOK.md) に従い extract → events →（必要なら assets:extract/import）→ verify。**push は v1.0.0 までしない**
 4. （v1.0.0 以降）`master` push で Pages 自動デプロイ
@@ -83,6 +83,7 @@ docs/ROADMAP.md         完了 / 残り
 docs/EVENT_EXTRACT_DESIGN.md  イベント抽出設計（Phase B 完了）
 docs/UTOOLS_EVENT_PARSE.md    U-tools SSR パース仕様
 docs/ASSETS.md           画像アセット方針・抽出／import
+docs/SUPPORT_CARD_IMAGE_TASK.md  サポカ縦カード高品質生成タスク（新チャット継続用）
 app/js/designSnapshot.js  1設計スナップショット境界
 app/js/designMemory.js    設計メモリ（localStorage）
 scripts/extract_card_assets.py  カード画像抽出（meta+dat）
