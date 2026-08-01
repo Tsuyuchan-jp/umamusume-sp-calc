@@ -24,7 +24,7 @@
 
 **正本は [TODO.md](./TODO.md)。** 着手・完了のたびに更新する。ここには要約を長く書かない。
 
-**デザイン大改修の会話引継ぎ**: [product/design-overhaul-handoff.md](./product/design-overhaul-handoff.md)
+**デザイン大改修の会話引継ぎ**: [product/design-overhaul-handoff.md](./product/design-overhaul-handoff.md)（デュアル・イベントA/B/Cは [product/UX.md](./product/UX.md)）
 
 ## 非交渉ルール（変えない）
 
