@@ -1102,8 +1102,8 @@ function renderActivationTags(row) {
 }
 
 /**
- * 由来セル: 種別色バッジ + 詳細。title に Lv。採用 Lv 一致で強調。
- * @param {{ sources?: { kind: string, label: string, hintLevel: number }[], hintLevel?: number }} row
+ * 由来セル: 種別色バッジ + 詳細。title に スキル名・種別・Lv。採用 Lv 一致で強調。
+ * @param {{ sources?: { kind: string, label: string, hintLevel: number, skillName?: string }[], hintLevel?: number }} row
  */
 function renderSourceBadges(row) {
   const sources = row.sources || [];
@@ -1120,7 +1120,8 @@ function renderSourceBadges(row) {
       ]
         .filter(Boolean)
         .join(" ");
-      const title = `${kindLabel} Lv${src.hintLevel}`;
+      const skillPart = src.skillName ? `${src.skillName} / ` : "";
+      const title = `${skillPart}${kindLabel} Lv${src.hintLevel}`;
       const detail = src.label ? ` ${escapeHtml(src.label)}` : "";
       return `<span class="${classes}" title="${escapeHtml(title)}"><span class="badge__kind">${escapeHtml(kindLabel)}</span>${detail}</span>`;
     })

@@ -91,13 +91,17 @@ function compareKey(a, b) {
 }
 
 /**
- * チェーン由来を kind+label でユニーク結合（hintLevel は高い方）
+ * チェーン由来を kind+label+skillId でユニーク結合（hintLevel は高い方）
+ * skillId が違うなら別バッジ（金行で下位／金それぞれのヒントを区別するため）
  * @param {import("./hintResolve.js").SkillSource[]} list
- * @param {import("./hintResolve.js").SkillSource} src
+ * @param {import("./hintResolve.js").SkillSource & { skillName?: string, skillId?: number }} src
  */
 export function mergeSourceInto(list, src) {
   const existing = list.find(
-    (s) => s.kind === src.kind && s.label === src.label
+    (s) =>
+      s.kind === src.kind &&
+      s.label === src.label &&
+      (s.skillId ?? null) === (src.skillId ?? null)
   );
   if (existing) {
     if (src.hintLevel > existing.hintLevel) {
@@ -105,6 +109,9 @@ export function mergeSourceInto(list, src) {
     }
     if (existing.supportId == null && src.supportId != null) {
       existing.supportId = src.supportId;
+    }
+    if (!existing.skillName && src.skillName) {
+      existing.skillName = src.skillName;
     }
     return;
   }
@@ -114,6 +121,8 @@ export function mergeSourceInto(list, src) {
     hintLevel: src.hintLevel,
   };
   if (src.supportId != null) next.supportId = src.supportId;
+  if (src.skillName) next.skillName = src.skillName;
+  if (src.skillId != null) next.skillId = src.skillId;
   list.push(next);
 }
 

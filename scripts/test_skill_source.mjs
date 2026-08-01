@@ -82,6 +82,32 @@ assertEq(merged.length, 2, "kind+label でユニーク");
 assertEq(merged[0].hintLevel, 5, "同一由来は高い Lv を残す");
 assertEq(merged[0].supportId, 10, "supportId を保持");
 
+mergeSourceInto(merged, {
+  kind: "training",
+  label: "たづな",
+  hintLevel: 3,
+  supportId: 10,
+  skillId: 1,
+  skillName: "白スキル",
+});
+mergeSourceInto(merged, {
+  kind: "training",
+  label: "たづな",
+  hintLevel: 5,
+  supportId: 10,
+  skillId: 2,
+  skillName: "金スキル",
+});
+assertEq(merged.length, 4, "skillId が違えば別由来として残す");
+assertTruthy(
+  merged.some((s) => s.skillName === "白スキル" && s.hintLevel === 3),
+  "チェーン下位のスキル名付き由来"
+);
+assertTruthy(
+  merged.some((s) => s.skillName === "金スキル" && s.hintLevel === 5),
+  "チェーン金のスキル名付き由来"
+);
+
 const map = resolveHintLevels([
   { skillId: 1, hintLevel: 3, kind: "owned", label: "ウマ娘A" },
   {

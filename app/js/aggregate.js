@@ -267,11 +267,17 @@ export function buildSkillPlan(params) {
       total += acq.cost;
     }
 
-    // 合算行はチェーン内スキルの由来を併記する
+    // 合算行はチェーン内スキルの由来を併記する（ツールチップ用に各由来のスキル名も付与）
     const sources = [];
     for (const cid of acq.chainSkillIds || [skillId]) {
+      const chainSkill = skillById.get(cid);
+      const chainName = chainSkill?.name || "";
       for (const src of hintMap.get(cid)?.sources ?? []) {
-        mergeSourceInto(sources, src);
+        mergeSourceInto(sources, {
+          ...src,
+          skillId: cid,
+          skillName: chainName,
+        });
       }
     }
 
