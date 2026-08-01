@@ -71,3 +71,10 @@
 6. 後続：メモリ → スクショ
 
 関連: [TODO.md](../TODO.md)、[ops/ASSETS.md](../ops/ASSETS.md)
+
+## ビジュアル（Visual Foundation）
+
+- **トークン正本**: `app/css/foundation.css` の `:root`（色・角丸・影・フォント）。後からパレット差し替え可能
+- **フォント**: M PLUS Rounded 1c（Google Fonts）。ウマ娘本編のロダンわんぱくは商用のため未使用
+- **トーン**: V-B（コントラスト）＋ S-A（カード面）。インク系の面＋合計／ON だけ鮮やかなアクセント
+- **ゲーム UI っぽさ**: 角丸・影・フォントで出す。表の可読性は維持

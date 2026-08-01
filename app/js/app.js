@@ -316,14 +316,15 @@ function updateTotalBarChips(excludedCount = excludedSkillIds.size) {
 
   let html = `
     <button type="button" class="${fastClass}" id="bar-premise-fast-learner" aria-pressed="${fast ? "true" : "false"}">切れ者 ${fast ? "ON" : "OFF"}</button>
-    <span class="premise-chip">トレヒント
+    <span class="premise-chip premise-chip--training">
+      <span class="premise-chip__prefix">トレ</span>
       <select id="bar-training-hint" aria-label="トレヒントLv">
         <option value="5"${trainingLv === "5" ? " selected" : ""}>Lv5</option>
         <option value="4"${trainingLv === "4" ? " selected" : ""}>Lv4</option>
         <option value="3"${trainingLv === "3" ? " selected" : ""}>Lv3</option>
       </select>
     </span>
-    <button type="button" class="${inheritClass}" id="bar-premise-inherit" aria-pressed="${inheritOn ? "true" : "false"}">継承 ${inheritOn ? `${inheritCount}個` : "OFF"}</button>
+    <button type="button" class="${inheritClass}" id="bar-premise-inherit" aria-pressed="${inheritOn ? "true" : "false"}">継承 ${inheritOn ? `${inheritCount}本` : "OFF"}</button>
   `;
   if (excludedCount > 0) {
     html += `<span class="premise-chip premise-chip--warn">除外 ${excludedCount}</span>`;
