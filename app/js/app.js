@@ -1130,10 +1130,20 @@ function renderSourceBadges(row) {
 }
 
 function getResultSortMode() {
-  const el = document.getElementById("result-sort");
-  const v = el?.value || "skillId";
+  const active = document.querySelector(".result-sort-seg__btn.is-active");
+  const v = active?.dataset?.sort || "skillId";
   if (v === "kind" || v === "cost" || v === "skillId") return v;
   return "skillId";
+}
+
+function setResultSortMode(mode) {
+  const next =
+    mode === "kind" || mode === "cost" || mode === "skillId" ? mode : "skillId";
+  document.querySelectorAll(".result-sort-seg__btn").forEach((btn) => {
+    const on = btn.dataset.sort === next;
+    btn.classList.toggle("is-active", on);
+    btn.setAttribute("aria-pressed", on ? "true" : "false");
+  });
 }
 
 function renderPlanWarnings(unresolved) {
@@ -1286,7 +1296,14 @@ function bindSkillFilters() {
 }
 
 function bindResultSort() {
-  document.getElementById("result-sort")?.addEventListener("change", () => {
+  const seg = document.querySelector(".result-sort-seg");
+  if (!seg) return;
+  seg.addEventListener("click", (e) => {
+    const btn = e.target.closest(".result-sort-seg__btn");
+    if (!btn || !seg.contains(btn)) return;
+    const mode = btn.dataset.sort;
+    if (mode === getResultSortMode()) return;
+    setResultSortMode(mode);
     if (!currentPlan) return;
     recalc();
   });

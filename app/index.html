@@ -376,14 +376,6 @@
         <div class="result-panel-heading">
           <h2>結果（作業台）</h2>
           <div class="result-panel-heading__meta">
-            <label class="result-sort-label">
-              並び
-              <select id="result-sort" class="result-sort">
-                <option value="skillId" selected>スキルID</option>
-                <option value="kind">由来種別</option>
-                <option value="cost">必要SP</option>
-              </select>
-            </label>
             <span id="skill-count-meta" class="skill-count-meta">スキル数 —</span>
             <button
               type="button"
@@ -448,6 +440,39 @@
           絞込は「適用」で確定します。確定時にレギュに合わないスキルを合計から除外し、「含める」の手動変更はやり直されます。編成変更で追加されたスキルには確定済みの絞込が自動でかかります。
         </p>
         <p class="hint">一覧の「含める」チェックを外すと合計から除外されます。</p>
+        <div class="result-sort-bar">
+          <span class="result-sort-bar__label" id="result-sort-label">表示順</span>
+          <div
+            class="result-sort-seg"
+            role="group"
+            aria-labelledby="result-sort-label"
+          >
+            <button
+              type="button"
+              class="result-sort-seg__btn is-active"
+              data-sort="skillId"
+              aria-pressed="true"
+            >
+              スキルID
+            </button>
+            <button
+              type="button"
+              class="result-sort-seg__btn"
+              data-sort="kind"
+              aria-pressed="false"
+            >
+              由来種別
+            </button>
+            <button
+              type="button"
+              class="result-sort-seg__btn"
+              data-sort="cost"
+              aria-pressed="false"
+            >
+              必要SP
+            </button>
+          </div>
+        </div>
         <div style="overflow-x: auto; max-height: 480px">
           <table>
             <thead>
