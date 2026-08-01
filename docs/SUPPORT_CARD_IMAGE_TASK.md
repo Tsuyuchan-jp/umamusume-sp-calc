@@ -112,6 +112,7 @@
 スクリプト:
 - `scripts/make_vertical_support_samples.py`（v1比較）
 - `scripts/make_vertical_support_samples_v2.py`（v2）
+- `scripts/make_vertical_support_samples_v3.py`（v3・thumb縦縮尺）— `npm run samples:vertical-v3`
 
 やっていたこと（非エンジニア向け）:
 1. `tex` を縦3:4クロップ
@@ -125,6 +126,7 @@
 比較出力（ローカルのみ）:
 - `.cache/asset-dump/compare-vertical/`
 - `.cache/asset-dump/compare-vertical-v2/sheet_v2.png`
+- `.cache/asset-dump/compare-vertical-v3/`（v3試作・`sheet_v3.png`）
 
 ---
 
@@ -146,10 +148,9 @@
 
 1. 本ファイル + [ASSETS.md](./ASSETS.md) を読む  
 2. ~~**解決策1スパイク**~~ **済（2026-08-01）** — 部品表は §3 / `.cache/.../SOL1_PARTS_TABLE.md`  
-3. 部品が揃う範囲で **解決策3の試作**（数枚）→ ユーザー目視  
-   - ベース案: `support_thumb` を左右カットせず縦縮尺 → 角丸マスク確認（枠は焼き付き利用）  
-   - 載せない: 縁伸ばし枠・育成系タイプ印・レアバッジ（不要）・無い部品の近似  
-   - 比較用に `tex` 縦縮尺のみ（枠なし）も並べると差分が分かる  
+3. ~~部品が揃う範囲で **解決策3の試作**~~ **v3試作済（2026-08-01）** — `npm run samples:vertical-v3` → `.cache/.../compare-vertical-v3/`  
+   - ベース: `support_thumb` 全幅維持＋縦縮尺（3:4）＋ `tex_support_thumb_00000_mask`  
+   - ユーザー目視で採用可否を判断  
 4. OKなら `assets:extract` / `import` 系を更新し優先40を再生成。ASSETS / GAME_UPDATE 更新  
 5. NGまたは部品不足なら **解決策4に縮退**（A: card_s正方形維持 等）を明示提案  
 6. 変更は都度コミット。**push しない**

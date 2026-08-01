@@ -19,6 +19,7 @@
     "reclassify-support-events": "node scripts/reclassify_support_events.mjs",
     "assets:extract": "node scripts/run_extract_card_assets.mjs",
     "assets:import": "node scripts/import_card_assets.mjs",
+    "samples:vertical-v3": "node scripts/run_make_vertical_support_v3.mjs",
     "serve": "npx --yes serve . -l 8080"
   }
 }
