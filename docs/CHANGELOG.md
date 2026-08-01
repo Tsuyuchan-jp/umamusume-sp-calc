@@ -13,7 +13,7 @@
 ### 追加
 
 - **カード画像 Phase 1**: 優先サポカ40 + 育成 `107703` を `assets/**/{id}.webp` に同梱（約 0.6 MiB）
-- `npm run assets:extract` / `assets:import`（meta+dat → flat PNG → webp）。手順は [OPS.md（画像）](./OPS.md#画像アセット)
+- `npm run assets:extract` / `assets:import`（meta+dat → flat PNG → webp）。手順は [ops/ASSETS.md](./ops/ASSETS.md)
 
 ### TODO
 
@@ -232,7 +232,7 @@
 
 - **GitHub Pages 公開**（https://Tsuyuchan-jp.github.io/umamusume-sp-calc/app/）
 - ヘッダーにバージョン表記
-- 公開向け README 整理（利用者向けを先頭、開発手順は `docs/OPS.md`）
+- 公開向け README 整理（利用者向けを先頭、開発手順は `docs/ops/`）
 - デプロイ workflow（`verify` / `test` 後に Pages 配信）
 - ルート `index.html` から `/app/` へリダイレクト
 

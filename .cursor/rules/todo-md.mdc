@@ -6,15 +6,16 @@ alwaysApply: true
 # TODO.md 運用
 
 - 次に何をするかの正本は [`docs/TODO.md`](docs/TODO.md)。
-- 人間用 docs 入口は [`docs/README.md`](docs/README.md)（トップ直下は8ファイル + `archive/`）。
+- 人間用 docs 入口は [`docs/README.md`](docs/README.md)（直下は入口4本。詳細は `spec/` / `ops/` / `product/`）。
 - AI 新チャットは [`docs/AGENT_HANDOFF.md`](docs/AGENT_HANDOFF.md)。
 - 実装・調査に着手する前に TODO の Open（特に P0/P1）を確認する。
 - タスク完了時は TODO を更新する（`[x]`＋日付 → 「最近完了」へ移動、フォーカス1行の見直し）。
-- 仕様は `docs/SPEC.md`、運用は `docs/OPS.md`、公開履歴は `docs/CHANGELOG.md`。日次キューを他ファイルに散らばせない。
+- 仕様は `docs/spec/`、運用は `docs/ops/`、公開履歴は `docs/CHANGELOG.md`。日次キューを他ファイルに散らばせない。
 
 ## docs 再肥大化防止
 
-- トップ直下に新しいファイルを増やす前に、既存8本へ追記できないか確認する
+- **docs 直下にファイルを増やさない**（入口4本を維持）。新規は `spec/` / `ops/` / `product/` へ
 - 完了した設計レビュー・タスク起票は `docs/archive/` へ移す
 - HANDOFF / `docs/README.md` に詳細を増やさない（リンクのみ）
+- 1ファイルへ無理に統合しない（短いファイル＋フォルダを優先）
 - 事実は1箇所だけ（正本表は `docs/README.md`）

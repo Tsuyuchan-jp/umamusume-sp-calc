@@ -4,7 +4,7 @@
 トレヒントは全サポカ対応ですが、**イベント由来スキルはこの40枚のみ**です。
 
 - **利用者**: 下の表で手持ちデッキが対象か確認できます。アプリ内の「※サポカイベントについて」にも同じ名前が表示されます。
-- **開発者**: [data/priority-supports.json](../data/priority-supports.json) が機械可読の正本エクスポートです。元データは `data/events.json` の `prioritySupports` / `prioritySupportIds`。
+- **開発者**: [data/priority-supports.json](../../data/priority-supports.json) が機械可読の正本エクスポートです。元データは `data/events.json` の `prioritySupports` / `prioritySupportIds`。
 
 生成: `npm run render:priority-supports`（2026-07-30T07:55:24.323Z 時点・40件）
 

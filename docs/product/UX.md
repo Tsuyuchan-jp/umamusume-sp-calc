@@ -65,4 +65,4 @@
 5. 下段作業台の維持・強化
 6. 後続：メモリ → スクショ
 
-関連: [TODO.md](./TODO.md)、[OPS.md（画像）](./OPS.md#画像アセット)
+関連: [TODO.md](../TODO.md)、[ops/ASSETS.md](../ops/ASSETS.md)

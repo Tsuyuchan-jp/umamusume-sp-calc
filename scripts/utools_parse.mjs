@@ -1,7 +1,7 @@
 /**
  * U-tools SSR HTML から supportCard.events を抽出する。
  *
- * パース仕様: docs/OPS.md#u-tools-パース
+ * パース仕様: docs/ops/UTOOLS_EVENT_PARSE.md
  */
 
 /** RSC チャンクをデコードして結合 */

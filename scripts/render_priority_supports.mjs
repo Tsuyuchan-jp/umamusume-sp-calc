@@ -3,7 +3,7 @@
  *
  * 出力:
  *   data/priority-supports.json  — 機械可読（id・レア・タイプ付き）
- *   docs/PRIORITY_SUPPORTS.md    — 人間可読（同内容の表）
+ *   docs/product/PRIORITY_SUPPORTS.md    — 人間可読（同内容の表）
  *
  * 使い方:
  *   node scripts/render_priority_supports.mjs
@@ -78,7 +78,7 @@ function renderMarkdown(doc) {
     `トレヒントは全サポカ対応ですが、**イベント由来スキルはこの${count}枚のみ**です。`,
     "",
     "- **利用者**: 下の表で手持ちデッキが対象か確認できます。アプリ内の「※サポカイベントについて」にも同じ名前が表示されます。",
-    "- **開発者**: [data/priority-supports.json](../data/priority-supports.json) が機械可読の正本エクスポートです。元データは `data/events.json` の `prioritySupports` / `prioritySupportIds`。",
+    "- **開発者**: [data/priority-supports.json](../../data/priority-supports.json) が機械可読の正本エクスポートです。元データは `data/events.json` の `prioritySupports` / `prioritySupportIds`。",
     "",
     `生成: \`npm run render:priority-supports\`（${doc.generatedAt} 時点・${doc.count}件）`,
     "",
@@ -134,7 +134,7 @@ function main() {
   };
 
   const jsonPath = path.join(DATA_DIR, "priority-supports.json");
-  const mdPath = path.join(DOCS_DIR, "PRIORITY_SUPPORTS.md");
+  const mdPath = path.join(DOCS_DIR, "product", "PRIORITY_SUPPORTS.md");
 
   fs.writeFileSync(jsonPath, JSON.stringify(jsonDoc, null, 2) + "\n", "utf8");
   fs.writeFileSync(mdPath, renderMarkdown(jsonDoc), "utf8");

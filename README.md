@@ -32,7 +32,7 @@
 
 - **シナリオはトレセン軒のみ**（当面固定）
 - **シナリオスキルはガチ想定** — 盛況段階の切替はなし（常に大盛況／超盛況＋終了を計上）
-- **イベントは優先40サポカ** — 全サポカ網羅ではない（[一覧](docs/PRIORITY_SUPPORTS.md)）。新規追加は最新の課金必須 SSR を原則とする
+- **イベントは優先40サポカ** — 全サポカ網羅ではない（[一覧](docs/product/PRIORITY_SUPPORTS.md)）。新規追加は最新の課金必須 SSR を原則とする
 - HTML をローカルでダブルクリックしても動きません（公開 URL か、開発者向けの HTTP 配信が必要）
 
 ## 機能
@@ -50,12 +50,12 @@
 
 ## 開発者向け
 
-ドキュメントの入口: [docs/README.md](docs/README.md)（トップは8ファイル構成）
+ドキュメントの入口: [docs/README.md](docs/README.md)（直下は入口のみ。詳細は `spec/` / `ops/` / `product/`）
 
-- 仕様（要件・計算・用語）: [docs/SPEC.md](docs/SPEC.md)
-- 運用（起動・ゲーム更新・画像）: [docs/OPS.md](docs/OPS.md)
+- 仕様: [docs/spec/](docs/spec/)（要件・計算・用語）
+- 運用: [docs/ops/](docs/ops/)（起動・ゲーム更新・画像）
 - 更新履歴: [docs/CHANGELOG.md](docs/CHANGELOG.md)
-- 優先40サポカ一覧: [docs/PRIORITY_SUPPORTS.md](docs/PRIORITY_SUPPORTS.md)（JSON: [data/priority-supports.json](data/priority-supports.json)）
+- 優先40サポカ一覧: [docs/product/PRIORITY_SUPPORTS.md](docs/product/PRIORITY_SUPPORTS.md)（JSON: [data/priority-supports.json](data/priority-supports.json)）
 
 ## フィードバック
 

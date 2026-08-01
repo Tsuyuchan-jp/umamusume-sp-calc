@@ -3,7 +3,7 @@
 新チャット継続用ブリーフ（2026-08-01）。  
 **本ファイルを読んでから着手すること。**
 
-関連: [OPS.md（画像）](../OPS.md#画像アセット) / [UX.md](../UX.md) / [AGENT_HANDOFF.md](../AGENT_HANDOFF.md)
+関連: [ops/ASSETS.md](../ops/ASSETS.md) / [product/UX.md](../product/UX.md) / [AGENT_HANDOFF.md](../AGENT_HANDOFF.md)
 
 ---
 
@@ -39,7 +39,7 @@
 
 ### 非ゴール（やらない）
 - 自前合成の低品質版を本番 `assets/` に載せる
-- 攻略サイト画像の直リンク常時依存（[OPS.md（画像）](../OPS.md#画像アセット) 不採用）
+- 攻略サイト画像の直リンク常時依存（[ops/ASSETS.md](../ops/ASSETS.md) 不採用）
 - 全547サポカの網羅（Phase1は優先40）
 - 育成ウマ娘画像の本改修（別途。現状は `piece_icon` / `chr_icon` 問題あり）
 - 縁色引き伸ばしなど **無理な近似枠**（解決策4）
@@ -147,7 +147,7 @@
 
 ## 6. 新チャットでの作業順
 
-1. 本ファイル + [OPS.md（画像）](../OPS.md#画像アセット) を読む
+1. 本ファイル + [ops/ASSETS.md](../ops/ASSETS.md) を読む
 2. ~~**解決策1スパイク**~~ **済（2026-08-01）** — 部品表は §3 / `.cache/.../SOL1_PARTS_TABLE.md`  
 3. ~~部品が揃う範囲で **解決策3の試作**~~ **v3/v4試作済（2026-08-01）**  
    - v3: `support_thumb` 縦縮尺。**本番候補は `{id}_stretch.png`**（共有マスク無し）。`{id}_v3.png` は枠が削れるため不可  

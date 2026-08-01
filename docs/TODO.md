@@ -6,8 +6,8 @@
 関連:
 - docs 入口 → [README.md](./README.md)
 - 状態・ルールのブリーフ → [AGENT_HANDOFF.md](./AGENT_HANDOFF.md)
-- 仕様 → [SPEC.md](./SPEC.md)
-- 運用 → [OPS.md](./OPS.md)
+- 仕様 → [spec/](./spec/)
+- 運用 → [ops/](./ops/)
 - 公開履歴 → [CHANGELOG.md](./CHANGELOG.md)
 
 ---
@@ -40,7 +40,7 @@
 
 ## 現在フォーカス（1行）
 
-**UX Phase D 残り** — カード画像済。docs トップを8ファイルに圧縮済。push / Pages は v1.0.0 までしない。
+**UX Phase D 残り** — カード画像済。docs は直下入口＋`spec`/`ops`/`product` フォルダ構成。push / Pages は v1.0.0 までしない。
 
 ---
 
@@ -55,7 +55,7 @@
 
 - [ ] **結果表の由来表示強化**  
   - 受け入れ: 各スキル行で「なぜ載っているか」（トレヒント／所持／イベント／シナリオ等）が分かる  
-  - 関連: [UX.md](./UX.md) / 結果パネル実装
+  - 関連: [product/UX.md](./product/UX.md) / 結果パネル実装
 
 ### P1
 
@@ -73,24 +73,24 @@
   - 受け入れ: 上段編成を1枚に保存／コピーできる
 
 - [ ] **タイプ印位置の最終微調整**（ユーザー指示があったときだけ）  
-  - 現行: size=52 / top=-1 / right=4（[OPS.md（画像）](./OPS.md#画像アセット)）
+  - 現行: size=52 / top=-1 / right=4（[ops/ASSETS.md](./ops/ASSETS.md)）
 
 - [ ] **回帰テスト拡充** — 実機で確認したケースを `npm test` に追加
 
 ### P3 / 条件付き
 
 - [ ] **v1.0.0 公開準備** — UX 残りが閉じたあと。CHANGELOG・README・**初 push / Pages 反映**  
-  - 制約: それまで `git push` しない（[OPS.md](./OPS.md)）
+  - 制約: それまで `git push` しない（[ops/ASSETS.md](./ops/ASSETS.md) / [ops/GAME_UPDATE_RUNBOOK.md](./ops/GAME_UPDATE_RUNBOOK.md)）
 
-- [ ] **ゲーム更新追従** — 発生時のみ [OPS.md（ゲーム更新）](./OPS.md#ゲーム更新-runbook)（mdb → events → assets:extract/import → verify）
+- [ ] **ゲーム更新追従** — 発生時のみ [ops/GAME_UPDATE_RUNBOOK.md](./ops/GAME_UPDATE_RUNBOOK.md)（mdb → events → assets:extract/import → verify）
 
 ---
 
 ## 最近完了（直近のみ残す）
 
-- [x] 2026-08-01 docs トップを8ファイルに圧縮（SPEC / OPS / UX 統合）
+- [x] 2026-08-01 docs をフォルダ構成に組み直し（直下は入口4本、中身は spec/ops/product）
+- [x] 2026-08-01 docs トップ圧縮の統合をほどき、短いファイルへ復元
 - [x] 2026-08-01 docs スリム化 — 人間用入口・HANDOFF 短縮・archive・正本委譲
-- [x] 2026-08-01 docs 同期 — 画像 Phase1=全264同梱済みを反映
 - [x] 2026-08-01 サポカ縦カード: 枠外トリム・角丸マスク・drop-shadow（優先40）
 - [x] 2026-08-01 育成: `chr_icon` + dress フォールバックで **全264** 同梱
 
