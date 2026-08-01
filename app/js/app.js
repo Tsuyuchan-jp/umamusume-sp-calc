@@ -8,6 +8,10 @@ import {
 } from "./cardAssets.js";
 import { createCardPicker } from "./cardPicker.js";
 import {
+  buildCharacterNameSearchText,
+  normalizeSearchText,
+} from "./searchText.js";
+import {
   copyTextToClipboard,
   formatIncludedSkillNames,
   getIncludedSkillRows,
@@ -135,17 +139,6 @@ function formatCharacterDisplayName(name) {
   const m = String(name).match(/^\[([^\]]+)\](.+)$/);
   if (!m) return name;
   return `${m[2]}[${m[1]}]`;
-}
-
-/** ひらがなをカタカナへ（検索照合用） */
-function toKatakana(s) {
-  return String(s).replace(/[\u3041-\u3096]/g, (ch) =>
-    String.fromCharCode(ch.charCodeAt(0) + 0x60)
-  );
-}
-
-function normalizeSearchText(s) {
-  return toKatakana(s).toLowerCase();
 }
 
 function buildCardFaceHtml({
@@ -348,7 +341,8 @@ function buildCharacterPickerItems() {
   return [...state.characters]
     .map((c) => ({
       id: c.id,
-      searchText: normalizeSearchText(formatCharacterDisplayName(c.name)),
+      // キャラ名のみ（衣装タイトル除外）＋ローマ字
+      searchText: buildCharacterNameSearchText(c.name),
       html: buildCardFaceHtml({
         imageUrl: characterImageUrl(c.id),
         typeStyle: { bg: "linear-gradient(160deg,#d4dce4,#8a9aaa)", ink: "#1c2420", label: "ウマ" },
@@ -382,7 +376,8 @@ function buildSupportPickerItems(slotIndex) {
       const typeStyle = getSupportTypeStyle(s.type);
       return {
         id: s.id,
-        searchText: supportSearchHaystack(s),
+        // キャラ名のみ（衣装タイトル除外）＋ローマ字
+        searchText: buildCharacterNameSearchText(s.characterName || s.name),
         html: buildCardFaceHtml({
           imageUrl: supportImageUrl(s.id),
           typeStyle,

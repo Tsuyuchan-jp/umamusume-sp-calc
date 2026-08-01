@@ -2,6 +2,8 @@
  * カード選択ダイアログ（育成ウマ娘・サポカ共通）
  */
 
+import { normalizeSearchText } from "./searchText.js";
+
 /**
  * @param {object} root
  * @param {HTMLDialogElement} root.dialog
@@ -26,7 +28,8 @@ export function createCardPicker(root) {
   root.searchEl.addEventListener("input", () => renderGrid());
 
   function renderGrid() {
-    const q = root.searchEl.value.trim().toLowerCase();
+    // ひらがな・カタカナ・ローマ字を同一視（searchText 側も同正規化済み）
+    const q = normalizeSearchText(root.searchEl.value).trim();
     const items = root._items || [];
     const filtered = items.filter((item) => {
       if (!q) return true;
