@@ -52,7 +52,7 @@
 
 ### P1
 
-- [~] **ビジュアル方向モック** — [v5](./product/mockups/redesign-proposal-v5.html)（v2×v4）/ [v4](./product/mockups/redesign-proposal-v4.html) / [v2](./product/mockups/redesign-proposal-v2.html) のフィードバック待ち → 方向確定後に app へ移植
+- [~] **ビジュアル方向モック** — [hybrid-index](./product/mockups/hybrid-index.html)（H1〜H4）／[v2](./product/mockups/redesign-proposal-v2.html) 比較のフィードバック待ち → 方向確定後に app へ移植
 - [ ] **UI Round 1**（モック確定後）— ピッカー選択強調・タイプ絞込・列下パネル・継承バー上展開・足元帯整理
 
 - [ ] **育成 dress 流用カードのスポット目視**（任意だが短い）  

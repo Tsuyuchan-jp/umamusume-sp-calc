@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SP Calc — ハイブリッド案インデックス</title>
+  <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@700;900&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --c-dark: #463f70;
+      --c-gold: #f5cf6f;
+      --c-font: #703a13;
+      --c-main: #68bb09;
+    }
+    body {
+      margin: 0;
+      font-family: "Zen Maru Gothic", Meiryo, sans-serif;
+      font-weight: 700;
+      color: var(--c-font);
+      background:
+        linear-gradient(160deg, rgba(70,63,112,.25), rgba(70,63,112,.45)),
+        url("https://static.kouryaku.tools/umamusume/images/app/uma-world.webp?auto=format") center/cover fixed;
+      min-height: 100vh;
+      padding: 24px 16px 48px;
+    }
+    .wrap { max-width: 880px; margin: 0 auto; }
+    .banner {
+      background: rgba(70,63,112,.92);
+      color: #fff;
+      padding: 12px 16px;
+      border-radius: 10px;
+      border-bottom: 3px solid var(--c-gold);
+      margin-bottom: 16px;
+      font-size: 13px;
+      line-height: 1.5;
+    }
+    .banner strong { color: var(--c-gold); }
+    h1 { margin: 0 0 8px; color: #fff; font-size: 22px; text-shadow: 0 1px 0 #0006; }
+    .lead { color: #fff; margin: 0 0 16px; font-size: 14px; text-shadow: 0 1px 0 #0005; }
+    .card {
+      background:
+        url("https://static.kouryaku.tools/umamusume/images/app/bg.webp?auto=format") center/180px repeat,
+        #fff;
+      border-radius: 12px;
+      padding: 16px 18px;
+      margin-bottom: 12px;
+      box-shadow: 0 8px 24px #0003;
+      border: 1px solid #fff9;
+    }
+    .card h2 {
+      margin: 0 0 6px;
+      font-size: 16px;
+      color: var(--c-dark);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .tag {
+      font-size: 11px;
+      padding: 2px 8px;
+      border-radius: 999px;
+      background: var(--c-dark);
+      color: #fff;
+    }
+    .tag.rec { background: var(--c-main); }
+    .card p { margin: 0 0 10px; font-size: 13px; line-height: 1.55; color: #625d7d; }
+    .meta { font-size: 12px; color: #703a13; margin-bottom: 10px; }
+    .meta b { color: var(--c-dark); }
+    a.btn {
+      display: inline-block;
+      padding: 8px 14px;
+      background: linear-gradient(180deg,#5a5288,#463f70);
+      color: #fff;
+      text-decoration: none;
+      border-radius: 8px;
+      font-size: 13px;
+      border-bottom: 2px solid var(--c-gold);
+    }
+    a.btn:hover { filter: brightness(1.08); }
+    .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 8px; }
+    @media (max-width: 700px) { .grid2 { grid-template-columns: 1fr; } }
+    .ref a { color: #23a4f6; }
+    table.cmp {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 12px;
+      margin-top: 8px;
+    }
+    table.cmp th, table.cmp td {
+      border-bottom: 1px solid #eae7ec;
+      padding: 6px 8px;
+      text-align: left;
+    }
+    table.cmp th { color: #625d7d; font-size: 11px; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <aside class="banner">
+      <strong>HYBRID INDEX</strong>
+      編成（金イベント選択含む）と表のウェイトが近い前提の候補一覧。見た目は v2 系。現行 app 未改変。
+    </aside>
+    <h1>ハイブリッド案（4本＋発展）</h1>
+    <p class="lead">金イベントの列下チョイスを重要と定義したうえで、v2の「大きい編成顔」と v5の「広い表・1画面」をどう足すかの分岐です。</p>
+
+    <article class="card">
+      <h2>H1 ワイドドック <span class="tag rec">金イベント向き</span></h2>
+      <p>骨格は v5（左右＋上部合計）。左を広げカードと列下イベントを大きくする。「v5だとイベントが窮屈」への直接回答。</p>
+      <div class="meta">編成視認 <b>高</b> · 表の広さ <b>中〜高</b> · 金イベント <b>高</b> · 実装距離 <b>中</b></div>
+      <a class="btn" href="./hybrid-h1-wide-dock.html">H1 を開く</a>
+    </article>
+
+    <article class="card">
+      <h2>H2 圧縮ギャラリー <span class="tag">v2進化</span></h2>
+      <p>骨格は v2（上下）。上段の余白・カード高さを抑え、下段表を厚くする。金イベントの列下UIは v2のまま維持。</p>
+      <div class="meta">編成視認 <b>高</b> · 表の広さ <b>中</b> · 金イベント <b>最高</b> · 実装距離 <b>近</b></div>
+      <a class="btn" href="./hybrid-h2-compact-gallery.html">H2 を開く</a>
+    </article>
+
+    <article class="card">
+      <h2>H3 ワイド時スプリット <span class="tag">PC特化</span></h2>
+      <p>広い画面では左に大型ギャラリー＋イベント、右に表を常時。狭いと v2縦積みに戻る。両方の時間が長い人向け。</p>
+      <div class="meta">編成視認 <b>高（広時）</b> · 表の広さ <b>高（広時）</b> · 金イベント <b>高</b> · 実装距離 <b>やや遠</b></div>
+      <a class="btn" href="./hybrid-h3-wide-split.html">H3 を開く</a>
+    </article>
+
+    <article class="card">
+      <h2>H4 トップストリップ <span class="tag">中間案</span></h2>
+      <p>上に中サイズの横一列デッキ＋イベント、その下に全幅の表。合計は上部。ギャラリーほど大きくないが、ドックよりイベントが扱いやすい。</p>
+      <div class="meta">編成視認 <b>中〜高</b> · 表の広さ <b>最高</b> · 金イベント <b>中〜高</b> · 実装距離 <b>中</b></div>
+      <a class="btn" href="./hybrid-h4-top-strip.html">H4 を開く</a>
+    </article>
+
+    <article class="card">
+      <h2>発展案（モックなし）</h2>
+      <p><b>H5 デュアル密度</b> — 既定は H2、画面幅と「作業モード」トグルで H1/H3 に切替。実装コストは最大だが、両方の時間が長い前提には最も忠実。</p>
+    </article>
+
+    <article class="card">
+      <h2>早見比較</h2>
+      <table class="cmp">
+        <thead>
+          <tr><th>案</th><th>編成の顔</th><th>金イベント</th><th>表</th><th>1画面完結</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>H1</td><td>○</td><td>○</td><td>○</td><td>○</td></tr>
+          <tr><td>H2</td><td>◎</td><td>◎</td><td>△〜○</td><td>△（縦移動）</td></tr>
+          <tr><td>H3</td><td>◎（広）</td><td>◎（広）</td><td>◎（広）</td><td>◎（広）</td></tr>
+          <tr><td>H4</td><td>○</td><td>○</td><td>◎</td><td>○</td></tr>
+          <tr><td>v2純</td><td>◎</td><td>◎</td><td>△</td><td>△</td></tr>
+          <tr><td>v5純</td><td>△</td><td>△</td><td>◎</td><td>◎</td></tr>
+        </tbody>
+      </table>
+      <p class="ref" style="margin-top:12px;margin-bottom:0">原案: <a href="./redesign-proposal-v2.html">v2</a> · <a href="./redesign-proposal-v5.html">v5</a> · <a href="./redesign-proposal-v4.html">v4</a></p>
+    </article>
+  </div>
+</body>
+</html>

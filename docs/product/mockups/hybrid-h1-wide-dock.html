@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <title>SP Calc — Hybrid H1（ワイドドック）</title>
+  <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@700;900&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --c-dark:#463f70; --c-font:#703a13; --c-accent:#625d7d; --c-border:#b3b0b6;
+      --c-label:#ede6e6; --c-gold:#f5cf6f; --c-main:#68bb09; --c-accent2:#ff7300; --c-accent3:#ff3276;
+      --g-chrome:linear-gradient(180deg,#5a5288,#463f70);
+      --g-sec:linear-gradient(180deg,#ff75a3,#f7518b);
+      --g-ter:linear-gradient(180deg,#fa9f40,#ff8427);
+      --g-pri:linear-gradient(180deg,#59ccfc,#23a4f6);
+      --g-gold:linear-gradient(90deg,#e9c95f,#e29403);
+      --g-acc:linear-gradient(180deg,#80e322,#38c306);
+      --panel:url("https://static.kouryaku.tools/umamusume/images/app/bg.webp?auto=format") center/180px repeat,#fff;
+      --font:"Zen Maru Gothic",Meiryo,sans-serif;
+      --dock:440px; --cmd:68px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;font-family:var(--font);font-weight:700;color:var(--c-font);background:var(--c-dark);overflow:hidden;-webkit-font-smoothing:auto}
+    .world{position:fixed;inset:0;z-index:0;background:url("https://static.kouryaku.tools/umamusume/images/app/uma-world.webp?auto=format") center top/cover no-repeat}
+    .world::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(70,63,112,.12),rgba(70,63,112,.04) 40%,rgba(70,63,112,.32))}
+    .app{position:relative;z-index:1;height:100%;max-width:1480px;margin:0 auto;padding:10px 12px;display:grid;grid-template-rows:auto var(--cmd) 1fr;gap:8px}
+    .banner{padding:8px 12px;border-radius:8px;background:rgba(70,63,112,.92);color:#fff;font-size:12px;border:1px solid #fff3}
+    .banner strong{color:var(--c-gold)} .banner a{color:#59ccfc}
+    .cmd{display:grid;grid-template-columns:220px 1fr auto;gap:12px;align-items:center;padding:0 14px;background:var(--g-chrome);color:#fff;border-radius:10px;border-bottom:3px solid var(--c-gold);box-shadow:0 8px 24px #0005}
+    .brand-k{font-size:10px;color:#bebbce;letter-spacing:.1em} .brand-n{margin:0;font-size:20px;font-weight:900} .brand-n span{color:var(--c-gold)}
+    .total{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+    .hero{display:flex;align-items:baseline;gap:6px;padding-right:12px;border-right:1px solid #fff3}
+    .hero .k{font-size:11px;color:#bebbce} .hero .n{font-size:34px;font-weight:900;color:var(--c-gold);line-height:1} .hero .u{font-size:13px;color:#ffe9a8}
+    .pl{font-size:11px;color:#bebbce}
+    .pbtn{border:1px solid #787588;background:linear-gradient(180deg,#fff,#dad4da);color:var(--c-accent);font:inherit;font-size:12px;padding:6px 10px;border-radius:6px;cursor:pointer}
+    .pbtn.on{background:var(--g-sec);border-color:#c00f47;color:#fff}
+    .pseg{display:inline-flex;border:1px solid #fff5;border-radius:6px;overflow:hidden}
+    .pseg button{border:0;background:#fff2;color:#ddd8ef;font:inherit;font-size:12px;padding:6px 9px;cursor:pointer;border-right:1px solid #fff2}
+    .pseg button:last-child{border-right:0} .pseg button.on{background:var(--g-ter);color:#fff}
+    .ghost{border:1px solid #fff5;background:#fff2;color:#fff;font:inherit;font-size:12px;padding:7px 12px;border-radius:999px;cursor:pointer}
+    .ws{display:grid;grid-template-columns:var(--dock) 1fr;gap:8px;min-height:0}
+    .dock,.canvas{background:var(--panel);border-radius:10px;box-shadow:0 8px 28px #0004;border:1px solid #fff8;display:flex;flex-direction:column;min-height:0;overflow:hidden}
+    .head{padding:10px 12px;background:var(--g-chrome);color:#fff;font-size:13px;font-weight:900;border-bottom:2px solid var(--c-gold);flex-shrink:0}
+    .dock-body{padding:10px;overflow:auto;display:flex;flex-direction:column;gap:8px;min-height:0}
+    .trainee{display:grid;grid-template-columns:88px 1fr;gap:10px;padding:8px;background:#fffc;border:1px solid var(--c-border);border-radius:8px;cursor:pointer;text-align:left;font:inherit;color:inherit}
+    .trainee img{width:88px;height:100px;object-fit:cover;border-radius:6px;display:block;background:var(--c-label)}
+    .trainee .role{font-size:10px;color:var(--c-accent)} .trainee .name{margin:2px 0 0;font-size:14px;font-weight:900}
+    .grid-sup{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+    .sup{display:flex;flex-direction:column;gap:6px;padding:8px;background:#fffc;border:1px solid var(--c-border);border-radius:8px;cursor:pointer;text-align:left;font:inherit;color:inherit}
+    .sup:hover{border-color:var(--c-accent2)}
+    .sup .face{position:relative;aspect-ratio:3/4.1;border-radius:6px;overflow:hidden;background:var(--c-label)}
+    .sup .face img{width:100%;height:100%;object-fit:cover;display:block}
+    .badge{position:absolute;top:4px;left:4px;background:var(--c-dark);color:#fff;font-size:10px;padding:1px 5px;border-radius:3px}
+    .type{position:absolute;top:4px;right:4px;width:18px;height:18px;border-radius:50%;border:1.5px solid #fff}
+    .type.speed{background:#42a5f5}.type.stamina{background:#ef5350}.type.wit{background:#66bb6a}.type.friend{background:#ab47bc}
+    .sname{font-size:12px;font-weight:900;text-align:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .evts{display:flex;flex-direction:column;gap:3px}
+    .evt{border:1px solid var(--c-border);background:linear-gradient(180deg,#fff,#edebef);font:inherit;font-size:11px;font-weight:700;color:var(--c-accent);padding:5px 6px;border-radius:5px;cursor:pointer;text-align:left}
+    .evt.on{border-color:var(--c-accent2);background:linear-gradient(180deg,#fff8ee,#ffe4c4);color:var(--c-font)}
+    .evt .g{display:inline-block;margin-right:2px;padding:0 3px;border-radius:2px;background:var(--g-gold);color:#5a3d00;font-size:9px;font-weight:900}
+    .auto{font-size:11px;color:var(--c-accent);text-align:center;padding:5px;border:1px dashed var(--c-border);border-radius:5px}
+    .foot{margin-top:4px;padding-top:8px;border-top:1px dashed var(--c-border);display:flex;flex-direction:column;gap:6px}
+    .frow{display:flex;flex-wrap:wrap;gap:4px;align-items:center}
+    .fk{font-size:10px;color:var(--c-accent);width:3em}
+    .chip{border:1px solid var(--c-border);background:linear-gradient(180deg,#fff,#dad4da);font:inherit;font-size:11px;padding:4px 7px;border-radius:5px;cursor:pointer;color:var(--c-accent)}
+    .chip.on{background:var(--g-acc);border-color:#238500;color:#fff}
+    .chip.sig{background:var(--g-sec);border-color:#c00f47;color:#fff}
+    .canvas-h{display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding:10px 12px;background:#fffb;border-bottom:1px solid #eae7ec;flex-shrink:0}
+    .tag{padding:5px 10px;background:var(--g-chrome);color:#fff;font-size:12px;border-radius:2px;border-bottom:2px solid var(--c-gold)}
+    .fl{font-size:11px;color:var(--c-accent)}
+    .seg{display:inline-flex;border:1px solid #787588;border-radius:6px;overflow:hidden;background:#fff}
+    .seg button{border:0;background:0;font:inherit;font-size:11px;padding:6px 9px;color:var(--c-accent);cursor:pointer;border-right:1px solid var(--c-border)}
+    .seg button:last-child{border-right:0}.seg button.on{background:var(--g-pri);color:#fff}
+    .solid{margin-left:auto;border:1px solid #1a7ab8;background:var(--g-pri);color:#fff;font:inherit;font-size:12px;padding:7px 12px;border-radius:6px;cursor:pointer}
+    .tw{overflow:auto;flex:1;min-height:0;padding:0 4px 8px}
+    table{width:100%;border-collapse:collapse;font-size:13px}
+    th{position:sticky;top:0;background:#ede6e6f2;padding:10px;font-size:10px;color:var(--c-accent);border-bottom:2px solid var(--c-dark);text-align:left}
+    td{padding:9px 10px;border-bottom:1px solid #eae7ec;font-weight:700}
+    tr.off td{opacity:.4;text-decoration:line-through}
+    .sp{color:var(--c-accent2);font-weight:900}
+    .lv{display:inline-grid;place-items:center;min-width:2.2em;padding:2px 6px;border-radius:4px;background:var(--c-dark);color:#fff;font-size:10px}
+    .tog{width:34px;height:20px;border-radius:999px;border:0;background:var(--c-border);position:relative;cursor:pointer}
+    .tog::after{content:"";position:absolute;top:2px;left:2px;width:16px;height:16px;border-radius:50%;background:#fff;transition:transform .15s}
+    .tog.on{background:var(--c-main)}.tog.on::after{transform:translateX(14px)}
+    .sum{padding:8px 12px;border-top:1px solid #eae7ec;background:#fffc;font-size:12px;color:var(--c-accent);flex-shrink:0}
+    .sum b{color:var(--c-font)}
+    @media(max-width:1100px){:root{--dock:360px}.grid-sup{grid-template-columns:1fr}}
+    @media(max-width:900px){body{overflow:auto}.app{height:auto}.ws{grid-template-columns:1fr}.cmd{grid-template-columns:1fr;height:auto;padding:10px}}
+  </style>
+</head>
+<body>
+  <div class="world"></div>
+  <div class="app">
+    <aside class="banner"><strong>H1 ワイドドック</strong> — v5骨格＋左を広げカード2列＆列下イベントを大きく。 <a href="./hybrid-index.html">一覧</a> · <a href="./redesign-proposal-v2.html">v2</a> · <a href="./redesign-proposal-v5.html">v5</a></aside>
+    <header class="cmd">
+      <div><div class="brand-k">HYBRID H1</div><h1 class="brand-n">SP <span>Calc</span></h1></div>
+      <div class="total">
+        <div class="hero"><span class="k">TOTAL</span><span class="n">1,248</span><span class="u">SP</span></div>
+        <span class="pl">前提</span>
+        <button type="button" class="pbtn on" data-k>切れ者 ON</button>
+        <span class="pl">トレLv</span>
+        <div class="pseg"><button type="button">3</button><button type="button">4</button><button type="button" class="on">5</button></div>
+        <button type="button" class="pbtn">継承 OFF</button>
+      </div>
+      <div><button type="button" class="ghost">メモリ</button> <button type="button" class="ghost">使い方</button></div>
+    </header>
+    <div class="ws">
+      <aside class="dock">
+        <div class="head">編成 · イベント選択</div>
+        <div class="dock-body">
+          <button type="button" class="trainee"><img src="../../../assets/characters/112901.webp" alt=""/><div><div class="role">育成</div><p class="name">アーモンドアイ</p></div></button>
+          <div class="grid-sup">
+            <div class="sup"><div class="face"><img src="../../../assets/supports/30281.webp" alt=""/><span class="badge">1</span><span class="type speed"></span></div><div class="sname">エアグルーヴ</div><div class="evts"><button type="button" class="evt on"><span class="g">金</span>切れ者</button><button type="button" class="evt">右回り○</button></div></div>
+            <div class="sup"><div class="face"><img src="../../../assets/supports/30292.webp" alt=""/><span class="badge">2</span><span class="type speed"></span></div><div class="sname">トウカイテイオー</div><div class="evts"><button type="button" class="evt on"><span class="g">金</span>先手必勝</button><button type="button" class="evt">負けん気</button></div></div>
+            <div class="sup"><div class="face"><img src="../../../assets/supports/30301.webp" alt=""/><span class="badge">3</span><span class="type stamina"></span></div><div class="sname">タップダンスシチー</div><div class="auto"><span class="g">金</span> 自動：冷静</div></div>
+            <div class="sup"><div class="face"><img src="../../../assets/supports/30286.webp" alt=""/><span class="badge">4</span><span class="type stamina"></span></div><div class="sname">メジロドーベル</div><div class="evts"><button type="button" class="evt on"><span class="g">金</span>食いしん坊</button></div></div>
+            <div class="sup"><div class="face"><img src="../../../assets/supports/30277.webp" alt=""/><span class="badge">5</span><span class="type wit"></span></div><div class="sname">スマートファルコン</div><div class="evts"><button type="button" class="evt on">作戦理解</button><button type="button" class="evt">冷静</button></div></div>
+            <div class="sup"><div class="face"><img src="../../../assets/supports/30271.webp" alt=""/><span class="badge">6</span><span class="type friend"></span></div><div class="sname">駿川たづな</div><div class="auto"><span class="g">金</span> 自動：中盤巧者</div></div>
+          </div>
+          <div class="foot">
+            <div class="frow"><span class="fk">リンク</span><button type="button" class="chip on">エアグルーヴ</button><button type="button" class="chip">テイオー</button></div>
+            <div class="frow"><span class="fk">RMJ</span><button type="button" class="chip sig">参加</button><button type="button" class="chip">不参加</button></div>
+          </div>
+        </div>
+      </aside>
+      <section class="canvas">
+        <div class="canvas-h">
+          <span class="tag">含めるスキル</span>
+          <span class="fl">レギュ</span>
+          <div class="seg"><button type="button" class="on">すべて</button><button type="button">○以上</button><button type="button">◎のみ</button></div>
+          <span class="fl">並び</span>
+          <div class="seg"><button type="button" class="on">由来</button><button type="button">SP</button><button type="button">名前</button></div>
+          <button type="button" class="solid">含めるをコピー</button>
+        </div>
+        <div class="tw">
+          <table>
+            <thead><tr><th>ON</th><th>スキル</th><th>由来</th><th>ヒント</th><th>SP</th></tr></thead>
+            <tbody>
+              <tr><td><button type="button" class="tog on" data-t></button></td><td>切れ者</td><td>イベント · エアグルーヴ</td><td><span class="lv">Lv3</span></td><td class="sp">162</td></tr>
+              <tr><td><button type="button" class="tog on" data-t></button></td><td>先手必勝</td><td>イベント · テイオー</td><td><span class="lv">Lv3</span></td><td class="sp">162</td></tr>
+              <tr><td><button type="button" class="tog on" data-t></button></td><td>中盤巧者</td><td>シナリオ · たづな</td><td><span class="lv">Lv2</span></td><td class="sp">147</td></tr>
+              <tr><td><button type="button" class="tog on" data-t></button></td><td>右回り○</td><td>トレヒント · 枠1</td><td><span class="lv">Lv5</span></td><td class="sp">98</td></tr>
+              <tr class="off"><td><button type="button" class="tog" data-t></button></td><td>負けん気</td><td>トレヒント · 枠2</td><td><span class="lv">Lv5</span></td><td class="sp">98</td></tr>
+              <tr><td><button type="button" class="tog on" data-t></button></td><td>末脚</td><td>所持 · アーモンドアイ</td><td><span class="lv">Lv3</span></td><td class="sp">126</td></tr>
+              <tr><td><button type="button" class="tog on" data-t></button></td><td>食いしん坊</td><td>イベント · ドーベル</td><td><span class="lv">Lv3</span></td><td class="sp">162</td></tr>
+              <tr><td><button type="button" class="tog on" data-t></button></td><td>作戦理解</td><td>イベント · ファルコン</td><td><span class="lv">Lv2</span></td><td class="sp">98</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="sum">計上 <b>7</b> / 除外 <b>1</b> · 左で金イベント、右で削る（同時可視）</div>
+      </section>
+    </div>
+  </div>
+  <script>
+    document.querySelectorAll('[data-t]').forEach(b=>b.onclick=()=>{b.classList.toggle('on');b.closest('tr').classList.toggle('off',!b.classList.contains('on'))});
+    document.querySelectorAll('.seg,.pseg').forEach(s=>s.querySelectorAll('button').forEach(b=>b.onclick=()=>{s.querySelectorAll('button').forEach(x=>x.classList.remove('on'));b.classList.add('on')}));
+    document.querySelector('[data-k]').onclick=e=>{const on=e.target.classList.toggle('on');e.target.textContent=on?'切れ者 ON':'切れ者 OFF'};
+    document.querySelectorAll('.evts').forEach(row=>row.querySelectorAll('.evt').forEach(e=>e.onclick=()=>{row.querySelectorAll('.evt').forEach(x=>x.classList.remove('on'));e.classList.add('on')}));
+  </script>
+</body>
+</html>

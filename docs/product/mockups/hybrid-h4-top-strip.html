@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <title>SP Calc — Hybrid H4（トップストリップ）</title>
+  <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@700;900&display=swap" rel="stylesheet" />
+  <style>
+    :root{
+      --c-dark:#463f70;--c-font:#703a13;--c-accent:#625d7d;--c-border:#b3b0b6;--c-label:#ede6e6;
+      --c-gold:#f5cf6f;--c-main:#68bb09;--c-accent2:#ff7300;
+      --g-chrome:linear-gradient(180deg,#5a5288,#463f70);--g-sec:linear-gradient(180deg,#ff75a3,#f7518b);
+      --g-ter:linear-gradient(180deg,#fa9f40,#ff8427);--g-pri:linear-gradient(180deg,#59ccfc,#23a4f6);
+      --g-gold:linear-gradient(90deg,#e9c95f,#e29403);--g-acc:linear-gradient(180deg,#80e322,#38c306);
+      --panel:url("https://static.kouryaku.tools/umamusume/images/app/bg.webp?auto=format") center/180px repeat,#fff;
+      --font:"Zen Maru Gothic",Meiryo,sans-serif;--cmd:64px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;font-family:var(--font);font-weight:700;color:var(--c-font);background:var(--c-dark);overflow:hidden;-webkit-font-smoothing:auto}
+    .world{position:fixed;inset:0;z-index:0;background:url("https://static.kouryaku.tools/umamusume/images/app/uma-world.webp?auto=format") center top/cover no-repeat}
+    .world::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(70,63,112,.1),rgba(70,63,112,.3))}
+    .app{position:relative;z-index:1;height:100%;max-width:1400px;margin:0 auto;padding:10px;display:grid;grid-template-rows:auto var(--cmd) auto 1fr;gap:8px}
+    .banner{padding:8px 12px;background:rgba(70,63,112,.92);color:#fff;border-radius:8px;font-size:12px}
+    .banner strong{color:var(--c-gold)} .banner a{color:#59ccfc}
+    .cmd{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;padding:0 14px;background:var(--g-chrome);color:#fff;border-radius:10px;border-bottom:3px solid var(--c-gold)}
+    .brand{font-size:18px;font-weight:900} .brand span{color:var(--c-gold)}
+    .hero .n{font-size:32px;font-weight:900;color:var(--c-gold)}
+    .pre{display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+    .pbtn{border:1px solid #787588;background:linear-gradient(180deg,#fff,#dad4da);color:var(--c-accent);font:inherit;font-size:12px;padding:6px 10px;border-radius:6px;cursor:pointer}
+    .pbtn.on{background:var(--g-sec);color:#fff}
+    .pseg{display:inline-flex;border:1px solid #fff4;border-radius:6px;overflow:hidden}
+    .pseg button{border:0;background:#fff2;color:#ddd8ef;font:inherit;font-size:12px;padding:6px 9px;cursor:pointer}
+    .pseg button.on{background:var(--g-ter);color:#fff}
+    .ghost{border:1px solid #fff5;background:#fff2;color:#fff;font:inherit;font-size:12px;padding:6px 10px;border-radius:999px;cursor:pointer}
+    .strip{background:var(--panel);border-radius:10px;box-shadow:0 6px 20px #0004;border:1px solid #fff8;padding:8px 10px;overflow:auto}
+    .row{display:grid;grid-template-columns:72px repeat(6,minmax(110px,1fr));gap:8px;min-width:780px}
+    .slot{min-width:0;display:flex;flex-direction:column;gap:4px}
+    .lab{font-size:9px;text-align:center;color:var(--c-accent)}
+    .face{position:relative;aspect-ratio:3/3.5;border-radius:6px;overflow:hidden;border:2px solid var(--c-border);background:var(--c-label);padding:0;cursor:pointer}
+    .face.is-t{aspect-ratio:1/1.05}
+    .face img{width:100%;height:100%;object-fit:cover;display:block}
+    .type{position:absolute;top:3px;right:3px;width:16px;height:16px;border-radius:50%;border:1px solid #fff}
+    .type.speed{background:#42a5f5}.type.stamina{background:#ef5350}.type.wit{background:#66bb6a}.type.friend{background:#ab47bc}
+    .nm{margin:0;font-size:10px;text-align:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .evts{display:flex;flex-direction:column;gap:2px}
+    .evt{border:1px solid var(--c-border);background:linear-gradient(180deg,#fff,#edebef);font:inherit;font-size:10px;padding:3px 5px;border-radius:4px;cursor:pointer;text-align:left;color:var(--c-accent)}
+    .evt.on{border-color:var(--c-accent2);background:linear-gradient(180deg,#fff8ee,#ffe4c4);color:var(--c-font)}
+    .evt .g{background:var(--g-gold);color:#5a3d00;padding:0 2px;border-radius:2px;font-size:8px;margin-right:1px}
+    .auto{font-size:10px;text-align:center;color:var(--c-accent);border:1px dashed var(--c-border);border-radius:4px;padding:3px}
+    .foot{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px;padding-top:6px;border-top:1px dashed var(--c-border)}
+    .chip{border:1px solid var(--c-border);background:linear-gradient(180deg,#fff,#dad4da);font:inherit;font-size:11px;padding:3px 7px;border-radius:5px;cursor:pointer;color:var(--c-accent)}
+    .chip.on{background:var(--g-acc);color:#fff}.chip.sig{background:var(--g-sec);color:#fff}
+    .canvas{background:var(--panel);border-radius:10px;box-shadow:0 8px 24px #0004;border:1px solid #fff8;display:flex;flex-direction:column;min-height:0;overflow:hidden}
+    .ch{display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding:8px 12px;background:#fffb;border-bottom:1px solid #eae7ec;flex-shrink:0}
+    .tag{padding:4px 10px;background:var(--g-chrome);color:#fff;font-size:12px;border-radius:2px;border-bottom:2px solid var(--c-gold)}
+    .fl{font-size:11px;color:var(--c-accent)}
+    .seg{display:inline-flex;border:1px solid #787588;border-radius:6px;overflow:hidden;background:#fff}
+    .seg button{border:0;background:0;font:inherit;font-size:11px;padding:5px 8px;color:var(--c-accent);cursor:pointer;border-right:1px solid var(--c-border)}
+    .seg button:last-child{border-right:0}.seg button.on{background:var(--g-pri);color:#fff}
+    .solid{margin-left:auto;border:0;background:var(--g-pri);color:#fff;font:inherit;font-size:12px;padding:6px 10px;border-radius:6px;cursor:pointer}
+    .tw{overflow:auto;flex:1;min-height:0;padding:0 6px 8px}
+    table{width:100%;border-collapse:collapse;font-size:13px}
+    th{position:sticky;top:0;background:#ede6e6f2;text-align:left;font-size:10px;color:var(--c-accent);padding:8px;border-bottom:2px solid var(--c-dark)}
+    td{padding:8px;border-bottom:1px solid #eae7ec}
+    tr.off td{opacity:.4;text-decoration:line-through}
+    .sp{color:var(--c-accent2);font-weight:900}
+    .tog{width:34px;height:20px;border-radius:999px;border:0;background:var(--c-border);position:relative;cursor:pointer}
+    .tog::after{content:"";position:absolute;top:2px;left:2px;width:16px;height:16px;border-radius:50%;background:#fff}
+    .tog.on{background:var(--c-main)}.tog.on::after{transform:translateX(14px)}
+    @media(max-width:900px){body{overflow:auto}.app{height:auto;grid-template-rows:auto auto auto auto}}
+  </style>
+</head>
+<body>
+  <div class="world"></div>
+  <div class="app">
+    <aside class="banner"><strong>H4 トップストリップ</strong> — 上に中サイズ横一列（イベント付き）、下に全幅表。合計は上部。 <a href="./hybrid-index.html">一覧</a></aside>
+    <header class="cmd">
+      <div class="brand">SP <span>Calc</span> · H4</div>
+      <div class="hero"><span style="font-size:11px;color:#bebbce">TOTAL </span><span class="n">1,248</span><span style="color:#ffe9a8"> SP</span></div>
+      <div class="pre">
+        <button type="button" class="pbtn on">切れ者 ON</button>
+        <div class="pseg"><button type="button">3</button><button type="button">4</button><button type="button" class="on">5</button></div>
+        <button type="button" class="pbtn">継承 OFF</button>
+        <button type="button" class="ghost">メモリ</button>
+      </div>
+    </header>
+    <section class="strip" aria-label="編成ストリップ">
+      <div class="row">
+        <div class="slot"><div class="lab">育成</div><button type="button" class="face is-t"><img src="../../../assets/characters/112901.webp" alt=""/></button><p class="nm">アーモンドアイ</p></div>
+        <div class="slot"><div class="lab">1</div><button type="button" class="face"><img src="../../../assets/supports/30281.webp" alt=""/><span class="type speed"></span></button><p class="nm">エアグルーヴ</p><div class="evts"><button type="button" class="evt on"><span class="g">金</span>切れ者</button><button type="button" class="evt">右回り○</button></div></div>
+        <div class="slot"><div class="lab">2</div><button type="button" class="face"><img src="../../../assets/supports/30292.webp" alt=""/><span class="type speed"></span></button><p class="nm">テイオー</p><div class="evts"><button type="button" class="evt on"><span class="g">金</span>先手必勝</button><button type="button" class="evt">負けん気</button></div></div>
+        <div class="slot"><div class="lab">3</div><button type="button" class="face"><img src="../../../assets/supports/30301.webp" alt=""/><span class="type stamina"></span></button><p class="nm">タップ</p><div class="auto"><span class="g">金</span>自動</div></div>
+        <div class="slot"><div class="lab">4</div><button type="button" class="face"><img src="../../../assets/supports/30286.webp" alt=""/><span class="type stamina"></span></button><p class="nm">ドーベル</p><div class="evts"><button type="button" class="evt on"><span class="g">金</span>食いしん坊</button></div></div>
+        <div class="slot"><div class="lab">5</div><button type="button" class="face"><img src="../../../assets/supports/30277.webp" alt=""/><span class="type wit"></span></button><p class="nm">ファルコン</p><div class="evts"><button type="button" class="evt on">作戦理解</button><button type="button" class="evt">冷静</button></div></div>
+        <div class="slot"><div class="lab">6</div><button type="button" class="face"><img src="../../../assets/supports/30271.webp" alt=""/><span class="type friend"></span></button><p class="nm">たづな</p><div class="auto"><span class="g">金</span>自動</div></div>
+      </div>
+      <div class="foot">
+        <button type="button" class="chip on">リンク:エア</button>
+        <button type="button" class="chip sig">RMJ参加</button>
+        <button type="button" class="chip on">自動EV</button>
+        <button type="button" class="chip on">シナリオ</button>
+      </div>
+    </section>
+    <section class="canvas">
+      <div class="ch">
+        <span class="tag">含めるスキル（全幅）</span>
+        <span class="fl">レギュ</span>
+        <div class="seg"><button type="button" class="on">すべて</button><button type="button">○以上</button><button type="button">◎のみ</button></div>
+        <span class="fl">並び</span>
+        <div class="seg"><button type="button" class="on">由来</button><button type="button">SP</button><button type="button">名前</button></div>
+        <button type="button" class="solid">含めるをコピー</button>
+      </div>
+      <div class="tw">
+        <table>
+          <thead><tr><th>ON</th><th>スキル</th><th>由来</th><th>ヒント</th><th>SP</th></tr></thead>
+          <tbody>
+            <tr><td><button type="button" class="tog on" data-t></button></td><td>切れ者</td><td>イベント · エアグルーヴ</td><td>Lv3</td><td class="sp">162</td></tr>
+            <tr><td><button type="button" class="tog on" data-t></button></td><td>先手必勝</td><td>イベント · テイオー</td><td>Lv3</td><td class="sp">162</td></tr>
+            <tr><td><button type="button" class="tog on" data-t></button></td><td>中盤巧者</td><td>シナリオ · たづな</td><td>Lv2</td><td class="sp">147</td></tr>
+            <tr><td><button type="button" class="tog on" data-t></button></td><td>右回り○</td><td>トレヒント</td><td>Lv5</td><td class="sp">98</td></tr>
+            <tr class="off"><td><button type="button" class="tog" data-t></button></td><td>負けん気</td><td>トレヒント</td><td>Lv5</td><td class="sp">98</td></tr>
+            <tr><td><button type="button" class="tog on" data-t></button></td><td>末脚</td><td>所持</td><td>Lv3</td><td class="sp">126</td></tr>
+            <tr><td><button type="button" class="tog on" data-t></button></td><td>食いしん坊</td><td>イベント</td><td>Lv3</td><td class="sp">162</td></tr>
+            <tr><td><button type="button" class="tog on" data-t></button></td><td>作戦理解</td><td>イベント</td><td>Lv2</td><td class="sp">98</td></tr>
+            <tr><td><button type="button" class="tog on" data-t></button></td><td>冷静</td><td>自動</td><td>Lv2</td><td class="sp">112</td></tr>
+            <tr><td><button type="button" class="tog on" data-t></button></td><td>（他スキル…）</td><td>—</td><td>—</td><td class="sp">—</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </div>
+  <script>
+    document.querySelectorAll('[data-t]').forEach(b=>b.onclick=()=>{b.classList.toggle('on');b.closest('tr').classList.toggle('off',!b.classList.contains('on'))});
+    document.querySelectorAll('.seg,.pseg').forEach(s=>s.querySelectorAll('button').forEach(b=>b.onclick=()=>{s.querySelectorAll('button').forEach(x=>x.classList.remove('on'));b.classList.add('on')}));
+    document.querySelectorAll('.evts').forEach(r=>r.querySelectorAll('.evt').forEach(e=>e.onclick=()=>{r.querySelectorAll('.evt').forEach(x=>x.classList.remove('on'));e.classList.add('on')}));
+  </script>
+</body>
+</html>
