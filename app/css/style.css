@@ -589,13 +589,19 @@ input[type="search"] {
   border: none;
   background: none;
   cursor: pointer;
-  border-radius: 20px;
-  transition: transform 0.12s ease, box-shadow 0.12s ease;
+  border-radius: 0;
+  overflow: visible;
+  transition: transform 0.12s ease;
 }
 
+/* ホバー浮きは画像側の drop-shadow / transform に統一（矩形 box-shadow は使わない） */
 .deck-slot:hover {
+  transform: none;
+}
+
+.deck-slot:hover .card-face__img {
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+  filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.24));
 }
 
 .deck-slot:focus-visible {
@@ -605,34 +611,18 @@ input[type="search"] {
 
 .deck-slot--character {
   width: 5.5rem;
-  /* 耳・drop-shadow のはみ出しを切らない */
-  overflow: visible;
-  border-radius: 0;
 }
 
 .deck-slot .card-face {
   aspect-ratio: 3 / 4;
-  /* 編成スロット（大きめ表示）用の角丸。ピッカーには掛けない */
-  border-radius: 20px 11px 20px 20px;
-}
-
-/* 育成は chr_icon（正方形）前提。サポカ用の縦長指定より後に置いて上書きする */
-.deck-slot--character .card-face {
-  aspect-ratio: 1 / 1;
   border-radius: 0;
   overflow: visible;
   box-shadow: none;
 }
 
-/* 育成ホバーは矩形 box-shadow ではなく画像アルファに沿った drop-shadow */
-.deck-slot--character:hover {
-  transform: none;
-  box-shadow: none;
-}
-
-.deck-slot--character:hover .card-face__img {
-  transform: translateY(-2px);
-  filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.24));
+/* 育成は chr_icon（正方形）前提 */
+.deck-slot--character .card-face {
+  aspect-ratio: 1 / 1;
 }
 
 .deck-premise {
@@ -701,38 +691,33 @@ input[type="search"] {
   position: relative;
   width: 100%;
   aspect-ratio: 3 / 4;
-  /* 既定はピッカー等の小カード向け。編成スロットは .deck-slot .card-face で上書き */
-  border-radius: 6px 4px 6px 6px;
-  overflow: hidden;
-  /* 画像の角丸外（透明）からタイプ色が透けないよう背景は付けない。欠落時は .card-face__ph が担当 */
+  /* 影は画像アルファに任せるため、矩形の border-radius / box-shadow は使わない */
+  border-radius: 0;
+  overflow: visible;
   background: transparent;
   color: var(--card-ink, #1c2420);
-  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.08);
+  box-shadow: none;
+}
+
+.card-face__img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  z-index: 1;
+  filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.2));
+  transition: transform 0.12s ease, filter 0.12s ease;
 }
 
 /* 育成ウマ娘（chr_icon は正方形・四隅透明・耳が枠上にはみ出す） */
 .card-face--square {
   aspect-ratio: 1 / 1;
-  border-radius: 0;
-  overflow: visible;
-  box-shadow: none;
 }
 
 .card-face--square .card-face__img {
   object-fit: contain;
-  /* 矩形ではなく不透明ピクセル（枠＋耳）に沿って影を付ける */
-  filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.2));
-  transition: transform 0.12s ease, filter 0.12s ease;
-}
-
-.card-face--square.card-face--empty {
-  overflow: hidden;
-  border-radius: 8px;
-  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.08);
-}
-
-.card-face--square.card-face--empty .card-face__img {
-  filter: none;
 }
 
 .card-face--empty {
@@ -744,16 +729,13 @@ input[type="search"] {
   font-size: 1.5rem;
   font-weight: 700;
   min-height: 4.5rem;
+  overflow: hidden;
+  border-radius: 8px;
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.08);
 }
 
-.card-face__img {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-  z-index: 1;
+.card-face--empty .card-face__img {
+  filter: none;
 }
 
 .card-face__img.is-failed {
@@ -875,45 +857,30 @@ input[type="search"] {
 .card-picker__item {
   padding: 0;
   border: 2px solid transparent;
-  /* .card-face と同じ角丸にして選択枠がずれないようにする */
-  border-radius: 6px 4px 6px 6px;
+  border-radius: 0;
+  overflow: visible;
   background: none;
   cursor: pointer;
 }
 
-.card-picker__item:has(.card-face--square) {
-  border-radius: 8px;
-  overflow: visible;
-}
-
-.card-picker__item:has(.card-face--square):hover {
+.card-picker__item:hover {
   border-color: transparent;
 }
 
-.card-picker__item:has(.card-face--square):hover .card-face__img {
+.card-picker__item:hover .card-face__img {
   filter: drop-shadow(0 4px 10px rgba(26, 95, 138, 0.35));
 }
 
-.card-picker__item--selected:has(.card-face--square) {
+.card-picker__item--selected {
   border-color: transparent;
   box-shadow: none;
 }
 
-.card-picker__item--selected:has(.card-face--square) .card-face__img {
-  /* spread は使えないのでぼかし二重で選択リングを近似 */
+.card-picker__item--selected .card-face__img {
   filter:
     drop-shadow(0 0 1.5px #1f6f5a)
     drop-shadow(0 0 2.5px #1f6f5a)
     drop-shadow(0 3px 8px rgba(0, 0, 0, 0.2));
-}
-
-.card-picker__item:hover {
-  border-color: #1a5f8a;
-}
-
-.card-picker__item--selected {
-  border-color: #1f6f5a;
-  box-shadow: 0 0 0 1px #1f6f5a;
 }
 
 .card-picker__empty {

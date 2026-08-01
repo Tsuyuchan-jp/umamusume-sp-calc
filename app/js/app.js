@@ -154,7 +154,7 @@ function buildCardFaceHtml({
   rarity,
   label,
   empty = false,
-  showTextOverlay = true,
+  showTextOverlay = false,
   square = false,
 }) {
   const faceClass = square ? "card-face card-face--square" : "card-face";
@@ -164,7 +164,7 @@ function buildCardFaceHtml({
   const safeLabel = escapeHtml(label);
   const safeRarity = escapeHtml(rarity || "");
   const typeLabel = escapeHtml(typeStyle?.label || "");
-  // サポカは画像本体（枠・タイプ印）だけで足りるため、SSR/名前/黒帯は載せない
+  // 画像本体だけで足りるため、SSR/名前/黒帯は載せない
   const overlayHtml = showTextOverlay
     ? `${safeRarity ? `<span class="card-face__rarity">${safeRarity}</span>` : ""}
       <span class="card-face__label">${safeLabel}</span>`
@@ -214,6 +214,7 @@ function renderDeckCharacter() {
     rarity: "",
     label: shortCharacterLabel(c.name),
     square: true,
+    showTextOverlay: false,
   });
   btn.title = label;
 }
@@ -354,6 +355,7 @@ function buildCharacterPickerItems() {
         rarity: "",
         label: shortCharacterLabel(c.name),
         square: true,
+        showTextOverlay: false,
       }),
     }))
     .sort((a, b) => a.searchText.localeCompare(b.searchText, "ja"));
