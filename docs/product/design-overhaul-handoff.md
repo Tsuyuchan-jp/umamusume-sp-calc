@@ -115,10 +115,10 @@
 
 ユーザー方針（2026-08-02 更新）: 現行 CSS に引っ張られて大きな改修が難しいため、**先に独立モックで方向を決める**。
 
-0. **独立ビジュアルモック（進行中）** — ハイブリッド比較中  
-   - 入口: [hybrid-index.html](./mockups/hybrid-index.html)（H1〜H4）  
-   - 原案: [v2](./mockups/redesign-proposal-v2.html) / [v5](./mockups/redesign-proposal-v5.html)  
-   金イベント列下を重要と定義。現行 `app/` は触らない。
+0. **独立ビジュアルモック（進行中）** — **H5デュアル試用**  
+   - 入口: [hybrid-h5-dual.html](./mockups/hybrid-h5-dual.html)（H2⇄H1切替・非金イベント詳細ペイン）  
+   - 一覧: [hybrid-index.html](./mockups/hybrid-index.html)  
+   現行 `app/` は触らない。
 1. **方向確定後** — モックのトークン／構造を `app/` へ移植（Foundation 再塗装 or 段階置換）
 2. **Round 1 — 正しさ** — ピッカー絞込バグ、選択強調
 3. **Round 2 — 列下イベント＋足元帯**

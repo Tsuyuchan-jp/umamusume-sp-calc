@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SP Calc — Hybrid H5（H2/H1デュアル）</title>
+  <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@700;900&display=swap" rel="stylesheet" />
+  <style>
+    /* H5: H2既定 + H1スプリット切替。H1のイベントは「要約＋詳細ペイン」で金以外も扱う */
+    :root {
+      --c-dark: #463f70;
+      --c-font: #703a13;
+      --c-accent: #625d7d;
+      --c-border: #b3b0b6;
+      --c-label: #ede6e6;
+      --c-gold: #f5cf6f;
+      --c-main: #68bb09;
+      --c-accent2: #ff7300;
+      --c-accent3: #ff3276;
+      --g-chrome: linear-gradient(180deg, #5a5288, #463f70);
+      --g-sec: linear-gradient(180deg, #ff75a3, #f7518b);
+      --g-ter: linear-gradient(180deg, #fa9f40, #ff8427);
+      --g-pri: linear-gradient(180deg, #59ccfc, #23a4f6);
+      --g-gold: linear-gradient(90deg, #e9c95f, #e29403);
+      --g-acc: linear-gradient(180deg, #80e322, #38c306);
+      --panel: url("https://static.kouryaku.tools/umamusume/images/app/bg.webp?auto=format") center/180px repeat, #fff;
+      --font: "Zen Maru Gothic", Meiryo, sans-serif;
+      --bar: 70px;
+      --max: 1180px;
+      --dock: 420px;
+      --cmd: 64px;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: var(--font);
+      font-weight: 700;
+      color: var(--c-font);
+      background: var(--c-dark);
+      -webkit-font-smoothing: auto;
+    }
+    .world {
+      position: fixed; inset: 0; z-index: 0;
+      background: url("https://static.kouryaku.tools/umamusume/images/app/uma-world.webp?auto=format") center top / cover no-repeat;
+    }
+    .world::after {
+      content: ""; position: absolute; inset: 0;
+      background: linear-gradient(180deg, rgba(70,63,112,.12), rgba(70,63,112,.04) 40%, rgba(70,63,112,.32));
+    }
+
+    /* ===== モード切替バー ===== */
+    .modebar {
+      position: relative; z-index: 2;
+      width: min(1480px, calc(100% - 24px));
+      margin: 10px auto 0;
+      padding: 8px 12px;
+      background: rgba(70, 63, 112, 0.94);
+      color: #fff;
+      border-radius: 8px;
+      border-bottom: 3px solid var(--c-gold);
+      display: flex; flex-wrap: wrap; gap: 8px 14px; align-items: center;
+      font-size: 12px;
+    }
+    .modebar strong { color: var(--c-gold); }
+    .modebar a { color: #59ccfc; }
+    .mode-seg {
+      display: inline-flex; border: 1px solid rgba(255,255,255,.35); border-radius: 8px; overflow: hidden;
+    }
+    .mode-seg button {
+      appearance: none; border: 0; background: transparent; color: #ddd8ef;
+      font: inherit; font-size: 12px; font-weight: 900; padding: 6px 12px; cursor: pointer;
+      border-right: 1px solid rgba(255,255,255,.2);
+    }
+    .mode-seg button:last-child { border-right: 0; }
+    .mode-seg button.is-on { background: var(--c-gold); color: #3a2a00; }
+    .mode-note { color: #bebbce; font-size: 11px; }
+
+    /* ===== 共通部品 ===== */
+    .ghost {
+      border: 1px solid rgba(255,255,255,.35); background: rgba(255,255,255,.1); color: #fff;
+      font: inherit; font-size: 12px; padding: 6px 10px; border-radius: 999px; cursor: pointer;
+    }
+    .chip {
+      border: 1px solid var(--c-border); background: linear-gradient(180deg,#fff,#dad4da);
+      font: inherit; font-size: 11px; padding: 4px 8px; border-radius: 5px; cursor: pointer; color: var(--c-accent);
+    }
+    .chip.is-on { background: var(--g-acc); border-color: #238500; color: #fff; }
+    .chip.is-signal { background: var(--g-sec); border-color: #c00f47; color: #fff; }
+    .seg {
+      display: inline-flex; border: 1px solid #787588; border-radius: 6px; overflow: hidden; background: #fff;
+    }
+    .seg button {
+      border: 0; background: 0; font: inherit; font-size: 11px; padding: 5px 8px; color: var(--c-accent);
+      cursor: pointer; border-right: 1px solid var(--c-border);
+    }
+    .seg button:last-child { border-right: 0; }
+    .seg button.is-on { background: var(--g-pri); color: #fff; }
+    .type-dot {
+      width: 16px; height: 16px; border-radius: 50%; border: 1.5px solid #fff;
+      box-shadow: 0 0 0 1px #0002; flex-shrink: 0;
+    }
+    .type-dot.speed { background: #42a5f5; }
+    .type-dot.stamina { background: #ef5350; }
+    .type-dot.wit { background: #66bb6a; }
+    .type-dot.friend { background: #ab47bc; }
+    .badge-gold {
+      display: inline-block; padding: 0 4px; border-radius: 3px; background: var(--g-gold);
+      color: #5a3d00; font-size: 9px; font-weight: 900; margin-right: 3px;
+    }
+    .badge-white {
+      display: inline-block; padding: 0 4px; border-radius: 3px; background: #e8e8f0;
+      color: #4a4a66; font-size: 9px; font-weight: 900; margin-right: 3px; border: 1px solid #b8b8c8;
+    }
+    .badge-stat {
+      display: inline-block; padding: 0 4px; border-radius: 3px; background: #e5f7ff;
+      color: #0c5b92; font-size: 9px; font-weight: 900; margin-right: 3px;
+    }
+    .badge-auto {
+      display: inline-block; padding: 0 4px; border-radius: 3px; background: #f0e8ff;
+      color: #5b2d9e; font-size: 9px; font-weight: 900; margin-right: 3px;
+    }
+    .tog {
+      width: 34px; height: 20px; border-radius: 999px; border: 0; background: var(--c-border);
+      position: relative; cursor: pointer;
+    }
+    .tog::after {
+      content: ""; position: absolute; top: 2px; left: 2px; width: 16px; height: 16px;
+      border-radius: 50%; background: #fff; transition: transform .15s;
+    }
+    .tog.is-on { background: var(--c-main); }
+    .tog.is-on::after { transform: translateX(14px); }
+
+    /* ========== MODE: GALLERY (H2) ========== */
+    body.mode-gallery { padding-bottom: calc(var(--bar) + 16px); overflow: auto; }
+    body.mode-gallery .view-split { display: none !important; }
+    body.mode-gallery .view-gallery { display: block; }
+    body.mode-gallery .total-bar { display: flex; }
+
+    .view-gallery { position: relative; z-index: 1; width: min(var(--max), calc(100% - 24px)); margin: 10px auto 0; }
+    .g-panel { background: var(--panel); border-radius: 12px 12px 0 0; box-shadow: 0 8px 28px #0004; overflow: hidden; }
+    .g-brand {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 10px 14px; background: var(--g-chrome); color: #fff; border-bottom: 3px solid var(--c-gold);
+    }
+    .g-brand h1 { margin: 0; font-size: 18px; }
+    .g-brand h1 span { color: var(--c-gold); }
+    .g-zone { padding: 8px 12px 10px; }
+    .zt {
+      display: inline-block; margin: 0 0 6px; padding: 4px 10px;
+      background: var(--c-dark); color: #fff; font-size: 12px; border-radius: 2px;
+    }
+    .g-gallery {
+      display: grid; grid-template-columns: 96px repeat(6, minmax(0, 1fr)); gap: 6px; align-items: start;
+    }
+    .g-slot { min-width: 0; display: flex; flex-direction: column; gap: 4px; }
+    .g-lab { font-size: 9px; text-align: center; color: var(--c-accent); font-weight: 900; }
+    .g-face {
+      position: relative; aspect-ratio: 3/3.6; border-radius: 5px; overflow: hidden;
+      border: 2px solid var(--c-border); background: var(--c-label); padding: 0; cursor: pointer;
+    }
+    .g-face.is-t { aspect-ratio: 1/1.05; }
+    .g-face img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .g-face .type-dot { position: absolute; top: 3px; right: 3px; }
+    .g-nm { margin: 0; font-size: 10px; text-align: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .g-sum {
+      font-size: 10px; line-height: 1.35; padding: 4px 5px; border-radius: 4px;
+      background: #fff8ee; border: 1px solid #ffd7a8; color: var(--c-font); cursor: pointer; text-align: left;
+      min-height: 2.6em;
+    }
+    .g-sum.is-auto { background: #f7f4ff; border-color: #d4c4f0; }
+    .g-sum:hover { border-color: var(--c-accent2); }
+    .g-foot { margin-top: 8px; padding-top: 6px; border-top: 1px solid #eae7ec; display: flex; flex-wrap: wrap; gap: 6px 10px; align-items: center; }
+    .g-bench { padding: 4px 12px 14px; }
+    .g-tool { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; padding: 8px; background: var(--c-label); border-radius: 6px; margin-bottom: 8px; }
+    .g-board { background: #fffc; border: 1px solid #eae7ec; border-radius: 8px; padding: 4px 6px 8px; min-height: 300px; }
+    .fl { font-size: 11px; color: var(--c-accent); }
+    .solid {
+      margin-left: auto; border: 0; background: var(--g-pri); color: #fff;
+      font: inherit; font-size: 12px; padding: 6px 10px; border-radius: 6px; cursor: pointer;
+    }
+    table.skills { width: 100%; border-collapse: collapse; font-size: 12px; }
+    table.skills th {
+      text-align: left; font-size: 10px; color: var(--c-accent); padding: 8px;
+      border-bottom: 2px solid var(--c-dark);
+    }
+    table.skills td { padding: 8px; border-bottom: 1px solid #eae7ec; }
+    table.skills tr.is-off td { opacity: .4; text-decoration: line-through; }
+    .sp { color: var(--c-accent2); font-weight: 900; }
+
+    .total-bar {
+      position: fixed; left: 0; right: 0; bottom: 0; height: var(--bar); z-index: 50;
+      background: var(--g-chrome); color: #fff; border-top: 3px solid var(--c-gold);
+      display: none; justify-content: center; align-items: stretch;
+    }
+    .total-inner {
+      width: min(var(--max), calc(100% - 20px)); display: flex; align-items: center; justify-content: space-between; gap: 12px;
+    }
+    .tn { font-size: 30px; font-weight: 900; color: var(--c-gold); }
+    .pre { display: flex; gap: 6px; align-items: center; flex-wrap: wrap; }
+    .pbtn {
+      border: 1px solid #787588; background: linear-gradient(180deg,#fff,#dad4da); color: var(--c-accent);
+      font: inherit; font-size: 12px; padding: 6px 10px; border-radius: 6px; cursor: pointer;
+    }
+    .pbtn.is-on { background: var(--g-sec); color: #fff; border-color: #c00f47; }
+    .pseg { display: inline-flex; border: 1px solid rgba(255,255,255,.35); border-radius: 6px; overflow: hidden; }
+    .pseg button {
+      border: 0; background: rgba(255,255,255,.12); color: #ddd8ef; font: inherit; font-size: 12px;
+      padding: 6px 9px; cursor: pointer;
+    }
+    .pseg button.is-on { background: var(--g-ter); color: #fff; }
+
+    /* ========== MODE: SPLIT (H1) ========== */
+    body.mode-split { height: 100%; overflow: hidden; padding-bottom: 0; }
+    body.mode-split .view-gallery { display: none !important; }
+    body.mode-split .view-split { display: grid; }
+    body.mode-split .total-bar { display: none !important; }
+    body.mode-split html, body.mode-split body { height: 100%; }
+
+    .view-split {
+      display: none;
+      position: relative; z-index: 1;
+      height: calc(100vh - 64px);
+      max-width: 1480px; margin: 8px auto 0; padding: 0 12px 12px;
+      grid-template-rows: var(--cmd) 1fr; gap: 8px;
+    }
+    .s-cmd {
+      display: grid; grid-template-columns: 200px 1fr auto; gap: 12px; align-items: center;
+      padding: 0 14px; background: var(--g-chrome); color: #fff; border-radius: 10px;
+      border-bottom: 3px solid var(--c-gold); box-shadow: 0 8px 24px #0005;
+    }
+    .s-cmd h1 { margin: 0; font-size: 18px; }
+    .s-cmd h1 span { color: var(--c-gold); }
+    .s-hero { display: flex; align-items: baseline; gap: 6px; padding-right: 12px; border-right: 1px solid #fff3; }
+    .s-hero .n { font-size: 32px; font-weight: 900; color: var(--c-gold); line-height: 1; }
+    .s-total { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+    .s-ws { display: grid; grid-template-columns: var(--dock) 1fr; gap: 8px; min-height: 0; }
+    .s-dock, .s-canvas {
+      background: var(--panel); border-radius: 10px; box-shadow: 0 8px 28px #0004;
+      border: 1px solid #fff8; display: flex; flex-direction: column; min-height: 0; overflow: hidden;
+    }
+    .s-head {
+      padding: 9px 12px; background: var(--g-chrome); color: #fff; font-size: 13px; font-weight: 900;
+      border-bottom: 2px solid var(--c-gold); flex-shrink: 0;
+    }
+    .s-dock-body { padding: 8px; overflow: auto; display: flex; flex-direction: column; gap: 8px; min-height: 0; }
+    .s-trainee {
+      display: grid; grid-template-columns: 72px 1fr; gap: 8px; padding: 8px; background: #fffc;
+      border: 1px solid var(--c-border); border-radius: 8px; cursor: pointer; text-align: left; font: inherit; color: inherit;
+    }
+    .s-trainee img { width: 72px; height: 82px; object-fit: cover; border-radius: 6px; display: block; background: var(--c-label); }
+    .s-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+    .s-card {
+      display: flex; flex-direction: column; gap: 5px; padding: 7px; background: #fffc;
+      border: 2px solid var(--c-border); border-radius: 8px; cursor: pointer; text-align: left; font: inherit; color: inherit;
+      transition: border-color .12s, box-shadow .12s;
+    }
+    .s-card:hover { border-color: #a090c0; }
+    .s-card.is-focus {
+      border-color: var(--c-accent2);
+      box-shadow: 0 0 0 2px rgba(255, 115, 0, 0.25);
+    }
+    .s-face { position: relative; aspect-ratio: 3/3.8; border-radius: 6px; overflow: hidden; background: var(--c-label); }
+    .s-face img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .s-slot {
+      position: absolute; top: 4px; left: 4px; background: var(--c-dark); color: #fff;
+      font-size: 10px; padding: 1px 5px; border-radius: 3px;
+    }
+    .s-face .type-dot { position: absolute; top: 4px; right: 4px; }
+    .s-name { font-size: 12px; font-weight: 900; text-align: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    /* カード上は要約のみ（金以外も種別バッジで示す） */
+    .s-preview {
+      font-size: 10px; line-height: 1.35; padding: 5px 6px; border-radius: 5px;
+      background: var(--c-label); border: 1px dashed var(--c-border); color: var(--c-accent); min-height: 2.8em;
+    }
+    .s-card.is-focus .s-preview {
+      background: #fff8ee; border-style: solid; border-color: #ffd7a8; color: var(--c-font);
+    }
+    .s-preview .more { color: var(--c-accent); font-size: 9px; }
+
+    /* イベント詳細ペイン（金以外の選択肢をここで全部見せる） */
+    .evt-pane {
+      flex-shrink: 0; border-top: 2px solid var(--c-dark); background: rgba(255,255,255,.92);
+      display: none; flex-direction: column; max-height: 42%;
+    }
+    .evt-pane.is-open { display: flex; }
+    .evt-pane-head {
+      display: flex; justify-content: space-between; align-items: center; gap: 8px;
+      padding: 8px 10px; background: #f3eef8; border-bottom: 1px solid var(--c-border-light, #eae7ec);
+      font-size: 12px; font-weight: 900; color: var(--c-dark);
+    }
+    .evt-pane-head .sub { font-size: 10px; font-weight: 700; color: var(--c-accent); }
+    .evt-pane-body { overflow: auto; padding: 8px 10px 10px; display: flex; flex-direction: column; gap: 6px; }
+    .evt-choice {
+      display: grid; grid-template-columns: auto 1fr auto; gap: 8px; align-items: start;
+      padding: 8px 10px; border: 1.5px solid var(--c-border); border-radius: 8px;
+      background: linear-gradient(180deg, #fff, #f6f4f8); cursor: pointer; text-align: left; font: inherit; color: inherit;
+    }
+    .evt-choice:hover { border-color: #9088a8; }
+    .evt-choice.is-on {
+      border-color: var(--c-accent2); background: linear-gradient(180deg, #fff8ee, #ffe8cc);
+      box-shadow: inset 0 0 0 1px rgba(255, 115, 0, 0.2);
+    }
+    .evt-choice .kind { display: flex; flex-wrap: wrap; gap: 3px; padding-top: 2px; }
+    .evt-choice .title { font-size: 13px; font-weight: 900; color: var(--c-font); }
+    .evt-choice .desc { font-size: 11px; font-weight: 700; color: var(--c-accent); margin-top: 2px; line-height: 1.35; }
+    .evt-choice .pick {
+      font-size: 10px; font-weight: 900; color: var(--c-accent); padding: 4px 0;
+    }
+    .evt-choice.is-on .pick { color: var(--c-accent2); }
+    .evt-empty { font-size: 12px; color: var(--c-accent); padding: 12px; text-align: center; }
+
+    .s-canvas-h {
+      display: flex; flex-wrap: wrap; gap: 8px; align-items: center; padding: 8px 12px;
+      background: #fffb; border-bottom: 1px solid #eae7ec; flex-shrink: 0;
+    }
+    .s-tag {
+      padding: 4px 10px; background: var(--g-chrome); color: #fff; font-size: 12px;
+      border-radius: 2px; border-bottom: 2px solid var(--c-gold);
+    }
+    .s-tw { overflow: auto; flex: 1; min-height: 0; padding: 0 6px 8px; }
+    .s-tw table.skills { font-size: 13px; }
+    .s-tw th {
+      position: sticky; top: 0; background: #ede6e6f2; z-index: 1;
+    }
+
+    .legend {
+      display: flex; flex-wrap: wrap; gap: 8px; font-size: 10px; color: #bebbce; margin-left: auto;
+    }
+    .legend span { display: inline-flex; align-items: center; gap: 3px; }
+
+    @media (max-width: 900px) {
+      .g-gallery { grid-template-columns: repeat(4, 1fr); }
+      .g-gallery .g-slot:first-child { grid-column: 1 / -1; max-width: 110px; }
+      body.mode-split .s-ws { grid-template-columns: 1fr; }
+      body.mode-split { overflow: auto; height: auto; }
+      .view-split { height: auto; }
+      :root { --dock: 100%; }
+    }
+  </style>
+</head>
+<body class="mode-gallery">
+  <div class="world" aria-hidden="true"></div>
+
+  <aside class="modebar">
+    <strong>H5 デュアル</strong>
+    <span>表示</span>
+    <div class="mode-seg" role="group" aria-label="レイアウト切替">
+      <button type="button" class="is-on" data-mode="gallery">ギャラリー (H2)</button>
+      <button type="button" data-mode="split">スプリット (H1)</button>
+      <button type="button" data-mode="auto">自動（幅）</button>
+    </div>
+    <span class="mode-note" id="mode-hint">既定はギャラリー。スプリットではカード要約＋下部のイベント詳細で金以外も選択。</span>
+    <span style="margin-left:auto"></span>
+    <a href="./hybrid-index.html">一覧へ</a>
+  </aside>
+
+  <!-- ========== GALLERY VIEW (H2) ========== -->
+  <div class="view-gallery">
+    <div class="g-panel">
+      <header class="g-brand">
+        <h1>SP <span>Calc</span> · H5</h1>
+        <div><button type="button" class="ghost">メモリ</button> <button type="button" class="ghost">使い方</button></div>
+      </header>
+      <section class="g-zone">
+        <h2 class="zt">編成</h2>
+        <div class="g-gallery" id="g-gallery"><!-- JS --></div>
+        <div class="g-foot">
+          <span class="fl">リンク</span>
+          <button type="button" class="chip is-on">エアグルーヴ</button>
+          <button type="button" class="chip">テイオー</button>
+          <span class="fl">RMJ</span>
+          <button type="button" class="chip is-signal">参加</button>
+          <button type="button" class="chip">不参加</button>
+        </div>
+      </section>
+      <section class="g-bench">
+        <h2 class="zt">結果作業台</h2>
+        <div class="g-tool">
+          <span class="fl">レギュ</span>
+          <div class="seg"><button type="button" class="is-on">すべて</button><button type="button">○以上</button><button type="button">◎のみ</button></div>
+          <span class="fl">並び</span>
+          <div class="seg"><button type="button" class="is-on">由来</button><button type="button">SP</button><button type="button">名前</button></div>
+          <button type="button" class="solid">含めるをコピー</button>
+        </div>
+        <div class="g-board">
+          <table class="skills" id="skills-g"><thead><tr><th>ON</th><th>スキル</th><th>由来</th><th>SP</th></tr></thead><tbody></tbody></table>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <footer class="total-bar">
+    <div class="total-inner">
+      <div><span style="font-size:11px;color:#bebbce">TOTAL </span><span class="tn">1,248</span> <span style="color:#ffe9a8">SP</span></div>
+      <div class="pre">
+        <button type="button" class="pbtn is-on" data-kirisha>切れ者 ON</button>
+        <div class="pseg"><button type="button">3</button><button type="button">4</button><button type="button" class="is-on">5</button></div>
+        <button type="button" class="pbtn">継承 OFF</button>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ========== SPLIT VIEW (H1+) ========== -->
+  <div class="view-split">
+    <header class="s-cmd">
+      <div>
+        <div style="font-size:10px;color:#bebbce;letter-spacing:.08em">SPLIT MODE</div>
+        <h1>SP <span>Calc</span></h1>
+      </div>
+      <div class="s-total">
+        <div class="s-hero"><span style="font-size:11px;color:#bebbce">TOTAL</span><span class="n">1,248</span><span style="color:#ffe9a8;font-size:13px">SP</span></div>
+        <button type="button" class="pbtn is-on" data-kirisha>切れ者 ON</button>
+        <div class="pseg"><button type="button">3</button><button type="button">4</button><button type="button" class="is-on">5</button></div>
+        <button type="button" class="pbtn">継承 OFF</button>
+      </div>
+      <div>
+        <div class="legend">
+          <span><span class="badge-gold">金</span>スキル</span>
+          <span><span class="badge-white">白</span>スキル</span>
+          <span><span class="badge-stat">ステ</span></span>
+          <span><span class="badge-auto">自動</span></span>
+        </div>
+      </div>
+    </header>
+    <div class="s-ws">
+      <aside class="s-dock">
+        <div class="s-head">編成 · カードを選ぶとイベント詳細</div>
+        <div class="s-dock-body">
+          <button type="button" class="s-trainee">
+            <img src="../../../assets/characters/112901.webp" alt="" />
+            <div>
+              <div style="font-size:10px;color:var(--c-accent)">育成</div>
+              <div style="font-size:14px;font-weight:900">アーモンドアイ</div>
+            </div>
+          </button>
+          <div class="s-grid" id="s-grid"><!-- JS --></div>
+        </div>
+        <div class="evt-pane is-open" id="evt-pane">
+          <div class="evt-pane-head">
+            <div>
+              <span id="evt-pane-title">イベント詳細</span>
+              <div class="sub" id="evt-pane-sub">カードを選ぶと、金以外の選択肢もここに出ます</div>
+            </div>
+            <button type="button" class="chip" id="evt-pane-close" style="background:#fff">閉じる</button>
+          </div>
+          <div class="evt-pane-body" id="evt-pane-body">
+            <div class="evt-empty">左のサポカを選んでください</div>
+          </div>
+        </div>
+      </aside>
+      <section class="s-canvas">
+        <div class="s-canvas-h">
+          <span class="s-tag">含めるスキル</span>
+          <span class="fl">レギュ</span>
+          <div class="seg"><button type="button" class="is-on">すべて</button><button type="button">○以上</button><button type="button">◎のみ</button></div>
+          <button type="button" class="solid">含めるをコピー</button>
+        </div>
+        <div class="s-tw">
+          <table class="skills" id="skills-s"><thead><tr><th>ON</th><th>スキル</th><th>由来</th><th>SP</th></tr></thead><tbody></tbody></table>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <!-- ギャラリー用イベントダイアログ -->
+  <dialog id="evt-dialog" style="border:2px solid #463f70;border-radius:12px;padding:0;max-width:420px;width:calc(100% - 32px);font-family:inherit">
+    <div style="padding:12px 14px;background:linear-gradient(180deg,#5a5288,#463f70);color:#fff;display:flex;justify-content:space-between;align-items:center;border-bottom:2px solid #f5cf6f">
+      <strong id="dlg-title">イベント</strong>
+      <button type="button" class="ghost" id="dlg-close">閉じる</button>
+    </div>
+    <div id="dlg-body" style="padding:12px;display:flex;flex-direction:column;gap:6px;max-height:50vh;overflow:auto"></div>
+  </dialog>
+
+  <script>
+    const SUPPORTS = [
+      {
+        id: "30281", slot: 1, name: "エアグルーヴ", type: "speed", mode: "single",
+        choices: [
+          { id: "a", kind: "gold", title: "切れ者", desc: "金スキルヒント（選択式）" },
+          { id: "b", kind: "white", title: "右回り○", desc: "白スキルヒント" },
+          { id: "c", kind: "stat", title: "スピード+15", desc: "ステータスのみ（スキルなし）" },
+        ],
+        selected: "a",
+      },
+      {
+        id: "30292", slot: 2, name: "トウカイテイオー", type: "speed", mode: "single",
+        choices: [
+          { id: "a", kind: "gold", title: "先手必勝", desc: "金スキルヒント" },
+          { id: "b", kind: "white", title: "負けん気", desc: "白スキルヒント" },
+          { id: "c", kind: "white", title: "積極策", desc: "白スキルヒント" },
+        ],
+        selected: "a",
+      },
+      {
+        id: "30301", slot: 3, name: "タップダンスシチー", type: "stamina", mode: "auto",
+        choices: [
+          { id: "auto", kind: "auto", title: "冷静", desc: "自動イベント（選択なし）" },
+        ],
+        selected: "auto",
+      },
+      {
+        id: "30286", slot: 4, name: "メジロドーベル", type: "stamina", mode: "single",
+        choices: [
+          { id: "a", kind: "gold", title: "食いしん坊", desc: "金スキルヒント" },
+          { id: "b", kind: "stat", title: "スタミナ+10 / 根性+10", desc: "ステータス分岐" },
+        ],
+        selected: "a",
+      },
+      {
+        id: "30277", slot: 5, name: "スマートファルコン", type: "wit", mode: "toggle",
+        choices: [
+          { id: "a", kind: "white", title: "作戦理解", desc: "白・複数選択可" },
+          { id: "b", kind: "white", title: "冷静", desc: "白・複数選択可" },
+          { id: "c", kind: "stat", title: "賢さ+20", desc: "ステのみ（併用可想定のモック）" },
+        ],
+        selected: ["a"],
+      },
+      {
+        id: "30271", slot: 6, name: "駿川たづな", type: "friend", mode: "auto",
+        choices: [
+          { id: "auto", kind: "auto", title: "中盤巧者", desc: "自動イベント（選択なし）" },
+        ],
+        selected: "auto",
+      },
+    ];
+
+    const SKILLS = [
+      ["切れ者", "イベント · エアグルーヴ", "162", true],
+      ["先手必勝", "イベント · テイオー", "162", true],
+      ["中盤巧者", "シナリオ · たづな", "147", true],
+      ["右回り○", "トレヒント · 枠1", "98", true],
+      ["負けん気", "トレヒント · 枠2", "98", false],
+      ["末脚", "所持 · アーモンドアイ", "126", true],
+      ["食いしん坊", "イベント · ドーベル", "162", true],
+      ["作戦理解", "イベント · ファルコン", "98", true],
+      ["冷静", "自動 · タップ", "112", true],
+    ];
+
+    function kindBadge(kind) {
+      if (kind === "gold") return '<span class="badge-gold">金</span>';
+      if (kind === "white") return '<span class="badge-white">白</span>';
+      if (kind === "stat") return '<span class="badge-stat">ステ</span>';
+      if (kind === "auto") return '<span class="badge-auto">自動</span>';
+      return "";
+    }
+
+    function selectedChoices(sup) {
+      if (sup.mode === "toggle") {
+        const ids = Array.isArray(sup.selected) ? sup.selected : [];
+        return sup.choices.filter((c) => ids.includes(c.id));
+      }
+      return sup.choices.filter((c) => c.id === sup.selected);
+    }
+
+    function previewHtml(sup) {
+      const sel = selectedChoices(sup);
+      if (!sel.length) return "未選択";
+      const main = sel[0];
+      const extra = sel.length - 1;
+      let html = kindBadge(main.kind) + main.title;
+      if (extra > 0) html += `<div class="more">他 ${extra} 件</div>`;
+      else if (sup.choices.length > 1 && sup.mode !== "auto") html += `<div class="more">全${sup.choices.length}択 · タップで詳細</div>`;
+      return html;
+    }
+
+    function renderSkills(tbody) {
+      tbody.innerHTML = "";
+      SKILLS.forEach(([name, origin, sp, on]) => {
+        const tr = document.createElement("tr");
+        if (!on) tr.classList.add("is-off");
+        tr.innerHTML = `<td><button type="button" class="tog ${on ? "is-on" : ""}" data-tog aria-label="含める"></button></td>
+          <td>${name}</td><td>${origin}</td><td class="sp">${sp}</td>`;
+        tbody.appendChild(tr);
+      });
+      tbody.querySelectorAll("[data-tog]").forEach((btn) => {
+        btn.onclick = () => {
+          btn.classList.toggle("is-on");
+          btn.closest("tr").classList.toggle("is-off", !btn.classList.contains("is-on"));
+        };
+      });
+    }
+    renderSkills(document.querySelector("#skills-g tbody"));
+    renderSkills(document.querySelector("#skills-s tbody"));
+
+    /* Gallery cards */
+    const gGallery = document.getElementById("g-gallery");
+    gGallery.innerHTML = `
+      <div class="g-slot">
+        <div class="g-lab">育成</div>
+        <button type="button" class="g-face is-t"><img src="../../../assets/characters/112901.webp" alt=""/></button>
+        <p class="g-nm">アーモンドアイ</p>
+      </div>`;
+    SUPPORTS.forEach((sup) => {
+      const slot = document.createElement("div");
+      slot.className = "g-slot";
+      slot.innerHTML = `
+        <div class="g-lab">${sup.slot}</div>
+        <button type="button" class="g-face" data-open-dlg="${sup.id}">
+          <img src="../../../assets/supports/${sup.id}.webp" alt=""/>
+          <span class="type-dot ${sup.type}"></span>
+        </button>
+        <p class="g-nm">${sup.name}</p>
+        <button type="button" class="g-sum ${sup.mode === "auto" ? "is-auto" : ""}" data-open-dlg="${sup.id}">${previewHtml(sup)}</button>`;
+      gGallery.appendChild(slot);
+    });
+
+    /* Split cards */
+    const sGrid = document.getElementById("s-grid");
+    let focusId = SUPPORTS[0].id;
+    function renderSplitCards() {
+      sGrid.innerHTML = "";
+      SUPPORTS.forEach((sup) => {
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "s-card" + (sup.id === focusId ? " is-focus" : "");
+        btn.dataset.focus = sup.id;
+        btn.innerHTML = `
+          <div class="s-face">
+            <img src="../../../assets/supports/${sup.id}.webp" alt=""/>
+            <span class="s-slot">${sup.slot}</span>
+            <span class="type-dot ${sup.type}"></span>
+          </div>
+          <div class="s-name">${sup.name}</div>
+          <div class="s-preview">${previewHtml(sup)}</div>`;
+        btn.onclick = () => {
+          focusId = sup.id;
+          renderSplitCards();
+          openEvtPane(sup.id);
+        };
+        sGrid.appendChild(btn);
+      });
+    }
+
+    function isSelected(sup, choiceId) {
+      if (sup.mode === "toggle") return (sup.selected || []).includes(choiceId);
+      return sup.selected === choiceId;
+    }
+
+    function selectChoice(sup, choiceId) {
+      if (sup.mode === "auto") return;
+      if (sup.mode === "toggle") {
+        const set = new Set(Array.isArray(sup.selected) ? sup.selected : []);
+        if (set.has(choiceId)) set.delete(choiceId);
+        else set.add(choiceId);
+        sup.selected = [...set];
+      } else {
+        sup.selected = choiceId;
+      }
+    }
+
+    function renderChoiceButtons(container, sup, onAfter) {
+      container.innerHTML = "";
+      if (sup.mode === "auto") {
+        const c = (sup.choices[0] || {});
+        container.innerHTML = `<div class="evt-choice is-on" style="cursor:default">
+          <div class="kind">${kindBadge("auto")}</div>
+          <div><div class="title">${c.title || "自動"}</div><div class="desc">${c.desc || "選択できません"}</div></div>
+          <div class="pick">自動</div>
+        </div>`;
+        return;
+      }
+      const hint = document.createElement("div");
+      hint.style.cssText = "font-size:11px;color:#625d7d;margin-bottom:2px";
+      hint.textContent = (sup.mode === "toggle" ? "複数選択可 · " : "1つ選択 · ") + "金以外（白・ステ）も同列で選べます";
+      container.appendChild(hint);
+
+      /* 金を上に */
+      const ordered = [...sup.choices].sort((a, b) => (a.kind === "gold" ? -1 : 0) - (b.kind === "gold" ? -1 : 0));
+      ordered.forEach((c) => {
+        const b = document.createElement("button");
+        b.type = "button";
+        b.className = "evt-choice" + (isSelected(sup, c.id) ? " is-on" : "");
+        b.innerHTML = `
+          <div class="kind">${kindBadge(c.kind)}</div>
+          <div><div class="title">${c.title}</div><div class="desc">${c.desc}</div></div>
+          <div class="pick">${isSelected(sup, c.id) ? "選択中" : "選ぶ"}</div>`;
+        b.onclick = () => {
+          selectChoice(sup, c.id);
+          onAfter();
+        };
+        container.appendChild(b);
+      });
+    }
+
+    function openEvtPane(id) {
+      const sup = SUPPORTS.find((s) => s.id === id);
+      const pane = document.getElementById("evt-pane");
+      const body = document.getElementById("evt-pane-body");
+      document.getElementById("evt-pane-title").textContent = `${sup.slot}. ${sup.name}`;
+      document.getElementById("evt-pane-sub").textContent =
+        (sup.mode === "auto" ? "自動イベント" : (sup.mode === "toggle" ? "複数選択" : "単一選択")) +
+        " · カード上は要約、詳細はここ";
+      pane.classList.add("is-open");
+      renderChoiceButtons(body, sup, () => {
+        renderSplitCards();
+        refreshGalleryPreviews();
+        openEvtPane(id);
+      });
+    }
+
+    function refreshGalleryPreviews() {
+      SUPPORTS.forEach((sup) => {
+        document.querySelectorAll(`[data-open-dlg="${sup.id}"].g-sum`).forEach((el) => {
+          el.innerHTML = previewHtml(sup);
+          el.classList.toggle("is-auto", (sup.mode === "auto"));
+        });
+      });
+    }
+
+    renderSplitCards();
+    openEvtPane(focusId);
+
+    document.getElementById("evt-pane-close").onclick = () => {
+      document.getElementById("evt-pane").classList.remove("is-open");
+    };
+
+    /* Gallery dialog for events (same rich choices) */
+    const dlg = document.getElementById("evt-dialog");
+    function openGalleryDialog(id) {
+      const sup = SUPPORTS.find((s) => s.id === id);
+      if (!sup) return;
+      document.getElementById("dlg-title").textContent = `${sup.slot}. ${sup.name}`;
+      const body = document.getElementById("dlg-body");
+      const refresh = () => {
+        refreshGalleryPreviews();
+        renderSplitCards();
+        renderChoiceButtons(body, sup, refresh);
+      };
+      renderChoiceButtons(body, sup, refresh);
+      dlg.showModal();
+    }
+    document.querySelectorAll("[data-open-dlg]").forEach((el) => {
+      el.addEventListener("click", () => openGalleryDialog(el.getAttribute("data-open-dlg")));
+    });
+    document.getElementById("dlg-close").onclick = () => dlg.close();
+
+    /* Mode switching */
+    let modePref = "gallery"; // gallery | split | auto
+    const hint = document.getElementById("mode-hint");
+    function applyMode(effective) {
+      document.body.classList.toggle("mode-gallery", effective === "gallery");
+      document.body.classList.toggle("mode-split", effective === "split");
+    }
+    function resolveAuto() {
+      return window.matchMedia("(min-width: 1200px)").matches ? "split" : "gallery";
+    }
+    function syncMode() {
+      const effective = modePref === "auto" ? resolveAuto() : modePref;
+      applyMode(effective);
+      hint.textContent =
+        modePref === "auto"
+          ? `自動: いま ${effective === "split" ? "スプリット" : "ギャラリー"}（境界 1200px）`
+          : (effective === "split"
+            ? "スプリット: カードは要約、金・白・ステは下部詳細で選択"
+            : "ギャラリー: 列下要約をタップで全選択肢（金以外含む）");
+    }
+    document.querySelectorAll("[data-mode]").forEach((btn) => {
+      btn.onclick = () => {
+        document.querySelectorAll("[data-mode]").forEach((b) => b.classList.remove("is-on"));
+        btn.classList.add("is-on");
+        modePref = btn.dataset.mode;
+        syncMode();
+      };
+    });
+    window.addEventListener("resize", () => { if (modePref === "auto") syncMode(); });
+    syncMode();
+
+    /* shared toggles */
+    document.querySelectorAll(".seg, .pseg").forEach((seg) => {
+      seg.querySelectorAll("button").forEach((btn) => {
+        btn.onclick = () => {
+          seg.querySelectorAll("button").forEach((b) => b.classList.remove("is-on"));
+          btn.classList.add("is-on");
+        };
+      });
+    });
+    document.querySelectorAll("[data-kirisha]").forEach((btn) => {
+      btn.onclick = () => {
+        const on = btn.classList.toggle("is-on");
+        btn.textContent = on ? "切れ者 ON" : "切れ者 OFF";
+      };
+    });
+  </script>
+</body>
+</html>
