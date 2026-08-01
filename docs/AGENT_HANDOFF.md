@@ -30,9 +30,12 @@
 
 ## 次にやること（優先順）
 
-1. UX 改善の残り（由来表示強化・初期デッキ6枚化・全体デザイン質感パス・スクショ）。**サポカ縦カード画像は [SUPPORT_CARD_IMAGE_TASK.md](./SUPPORT_CARD_IMAGE_TASK.md) で別チケット継続**
-2. 実機で確認したケースの回帰テスト追加（`npm test` 拡充）
-3. ゲーム更新時: [GAME_UPDATE_RUNBOOK.md](./GAME_UPDATE_RUNBOOK.md) に従い extract → events →（必要なら assets:extract/import）→ verify。**push は v1.0.0 までしない**
+**正本は [TODO.md](./TODO.md)。** 着手・完了のたびに TODO を更新すること。
+
+要約（2026-08-01）:
+1. UX 残り: **初期デッキ6枚化** → 由来表示強化 → 質感パス（スクショは任意）
+2. カード画像（サポカ縦40 + 育成 chr_icon 全264）は **完了**
+3. ゲーム更新時: [GAME_UPDATE_RUNBOOK.md](./GAME_UPDATE_RUNBOOK.md)。**push は v1.0.0 までしない**
 4. （v1.0.0 以降）`master` push で Pages 自動デプロイ
 
 ## 非交渉ルール（変えない）

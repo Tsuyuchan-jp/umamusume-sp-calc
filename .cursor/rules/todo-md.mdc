@@ -1,0 +1,11 @@
+---
+description: 作業キュー docs/TODO.md を人間・AI 共用の正本とする
+alwaysApply: true
+---
+
+# TODO.md 運用
+
+- 次に何をするかの正本は [`docs/TODO.md`](docs/TODO.md)。
+- 実装・調査に着手する前に TODO の Open（特に P0/P1）を確認する。
+- タスク完了時は TODO を更新する（`[x]`＋日付 → 「最近完了」へ移動、フォーカス1行の見直し）。
+- 長期履歴は `docs/ROADMAP.md`、状態ブリーフは `docs/AGENT_HANDOFF.md`。日次キューを ROADMAP に散らばせない。
