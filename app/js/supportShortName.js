@@ -47,6 +47,11 @@ export const SHORT_NAME_BY_MATCH = {
   夏空チルタイム: "アーモンド",
 };
 
+/** トレヒント由来だけ差し替える短縮名（イベント label は SHORT_NAME_BY_MATCH のまま） */
+const TRAINING_SHORT_NAME_OVERRIDE = {
+  "刀光散らしてClash！": "タップ",
+};
+
 /**
  * @param {{ title?: string, characterName?: string, name?: string }} support
  * @returns {string}
@@ -60,13 +65,26 @@ export function shortNameForSupport(support) {
 }
 
 /**
- * トレヒント由来の詳細ラベル（例: スピシチー / 友人たづな）
+ * トレヒント用のキャラ短縮名（必要なら override）
+ * @param {{ title?: string, characterName?: string, name?: string }} support
+ */
+function shortNameForTraining(support) {
+  if (!support) return "";
+  const title = support.title;
+  if (title && TRAINING_SHORT_NAME_OVERRIDE[title]) {
+    return TRAINING_SHORT_NAME_OVERRIDE[title];
+  }
+  return shortNameForSupport(support);
+}
+
+/**
+ * トレヒント由来の詳細ラベル（例: スピタップ / 友人たづな）
  * @param {{ type?: string, title?: string, characterName?: string, name?: string }} support
  * @returns {string}
  */
 export function formatTrainingSourceLabel(support) {
   if (!support) return "";
   const typeLabel = SUPPORT_TYPE_STYLES[support.type]?.label || "";
-  const short = shortNameForSupport(support);
+  const short = shortNameForTraining(support);
   return typeLabel ? `${typeLabel}${short}` : short;
 }

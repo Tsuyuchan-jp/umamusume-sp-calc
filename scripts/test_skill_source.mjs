@@ -30,8 +30,8 @@ assertEq(
     title: "刀光散らしてClash！",
     characterName: "タップダンスシチー",
   }),
-  "スピシチー",
-  "トレヒント略称 スピシチー"
+  "スピタップ",
+  "トレヒント略称 スピタップ"
 );
 assertEq(
   formatTrainingSourceLabel({
