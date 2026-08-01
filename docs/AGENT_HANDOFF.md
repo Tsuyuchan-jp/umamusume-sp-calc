@@ -16,7 +16,7 @@
 | extract 元 mdb | `D:\DMM\...\Persistent\master\master.mdb`（AppData 既定は無しが多い） |
 | 公開 URL | https://Tsuyuchan-jp.github.io/umamusume-sp-calc/app/ |
 | push / Pages | **v1.0.0 まで push しない**（ローカルコミットのみ） |
-| 初期編成 | 育成107703 / 枠5ヤング / 枠6たづな、枠1–4空（常用6枚化は [TODO.md](./TODO.md) P0） |
+| 初期編成 | 育成112901（アーモンドアイ）/ 枠1エアグルーヴ・枠2テイオー・枠3タップ・枠4ドトウ・枠5ヤング・枠6たづな |
 
 通し確認・版履歴の詳細は [CHANGELOG.md](./CHANGELOG.md)。
 

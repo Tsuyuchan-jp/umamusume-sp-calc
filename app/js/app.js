@@ -1279,23 +1279,27 @@ function findSupportByTitle(title, options = {}) {
   });
 }
 
-/** 育成ウマ娘の初期選択 */
+/** 育成ウマ娘の初期選択（常用: [The Changer]アーモンドアイ） */
 function applyDefaultCharacter() {
   const found = state.characters.find(
-    (c) => c.name === "[万福龍湯伝・頂]ナリタトップロード"
+    (c) => c.name === "[The Changer]アーモンドアイ"
   );
   state.ui.characterId = found?.id ?? state.characters[0]?.id ?? 0;
 }
 
-/** サポカ6枠の初期選択（1〜4: 未選択、5: フォーエバーヤング、6: たづな） */
+/** サポカ6枠の初期選択（常用デッキ） */
 function applyDefaultSupports() {
+  const airGroove = findSupportByTitle("心覚えし、京の華", { rarity: "SSR", type: "speed" });
+  const teio = findSupportByTitle("天才的ユートピア", { rarity: "SSR", type: "speed" });
+  const tapDance = findSupportByTitle("刀光散らしてClash！", { rarity: "SSR", type: "speed" });
+  const doto = findSupportByTitle("その執念は怒濤が如く", { rarity: "SSR", type: "stamina" });
   const young = findSupportByTitle("Innovator", { rarity: "SSR", type: "wit" });
   const tazuna = findSupportByTitle("一杯のノスタルジア", { rarity: "SSR", type: "friend" });
   state.ui.supportIds = [
-    null,
-    null,
-    null,
-    null,
+    airGroove?.id ?? null,
+    teio?.id ?? null,
+    tapDance?.id ?? null,
+    doto?.id ?? null,
     young?.id ?? null,
     tazuna?.id ?? null,
   ];
