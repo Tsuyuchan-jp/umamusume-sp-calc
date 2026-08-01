@@ -6,7 +6,7 @@ from __future__ import annotations
 
 from pathlib import Path
 
-from PIL import Image
+from PIL import Image, ImageChops, ImageDraw
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 TYPE_ICONS_DIR = REPO_ROOT / "assets" / "type-icons"
@@ -26,6 +26,11 @@ FRAME_INSET_BOTTOM = 13
 # 角丸枠の外（AABB内）に残る半透明グローを落とす
 SOFT_FRINGE_RING = 8
 SOFT_FRINGE_ALPHA_MAX = 180
+
+# 表示解像度での枠外縁の角丸半径（クロップ後≈50px → 240幅で≈25相当）
+# R=25 だと角の半透明シアン/緑フリンジが内側に残るため 29 まで広げる
+# ゲーム共有 mask は使わず、自前の角丸で四隅グローだけ落とす
+FRAME_CORNER_RADIUS = 29
 
 # 右上固定 — 2026-08-01 目視確定。トリム後は再調整が必要な場合あり
 TYPE_ICON_SIZE = 52
@@ -50,6 +55,21 @@ def clear_outer_soft_fringe(src: Image.Image) -> Image.Image:
             if a < a_max:
                 px[x, y] = (r, g, b, 0)
     return img
+
+
+def apply_rounded_frame_mask(
+    src: Image.Image,
+    radius: int | None = None,
+) -> Image.Image:
+    """角丸の外側（矩形四隅の枠外グロー）を透明にする。"""
+    img = src.convert("RGBA")
+    w, h = img.size
+    r = FRAME_CORNER_RADIUS if radius is None else radius
+    r = max(1, min(r, w // 2, h // 2))
+    mask = Image.new("L", (w, h), 0)
+    ImageDraw.Draw(mask).rounded_rectangle((0, 0, w - 1, h - 1), radius=r, fill=255)
+    r_ch, g_ch, b_ch, a_ch = img.split()
+    return Image.merge("RGBA", (r_ch, g_ch, b_ch, ImageChops.multiply(a_ch, mask)))
 
 
 def trim_frame_padding(src: Image.Image) -> Image.Image:
@@ -135,6 +155,8 @@ def compose_support_vertical_card(
     base = trim_frame_padding(thumb) if trim_frame else thumb.convert("RGBA")
     stretched = vertical_stretch_keep_width(base)
     display = stretched.resize((VERT_W, VERT_H), Image.Resampling.LANCZOS)
+    if trim_frame:
+        display = apply_rounded_frame_mask(display)
     icon_map = icons if icons is not None else load_type_icons()
     icon = icon_map.get(support_type)
     if icon is None:

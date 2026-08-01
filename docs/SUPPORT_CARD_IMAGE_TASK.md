@@ -156,6 +156,7 @@
    - ユーザー目視OK。**量産パイプライン組み込み済（2026-08-01）** — `assets:extract`（thumb）→ `assets:import`（縦合成）  
    - **枠外余白トリム追加（2026-08-01）**: 512上で固定 inset → stretch。タイプ印座標は未再調整（ずれ時は別指示）  
    - **ソフトグロー除去（2026-08-01）**: inset をハードクロム外縁 L12/T5/R12/B13 に更新＋外周半透明クリア（浮き防止）  
+   - **四隅グロー除去（2026-08-01）**: 表示解像度で自前角丸マスク（半径29・半透明角フリンジ除去）。ゲーム共有 mask は不使用  
 4. ~~OKなら `assets:extract` / `import` 系を更新し優先40を再生成。ASSETS / GAME_UPDATE 更新~~ **済**（トリム後は `assets:import` 再実行）  
 5. NGまたは部品不足なら **解決策4に縮退**（A: card_s正方形維持 等）を明示提案  
 6. 変更は都度コミット。**push しない**
@@ -186,7 +187,7 @@ npm run assets:import   → assets/supports/{id}.webp  (枠外トリム + 240×3
 
 - `scripts/extract_card_assets.py` … `support_thumb` / `piece_icon`
 - `scripts/import_card_assets.mjs` + `import_card_images.py` … 枠外トリム + 縦縮尺 + タイプ印合成 → webp
-- `scripts/support_vertical_card.py` … inset L12/T5/R12/B13（ハードクロム外縁）＋外周半透明クリア → stretch → タイプ印
+- `scripts/support_vertical_card.py` … inset L12/T5/R12/B13＋半透明クリア＋角丸マスク(r=29) → stretch → タイプ印
 - 試作比較: `npm run samples:vertical-v4` / `npm run samples:trim` → `.cache/.../compare-*/`
 
 ---
