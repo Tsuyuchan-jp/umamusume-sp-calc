@@ -15,12 +15,17 @@ TYPE_ICONS_DIR = REPO_ROOT / "assets" / "type-icons"
 VERT_W, VERT_H = 240, 320
 ASPECT_W, ASPECT_H = 3, 4
 
-# 512キャンバス上の虹枠外余白（優先40・SSR実測 2026-08-01、σ=0）
-# イラスト左右のクロップではなく、枠外パディング除去のみ。
-FRAME_INSET_LEFT = 10
-FRAME_INSET_TOP = 3
-FRAME_INSET_RIGHT = 10
-FRAME_INSET_BOTTOM = 12
+# 512キャンバス上の虹枠外余白＋ソフトグロー除去
+# 優先40・SSR実測 2026-08-01: ハードクロム外縁（α≥220・高彩度）まで同一 inset
+# 旧 dark-padding のみ除去（10/3/10/12）だと外周に半透明のにじみが残り浮いて見える
+FRAME_INSET_LEFT = 12
+FRAME_INSET_TOP = 5
+FRAME_INSET_RIGHT = 12
+FRAME_INSET_BOTTOM = 13
+
+# 角丸枠の外（AABB内）に残る半透明グローを落とす
+SOFT_FRINGE_RING = 8
+SOFT_FRINGE_ALPHA_MAX = 180
 
 # 右上固定 — 2026-08-01 目視確定。トリム後は再調整が必要な場合あり
 TYPE_ICON_SIZE = 52
@@ -30,8 +35,25 @@ TYPE_MARGIN_RIGHT = 4
 _icon_cache: dict[str, Image.Image] | None = None
 
 
+def clear_outer_soft_fringe(src: Image.Image) -> Image.Image:
+    """外周リングの半透明ピクセルを透明化し、枠外のにじみを消す。"""
+    img = src.convert("RGBA")
+    px = img.load()
+    w, h = img.size
+    ring = SOFT_FRINGE_RING
+    a_max = SOFT_FRINGE_ALPHA_MAX
+    for y in range(h):
+        for x in range(w):
+            if ring <= x < w - ring and ring <= y < h - ring:
+                continue
+            r, g, b, a = px[x, y]
+            if a < a_max:
+                px[x, y] = (r, g, b, 0)
+    return img
+
+
 def trim_frame_padding(src: Image.Image) -> Image.Image:
-    """support_thumb の枠外パディングを固定 inset で除去する。"""
+    """support_thumb の枠外パディングとソフトグローを除去する。"""
     img = src.convert("RGBA")
     w, h = img.size
     left = FRAME_INSET_LEFT
@@ -39,8 +61,8 @@ def trim_frame_padding(src: Image.Image) -> Image.Image:
     right = w - FRAME_INSET_RIGHT
     bottom = h - FRAME_INSET_BOTTOM
     if right <= left or bottom <= top:
-        return img
-    return img.crop((left, top, right, bottom))
+        return clear_outer_soft_fringe(img)
+    return clear_outer_soft_fringe(img.crop((left, top, right, bottom)))
 
 
 def vertical_stretch_keep_width(src: Image.Image) -> Image.Image:
