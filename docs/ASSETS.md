@@ -23,9 +23,9 @@ UI は `app/js/cardAssets.js` が URL を組み立てる。画像が無い場合
 ## 同梱範囲（Phase 1）
 
 - 優先サポカ **40種**（`data/priority-supports.json`）→ `assets/supports/{id}.webp`
-- 初期育成ウマ娘 **107703**（`[万福龍湯伝・頂]ナリタトップロード`）→ `assets/characters/107703.webp`
+- 育成ウマ娘 **全カード**（`data/characters.json`）→ `assets/characters/{id}.webp`（`chr_icon` + dress フォールバック）
 - タイプ印 **6種**（`assets/type-icons/{type}.webp`）— カード横断で使いまわし。実行時CDN非依存
-- 目安サイズ: サポカ **240×320**・キャラ長辺 256px・WebP・Phase1 合計 **約 1〜2 MiB**（5MB 未満）
+- 目安サイズ: サポカ **240×320**・キャラ長辺 256px・WebP
 
 ### タイプ印の出所（同梱・再取得用）
 
@@ -42,7 +42,7 @@ https://static.kouryaku.tools/umamusume/images/app/supports/{name}.png
 ## 著作権・配布
 
 - 非公式・非商用。画像の権利はゲーム権利者に帰属する
-- **必要最小限のみ同梱**（優先枠＋初期カード）
+- **必要最小限のみ同梱**（優先サポカ＋育成全カード＋タイプ印）
 - 公開 Pages への反映（`git push`）は UX 完成後の **v1.0.0** まで行わない方針
 
 ## 抽出パイプライン（半自動）
@@ -76,11 +76,12 @@ AppData `LocalLow\Cygames\umamusume` には meta/dat が無いことが多い。
 ### コマンド
 
 ```powershell
-# 1) 優先40 + キャラ 107703 を PNG 抽出（要: 復号済み meta・dat・.cache 内 venv）
+# 1) 優先40 + 全育成カードを PNG 抽出（要: 復号済み meta・dat・master・.cache 内 venv）
 npm run assets:extract
+# 育成のみ再抽出: node scripts/run_extract_card_assets.mjs --skip-supports
 # オプション: --dat "D:\...\Persistent\dat" --meta ".\.cache\...\meta_decrypted"
 
-# 2) WebP 化して assets/ へ配置（必須欠落は exit 2）
+# 2) WebP 化して assets/ へ配置（サポカ必須欠落は exit 2）
 npm run assets:import
 ```
 
@@ -89,7 +90,7 @@ npm run assets:import
 | 種別 | meta 名 |
 |------|---------|
 | サポカ縦カード元 | `supportcard/support{ID}/support_thumb_{ID}`（512×512・レア枠焼き付き） |
-| 育成カード | `chara/chr{charaId}/chr_icon_{charaId}_{key}_01`（無ければ dress ID フォールバック。`piece_icon` は使わない） |
+| 育成カード | `chara/chr{charaId}/chr_icon_{charaId}_{key}_01`（無ければ dress / 6桁レガシー。`piece_icon` は不使用） |
 
 import 時のサポカ後処理（`scripts/support_vertical_card.py`）:
 - `support_thumb` の枠外パディング＋ソフトグローを除去（512基準 L12/T5/R12/B13・ハードクロム外縁）

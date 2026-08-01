@@ -192,13 +192,14 @@ npm run assets:import   → assets/supports/{id}.webp  (枠外トリム + 240×3
 
 ---
 
-## 8. 育成ウマ娘（進行中）
+## 8. 育成ウマ娘
 
-- 理想に近い例: `chr_icon_1077_107701_01`（`__tex` サフィックスは同一画像の別名）
-- 初期カード **107703** には `chr_icon_1077_107703_*` が **DMM最新metaにも無い**
-- **解決（2026-08-01）**: master の dress（`race_dress_id`→**107702**）へフォールバックし `chr_icon_1077_107702_01` を使用
-- `piece_icon` は別系統（紫枠）のため **不採用**
-- 「覚醒Lv」文字や一部の金枠はランタイムUI重ね。アセット本体は chr_icon の肖像＋星帯
+- 理想に近い例: `chr_icon_1077_107701_01`
+- カードID直結の `chr_icon` が無い場合は master の dress ID、さらに 6桁レガシー名へフォールバック
+- **107703** は `chr_icon_1077_107703_*` 無し → dress **107702** の `chr_icon_1077_107702_01` を使用
+- `piece_icon` は別系統のため **不採用**
+- Phase1 同梱: `data/characters.json` の **全カード** → `assets/characters/{id}.webp`
+- 「覚醒Lv」文字等はランタイムUI。アセット本体は chr_icon の肖像＋星帯
 
 ---
 
