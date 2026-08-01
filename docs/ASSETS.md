@@ -95,7 +95,7 @@ import 時のサポカ後処理（`scripts/support_vertical_card.py`）:
 - `support_thumb` の枠外パディング＋ソフトグローを除去（512基準 L12/T5/R12/B13・ハードクロム外縁）
 - 表示解像度で自前角丸マスク（半径29）により四隅の枠外グローを透明化
 - 左右カットせず縦縮尺（3:4）→ 240×320 にリサイズ
-- `assets/type-icons/{type}.webp` を右上固定で合成（size=52 / top=1 / right=4）
+- `assets/type-icons/{type}.webp` を右上固定で合成（size=52 / top=0 / right=4）
 - 共有マスク・レアバッジは載せない
 - 比較試作: `npm run samples:trim` → `.cache/.../compare-trim/`
 

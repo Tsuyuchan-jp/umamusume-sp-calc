@@ -34,7 +34,7 @@ FRAME_CORNER_RADIUS = 29
 
 # 右上固定 — 2026-08-01 目視確定。トリム後は再調整が必要な場合あり
 TYPE_ICON_SIZE = 52
-TYPE_MARGIN_TOP = 1
+TYPE_MARGIN_TOP = 0
 TYPE_MARGIN_RIGHT = 4
 
 _icon_cache: dict[str, Image.Image] | None = None

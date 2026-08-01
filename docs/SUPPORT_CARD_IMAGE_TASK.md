@@ -152,7 +152,7 @@
 3. ~~部品が揃う範囲で **解決策3の試作**~~ **v3/v4試作済（2026-08-01）**  
    - v3: `support_thumb` 縦縮尺。**本番候補は `{id}_stretch.png`**（共有マスク無し）。`{id}_v3.png` は枠が削れるため不可  
    - v4: stretch + `assets/type-icons/{type}.webp` 右上固定 → `npm run samples:vertical-v4` → `.cache/.../compare-vertical-v4/`  
-   - **タイプ印の位置・サイズ確定（240×320基準）**: size=52 / margin top=1 / right=4（余白トリム後）  
+   - **タイプ印の位置・サイズ確定（240×320基準）**: size=52 / margin top=0 / right=4（余白トリム後）  
    - ユーザー目視OK。**量産パイプライン組み込み済（2026-08-01）** — `assets:extract`（thumb）→ `assets:import`（縦合成）  
    - **枠外余白トリム追加（2026-08-01）**: 512上で固定 inset → stretch。タイプ印座標は未再調整（ずれ時は別指示）  
    - **ソフトグロー除去（2026-08-01）**: inset をハードクロム外縁 L12/T5/R12/B13 に更新＋外周半透明クリア（浮き防止）  
