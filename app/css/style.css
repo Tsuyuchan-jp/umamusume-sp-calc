@@ -607,14 +607,16 @@ input[type="search"] {
   width: 5.5rem;
 }
 
-.deck-slot--character .card-face {
-  aspect-ratio: 3 / 4;
-}
-
 .deck-slot .card-face {
   aspect-ratio: 3 / 4;
   /* 編成スロット（大きめ表示）用の角丸。ピッカーには掛けない */
   border-radius: 20px 11px 20px 20px;
+}
+
+/* 育成は chr_icon（正方形）前提。サポカ用の縦長指定より後に置いて上書きする */
+.deck-slot--character .card-face {
+  aspect-ratio: 1 / 1;
+  border-radius: 18px;
 }
 
 .deck-premise {
@@ -690,6 +692,12 @@ input[type="search"] {
   background: transparent;
   color: var(--card-ink, #1c2420);
   box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.08);
+}
+
+/* 育成ウマ娘（chr_icon は正方形） */
+.card-face--square {
+  aspect-ratio: 1 / 1;
+  border-radius: 8px;
 }
 
 .card-face--empty {
@@ -836,6 +844,10 @@ input[type="search"] {
   border-radius: 6px 4px 6px 6px;
   background: none;
   cursor: pointer;
+}
+
+.card-picker__item:has(.card-face--square) {
+  border-radius: 8px;
 }
 
 .card-picker__item:hover {

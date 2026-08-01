@@ -155,9 +155,11 @@ function buildCardFaceHtml({
   label,
   empty = false,
   showTextOverlay = true,
+  square = false,
 }) {
+  const faceClass = square ? "card-face card-face--square" : "card-face";
   if (empty) {
-    return '<div class="card-face card-face--empty" aria-hidden="true">＋</div>';
+    return `<div class="${faceClass} card-face--empty" aria-hidden="true">＋</div>`;
   }
   const safeLabel = escapeHtml(label);
   const safeRarity = escapeHtml(rarity || "");
@@ -168,7 +170,7 @@ function buildCardFaceHtml({
       <span class="card-face__label">${safeLabel}</span>`
     : "";
   return `
-    <div class="card-face" style="--card-bg:${typeStyle?.bg || "#e8e8e8"};--card-ink:${typeStyle?.ink || "#1c2420"}">
+    <div class="${faceClass}" style="--card-bg:${typeStyle?.bg || "#e8e8e8"};--card-ink:${typeStyle?.ink || "#1c2420"}">
       <img class="card-face__img" src="${escapeHtml(imageUrl)}" alt=""
         onload="this.classList.add('is-loaded');this.nextElementSibling?.setAttribute('hidden','');"
         onerror="this.classList.add('is-failed');this.nextElementSibling?.removeAttribute('hidden');" />
@@ -202,7 +204,7 @@ function renderDeckCharacter() {
   if (!btn || !state) return;
   const c = getCharacterById(state.ui.characterId);
   if (!c) {
-    btn.innerHTML = buildCardFaceHtml({ empty: true });
+    btn.innerHTML = buildCardFaceHtml({ empty: true, square: true });
     return;
   }
   const label = formatCharacterDisplayName(c.name);
@@ -211,6 +213,7 @@ function renderDeckCharacter() {
     typeStyle: { bg: "linear-gradient(160deg,#d4dce4,#8a9aaa)", ink: "#1c2420", label: "ウマ" },
     rarity: "",
     label: shortCharacterLabel(c.name),
+    square: true,
   });
   btn.title = label;
 }
@@ -350,6 +353,7 @@ function buildCharacterPickerItems() {
         typeStyle: { bg: "linear-gradient(160deg,#d4dce4,#8a9aaa)", ink: "#1c2420", label: "ウマ" },
         rarity: "",
         label: shortCharacterLabel(c.name),
+        square: true,
       }),
     }))
     .sort((a, b) => a.searchText.localeCompare(b.searchText, "ja"));
