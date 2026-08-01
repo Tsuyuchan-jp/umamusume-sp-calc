@@ -1,7 +1,7 @@
 /**
  * スキルごとのヒントLvを解決（max）
- * @typedef {{ skillId: number, hintLevel: number, kind: string, label: string }} SkillHintEntry
- * @typedef {{ kind: string, label: string, hintLevel: number }} SkillSource
+ * @typedef {{ skillId: number, hintLevel: number, kind: string, label: string, supportId?: number|null }} SkillHintEntry
+ * @typedef {{ kind: string, label: string, hintLevel: number, supportId?: number|null }} SkillSource
  */
 
 /**
@@ -24,12 +24,17 @@ export function resolveHintLevels(entries) {
       if (e.hintLevel > existing.hintLevel) {
         existing.hintLevel = e.hintLevel;
       }
+      if (existing.supportId == null && e.supportId != null) {
+        existing.supportId = e.supportId;
+      }
     } else {
-      cur.sources.push({
+      const src = {
         kind: e.kind,
         label: e.label,
         hintLevel: e.hintLevel,
-      });
+      };
+      if (e.supportId != null) src.supportId = e.supportId;
+      cur.sources.push(src);
     }
     map.set(id, cur);
   }

@@ -29,6 +29,17 @@ function isEventSupportInDeck(evt, supportIds, supportById) {
     .some((s) => s && s.name.includes(evt.supportNameMatch));
 }
 
+/** デッキ内で supportNameMatch に一致するより左のサポカ ID */
+function resolveEventSupportId(supportNameMatch, supportIds, supportById) {
+  if (!supportNameMatch) return null;
+  for (const sid of supportIds || []) {
+    if (sid == null) continue;
+    const s = supportById.get(sid);
+    if (s && s.name.includes(supportNameMatch)) return sid;
+  }
+  return null;
+}
+
 function resolveSkillRef(sk, nameToId, unresolved, context) {
   const skillId = sk.skillId ?? nameToId.get(sk.skillName);
   if (!skillId) {
@@ -38,16 +49,25 @@ function resolveSkillRef(sk, nameToId, unresolved, context) {
   return skillId;
 }
 
-function appendEventSkills(hintEntries, skills, label, nameToId, unresolved) {
+function appendEventSkills(
+  hintEntries,
+  skills,
+  label,
+  nameToId,
+  unresolved,
+  supportId
+) {
   for (const sk of skills || []) {
     const skillId = resolveSkillRef(sk, nameToId, unresolved, `イベント: ${label}`);
     if (!skillId) continue;
-    hintEntries.push({
+    const entry = {
       skillId,
       hintLevel: sk.hintLevel,
       kind: "event",
       label,
-    });
+    };
+    if (supportId != null) entry.supportId = supportId;
+    hintEntries.push(entry);
   }
 }
 
@@ -93,6 +113,7 @@ export function buildSkillPlan(params) {
         hintLevel: trainingHintLevel,
         kind: "training",
         label: formatTrainingSourceLabel(sup),
+        supportId: sid,
       });
     }
   }
@@ -119,19 +140,45 @@ export function buildSkillPlan(params) {
   // イベント
   for (const evt of params.events.events || []) {
     if (!isEventSupportInDeck(evt, params.supportIds, supportById)) continue;
+    const eventSupportId = resolveEventSupportId(
+      evt.supportNameMatch,
+      params.supportIds,
+      supportById
+    );
 
     const selection = evt.selection ?? "toggle";
     if (selection === "auto") {
-      appendEventSkills(hintEntries, evt.skills, evt.label, nameToId, unresolved);
+      appendEventSkills(
+        hintEntries,
+        evt.skills,
+        evt.label,
+        nameToId,
+        unresolved,
+        eventSupportId
+      );
     } else if (selection === "single") {
       const choiceId = params.eventChoiceIds?.[evt.id];
       if (!choiceId || choiceId === "none") continue;
       const choice = (evt.choices || []).find((c) => c.id === choiceId);
       if (choice) {
-        appendEventSkills(hintEntries, choice.skills, `${evt.label}`, nameToId, unresolved);
+        appendEventSkills(
+          hintEntries,
+          choice.skills,
+          `${evt.label}`,
+          nameToId,
+          unresolved,
+          eventSupportId
+        );
       }
     } else if (params.enabledEventIds?.has(evt.id)) {
-      appendEventSkills(hintEntries, evt.skills, evt.label, nameToId, unresolved);
+      appendEventSkills(
+        hintEntries,
+        evt.skills,
+        evt.label,
+        nameToId,
+        unresolved,
+        eventSupportId
+      );
     }
   }
 

@@ -1129,9 +1129,9 @@ function renderSourceBadges(row) {
 
 function getResultSortMode() {
   const el = document.getElementById("result-sort");
-  const v = el?.value || "name";
-  if (v === "kind" || v === "cost" || v === "skillId") return v;
-  return "name";
+  const v = el?.value || "skillId";
+  if (v === "kind" || v === "cost" || v === "skillId" || v === "name") return v;
+  return "skillId";
 }
 
 function renderPlanWarnings(unresolved) {
@@ -1209,7 +1209,9 @@ function recalc({ resetFilterExclusions = false } = {}) {
 
   const tbody = document.getElementById("result-body");
   tbody.innerHTML = "";
-  const displayRows = sortPlanRows(plan.rows, getResultSortMode());
+  const displayRows = sortPlanRows(plan.rows, getResultSortMode(), {
+    supportIds: state.ui.supportIds,
+  });
   for (const row of displayRows) {
     const tr = document.createElement("tr");
     if (row.skillId != null && excludedSkillIds.has(row.skillId)) {
