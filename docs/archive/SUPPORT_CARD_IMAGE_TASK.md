@@ -215,7 +215,7 @@ npm run assets:import   → assets/supports/{id}.webp  (枠外トリム + 240×3
 ## 10. 新チャット起票文（コピー用）
 
 ```text
-docs/SUPPORT_CARD_IMAGE_TASK.md を読んで続行。
+docs/archive/SUPPORT_CARD_IMAGE_TASK.md を読んで続行。
 サポカ縦カード画像: 解決策1（正しいUI部品の特定）→ 解決策3（高品質合成試作）。
 落としどころは解決策4（本物だけ重ねる／無理な近似はしない）。
 v2合成は本番不可。pushしない。

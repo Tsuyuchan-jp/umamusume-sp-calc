@@ -1,6 +1,7 @@
 # データ
 
-ゲーム更新時の再 extract 手順: [GAME_UPDATE_RUNBOOK.md](./GAME_UPDATE_RUNBOOK.md)
+JSON の意味・スキーマの正本。件数・パスの現状は `data/meta.json` / [AGENT_HANDOFF.md](./AGENT_HANDOFF.md)。  
+ゲーム更新時の手順は [GAME_UPDATE_RUNBOOK.md](./GAME_UPDATE_RUNBOOK.md)。
 
 ## ディレクトリ概要
 
@@ -15,67 +16,31 @@ data/
   events.extracted.json
   events.preserve.json # たづな2 + GameWith一時6（30307/30308）
   events.id-aliases.json
+  events.default-overrides.json
   scenarios/
     toresenken.json    # 手メンテ（トレセン軒）
 ```
 
-**現状（確認済み）**: extract 済み。
+## master.mdb → JSON（概要）
 
-- `skills.json` / `supports.json` / `characters.json` / `meta.json` **あり**
-- `meta.json` 例: skillCount 2127, supportCount 547, characterCount 264
-- 抽出元: `D:\DMM\umamusumeDMM\Umamusume\umamusume_Data\Persistent\master\master.mdb`
-- `events.json` は **U-tools+mdb 抽出正本**（111件・優先40種）。`toresenken.json` は手メンテ
-  - 30307 / 30308 は U-tools 未掲載のため **GameWith 一時手載せ**（`events.preserve.json`・6件）。掲載後に置換予定
-  - たづな例外2件も preserve
-- **実機通し確認済み**（2026-07）: 常用デッキ＋イベント＋シナリオリンク白/金＋RMJ自動計上／ラーメン3択＋終了。問題・バグなし
+- **推奨**: `scripts/extract_mdb.mjs`（Node）
+- 代替: `scripts/extract_mdb.py`
+- 手順・mdb パス: [GAME_UPDATE_RUNBOOK.md](./GAME_UPDATE_RUNBOOK.md)
 
-## master.mdb → extract
+補助: `scripts/verify_data.mjs`、`scripts/test_sp.mjs`、`scripts/test_skill_activation.mjs`
 
-スクリプト:
-
-- **推奨**: `scripts/extract_mdb.mjs`（Node / `node:sqlite`）— この環境での初回 extract 実績
-- 代替: `scripts/extract_mdb.py`（Python）
-
-実績パス:
-
-```text
-D:\DMM\umamusumeDMM\Umamusume\umamusume_Data\Persistent\master\master.mdb
-```
-
-既定（無い場合あり）:
-
-```text
-%USERPROFILE%\AppData\LocalLow\Cygames\umamusume\master\master.mdb
-```
-
-```powershell
-node scripts/extract_mdb.mjs
-node scripts/extract_mdb.mjs --mdb "D:\DMM\umamusumeDMM\Umamusume\umamusume_Data\Persistent\master\master.mdb"
-python scripts/extract_mdb.py --mdb "D:\...\master.mdb"
-```
-
-補助: `scripts/verify_data.mjs`（優先サポカ名・スキル解決の目視）、`scripts/test_sp.mjs`（コスト式回帰）、`scripts/test_skill_activation.mjs`（発動条件タグ・絞込マッチ）
-
-### サポカイベント（U-tools + mdb）
-
-優先40サポカのイベントスキルヒントは `extract_support_events.mjs` で生成する（`extract_mdb.mjs` とは分離）。U-tools 個別カードの取得失敗（404 等）は警告付きでスキップし、全体は続行する。
-
-```powershell
-npm run extract:events    # U-tools fetch → events.extracted.json
-npm run apply:events      # events.json へ反映（+ preserve マージ）
-npm run compare:events    # ゴールデン比較レポート
-```
+### サポカイベント関連ファイル
 
 | ファイル | 役割 |
 |----------|------|
 | `events.raw.utools.json` | U-tools 生データ（ローカルキャッシュ・gitignore） |
 | `events.extracted.json` | 正規化済み中間物 |
-| `events.preserve.json` | U-tools 外の例外（たづなお出かけ/正月・30307/30308 の GameWith 一時） |
+| `events.preserve.json` | U-tools 外の例外（たづな・30307/30308 の GameWith 一時） |
 | `events.default-overrides.json` | `defaultChoiceId` の人手上書き |
 | `events.id-aliases.json` | 旧 id → 新 id |
 | `events.json` | **アプリ正本** |
 
-パース仕様: [UTOOLS_EVENT_PARSE.md](./UTOOLS_EVENT_PARSE.md)。設計: [EVENT_EXTRACT_DESIGN.md](./EVENT_EXTRACT_DESIGN.md)
+パース仕様: [UTOOLS_EVENT_PARSE.md](./UTOOLS_EVENT_PARSE.md)。設計経緯: [archive/EVENT_EXTRACT_DESIGN.md](./archive/EVENT_EXTRACT_DESIGN.md)。
 
 ### 主なテーブル / text_data category
 
@@ -98,21 +63,18 @@ npm run compare:events    # ゴールデン比較レポート
 **skills.json** 1件:
 
 - `id`, `name`, `baseSp`, `rarity`, `groupId`, `groupRate`, `iconId`
-- `lowerSkillId` / `upperSkillId` — 同一 `groupId` 内を `group_rate` 昇順でリンク（白↔金、○↔◎↔金 など）。**`group_rate < 0`（× 等）は購入チェーン外**
-- `activation` — `skill_data` の `precondition_1/2`・`condition_1/2` から抽出した発動条件タグ（バ場・距離・作戦）。絞込 UI と結果表の条件バッジに使用
-  - `branches`: OR 分岐の配列（各分岐は `grounds` / `distances` / `styles`。空配列＝その軸に制約なし）
-  - `tags`: 表示用の和集合（`turf`/`dirt`, `short`/`mile`/`mid`/`long`, `nige`/`senko`/`sashi`/`oikomi`）
-  - パース実装: `app/js/skillActivation.js`（extract からも import）
+- `lowerSkillId` / `upperSkillId` — 同一 `groupId` 内を `group_rate` 昇順でリンク。**`group_rate < 0`（× 等）は購入チェーン外**
+- `activation` — 発動条件タグ（バ場・距離・作戦）。`branches` / `tags`。実装: `app/js/skillActivation.js`
 
 **supports.json** 1件:
 
-- `id`, `name`（`[バリアント] 名前` 形式）、`characterId`, `rarity`, `type`（`command_id` 由来: speed/stamina/power/guts/wit/friend）
-- `hintSkillIds` — トレヒント対象スキル ID（mdb 自動）。イベントはここには入らない
+- `id`, `name`（`[バリアント] 名前`）、`characterId`, `rarity`, `type`
+- `hintSkillIds` — トレヒント（mdb 自動）。イベントはここには入らない
 - `eventIds` — 現状空配列（将来用）
 
 **characters.json** 1件:
 
-- `id`, `name`, `skillsByAwakening`: `{ "1": [skillId,...], ... }` — **育成ウマ娘所持スキル**（覚醒レベル `need_rank` 別。フィールド名はレガシー）
+- `id`, `name`, `skillsByAwakening`: `{ "1": [skillId,...], ... }` — **育成ウマ娘所持スキル**
 
 用語: [GLOSSARY.md](./GLOSSARY.md)
 
@@ -121,7 +83,7 @@ npm run compare:events    # ゴールデン比較レポート
 ```json
 {
   "version": 2,
-  "prioritySupportNames": [ "...38枚..." ],
+  "prioritySupportNames": [ "..." ],
   "events": [
     {
       "id": "evt_...",
@@ -159,38 +121,20 @@ npm run compare:events    # ゴールデン比較レポート
 | `toggle` | チェックボックス（後方互換） | ON のとき `skills` を加算 |
 
 - `skillId` は extract 後に埋めると確実。無くても `skillName` 完全一致で解決を試す
-- **現状**: 優先40サポカ **111イベント**（auto 90 / single 21）。抽出103 + preserve 8（たづな2 + GameWith一時6）
-- **再生成**: `npm run extract:events` → `npm run apply:events`（raw キャッシュ: `events.raw.utools.json`・gitignore）
-- **例外維持**: `data/events.preserve.json`（たづな2・実機確認済み + 30307/30308 の GameWith 一時6）
-- **移行記録**: `data/events.id-aliases.json`（旧 id → 新 id）
-
-### 優先サポカ一覧
-
-`events.json` の `prioritySupportNames` を正とする（計40種）。新規追加は最新の課金必須 SSR を原則とする。**一覧表**は [PRIORITY_SUPPORTS.md](./PRIORITY_SUPPORTS.md) / [priority-supports.json](../data/priority-supports.json)（`npm run render:priority-supports` で再生成）。
+- 優先サポカ一覧の正: `events.json` の `prioritySupportNames`。表は [PRIORITY_SUPPORTS.md](./PRIORITY_SUPPORTS.md)
 
 ## 手メンテ: scenarios/toresenken.json
 
-`version: 3`。シナリオスキルの `skillId` は埋済み（実機通し確認済み）。
+`version: 3`。シナリオスキルの `skillId` は埋済み。
 
 グループ:
 
 - `linkSkills` — シナリオリンク（**相互排他・UI はラジオ1択**。未選択なし。デフォルト: `link_dotou`）
-  - シニア9月前半イベント。選んだリンクにつきヒントは **1スキルのみ**
-  - デフォルトは `skillWithoutLink`（白）。リンク対象キャラが **育成ウマ娘または6枠サポカ** にいれば `skillWithLink`（金）
-  - `requiresLinkCharacterId` — 単一キャラ（`supports.characterId` / 育成カードの `floor(id/100)`）
-  - `requiresLinkCharacterIds` — 複数キャラは **OR**（いずれか1人いれば金。たづな＆ハロー用）
+  - デフォルトは `skillWithoutLink`（白）。リンク対象が育成ウマ娘または6枠サポカにいれば `skillWithLink`（金）
+  - `requiresLinkCharacterId` / `requiresLinkCharacterIds`（OR）
   - 実装: `app/js/scenarioLink.js`
-- `scenarioAutoSkills` — ガチ想定で常に計上（UI は折りたたみ確認用）
-  - クラシック12月 大盛況 → 時中の妙 Lv1
-  - シニア12月 超盛況固定 → ペースキープ Lv2 / 深呼吸 Lv2 / 恩返し、召し上がれ Lv3
-  - 育成終了（大盛況以上）→ 極上の感謝を！ Lv2
-  - 注: 「恩返し」と「極上の感謝を！」は白/金ペアのため、一覧では金行に合算表示（`goldLower`）
-- `seniorRmjChoice` — シニア12月 超盛況のラーメン3択（ラジオ1択・選択金 Lv2）
-  - スペシャル → 火事場のバ鹿力
-  - よくばり → いいとこ入った！（`defaultChoiceId`: `ramen_yokubari`）
-  - 珠玉 → 好奇心
-
-旧 `rmjSkills` / `endSkills` / `classicRmj`（チェック ON/OFF）は廃止。盛況段階チェックボックスも廃止。
+- `scenarioAutoSkills` — ガチ想定で常に計上（クラシック大盛況・シニア超盛況・育成終了）
+- `seniorRmjChoice` — シニア12月 ラーメン3択（デフォルト: `ramen_yokubari`）
 
 参考: https://github.com/mee1080/umasim/blob/main/data/ramen_memo.md
 
@@ -201,5 +145,5 @@ npm run compare:events    # ゴールデン比較レポート
 | スキル baseSp・上下位 | mdb 自動 |
 | サポカトレヒント（`hintSkillIds`） | mdb 自動。UI で Lv 3–5（既定5） |
 | 育成ウマ娘所持スキル | mdb 自動（`available_skill_set`） |
-| サポカイベントの金・追加スキル | **events.json**（U-tools+mdb 抽出・`npm run extract:events`） |
+| サポカイベントの金・追加スキル | **events.json**（U-tools+mdb） |
 | シナリオ固有 | **toresenken.json 手メンテ** |

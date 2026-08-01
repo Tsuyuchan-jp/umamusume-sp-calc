@@ -1,14 +1,15 @@
 # 画像アセット方針
 
-UX 改善 Phase 1（2026-08-01）で確定。抽出パイプライン Phase 1（2026-08）実装。
+方針・抽出／import の正本。完了タスクの経緯は [archive/SUPPORT_CARD_IMAGE_TASK.md](./archive/SUPPORT_CARD_IMAGE_TASK.md)。  
+ゲーム更新時の全体手順は [GAME_UPDATE_RUNBOOK.md](./GAME_UPDATE_RUNBOOK.md)。
 
-## 調査結論
+## 方針
 
 | 手段 | 判定 |
 |------|------|
-| 公式の無料 CDN API | **なし**（公開されていない） |
-| 攻略サイト画像の直リンク | **採用しない**（更新・規約・CORS で壊れやすい） |
-| ゲームクライアントからの抽出 | **採用（A）** — リポジトリに同梱（優先枠から段階投入） |
+| 公式の無料 CDN API | **なし** |
+| 攻略サイト画像の直リンク | **採用しない** |
+| ゲームクライアントからの抽出 | **採用** — リポジトリに同梱 |
 
 ## パス規約
 
@@ -18,18 +19,18 @@ UX 改善 Phase 1（2026-08-01）で確定。抽出パイプライン Phase 1（
 | 育成ウマ娘 | `assets/characters/` | `{characterCardId}.webp` |
 | タイプ印（共有） | `assets/type-icons/` | `{type}.webp`（speed/stamina/power/guts/wit/friend） |
 
-UI は `app/js/cardAssets.js` が URL を組み立てる。画像が無い場合はタイプ色＋短縮名のプレースホルダを表示（計算には影響しない）。
+UI は `app/js/cardAssets.js` が URL を組み立てる。画像が無い場合はタイプ色＋短縮名のプレースホルダ（計算には影響しない）。
 
-## 同梱範囲（Phase 1）
+## 同梱範囲
 
-- 優先サポカ **40種**（`data/priority-supports.json`）→ `assets/supports/{id}.webp`
-- 育成ウマ娘 **全カード**（`data/characters.json`）→ `assets/characters/{id}.webp`（`chr_icon` + dress フォールバック）
-- タイプ印 **6種**（`assets/type-icons/{type}.webp`）— カード横断で使いまわし。実行時CDN非依存
+- 優先サポカ **40種** → `assets/supports/{id}.webp`
+- 育成ウマ娘 **全カード**（`chr_icon` + dress フォールバック）→ `assets/characters/{id}.webp`
+- タイプ印 **6種** — 実行時 CDN 非依存
 - 目安サイズ: サポカ **240×320**・キャラ長辺 256px・WebP
 
-### タイプ印の出所（同梱・再取得用）
+### タイプ印の出所（再取得用）
 
-実行時は `assets/type-icons/` のみ参照。取得元 CDN への直リンクはしない。
+実行時は `assets/type-icons/` のみ参照。
 
 ```text
 https://static.kouryaku.tools/umamusume/images/app/supports/{name}.png
@@ -41,20 +42,20 @@ https://static.kouryaku.tools/umamusume/images/app/supports/{name}.png
 
 ## 著作権・配布
 
-- 非公式・非商用。画像の権利はゲーム権利者に帰属する
-- **必要最小限のみ同梱**（優先サポカ＋育成全カード＋タイプ印）
-- 公開 Pages への反映（`git push`）は UX 完成後の **v1.0.0** まで行わない方針
+- 非公式・非商用。画像の権利はゲーム権利者に帰属
+- **必要最小限のみ同梱**
+- 公開 Pages への反映（`git push`）は **v1.0.0** まで行わない
 
-## 抽出パイプライン（半自動）
+## 抽出パイプライン
 
 ```text
 DMM Persistent (meta + dat)
   → meta 復号（初回・更新時）
-  → npm run assets:extract   # support_thumb_{id} / piece_icon_{id} → .cache/asset-dump/flat/*.png
-  → npm run assets:import    # サポカ縦合成 + flat PNG → assets/**/{id}.webp
+  → npm run assets:extract
+  → npm run assets:import
 ```
 
-### 前提パス（この環境の実績）
+### 前提パス（実績）
 
 ```text
 D:\DMM\umamusumeDMM\Umamusume\umamusume_Data\Persistent\
@@ -63,51 +64,39 @@ D:\DMM\umamusumeDMM\Umamusume\umamusume_Data\Persistent\
   master\master.mdb
 ```
 
-AppData `LocalLow\Cygames\umamusume` には meta/dat が無いことが多い。
-
 ### meta 復号
 
 現行 JP クライアントの `meta` は SQLite3MC 暗号化。平文 `meta_decrypted` が必要。
 
-- 作業用ツール・venv はリポジトリの **`.cache/`**（gitignore）に置く
+- 作業用ツール・venv は `.cache/`（gitignore）
 - 実績: `.cache/umamusu-utils-old-jp/storage/meta_decrypted`
-- stock の umamusu-utils main はそのままでは JP 暗号化アセットに未対応。アセットは先頭 256B 以降の XOR 復号が必要（`scripts/extract_card_assets.py` に実装済み）
+- アセット先頭 256B 以降の XOR 復号は `scripts/extract_card_assets.py` に実装済み
 
 ### コマンド
 
 ```powershell
-# 1) 優先40 + 全育成カードを PNG 抽出（要: 復号済み meta・dat・master・.cache 内 venv）
 npm run assets:extract
-# 育成のみ再抽出: node scripts/run_extract_card_assets.mjs --skip-supports
-# オプション: --dat "D:\...\Persistent\dat" --meta ".\.cache\...\meta_decrypted"
-
-# 2) WebP 化して assets/ へ配置（サポカ必須欠落は exit 2）
+# 育成のみ: node scripts/run_extract_card_assets.mjs --skip-supports
 npm run assets:import
 ```
 
-使用アセット名（meta `n`）:
-
 | 種別 | meta 名 |
 |------|---------|
-| サポカ縦カード元 | `supportcard/support{ID}/support_thumb_{ID}`（512×512・レア枠焼き付き） |
-| 育成カード | `chara/chr{charaId}/chr_icon_{charaId}_{key}_01`（無ければ dress / 6桁レガシー。`piece_icon` は不使用） |
+| サポカ縦カード元 | `supportcard/support{ID}/support_thumb_{ID}` |
+| 育成カード | `chara/chr{charaId}/chr_icon_{charaId}_{key}_01`（無ければ dress。`piece_icon` は不使用） |
 
 import 時のサポカ後処理（`scripts/support_vertical_card.py`）:
-- `support_thumb` の枠外パディング＋ソフトグローを除去（512基準 L12/T5/R12/B13・ハードクロム外縁）
-- 表示解像度で自前角丸マスク（半径29）により四隅の枠外グローを透明化
-- 左右カットせず縦縮尺（3:4）→ 240×320 にリサイズ
-- `assets/type-icons/{type}.webp` を右上固定で合成（size=52 / top=-1 / right=4）
-- 共有マスク・レアバッジは載せない
-- 比較試作: `npm run samples:trim` → `.cache/.../compare-trim/`
+
+- 枠外パディング＋ソフトグロー除去、角丸マスク、縦縮尺 3:4 → 240×320
+- タイプ印を右上合成（size=52 / top=-1 / right=4）
+- 比較試作: `npm run samples:trim`
 
 ### スクリプト
 
 | ファイル | 役割 |
 |----------|------|
-| `scripts/extract_card_assets.py` | meta+dat → flat PNG（サポカは `support_thumb`） |
+| `scripts/extract_card_assets.py` | meta+dat → flat PNG |
 | `scripts/run_extract_card_assets.mjs` | venv Python ランチャ |
-| `scripts/support_vertical_card.py` | 枠外トリム + 縦縮尺 + タイプ印合成（本番・試作共通） |
-| `scripts/import_card_images.py` | flat PNG → WebP（サポカ縦合成・キャラ縮小） |
+| `scripts/support_vertical_card.py` | 枠外トリム + 縦縮尺 + タイプ印合成 |
+| `scripts/import_card_images.py` | flat PNG → WebP |
 | `scripts/import_card_assets.mjs` | import ランチャ |
-
-ゲーム更新時の手順全体は [GAME_UPDATE_RUNBOOK.md](./GAME_UPDATE_RUNBOOK.md) を参照。

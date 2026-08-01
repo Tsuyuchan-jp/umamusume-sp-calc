@@ -4,8 +4,9 @@
 会話のたびに古くなる「口頭の次ステップ」より、ここを優先してください。
 
 関連:
+- docs 入口 → [README.md](./README.md)
 - 状態・ルールのブリーフ → [AGENT_HANDOFF.md](./AGENT_HANDOFF.md)
-- 長期ロードマップ・完了履歴 → [ROADMAP.md](./ROADMAP.md)
+- 長期ロードマップ・スコープ外 → [ROADMAP.md](./ROADMAP.md)
 - モデル選択 → [MODEL_SELECTION.md](./MODEL_SELECTION.md)
 
 ---
@@ -38,7 +39,7 @@
 
 ## 現在フォーカス（1行）
 
-**UX Phase D 残り** — カード画像（サポカ縦40 + 育成 chr_icon 全264）は完了。push / Pages は v1.0.0 までしない。
+**UX Phase D 残り** — カード画像（サポカ縦40 + 育成 chr_icon 全264）は完了。docs スリム化済。push / Pages は v1.0.0 までしない。
 
 ---
 
@@ -60,8 +61,6 @@
 - [ ] **全体デザインの質感パス**  
   - 画像・drop-shadow 導入後の余白・階層・コントラストを整える  
   - 受け入れ: 編成上段が「カード写真のギャラリー」として破綻なく読める（モバイル含む）
-
-- [ ] **docs 同期** — ROADMAP / AGENT_HANDOFF の「画像 Phase1=107703のみ」記述を全264同梱済みに更新
 
 - [ ] **育成 dress 流用カードのスポット目視**（任意だが短い）  
   - `chr_icon` が dress フォールバックのカードで、ピッカー上の衣装が明らかにおかしいものがないか数枚確認
@@ -88,6 +87,8 @@
 
 ## 最近完了（直近のみ残す）
 
+- [x] 2026-08-01 docs スリム化 — 人間用入口・HANDOFF 短縮・archive・正本委譲（[README.md](./README.md)）
+- [x] 2026-08-01 docs 同期 — 画像 Phase1=全264同梱済みを HANDOFF / ROADMAP / ASSETS に反映
 - [x] 2026-08-01 サポカ縦カード: 枠外トリム・ソフトグロー除去・角丸マスク・drop-shadow（優先40）
 - [x] 2026-08-01 サポカ表示: SSR／名前／黒帯オーバーレイ削除
 - [x] 2026-08-01 育成: `chr_icon` + dress フォールバックで **全264** 同梱、正方形表示、オーバーレイ削除

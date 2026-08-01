@@ -50,12 +50,12 @@
 
 ## 開発者向け
 
-ローカル起動・データ再抽出・イベント再生成・テスト・GitHub Pages の技術メモは [docs/DEV.md](docs/DEV.md) を参照。  
-**ゲーム本パッチ後のデータ更新手順**は [docs/GAME_UPDATE_RUNBOOK.md](docs/GAME_UPDATE_RUNBOOK.md) を参照。
+ドキュメントの入口（状況別の開き方・正本表）: [docs/README.md](docs/README.md)
 
-用語は [docs/GLOSSARY.md](docs/GLOSSARY.md)、仕様は [docs/spec.md](docs/spec.md)。  
-更新履歴は [docs/CHANGELOG.md](docs/CHANGELOG.md)。  
-イベント対応サポカ40種の一覧は [docs/PRIORITY_SUPPORTS.md](docs/PRIORITY_SUPPORTS.md)（JSON: [data/priority-supports.json](data/priority-supports.json)）。
+- ローカル起動・トラブル: [docs/DEV.md](docs/DEV.md)
+- ゲーム本パッチ後の追随: [docs/GAME_UPDATE_RUNBOOK.md](docs/GAME_UPDATE_RUNBOOK.md)
+- 用語 / 仕様 / 更新履歴: [GLOSSARY](docs/GLOSSARY.md) / [spec](docs/spec.md) / [CHANGELOG](docs/CHANGELOG.md)
+- 優先40サポカ一覧: [docs/PRIORITY_SUPPORTS.md](docs/PRIORITY_SUPPORTS.md)（JSON: [data/priority-supports.json](data/priority-supports.json)）
 
 ## フィードバック
 

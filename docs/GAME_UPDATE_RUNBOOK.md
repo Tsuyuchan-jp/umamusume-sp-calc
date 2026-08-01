@@ -4,7 +4,7 @@
 
 **目的**: スキル・サポカ・育成ウマ娘のトレヒントと、優先40サポカのイベントデータを最新化し、回帰テストと実機確認のうえ本番（GitHub Pages）へ反映する。
 
-詳細仕様は [DATA.md](./DATA.md)・[EVENT_EXTRACT_DESIGN.md](./EVENT_EXTRACT_DESIGN.md) を参照。このファイルは **作業順の正本** とする。
+詳細仕様は [DATA.md](./DATA.md)。設計経緯は [archive/EVENT_EXTRACT_DESIGN.md](./archive/EVENT_EXTRACT_DESIGN.md)。このファイルは **作業順の正本** とする。
 
 ---
 
@@ -300,10 +300,11 @@ assets/supports|characters/{id}.webp ──► app/（cardAssets.js）
 
 | ファイル | 内容 |
 |----------|------|
+| [README.md](./README.md) | docs 入口・正本表 |
 | [DEV.md](./DEV.md) | 開発環境・serve・Pages 設定 |
 | [DATA.md](./DATA.md) | JSON 各ファイルの役割・mdb テーブル |
-| [EVENT_EXTRACT_DESIGN.md](./EVENT_EXTRACT_DESIGN.md) | イベント抽出の設計・Phase B |
-| [UTOOLS_EVENT_PARSE.md](./UTOOLS_EVENT_PARSE.md) | U-tools SSR のパース仕様 |
+| [UTOOLS_EVENT_PARSE.md](./UTOOLS_EVENT_PARSE.md) | U-tools SSR のパース仕様（壊れ時） |
+| [archive/EVENT_EXTRACT_DESIGN.md](./archive/EVENT_EXTRACT_DESIGN.md) | イベント抽出の設計経緯（通常不要） |
 | [AGENT_HANDOFF.md](./AGENT_HANDOFF.md) | エージェント向け最短ブリーフ |
 | [CHANGELOG.md](./CHANGELOG.md) | 公開版の変更履歴（データ更新も記録推奨） |
 | [ASSETS.md](./ASSETS.md) | カード画像のパス規約・抽出／import |

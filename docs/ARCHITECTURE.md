@@ -1,45 +1,23 @@
 # アーキテクチャ
 
+フォルダ構成とデータフローの正本。手順は [DEV.md](./DEV.md) / [GAME_UPDATE_RUNBOOK.md](./GAME_UPDATE_RUNBOOK.md)。JSON 意味は [DATA.md](./DATA.md)。
+
 ## フォルダ構成
 
 ```
 umamusume-sp-calc/
   README.md
-  .gitignore
-  docs/                 # 要件・仕様・引き継ぎ
-  scripts/
-    extract_mdb.mjs           # master.mdb → skills/supports/characters（Node・推奨）
-    extract_mdb.py            # 同上（Python）
-    extract_support_events.mjs  # U-tools + mdb → events.extracted.json
-    apply_extracted_events.mjs  # events.extracted.json → events.json
-    compare_events_golden.mjs   # ゴールデン比較
-    verify_data.mjs             # 抽出データの簡易確認
-    test_sp.mjs                 # SPコスト回帰テスト
-    test_skill_activation.mjs   # 発動条件・絞込回帰テスト
-    test_copy_included_skills.mjs # 含めるスキルコピー整形回帰テスト
-  data/
-    events.json                 # サポカイベント正本（U-tools+mdb 抽出 + preserve）
-    events.extracted.json       # 抽出中間物
-    events.preserve.json        # U-tools 外の例外（たづなお出かけ/正月）
-    events.id-aliases.json        # 旧 id → 新 id（Phase B 移行記録）
-    scenarios/
-      toresenken.json           # 手メンテ（トレセン軒）
-    skills.json                 # extract 生成
-    supports.json
-    characters.json
-    meta.json
+  docs/                 # 入口は docs/README.md
+  scripts/              # extract / verify / test / assets
+  data/                 # JSON（extract 生成 + シナリオ手メンテ）
+  assets/               # カード画像（supports / characters / type-icons）
   app/
     index.html
     css/style.css
-    js/
-      app.js            # UI・データ読込・再計算
-      aggregate.js      # ヒント収集〜合計
-      scenarioLink.js   # シナリオリンク白/金
-      hintResolve.js    # max(hintLv)
-      spCost.js         # floor コスト
-      goldLower.js      # 金+白・表示フィルタ
-      copyIncludedSkills.js  # 含める ON スキル名の整形・クリップボード
+    js/                 # UI・集計（app.js / aggregate.js 等）
 ```
+
+主要スクリプト・モジュールの一覧はリポジトリ内の実ファイルを正とする。docs に長いツリーを複製しない。
 
 ## ランタイム構成
 
@@ -68,18 +46,14 @@ data/scenarios/toresenken.json ┤
     ▼                           ▼
 app.js (loadJson) ──► buildSkillPlan(aggregate.js)
                           │
-                          ├─ サポカ hintSkillIds → トレヒントLv（オプション、既定5）
-                          ├─ 育成ウマ娘所持スキル skillsByAwakening（全ランク合算）→ Lv3
-                          ├─ イベント（auto / single）→ JSON hintLv
-                          ├─ 有効シナリオ → JSON hintLv
+                          ├─ サポカ hintSkillIds → トレヒントLv
+                          ├─ 育成ウマ娘所持スキル → Lv3
+                          ├─ イベント / シナリオ → JSON hintLv
                           ├─ resolveHintLevels (max)
-                          ├─ filterDisplaySkills（金がある白を隠す）
-                          ├─ calcAcquisitionCost（白+金）
+                          ├─ filterDisplaySkills / calcAcquisitionCost
                           └─ 継承オプション加算
                           ▼
-                     合計SP + 行一覧（除外チェック可）
-                          │
-                          └─ 含める ON 行名をカンマ区切りでクリップボードへ（copyIncludedSkills.js）
+                     合計SP + 行一覧
 ```
 
 ## モジュール責務
@@ -88,16 +62,17 @@ app.js (loadJson) ──► buildSkillPlan(aggregate.js)
 |----------|------|
 | `spCost.js` | 割引テーブルと `calcSkillCost` |
 | `hintResolve.js` | skillId → max hintLv + sources |
-| `goldLower.js` | グループ内チェーン合算（白+金 / ○+◎+金）、○→◎繰り上げ、表示フィルタ |
-| `skillActivation.js` | 発動条件タグのパース・絞込互換判定・チェーン OR マージ |
-| `scenarioLink.js` | シナリオリンク白/金の編成連動解決 |
+| `goldLower.js` | グループ内チェーン合算・表示フィルタ |
+| `skillActivation.js` | 発動条件タグ・絞込 |
+| `scenarioLink.js` | シナリオリンク白/金 |
 | `aggregate.js` | 全由来のヒント収集と合計 |
-| `copyIncludedSkills.js` | 含める ON 表示行の抽出・カンマ区切り整形・クリップボード書き込み |
-| `app.js` | UI バインド、JSON 読込、サポカ絞込、オプション（切れ者・継承・トレヒントLv）、結果スキル絞込・件数表示・コピー、説明書ダイアログ、再計算 |
+| `copyIncludedSkills.js` | 含める ON 行のクリップボード書き出し |
+| `designSnapshot.js` / `designMemory.js` | 設計メモリ |
+| `cardAssets.js` | カード画像 URL |
+| `app.js` | UI・JSON 読込・再計算 |
 
 ## 設計上の注意
 
-- サポカ **トレヒントは mdb 自動**、**イベントスキルヒントは U-tools+mdb 抽出**（`events.preserve.json` で少数例外）— 混ぜない
-- シナリオはトレセン軒固定（UI に切替なし）
-- ユーザー向け説明はヘッダー「使い方」`<dialog>`（`index.html` + `bindHelpDialog`）。開発者向け詳細は `docs/spec.md` 等
-- extract 失敗時は `app.js` が `#load-error` に手順を表示
+- サポカ **トレヒントは mdb 自動**、**イベントスキルヒントは U-tools+mdb** — 混ぜない
+- シナリオはトレセン軒固定
+- ユーザー向け説明はヘッダー「使い方」`<dialog>`（`index.html`）。開発者向けは `docs/spec.md` 等

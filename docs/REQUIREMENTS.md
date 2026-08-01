@@ -3,7 +3,7 @@
 プロダクト名・パス: **umamusume-sp-calc**  
 場所: `C:\Users\PC1\Projects\umamusume-sp-calc`
 
-計算仕様の詳細は [spec.md](./spec.md)。新チャットは [AGENT_HANDOFF.md](./AGENT_HANDOFF.md) から。
+計算仕様の詳細は [spec.md](./spec.md)。docs 入口は [README.md](./README.md)。新チャットは [AGENT_HANDOFF.md](./AGENT_HANDOFF.md) から。
 
 ## プロダクト
 
