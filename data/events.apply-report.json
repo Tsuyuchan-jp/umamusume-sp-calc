@@ -526,21 +526,21 @@
     {
       "oldId": "evt_30298_801107002",
       "newId": "evt_30298_801107002",
-      "label": "シチー いざ求めん、夢多きTreasure",
+      "label": "タップ いざ求めん、夢多きTreasure",
       "matchKey": "name",
       "payloadMatch": true
     },
     {
       "oldId": "evt_30298_830298002",
       "newId": "evt_30298_830298002",
-      "label": "シチー 心のカギは",
+      "label": "タップ 心のカギは",
       "matchKey": "name",
       "payloadMatch": true
     },
     {
       "oldId": "evt_30298_830298003",
       "newId": "evt_30298_830298003",
-      "label": "シチー 仲間というロマン",
+      "label": "タップ 仲間というロマン",
       "matchKey": "name",
       "payloadMatch": true
     },

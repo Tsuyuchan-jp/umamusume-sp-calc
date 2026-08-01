@@ -53,21 +53,21 @@ const NEW_EVENTS = [
   {
     id: "evt_taiki_nigeru",
     supportNameMatch: "刀光散らしてClash！",
-    label: "シチー 心のカギは",
+    label: "タップ 心のカギは",
     selection: "auto",
     skills: [{ skillName: "逃げるが勝ち！", hintLevel: 1, skillId: 204092 }],
   },
   {
     id: "evt_taiki_sentou",
     supportNameMatch: "刀光散らしてClash！",
-    label: "シチー いざ求めん、夢多きTreasure",
+    label: "タップ いざ求めん、夢多きTreasure",
     selection: "auto",
     skills: [{ skillName: "先頭プライド", hintLevel: 1, skillId: 201272 }],
   },
   {
     id: "evt_taiki_chain",
     supportNameMatch: "刀光散らしてClash！",
-    label: "シチー 仲間というロマン（連続3・金3択）",
+    label: "タップ 仲間というロマン（連続3・金3択）",
     selection: "single",
     defaultChoiceId: "conc_top",
     choices: [

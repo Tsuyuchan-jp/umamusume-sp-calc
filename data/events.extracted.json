@@ -1431,7 +1431,7 @@
     {
       "id": "evt_30298_801107002",
       "supportNameMatch": "刀光散らしてClash！",
-      "label": "シチー いざ求めん、夢多きTreasure",
+      "label": "タップ いざ求めん、夢多きTreasure",
       "selection": "auto",
       "skills": [
         {
@@ -1444,7 +1444,7 @@
     {
       "id": "evt_30298_830298002",
       "supportNameMatch": "刀光散らしてClash！",
-      "label": "シチー 心のカギは",
+      "label": "タップ 心のカギは",
       "selection": "auto",
       "skills": [
         {
@@ -1457,7 +1457,7 @@
     {
       "id": "evt_30298_830298003",
       "supportNameMatch": "刀光散らしてClash！",
-      "label": "シチー 仲間というロマン",
+      "label": "タップ 仲間というロマン",
       "choices": [
         {
           "id": "c001_2004311+2012712",

@@ -1,6 +1,8 @@
 /**
  * サポカの表示用短縮名（イベント label の先頭と同じ正本）
  * support.title / supportNameMatch → 略称
+ *
+ * 当アプリではタップダンスシチーを「タップ」と呼称する（「シチー」は使わない）。
  */
 import { SUPPORT_TYPE_STYLES } from "./cardAssets.js";
 
@@ -8,7 +10,7 @@ export const SHORT_NAME_BY_MATCH = {
   一杯のノスタルジア: "たづな",
   その執念は怒濤が如く: "ドトウ",
   "永久の誓い、永久の輝き": "ダイヤ",
-  "刀光散らしてClash！": "シチー",
+  "刀光散らしてClash！": "タップ",
   全てに挑む勇ましき者: "デジタル",
   白に至る覚悟: "ハート",
   Innovator: "ヤング",
@@ -47,11 +49,6 @@ export const SHORT_NAME_BY_MATCH = {
   夏空チルタイム: "アーモンド",
 };
 
-/** トレヒント由来だけ差し替える短縮名（イベント label は SHORT_NAME_BY_MATCH のまま） */
-const TRAINING_SHORT_NAME_OVERRIDE = {
-  "刀光散らしてClash！": "タップ",
-};
-
 /**
  * @param {{ title?: string, characterName?: string, name?: string }} support
  * @returns {string}
@@ -65,19 +62,6 @@ export function shortNameForSupport(support) {
 }
 
 /**
- * トレヒント用のキャラ短縮名（必要なら override）
- * @param {{ title?: string, characterName?: string, name?: string }} support
- */
-function shortNameForTraining(support) {
-  if (!support) return "";
-  const title = support.title;
-  if (title && TRAINING_SHORT_NAME_OVERRIDE[title]) {
-    return TRAINING_SHORT_NAME_OVERRIDE[title];
-  }
-  return shortNameForSupport(support);
-}
-
-/**
  * トレヒント由来の詳細ラベル（例: スピタップ / 友人たづな）
  * @param {{ type?: string, title?: string, characterName?: string, name?: string }} support
  * @returns {string}
@@ -85,6 +69,6 @@ function shortNameForTraining(support) {
 export function formatTrainingSourceLabel(support) {
   if (!support) return "";
   const typeLabel = SUPPORT_TYPE_STYLES[support.type]?.label || "";
-  const short = shortNameForTraining(support);
+  const short = shortNameForSupport(support);
   return typeLabel ? `${typeLabel}${short}` : short;
 }
