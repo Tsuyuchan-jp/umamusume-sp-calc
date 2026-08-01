@@ -32,10 +32,10 @@ VERT_W, VERT_H = 240, 320
 ASPECT_W, ASPECT_H = 3, 4
 
 # 右上固定（表示解像度 240x320 基準）
-# 参考図換算サイズ47の 1.1 倍。上辺・右辺はカード外縁に揃える
+# サイズは参考図換算47の1.1倍。枠外縁に対しわずかに内側へ（見た目合わせ）
 TYPE_ICON_SIZE = 52
-TYPE_MARGIN_TOP = 0
-TYPE_MARGIN_RIGHT = 0
+TYPE_MARGIN_TOP = 2
+TYPE_MARGIN_RIGHT = 2
 
 AB_KEY = b"\x53\x2B\x46\x31\xE4\xA7\xB9\x47\x3E\x7C\xFB"
 
