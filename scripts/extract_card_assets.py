@@ -1,4 +1,7 @@
-﻿"""優先サポート40枚 + キャラカードの小カード PNG を flat 出力する。"""
+﻿"""優先サポート40枚 + キャラカードの PNG を flat 出力する。
+
+サポカは support_thumb（512×512・レア枠焼き付き）を抽出。import 側で縦合成する。
+"""
 from __future__ import annotations
 
 import argparse
@@ -11,7 +14,10 @@ import UnityPy
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_DAT = Path(r"D:\DMM\umamusumeDMM\Umamusume\umamusume_Data\Persistent\dat")
-DEFAULT_META = REPO_ROOT / ".cache" / "umamusu-utils-old-jp" / "storage" / "meta_decrypted"
+META_FRESH = (
+    REPO_ROOT / ".cache" / "umamusu-utils-old-jp" / "storage" / "meta_decrypted_persistent_fresh"
+)
+META_FALLBACK = REPO_ROOT / ".cache" / "umamusu-utils-old-jp" / "storage" / "meta_decrypted"
 DEFAULT_OUT_FLAT = REPO_ROOT / ".cache" / "asset-dump" / "flat"
 DEFAULT_OUT_PNG = REPO_ROOT / ".cache" / "asset-dump" / "png"
 PRIORITY_JSON = REPO_ROOT / "data" / "priority-supports.json"
@@ -119,16 +125,24 @@ def load_support_ids() -> list[int]:
     return [int(x["id"] if isinstance(x, dict) else x) for x in supports]
 
 
+def resolve_meta_path(explicit: Path | None) -> Path:
+    if explicit is not None:
+        return explicit
+    if META_FRESH.exists():
+        return META_FRESH
+    return META_FALLBACK
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description="Extract priority support/chara card PNGs")
     parser.add_argument("--dat", type=Path, default=DEFAULT_DAT)
-    parser.add_argument("--meta", type=Path, default=DEFAULT_META)
+    parser.add_argument("--meta", type=Path, default=None)
     parser.add_argument("--out-flat", type=Path, default=DEFAULT_OUT_FLAT)
     parser.add_argument("--out-png", type=Path, default=DEFAULT_OUT_PNG)
     args = parser.parse_args()
 
     dat_root: Path = args.dat
-    meta_path: Path = args.meta
+    meta_path: Path = resolve_meta_path(args.meta)
     out_flat: Path = args.out_flat
     out_png: Path = args.out_png
     decrypt_dir = REPO_ROOT / ".cache" / "asset-dump" / "decrypted"
@@ -151,7 +165,7 @@ def main() -> int:
     missing_ids: list[int] = []
 
     for sid in ids:
-        meta_name = f"supportcard/support{sid}/support_card_s_{sid}"
+        meta_name = f"supportcard/support{sid}/support_thumb_{sid}"
         flat = out_flat / "supports" / f"{sid}.png"
         if extract_named_asset(
             meta_name=meta_name,

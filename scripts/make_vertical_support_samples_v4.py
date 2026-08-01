@@ -28,14 +28,16 @@ SUPPORTS_JSON = REPO_ROOT / "data" / "supports.json"
 # 優先枠からタイプ網羅サンプル
 SAMPLE_IDS = [30305, 30304, 30302, 30297, 30294, 30289]  # friend/sta/spd/pow/guts/wit
 
-VERT_W, VERT_H = 240, 320
-ASPECT_W, ASPECT_H = 3, 4
-
-# 右上固定（表示解像度 240x320 基準）— 2026-08-01 目視確定・変更しない
-# サイズ=参考図換算47×1.1。余白トリム後に上1/右4
-TYPE_ICON_SIZE = 52
-TYPE_MARGIN_TOP = 1
-TYPE_MARGIN_RIGHT = 4
+from support_vertical_card import (
+    TYPE_ICON_SIZE,
+    TYPE_MARGIN_RIGHT,
+    TYPE_MARGIN_TOP,
+    VERT_H,
+    VERT_W,
+    compose_support_vertical_card,
+    load_type_icons,
+    vertical_stretch_keep_width,
+)
 
 AB_KEY = b"\x53\x2B\x46\x31\xE4\xA7\xB9\x47\x3E\x7C\xFB"
 
@@ -147,13 +149,6 @@ def find_thumb(sid: int, dat_root: Path, meta_conn: sqlite3.Connection) -> Path 
     return None
 
 
-def vertical_stretch_keep_width(src: Image.Image) -> Image.Image:
-    img = src.convert("RGBA")
-    w, _h = img.size
-    target_h = max(1, round(w * ASPECT_H / ASPECT_W))
-    return img.resize((w, target_h), Image.Resampling.LANCZOS)
-
-
 def load_support_type(sid: int) -> str:
     data = json.loads(SUPPORTS_JSON.read_text(encoding="utf-8"))
     items = data if isinstance(data, list) else data.get("supports", [])
@@ -161,56 +156,6 @@ def load_support_type(sid: int) -> str:
         if int(row.get("id", -1)) == sid:
             return str(row.get("type", "unknown"))
     return "unknown"
-
-
-def load_type_icons() -> dict[str, Image.Image]:
-    icons: dict[str, Image.Image] = {}
-    for path in sorted(TYPE_ICONS_DIR.glob("*.webp")):
-        icons[path.stem] = Image.open(path).convert("RGBA")
-    return icons
-
-
-def content_bbox(im: Image.Image) -> tuple[int, int, int, int] | None:
-    """不透明かつ非黒の外接矩形を返す。"""
-    im = im.convert("RGBA")
-    px = im.load()
-    w, h = im.size
-    xs: list[int] = []
-    ys: list[int] = []
-    for y in range(h):
-        for x in range(w):
-            r, g, b, a = px[x, y]
-            if a < 16:
-                continue
-            if r < 20 and g < 20 and b < 20:
-                continue
-            xs.append(x)
-            ys.append(y)
-    if not xs:
-        return None
-    return min(xs), min(ys), max(xs), max(ys)
-
-
-def trim_icon(im: Image.Image) -> Image.Image:
-    """キャンバス余白を除き、見かけの図形だけにする。"""
-    bb = content_bbox(im)
-    if bb is None:
-        return im.convert("RGBA")
-    return im.convert("RGBA").crop(bb)
-
-
-def overlay_type_icon(base: Image.Image, icon: Image.Image) -> Image.Image:
-    """表示解像度のベースに右上固定でタイプ印を重ねる。
-
-    上辺・右辺はカード外縁に揃える（余白トリム後に margin=0）。
-    """
-    out = base.convert("RGBA").copy()
-    icon_t = trim_icon(icon)
-    icon_r = icon_t.resize((TYPE_ICON_SIZE, TYPE_ICON_SIZE), Image.Resampling.LANCZOS)
-    x = out.size[0] - TYPE_MARGIN_RIGHT - TYPE_ICON_SIZE
-    y = TYPE_MARGIN_TOP
-    out.alpha_composite(icon_r, (x, y))
-    return out
 
 
 def write_readme() -> Path:
@@ -271,7 +216,7 @@ def main() -> int:
 
         stretched = vertical_stretch_keep_width(Image.open(thumb_path))
         stretch_disp = stretched.resize((VERT_W, VERT_H), Image.Resampling.LANCZOS)
-        with_type = overlay_type_icon(stretch_disp, icons[stype])
+        with_type = compose_support_vertical_card(Image.open(thumb_path), stype, icons=icons)
 
         stretch_disp.save(OUT_DIR / f"{sid}_stretch.png")
         with_type.save(OUT_DIR / f"{sid}_v4.png")

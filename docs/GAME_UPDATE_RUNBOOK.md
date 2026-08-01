@@ -241,6 +241,7 @@ Pages が失敗するときは **Settings → Pages → Source = GitHub Actions*
 
 ```powershell
 # 要: 復号済み meta（.cache 内）と DMM Persistent の dat
+# サポカは support_thumb を抽出 → import で 240×320 縦合成 + タイプ印
 npm run assets:extract
 npm run assets:import
 npm run serve

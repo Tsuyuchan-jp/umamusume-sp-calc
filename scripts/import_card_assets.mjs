@@ -1,8 +1,8 @@
 /**
  * flat PNG (.cache/asset-dump/flat) を assets 配下の {id}.webp に変換する。
  *
- * 変換はローカル venv の Pillow を使う（システム Python 不要）。
- * 必須リスト（優先40 + キャラ 107703）の欠落は exit 2。
+ * サポカ: support_thumb → 縦縮尺 + タイプ印合成（240×320）
+ * キャラ: 従来どおり長辺 256px 以内に縮小
  */
 import { spawnSync } from "node:child_process";
 import fs from "node:fs";
@@ -15,6 +15,7 @@ const PRIORITY_JSON = path.join(REPO_ROOT, "data", "priority-supports.json");
 const FLAT_ROOT = path.join(REPO_ROOT, ".cache", "asset-dump", "flat");
 const OUT_SUPPORTS = path.join(REPO_ROOT, "assets", "supports");
 const OUT_CHARS = path.join(REPO_ROOT, "assets", "characters");
+const IMPORT_SCRIPT = path.join(REPO_ROOT, "scripts", "import_card_images.py");
 const CHARA_ID = 107703;
 const MAX_EDGE = 256;
 const WEBP_QUALITY = 82;
@@ -31,52 +32,17 @@ function findPython() {
   return null;
 }
 
-function loadRequiredSupportIds() {
+function loadPrioritySupports() {
   const data = JSON.parse(fs.readFileSync(PRIORITY_JSON, "utf8"));
-  return data.supports.map((s) => Number(s.id));
+  return data.supports.map((s) => ({
+    id: Number(s.id),
+    type: String(s.type),
+  }));
 }
 
-function convertWithPillow(pythonExe, jobs) {
-  const payload = JSON.stringify({
-    jobs,
-    maxEdge: MAX_EDGE,
-    quality: WEBP_QUALITY,
-  });
-  const py = `
-import json, sys
-from pathlib import Path
-from PIL import Image
-
-cfg = json.loads(sys.stdin.read())
-max_edge = int(cfg["maxEdge"])
-quality = int(cfg["quality"])
-ok = 0
-fail = []
-for job in cfg["jobs"]:
-    src = Path(job["src"])
-    dst = Path(job["dst"])
-    try:
-        if not src.is_file():
-            fail.append(str(src))
-            continue
-        img = Image.open(src).convert("RGBA")
-        w, h = img.size
-        scale = min(1.0, max_edge / max(w, h))
-        if scale < 1.0:
-            img = img.resize((max(1, int(w * scale)), max(1, int(h * scale))), Image.Resampling.LANCZOS)
-        dst.parent.mkdir(parents=True, exist_ok=True)
-        img.save(dst, "WEBP", quality=quality, method=6)
-        ok += 1
-        print(f"ok {dst} ({dst.stat().st_size} bytes)")
-    except Exception as e:
-        fail.append(f"{src}: {e}")
-        print(f"FAIL {src}: {e}", file=sys.stderr)
-print(f"converted={ok} failed={len(fail)}")
-if fail:
-    sys.exit(1)
-`;
-  const r = spawnSync(pythonExe, ["-c", py], {
-    input: payload,
+function convertWithPillow(pythonExe, payload) {
+  const r = spawnSync(pythonExe, [IMPORT_SCRIPT], {
+    input: JSON.stringify(payload),
     encoding: "utf8",
     cwd: REPO_ROOT,
   });
@@ -94,26 +60,27 @@ function main() {
     process.exit(1);
   }
 
-  const supportIds = loadRequiredSupportIds();
-  const jobs = [];
+  const supports = loadPrioritySupports();
+  const supportJobs = [];
   const missing = [];
 
-  for (const id of supportIds) {
+  for (const { id, type } of supports) {
     const src = path.join(FLAT_ROOT, "supports", `${id}.png`);
     const dst = path.join(OUT_SUPPORTS, `${id}.webp`);
     if (!fs.existsSync(src)) {
       missing.push(`supports/${id}.png`);
       continue;
     }
-    jobs.push({ src, dst });
+    supportJobs.push({ src, dst, type });
   }
 
   const charaSrc = path.join(FLAT_ROOT, "characters", `${CHARA_ID}.png`);
   const charaDst = path.join(OUT_CHARS, `${CHARA_ID}.webp`);
+  const characterJobs = [];
   if (!fs.existsSync(charaSrc)) {
     missing.push(`characters/${CHARA_ID}.png`);
   } else {
-    jobs.push({ src: charaSrc, dst: charaDst });
+    characterJobs.push({ src: charaSrc, dst: charaDst });
   }
 
   if (missing.length) {
@@ -123,13 +90,17 @@ function main() {
     process.exit(2);
   }
 
-  console.log(`import ${jobs.length} images via ${pythonExe}`);
-  const ok = convertWithPillow(pythonExe, jobs);
+  console.log(`import ${supportJobs.length + characterJobs.length} images via ${pythonExe}`);
+  const ok = convertWithPillow(pythonExe, {
+    supports: supportJobs,
+    characters: characterJobs,
+    maxEdge: MAX_EDGE,
+    quality: WEBP_QUALITY,
+  });
   if (!ok) process.exit(1);
 
-  // サイズ合計
   let total = 0;
-  for (const id of supportIds) {
+  for (const { id } of supports) {
     const p = path.join(OUT_SUPPORTS, `${id}.webp`);
     total += fs.statSync(p).size;
   }

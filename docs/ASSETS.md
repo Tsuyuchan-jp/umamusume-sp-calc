@@ -25,7 +25,7 @@ UI は `app/js/cardAssets.js` が URL を組み立てる。画像が無い場合
 - 優先サポカ **40種**（`data/priority-supports.json`）→ `assets/supports/{id}.webp`
 - 初期育成ウマ娘 **107703**（`[万福龍湯伝・頂]ナリタトップロード`）→ `assets/characters/107703.webp`
 - タイプ印 **6種**（`assets/type-icons/{type}.webp`）— カード横断で使いまわし。実行時CDN非依存
-- 目安サイズ: 長辺 256px・WebP・Phase1 合計 **約 0.6 MiB**（5MB 未満）
+- 目安サイズ: サポカ **240×320**・キャラ長辺 256px・WebP・Phase1 合計 **約 1〜2 MiB**（5MB 未満）
 
 ### タイプ印の出所（同梱・再取得用）
 
@@ -50,8 +50,8 @@ https://static.kouryaku.tools/umamusume/images/app/supports/{name}.png
 ```text
 DMM Persistent (meta + dat)
   → meta 復号（初回・更新時）
-  → npm run assets:extract   # support_card_s_{id} / piece_icon_{id} → .cache/asset-dump/flat/*.png
-  → npm run assets:import    # flat PNG → assets/**/{id}.webp
+  → npm run assets:extract   # support_thumb_{id} / piece_icon_{id} → .cache/asset-dump/flat/*.png
+  → npm run assets:import    # サポカ縦合成 + flat PNG → assets/**/{id}.webp
 ```
 
 ### 前提パス（この環境の実績）
@@ -88,15 +88,22 @@ npm run assets:import
 
 | 種別 | meta 名 |
 |------|---------|
-| サポカ小カード | `supportcard/support{ID}/support_card_s_{ID}` |
+| サポカ縦カード元 | `supportcard/support{ID}/support_thumb_{ID}`（512×512・レア枠焼き付き） |
 | 育成カード | `outgame/piece/piece_icon_{characterCardId}` |
+
+import 時のサポカ後処理（`scripts/support_vertical_card.py`）:
+- `support_thumb` を左右カットせず縦縮尺（3:4）→ 240×320 にリサイズ
+- `assets/type-icons/{type}.webp` を右上固定で合成（size=52 / top=1 / right=4）
+- 共有マスク・レアバッジは載せない
 
 ### スクリプト
 
 | ファイル | 役割 |
 |----------|------|
-| `scripts/extract_card_assets.py` | meta+dat → flat PNG |
+| `scripts/extract_card_assets.py` | meta+dat → flat PNG（サポカは `support_thumb`） |
 | `scripts/run_extract_card_assets.mjs` | venv Python ランチャ |
-| `scripts/import_card_assets.mjs` | flat PNG → `assets/**/*.webp` |
+| `scripts/support_vertical_card.py` | 縦縮尺 + タイプ印合成（本番・試作共通） |
+| `scripts/import_card_images.py` | flat PNG → WebP（サポカ縦合成・キャラ縮小） |
+| `scripts/import_card_assets.mjs` | import ランチャ |
 
 ゲーム更新時の手順全体は [GAME_UPDATE_RUNBOOK.md](./GAME_UPDATE_RUNBOOK.md) を参照。
