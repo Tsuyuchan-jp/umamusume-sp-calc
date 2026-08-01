@@ -328,6 +328,60 @@
     }
     .legend span { display: inline-flex; align-items: center; gap: 3px; }
 
+    /* ===== イベント層 A/B/C ===== */
+    .layer-c {
+      display: flex; flex-wrap: wrap; gap: 8px 12px; align-items: center;
+    }
+    .c-group {
+      display: inline-flex; flex-wrap: wrap; gap: 6px; align-items: center;
+      padding: 4px 8px; border-radius: 6px; background: #f3eef8; border: 1px solid #d8d0e8;
+    }
+    .c-group .c-lbl {
+      font-size: 9px; font-weight: 900; color: var(--c-accent); letter-spacing: .04em;
+      padding-right: 4px; border-right: 1px solid #d0c8e0; margin-right: 2px;
+    }
+    .auto-chip {
+      appearance: none; border: 1.5px solid #7b5bb8; background: linear-gradient(180deg, #f7f4ff, #ebe4ff);
+      color: #4a2d7a; font: inherit; font-size: 11px; font-weight: 900;
+      padding: 5px 10px; border-radius: 999px; cursor: pointer;
+    }
+    .auto-chip:hover { border-color: var(--c-accent2); background: linear-gradient(180deg, #fff8ee, #ffe8cc); }
+    .auto-chip strong { color: var(--c-accent2); font-size: 13px; margin: 0 2px; }
+
+    /* 自動計上モーダル（B一覧） */
+    .auto-modal {
+      border: 2px solid var(--c-dark); border-radius: 12px; padding: 0;
+      max-width: 480px; width: calc(100% - 32px); font-family: inherit;
+      box-shadow: 0 16px 48px #0006;
+    }
+    .auto-modal::backdrop { background: rgba(30, 24, 50, 0.55); }
+    .auto-modal-head {
+      padding: 12px 14px; background: var(--g-chrome); color: #fff;
+      display: flex; justify-content: space-between; align-items: center;
+      border-bottom: 2px solid var(--c-gold);
+    }
+    .auto-modal-head strong { font-size: 14px; }
+    .auto-modal-head .sub { font-size: 10px; color: #bebbce; font-weight: 700; margin-top: 2px; }
+    .auto-modal-body { padding: 10px 12px 14px; max-height: 55vh; overflow: auto; }
+    .auto-modal-note {
+      font-size: 11px; color: var(--c-accent); margin: 0 0 8px; line-height: 1.4;
+    }
+    .auto-row {
+      display: grid; grid-template-columns: auto 1fr auto; gap: 8px; align-items: start;
+      padding: 8px 10px; border: 1.5px solid var(--c-border); border-radius: 8px;
+      background: linear-gradient(180deg, #fff, #f6f4f8); margin-bottom: 6px;
+    }
+    .auto-row .src { font-size: 10px; font-weight: 900; color: var(--c-accent); padding-top: 2px; }
+    .auto-row .title { font-size: 13px; font-weight: 900; color: var(--c-font); }
+    .auto-row .meta { font-size: 11px; font-weight: 700; color: var(--c-accent); margin-top: 2px; }
+    .auto-row .lock { font-size: 10px; font-weight: 900; color: #7b5bb8; padding: 4px 0; }
+
+    /* スプリット左ドック足元（C + Bチップ） */
+    .s-dock-foot {
+      flex-shrink: 0; border-top: 2px solid var(--c-dark); padding: 8px 10px;
+      background: rgba(255,255,255,.94); display: flex; flex-wrap: wrap; gap: 8px; align-items: center;
+    }
+
     @media (max-width: 900px) {
       .g-gallery { grid-template-columns: repeat(4, 1fr); }
       .g-gallery .g-slot:first-child { grid-column: 1 / -1; max-width: 110px; }
@@ -349,7 +403,7 @@
       <button type="button" data-mode="split">スプリット (H1)</button>
       <button type="button" data-mode="auto">自動（幅）</button>
     </div>
-    <span class="mode-note" id="mode-hint">既定はギャラリー。スプリットではカード要約＋下部のイベント詳細で金以外も選択。</span>
+    <span class="mode-note" id="mode-hint">A=選択式 / B=自動計上（件数チップ→モーダル） / C=シナリオ系</span>
     <span style="margin-left:auto"></span>
     <a href="./hybrid-index.html">一覧へ</a>
   </aside>
@@ -364,13 +418,17 @@
       <section class="g-zone">
         <h2 class="zt">編成</h2>
         <div class="g-gallery" id="g-gallery"><!-- JS --></div>
-        <div class="g-foot">
-          <span class="fl">リンク</span>
-          <button type="button" class="chip is-on">エアグルーヴ</button>
-          <button type="button" class="chip">テイオー</button>
-          <span class="fl">RMJ</span>
-          <button type="button" class="chip is-signal">参加</button>
-          <button type="button" class="chip">不参加</button>
+        <div class="g-foot layer-c" id="g-foot-c">
+          <div class="c-group" data-c="link">
+            <span class="c-lbl">C</span>
+            <button type="button" class="chip is-on" data-c-val="air">エアグルーヴ</button>
+            <button type="button" class="chip" data-c-val="teio">テイオー</button>
+          </div>
+          <div class="c-group" data-c="rmj">
+            <button type="button" class="chip is-signal" data-c-val="join">RMJ 参加</button>
+            <button type="button" class="chip" data-c-val="skip">不参加</button>
+          </div>
+          <button type="button" class="auto-chip" id="open-auto-g" aria-haspopup="dialog">自動計上 <strong id="auto-count-g">0</strong> 件</button>
         </div>
       </section>
       <section class="g-bench">
@@ -438,14 +496,26 @@
         <div class="evt-pane is-open" id="evt-pane">
           <div class="evt-pane-head">
             <div>
-              <span id="evt-pane-title">イベント詳細</span>
-              <div class="sub" id="evt-pane-sub">カードを選ぶと、金以外の選択肢もここに出ます</div>
+              <span id="evt-pane-title">A · イベント詳細</span>
+              <div class="sub" id="evt-pane-sub">選択式のみ。自動計上は件数チップから確認</div>
             </div>
             <button type="button" class="chip" id="evt-pane-close" style="background:#fff">閉じる</button>
           </div>
           <div class="evt-pane-body" id="evt-pane-body">
             <div class="evt-empty">左のサポカを選んでください</div>
           </div>
+        </div>
+        <div class="s-dock-foot" id="s-dock-foot">
+          <div class="c-group" data-c="link">
+            <span class="c-lbl">C</span>
+            <button type="button" class="chip is-on" data-c-val="air">エアグルーヴ</button>
+            <button type="button" class="chip" data-c-val="teio">テイオー</button>
+          </div>
+          <div class="c-group" data-c="rmj">
+            <button type="button" class="chip is-signal" data-c-val="join">RMJ 参加</button>
+            <button type="button" class="chip" data-c-val="skip">不参加</button>
+          </div>
+          <button type="button" class="auto-chip" id="open-auto-s" aria-haspopup="dialog">自動計上 <strong id="auto-count-s">0</strong> 件</button>
         </div>
       </aside>
       <section class="s-canvas">
@@ -462,13 +532,28 @@
     </div>
   </div>
 
-  <!-- ギャラリー用イベントダイアログ -->
+  <!-- A: ギャラリー用イベントダイアログ（選択式のみ） -->
   <dialog id="evt-dialog" style="border:2px solid #463f70;border-radius:12px;padding:0;max-width:420px;width:calc(100% - 32px);font-family:inherit">
     <div style="padding:12px 14px;background:linear-gradient(180deg,#5a5288,#463f70);color:#fff;display:flex;justify-content:space-between;align-items:center;border-bottom:2px solid #f5cf6f">
-      <strong id="dlg-title">イベント</strong>
+      <strong id="dlg-title">A · イベント選択</strong>
       <button type="button" class="ghost" id="dlg-close">閉じる</button>
     </div>
     <div id="dlg-body" style="padding:12px;display:flex;flex-direction:column;gap:6px;max-height:50vh;overflow:auto"></div>
+  </dialog>
+
+  <!-- B: 自動計上一覧モーダル（インライン折りたたみなし） -->
+  <dialog id="auto-modal" class="auto-modal">
+    <div class="auto-modal-head">
+      <div>
+        <strong>自動計上 · 確認一覧</strong>
+        <div class="sub">編集不可 · 表にはすべて反映済み</div>
+      </div>
+      <button type="button" class="ghost" id="auto-modal-close">閉じる</button>
+    </div>
+    <div class="auto-modal-body">
+      <p class="auto-modal-note">サポカ自動イベントとシナリオ自動計上をまとめて表示します。ページを伸ばさないため、一覧はこのモーダルのみです。</p>
+      <div id="auto-modal-list"></div>
+    </div>
   </dialog>
 
   <script>
@@ -493,6 +578,7 @@
       },
       {
         id: "30301", slot: 3, name: "タップダンスシチー", type: "stamina", mode: "auto",
+        goldPreview: "冷静",
         choices: [
           { id: "auto", kind: "auto", title: "冷静", desc: "自動イベント（選択なし）" },
         ],
@@ -517,11 +603,19 @@
       },
       {
         id: "30271", slot: 6, name: "駿川たづな", type: "friend", mode: "auto",
+        goldPreview: "中盤巧者",
         choices: [
           { id: "auto", kind: "auto", title: "中盤巧者", desc: "自動イベント（選択なし）" },
         ],
         selected: "auto",
       },
+    ];
+
+    /* B: 自動計上一覧（サポカ + シナリオ自動） */
+    const AUTO_EVENTS = [
+      { layer: "サポカ", slot: 3, card: "タップダンスシチー", skill: "冷静", kind: "gold", note: "枠3 · 自動計上" },
+      { layer: "サポカ", slot: 6, card: "駿川たづな", skill: "中盤巧者", kind: "gold", note: "枠6 · 自動計上" },
+      { layer: "シナリオ", card: "トレセン軒", skill: "シナリオ常駐ヒント", kind: "auto", note: "条件を満たすときのみ計上" },
     ];
 
     const SKILLS = [
@@ -553,15 +647,83 @@
     }
 
     function previewHtml(sup) {
+      /* B: 自動は列下に金スキル名のみ短く表示 */
+      if (sup.mode === "auto") {
+        const label = sup.goldPreview || (sup.choices[0] && sup.choices[0].title) || "自動";
+        return kindBadge("auto") + label;
+      }
+      /* A: 選択式は要約 */
       const sel = selectedChoices(sup);
       if (!sel.length) return "未選択";
       const main = sel[0];
       const extra = sel.length - 1;
       let html = kindBadge(main.kind) + main.title;
       if (extra > 0) html += `<div class="more">他 ${extra} 件</div>`;
-      else if (sup.choices.length > 1 && sup.mode !== "auto") html += `<div class="more">全${sup.choices.length}択 · タップで詳細</div>`;
+      else if (sup.choices.length > 1) html += `<div class="more">全${sup.choices.length}択 · タップで詳細</div>`;
       return html;
     }
+
+    function renderAutoModal() {
+      const list = document.getElementById("auto-modal-list");
+      list.innerHTML = "";
+      AUTO_EVENTS.forEach((ev) => {
+        const row = document.createElement("div");
+        row.className = "auto-row";
+        row.innerHTML = `
+          <div class="src">${ev.layer}</div>
+          <div>
+            <div class="title">${kindBadge(ev.kind === "gold" ? "gold" : "auto")}${ev.skill}</div>
+            <div class="meta">${ev.card}${ev.slot ? ` · 枠${ev.slot}` : ""} — ${ev.note}</div>
+          </div>
+          <div class="lock">確認</div>`;
+        list.appendChild(row);
+      });
+      const n = AUTO_EVENTS.length;
+      document.getElementById("auto-count-g").textContent = n;
+      document.getElementById("auto-count-s").textContent = n;
+    }
+    renderAutoModal();
+
+    const autoModal = document.getElementById("auto-modal");
+    function openAutoModal() { autoModal.showModal(); }
+    document.getElementById("open-auto-g").onclick = openAutoModal;
+    document.getElementById("open-auto-s").onclick = openAutoModal;
+    document.getElementById("auto-modal-close").onclick = () => autoModal.close();
+
+    /* C: シナリオ系チップ（ギャラリー・スプリット共通） */
+    function wireScenarioChips(root) {
+      root.querySelectorAll(".c-group").forEach((group) => {
+        const kind = group.dataset.c;
+        group.querySelectorAll(".chip").forEach((chip) => {
+          chip.onclick = () => {
+            group.querySelectorAll(".chip").forEach((c) => {
+              c.classList.remove("is-on", "is-signal");
+            });
+            chip.classList.add("is-on");
+            if (kind === "rmj" && chip.dataset.cVal === "join") {
+              chip.classList.remove("is-on");
+              chip.classList.add("is-signal");
+            }
+            syncScenarioChips(chip);
+          };
+        });
+      });
+    }
+    function syncScenarioChips(sourceChip) {
+      const val = sourceChip.dataset.cVal;
+      const group = sourceChip.closest(".c-group");
+      const kind = group.dataset.c;
+      document.querySelectorAll(`.c-group[data-c="${kind}"]`).forEach((g) => {
+        g.querySelectorAll(".chip").forEach((c) => {
+          c.classList.remove("is-on", "is-signal");
+          if (c.dataset.cVal === val) {
+            c.classList.add(kind === "rmj" && val === "join" ? "is-signal" : "is-on");
+          }
+        });
+      });
+    }
+    wireScenarioChips(document.getElementById("g-foot-c"));
+    wireScenarioChips(document.getElementById("s-dock-foot"));
 
     function renderSkills(tbody) {
       tbody.innerHTML = "";
@@ -595,12 +757,12 @@
       slot.className = "g-slot";
       slot.innerHTML = `
         <div class="g-lab">${sup.slot}</div>
-        <button type="button" class="g-face" data-open-dlg="${sup.id}">
+        <button type="button" class="g-face" data-open-dlg="${sup.mode === "auto" ? "" : sup.id}" data-open-auto="${sup.mode === "auto" ? sup.id : ""}">
           <img src="../../../assets/supports/${sup.id}.webp" alt=""/>
           <span class="type-dot ${sup.type}"></span>
         </button>
         <p class="g-nm">${sup.name}</p>
-        <button type="button" class="g-sum ${sup.mode === "auto" ? "is-auto" : ""}" data-open-dlg="${sup.id}">${previewHtml(sup)}</button>`;
+        <button type="button" class="g-sum ${sup.mode === "auto" ? "is-auto" : ""}" data-open-dlg="${sup.mode === "auto" ? "" : sup.id}" data-open-auto="${sup.mode === "auto" ? sup.id : ""}">${previewHtml(sup)}</button>`;
       gGallery.appendChild(slot);
     });
 
@@ -652,16 +814,21 @@
       container.innerHTML = "";
       if (sup.mode === "auto") {
         const c = (sup.choices[0] || {});
-        container.innerHTML = `<div class="evt-choice is-on" style="cursor:default">
-          <div class="kind">${kindBadge("auto")}</div>
-          <div><div class="title">${c.title || "自動"}</div><div class="desc">${c.desc || "選択できません"}</div></div>
-          <div class="pick">自動</div>
-        </div>`;
+        container.innerHTML = `
+          <div style="font-size:11px;color:#625d7d;margin-bottom:6px">B · 自動計上（編集不可）</div>
+          <div class="evt-choice is-on" style="cursor:default">
+            <div class="kind">${kindBadge("auto")}</div>
+            <div><div class="title">${c.title || sup.goldPreview || "自動"}</div><div class="desc">${c.desc || "表に自動反映済み"}</div></div>
+            <div class="pick">自動</div>
+          </div>
+          <button type="button" class="auto-chip" style="margin-top:8px;width:100%" data-open-auto-inline>一覧を見る（${AUTO_EVENTS.length}件）</button>`;
+        const inlineBtn = container.querySelector("[data-open-auto-inline]");
+        if (inlineBtn) inlineBtn.onclick = openAutoModal;
         return;
       }
       const hint = document.createElement("div");
       hint.style.cssText = "font-size:11px;color:#625d7d;margin-bottom:2px";
-      hint.textContent = (sup.mode === "toggle" ? "複数選択可 · " : "1つ選択 · ") + "金以外（白・ステ）も同列で選べます";
+      hint.textContent = "A · " + (sup.mode === "toggle" ? "複数選択可 · " : "1つ選択 · ") + "金以外（白・ステ）も同列で選べます";
       container.appendChild(hint);
 
       /* 金を上に */
@@ -686,10 +853,12 @@
       const sup = SUPPORTS.find((s) => s.id === id);
       const pane = document.getElementById("evt-pane");
       const body = document.getElementById("evt-pane-body");
-      document.getElementById("evt-pane-title").textContent = `${sup.slot}. ${sup.name}`;
+      document.getElementById("evt-pane-title").textContent =
+        `${sup.mode === "auto" ? "B" : "A"} · ${sup.slot}. ${sup.name}`;
       document.getElementById("evt-pane-sub").textContent =
-        (sup.mode === "auto" ? "自動イベント" : (sup.mode === "toggle" ? "複数選択" : "単一選択")) +
-        " · カード上は要約、詳細はここ";
+        sup.mode === "auto"
+          ? "B · 自動計上 — 編集不可。件数チップから一覧確認"
+          : ((sup.mode === "toggle" ? "複数選択" : "単一選択") + " · カード上は要約、詳細はここ");
       pane.classList.add("is-open");
       renderChoiceButtons(body, sup, () => {
         renderSplitCards();
@@ -714,12 +883,12 @@
       document.getElementById("evt-pane").classList.remove("is-open");
     };
 
-    /* Gallery dialog for events (same rich choices) */
+    /* Gallery dialog for A events only */
     const dlg = document.getElementById("evt-dialog");
     function openGalleryDialog(id) {
       const sup = SUPPORTS.find((s) => s.id === id);
-      if (!sup) return;
-      document.getElementById("dlg-title").textContent = `${sup.slot}. ${sup.name}`;
+      if (!sup || sup.mode === "auto") return;
+      document.getElementById("dlg-title").textContent = `A · ${sup.slot}. ${sup.name}`;
       const body = document.getElementById("dlg-body");
       const refresh = () => {
         refreshGalleryPreviews();
@@ -729,9 +898,19 @@
       renderChoiceButtons(body, sup, refresh);
       dlg.showModal();
     }
-    document.querySelectorAll("[data-open-dlg]").forEach((el) => {
-      el.addEventListener("click", () => openGalleryDialog(el.getAttribute("data-open-dlg")));
-    });
+    function wireGalleryClicks() {
+      document.querySelectorAll("[data-open-dlg]").forEach((el) => {
+        const id = el.getAttribute("data-open-dlg");
+        if (!id) return;
+        el.onclick = () => openGalleryDialog(id);
+      });
+      document.querySelectorAll("[data-open-auto]").forEach((el) => {
+        const id = el.getAttribute("data-open-auto");
+        if (!id) return;
+        el.onclick = openAutoModal;
+      });
+    }
+    wireGalleryClicks();
     document.getElementById("dlg-close").onclick = () => dlg.close();
 
     /* Mode switching */
@@ -751,8 +930,8 @@
         modePref === "auto"
           ? `自動: いま ${effective === "split" ? "スプリット" : "ギャラリー"}（境界 1200px）`
           : (effective === "split"
-            ? "スプリット: カードは要約、金・白・ステは下部詳細で選択"
-            : "ギャラリー: 列下要約をタップで全選択肢（金以外含む）");
+            ? "スプリット: A=左ペイン選択 / B=件数チップ→モーダル / C=ドック足元"
+            : "ギャラリー: A=列下タップで選択 / B=件数チップ→モーダル / C=足元帯");
     }
     document.querySelectorAll("[data-mode]").forEach((btn) => {
       btn.onclick = () => {
