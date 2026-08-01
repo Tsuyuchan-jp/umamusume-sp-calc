@@ -683,7 +683,8 @@ input[type="search"] {
   aspect-ratio: 3 / 4;
   border-radius: 6px;
   overflow: hidden;
-  background: var(--card-bg, #e8e8e8);
+  /* 画像の角丸外（透明）からタイプ色が透けないよう背景は付けない。欠落時は .card-face__ph が担当 */
+  background: transparent;
   color: var(--card-ink, #1c2420);
   box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.08);
 }
