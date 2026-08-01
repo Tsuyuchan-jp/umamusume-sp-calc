@@ -66,20 +66,49 @@ export function sourceSortKey(src, supportOrder) {
 }
 
 /**
- * 行の代表キー（複数由来は最小＝いちばん早い位置）
- * @param {{ sources?: object[] }} row
+ * 採用ヒントLv（行の hintLevel）。一致する由来が無ければ sources 内の最大 Lv
+ * @param {{ hintLevel?: number }[]} sources
+ * @param {number} [rowHintLevel]
+ */
+export function resolveAdoptedHintLevel(sources, rowHintLevel) {
+  const list = sources || [];
+  const lv = Number(rowHintLevel) || 0;
+  if (list.some((s) => s.hintLevel === lv)) return lv;
+  let max = 0;
+  for (const s of list) {
+    if (s.hintLevel > max) max = s.hintLevel;
+  }
+  return max;
+}
+
+/**
+ * 採用由来を先頭に並べる（採用同士・非採用同士の相対順は維持）
+ * @param {object[]} sources
+ * @param {number} [rowHintLevel]
+ */
+export function orderSourcesByAdopted(sources, rowHintLevel) {
+  const list = sources || [];
+  if (list.length <= 1) return [...list];
+  const adoptedLv = resolveAdoptedHintLevel(list, rowHintLevel);
+  const adopted = [];
+  const rest = [];
+  for (const s of list) {
+    if (s.hintLevel === adoptedLv) adopted.push(s);
+    else rest.push(s);
+  }
+  return [...adopted, ...rest];
+}
+
+/**
+ * 行の代表キー（先頭＝採用由来のキーで並び替え）
+ * @param {{ sources?: object[], hintLevel?: number }} row
  * @param {Map<number, number>} supportOrder
  * @returns {[number, number, number]}
  */
 export function rowKindSortKey(row, supportOrder) {
-  const sources = row?.sources || [];
-  if (!sources.length) return [3, 99, 0];
-  let best = sourceSortKey(sources[0], supportOrder);
-  for (let i = 1; i < sources.length; i++) {
-    const k = sourceSortKey(sources[i], supportOrder);
-    if (compareKey(k, best) < 0) best = k;
-  }
-  return best;
+  const ordered = orderSourcesByAdopted(row?.sources || [], row?.hintLevel);
+  if (!ordered.length) return [3, 99, 0];
+  return sourceSortKey(ordered[0], supportOrder);
 }
 
 /** @param {[number, number, number]} a @param {[number, number, number]} b */

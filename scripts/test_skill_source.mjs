@@ -3,6 +3,7 @@ import {
   mergeSourceInto,
   rowKindSortKey,
   buildSupportOrderMap,
+  orderSourcesByAdopted,
   sortPlanRows,
 } from "../app/js/skillSource.js";
 import { resolveHintLevels } from "../app/js/hintResolve.js";
@@ -135,6 +136,20 @@ assertTruthy(
   "hintResolve にトレヒント由来+supportId"
 );
 
+assertEq(
+  orderSourcesByAdopted(
+    [
+      { kind: "event", label: "E", hintLevel: 2 },
+      { kind: "training", label: "T", hintLevel: 5 },
+    ],
+    5
+  )
+    .map((s) => s.kind)
+    .join(","),
+  "training,event",
+  "採用由来を先頭に並べる"
+);
+
 const supportIds = [11, 22, null, null, null, null];
 const order = buildSupportOrderMap(supportIds);
 assertEq(order.get(11), 0, "枠順 左が0");
@@ -151,6 +166,7 @@ assertEq(
 assertEq(
   rowKindSortKey(
     {
+      hintLevel: 5,
       sources: [
         { kind: "event", label: "E2", hintLevel: 2, supportId: 22 },
         { kind: "training", label: "T1", hintLevel: 5, supportId: 11 },
@@ -159,7 +175,21 @@ assertEq(
     order
   ).join(","),
   "1,0,0",
-  "複数由来は最小キー（枠1トレ）"
+  "複数由来は採用Lv（枠1トレ）のキー"
+);
+assertEq(
+  rowKindSortKey(
+    {
+      hintLevel: 2,
+      sources: [
+        { kind: "event", label: "E2", hintLevel: 2, supportId: 22 },
+        { kind: "training", label: "T1", hintLevel: 5, supportId: 11 },
+      ],
+    },
+    order
+  ).join(","),
+  "1,1,1",
+  "採用がイベントなら枠2イベントのキー"
 );
 
 const rows = [

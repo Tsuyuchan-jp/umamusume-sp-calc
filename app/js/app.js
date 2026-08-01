@@ -41,6 +41,7 @@ import {
 import {
   formatSourceKindLabel,
   sortPlanRows,
+  orderSourcesByAdopted,
 } from "./skillSource.js";
 
 /** @type {object|null} */
@@ -1106,7 +1107,7 @@ function renderActivationTags(row) {
  * @param {{ sources?: { kind: string, label: string, hintLevel: number, skillName?: string }[], hintLevel?: number }} row
  */
 function renderSourceBadges(row) {
-  const sources = row.sources || [];
+  const sources = orderSourcesByAdopted(row.sources || [], row.hintLevel);
   if (!sources.length) return "—";
   const adoptedLv = Number(row.hintLevel) || 0;
   return sources
