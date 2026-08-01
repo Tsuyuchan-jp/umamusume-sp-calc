@@ -89,7 +89,7 @@ npm run assets:import
 | 種別 | meta 名 |
 |------|---------|
 | サポカ縦カード元 | `supportcard/support{ID}/support_thumb_{ID}`（512×512・レア枠焼き付き） |
-| 育成カード | `outgame/piece/piece_icon_{characterCardId}` |
+| 育成カード | `chara/chr{charaId}/chr_icon_{charaId}_{key}_01`（無ければ dress ID フォールバック。`piece_icon` は使わない） |
 
 import 時のサポカ後処理（`scripts/support_vertical_card.py`）:
 - `support_thumb` の枠外パディング＋ソフトグローを除去（512基準 L12/T5/R12/B13・ハードクロム外縁）

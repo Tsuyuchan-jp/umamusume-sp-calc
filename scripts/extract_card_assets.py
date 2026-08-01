@@ -1,6 +1,7 @@
 ﻿"""優先サポート40枚 + キャラカードの PNG を flat 出力する。
 
 サポカは support_thumb（512×512・レア枠焼き付き）を抽出。import 側で縦合成する。
+育成は chr_icon（カードID → dress フォールバック）。piece_icon は使わない。
 """
 from __future__ import annotations
 
@@ -22,10 +23,69 @@ DEFAULT_OUT_FLAT = REPO_ROOT / ".cache" / "asset-dump" / "flat"
 DEFAULT_OUT_PNG = REPO_ROOT / ".cache" / "asset-dump" / "png"
 PRIORITY_JSON = REPO_ROOT / "data" / "priority-supports.json"
 CHARA_CARD_ID = 107703
-CHARA_META_NAME = "outgame/piece/piece_icon_107703"
-CHARA_FALLBACK_NOTE = "outgame/note/gacha_thumb/chara_card/gacha_thumb_107703"
+CHARA_CHARA_ID = 1077
+# カードID直結の chr_icon が無い場合の dress フォールバック（master の race_dress_id と一致）
+CHARA_DRESS_FALLBACK_IDS = [107702]
+DEFAULT_MASTER = Path(
+    r"D:\DMM\umamusumeDMM\Umamusume\umamusume_Data\Persistent\master\master.mdb"
+)
 
 AB_KEY = b"\x53\x2B\x46\x31\xE4\xA7\xB9\x47\x3E\x7C\xFB"
+
+
+def chr_icon_meta_name(chara_id: int, icon_key: int, *, variant: str = "01") -> str:
+    return f"chara/chr{chara_id}/chr_icon_{chara_id}_{icon_key}_{variant}"
+
+
+def dress_ids_from_master(master_path: Path, card_id: int) -> list[int]:
+    """card_rarity_data から race_dress_id / get_dress_id_2 を読む。"""
+    if not master_path.is_file():
+        return []
+    try:
+        conn = sqlite3.connect(f"file:{master_path.as_posix()}?mode=ro", uri=True)
+    except sqlite3.Error as e:
+        print(f"master open failed: {e}")
+        return []
+    try:
+        # 列名は環境差があり得るので PRAGMA で確認
+        cols = {row[1] for row in conn.execute("PRAGMA table_info(card_rarity_data)")}
+        want = [c for c in ("race_dress_id", "get_dress_id_2", "get_dress_id_1") if c in cols]
+        if not want:
+            return []
+        id_col = "card_id" if "card_id" in cols else None
+        if id_col is None:
+            return []
+        sql = f"SELECT {', '.join(want)} FROM card_rarity_data WHERE {id_col}=?"
+        row = conn.execute(sql, (card_id,)).fetchone()
+        if not row:
+            return []
+        out: list[int] = []
+        for v in row:
+            if v is None:
+                continue
+            iv = int(v)
+            if iv > 1000 and iv not in out:
+                out.append(iv)
+        return out
+    except sqlite3.Error as e:
+        print(f"master query failed: {e}")
+        return []
+    finally:
+        conn.close()
+
+
+def resolve_chr_icon_keys(card_id: int, master_path: Path | None) -> list[int]:
+    """試す icon key 順: カードID → master dress → 既知フォールバック。"""
+    keys: list[int] = [card_id]
+    if master_path is not None:
+        for d in dress_ids_from_master(master_path, card_id):
+            if d not in keys:
+                keys.append(d)
+    if card_id == CHARA_CARD_ID:
+        for d in CHARA_DRESS_FALLBACK_IDS:
+            if d not in keys:
+                keys.append(d)
+    return keys
 
 
 def derive_asset_key(key_long: int):
@@ -137,12 +197,14 @@ def main() -> int:
     parser = argparse.ArgumentParser(description="Extract priority support/chara card PNGs")
     parser.add_argument("--dat", type=Path, default=DEFAULT_DAT)
     parser.add_argument("--meta", type=Path, default=None)
+    parser.add_argument("--master", type=Path, default=DEFAULT_MASTER)
     parser.add_argument("--out-flat", type=Path, default=DEFAULT_OUT_FLAT)
     parser.add_argument("--out-png", type=Path, default=DEFAULT_OUT_PNG)
     args = parser.parse_args()
 
     dat_root: Path = args.dat
     meta_path: Path = resolve_meta_path(args.meta)
+    master_path: Path = args.master
     out_flat: Path = args.out_flat
     out_png: Path = args.out_png
     decrypt_dir = REPO_ROOT / ".cache" / "asset-dump" / "decrypted"
@@ -158,6 +220,7 @@ def main() -> int:
     print(f"priority supports: {len(ids)}")
     print(f"DAT={dat_root}")
     print(f"META={meta_path}")
+    print(f"MASTER={master_path} (exists={master_path.is_file()})")
     print(f"OUT_FLAT={out_flat}")
 
     conn = sqlite3.connect(str(meta_path))
@@ -179,33 +242,40 @@ def main() -> int:
         else:
             missing_ids.append(sid)
 
-    # キャラカード: piece_icon 優先、なければ gacha_thumb
+    # 育成キャラ: chr_icon（カードID → dress フォールバック）。piece_icon は使わない
     chara_flat = out_flat / "characters" / f"{CHARA_CARD_ID}.png"
-    chara_ok = extract_named_asset(
-        meta_name=CHARA_META_NAME,
-        dat_root=dat_root,
-        meta_conn=conn,
-        decrypt_dir=decrypt_dir,
-        mirror_png_dir=out_png,
-        flat_png=chara_flat,
+    icon_keys = resolve_chr_icon_keys(
+        CHARA_CARD_ID, master_path if master_path.is_file() else None
     )
-    if not chara_ok:
-        print(f"fallback note: trying {CHARA_FALLBACK_NOTE}")
-        chara_ok = extract_named_asset(
-            meta_name=CHARA_FALLBACK_NOTE,
-            dat_root=dat_root,
-            meta_conn=conn,
-            decrypt_dir=decrypt_dir,
-            mirror_png_dir=out_png,
-            flat_png=chara_flat,
-        )
+    print(f"chara {CHARA_CARD_ID}: chr_icon keys to try = {icon_keys}")
+    chara_ok = False
+    used_meta = ""
+    for key in icon_keys:
+        for variant in ("01", "02"):
+            meta_name = chr_icon_meta_name(CHARA_CHARA_ID, key, variant=variant)
+            if extract_named_asset(
+                meta_name=meta_name,
+                dat_root=dat_root,
+                meta_conn=conn,
+                decrypt_dir=decrypt_dir,
+                mirror_png_dir=out_png,
+                flat_png=chara_flat,
+            ):
+                chara_ok = True
+                used_meta = meta_name
+                break
+        if chara_ok:
+            break
 
     conn.close()
 
     print("---")
     print(f"supports ok: {len(ok_ids)}/{len(ids)}")
     print(f"supports missing: {missing_ids if missing_ids else '(none)'}")
-    print(f"chara {CHARA_CARD_ID}: {'ok' if chara_ok else 'MISSING'} -> {chara_flat}")
+    if chara_ok:
+        print(f"chara {CHARA_CARD_ID}: ok via {used_meta} -> {chara_flat}")
+    else:
+        print(f"chara {CHARA_CARD_ID}: MISSING (tried keys {icon_keys})")
     return 0 if not missing_ids and chara_ok else 2
 
 
