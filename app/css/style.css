@@ -1118,8 +1118,34 @@ tr.excluded td {
   color: #555;
 }
 
+/* 採用由来: 枠線ベタ塗りではなく、左アクセント＋わずかな浮き */
 .badge--adopted {
-  box-shadow: inset 0 0 0 1.5px currentColor;
+  position: relative;
+  padding-left: 0.5rem;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.07);
+  filter: saturate(1.12);
+}
+
+.badge--adopted::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.2em;
+  bottom: 0.2em;
+  width: 2px;
+  border-radius: 1px;
+  background: currentColor;
+  opacity: 0.65;
+}
+
+.badge--adopted .badge__kind {
+  font-weight: 700;
+}
+
+/* 採用がある行では、非採用を一段沈めて対比を作る */
+.skill-source-cell:has(.badge--adopted) .badge:not(.badge--adopted) {
+  opacity: 0.62;
+  filter: saturate(0.85);
 }
 
 .skill-source-cell {
