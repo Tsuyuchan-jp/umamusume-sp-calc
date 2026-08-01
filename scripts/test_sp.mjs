@@ -210,7 +210,7 @@ assertFalsy(
 );
 
 assertTruthy(
-  jichu.sources.some((s) => s.includes("たづな")),
+  jichu.sources.some((s) => String(s.label).includes("たづな")),
   "時中の妙に下位（たづな）由来が併記"
 );
 

@@ -1080,11 +1080,64 @@ tr.excluded td {
   border-radius: 3px;
   background: #ecf0f1;
   margin-right: 0.25rem;
+  margin-bottom: 0.15rem;
+  line-height: 1.35;
 }
 
 .badge--condition {
   background: #e8f4fc;
   color: #1a5276;
+}
+
+.badge__kind {
+  font-weight: 600;
+}
+
+.badge--source-training {
+  background: #eaf4ea;
+  color: #1e5c2a;
+}
+
+.badge--source-owned {
+  background: #f3eaf8;
+  color: #5b2c7a;
+}
+
+.badge--source-event {
+  background: #fff3e0;
+  color: #8a4b08;
+}
+
+.badge--source-scenario {
+  background: #e8eef8;
+  color: #1a3a6b;
+}
+
+.badge--source-inherit {
+  background: #f0f0f0;
+  color: #555;
+}
+
+.badge--adopted {
+  box-shadow: inset 0 0 0 1.5px currentColor;
+}
+
+.skill-source-cell {
+  max-width: 22rem;
+}
+
+.result-sort-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.85rem;
+  color: #555;
+  font-weight: normal;
+}
+
+.result-sort {
+  font-size: 0.85rem;
+  padding: 0.2rem 0.35rem;
 }
 
 .skill-filter-box {

@@ -376,6 +376,14 @@
         <div class="result-panel-heading">
           <h2>結果（作業台）</h2>
           <div class="result-panel-heading__meta">
+            <label class="result-sort-label">
+              並び
+              <select id="result-sort" class="result-sort">
+                <option value="name" selected>名前</option>
+                <option value="kind">由来種別</option>
+                <option value="cost">必要SP</option>
+              </select>
+            </label>
             <span id="skill-count-meta" class="skill-count-meta">スキル数 —</span>
             <button
               type="button"

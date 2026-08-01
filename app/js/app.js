@@ -38,6 +38,10 @@ import {
   hasActivationConstraints,
   skillFiltersEqual,
 } from "./skillActivation.js";
+import {
+  formatSourceKindLabel,
+  sortPlanRows,
+} from "./skillSource.js";
 
 /** @type {object|null} */
 let state = null;
@@ -1097,6 +1101,39 @@ function renderActivationTags(row) {
     .join("");
 }
 
+/**
+ * 由来セル: 種別色バッジ + 詳細。title に Lv。採用 Lv 一致で強調。
+ * @param {{ sources?: { kind: string, label: string, hintLevel: number }[], hintLevel?: number }} row
+ */
+function renderSourceBadges(row) {
+  const sources = row.sources || [];
+  if (!sources.length) return "—";
+  const adoptedLv = Number(row.hintLevel) || 0;
+  return sources
+    .map((src) => {
+      const kindLabel = formatSourceKindLabel(src.kind);
+      const adopted = src.hintLevel === adoptedLv;
+      const classes = [
+        "badge",
+        `badge--source-${src.kind}`,
+        adopted ? "badge--adopted" : "",
+      ]
+        .filter(Boolean)
+        .join(" ");
+      const title = `${kindLabel} Lv${src.hintLevel}`;
+      const detail = src.label ? ` ${escapeHtml(src.label)}` : "";
+      return `<span class="${classes}" title="${escapeHtml(title)}"><span class="badge__kind">${escapeHtml(kindLabel)}</span>${detail}</span>`;
+    })
+    .join("");
+}
+
+function getResultSortMode() {
+  const el = document.getElementById("result-sort");
+  const v = el?.value || "name";
+  if (v === "kind" || v === "cost") return v;
+  return "name";
+}
+
 function renderPlanWarnings(unresolved) {
   const el = document.getElementById("plan-warnings");
   if (!el) return;
@@ -1172,7 +1209,8 @@ function recalc({ resetFilterExclusions = false } = {}) {
 
   const tbody = document.getElementById("result-body");
   tbody.innerHTML = "";
-  for (const row of plan.rows) {
+  const displayRows = sortPlanRows(plan.rows, getResultSortMode());
+  for (const row of displayRows) {
     const tr = document.createElement("tr");
     if (row.skillId != null && excludedSkillIds.has(row.skillId)) {
       tr.classList.add("excluded");
@@ -1196,7 +1234,7 @@ function recalc({ resetFilterExclusions = false } = {}) {
       <td class="skill-condition-cell">${renderActivationTags(row)}</td>
       <td>${row.hintLevel}</td>
       <td>${costDetail}</td>
-      <td>${row.sources.map((s) => `<span class="badge">${escapeHtml(s)}</span>`).join("")}</td>
+      <td class="skill-source-cell">${renderSourceBadges(row)}</td>
     `;
     tbody.appendChild(tr);
 
@@ -1240,6 +1278,13 @@ function bindSkillFilters() {
   document.getElementById("skill-filter-apply")?.addEventListener("click", () => {
     committedSkillFilter = getDraftSkillFilterState();
     recalc({ resetFilterExclusions: true });
+  });
+}
+
+function bindResultSort() {
+  document.getElementById("result-sort")?.addEventListener("change", () => {
+    if (!currentPlan) return;
+    recalc();
   });
 }
 
@@ -1359,6 +1404,7 @@ async function init() {
 
     bindOptions();
     bindSkillFilters();
+    bindResultSort();
     bindCopyIncludedSkills();
     committedSkillFilter = getDraftSkillFilterState();
     recalc();

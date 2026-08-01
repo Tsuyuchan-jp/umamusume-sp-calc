@@ -1,11 +1,12 @@
 /**
  * スキルごとのヒントLvを解決（max）
- * @typedef {{ skillId: number, hintLevel: number, source: string }} SkillHintEntry
+ * @typedef {{ skillId: number, hintLevel: number, kind: string, label: string }} SkillHintEntry
+ * @typedef {{ kind: string, label: string, hintLevel: number }} SkillSource
  */
 
 /**
  * @param {SkillHintEntry[]} entries
- * @returns {Map<number, { hintLevel: number, sources: string[] }>}
+ * @returns {Map<number, { hintLevel: number, sources: SkillSource[] }>}
  */
 export function resolveHintLevels(entries) {
   const map = new Map();
@@ -16,8 +17,19 @@ export function resolveHintLevels(entries) {
     if (e.hintLevel > cur.hintLevel) {
       cur.hintLevel = e.hintLevel;
     }
-    if (!cur.sources.includes(e.source)) {
-      cur.sources.push(e.source);
+    const existing = cur.sources.find(
+      (s) => s.kind === e.kind && s.label === e.label
+    );
+    if (existing) {
+      if (e.hintLevel > existing.hintLevel) {
+        existing.hintLevel = e.hintLevel;
+      }
+    } else {
+      cur.sources.push({
+        kind: e.kind,
+        label: e.label,
+        hintLevel: e.hintLevel,
+      });
     }
     map.set(id, cur);
   }

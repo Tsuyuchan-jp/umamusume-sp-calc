@@ -9,6 +9,7 @@ import {
   getDeckLinkCharacterIds,
   resolveLinkSkill,
 } from "./scenarioLink.js";
+import { mergeSourceInto } from "./skillSource.js";
 
 const TRAINING_HINT = 5;
 const CHARA_HINT = 3;
@@ -43,7 +44,8 @@ function appendEventSkills(hintEntries, skills, label, nameToId, unresolved) {
     hintEntries.push({
       skillId,
       hintLevel: sk.hintLevel,
-      source: `イベント: ${label}`,
+      kind: "event",
+      label,
     });
   }
 }
@@ -88,7 +90,8 @@ export function buildSkillPlan(params) {
       hintEntries.push({
         skillId,
         hintLevel: trainingHintLevel,
-        source: `サポカ: ${sup.name}`,
+        kind: "training",
+        label: sup.name,
       });
     }
   }
@@ -105,7 +108,8 @@ export function buildSkillPlan(params) {
         hintEntries.push({
           skillId: id,
           hintLevel: CHARA_HINT,
-          source: `ウマ娘: ${chara.name}`,
+          kind: "owned",
+          label: chara.name,
         });
       }
     }
@@ -150,7 +154,8 @@ export function buildSkillPlan(params) {
     hintEntries.push({
       skillId,
       hintLevel: sk.hintLevel,
-      source: `シナリオ: ${entry.label}`,
+      kind: "scenario",
+      label: entry.label,
     });
   }
 
@@ -167,7 +172,8 @@ export function buildSkillPlan(params) {
       hintEntries.push({
         skillId,
         hintLevel: sk.hintLevel,
-        source: `シナリオ: ${entry.label}`,
+        kind: "scenario",
+        label: entry.label,
       });
     }
   }
@@ -190,7 +196,8 @@ export function buildSkillPlan(params) {
         hintEntries.push({
           skillId,
           hintLevel: sk.hintLevel,
-          source: `シナリオ: ${choice.label}`,
+          kind: "scenario",
+          label: choice.label,
         });
       }
     }
@@ -216,7 +223,7 @@ export function buildSkillPlan(params) {
     const sources = [];
     for (const cid of acq.chainSkillIds || [skillId]) {
       for (const src of hintMap.get(cid)?.sources ?? []) {
-        if (!sources.includes(src)) sources.push(src);
+        mergeSourceInto(sources, src);
       }
     }
 
@@ -238,6 +245,7 @@ export function buildSkillPlan(params) {
     });
   }
 
+  // 並びは UI 側（skillSource.sortPlanRows）。ここでは名前順の安定した既定順のみ付与
   rows.sort((a, b) => a.name.localeCompare(b.name, "ja"));
 
   if (params.inheritEnabled && params.inheritCount > 0) {
@@ -251,7 +259,13 @@ export function buildSkillPlan(params) {
       skillId: null,
       name: `継承固有 × ${params.inheritCount}`,
       hintLevel: params.inheritHintLevel,
-      sources: ["継承固有（汎用）"],
+      sources: [
+        {
+          kind: "inherit",
+          label: "汎用",
+          hintLevel: params.inheritHintLevel,
+        },
+      ],
       baseSp: params.inheritBaseSp,
       cost: inheritCost * params.inheritCount,
       isInherit: true,
