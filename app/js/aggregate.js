@@ -10,6 +10,7 @@ import {
   resolveLinkSkill,
 } from "./scenarioLink.js";
 import { mergeSourceInto } from "./skillSource.js";
+import { formatTrainingSourceLabel } from "./supportShortName.js";
 
 const TRAINING_HINT = 5;
 const CHARA_HINT = 3;
@@ -91,7 +92,7 @@ export function buildSkillPlan(params) {
         skillId,
         hintLevel: trainingHintLevel,
         kind: "training",
-        label: sup.name,
+        label: formatTrainingSourceLabel(sup),
       });
     }
   }

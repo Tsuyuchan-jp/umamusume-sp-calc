@@ -5,6 +5,7 @@ import {
   sortPlanRows,
 } from "../app/js/skillSource.js";
 import { resolveHintLevels } from "../app/js/hintResolve.js";
+import { formatTrainingSourceLabel } from "../app/js/supportShortName.js";
 
 function assertEq(actual, expected, label) {
   if (actual !== expected) {
@@ -22,6 +23,25 @@ function assertTruthy(v, label) {
 
 assertEq(formatSourceKindLabel("training"), "トレヒント", "種別ラベル トレヒント");
 assertEq(formatSourceKindLabel("owned"), "所持", "種別ラベル 所持");
+
+assertEq(
+  formatTrainingSourceLabel({
+    type: "speed",
+    title: "刀光散らしてClash！",
+    characterName: "タップダンスシチー",
+  }),
+  "スピシチー",
+  "トレヒント略称 スピシチー"
+);
+assertEq(
+  formatTrainingSourceLabel({
+    type: "friend",
+    title: "一杯のノスタルジア",
+    characterName: "駿川たづな",
+  }),
+  "友人たづな",
+  "トレヒント略称 友人たづな"
+);
 
 assertEq(
   getPrimarySourceKind([
