@@ -265,7 +265,7 @@ function renderDeckDashboard() {
   renderDeckCharacter();
   renderDeckSupports();
   updateDeckFootbandMeta();
-  updateDeckAutoEventsMeta();
+  updateAutoEventsChip();
 }
 
 function bindPremiseChipsOnce() {
@@ -845,18 +845,19 @@ function renderColumnEvents() {
   }
 }
 
-function updateDeckAutoEventsMeta() {
-  const meta = document.getElementById("deck-auto-events-meta");
-  if (!meta || !state) return;
-  const events = (state.events.events || []).filter(isEventSupportInDeck);
-  const autoCount = events.filter((evt) => evt.selection === "auto").length;
-  if (autoCount === 0) {
-    meta.hidden = true;
-    meta.textContent = "";
-    return;
-  }
-  meta.hidden = false;
-  meta.textContent = `自動計上イベント ${autoCount}件（詳細は足元帯）`;
+function updateAutoEventsChip() {
+  const chip = document.getElementById("auto-events-open");
+  const countEl = document.getElementById("auto-events-count");
+  if (!chip || !countEl || !state) return;
+
+  const supportAuto = (state.events.events || []).filter(
+    (evt) => isEventSupportInDeck(evt) && evt.selection === "auto"
+  ).length;
+  const scenarioAuto = (state.scenario.scenarioAutoSkills || []).length;
+  const total = supportAuto + scenarioAuto;
+
+  countEl.textContent = String(total);
+  chip.hidden = total === 0;
 }
 
 function updateDeckFootbandMeta() {
@@ -873,52 +874,43 @@ function updateDeckFootbandMeta() {
 
 function renderEvents() {
   const autoContainer = document.getElementById("event-auto");
-  const autoCollapse = document.getElementById("event-auto-collapse");
-  const autoSummary = document.getElementById("event-auto-summary");
   const emptyHint = document.getElementById("event-empty-hint");
+  const autoEmpty = document.getElementById("event-auto-empty");
   if (autoContainer) autoContainer.innerHTML = "";
 
   renderColumnEvents();
-  updateDeckAutoEventsMeta();
+  updateAutoEventsChip();
   updateDeckFootbandMeta();
 
   const events = (state.events.events || []).filter(isEventSupportInDeck);
   if (events.length === 0) {
     if (emptyHint) emptyHint.hidden = false;
-    if (autoCollapse) autoCollapse.hidden = true;
-    return;
+  } else if (emptyHint) {
+    emptyHint.hidden = true;
   }
-  if (emptyHint) emptyHint.hidden = true;
 
   const autoEvents = events.filter((evt) => evt.selection === "auto");
-  if (!autoCollapse) return;
-  if (autoEvents.length === 0) {
-    autoCollapse.hidden = true;
-  } else {
-    autoCollapse.hidden = false;
-    if (autoSummary) autoSummary.textContent = `${autoEvents.length}件（自動計上）`;
-    for (const evt of autoEvents) {
-      const div = document.createElement("div");
-      div.className = "event-auto-item";
-      div.innerHTML = `
-        <div class="event-auto-label">${escapeHtml(evt.label)}</div>
-        <div class="hint">${escapeHtml(formatSkillList(evt.skills))}（自動計上）</div>
-      `;
-      autoContainer.appendChild(div);
-    }
+  if (autoEmpty) autoEmpty.hidden = autoEvents.length > 0;
+  if (!autoContainer) return;
+  for (const evt of autoEvents) {
+    const div = document.createElement("div");
+    div.className = "event-auto-item";
+    div.innerHTML = `
+      <div class="event-auto-label">${escapeHtml(evt.label)}</div>
+      <div class="hint">${escapeHtml(formatSkillList(evt.skills))}（自動計上）</div>
+    `;
+    autoContainer.appendChild(div);
   }
 }
 
-/** シナリオ自動計上（折りたたみ・確認用） */
+/** シナリオ自動計上（確認用・モーダル内） */
 function renderScenarioAuto() {
   const container = document.getElementById("scenario-auto");
-  const summary = document.getElementById("scenario-auto-summary");
+  if (!container) return;
   container.innerHTML = "";
 
   const entries = state.scenario.scenarioAutoSkills || [];
-  let skillCount = 0;
   for (const entry of entries) {
-    skillCount += (entry.skills || []).length;
     const div = document.createElement("div");
     div.className = "event-auto-item";
     div.innerHTML = `
@@ -927,7 +919,71 @@ function renderScenarioAuto() {
     `;
     container.appendChild(div);
   }
-  summary.textContent = `${skillCount}スキル（自動計上）`;
+  updateAutoEventsChip();
+}
+
+function bindAutoEventsDialog() {
+  const dialog = document.getElementById("auto-events-dialog");
+  const openBtn = document.getElementById("auto-events-open");
+  const closeBtn = document.getElementById("auto-events-close");
+  if (!dialog || !openBtn) return;
+  openBtn.addEventListener("click", () => {
+    if (typeof dialog.showModal === "function") dialog.showModal();
+  });
+  closeBtn?.addEventListener("click", () => dialog.close());
+}
+
+/** localStorage キー: レイアウト好み gallery | split | auto */
+const LAYOUT_MODE_KEY = "umamusume-sp-calc-layout-mode";
+
+function resolveLayoutMode(pref) {
+  if (pref === "auto") {
+    return window.matchMedia("(min-width: 1200px)").matches ? "split" : "gallery";
+  }
+  return pref === "split" ? "split" : "gallery";
+}
+
+function applyLayoutMode(effective) {
+  document.documentElement.classList.toggle("layout-split", effective === "split");
+  document.documentElement.classList.toggle("layout-gallery", effective === "gallery");
+  document.body.classList.toggle("layout-split", effective === "split");
+  document.body.classList.toggle("layout-gallery", effective === "gallery");
+}
+
+function bindLayoutMode() {
+  const hint = document.getElementById("layout-mode-hint");
+  const buttons = document.querySelectorAll("[data-layout-mode]");
+  let pref = localStorage.getItem(LAYOUT_MODE_KEY) || "gallery";
+  if (!["gallery", "split", "auto"].includes(pref)) pref = "gallery";
+
+  const sync = () => {
+    const effective = resolveLayoutMode(pref);
+    applyLayoutMode(effective);
+    buttons.forEach((btn) => {
+      btn.classList.toggle("is-on", btn.getAttribute("data-layout-mode") === pref);
+    });
+    if (hint) {
+      if (pref === "auto") {
+        hint.textContent = `自動: いま ${effective === "split" ? "スプリット" : "ギャラリー"}（境界 1200px）`;
+      } else if (effective === "split") {
+        hint.textContent = "スプリット: 左=編成 / 右=作業台 · A列下 · B件数チップ · C足元";
+      } else {
+        hint.textContent = "ギャラリー: 上段編成・下段作業台 · A列下 · B件数チップ · C足元";
+      }
+    }
+  };
+
+  buttons.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      pref = btn.getAttribute("data-layout-mode") || "gallery";
+      localStorage.setItem(LAYOUT_MODE_KEY, pref);
+      sync();
+    });
+  });
+  window.addEventListener("resize", () => {
+    if (pref === "auto") sync();
+  });
+  sync();
 }
 
 /** シニア12月 RMJ ラーメン選択（相互排他ラジオ1択） */
@@ -938,9 +994,9 @@ function renderSeniorRmjRadios() {
   if (!rmj?.choices?.length) return;
 
   const group = document.createElement("fieldset");
-  group.className = "event-single-group";
+  group.className = "event-single-group event-single-group--inline";
   const legend = document.createElement("legend");
-  legend.textContent = rmj.label || "シニア12月 超盛況";
+  legend.textContent = "RMJ";
   group.appendChild(legend);
 
   const defaultId = rmj.defaultChoiceId ?? rmj.choices[0].id;
@@ -948,7 +1004,7 @@ function renderSeniorRmjRadios() {
 
   for (const choice of rmj.choices) {
     const row = document.createElement("div");
-    row.className = "radio-row";
+    row.className = "radio-row radio-row--chip";
     const inputId = `scn-rmj-${choice.id}`;
     const checked = current === choice.id ? "checked" : "";
     const skillNote =
@@ -989,16 +1045,16 @@ function renderScenarioLinkRadios() {
   if (links.length === 0) return;
 
   const group = document.createElement("fieldset");
-  group.className = "event-single-group";
+  group.className = "event-single-group event-single-group--inline";
   const legend = document.createElement("legend");
-  legend.textContent = "シナリオリンク（シニア9月前半）";
+  legend.textContent = "リンク";
   group.appendChild(legend);
 
   const current = state.ui.scenarioLinkChoiceId ?? "link_dotou";
 
   for (const entry of links) {
     const row = document.createElement("div");
-    row.className = "radio-row";
+    row.className = "radio-row radio-row--chip";
     const inputId = `scn-link-${entry.id}`;
     const checked = current === entry.id ? "checked" : "";
     const resolved = getResolvedLinkSkill(entry);
@@ -1464,6 +1520,8 @@ async function init() {
     document.getElementById("deck-character")?.addEventListener("click", openCharacterPicker);
     bindPremiseChipsOnce();
     bindPickerFilters();
+    bindLayoutMode();
+    bindAutoEventsDialog();
     renderDeckDashboard();
     updateTotalBarChips();
 

@@ -183,9 +183,14 @@ header p {
   box-shadow: var(--shadow-sm);
 }
 
-.deck-footband__summary {
+.auto-events-chip {
+  font-family: var(--font-body);
   font-weight: var(--font-weight-bold);
-  color: var(--text-secondary);
+}
+
+.layout-modebar {
+  font-family: var(--font-body);
+  font-weight: var(--font-weight-medium);
 }
 
 .event-single-group--compact {

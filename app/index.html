@@ -29,6 +29,16 @@
       </div>
     </header>
 
+    <aside class="layout-modebar" aria-label="レイアウト切替">
+      <span class="layout-modebar__label">表示</span>
+      <div class="layout-mode-seg" role="group" aria-label="レイアウト">
+        <button type="button" class="layout-mode-seg__btn is-on" data-layout-mode="gallery">ギャラリー</button>
+        <button type="button" class="layout-mode-seg__btn" data-layout-mode="split">スプリット</button>
+        <button type="button" class="layout-mode-seg__btn" data-layout-mode="auto">自動（幅）</button>
+      </div>
+      <span class="layout-modebar__hint" id="layout-mode-hint">ギャラリー: 上段編成・下段作業台</span>
+    </aside>
+
     <dialog id="memory-dialog" class="memory-dialog" aria-labelledby="memory-dialog-title">
       <div class="memory-dialog__chrome">
         <h2 id="memory-dialog-title" class="memory-dialog__title">設計メモリ</h2>
@@ -88,8 +98,8 @@
               <li>
                 <strong>イベント・シナリオ</strong>を必要なら調整
                 <ul>
-                  <li>選択式イベントは各サポカ列の下。シナリオリンク等は上段足元の帯</li>
-                  <li>自動イベントは編成に応じて計上</li>
+                  <li>選択式イベントは各サポカ列の下。シナリオリンク／RMJ は編成足元帯</li>
+                  <li>自動計上は「自動計上 N件」チップからモーダルで確認（編集不可）</li>
                 </ul>
               </li>
               <li>
@@ -191,7 +201,7 @@
               A. 取得可能なスキルをすべて買うための <strong>理論必要量の見積もり</strong>です。レース報酬やイベントで実際にいくら貯まるかは扱いません。
             </p>
             <p><strong>Q. イベント非対応のサポカを入れても意味ある？</strong><br />
-              A. <strong>トレヒント（既定 Lv5）</strong> は乗ります。下部バーで Lv を下げると控えめ見積もりになります。イベント由来のスキルは計上されません（上段足元帯の「※サポカイベントについて」で対応一覧を確認できます）。
+              A. <strong>トレヒント（既定 Lv5）</strong> は乗ります。下部バーで Lv を下げると控えめ見積もりになります。イベント由来のスキルは計上されません（「※サポカイベントについて」で対応一覧を確認できます）。
             </p>
             <p><strong>Q. シナリオリンクの白と金の違いは？</strong><br />
               A. リンク条件のキャラが、育成ウマ娘かサポカ6枠にいれば金、いなければ白として計上します。
@@ -261,78 +271,71 @@
                 <div class="deck-supports" id="deck-supports"></div>
               </div>
             </div>
-            <p id="deck-auto-events-meta" class="deck-auto-events-meta" hidden></p>
           </div>
 
-          <details class="deck-footband" id="deck-footband">
-            <summary class="deck-footband__summary">
-              <span>シナリオ・継承の詳細</span>
+          <!-- C: シナリオ系＋ B: 自動計上チップ（一覧はモーダル） -->
+          <div class="deck-footband" id="deck-footband">
+            <div class="deck-layer-c" id="deck-layer-c">
+              <div class="deck-c-group">
+                <span class="deck-c-group__lbl" title="シナリオ系">C</span>
+                <div id="scenario-link" class="event-section event-section--inline"></div>
+              </div>
+              <div class="deck-c-group">
+                <div id="scenario-senior-rmj" class="event-section event-section--inline"></div>
+              </div>
+              <button
+                type="button"
+                id="auto-events-open"
+                class="auto-events-chip"
+                aria-haspopup="dialog"
+                aria-controls="auto-events-dialog"
+                hidden
+              >
+                自動計上 <strong id="auto-events-count">0</strong> 件
+              </button>
               <span id="deck-footband-meta" class="deck-footband__meta"></span>
-            </summary>
-            <div class="deck-footband__body">
-              <div class="deck-footband__inherit" id="deck-inherit-detail">
-                <p class="deck-footband__section-label">継承固有の詳細</p>
-                <div class="options-row options-row--inherit">
-                  <label>
-                    個数
-                    <input type="number" id="inherit-count" min="2" max="6" value="4" style="width: 4rem" />
-                  </label>
-                  <label>
-                    ヒントLv
-                    <input type="number" id="inherit-hint" min="1" max="5" value="3" style="width: 4rem" />
-                  </label>
-                  <label>
-                    baseSp
-                    <input type="number" id="inherit-base" min="1" value="200" style="width: 5rem" />
-                  </label>
-                </div>
-              </div>
-
-              <div class="event-panel-heading event-panel-heading--footband">
-                <button
-                  type="button"
-                  id="event-scope-trigger"
-                  class="event-scope-trigger"
-                  aria-expanded="false"
-                  aria-controls="event-scope-panel"
-                >
-                  ※サポカイベントについて
-                </button>
-                <div id="event-scope-panel" class="event-scope-panel warning" role="note" hidden>
-                  <p class="event-scope-panel__lead">
-                    <strong id="event-scope-lead">サポカイベントは優先40種のみ対応</strong>
-                  </p>
-                  <p class="event-scope-panel__body">
-                    イベント由来のスキルは、対応リストのサポカを編成したときだけ計上されます。それ以外のサポカはトレヒントのみ反映されます。
-                  </p>
-                  <p id="event-scope-list-title" class="event-scope-panel__list-title">対応サポカ一覧（40種）</p>
-                  <ol id="event-priority-support-list" class="event-scope-list"></ol>
-                </div>
-              </div>
-
-              <details id="event-auto-collapse" class="collapse-section collapse-section--footband">
-                <summary class="collapse-summary">
-                  <span>サポカイベント（自動）</span>
-                  <span id="event-auto-summary" class="collapse-meta"></span>
-                </summary>
-                <div id="event-auto" class="event-section collapse-body"></div>
-              </details>
-
-              <h3 class="subsection-title subsection-title--footband">シナリオリンク（1択）</h3>
-              <div id="scenario-link" class="event-section"></div>
-
-              <h3 class="subsection-title subsection-title--footband">シニア12月 RMJ（1択）</h3>
-              <div id="scenario-senior-rmj" class="event-section"></div>
-
-              <details id="scenario-auto-collapse" class="collapse-section collapse-section--footband">
-                <summary class="collapse-summary">
-                  <span>シナリオ自動計上</span>
-                  <span id="scenario-auto-summary" class="collapse-meta"></span>
-                </summary>
-                <div id="scenario-auto" class="event-section collapse-body"></div>
-              </details>
             </div>
-          </details>
+
+            <div class="event-panel-heading event-panel-heading--footband">
+              <button
+                type="button"
+                id="event-scope-trigger"
+                class="event-scope-trigger"
+                aria-expanded="false"
+                aria-controls="event-scope-panel"
+              >
+                ※サポカイベントについて
+              </button>
+              <div id="event-scope-panel" class="event-scope-panel warning" role="note" hidden>
+                <p class="event-scope-panel__lead">
+                  <strong id="event-scope-lead">サポカイベントは優先40種のみ対応</strong>
+                </p>
+                <p class="event-scope-panel__body">
+                  イベント由来のスキルは、対応リストのサポカを編成したときだけ計上されます。それ以外のサポカはトレヒントのみ反映されます。
+                </p>
+                <p id="event-scope-list-title" class="event-scope-panel__list-title">対応サポカ一覧（40種）</p>
+                <ol id="event-priority-support-list" class="event-scope-list"></ol>
+              </div>
+            </div>
+
+            <details class="deck-inherit-details" id="deck-inherit-detail">
+              <summary class="deck-inherit-details__summary">継承固有の詳細</summary>
+              <div class="options-row options-row--inherit">
+                <label>
+                  個数
+                  <input type="number" id="inherit-count" min="2" max="6" value="4" style="width: 4rem" />
+                </label>
+                <label>
+                  ヒントLv
+                  <input type="number" id="inherit-hint" min="1" max="5" value="3" style="width: 4rem" />
+                </label>
+                <label>
+                  baseSp
+                  <input type="number" id="inherit-base" min="1" value="200" style="width: 5rem" />
+                </label>
+              </div>
+            </details>
+          </div>
 
           <p id="event-empty-hint" class="hint deck-event-empty-hint" hidden>
             該当サポカがデッキにいません。6枠に編成するとイベントが表示されます。
@@ -481,6 +484,27 @@
       <option value="3">3</option>
     </select>
     <span id="total-sp" hidden aria-hidden="true"></span>
+
+    <!-- B: 自動計上一覧（インライン折りたたみしない） -->
+    <dialog id="auto-events-dialog" class="auto-events-dialog" aria-labelledby="auto-events-dialog-title">
+      <div class="auto-events-dialog__chrome">
+        <div>
+          <h2 id="auto-events-dialog-title" class="auto-events-dialog__title">自動計上 · 確認一覧</h2>
+          <p class="auto-events-dialog__sub">編集不可 · 表には反映済み</p>
+        </div>
+        <button type="button" id="auto-events-close" class="auto-events-dialog__close" aria-label="閉じる">×</button>
+      </div>
+      <div class="auto-events-dialog__body">
+        <p class="auto-events-dialog__note">
+          サポカ自動イベントとシナリオ自動計上をまとめて表示します。ページを伸ばさないため、一覧はこのモーダルのみです。
+        </p>
+        <h3 class="auto-events-dialog__section">サポカ自動</h3>
+        <div id="event-auto" class="event-section"></div>
+        <p id="event-auto-empty" class="hint" hidden>編成中のサポカに自動イベントはありません。</p>
+        <h3 class="auto-events-dialog__section">シナリオ自動</h3>
+        <div id="scenario-auto" class="event-section"></div>
+      </div>
+    </dialog>
 
     <dialog id="card-picker" class="card-picker" aria-labelledby="card-picker-title">
       <div class="card-picker__chrome">
