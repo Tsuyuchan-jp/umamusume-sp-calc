@@ -74,6 +74,11 @@
 
 ### P3 / 条件付き
 
+- [ ] **30307 / 30308 の U-tools 化**  
+  - 条件: U-tools にキセキ（巻頭カラーの夏）・アーモンドアイ（夏空チルタイム）が掲載されたら  
+  - 手順: `npm run extract:events` → `compare:events` → `apply:events` のあと、`events.preserve.json` から GameWith 一時手載せ6件（`evt_30307_*` / `evt_30308_*`）を削除。docs の件数・注記も更新  
+  - 関連: [ops/GAME_UPDATE_RUNBOOK.md](./ops/GAME_UPDATE_RUNBOOK.md) / events preserve
+
 - [ ] **v1.0.0 公開準備** — UX 残りが閉じたあと。CHANGELOG・README・**初 push / Pages 反映**  
   - 制約: それまで `git push` しない（[ops/ASSETS.md](./ops/ASSETS.md) / [ops/GAME_UPDATE_RUNBOOK.md](./ops/GAME_UPDATE_RUNBOOK.md)）
 

@@ -5,8 +5,9 @@
 形式は [Keep a Changelog](https://keepachangelog.com/ja/1.0.0/) に近いが、セマンティックバージョニングは緩め（`0.1.x` = 公開後の軽量改修）。
 
 **運用**:
-- 版上げ（リリース）を伴わない変更・後追い TODO は **[Unreleased]** にためる
-- 次の版上げ時に Unreleased の内容をその版の節へ移し、Unreleased を空に戻す（または新しい TODO だけ残す）
+- 版上げ（リリース）を伴わない変更は **[Unreleased]** にためる（追加・変更・修正など、開発者／ユーザーに意味のある内容のみ）
+- 次の版上げ時に Unreleased の内容をその版の節へ移し、Unreleased を空に戻す
+- 作業キュー・後追いタスクは [TODO.md](./TODO.md) へ（CHANGELOG に TODO 節を置かない）
 
 ## [Unreleased]
 
@@ -15,18 +16,10 @@
 - **初期編成**: 育成 `[The Changer]アーモンドアイ`（112901）＋常用サポカ6枚（エアグルーヴ / テイオー / タップ / ドトウ / ヤング / たづな）
 - **カードピッカー検索**: ひらがな入力を修正。キャラ名のみ対象＋ローマ字検索（英字はかな化して照合: `ai`→`アイ`。長音は `aamondo` / `a-mondo`。衣装タイトルは対象外）
 
-### 確認
-
-- 初期編成・ピッカー検索（ひらがな／ローマ字）**実機 OK**（2026-08-01）・TODO クローズ
-
 ### 追加
 
 - **カード画像 Phase 1**: 優先サポカ40 + 育成 `107703` を `assets/**/{id}.webp` に同梱（約 0.6 MiB）
 - `npm run assets:extract` / `assets:import`（meta+dat → flat PNG → webp）。手順は [ops/ASSETS.md](./ops/ASSETS.md)
-
-### TODO
-
-- **30307 / 30308 の U-tools 化**: U-tools にキセキ（巻頭カラーの夏）・アーモンドアイ（夏空チルタイム）が掲載されたら `npm run extract:events` → `compare:events` → `apply:events` を実行し、`events.preserve.json` から GameWith 一時手載せ6件（`evt_30307_*` / `evt_30308_*`）を削除する。docs の件数・注記も更新する
 
 ## [0.1.14] — 2026-08-01
 
@@ -53,7 +46,7 @@
 
 - ゲーム更新追従（DMM `master.mdb`）: skills **2127** / supports **547** / characters **264**
 - 優先サポカ **+2種**（計40種）: `[巻頭カラーの夏]キセキ`（30307）、`[夏空チルタイム]アーモンドアイ`（30308）
-- 上記2枚のイベント **+6件**（計111・auto 90 / single 21）を `events.preserve.json` に **GameWith 一時手載せ**（[キセキ](https://gamewith.jp/uma-musume/article/show/570425) / [アーモンド](https://gamewith.jp/uma-musume/article/show/570424)）。置換手順は [Unreleased](#unreleased) の TODO 参照
+- 上記2枚のイベント **+6件**（計111・auto 90 / single 21）を `events.preserve.json` に **GameWith 一時手載せ**（[キセキ](https://gamewith.jp/uma-musume/article/show/570425) / [アーモンド](https://gamewith.jp/uma-musume/article/show/570424)）。置換手順は [TODO.md](./TODO.md)（30307 / 30308 の U-tools 化）参照
 - 見送り: `[天才的ガチエモSUMMER!!]フサイチパンドラ`（30309）は今回優先枠に含めない
 
 ### 変更
