@@ -148,13 +148,25 @@ function normalizeSearchText(s) {
   return toKatakana(s).toLowerCase();
 }
 
-function buildCardFaceHtml({ imageUrl, typeStyle, rarity, label, empty = false }) {
+function buildCardFaceHtml({
+  imageUrl,
+  typeStyle,
+  rarity,
+  label,
+  empty = false,
+  showTextOverlay = true,
+}) {
   if (empty) {
     return '<div class="card-face card-face--empty" aria-hidden="true">＋</div>';
   }
   const safeLabel = escapeHtml(label);
   const safeRarity = escapeHtml(rarity || "");
   const typeLabel = escapeHtml(typeStyle?.label || "");
+  // サポカは画像本体（枠・タイプ印）だけで足りるため、SSR/名前/黒帯は載せない
+  const overlayHtml = showTextOverlay
+    ? `${safeRarity ? `<span class="card-face__rarity">${safeRarity}</span>` : ""}
+      <span class="card-face__label">${safeLabel}</span>`
+    : "";
   return `
     <div class="card-face" style="--card-bg:${typeStyle?.bg || "#e8e8e8"};--card-ink:${typeStyle?.ink || "#1c2420"}">
       <img class="card-face__img" src="${escapeHtml(imageUrl)}" alt=""
@@ -164,8 +176,7 @@ function buildCardFaceHtml({ imageUrl, typeStyle, rarity, label, empty = false }
         <span class="card-face__ph-type">${typeLabel}</span>
         <span>${safeLabel}</span>
       </div>
-      ${safeRarity ? `<span class="card-face__rarity">${safeRarity}</span>` : ""}
-      <span class="card-face__label">${safeLabel}</span>
+      ${overlayHtml}
     </div>
   `;
 }
@@ -225,6 +236,7 @@ function renderDeckSupports() {
         typeStyle,
         rarity: s.rarity,
         label: shortSupportLabel(s),
+        showTextOverlay: false,
       });
       btn.title = s.name;
     }
@@ -370,6 +382,7 @@ function buildSupportPickerItems(slotIndex) {
           typeStyle,
           rarity: s.rarity,
           label: shortSupportLabel(s),
+          showTextOverlay: false,
         }),
       };
     });
