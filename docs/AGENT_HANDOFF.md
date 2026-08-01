@@ -72,6 +72,7 @@
 
 ```
 docs/AGENT_HANDOFF.md   ← 今ここ
+docs/TODO.md            作業キュー（人間・AI共用・次タスクの正本）
 docs/GAME_UPDATE_RUNBOOK.md  ゲーム更新時の運用チェックリスト（extract・events・デプロイ）
 docs/PRIORITY_SUPPORTS.md   イベント対応サポカ40種（利用者向け表・開発者向け id）
 docs/CHANGELOG.md        公開版の更新履歴
@@ -82,16 +83,17 @@ docs/spec.md            計算仕様（詳細）
 docs/DATA.md            mdb / JSON / 優先サポカ
 docs/ARCHITECTURE.md    構成とデータフロー
 docs/DEV.md             セットアップ・トラブルシュート
-docs/ROADMAP.md         完了 / 残り
+docs/ROADMAP.md         完了 / 残り（長期。日次キューは TODO.md）
 docs/EVENT_EXTRACT_DESIGN.md  イベント抽出設計（Phase B 完了）
 docs/UTOOLS_EVENT_PARSE.md    U-tools SSR パース仕様
 docs/ASSETS.md           画像アセット方針・抽出／import
-docs/SUPPORT_CARD_IMAGE_TASK.md  サポカ縦カード高品質生成タスク（新チャット継続用）
+docs/SUPPORT_CARD_IMAGE_TASK.md  サポカ縦カード高品質生成（履歴・制約）
+docs/UX_PHILOSOPHY.md    UX 思想
 app/js/designSnapshot.js  1設計スナップショット境界
 app/js/designMemory.js    設計メモリ（localStorage）
-scripts/extract_card_assets.py  カード画像抽出（meta+dat）
+scripts/extract_card_assets.py  カード画像抽出（meta+dat・育成全件）
 scripts/import_card_assets.mjs  flat PNG → webp
-assets/supports|characters/  優先枠 webp（Phase1）
+assets/supports|characters/  優先サポカ40 + 育成全264 webp
 data/                   JSON（extract 生成 + シナリオ手メンテ）
 scripts/extract_mdb.mjs master.mdb → skills/supports/characters（推奨・`activation` 付与）
 scripts/patch_skill_activation.mjs 既存 skills.json へ activation のみ付与
@@ -106,10 +108,10 @@ scripts/extract_mdb.py  同上（代替）
 
 ## エージェントへの指示（短縮）
 
-1. このファイルと `REQUIREMENTS.md` / `spec.md` / `GLOSSARY.md` を読む。
+1. このファイルと `REQUIREMENTS.md` / `spec.md` / `GLOSSARY.md` を読む。**次タスクは [TODO.md](./TODO.md) が正本。**
 2. `data/meta.json` と `skills.json` の有無を確認してから作業する。
 3. **次タスクが具体化されているとき、実装着手前に推奨言語モデルを必ず提示する**（[MODEL_SELECTION.md](./MODEL_SELECTION.md) / `.cursor/rules/model-recommendation.mdc`）。
-4. 変更したら必ずコミット（メッセージ例: `feat/fix/chore: …` / ドキュメントなら `docs: …`）。
+4. 変更したら必ずコミット（メッセージ例: `feat/fix/chore: …` / ドキュメントなら `docs: …`）。タスク完了時は TODO.md も更新。
 5. 計算式・ヒントLv・継承スコープ・トレセン軒固定は勝手に変えない。変えるなら要件ドキュメントも更新する。
 6. 再 extract は Python より **Node の `scripts/extract_mdb.mjs`** が実績あり（DMM パス候補内蔵）。
 7. サポカイベント再生成は **`npm run extract:events` → `npm run apply:events`**（手順全体: [GAME_UPDATE_RUNBOOK.md](./GAME_UPDATE_RUNBOOK.md)）。
