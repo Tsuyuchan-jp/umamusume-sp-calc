@@ -589,7 +589,7 @@ input[type="search"] {
   border: none;
   background: none;
   cursor: pointer;
-  border-radius: 22px;
+  border-radius: 20px;
   transition: transform 0.12s ease, box-shadow 0.12s ease;
 }
 
