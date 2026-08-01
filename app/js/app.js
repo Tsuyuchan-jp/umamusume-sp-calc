@@ -1132,7 +1132,7 @@ function renderSourceBadges(row) {
 function getResultSortMode() {
   const el = document.getElementById("result-sort");
   const v = el?.value || "skillId";
-  if (v === "kind" || v === "cost" || v === "skillId" || v === "name") return v;
+  if (v === "kind" || v === "cost" || v === "skillId") return v;
   return "skillId";
 }
 

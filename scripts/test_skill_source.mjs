@@ -231,13 +231,6 @@ const rows = [
   },
 ];
 
-const byName = sortPlanRows(rows, "name");
-assertEq(
-  byName.map((r) => r.name).join(","),
-  "あ,い,う,え,お,継承固有 × 2",
-  "名前順＋継承末尾"
-);
-
 const byKind = sortPlanRows(rows, "kind", { supportIds });
 assertEq(
   byKind.map((r) => r.name).join(","),

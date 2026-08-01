@@ -156,12 +156,12 @@ export function mergeSourceInto(list, src) {
 }
 
 /**
- * @param {"name"|"kind"|"cost"|"skillId"} mode
+ * @param {"kind"|"cost"|"skillId"} mode
  * @param {object[]} rows
  * @param {{ supportIds?: (number|null)[] }} [opts]
  * @returns {object[]}
  */
-export function sortPlanRows(rows, mode = "name", opts = {}) {
+export function sortPlanRows(rows, mode = "skillId", opts = {}) {
   const normal = [];
   const inherit = [];
   for (const row of rows) {
@@ -194,10 +194,9 @@ export function sortPlanRows(rows, mode = "name", opts = {}) {
       if (ca !== cb) return cb - ca;
       return bySkillId(a, b);
     });
-  } else if (mode === "skillId") {
-    normal.sort(bySkillId);
   } else {
-    normal.sort(byName);
+    // skillId（既定）
+    normal.sort(bySkillId);
   }
 
   return [...normal, ...inherit];
