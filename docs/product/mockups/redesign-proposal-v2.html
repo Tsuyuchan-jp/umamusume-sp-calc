@@ -1,0 +1,1201 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SP Calc — Visual Proposal v2（U-tools 寄せ）</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@500;700;900&display=swap"
+    rel="stylesheet"
+  />
+  <style>
+    /* =========================================================
+       Visual Proposal v2 — U-tools 世界観寄せ
+       参考: https://ウマ娘.tools/ （配色トークン・背景構成）
+       芝テーマ指示は破棄。現行 app/ は未改変。計算なし。
+       ========================================================= */
+    :root {
+      /* U-tools :root を踏襲（数値は実サイトから採取） */
+      --c-main: #68bb09;
+      --c-main-dark: #238500;
+      --c-dark: #463f70;
+      --c-accent: #ff9900;
+      --c-accent2: #ff7300;
+      --c-accent3: #ff3276;
+      --c-font: #703a13;
+      --c-font-light: #c0a28c;
+      --c-font-accent: #625d7d;
+      --c-font-accent-light: #bebbce;
+      --c-border: #b3b0b6;
+      --c-border-light: #eae7ec;
+      --c-border-dark: #787588;
+      --c-label: #ede6e6;
+      --c-label-light: #faf6f6;
+      --c-panel: #ffffff;
+      --c-panel-dark: #f3f3f3;
+      --c-primary-light: #59ccfc;
+      --c-rank-gold: #f5cf6f;
+
+      --g-widget-bg: linear-gradient(180deg, #ffffff, #dad4da);
+      --g-widget-bg-light: linear-gradient(180deg, #ffffff, #edebef);
+      --g-primary: linear-gradient(180deg, #59ccfc, #23a4f6);
+      --g-secondary: linear-gradient(180deg, #ff75a3, #f7518b);
+      --g-tertiary: linear-gradient(180deg, #fa9f40, #ff8427);
+      --g-accent: linear-gradient(180deg, #80e322, #38c306);
+      --g-gold: linear-gradient(90deg, #e9c95f, #e29403);
+
+      --t-speed: #42a5f5;
+      --t-stamina: #ef5350;
+      --t-power: #ff9800;
+      --t-guts: #ec407a;
+      --t-wit: #66bb6a;
+      --t-friend: #ab47bc;
+
+      --font-ui: "Zen Maru Gothic", Meiryo, "Hiragino Sans", sans-serif;
+      --bar-h: 74px;
+      --page-max: 1080px;
+      --r: 8px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: var(--font-ui);
+      font-weight: 700;
+      color: var(--c-font);
+      background: var(--c-dark);
+      padding-bottom: calc(var(--bar-h) + 28px);
+      -webkit-font-smoothing: auto;
+    }
+
+    /* ゲーム内世界観背景（U-tools と同系統。検討用ホットリンク） */
+    .world-bg {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      background:
+        url("https://static.kouryaku.tools/umamusume/images/app/uma-world.webp?auto=format")
+          center top / cover no-repeat;
+    }
+    .world-bg::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        180deg,
+        rgba(70, 63, 112, 0.15) 0%,
+        rgba(70, 63, 112, 0.05) 40%,
+        rgba(70, 63, 112, 0.35) 100%
+      );
+    }
+
+    .shell {
+      position: relative;
+      z-index: 1;
+      width: min(var(--page-max), calc(100% - 24px));
+      margin: 16px auto 0;
+    }
+
+    .mock-banner {
+      margin-bottom: 12px;
+      padding: 10px 14px;
+      background: rgba(70, 63, 112, 0.92);
+      color: #fff;
+      border-radius: var(--r);
+      font-size: 12px;
+      font-weight: 700;
+      line-height: 1.45;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+    }
+    .mock-banner strong { color: var(--c-rank-gold); }
+    .mock-banner a { color: var(--c-primary-light); }
+
+    /* 中央パネル（U-tools main 相当） */
+    .panel {
+      background:
+        url("https://static.kouryaku.tools/umamusume/images/app/bg.webp?auto=format")
+          center / 180px repeat,
+        var(--c-panel);
+      border-radius: 12px 12px 0 0;
+      box-shadow: 0 8px 28px #00000023;
+      overflow: hidden;
+      animation: rise 0.45s ease both;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 14px 18px;
+      background: linear-gradient(180deg, #5a5288, var(--c-dark));
+      color: #fff;
+      border-bottom: 3px solid var(--c-rank-gold);
+    }
+    .brand-mark { display: flex; flex-direction: column; gap: 2px; }
+    .brand-kicker {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      color: var(--c-font-accent-light);
+    }
+    .brand-name {
+      margin: 0;
+      font-size: 22px;
+      font-weight: 900;
+      letter-spacing: 0.02em;
+    }
+    .brand-name span { color: var(--c-rank-gold); }
+    .brand-lead {
+      margin: 0;
+      font-size: 12px;
+      font-weight: 700;
+      color: #ddd8ef;
+    }
+    .brand-actions { display: flex; gap: 8px; }
+    .ghost-btn {
+      appearance: none;
+      border: 1px solid rgba(255, 255, 255, 0.35);
+      background: rgba(255, 255, 255, 0.1);
+      color: #fff;
+      font: inherit;
+      font-size: 12px;
+      font-weight: 700;
+      padding: 7px 12px;
+      border-radius: 999px;
+      cursor: pointer;
+    }
+    .ghost-btn:hover { background: rgba(255, 255, 255, 0.2); }
+
+    .zone { padding: 14px 16px 8px; }
+    .zone-head {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+    .zone-title {
+      margin: 0;
+      font-size: 14px;
+      font-weight: 900;
+      color: var(--c-dark);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .zone-title::before {
+      content: "";
+      width: 4px;
+      height: 1.1em;
+      border-radius: 2px;
+      background: var(--g-tertiary);
+    }
+    .zone-hint {
+      margin: 0;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--c-font-light);
+    }
+
+    /* 編成ギャラリー */
+    .deck-board {
+      background: rgba(255, 255, 255, 0.72);
+      border: 1px solid var(--c-border-light);
+      border-radius: var(--r);
+      padding: 12px;
+      box-shadow: inset 0 1px 0 #fff;
+    }
+    .gallery {
+      display: grid;
+      grid-template-columns: 108px repeat(6, minmax(0, 1fr));
+      gap: 8px;
+      align-items: start;
+    }
+    .slot { min-width: 0; display: flex; flex-direction: column; gap: 6px; }
+    .slot-label {
+      font-size: 10px;
+      font-weight: 900;
+      text-align: center;
+      color: var(--c-font-accent);
+      letter-spacing: 0.04em;
+    }
+    .slot-face {
+      position: relative;
+      aspect-ratio: 3 / 4.15;
+      border-radius: 6px;
+      overflow: hidden;
+      border: 2px solid var(--c-border);
+      background: var(--c-label);
+      cursor: pointer;
+      padding: 0;
+      box-shadow: 0 2px 8px #00000020;
+      transition: transform 0.12s, border-color 0.12s;
+    }
+    .slot-face.is-trainee { aspect-ratio: 1 / 1.12; }
+    .slot-face:hover {
+      transform: translateY(-2px);
+      border-color: var(--c-accent);
+    }
+    .slot-face img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .type-badge {
+      position: absolute;
+      top: 4px;
+      right: 4px;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      font-size: 9px;
+      font-weight: 900;
+      color: #fff;
+      border: 1.5px solid #fff;
+      box-shadow: 0 1px 3px #00000040;
+    }
+    .type-badge.speed { background: var(--t-speed); }
+    .type-badge.stamina { background: var(--t-stamina); }
+    .type-badge.power { background: var(--t-power); }
+    .type-badge.guts { background: var(--t-guts); }
+    .type-badge.wit { background: var(--t-wit); }
+    .type-badge.friend { background: var(--t-friend); }
+
+    .slot-name {
+      margin: 0;
+      font-size: 11px;
+      font-weight: 700;
+      text-align: center;
+      color: var(--c-font);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .evt-stack { display: flex; flex-direction: column; gap: 3px; }
+    .evt-panel {
+      appearance: none;
+      border: 1px solid var(--c-border);
+      background: var(--g-widget-bg-light);
+      border-radius: 5px;
+      padding: 5px 6px;
+      text-align: left;
+      font: inherit;
+      font-size: 10px;
+      font-weight: 700;
+      color: var(--c-font-accent);
+      cursor: pointer;
+      line-height: 1.3;
+    }
+    .evt-panel:hover { border-color: var(--c-border-dark); }
+    .evt-panel.is-on {
+      border-color: var(--c-accent2);
+      background: linear-gradient(180deg, #fff8ee, #ffe4c4);
+      color: var(--c-font);
+      box-shadow: inset 0 0 0 1px rgba(255, 153, 0, 0.25);
+    }
+    .evt-panel .gold {
+      display: inline-block;
+      margin-right: 2px;
+      padding: 0 3px;
+      border-radius: 3px;
+      background: var(--g-gold);
+      color: #5a3d00;
+      font-size: 9px;
+      font-weight: 900;
+    }
+    .evt-auto {
+      font-size: 10px;
+      font-weight: 700;
+      color: var(--c-font-accent);
+      padding: 5px 4px;
+      text-align: center;
+      border: 1px dashed var(--c-border);
+      border-radius: 5px;
+      background: rgba(250, 246, 246, 0.8);
+    }
+    .evt-auto .gold {
+      display: block;
+      margin: 0 auto 2px;
+      width: fit-content;
+      padding: 0 4px;
+      border-radius: 3px;
+      background: var(--g-gold);
+      color: #5a3d00;
+      font-size: 9px;
+      font-weight: 900;
+    }
+
+    .footband {
+      margin-top: 12px;
+      padding-top: 10px;
+      border-top: 1px solid var(--c-border-light);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+    .foot-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+      align-items: center;
+    }
+    .foot-k {
+      font-size: 10px;
+      font-weight: 900;
+      color: var(--c-font-accent);
+      margin-right: 2px;
+    }
+    .chip {
+      appearance: none;
+      border: 1px solid var(--c-border);
+      background: var(--g-widget-bg);
+      color: var(--c-font-accent);
+      font: inherit;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 5px 9px;
+      border-radius: 6px;
+      cursor: pointer;
+      min-width: 4.2em;
+      box-shadow: 0 1px 0 #fff inset;
+    }
+    .chip:hover { border-color: var(--c-border-dark); }
+    .chip.is-on {
+      border-color: var(--c-main-dark);
+      background: var(--g-accent);
+      color: #fff;
+      text-shadow: 0 1px 0 rgba(0, 0, 0, 0.15);
+    }
+    .chip.is-signal {
+      border-color: #c00f47;
+      background: var(--g-secondary);
+      color: #fff;
+    }
+
+    /* 作業台 */
+    .workbench { padding-top: 4px; padding-bottom: 16px; }
+    .bench-board {
+      background: rgba(255, 255, 255, 0.78);
+      border: 1px solid var(--c-border-light);
+      border-radius: var(--r);
+      padding: 12px;
+    }
+    .bench-toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 12px;
+      align-items: center;
+      margin-bottom: 10px;
+      padding: 8px 10px;
+      background: var(--c-label);
+      border-radius: 6px;
+      border: 1px solid var(--c-border-light);
+    }
+    .filter-group { display: flex; flex-wrap: wrap; gap: 5px; align-items: center; }
+    .filter-label {
+      font-size: 11px;
+      font-weight: 900;
+      color: var(--c-font);
+    }
+    .seg {
+      display: inline-flex;
+      border: 1px solid var(--c-border-dark);
+      border-radius: 6px;
+      overflow: hidden;
+      background: #fff;
+    }
+    .seg button {
+      appearance: none;
+      border: 0;
+      background: transparent;
+      font: inherit;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 6px 10px;
+      color: var(--c-font-accent);
+      cursor: pointer;
+      border-right: 1px solid var(--c-border);
+    }
+    .seg button:last-child { border-right: 0; }
+    .seg button.is-on {
+      background: var(--g-primary);
+      color: #fff;
+      text-shadow: 0 1px 0 rgba(0, 0, 0, 0.12);
+    }
+    .bench-actions { margin-left: auto; }
+    .solid-btn {
+      appearance: none;
+      border: 1px solid #1a7ab8;
+      background: var(--g-primary);
+      color: #fff;
+      font: inherit;
+      font-weight: 900;
+      font-size: 12px;
+      padding: 7px 12px;
+      border-radius: 6px;
+      cursor: pointer;
+      text-shadow: 0 1px 0 rgba(0, 0, 0, 0.15);
+    }
+    .solid-btn:hover { filter: brightness(1.05); }
+
+    .skill-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 12px;
+    }
+    .skill-table th {
+      text-align: left;
+      font-size: 10px;
+      font-weight: 900;
+      color: var(--c-font-accent);
+      padding: 7px 8px;
+      border-bottom: 2px solid var(--c-dark);
+      background: rgba(70, 63, 112, 0.06);
+    }
+    .skill-table td {
+      padding: 8px;
+      border-bottom: 1px solid var(--c-border-light);
+      font-weight: 700;
+      color: var(--c-font);
+      vertical-align: middle;
+    }
+    .skill-table tr.is-off td {
+      opacity: 0.4;
+      text-decoration: line-through;
+    }
+    .skill-table tr:hover td { background: rgba(255, 153, 0, 0.06); }
+    .origin {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 11px;
+      color: var(--c-font-accent);
+    }
+    .origin-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--t-speed);
+    }
+    .origin-dot.event { background: var(--c-accent3); }
+    .origin-dot.char { background: var(--t-friend); }
+    .origin-dot.scenario { background: var(--c-main); }
+    .hint-lv {
+      display: inline-grid;
+      place-items: center;
+      min-width: 2.2em;
+      padding: 2px 6px;
+      border-radius: 4px;
+      background: var(--c-dark);
+      color: #fff;
+      font-size: 10px;
+      font-weight: 900;
+    }
+    .sp-num {
+      font-variant-numeric: tabular-nums;
+      font-weight: 900;
+      font-size: 13px;
+      color: var(--c-accent2);
+    }
+    .toggle {
+      width: 34px;
+      height: 20px;
+      border-radius: 999px;
+      border: 0;
+      background: var(--c-border);
+      position: relative;
+      cursor: pointer;
+    }
+    .toggle::after {
+      content: "";
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: #fff;
+      transition: transform 0.15s;
+      box-shadow: 0 1px 2px #00000030;
+    }
+    .toggle.is-on { background: var(--c-main); }
+    .toggle.is-on::after { transform: translateX(14px); }
+
+    .design-notes {
+      margin: 14px 0 0;
+      padding: 12px 14px;
+      background: rgba(255, 255, 255, 0.88);
+      border: 1px dashed var(--c-border-dark);
+      border-radius: var(--r);
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--c-font-accent);
+      line-height: 1.5;
+    }
+    .design-notes h3 {
+      margin: 0 0 6px;
+      font-size: 13px;
+      color: var(--c-dark);
+    }
+    .design-notes ul { margin: 0; padding-left: 1.2em; }
+    .design-notes li { margin: 3px 0; }
+
+    /* 継承シート */
+    .inherit-sheet {
+      position: fixed;
+      left: 50%;
+      bottom: calc(var(--bar-h) + 8px);
+      transform: translateX(-50%) translateY(8px);
+      width: min(680px, calc(100% - 20px));
+      background: linear-gradient(180deg, #5a5288, var(--c-dark));
+      color: #fff;
+      border-radius: var(--r);
+      padding: 10px 12px;
+      display: none;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      z-index: 40;
+      border: 1px solid rgba(245, 207, 111, 0.5);
+      box-shadow: 0 8px 24px #00000040;
+      opacity: 0;
+      transition: opacity 0.2s, transform 0.2s;
+    }
+    .inherit-sheet.is-open {
+      display: flex;
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+    .inherit-sheet .k {
+      font-size: 11px;
+      font-weight: 900;
+      color: var(--c-rank-gold);
+      letter-spacing: 0.06em;
+    }
+    .inherit-sheet label {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 12px;
+      font-weight: 700;
+    }
+    .inherit-sheet select,
+    .inherit-sheet input[type="number"] {
+      font: inherit;
+      font-size: 12px;
+      font-weight: 700;
+      border-radius: 5px;
+      border: 1px solid #787588;
+      background: #2f2a4d;
+      color: #fff;
+      padding: 3px 7px;
+    }
+
+    /* 合計バー — U-tools の紫クロム（芝緑は使わない） */
+    .total-bar {
+      position: fixed;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 50;
+      height: var(--bar-h);
+      background: linear-gradient(180deg, #5a5288 0%, var(--c-dark) 55%, #342e56 100%);
+      color: #fff;
+      box-shadow: 0 -6px 24px #00000040;
+      display: flex;
+      align-items: stretch;
+      justify-content: center;
+      border-top: 3px solid var(--c-rank-gold);
+    }
+    .total-inner {
+      width: min(var(--page-max), calc(100% - 20px));
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 16px;
+      align-items: center;
+    }
+    .total-score {
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+    }
+    .total-score .label {
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      color: var(--c-font-accent-light);
+    }
+    .total-score .value {
+      font-size: 34px;
+      font-weight: 900;
+      line-height: 1;
+      color: var(--c-rank-gold);
+      font-variant-numeric: tabular-nums;
+      text-shadow: 0 2px 0 rgba(0, 0, 0, 0.25);
+    }
+    .total-score .unit {
+      font-size: 13px;
+      font-weight: 900;
+      color: #ffe9a8;
+    }
+    .premise-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+      justify-content: flex-end;
+      align-items: center;
+    }
+    .p-meta {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--c-font-accent-light);
+    }
+    .p-chip {
+      appearance: none;
+      border: 1px solid #787588;
+      background: var(--g-widget-bg);
+      color: var(--c-font-accent);
+      font: inherit;
+      font-size: 12px;
+      font-weight: 700;
+      padding: 7px 11px;
+      border-radius: 6px;
+      cursor: pointer;
+      min-width: 5.2em;
+    }
+    .p-chip.is-on {
+      border-color: #c00f47;
+      background: var(--g-secondary);
+      color: #fff;
+    }
+    .p-seg {
+      display: inline-flex;
+      border: 1px solid #787588;
+      border-radius: 6px;
+      overflow: hidden;
+    }
+    .p-seg button {
+      appearance: none;
+      border: 0;
+      background: rgba(255, 255, 255, 0.12);
+      color: #ddd8ef;
+      font: inherit;
+      font-size: 12px;
+      font-weight: 700;
+      padding: 7px 10px;
+      cursor: pointer;
+      border-right: 1px solid rgba(255, 255, 255, 0.15);
+    }
+    .p-seg button:last-child { border-right: 0; }
+    .p-seg button.is-on {
+      background: var(--g-tertiary);
+      color: #fff;
+    }
+
+    /* ピッカー */
+    .picker {
+      position: fixed;
+      inset: 0;
+      z-index: 80;
+      display: none;
+      place-items: center;
+      background: rgba(70, 63, 112, 0.55);
+      backdrop-filter: blur(3px);
+      padding: 20px;
+    }
+    .picker.is-open { display: grid; }
+    .picker-panel {
+      width: min(700px, 100%);
+      max-height: min(80vh, 620px);
+      background:
+        url("https://static.kouryaku.tools/umamusume/images/app/bg.webp?auto=format")
+          center / 180px repeat,
+        #fff;
+      border-radius: 12px;
+      box-shadow: 0 20px 50px #00000050;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      border: 2px solid var(--c-dark);
+    }
+    .picker-chrome {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 14px;
+      background: linear-gradient(180deg, #5a5288, var(--c-dark));
+      color: #fff;
+      border-bottom: 2px solid var(--c-rank-gold);
+    }
+    .picker-chrome h2 { margin: 0; font-size: 15px; font-weight: 900; }
+    .picker-filters {
+      padding: 10px 12px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+      background: var(--c-label);
+      border-bottom: 1px solid var(--c-border);
+    }
+    .picker-grid {
+      padding: 12px;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(92px, 1fr));
+      gap: 8px;
+      overflow: auto;
+      min-height: 300px;
+    }
+    .pick-card {
+      position: relative;
+      aspect-ratio: 3/4;
+      border-radius: 6px;
+      overflow: hidden;
+      border: 3px solid transparent;
+      cursor: pointer;
+      background: var(--c-label);
+      padding: 0;
+    }
+    .pick-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .pick-card.is-selected {
+      border-color: var(--c-accent);
+      box-shadow: 0 0 0 2px rgba(255, 153, 0, 0.35);
+    }
+    .pick-card.is-selected::after {
+      content: "選択中";
+      position: absolute;
+      left: 0; right: 0; bottom: 0;
+      background: var(--c-accent2);
+      color: #fff;
+      font-size: 10px;
+      font-weight: 900;
+      text-align: center;
+      padding: 2px 0;
+    }
+
+    @keyframes rise {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 900px) {
+      .gallery { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+      .gallery .slot:first-child { grid-column: 1 / -1; max-width: 120px; }
+      .footband { grid-template-columns: 1fr; }
+      .total-inner { grid-template-columns: 1fr; gap: 4px; padding: 6px 0; }
+      .total-score .value { font-size: 28px; }
+      .premise-row { justify-content: flex-start; }
+      :root { --bar-h: 110px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="world-bg" aria-hidden="true"></div>
+
+  <div class="shell">
+    <aside class="mock-banner">
+      <strong>VISUAL MOCK v2</strong>
+      — U-tools（<a href="https://xn--gck1f423k.xn--1bvt37a.tools/" target="_blank" rel="noopener">ウマ娘.tools</a>）の配色・世界観背景を参考。
+      芝テーマ指示は破棄。現行アプリ未改変。背景画像は検討用の参照表示（本番では自前アセット方針を確認）。
+    </aside>
+
+    <div class="panel">
+      <header class="brand">
+        <div class="brand-mark">
+          <div class="brand-kicker">TRAINING PREP TOOL</div>
+          <h1 class="brand-name">SP <span>Calc</span></h1>
+          <p class="brand-lead">望まぬスキルを混ぜない、真の必要 SP</p>
+        </div>
+        <div class="brand-actions">
+          <button type="button" class="ghost-btn">メモリ</button>
+          <button type="button" class="ghost-btn">使い方</button>
+        </div>
+      </header>
+
+      <section class="zone" aria-labelledby="zone-deck-title">
+        <div class="zone-head">
+          <h2 class="zone-title" id="zone-deck-title">編成ギャラリー</h2>
+          <p class="zone-hint">カード差し替えでバリアント比較</p>
+        </div>
+
+        <div class="deck-board">
+          <div class="gallery">
+            <div class="slot">
+              <div class="slot-label">育成</div>
+              <button type="button" class="slot-face is-trainee" data-open-picker aria-label="育成ウマ娘を選ぶ">
+                <img src="../../../assets/characters/112901.webp" alt="アーモンドアイ" />
+              </button>
+              <p class="slot-name">アーモンドアイ</p>
+            </div>
+
+            <div class="slot">
+              <div class="slot-label">枠1</div>
+              <button type="button" class="slot-face" data-open-picker>
+                <img src="../../../assets/supports/30281.webp" alt="" />
+                <span class="type-badge speed">スピ</span>
+              </button>
+              <p class="slot-name">エアグルーヴ</p>
+              <div class="evt-stack">
+                <button type="button" class="evt-panel is-on"><span class="gold">金</span>切れ者</button>
+                <button type="button" class="evt-panel">右回り○</button>
+              </div>
+            </div>
+
+            <div class="slot">
+              <div class="slot-label">枠2</div>
+              <button type="button" class="slot-face" data-open-picker>
+                <img src="../../../assets/supports/30292.webp" alt="" />
+                <span class="type-badge speed">スピ</span>
+              </button>
+              <p class="slot-name">トウカイテイオー</p>
+              <div class="evt-stack">
+                <button type="button" class="evt-panel is-on"><span class="gold">金</span>先手必勝</button>
+                <button type="button" class="evt-panel">負けん気</button>
+              </div>
+            </div>
+
+            <div class="slot">
+              <div class="slot-label">枠3</div>
+              <button type="button" class="slot-face" data-open-picker>
+                <img src="../../../assets/supports/30301.webp" alt="" />
+                <span class="type-badge stamina">スタ</span>
+              </button>
+              <p class="slot-name">タップダンスシチー</p>
+              <div class="evt-stack">
+                <div class="evt-auto"><span class="gold">金</span>自動：冷静</div>
+              </div>
+            </div>
+
+            <div class="slot">
+              <div class="slot-label">枠4</div>
+              <button type="button" class="slot-face" data-open-picker>
+                <img src="../../../assets/supports/30286.webp" alt="" />
+                <span class="type-badge stamina">スタ</span>
+              </button>
+              <p class="slot-name">メジロドーベル</p>
+              <div class="evt-stack">
+                <button type="button" class="evt-panel is-on"><span class="gold">金</span>食いしん坊</button>
+              </div>
+            </div>
+
+            <div class="slot">
+              <div class="slot-label">枠5</div>
+              <button type="button" class="slot-face" data-open-picker>
+                <img src="../../../assets/supports/30277.webp" alt="" />
+                <span class="type-badge wit">賢</span>
+              </button>
+              <p class="slot-name">スマートファルコン</p>
+              <div class="evt-stack">
+                <button type="button" class="evt-panel is-on">作戦理解</button>
+                <button type="button" class="evt-panel">冷静</button>
+              </div>
+            </div>
+
+            <div class="slot">
+              <div class="slot-label">枠6</div>
+              <button type="button" class="slot-face" data-open-picker>
+                <img src="../../../assets/supports/30271.webp" alt="" />
+                <span class="type-badge friend">友</span>
+              </button>
+              <p class="slot-name">駿川たづな</p>
+              <div class="evt-stack">
+                <div class="evt-auto"><span class="gold">金</span>自動：中盤巧者</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="footband">
+            <div class="foot-group">
+              <span class="foot-k">リンク</span>
+              <button type="button" class="chip is-on">エアグルーヴ</button>
+              <button type="button" class="chip">テイオー</button>
+            </div>
+            <div class="foot-group">
+              <span class="foot-k">RMJ</span>
+              <button type="button" class="chip is-signal">参加する</button>
+              <button type="button" class="chip">不参加</button>
+            </div>
+            <div class="foot-group" style="grid-column: 1 / -1">
+              <span class="foot-k">自動計上</span>
+              <button type="button" class="chip is-on">サポカイベント</button>
+              <button type="button" class="chip is-on">シナリオ</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="zone workbench" aria-labelledby="zone-bench-title">
+        <div class="zone-head">
+          <h2 class="zone-title" id="zone-bench-title">結果作業台</h2>
+          <p class="zone-hint">望まぬスキルを落として真の必要 SP へ</p>
+        </div>
+
+        <div class="bench-board">
+          <div class="bench-toolbar">
+            <div class="filter-group">
+              <span class="filter-label">レギュ</span>
+              <div class="seg" role="group">
+                <button type="button" class="is-on">すべて</button>
+                <button type="button">○以上</button>
+                <button type="button">◎のみ</button>
+              </div>
+            </div>
+            <div class="filter-group">
+              <span class="filter-label">並び</span>
+              <div class="seg" role="group">
+                <button type="button" class="is-on">由来</button>
+                <button type="button">SP</button>
+                <button type="button">名前</button>
+              </div>
+            </div>
+            <div class="bench-actions">
+              <button type="button" class="solid-btn">含めるスキルをコピー</button>
+            </div>
+          </div>
+
+          <table class="skill-table">
+            <thead>
+              <tr>
+                <th style="width:3.5em">含める</th>
+                <th>スキル</th>
+                <th>由来</th>
+                <th>ヒント</th>
+                <th style="width:5em">必要SP</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><button type="button" class="toggle is-on" data-toggle aria-label="含める"></button></td>
+                <td>切れ者</td>
+                <td><span class="origin"><span class="origin-dot event"></span>イベント · エアグルーヴ</span></td>
+                <td><span class="hint-lv">Lv3</span></td>
+                <td class="sp-num">162</td>
+              </tr>
+              <tr>
+                <td><button type="button" class="toggle is-on" data-toggle aria-label="含める"></button></td>
+                <td>先手必勝</td>
+                <td><span class="origin"><span class="origin-dot event"></span>イベント · テイオー</span></td>
+                <td><span class="hint-lv">Lv3</span></td>
+                <td class="sp-num">162</td>
+              </tr>
+              <tr>
+                <td><button type="button" class="toggle is-on" data-toggle aria-label="含める"></button></td>
+                <td>中盤巧者</td>
+                <td><span class="origin"><span class="origin-dot scenario"></span>シナリオ · たづな</span></td>
+                <td><span class="hint-lv">Lv2</span></td>
+                <td class="sp-num">147</td>
+              </tr>
+              <tr>
+                <td><button type="button" class="toggle is-on" data-toggle aria-label="含める"></button></td>
+                <td>右回り○</td>
+                <td><span class="origin"><span class="origin-dot"></span>トレヒント · 枠1</span></td>
+                <td><span class="hint-lv">Lv5</span></td>
+                <td class="sp-num">98</td>
+              </tr>
+              <tr class="is-off">
+                <td><button type="button" class="toggle" data-toggle aria-label="含める"></button></td>
+                <td>負けん気</td>
+                <td><span class="origin"><span class="origin-dot"></span>トレヒント · 枠2</span></td>
+                <td><span class="hint-lv">Lv5</span></td>
+                <td class="sp-num">98</td>
+              </tr>
+              <tr>
+                <td><button type="button" class="toggle is-on" data-toggle aria-label="含める"></button></td>
+                <td>末脚</td>
+                <td><span class="origin"><span class="origin-dot char"></span>所持 · アーモンドアイ</span></td>
+                <td><span class="hint-lv">Lv3</span></td>
+                <td class="sp-num">126</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </div>
+
+    <aside class="design-notes">
+      <h3>v2 の狙い（U-tools 参考・芝指示は破棄）</h3>
+      <ul>
+        <li><strong>世界観背景</strong> — レース場の全画面画像＋紫のベース（U-tools と同じ構成）。</li>
+        <li><strong>中央パネル</strong> — 幾何模様の白パネルにコンテンツを載せる。</li>
+        <li><strong>配色</strong> — 紫クロム <code>#463f70</code>、茶文字 <code>#703a13</code>、緑チェック <code>#68bb09</code>、オレンジ／ピンクのゲーム風グラデ。</li>
+        <li><strong>合計バー</strong> — 芝緑ではなく、ゲーム UI 寄りの紫＋ゴールド縁。</li>
+        <li>レイアウト骨格（二マグネット・バー正本・列下パネル）は維持。</li>
+      </ul>
+    </aside>
+  </div>
+
+  <div class="inherit-sheet" id="inherit-sheet">
+    <span class="k">継承固有</span>
+    <label>個数
+      <select><option>1</option><option selected>2</option><option>3</option></select>
+    </label>
+    <label>Lv
+      <select><option>1</option><option>2</option><option>3</option><option selected>4</option><option>5</option></select>
+    </label>
+    <label>base SP
+      <input type="number" value="200" min="1" style="width:4.5em" />
+    </label>
+  </div>
+
+  <footer class="total-bar">
+    <div class="total-inner">
+      <div class="total-score">
+        <span class="label">TOTAL</span>
+        <span class="value">1,248</span>
+        <span class="unit">SP</span>
+      </div>
+      <div class="premise-row">
+        <span class="p-meta">前提</span>
+        <button type="button" class="p-chip is-on" data-toggle-chip>切れ者 ON</button>
+        <span class="p-meta">トレLv</span>
+        <div class="p-seg">
+          <button type="button">3</button>
+          <button type="button">4</button>
+          <button type="button" class="is-on">5</button>
+        </div>
+        <button type="button" class="p-chip" id="inherit-toggle">継承 OFF</button>
+      </div>
+    </div>
+  </footer>
+
+  <div class="picker" id="picker" role="dialog" aria-modal="true">
+    <div class="picker-panel">
+      <div class="picker-chrome">
+        <h2>サポートを選ぶ</h2>
+        <button type="button" class="ghost-btn" id="picker-close">閉じる</button>
+      </div>
+      <div class="picker-filters">
+        <div class="seg">
+          <button type="button" class="is-on" data-type="all">すべて</button>
+          <button type="button" data-type="speed">スピ</button>
+          <button type="button" data-type="stamina">スタ</button>
+          <button type="button" data-type="wit">賢</button>
+          <button type="button" data-type="friend">友</button>
+        </div>
+        <button type="button" class="chip is-on">イベント対応のみ</button>
+        <button type="button" class="chip">SSR</button>
+      </div>
+      <div class="picker-grid" id="picker-grid"></div>
+    </div>
+  </div>
+
+  <script>
+    const ASSET = "../../../assets/supports/";
+    const MOCK_CARDS = [
+      { id: "30281", type: "speed", selected: true },
+      { id: "30292", type: "speed" },
+      { id: "30301", type: "stamina" },
+      { id: "30286", type: "stamina" },
+      { id: "30277", type: "wit" },
+      { id: "30271", type: "friend", selected: true },
+      { id: "30278", type: "speed" },
+      { id: "30294", type: "stamina" },
+      { id: "30304", type: "power" },
+      { id: "30285", type: "guts" },
+      { id: "30283", type: "wit" },
+      { id: "30275", type: "friend" },
+    ];
+    const grid = document.getElementById("picker-grid");
+    const picker = document.getElementById("picker");
+    let activeType = "all";
+
+    function renderPicker() {
+      grid.innerHTML = "";
+      MOCK_CARDS.filter((c) => activeType === "all" || c.type === activeType).forEach((c) => {
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "pick-card" + (c.selected ? " is-selected" : "");
+        btn.innerHTML = `<img src="${ASSET}${c.id}.webp" alt="" />`;
+        btn.addEventListener("click", () => {
+          MOCK_CARDS.forEach((x) => { x.selected = false; });
+          c.selected = true;
+          renderPicker();
+        });
+        grid.appendChild(btn);
+      });
+    }
+    renderPicker();
+
+    document.querySelectorAll("[data-open-picker]").forEach((el) => {
+      el.addEventListener("click", () => picker.classList.add("is-open"));
+    });
+    document.getElementById("picker-close").addEventListener("click", () => picker.classList.remove("is-open"));
+    picker.addEventListener("click", (e) => { if (e.target === picker) picker.classList.remove("is-open"); });
+
+    document.querySelectorAll(".picker-filters .seg button[data-type]").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        btn.parentElement.querySelectorAll("button").forEach((b) => b.classList.remove("is-on"));
+        btn.classList.add("is-on");
+        activeType = btn.dataset.type;
+        renderPicker();
+      });
+    });
+
+    document.querySelectorAll(".evt-panel").forEach((panel) => {
+      panel.addEventListener("click", () => {
+        panel.parentElement.querySelectorAll(".evt-panel").forEach((p) => p.classList.remove("is-on"));
+        panel.classList.add("is-on");
+      });
+    });
+
+    document.querySelectorAll(".seg").forEach((seg) => {
+      if (seg.closest(".picker-filters")) return;
+      seg.querySelectorAll("button").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          seg.querySelectorAll("button").forEach((b) => b.classList.remove("is-on"));
+          btn.classList.add("is-on");
+        });
+      });
+    });
+
+    document.querySelectorAll("[data-toggle]").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        btn.classList.toggle("is-on");
+        btn.closest("tr").classList.toggle("is-off", !btn.classList.contains("is-on"));
+      });
+    });
+
+    document.querySelectorAll(".foot-group .chip").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const group = btn.parentElement;
+        group.querySelectorAll(".chip").forEach((c) => c.classList.remove("is-on", "is-signal"));
+        btn.classList.add(btn.textContent.includes("参加") ? "is-signal" : "is-on");
+      });
+    });
+
+    document.querySelector("[data-toggle-chip]").addEventListener("click", (e) => {
+      const on = e.currentTarget.classList.toggle("is-on");
+      e.currentTarget.textContent = on ? "切れ者 ON" : "切れ者 OFF";
+    });
+
+    const inheritSheet = document.getElementById("inherit-sheet");
+    const inheritToggle = document.getElementById("inherit-toggle");
+    inheritToggle.addEventListener("click", () => {
+      const on = !inheritToggle.classList.contains("is-on");
+      inheritToggle.classList.toggle("is-on", on);
+      inheritToggle.textContent = on ? "継承 ON" : "継承 OFF";
+      inheritSheet.classList.toggle("is-open", on);
+    });
+
+    document.querySelectorAll(".p-seg").forEach((seg) => {
+      seg.querySelectorAll("button").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          seg.querySelectorAll("button").forEach((b) => b.classList.remove("is-on"));
+          btn.classList.add("is-on");
+        });
+      });
+    });
+  </script>
+</body>
+</html>

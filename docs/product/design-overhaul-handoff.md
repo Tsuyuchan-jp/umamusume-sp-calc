@@ -115,8 +115,8 @@
 
 ユーザー方針（2026-08-02 更新）: 現行 CSS に引っ張られて大きな改修が難しいため、**先に独立モックで方向を決める**。
 
-0. **独立ビジュアルモック（進行中）** — [`mockups/redesign-proposal-v1.html`](./mockups/redesign-proposal-v1.html)  
-   現行 `app/` は触らない。UX 構造（二マグネット・バー正本）だけ踏襲した見た目提案。フィードバック後に移植方針を決める。
+0. **独立ビジュアルモック（進行中）** — [`mockups/redesign-proposal-v2.html`](./mockups/redesign-proposal-v2.html)（U-tools 寄せ・推奨）  
+   現行 `app/` は触らない。v1 / v1.1（芝）は参考履歴。フィードバック後に移植方針を決める。
 1. **方向確定後** — モックのトークン／構造を `app/` へ移植（Foundation 再塗装 or 段階置換）
 2. **Round 1 — 正しさ** — ピッカー絞込バグ、選択強調
 3. **Round 2 — 列下イベント＋足元帯**
