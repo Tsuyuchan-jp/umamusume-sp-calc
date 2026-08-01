@@ -50,11 +50,11 @@
 
 ## 開発者向け
 
-ドキュメントの入口（状況別の開き方・正本表）: [docs/README.md](docs/README.md)
+ドキュメントの入口: [docs/README.md](docs/README.md)（トップは8ファイル構成）
 
-- ローカル起動・トラブル: [docs/DEV.md](docs/DEV.md)
-- ゲーム本パッチ後の追随: [docs/GAME_UPDATE_RUNBOOK.md](docs/GAME_UPDATE_RUNBOOK.md)
-- 用語 / 仕様 / 更新履歴: [GLOSSARY](docs/GLOSSARY.md) / [spec](docs/spec.md) / [CHANGELOG](docs/CHANGELOG.md)
+- 仕様（要件・計算・用語）: [docs/SPEC.md](docs/SPEC.md)
+- 運用（起動・ゲーム更新・画像）: [docs/OPS.md](docs/OPS.md)
+- 更新履歴: [docs/CHANGELOG.md](docs/CHANGELOG.md)
 - 優先40サポカ一覧: [docs/PRIORITY_SUPPORTS.md](docs/PRIORITY_SUPPORTS.md)（JSON: [data/priority-supports.json](data/priority-supports.json)）
 
 ## フィードバック

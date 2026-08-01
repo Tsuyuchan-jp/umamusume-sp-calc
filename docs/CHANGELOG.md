@@ -13,7 +13,7 @@
 ### 追加
 
 - **カード画像 Phase 1**: 優先サポカ40 + 育成 `107703` を `assets/**/{id}.webp` に同梱（約 0.6 MiB）
-- `npm run assets:extract` / `assets:import`（meta+dat → flat PNG → webp）。手順は [ASSETS.md](./ASSETS.md)
+- `npm run assets:extract` / `assets:import`（meta+dat → flat PNG → webp）。手順は [OPS.md（画像）](./OPS.md#画像アセット)
 
 ### TODO
 
@@ -232,7 +232,7 @@
 
 - **GitHub Pages 公開**（https://Tsuyuchan-jp.github.io/umamusume-sp-calc/app/）
 - ヘッダーにバージョン表記
-- 公開向け README 整理（利用者向けを先頭、開発手順は `docs/DEV.md`）
+- 公開向け README 整理（利用者向けを先頭、開発手順は `docs/OPS.md`）
 - デプロイ workflow（`verify` / `test` 後に Pages 配信）
 - ルート `index.html` から `/app/` へリダイレクト
 
@@ -252,4 +252,4 @@
 
 ## 0.1.0 以前（開発・未公開）
 
-トレセン軒シナリオ、リンク白/金、RMJ 自動計上、優先11サポカイベント、金+白コスト合算などのコア機能を実装。詳細は `docs/ROADMAP.md` の Phase A–C を参照。
+トレセン軒シナリオ、リンク白/金、RMJ 自動計上、優先11サポカイベント、金+白コスト合算などのコア機能を実装。詳細は当時の ROADMAP Phase A–C（現在は [CHANGELOG](./CHANGELOG.md) / [TODO](./TODO.md)）。

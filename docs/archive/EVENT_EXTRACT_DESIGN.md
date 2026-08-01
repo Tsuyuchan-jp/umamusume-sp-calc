@@ -199,7 +199,7 @@ Phase A はマッピング表で旧 id と突合。Phase B で新 id に寄せ�
 
 | # | タスク | 状態 |
 |---|--------|------|
-| 1 | U-tools SSR JSON パース仕様 | ✅ [UTOOLS_EVENT_PARSE.md](./UTOOLS_EVENT_PARSE.md) |
+| 1 | U-tools SSR JSON パース仕様 | ✅ [OPS.md（U-tools）](../OPS.md#u-tools-パース) |
 | 2 | `extract_support_events.mjs` | ✅ |
 | 3 | `event_selection` / ラベル整形接続 | ✅ |
 | 4 | ゴールデン比較 `compare_events_golden.mjs` | ✅ |
@@ -208,7 +208,7 @@ Phase A はマッピング表で旧 id と突合。Phase B で新 id に寄せ�
 
 ### 運用（ゲーム更新時）
 
-手順の正本: [GAME_UPDATE_RUNBOOK.md](./GAME_UPDATE_RUNBOOK.md)
+手順の正本: [OPS.md（ゲーム更新）](../OPS.md#ゲーム更新-runbook)
 
 ```powershell
 npm run extract:events

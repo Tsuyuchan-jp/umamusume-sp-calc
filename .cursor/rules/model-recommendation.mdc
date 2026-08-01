@@ -46,4 +46,5 @@ alwaysApply: true
 | Grok 4.6 High | … |
 ```
 
-詳細基準: [docs/MODEL_SELECTION.md](../docs/MODEL_SELECTION.md)
+詳細基準・例: [docs/AGENT_HANDOFF.md](../docs/AGENT_HANDOFF.md#推奨言語モデル)（本ルールが提示の正）
+

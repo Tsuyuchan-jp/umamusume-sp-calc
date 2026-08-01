@@ -6,8 +6,9 @@
 関連:
 - docs 入口 → [README.md](./README.md)
 - 状態・ルールのブリーフ → [AGENT_HANDOFF.md](./AGENT_HANDOFF.md)
-- 長期ロードマップ・スコープ外 → [ROADMAP.md](./ROADMAP.md)
-- モデル選択 → [MODEL_SELECTION.md](./MODEL_SELECTION.md)
+- 仕様 → [SPEC.md](./SPEC.md)
+- 運用 → [OPS.md](./OPS.md)
+- 公開履歴 → [CHANGELOG.md](./CHANGELOG.md)
 
 ---
 
@@ -39,7 +40,7 @@
 
 ## 現在フォーカス（1行）
 
-**UX Phase D 残り** — カード画像（サポカ縦40 + 育成 chr_icon 全264）は完了。docs スリム化済。push / Pages は v1.0.0 までしない。
+**UX Phase D 残り** — カード画像済。docs トップを8ファイルに圧縮済。push / Pages は v1.0.0 までしない。
 
 ---
 
@@ -54,7 +55,7 @@
 
 - [ ] **結果表の由来表示強化**  
   - 受け入れ: 各スキル行で「なぜ載っているか」（トレヒント／所持／イベント／シナリオ等）が分かる  
-  - 関連: [UX_PHILOSOPHY.md](./UX_PHILOSOPHY.md) / 結果パネル実装
+  - 関連: [UX.md](./UX.md) / 結果パネル実装
 
 ### P1
 
@@ -72,38 +73,57 @@
   - 受け入れ: 上段編成を1枚に保存／コピーできる
 
 - [ ] **タイプ印位置の最終微調整**（ユーザー指示があったときだけ）  
-  - 現行: size=52 / top=-1 / right=4（[ASSETS.md](./ASSETS.md)）
+  - 現行: size=52 / top=-1 / right=4（[OPS.md（画像）](./OPS.md#画像アセット)）
 
 - [ ] **回帰テスト拡充** — 実機で確認したケースを `npm test` に追加
 
 ### P3 / 条件付き
 
 - [ ] **v1.0.0 公開準備** — UX 残りが閉じたあと。CHANGELOG・README・**初 push / Pages 反映**  
-  - 制約: それまで `git push` しない（[ASSETS.md](./ASSETS.md) / [GAME_UPDATE_RUNBOOK.md](./GAME_UPDATE_RUNBOOK.md)）
+  - 制約: それまで `git push` しない（[OPS.md](./OPS.md)）
 
-- [ ] **ゲーム更新追従** — 発生時のみ [GAME_UPDATE_RUNBOOK.md](./GAME_UPDATE_RUNBOOK.md)（mdb → events → assets:extract/import → verify）
+- [ ] **ゲーム更新追従** — 発生時のみ [OPS.md（ゲーム更新）](./OPS.md#ゲーム更新-runbook)（mdb → events → assets:extract/import → verify）
 
 ---
 
 ## 最近完了（直近のみ残す）
 
-- [x] 2026-08-01 docs スリム化 — 人間用入口・HANDOFF 短縮・archive・正本委譲（[README.md](./README.md)）
-- [x] 2026-08-01 docs 同期 — 画像 Phase1=全264同梱済みを HANDOFF / ROADMAP / ASSETS に反映
-- [x] 2026-08-01 サポカ縦カード: 枠外トリム・ソフトグロー除去・角丸マスク・drop-shadow（優先40）
-- [x] 2026-08-01 サポカ表示: SSR／名前／黒帯オーバーレイ削除
-- [x] 2026-08-01 育成: `chr_icon` + dress フォールバックで **全264** 同梱、正方形表示、オーバーレイ削除
-- [x] 2026-08-01 カード影を `box-shadow` から `drop-shadow` へ統一（矩形 border-radius 微調整を廃止）
+- [x] 2026-08-01 docs トップを8ファイルに圧縮（SPEC / OPS / UX 統合）
+- [x] 2026-08-01 docs スリム化 — 人間用入口・HANDOFF 短縮・archive・正本委譲
+- [x] 2026-08-01 docs 同期 — 画像 Phase1=全264同梱済みを反映
+- [x] 2026-08-01 サポカ縦カード: 枠外トリム・角丸マスク・drop-shadow（優先40）
+- [x] 2026-08-01 育成: `chr_icon` + dress フォールバックで **全264** 同梱
 
 ---
 
 ## やらない（TODO に上げない）
 
-詳細・理由は [ROADMAP.md](./ROADMAP.md)「スコープ外」「不要と判断した作業」を正とする。
+### スコープ外（当面）
 
-- 全547サポカのイベント網羅
 - トレセン軒以外のシナリオ
+- **全サポカのイベント網羅**（優先枠のみ・新規は課金必須 SSR 原則）
+- 継承固有の個別名前・親指定
+- 常用デッキのクイック選択プリセット
+- Electron / クラウドホスト必須化（※ GitHub Pages 静的公開は実施）
+- U-tools を CI に載せる（ローカル手動運用）
 - `piece_icon` を育成表示に採用すること
 - 縁色引き伸ばし等の低品質近似枠（サポカ）
+
+### 不要と判断した作業（現行 extract のまま）
+
+| 項目 | 理由 |
+|------|------|
+| 固有スキル本体の除外ロジック | `available_skill_set` に固有は含まれない。実機一致 |
+| 覚醒進化の進化前金への置換 | 購入リストは進化前 ID のみ |
+| 全サポカイベント網羅 | mdb 単独でスキルヒント復元不可 |
+
+### 運用メモ（Open に上げない）
+
+| 項目 | メモ |
+|------|------|
+| 表記ゆれ・名前マッチ | `verify_data.mjs` で検出したとき修正 |
+| 既定 AppData の mdb | 無し。DMM パスを `--mdb` で指定 |
+| Python / PATH | 再 extract は Node 推奨 |
 
 ---
 

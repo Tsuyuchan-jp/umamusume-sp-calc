@@ -4,4 +4,4 @@
 
 **運用の正本ではない。** 通常は開かない。経緯や決定理由が必要なときだけ参照する。
 
-常用の入口は [../README.md](../README.md)。
+常用の入口は [../README.md](../README.md)。現行の正本は SPEC / OPS / TODO / HANDOFF（トップ8ファイル）。

@@ -25,7 +25,7 @@ function findPython() {
 const python = findPython();
 if (!python) {
   console.error(
-    "UnityPy 用 Python venv が見つかりません。docs/ASSETS.md の抽出手順を参照してください。"
+    "UnityPy 用 Python venv が見つかりません。docs/OPS.md（画像アセット）の抽出手順を参照してください。"
   );
   process.exit(1);
 }

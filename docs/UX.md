@@ -1,4 +1,4 @@
-# UX 思想
+# UX — 思想
 
 壁打ち確定版（2026-08-01）。renso ナレッジ: `umamusume-sp-calc-ux-philosophy.html` と同期。
 
@@ -65,4 +65,4 @@
 5. 下段作業台の維持・強化
 6. 後続：メモリ → スクショ
 
-関連: [ROADMAP.md](./ROADMAP.md) Phase D、[ASSETS.md](./ASSETS.md)
+関連: [TODO.md](./TODO.md)、[OPS.md（画像）](./OPS.md#画像アセット)
