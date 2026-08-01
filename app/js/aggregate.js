@@ -11,6 +11,7 @@ import {
 } from "./scenarioLink.js";
 import { mergeSourceInto } from "./skillSource.js";
 import { formatTrainingSourceLabel } from "./supportShortName.js";
+import { characterBaseName } from "./cardAssets.js";
 
 const TRAINING_HINT = 5;
 const CHARA_HINT = 3;
@@ -131,7 +132,7 @@ export function buildSkillPlan(params) {
           skillId: id,
           hintLevel: CHARA_HINT,
           kind: "owned",
-          label: chara.name,
+          label: characterBaseName(chara.name),
         });
       }
     }

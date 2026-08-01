@@ -55,6 +55,12 @@ export function shortSupportLabel(support) {
   return name.length > 8 ? `${name.slice(0, 7)}…` : name;
 }
 
+/** [衣装]キャラ → キャラ名のみ（由来バッジ用） */
+export function characterBaseName(name) {
+  const m = String(name || "").match(/^\[([^\]]+)\](.+)$/);
+  return m ? m[2].trim() : String(name || "");
+}
+
 /** [衣装]キャラ → キャラ[衣装] の短縮 */
 export function shortCharacterLabel(name) {
   const m = String(name).match(/^\[([^\]]+)\](.+)$/);
