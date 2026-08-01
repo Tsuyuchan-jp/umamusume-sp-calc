@@ -170,10 +170,43 @@ def load_type_icons() -> dict[str, Image.Image]:
     return icons
 
 
+def content_bbox(im: Image.Image) -> tuple[int, int, int, int] | None:
+    """不透明かつ非黒の外接矩形を返す。"""
+    im = im.convert("RGBA")
+    px = im.load()
+    w, h = im.size
+    xs: list[int] = []
+    ys: list[int] = []
+    for y in range(h):
+        for x in range(w):
+            r, g, b, a = px[x, y]
+            if a < 16:
+                continue
+            if r < 20 and g < 20 and b < 20:
+                continue
+            xs.append(x)
+            ys.append(y)
+    if not xs:
+        return None
+    return min(xs), min(ys), max(xs), max(ys)
+
+
+def trim_icon(im: Image.Image) -> Image.Image:
+    """キャンバス余白を除き、見かけの図形だけにする。"""
+    bb = content_bbox(im)
+    if bb is None:
+        return im.convert("RGBA")
+    return im.convert("RGBA").crop(bb)
+
+
 def overlay_type_icon(base: Image.Image, icon: Image.Image) -> Image.Image:
-    """表示解像度のベースに右上固定でタイプ印を重ねる。"""
+    """表示解像度のベースに右上固定でタイプ印を重ねる。
+
+    上辺・右辺はカード外縁に揃える（余白トリム後に margin=0）。
+    """
     out = base.convert("RGBA").copy()
-    icon_r = icon.resize((TYPE_ICON_SIZE, TYPE_ICON_SIZE), Image.Resampling.LANCZOS)
+    icon_t = trim_icon(icon)
+    icon_r = icon_t.resize((TYPE_ICON_SIZE, TYPE_ICON_SIZE), Image.Resampling.LANCZOS)
     x = out.size[0] - TYPE_MARGIN_RIGHT - TYPE_ICON_SIZE
     y = TYPE_MARGIN_TOP
     out.alpha_composite(icon_r, (x, y))
