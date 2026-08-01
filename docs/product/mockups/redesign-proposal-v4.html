@@ -1,0 +1,1141 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SP Calc — Visual Proposal v4（別UX案）</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+JP:wght@500;600;700&family=JetBrains+Mono:wght@700&display=swap"
+    rel="stylesheet"
+  />
+  <style>
+    /* =========================================================
+       Visual Proposal v4 — 「Command Desk」
+       現行 UX 思想（二マグネット／下部バー正本）を無視した別案。
+       要件上の主張:
+         - 成果物は「真の必要 SP」→ 合計を常時・上部で大きく
+         - PC 主戦場 → 左右分割（編成は左、削る作業は右）
+         - 前提は合計の隣（原則6は守るが、下部バーは捨てる）
+         - 組み立ては速く／検証は深く → 左コンパクト・右が本舞台
+       現行 app/ 未改変。計算なし。
+       ========================================================= */
+    :root {
+      --ink: #1a2330;
+      --ink-soft: #3a4a5c;
+      --mute: #6b7c8f;
+      --line: #d5dde6;
+      --paper: #f3f6f9;
+      --panel: #ffffff;
+      --green: #68bb09;
+      --green-deep: #3f7a00;
+      --pink: #f7518b;
+      --orange: #ff8427;
+      --sky: #23a4f6;
+      --gold: #e9c95f;
+      --font: "IBM Plex Sans JP", Meiryo, sans-serif;
+      --mono: "JetBrains Mono", ui-monospace, monospace;
+      --dock-w: 300px;
+      --cmd-h: 64px;
+      --r: 10px;
+    }
+
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+      margin: 0;
+      font-family: var(--font);
+      font-weight: 600;
+      color: var(--ink);
+      background: #2a3544;
+      -webkit-font-smoothing: auto;
+      overflow: hidden;
+    }
+
+    .world {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      background:
+        linear-gradient(160deg, rgba(26, 35, 48, 0.55), rgba(26, 35, 48, 0.72)),
+        url("https://static.kouryaku.tools/umamusume/images/app/uma-world.webp?auto=format")
+          center / cover no-repeat;
+      filter: saturate(0.85);
+    }
+
+    .app {
+      position: relative;
+      z-index: 1;
+      height: 100%;
+      display: grid;
+      grid-template-rows: auto var(--cmd-h) 1fr;
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: 10px 12px 12px;
+      gap: 8px;
+    }
+
+    .mock-banner {
+      padding: 8px 12px;
+      border-radius: 8px;
+      background: rgba(15, 20, 28, 0.82);
+      color: #e8eef5;
+      font-size: 12px;
+      font-weight: 600;
+      line-height: 1.4;
+      border: 1px solid rgba(255,255,255,0.12);
+    }
+    .mock-banner strong { color: var(--gold); }
+    .mock-banner a { color: #8fd3ff; }
+
+    /* ---- 上部コマンドストリップ：合計が主役 ---- */
+    .command {
+      display: grid;
+      grid-template-columns: minmax(220px, 280px) 1fr auto;
+      gap: 12px;
+      align-items: center;
+      padding: 0 14px;
+      background: rgba(255, 255, 255, 0.96);
+      border-radius: var(--r);
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.22);
+      animation: rise 0.4s ease both;
+    }
+    .brand {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      min-width: 0;
+    }
+    .brand-kicker {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      color: var(--mute);
+    }
+    .brand-name {
+      margin: 0;
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--ink);
+      line-height: 1.15;
+    }
+    .brand-name em {
+      font-style: normal;
+      color: var(--green-deep);
+    }
+
+    .total-block {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      min-width: 0;
+      flex-wrap: wrap;
+    }
+    .total-hero {
+      display: flex;
+      align-items: baseline;
+      gap: 6px;
+      padding: 4px 12px 4px 0;
+      border-right: 1px solid var(--line);
+      margin-right: 2px;
+    }
+    .total-hero .k {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--mute);
+      letter-spacing: 0.06em;
+    }
+    .total-hero .n {
+      font-family: var(--mono);
+      font-size: 34px;
+      font-weight: 700;
+      color: var(--green-deep);
+      line-height: 1;
+      letter-spacing: -0.02em;
+    }
+    .total-hero .u {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--green);
+    }
+
+    .premises {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      align-items: center;
+    }
+    .p-label {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--mute);
+    }
+    .p-btn {
+      appearance: none;
+      border: 1px solid var(--line);
+      background: var(--paper);
+      color: var(--ink-soft);
+      font: inherit;
+      font-size: 12px;
+      font-weight: 700;
+      padding: 6px 10px;
+      border-radius: 7px;
+      cursor: pointer;
+    }
+    .p-btn.is-on {
+      border-color: transparent;
+      background: var(--pink);
+      color: #fff;
+    }
+    .p-seg {
+      display: inline-flex;
+      border: 1px solid var(--line);
+      border-radius: 7px;
+      overflow: hidden;
+      background: #fff;
+    }
+    .p-seg button {
+      appearance: none;
+      border: 0;
+      background: transparent;
+      font: inherit;
+      font-size: 12px;
+      font-weight: 700;
+      padding: 6px 9px;
+      color: var(--mute);
+      cursor: pointer;
+      border-right: 1px solid var(--line);
+    }
+    .p-seg button:last-child { border-right: 0; }
+    .p-seg button.is-on {
+      background: var(--orange);
+      color: #fff;
+    }
+
+    .cmd-actions { display: flex; gap: 6px; }
+    .ghost {
+      appearance: none;
+      border: 1px solid var(--line);
+      background: #fff;
+      color: var(--ink-soft);
+      font: inherit;
+      font-size: 12px;
+      font-weight: 700;
+      padding: 7px 11px;
+      border-radius: 999px;
+      cursor: pointer;
+    }
+    .ghost:hover { border-color: var(--ink-soft); }
+
+    /* ---- 本体：左ドック（編成）＋右キャンバス（検証） ---- */
+    .workspace {
+      display: grid;
+      grid-template-columns: var(--dock-w) 1fr;
+      gap: 8px;
+      min-height: 0;
+      animation: rise 0.45s 0.05s ease both;
+    }
+
+    .dock {
+      background:
+        url("https://static.kouryaku.tools/umamusume/images/app/bg.webp?auto=format")
+          center / 160px repeat,
+        rgba(255, 255, 255, 0.96);
+      border-radius: var(--r);
+      border: 1px solid rgba(255,255,255,0.5);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+      display: flex;
+      flex-direction: column;
+      min-height: 0;
+      overflow: hidden;
+    }
+    .dock-head {
+      padding: 10px 12px;
+      background: var(--green);
+      color: #fff;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      flex-shrink: 0;
+    }
+    .dock-body {
+      padding: 10px;
+      overflow: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      min-height: 0;
+    }
+
+    .trainee {
+      display: grid;
+      grid-template-columns: 64px 1fr;
+      gap: 8px;
+      align-items: center;
+      padding: 8px;
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    .trainee:hover { border-color: var(--green); }
+    .trainee img {
+      width: 64px;
+      height: 72px;
+      object-fit: cover;
+      border-radius: 6px;
+      display: block;
+      background: var(--paper);
+    }
+    .trainee .meta { min-width: 0; }
+    .trainee .role {
+      font-size: 10px;
+      font-weight: 700;
+      color: var(--mute);
+      letter-spacing: 0.06em;
+    }
+    .trainee .name {
+      margin: 2px 0 0;
+      font-size: 13px;
+      font-weight: 700;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .sup-list {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .sup {
+      display: grid;
+      grid-template-columns: 44px 1fr;
+      gap: 8px;
+      padding: 6px;
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      cursor: pointer;
+      transition: border-color 0.12s, transform 0.12s;
+    }
+    .sup:hover {
+      border-color: var(--orange);
+      transform: translateX(2px);
+    }
+    .sup img {
+      width: 44px;
+      height: 58px;
+      object-fit: cover;
+      border-radius: 4px;
+      display: block;
+      background: var(--paper);
+    }
+    .sup .body { min-width: 0; display: flex; flex-direction: column; gap: 3px; }
+    .sup .top {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      min-width: 0;
+    }
+    .sup .slot {
+      flex-shrink: 0;
+      font-size: 10px;
+      font-weight: 700;
+      color: #fff;
+      background: var(--ink);
+      padding: 1px 5px;
+      border-radius: 3px;
+    }
+    .sup .name {
+      font-size: 12px;
+      font-weight: 700;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .type {
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      flex-shrink: 0;
+      border: 1.5px solid #fff;
+      box-shadow: 0 0 0 1px #00000022;
+    }
+    .type.speed { background: #42a5f5; }
+    .type.stamina { background: #ef5350; }
+    .type.wit { background: #66bb6a; }
+    .type.friend { background: #ab47bc; }
+
+    .evt-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 3px;
+    }
+    .evt {
+      appearance: none;
+      border: 1px solid var(--line);
+      background: var(--paper);
+      font: inherit;
+      font-size: 10px;
+      font-weight: 700;
+      color: var(--ink-soft);
+      padding: 2px 5px;
+      border-radius: 4px;
+      cursor: pointer;
+      max-width: 100%;
+    }
+    .evt.is-on {
+      border-color: var(--orange);
+      background: #fff3e6;
+      color: #9a4a00;
+    }
+    .evt .g {
+      color: #9a6b00;
+      background: var(--gold);
+      border-radius: 2px;
+      padding: 0 2px;
+      margin-right: 2px;
+      font-size: 9px;
+    }
+    .evt-auto {
+      font-size: 10px;
+      font-weight: 700;
+      color: var(--mute);
+    }
+
+    .dock-foot {
+      margin-top: 4px;
+      padding-top: 8px;
+      border-top: 1px dashed var(--line);
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .foot-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px;
+      align-items: center;
+    }
+    .foot-k {
+      font-size: 10px;
+      font-weight: 700;
+      color: var(--mute);
+      width: 3.2em;
+    }
+    .chip {
+      appearance: none;
+      border: 1px solid var(--line);
+      background: #fff;
+      font: inherit;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--ink-soft);
+      padding: 4px 7px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .chip.is-on {
+      background: var(--green);
+      border-color: var(--green-deep);
+      color: #fff;
+    }
+    .chip.is-signal {
+      background: var(--pink);
+      border-color: #c9184a;
+      color: #fff;
+    }
+
+    /* ---- 右：結果作業台（本舞台） ---- */
+    .canvas {
+      background:
+        url("https://static.kouryaku.tools/umamusume/images/app/bg.webp?auto=format")
+          center / 160px repeat,
+        rgba(255, 255, 255, 0.96);
+      border-radius: var(--r);
+      border: 1px solid rgba(255,255,255,0.5);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+      display: flex;
+      flex-direction: column;
+      min-height: 0;
+      overflow: hidden;
+    }
+    .canvas-head {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 12px;
+      align-items: center;
+      padding: 10px 12px;
+      border-bottom: 1px solid var(--line);
+      background: rgba(255,255,255,0.85);
+      flex-shrink: 0;
+    }
+    .canvas-title {
+      margin: 0;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--ink);
+      padding: 5px 10px;
+      background: var(--green);
+      color: #fff;
+      border-radius: 2px;
+      letter-spacing: 0.03em;
+    }
+    .seg {
+      display: inline-flex;
+      border: 1px solid var(--line);
+      border-radius: 7px;
+      overflow: hidden;
+      background: #fff;
+    }
+    .seg button {
+      appearance: none;
+      border: 0;
+      background: transparent;
+      font: inherit;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 6px 9px;
+      color: var(--mute);
+      cursor: pointer;
+      border-right: 1px solid var(--line);
+    }
+    .seg button:last-child { border-right: 0; }
+    .seg button.is-on {
+      background: var(--sky);
+      color: #fff;
+    }
+    .flabel {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--mute);
+    }
+    .canvas-actions { margin-left: auto; }
+    .solid {
+      appearance: none;
+      border: 0;
+      background: var(--ink);
+      color: #fff;
+      font: inherit;
+      font-size: 12px;
+      font-weight: 700;
+      padding: 7px 12px;
+      border-radius: 7px;
+      cursor: pointer;
+    }
+
+    .table-wrap {
+      overflow: auto;
+      min-height: 0;
+      flex: 1;
+      padding: 0 4px 8px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+    th {
+      position: sticky;
+      top: 0;
+      z-index: 1;
+      text-align: left;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      color: var(--mute);
+      padding: 10px 10px 8px;
+      background: rgba(243, 246, 249, 0.95);
+      border-bottom: 2px solid var(--ink);
+    }
+    td {
+      padding: 9px 10px;
+      border-bottom: 1px solid var(--line);
+      font-weight: 600;
+      vertical-align: middle;
+    }
+    tr.is-off td {
+      opacity: 0.38;
+      text-decoration: line-through;
+    }
+    tr:hover td { background: rgba(104, 187, 9, 0.06); }
+    .origin {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 12px;
+      color: var(--ink-soft);
+    }
+    .dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--sky);
+    }
+    .dot.event { background: var(--pink); }
+    .dot.scenario { background: var(--green); }
+    .dot.char { background: #ab47bc; }
+    .lv {
+      display: inline-grid;
+      place-items: center;
+      min-width: 2.2em;
+      padding: 2px 5px;
+      border-radius: 4px;
+      background: var(--ink);
+      color: #fff;
+      font-size: 10px;
+      font-weight: 700;
+      font-family: var(--mono);
+    }
+    .sp {
+      font-family: var(--mono);
+      font-weight: 700;
+      color: var(--orange);
+      font-size: 14px;
+    }
+    .tog {
+      width: 34px;
+      height: 20px;
+      border-radius: 999px;
+      border: 0;
+      background: var(--line);
+      position: relative;
+      cursor: pointer;
+    }
+    .tog::after {
+      content: "";
+      position: absolute;
+      top: 2px; left: 2px;
+      width: 16px; height: 16px;
+      border-radius: 50%;
+      background: #fff;
+      transition: transform 0.15s;
+      box-shadow: 0 1px 2px #0003;
+    }
+    .tog.is-on { background: var(--green); }
+    .tog.is-on::after { transform: translateX(14px); }
+
+    .summary-strip {
+      flex-shrink: 0;
+      display: flex;
+      gap: 16px;
+      padding: 8px 12px;
+      border-top: 1px solid var(--line);
+      background: rgba(255,255,255,0.9);
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--ink-soft);
+    }
+    .summary-strip b { color: var(--ink); font-family: var(--mono); }
+
+    /* 継承：合計近くのポップ（下部展開ではない） */
+    .inherit-pop {
+      position: absolute;
+      top: calc(var(--cmd-h) + 52px);
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 30;
+      display: none;
+      gap: 10px;
+      align-items: center;
+      flex-wrap: wrap;
+      padding: 10px 12px;
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      box-shadow: 0 12px 32px rgba(0,0,0,0.2);
+      font-size: 12px;
+      font-weight: 700;
+    }
+    .inherit-pop.is-open { display: flex; }
+    .inherit-pop .k { color: var(--green-deep); }
+    .inherit-pop select,
+    .inherit-pop input {
+      font: inherit;
+      font-size: 12px;
+      border: 1px solid var(--line);
+      border-radius: 5px;
+      padding: 3px 6px;
+    }
+
+    .notes {
+      position: fixed;
+      right: 16px;
+      bottom: 16px;
+      z-index: 20;
+      width: min(320px, calc(100% - 32px));
+      padding: 10px 12px;
+      background: rgba(15, 20, 28, 0.9);
+      color: #d7e0ea;
+      border-radius: 8px;
+      font-size: 11px;
+      font-weight: 600;
+      line-height: 1.45;
+      border: 1px solid rgba(255,255,255,0.12);
+      max-height: 40vh;
+      overflow: auto;
+    }
+    .notes h3 {
+      margin: 0 0 6px;
+      font-size: 12px;
+      color: var(--gold);
+    }
+    .notes ul { margin: 0; padding-left: 1.1em; }
+    .notes li { margin: 3px 0; }
+    .notes a { color: #8fd3ff; }
+
+    .picker {
+      position: fixed;
+      inset: 0;
+      z-index: 80;
+      display: none;
+      place-items: center;
+      background: rgba(15, 20, 28, 0.55);
+      padding: 20px;
+    }
+    .picker.is-open { display: grid; }
+    .picker-panel {
+      width: min(640px, 100%);
+      max-height: 70vh;
+      background: #fff;
+      border-radius: 12px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 24px 48px #0006;
+    }
+    .picker-chrome {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 12px;
+      background: var(--green);
+      color: #fff;
+    }
+    .picker-chrome h2 { margin: 0; font-size: 14px; }
+    .picker-grid {
+      padding: 12px;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(84px, 1fr));
+      gap: 8px;
+      overflow: auto;
+      min-height: 280px;
+    }
+    .pick {
+      aspect-ratio: 3/4;
+      border: 3px solid transparent;
+      border-radius: 6px;
+      overflow: hidden;
+      padding: 0;
+      cursor: pointer;
+      background: var(--paper);
+    }
+    .pick img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .pick.is-selected { border-color: var(--orange); }
+
+    @keyframes rise {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 900px) {
+      body { overflow: auto; }
+      .app {
+        height: auto;
+        min-height: 100%;
+        grid-template-rows: auto auto auto;
+        overflow: visible;
+      }
+      .workspace {
+        grid-template-columns: 1fr;
+        min-height: auto;
+      }
+      .dock, .canvas { max-height: none; }
+      .command { grid-template-columns: 1fr; padding: 10px; }
+      .total-hero { border-right: 0; }
+      .notes { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="world" aria-hidden="true"></div>
+
+  <div class="app">
+    <aside class="mock-banner">
+      <strong>VISUAL MOCK v4 — Command Desk</strong>
+      現行 UX 思想（二マグネット・下部バー正本）を無視した別案。
+      比較: <a href="./redesign-proposal-v3.html">v3</a> /
+      <a href="./redesign-proposal-v2.html">v2</a>
+    </aside>
+
+    <header class="command">
+      <div class="brand">
+        <div class="brand-kicker">NEED SP DESIGNER</div>
+        <h1 class="brand-name">SP <em>Calc</em></h1>
+      </div>
+
+      <div class="total-block">
+        <div class="total-hero" title="この数値が成果物">
+          <span class="k">TOTAL</span>
+          <span class="n" id="total-n">1248</span>
+          <span class="u">SP</span>
+        </div>
+        <div class="premises">
+          <span class="p-label">前提</span>
+          <button type="button" class="p-btn is-on" data-kirisha>切れ者 ON</button>
+          <span class="p-label">トレLv</span>
+          <div class="p-seg" id="train-lv">
+            <button type="button">3</button>
+            <button type="button">4</button>
+            <button type="button" class="is-on">5</button>
+          </div>
+          <button type="button" class="p-btn" id="inherit-btn">継承 OFF</button>
+        </div>
+      </div>
+
+      <div class="cmd-actions">
+        <button type="button" class="ghost">メモリ</button>
+        <button type="button" class="ghost">使い方</button>
+      </div>
+    </header>
+
+    <div class="inherit-pop" id="inherit-pop">
+      <span class="k">継承固有</span>
+      <label>個数
+        <select><option>1</option><option selected>2</option><option>3</option></select>
+      </label>
+      <label>Lv
+        <select><option>1</option><option>2</option><option>3</option><option selected>4</option><option>5</option></select>
+      </label>
+      <label>base SP
+        <input type="number" value="200" min="1" style="width:4.5em" />
+      </label>
+    </div>
+
+    <div class="workspace">
+      <!-- 左：編成ドック（組み立て） -->
+      <aside class="dock" aria-label="編成">
+        <div class="dock-head">編成</div>
+        <div class="dock-body">
+          <button type="button" class="trainee" data-open-picker>
+            <img src="../../../assets/characters/112901.webp" alt="" />
+            <div class="meta">
+              <div class="role">育成ウマ娘</div>
+              <p class="name">アーモンドアイ</p>
+            </div>
+          </button>
+
+          <div class="sup-list">
+            <button type="button" class="sup" data-open-picker>
+              <img src="../../../assets/supports/30281.webp" alt="" />
+              <div class="body">
+                <div class="top">
+                  <span class="slot">1</span>
+                  <span class="type speed" title="スピード"></span>
+                  <span class="name">エアグルーヴ</span>
+                </div>
+                <div class="evt-row">
+                  <span class="evt is-on"><span class="g">金</span>切れ者</span>
+                  <span class="evt">右回り○</span>
+                </div>
+              </div>
+            </button>
+
+            <button type="button" class="sup" data-open-picker>
+              <img src="../../../assets/supports/30292.webp" alt="" />
+              <div class="body">
+                <div class="top">
+                  <span class="slot">2</span>
+                  <span class="type speed"></span>
+                  <span class="name">トウカイテイオー</span>
+                </div>
+                <div class="evt-row">
+                  <span class="evt is-on"><span class="g">金</span>先手必勝</span>
+                  <span class="evt">負けん気</span>
+                </div>
+              </div>
+            </button>
+
+            <button type="button" class="sup" data-open-picker>
+              <img src="../../../assets/supports/30301.webp" alt="" />
+              <div class="body">
+                <div class="top">
+                  <span class="slot">3</span>
+                  <span class="type stamina"></span>
+                  <span class="name">タップダンスシチー</span>
+                </div>
+                <div class="evt-auto"><span class="g">金</span> 自動：冷静</div>
+              </div>
+            </button>
+
+            <button type="button" class="sup" data-open-picker>
+              <img src="../../../assets/supports/30286.webp" alt="" />
+              <div class="body">
+                <div class="top">
+                  <span class="slot">4</span>
+                  <span class="type stamina"></span>
+                  <span class="name">メジロドーベル</span>
+                </div>
+                <div class="evt-row">
+                  <span class="evt is-on"><span class="g">金</span>食いしん坊</span>
+                </div>
+              </div>
+            </button>
+
+            <button type="button" class="sup" data-open-picker>
+              <img src="../../../assets/supports/30277.webp" alt="" />
+              <div class="body">
+                <div class="top">
+                  <span class="slot">5</span>
+                  <span class="type wit"></span>
+                  <span class="name">スマートファルコン</span>
+                </div>
+                <div class="evt-row">
+                  <span class="evt is-on">作戦理解</span>
+                  <span class="evt">冷静</span>
+                </div>
+              </div>
+            </button>
+
+            <button type="button" class="sup" data-open-picker>
+              <img src="../../../assets/supports/30271.webp" alt="" />
+              <div class="body">
+                <div class="top">
+                  <span class="slot">6</span>
+                  <span class="type friend"></span>
+                  <span class="name">駿川たづな</span>
+                </div>
+                <div class="evt-auto"><span class="g">金</span> 自動：中盤巧者</div>
+              </div>
+            </button>
+          </div>
+
+          <div class="dock-foot">
+            <div class="foot-row">
+              <span class="foot-k">リンク</span>
+              <button type="button" class="chip is-on">エアグルーヴ</button>
+              <button type="button" class="chip">テイオー</button>
+            </div>
+            <div class="foot-row">
+              <span class="foot-k">RMJ</span>
+              <button type="button" class="chip is-signal">参加</button>
+              <button type="button" class="chip">不参加</button>
+            </div>
+            <div class="foot-row">
+              <span class="foot-k">自動</span>
+              <button type="button" class="chip is-on">サポカEV</button>
+              <button type="button" class="chip is-on">シナリオ</button>
+            </div>
+          </div>
+        </div>
+      </aside>
+
+      <!-- 右：検証キャンバス -->
+      <section class="canvas" aria-label="結果作業台">
+        <div class="canvas-head">
+          <h2 class="canvas-title">含めるスキル</h2>
+          <span class="flabel">レギュ</span>
+          <div class="seg">
+            <button type="button" class="is-on">すべて</button>
+            <button type="button">○以上</button>
+            <button type="button">◎のみ</button>
+          </div>
+          <span class="flabel">並び</span>
+          <div class="seg">
+            <button type="button" class="is-on">由来</button>
+            <button type="button">SP</button>
+            <button type="button">名前</button>
+          </div>
+          <div class="canvas-actions">
+            <button type="button" class="solid">含めるをコピー</button>
+          </div>
+        </div>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th style="width:3.2em">ON</th>
+                <th>スキル</th>
+                <th>由来</th>
+                <th>ヒント</th>
+                <th style="width:4.5em">SP</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><button type="button" class="tog is-on" data-tog aria-label="含める"></button></td>
+                <td>切れ者</td>
+                <td><span class="origin"><span class="dot event"></span>イベント · エアグルーヴ</span></td>
+                <td><span class="lv">Lv3</span></td>
+                <td class="sp">162</td>
+              </tr>
+              <tr>
+                <td><button type="button" class="tog is-on" data-tog aria-label="含める"></button></td>
+                <td>先手必勝</td>
+                <td><span class="origin"><span class="dot event"></span>イベント · テイオー</span></td>
+                <td><span class="lv">Lv3</span></td>
+                <td class="sp">162</td>
+              </tr>
+              <tr>
+                <td><button type="button" class="tog is-on" data-tog aria-label="含める"></button></td>
+                <td>中盤巧者</td>
+                <td><span class="origin"><span class="dot scenario"></span>シナリオ · たづな</span></td>
+                <td><span class="lv">Lv2</span></td>
+                <td class="sp">147</td>
+              </tr>
+              <tr>
+                <td><button type="button" class="tog is-on" data-tog aria-label="含める"></button></td>
+                <td>右回り○</td>
+                <td><span class="origin"><span class="dot"></span>トレヒント · 枠1</span></td>
+                <td><span class="lv">Lv5</span></td>
+                <td class="sp">98</td>
+              </tr>
+              <tr class="is-off">
+                <td><button type="button" class="tog" data-tog aria-label="含める"></button></td>
+                <td>負けん気</td>
+                <td><span class="origin"><span class="dot"></span>トレヒント · 枠2</span></td>
+                <td><span class="lv">Lv5</span></td>
+                <td class="sp">98</td>
+              </tr>
+              <tr>
+                <td><button type="button" class="tog is-on" data-tog aria-label="含める"></button></td>
+                <td>末脚</td>
+                <td><span class="origin"><span class="dot char"></span>所持 · アーモンドアイ</span></td>
+                <td><span class="lv">Lv3</span></td>
+                <td class="sp">126</td>
+              </tr>
+              <tr>
+                <td><button type="button" class="tog is-on" data-tog aria-label="含める"></button></td>
+                <td>食いしん坊</td>
+                <td><span class="origin"><span class="dot event"></span>イベント · ドーベル</span></td>
+                <td><span class="lv">Lv3</span></td>
+                <td class="sp">162</td>
+              </tr>
+              <tr>
+                <td><button type="button" class="tog is-on" data-tog aria-label="含める"></button></td>
+                <td>作戦理解</td>
+                <td><span class="origin"><span class="dot event"></span>イベント · ファルコン</span></td>
+                <td><span class="lv">Lv2</span></td>
+                <td class="sp">98</td>
+              </tr>
+              <tr>
+                <td><button type="button" class="tog is-on" data-tog aria-label="含める"></button></td>
+                <td>冷静</td>
+                <td><span class="origin"><span class="dot event"></span>自動 · タップ</span></td>
+                <td><span class="lv">Lv2</span></td>
+                <td class="sp">112</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="summary-strip">
+          <span>計上 <b>8</b> / 除外 <b>1</b></span>
+          <span>イベント金 <b>4</b></span>
+          <span>表示中の小計は上部 TOTALと連動（モック）</span>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <aside class="notes">
+    <h3>v4 が捨てたもの／採ったもの</h3>
+    <ul>
+      <li>捨て: 上下マグネット、scroll-snap、下部固定バー</li>
+      <li>採: 合計を<strong>上部ヒーロー</strong>（成果物を常時視線内）</li>
+      <li>採: <strong>左＝組み立て／右＝削る</strong>（PC幅を仕事に使う）</li>
+      <li>守: 前提は合計の隣、近似しない計算機の顔</li>
+      <li>見た目は v2/v3 の緑・世界観を薄く踏襲</li>
+    </ul>
+  </aside>
+
+  <div class="picker" id="picker">
+    <div class="picker-panel">
+      <div class="picker-chrome">
+        <h2>カードを選ぶ</h2>
+        <button type="button" class="ghost" id="picker-close" style="border-color:rgba(255,255,255,.4);color:#fff;background:transparent">閉じる</button>
+      </div>
+      <div class="picker-grid" id="picker-grid"></div>
+    </div>
+  </div>
+
+  <script>
+    const ASSET = "../../../assets/supports/";
+    const CARDS = ["30281","30292","30301","30286","30277","30271","30278","30294","30304","30285"];
+    const grid = document.getElementById("picker-grid");
+    const picker = document.getElementById("picker");
+    CARDS.forEach((id, i) => {
+      const b = document.createElement("button");
+      b.type = "button";
+      b.className = "pick" + (i === 0 ? " is-selected" : "");
+      b.innerHTML = `<img src="${ASSET}${id}.webp" alt="" />`;
+      b.onclick = () => {
+        grid.querySelectorAll(".pick").forEach((x) => x.classList.remove("is-selected"));
+        b.classList.add("is-selected");
+      };
+      grid.appendChild(b);
+    });
+    document.querySelectorAll("[data-open-picker]").forEach((el) => {
+      el.addEventListener("click", () => picker.classList.add("is-open"));
+    });
+    document.getElementById("picker-close").onclick = () => picker.classList.remove("is-open");
+    picker.onclick = (e) => { if (e.target === picker) picker.classList.remove("is-open"); };
+
+    document.querySelectorAll("[data-tog]").forEach((btn) => {
+      btn.onclick = () => {
+        btn.classList.toggle("is-on");
+        btn.closest("tr").classList.toggle("is-off", !btn.classList.contains("is-on"));
+      };
+    });
+    document.querySelectorAll(".seg").forEach((seg) => {
+      seg.querySelectorAll("button").forEach((btn) => {
+        btn.onclick = () => {
+          seg.querySelectorAll("button").forEach((b) => b.classList.remove("is-on"));
+          btn.classList.add("is-on");
+        };
+      });
+    });
+    document.querySelectorAll(".p-seg").forEach((seg) => {
+      seg.querySelectorAll("button").forEach((btn) => {
+        btn.onclick = () => {
+          seg.querySelectorAll("button").forEach((b) => b.classList.remove("is-on"));
+          btn.classList.add("is-on");
+        };
+      });
+    });
+    document.querySelector("[data-kirisha]").onclick = (e) => {
+      const on = e.currentTarget.classList.toggle("is-on");
+      e.currentTarget.textContent = on ? "切れ者 ON" : "切れ者 OFF";
+    };
+    const inheritBtn = document.getElementById("inherit-btn");
+    const inheritPop = document.getElementById("inherit-pop");
+    inheritBtn.onclick = () => {
+      const on = !inheritBtn.classList.contains("is-on");
+      inheritBtn.classList.toggle("is-on", on);
+      inheritBtn.textContent = on ? "継承 ON" : "継承 OFF";
+      inheritPop.classList.toggle("is-open", on);
+    };
+    document.querySelectorAll(".foot-row").forEach((row) => {
+      row.querySelectorAll(".chip").forEach((chip) => {
+        chip.onclick = () => {
+          row.querySelectorAll(".chip").forEach((c) => c.classList.remove("is-on", "is-signal"));
+          chip.classList.add(chip.textContent.includes("参加") && !chip.textContent.includes("不") ? "is-signal" : "is-on");
+        };
+      });
+    });
+    document.querySelectorAll(".evt").forEach((evt) => {
+      evt.onclick = (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        const row = evt.parentElement;
+        row.querySelectorAll(".evt").forEach((x) => x.classList.remove("is-on"));
+        evt.classList.add("is-on");
+      };
+    });
+  </script>
+</body>
+</html>
