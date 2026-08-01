@@ -13,21 +13,21 @@ const NEW_EVENTS = [
   {
     id: "evt_diamond_gamushara",
     supportNameMatch: "永久の誓い、永久の輝き",
-    label: "ダイヤ まず、知るより始めよう",
+    label: "スピダイヤ まず、知るより始めよう",
     selection: "auto",
     skills: [{ skillName: "がむしゃら", hintLevel: 1, skillId: 202422 }],
   },
   {
     id: "evt_diamond_nigetam",
     supportNameMatch: "永久の誓い、永久の輝き",
-    label: "ダイヤ 新しいもの、大好きです！",
+    label: "スピダイヤ 新しいもの、大好きです！",
     selection: "auto",
     skills: [{ skillName: "逃げためらい", hintLevel: 1, skillId: 200851 }],
   },
   {
     id: "evt_diamond_chain",
     supportNameMatch: "永久の誓い、永久の輝き",
-    label: "ダイヤ そして、未来を誓う（連続3・金分岐）",
+    label: "スピダイヤ そして、未来を誓う（連続3・金分岐）",
     selection: "single",
     defaultChoiceId: "rensa",
     choices: [
@@ -53,21 +53,21 @@ const NEW_EVENTS = [
   {
     id: "evt_taiki_nigeru",
     supportNameMatch: "刀光散らしてClash！",
-    label: "タップ 心のカギは",
+    label: "スピタップ 心のカギは",
     selection: "auto",
     skills: [{ skillName: "逃げるが勝ち！", hintLevel: 1, skillId: 204092 }],
   },
   {
     id: "evt_taiki_sentou",
     supportNameMatch: "刀光散らしてClash！",
-    label: "タップ いざ求めん、夢多きTreasure",
+    label: "スピタップ いざ求めん、夢多きTreasure",
     selection: "auto",
     skills: [{ skillName: "先頭プライド", hintLevel: 1, skillId: 201272 }],
   },
   {
     id: "evt_taiki_chain",
     supportNameMatch: "刀光散らしてClash！",
-    label: "タップ 仲間というロマン（連続3・金3択）",
+    label: "スピタップ 仲間というロマン（連続3・金3択）",
     selection: "single",
     defaultChoiceId: "conc_top",
     choices: [
@@ -101,7 +101,7 @@ const NEW_EVENTS = [
   {
     id: "evt_digital_emo",
     supportNameMatch: "全てに挑む勇ましき者",
-    label: "デジタル エモのためなら雨の中でも！",
+    label: "パワデジタル エモのためなら雨の中でも！",
     selection: "single",
     defaultChoiceId: "ame",
     choices: [
@@ -120,7 +120,7 @@ const NEW_EVENTS = [
   {
     id: "evt_digital_yuuo",
     supportNameMatch: "全てに挑む勇ましき者",
-    label: "デジタル 逃げぬ者、戦う者（連続3）",
+    label: "パワデジタル 逃げぬ者、戦う者（連続3）",
     selection: "auto",
     skills: [
       { skillName: "勇往邁進", hintLevel: 1, skillId: 202151 },
@@ -130,7 +130,7 @@ const NEW_EVENTS = [
   {
     id: "evt_digital_me",
     supportNameMatch: "全てに挑む勇ましき者",
-    label: "デジタル おお！汝目覚めよ！（連続2）",
+    label: "パワデジタル おお！汝目覚めよ！（連続2）",
     selection: "auto",
     skills: [{ skillName: "一歩ずつ前へ", hintLevel: 1, skillId: 203362 }],
   },
@@ -138,14 +138,14 @@ const NEW_EVENTS = [
   {
     id: "evt_heart_aggressive",
     supportNameMatch: "白に至る覚悟",
-    label: "ハート Away in the Mountains",
+    label: "根性ハート Away in the Mountains",
     selection: "auto",
     skills: [{ skillName: "アグレッシブ", hintLevel: 1, skillId: 203222 }],
   },
   {
     id: "evt_heart_stack",
     supportNameMatch: "白に至る覚悟",
-    label: "ハート 積み重ねられた『今』（連続3）",
+    label: "根性ハート 積み重ねられた『今』（連続3）",
     selection: "auto",
     skills: [
       { skillName: "優位形成", hintLevel: 1, skillId: 202531 },
@@ -155,7 +155,7 @@ const NEW_EVENTS = [
   {
     id: "evt_heart_charm",
     supportNameMatch: "白に至る覚悟",
-    label: "ハート もっとも輝く『魅力』（連続2・白金分岐）",
+    label: "根性ハート もっとも輝く『魅力』（連続2・白金分岐）",
     selection: "single",
     defaultChoiceId: "mukou",
     choices: [
@@ -175,21 +175,21 @@ const NEW_EVENTS = [
   {
     id: "evt_young_vitality",
     supportNameMatch: "Innovator",
-    label: "ヤング Young & Unstoppable",
+    label: "賢さヤング Young & Unstoppable",
     selection: "auto",
     skills: [{ skillName: "バイタリティ", hintLevel: 1, skillId: 203982 }],
   },
   {
     id: "evt_young_light",
     supportNameMatch: "Innovator",
-    label: "ヤング やっちゃお！イノベーション",
+    label: "賢さヤング やっちゃお！イノベーション",
     selection: "auto",
     skills: [{ skillName: "灯を胸に", hintLevel: 1, skillId: 204052 }],
   },
   {
     id: "evt_young_dreams",
     supportNameMatch: "Innovator",
-    label: "ヤング Dreams are Forever（連続3・成功時）",
+    label: "賢さヤング Dreams are Forever（連続3・成功時）",
     selection: "single",
     defaultChoiceId: "general",
     choices: [
@@ -217,21 +217,21 @@ const NEW_EVENTS = [
   {
     id: "evt_fine_step",
     supportNameMatch: "ゆかし、きらめきの旅路",
-    label: "ファイン ロイヤル推し活ライフ",
+    label: "パワファイン ロイヤル推し活ライフ",
     selection: "auto",
     skills: [{ skillName: "素直な一歩", hintLevel: 1, skillId: 203032 }],
   },
   {
     id: "evt_fine_corner",
     supportNameMatch: "ゆかし、きらめきの旅路",
-    label: "ファイン 思い出クローバー",
+    label: "パワファイン 思い出クローバー",
     selection: "auto",
     skills: [{ skillName: "コーナー巧者○", hintLevel: 1, skillId: 200332 }],
   },
   {
     id: "evt_fine_look",
     supportNameMatch: "ゆかし、きらめきの旅路",
-    label: "ファイン Look at me（連続3）",
+    label: "パワファイン Look at me（連続3）",
     selection: "single",
     defaultChoiceId: "gold",
     choices: [
@@ -258,14 +258,14 @@ const NEW_EVENTS = [
   {
     id: "evt_groove_taiki",
     supportNameMatch: "心覚えし、京の華",
-    label: "グルーヴ 峻厳にして優渥",
+    label: "スピグルーヴ 峻厳にして優渥",
     selection: "auto",
     skills: [{ skillName: "臨機応変", hintLevel: 1, skillId: 200502 }],
   },
   {
     id: "evt_groove_shadow",
     supportNameMatch: "心覚えし、京の華",
-    label: "グルーヴ そのアイシャドウは繋がって（連続2・白3択）",
+    label: "スピグルーヴ そのアイシャドウは繋がって（連続2・白3択）",
     selection: "single",
     defaultChoiceId: "yume",
     choices: [
@@ -289,7 +289,7 @@ const NEW_EVENTS = [
   {
     id: "evt_groove_makeup",
     supportNameMatch: "心覚えし、京の華",
-    label: "グルーヴ そのメイクは誰がために（連続3・金2択）",
+    label: "スピグルーヴ そのメイクは誰がために（連続3・金2択）",
     selection: "single",
     defaultChoiceId: "osu_kin",
     choices: [
@@ -315,14 +315,14 @@ const NEW_EVENTS = [
   {
     id: "evt_teo_weapon",
     supportNameMatch: "天才的ユートピア",
-    label: "テイオー ボクの武器",
+    label: "スピテイオー ボクの武器",
     selection: "auto",
     skills: [{ skillName: "先行直線○", hintLevel: 1, skillId: 201312 }],
   },
   {
     id: "evt_teo_koukou",
     supportNameMatch: "天才的ユートピア",
-    label: "テイオー 孝行はしたい時分に（連続2）",
+    label: "スピテイオー 孝行はしたい時分に（連続2）",
     selection: "single",
     defaultChoiceId: "hirui",
     choices: [
@@ -341,7 +341,7 @@ const NEW_EVENTS = [
   {
     id: "evt_teo_weather",
     supportNameMatch: "天才的ユートピア",
-    label: "テイオー まったり孝行日和（連続3・金2択）",
+    label: "スピテイオー まったり孝行日和（連続3・金2択）",
     selection: "single",
     defaultChoiceId: "seisei",
     choices: [
@@ -367,21 +367,21 @@ const NEW_EVENTS = [
   {
     id: "evt_flash_shop",
     supportNameMatch: "Zirkus der Träume",
-    label: "フラッシュ 想定外への対応",
+    label: "スピフラッシュ 想定外への対応",
     selection: "auto",
     skills: [{ skillName: "徹底マーク○", hintLevel: 1, skillId: 200292 }],
   },
   {
     id: "evt_flash_try",
     supportNameMatch: "Zirkus der Träume",
-    label: "フラッシュ 美しきトライ",
+    label: "スピフラッシュ 美しきトライ",
     selection: "auto",
     skills: [{ skillName: "下準備", hintLevel: 1, skillId: 203332 }],
   },
   {
     id: "evt_flash_fruit",
     supportNameMatch: "Zirkus der Träume",
-    label: "フラッシュ 美しき結実（連続3）",
+    label: "スピフラッシュ 美しき結実（連続3）",
     selection: "single",
     defaultChoiceId: "gold",
     choices: [

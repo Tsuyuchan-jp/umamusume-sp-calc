@@ -5,7 +5,11 @@ import {
   sortPlanRows,
 } from "../app/js/skillSource.js";
 import { resolveHintLevels } from "../app/js/hintResolve.js";
-import { formatTrainingSourceLabel } from "../app/js/supportShortName.js";
+import {
+  formatTrainingSourceLabel,
+  formatEventLabel,
+  stripEventNamePrefix,
+} from "../app/js/supportShortName.js";
 
 function assertEq(actual, expected, label) {
   if (actual !== expected) {
@@ -41,6 +45,22 @@ assertEq(
   }),
   "友人たづな",
   "トレヒント略称 友人たづな"
+);
+
+assertEq(
+  formatEventLabel("刀光散らしてClash！", "心のカギは", "speed"),
+  "スピタップ 心のカギは",
+  "イベント label スピタップ"
+);
+assertEq(
+  formatEventLabel("その執念は怒濤が如く", "スタドトウ 覇王と共に歩む道", "stamina"),
+  "スタドトウ 覇王と共に歩む道",
+  "イベント label 冪等"
+);
+assertEq(
+  stripEventNamePrefix("友人たづな クラシック正月", "一杯のノスタルジア", "friend"),
+  "クラシック正月",
+  "イベント名のプレフィックス除去"
 );
 
 assertEq(

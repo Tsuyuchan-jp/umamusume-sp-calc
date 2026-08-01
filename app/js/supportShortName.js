@@ -1,8 +1,9 @@
 /**
- * サポカの表示用短縮名（イベント label の先頭と同じ正本）
+ * サポカの表示用短縮名（イベント label・トレヒント由来の正本）
  * support.title / supportNameMatch → 略称
  *
- * 当アプリではタップダンスシチーを「タップ」と呼称する（「シチー」は使わない）。
+ * 当アプリではタップダンスシチーを「タップ」と呼称する。
+ * デッキ表記は「タイプ略＋キャラ略」（例: スピタップ / スタドトウ / 友人たづな）。
  */
 import { SUPPORT_TYPE_STYLES } from "./cardAssets.js";
 
@@ -50,7 +51,19 @@ export const SHORT_NAME_BY_MATCH = {
 };
 
 /**
- * @param {{ title?: string, characterName?: string, name?: string }} support
+ * @param {string} supportNameMatch
+ * @param {string} [type] speed/stamina/...
+ * @returns {string} 例: スピタップ
+ */
+export function formatDeckShortLabel(supportNameMatch, type) {
+  const short = SHORT_NAME_BY_MATCH[supportNameMatch];
+  if (!short) return "";
+  const typeLabel = SUPPORT_TYPE_STYLES[type]?.label || "";
+  return typeLabel ? `${typeLabel}${short}` : short;
+}
+
+/**
+ * @param {{ title?: string, characterName?: string, name?: string, type?: string }} support
  * @returns {string}
  */
 export function shortNameForSupport(support) {
@@ -68,7 +81,45 @@ export function shortNameForSupport(support) {
  */
 export function formatTrainingSourceLabel(support) {
   if (!support) return "";
+  if (support.title && SHORT_NAME_BY_MATCH[support.title]) {
+    return formatDeckShortLabel(support.title, support.type);
+  }
   const typeLabel = SUPPORT_TYPE_STYLES[support.type]?.label || "";
   const short = shortNameForSupport(support);
   return typeLabel ? `${typeLabel}${short}` : short;
+}
+
+/**
+ * label 先頭のデッキ略称（タイプ付き or 旧キャラのみ）を剥がしてイベント名だけ返す
+ * @param {string} label
+ * @param {string} supportNameMatch
+ * @param {string} [type]
+ */
+export function stripEventNamePrefix(label, supportNameMatch, type) {
+  let name = String(label || "").trim();
+  const tag = formatDeckShortLabel(supportNameMatch, type);
+  const short = SHORT_NAME_BY_MATCH[supportNameMatch];
+  if (tag && name.startsWith(`${tag} `)) {
+    return name.slice(tag.length + 1).trim();
+  }
+  if (short && name.startsWith(`${short} `)) {
+    return name.slice(short.length + 1).trim();
+  }
+  return name;
+}
+
+/**
+ * 「スピタップ イベント名」形式のイベント表示名
+ * @param {string} supportNameMatch
+ * @param {string} eventName
+ * @param {string} type サポカ type（必須・無いとタイプ無し略称のみ）
+ */
+export function formatEventLabel(supportNameMatch, eventName, type) {
+  const short = SHORT_NAME_BY_MATCH[supportNameMatch];
+  if (!short) {
+    throw new Error(`短縮名未定義: ${supportNameMatch}`);
+  }
+  const tag = formatDeckShortLabel(supportNameMatch, type) || short;
+  const name = stripEventNamePrefix(eventName, supportNameMatch, type);
+  return `${tag} ${name}`;
 }

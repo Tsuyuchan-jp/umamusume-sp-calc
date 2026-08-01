@@ -4,15 +4,50 @@
  * 形式（append_priority_events.mjs / 既存11種と同一）:
  *   choice.label = "① スキル名 LvN + スキル名 LvN"
  *   ヒント無し選択肢は含めない（UI の「未選択」で代替）
+ *
+ * イベント表示名: 「スピタップ イベント名」（タイプ略＋キャラ略）
  */
 import fs from "node:fs";
-import { SHORT_NAME_BY_MATCH } from "../app/js/supportShortName.js";
+import {
+  SHORT_NAME_BY_MATCH,
+  formatEventLabel as formatEventLabelCore,
+} from "../app/js/supportShortName.js";
 
 const CIRCLED = ["①", "②", "③", "④", "⑤", "⑥", "⑦", "⑧"];
 
 export { SHORT_NAME_BY_MATCH };
 
-/** 追加26種のみ（既存11種は既に正しい形式） */
+/** title → type（supports.json から遅延構築） */
+let typeByMatchCache = null;
+
+function getTypeByMatch() {
+  if (typeByMatchCache) return typeByMatchCache;
+  const supports = JSON.parse(fs.readFileSync("./data/supports.json", "utf8"));
+  typeByMatchCache = new Map();
+  for (const s of supports) {
+    if (s.title && SHORT_NAME_BY_MATCH[s.title] && s.type) {
+      typeByMatchCache.set(s.title, s.type);
+    }
+  }
+  return typeByMatchCache;
+}
+
+/** @param {string} supportNameMatch */
+export function resolveSupportType(supportNameMatch) {
+  return getTypeByMatch().get(supportNameMatch);
+}
+
+/**
+ * 「スピタップ イベント名」形式（supports.json から type を解決）
+ * @param {string} supportNameMatch
+ * @param {string} eventName
+ */
+export function formatEventLabel(supportNameMatch, eventName) {
+  const type = resolveSupportType(supportNameMatch);
+  return formatEventLabelCore(supportNameMatch, eventName, type);
+}
+
+/** 追加26種のみ（既存11種は既に正しい形式）— 一括書き換え時は未使用 */
 export const NEW_MATCHES = new Set([
   "スマイル・エバーアフター",
   "賑やかな未来を乗せて走れ！",
@@ -60,20 +95,6 @@ export function formatEventChoices(choices) {
   }));
 }
 
-/** 「短縮名 イベント名」形式のイベント表示名を作る */
-export function formatEventLabel(supportNameMatch, eventName) {
-  const short = SHORT_NAME_BY_MATCH[supportNameMatch];
-  if (!short) {
-    throw new Error(`短縮名未定義: ${supportNameMatch}`);
-  }
-  let name = String(eventName || "").trim();
-  // 既に「短縮名 …」ならイベント名部分だけ取り直す
-  if (name.startsWith(`${short} `)) {
-    name = name.slice(short.length + 1).trim();
-  }
-  return `${short} ${name}`;
-}
-
 function normalizeEvent(evt) {
   const out = { ...evt };
   out.label = formatEventLabel(evt.supportNameMatch, evt.label);
@@ -93,18 +114,38 @@ function normalizeEvent(evt) {
   return out;
 }
 
+/** 全サポカイベントの label をタイプ＋略称形式に揃える */
 function main() {
   const eventsDoc = JSON.parse(fs.readFileSync("./data/events.json", "utf8"));
   let updated = 0;
 
   eventsDoc.events = (eventsDoc.events || []).map((evt) => {
-    if (!NEW_MATCHES.has(evt.supportNameMatch)) return evt;
-    updated++;
-    return normalizeEvent(evt);
+    if (!evt.supportNameMatch || !SHORT_NAME_BY_MATCH[evt.supportNameMatch]) {
+      return evt;
+    }
+    const next = { ...evt, label: formatEventLabel(evt.supportNameMatch, evt.label) };
+    if (next.label !== evt.label) updated++;
+    return next;
   });
 
   fs.writeFileSync("./data/events.json", JSON.stringify(eventsDoc, null, 2), "utf8");
-  console.log(`normalized ${updated} events (new 26 supports)`);
+  console.log(`relabeled ${updated} events (type+short prefix)`);
+
+  const extractedPath = "./data/events.extracted.json";
+  if (fs.existsSync(extractedPath)) {
+    const extracted = JSON.parse(fs.readFileSync(extractedPath, "utf8"));
+    let extUpdated = 0;
+    extracted.events = (extracted.events || []).map((evt) => {
+      if (!evt.supportNameMatch || !SHORT_NAME_BY_MATCH[evt.supportNameMatch]) {
+        return evt;
+      }
+      const next = { ...evt, label: formatEventLabel(evt.supportNameMatch, evt.label) };
+      if (next.label !== evt.label) extUpdated++;
+      return next;
+    });
+    fs.writeFileSync(extractedPath, JSON.stringify(extracted, null, 2), "utf8");
+    console.log(`relabeled ${extUpdated} extracted events`);
+  }
 }
 
 if (process.argv[1]?.endsWith("format_event_choice_labels.mjs")) {

@@ -7,8 +7,16 @@ import { SHORT_NAME_BY_MATCH } from "./format_event_choice_labels.mjs";
 export function normalizeEventName(label, supportNameMatch) {
   let name = String(label || "").trim();
   const short = SHORT_NAME_BY_MATCH[supportNameMatch];
-  if (short && name.startsWith(`${short} `)) {
-    name = name.slice(short.length + 1).trim();
+  // タイプ付き（スピタップ）・キャラのみ（タップ）の両方を剥がす
+  if (short) {
+    const typePrefixed = name.match(
+      new RegExp(`^(?:スピ|スタ|パワ|根性|賢さ|友人)?${short} `)
+    );
+    if (typePrefixed) {
+      name = name.slice(typePrefixed[0].length).trim();
+    } else if (name.startsWith(`${short} `)) {
+      name = name.slice(short.length + 1).trim();
+    }
   }
   name = name.replace(/（[^）]*）/g, "").replace(/\([^)]*\)/g, "").trim();
   return name.normalize("NFKC");

@@ -47,7 +47,7 @@
     {
       "id": "evt_30289_830289003",
       "supportNameMatch": "Innovator",
-      "label": "ヤング Dreams are Forever",
+      "label": "賢さヤング Dreams are Forever",
       "choices": [
         {
           "id": "c001_2028312+2028325+204191",
@@ -98,7 +98,7 @@
     {
       "id": "evt_30289_830289001",
       "supportNameMatch": "Innovator",
-      "label": "ヤング Young & Unstoppable",
+      "label": "賢さヤング Young & Unstoppable",
       "selection": "auto",
       "skills": [
         {
@@ -111,7 +111,7 @@
     {
       "id": "evt_30289_801138002",
       "supportNameMatch": "Innovator",
-      "label": "ヤング やっちゃお！イノベーション！",
+      "label": "賢さヤング やっちゃお！イノベーション！",
       "selection": "auto",
       "skills": [
         {
@@ -124,7 +124,7 @@
     {
       "id": "evt_30270_801085002",
       "supportNameMatch": "Inseparable",
-      "label": "ルビー 華麗なる旋律",
+      "label": "根性ルビー 華麗なる旋律",
       "selection": "auto",
       "skills": [
         {
@@ -137,7 +137,7 @@
     {
       "id": "evt_30270_830270001",
       "supportNameMatch": "Inseparable",
-      "label": "ルビー 紅玉の誓約",
+      "label": "根性ルビー 紅玉の誓約",
       "selection": "auto",
       "skills": [
         {
@@ -150,7 +150,7 @@
     {
       "id": "evt_30262_830262003",
       "supportNameMatch": "Tranquillo",
-      "label": "ドゥラ 可愛いの真の力！",
+      "label": "スタドゥラ 可愛いの真の力！",
       "selection": "auto",
       "skills": [
         {
@@ -168,7 +168,7 @@
     {
       "id": "evt_30262_801108002",
       "supportNameMatch": "Tranquillo",
-      "label": "ドゥラ 追うべき背中",
+      "label": "スタドゥラ 追うべき背中",
       "selection": "auto",
       "skills": [
         {
@@ -181,7 +181,7 @@
     {
       "id": "evt_30253_801109001",
       "supportNameMatch": "Unveiled Dream",
-      "label": "ライン ワクワクでキラキラな夢",
+      "label": "スピライン ワクワクでキラキラな夢",
       "selection": "auto",
       "skills": [
         {
@@ -194,7 +194,7 @@
     {
       "id": "evt_30253_830253003",
       "supportNameMatch": "Unveiled Dream",
-      "label": "ライン 拝啓、お父さん",
+      "label": "スピライン 拝啓、お父さん",
       "selection": "auto",
       "skills": [
         {
@@ -212,7 +212,7 @@
     {
       "id": "evt_30272_801037002",
       "supportNameMatch": "Zirkus der Träume",
-      "label": "フラッシュ 想定外への対応",
+      "label": "スピフラッシュ 想定外への対応",
       "selection": "auto",
       "skills": [
         {
@@ -225,7 +225,7 @@
     {
       "id": "evt_30272_830272002",
       "supportNameMatch": "Zirkus der Träume",
-      "label": "フラッシュ 美しきトライ",
+      "label": "スピフラッシュ 美しきトライ",
       "selection": "auto",
       "skills": [
         {
@@ -238,7 +238,7 @@
     {
       "id": "evt_30272_830272003",
       "supportNameMatch": "Zirkus der Träume",
-      "label": "フラッシュ 美しき結実",
+      "label": "スピフラッシュ 美しき結実",
       "choices": [
         {
           "id": "c001_2026411+2036711",
@@ -284,7 +284,7 @@
     {
       "id": "evt_30267_801120002",
       "supportNameMatch": "カルストンライトオ、猫です",
-      "label": "ライトオ 『最速』はすばらしい",
+      "label": "スピライトオ 『最速』はすばらしい",
       "selection": "auto",
       "skills": [
         {
@@ -297,7 +297,7 @@
     {
       "id": "evt_30267_801120001",
       "supportNameMatch": "カルストンライトオ、猫です",
-      "label": "ライトオ 『真っ直ぐ』はすばらしい",
+      "label": "スピライトオ 『真っ直ぐ』はすばらしい",
       "selection": "auto",
       "skills": [
         {
@@ -310,7 +310,7 @@
     {
       "id": "evt_30267_830267003",
       "supportNameMatch": "カルストンライトオ、猫です",
-      "label": "ライトオ 速い＆真っ直ぐは世界を救う！",
+      "label": "スピライトオ 速い＆真っ直ぐは世界を救う！",
       "selection": "auto",
       "skills": [
         {
@@ -328,7 +328,7 @@
     {
       "id": "evt_30301_801131002",
       "supportNameMatch": "スマイル・エバーアフター",
-      "label": "グラン ゴー・マイル・ウェイ、です！",
+      "label": "パワグラン ゴー・マイル・ウェイ、です！",
       "selection": "auto",
       "skills": [
         {
@@ -341,7 +341,7 @@
     {
       "id": "evt_30301_830301003",
       "supportNameMatch": "スマイル・エバーアフター",
-      "label": "グラン 最強のミューズへ",
+      "label": "パワグラン 最強のミューズへ",
       "selection": "auto",
       "skills": [
         {
@@ -359,7 +359,7 @@
     {
       "id": "evt_30301_830301002",
       "supportNameMatch": "スマイル・エバーアフター",
-      "label": "グラン 勝利へのマイルストーン",
+      "label": "パワグラン 勝利へのマイルストーン",
       "selection": "auto",
       "skills": [
         {
@@ -372,7 +372,7 @@
     {
       "id": "evt_30304_801058002",
       "supportNameMatch": "その執念は怒濤が如く",
-      "label": "ドトウ にんじん……買ってくださいっ",
+      "label": "スタドトウ にんじん……買ってくださいっ",
       "selection": "auto",
       "skills": [
         {
@@ -385,7 +385,7 @@
     {
       "id": "evt_30304_830304003",
       "supportNameMatch": "その執念は怒濤が如く",
-      "label": "ドトウ 覇王と共に歩む道",
+      "label": "スタドトウ 覇王と共に歩む道",
       "choices": [
         {
           "id": "c001_2003312+2036511",
@@ -442,7 +442,7 @@
     {
       "id": "evt_30304_830304002",
       "supportNameMatch": "その執念は怒濤が如く",
-      "label": "ドトウ 美味しい楽しいファンサービス",
+      "label": "スタドトウ 美味しい楽しいファンサービス",
       "selection": "auto",
       "skills": [
         {
@@ -455,7 +455,7 @@
     {
       "id": "evt_30279_801127002",
       "supportNameMatch": "ぬくもりのノエル",
-      "label": "フェノーメノ あぶないコワモテ刑事？",
+      "label": "スタフェノーメノ あぶないコワモテ刑事？",
       "selection": "auto",
       "skills": [
         {
@@ -468,7 +468,7 @@
     {
       "id": "evt_30279_830279003",
       "supportNameMatch": "ぬくもりのノエル",
-      "label": "フェノーメノ いかなる時も、矜持は揺るがず",
+      "label": "スタフェノーメノ いかなる時も、矜持は揺るがず",
       "selection": "auto",
       "skills": [
         {
@@ -486,7 +486,7 @@
     {
       "id": "evt_30279_830279002",
       "supportNameMatch": "ぬくもりのノエル",
-      "label": "フェノーメノ マメちん堕落計画！",
+      "label": "スタフェノーメノ マメちん堕落計画！",
       "selection": "auto",
       "skills": [
         {
@@ -499,7 +499,7 @@
     {
       "id": "evt_30283_830283003",
       "supportNameMatch": "ゆかし、きらめきの旅路",
-      "label": "ファイン Look at me",
+      "label": "パワファイン Look at me",
       "choices": [
         {
           "id": "c001_2027611+2040711",
@@ -545,7 +545,7 @@
     {
       "id": "evt_30283_830283002",
       "supportNameMatch": "ゆかし、きらめきの旅路",
-      "label": "ファイン ロイヤル推し活ライフ",
+      "label": "パワファイン ロイヤル推し活ライフ",
       "selection": "auto",
       "skills": [
         {
@@ -558,7 +558,7 @@
     {
       "id": "evt_30283_801022002",
       "supportNameMatch": "ゆかし、きらめきの旅路",
-      "label": "ファイン 思い出クローバー",
+      "label": "パワファイン 思い出クローバー",
       "selection": "auto",
       "skills": [
         {
@@ -571,7 +571,7 @@
     {
       "id": "evt_tazuna_oodate5",
       "supportNameMatch": "一杯のノスタルジア",
-      "label": "たづな お出かけ5回目",
+      "label": "友人たづな お出かけ5回目",
       "selection": "auto",
       "skills": [
         {
@@ -584,7 +584,7 @@
     {
       "id": "evt_tazuna_newyear",
       "supportNameMatch": "一杯のノスタルジア",
-      "label": "たづな クラシック正月",
+      "label": "友人たづな クラシック正月",
       "selection": "auto",
       "skills": [
         {
@@ -597,7 +597,7 @@
     {
       "id": "evt_30305_809001011",
       "supportNameMatch": "一杯のノスタルジア",
-      "label": "たづな たづなとの絆・憧れを託して",
+      "label": "友人たづな たづなとの絆・憧れを託して",
       "selection": "auto",
       "skills": [
         {
@@ -610,7 +610,7 @@
     {
       "id": "evt_30305_809001004",
       "supportNameMatch": "一杯のノスタルジア",
-      "label": "たづな 情熱のふたり",
+      "label": "友人たづな 情熱のふたり",
       "selection": "auto",
       "skills": [
         {
@@ -623,7 +623,7 @@
     {
       "id": "evt_30302_830302003",
       "supportNameMatch": "永久の誓い、永久の輝き",
-      "label": "ダイヤ そして、未来を誓う",
+      "label": "スピダイヤ そして、未来を誓う",
       "choices": [
         {
           "id": "c001_2032411+2035611",
@@ -664,7 +664,7 @@
     {
       "id": "evt_30302_830302002",
       "supportNameMatch": "永久の誓い、永久の輝き",
-      "label": "ダイヤ まず、知るより始めよう",
+      "label": "スピダイヤ まず、知るより始めよう",
       "selection": "auto",
       "skills": [
         {
@@ -677,7 +677,7 @@
     {
       "id": "evt_30302_801067002",
       "supportNameMatch": "永久の誓い、永久の輝き",
-      "label": "ダイヤ 難しいこと、大好きです！",
+      "label": "スピダイヤ 難しいこと、大好きです！",
       "selection": "auto",
       "skills": [
         {
@@ -690,7 +690,7 @@
     {
       "id": "evt_30308_801129002",
       "supportNameMatch": "夏空チルタイム",
-      "label": "アーモンド アーモンドアイは見逃さない",
+      "label": "根性アーモンド アーモンドアイは見逃さない",
       "selection": "auto",
       "skills": [
         {
@@ -703,7 +703,7 @@
     {
       "id": "evt_30308_830308002",
       "supportNameMatch": "夏空チルタイム",
-      "label": "アーモンド そよ風と烈風のセッション",
+      "label": "根性アーモンド そよ風と烈風のセッション",
       "selection": "auto",
       "skills": [
         {
@@ -716,7 +716,7 @@
     {
       "id": "evt_30308_830308003",
       "supportNameMatch": "夏空チルタイム",
-      "label": "アーモンド 鳴り響け！エモーション",
+      "label": "根性アーモンド 鳴り響け！エモーション",
       "selection": "single",
       "defaultChoiceId": "c001_2036311+2045011",
       "choices": [
@@ -757,7 +757,7 @@
     {
       "id": "evt_30307_830307002",
       "supportNameMatch": "巻頭カラーの夏",
-      "label": "キセキ これがあたしの漫画道",
+      "label": "スタキセキ これがあたしの漫画道",
       "selection": "auto",
       "skills": [
         {
@@ -770,7 +770,7 @@
     {
       "id": "evt_30307_830307003",
       "supportNameMatch": "巻頭カラーの夏",
-      "label": "キセキ 炎のコンテスト",
+      "label": "スタキセキ 炎のコンテスト",
       "selection": "single",
       "defaultChoiceId": "c002_2026812+2044811",
       "choices": [
@@ -811,7 +811,7 @@
     {
       "id": "evt_30307_801137002",
       "supportNameMatch": "巻頭カラーの夏",
-      "label": "キセキ 努力の末、掴んだ勝利！",
+      "label": "スタキセキ 努力の末、掴んだ勝利！",
       "selection": "auto",
       "skills": [
         {
@@ -824,7 +824,7 @@
     {
       "id": "evt_30264_830264002",
       "supportNameMatch": "気まぐれ渡り星",
-      "label": "ステイ Over 17 Lights",
+      "label": "根性ステイ Over 17 Lights",
       "selection": "auto",
       "skills": [
         {
@@ -837,7 +837,7 @@
     {
       "id": "evt_30264_801135001",
       "supportNameMatch": "気まぐれ渡り星",
-      "label": "ステイ 黄金を探し求めて",
+      "label": "根性ステイ 黄金を探し求めて",
       "selection": "auto",
       "skills": [
         {
@@ -850,7 +850,7 @@
     {
       "id": "evt_30264_830264003",
       "supportNameMatch": "気まぐれ渡り星",
-      "label": "ステイ 新しい旅へ",
+      "label": "根性ステイ 新しい旅へ",
       "choices": [
         {
           "id": "c001_2027212+2038512",
@@ -891,7 +891,7 @@
     {
       "id": "evt_30286_830286001",
       "supportNameMatch": "吉兆招福チョコ来たる",
-      "label": "フクキタル 吉日・良縁ハグハグ！",
+      "label": "スピフクキタル 吉日・良縁ハグハグ！",
       "selection": "auto",
       "skills": [
         {
@@ -904,7 +904,7 @@
     {
       "id": "evt_30292_801140002",
       "supportNameMatch": "響け、二人の凱歌",
-      "label": "マルシュ 溢れている愛",
+      "label": "スピマルシュ 溢れている愛",
       "selection": "auto",
       "skills": [
         {
@@ -917,7 +917,7 @@
     {
       "id": "evt_30292_830292003",
       "supportNameMatch": "響け、二人の凱歌",
-      "label": "マルシュ 重なる『愛』",
+      "label": "スピマルシュ 重なる『愛』",
       "selection": "auto",
       "skills": [
         {
@@ -935,7 +935,7 @@
     {
       "id": "evt_30292_830292002",
       "supportNameMatch": "響け、二人の凱歌",
-      "label": "マルシュ 募る『不安』",
+      "label": "スピマルシュ 募る『不安』",
       "selection": "auto",
       "skills": [
         {
@@ -948,7 +948,7 @@
     {
       "id": "evt_30278_830278003",
       "supportNameMatch": "激録！爆走トナカイ事件",
-      "label": "ゴルシ 黄金二人旅",
+      "label": "スタゴルシ 黄金二人旅",
       "selection": "auto",
       "skills": [
         {
@@ -966,7 +966,7 @@
     {
       "id": "evt_30278_830278002",
       "supportNameMatch": "激録！爆走トナカイ事件",
-      "label": "ゴルシ 虚像をぶち壊せ",
+      "label": "スタゴルシ 虚像をぶち壊せ",
       "selection": "auto",
       "skills": [
         {
@@ -979,7 +979,7 @@
     {
       "id": "evt_30278_801007002",
       "supportNameMatch": "激録！爆走トナカイ事件",
-      "label": "ゴルシ 甦れ！　ゴルシ印のソース焼きそば！",
+      "label": "スタゴルシ 甦れ！　ゴルシ印のソース焼きそば！",
       "selection": "auto",
       "skills": [
         {
@@ -992,7 +992,7 @@
     {
       "id": "evt_30274_830274003",
       "supportNameMatch": "決意のフローラ",
-      "label": "カレン 奏で合う幸福",
+      "label": "スタカレン 奏で合う幸福",
       "selection": "auto",
       "skills": [
         {
@@ -1010,7 +1010,7 @@
     {
       "id": "evt_30274_801134001",
       "supportNameMatch": "決意のフローラ",
-      "label": "カレン 争いの種は咲かせない",
+      "label": "スタカレン 争いの種は咲かせない",
       "selection": "auto",
       "skills": [
         {
@@ -1023,7 +1023,7 @@
     {
       "id": "evt_30281_801034002",
       "supportNameMatch": "故郷に錦を飾るんでい！",
-      "label": "イナリ 神輿だワッショイ",
+      "label": "スタイナリ 神輿だワッショイ",
       "selection": "auto",
       "skills": [
         {
@@ -1036,7 +1036,7 @@
     {
       "id": "evt_30281_830281002",
       "supportNameMatch": "故郷に錦を飾るんでい！",
-      "label": "イナリ 粋の魅せ方、魂で語れ",
+      "label": "スタイナリ 粋の魅せ方、魂で語れ",
       "selection": "auto",
       "skills": [
         {
@@ -1049,7 +1049,7 @@
     {
       "id": "evt_30281_830281003",
       "supportNameMatch": "故郷に錦を飾るんでい！",
-      "label": "イナリ 熱き涙の理由",
+      "label": "スタイナリ 熱き涙の理由",
       "selection": "auto",
       "skills": [
         {
@@ -1067,7 +1067,7 @@
     {
       "id": "evt_30285_830285003",
       "supportNameMatch": "私のためのショッピング",
-      "label": "キング 学びを繋げて",
+      "label": "根性キング 学びを繋げて",
       "selection": "auto",
       "skills": [
         {
@@ -1085,7 +1085,7 @@
     {
       "id": "evt_30285_830285002",
       "supportNameMatch": "私のためのショッピング",
-      "label": "キング 学ぶは、一流の息抜き！",
+      "label": "根性キング 学ぶは、一流の息抜き！",
       "selection": "auto",
       "skills": [
         {
@@ -1098,7 +1098,7 @@
     {
       "id": "evt_30285_801061002",
       "supportNameMatch": "私のためのショッピング",
-      "label": "キング 助言する権利をあげる！",
+      "label": "根性キング 助言する権利をあげる！",
       "selection": "auto",
       "skills": [
         {
@@ -1111,7 +1111,7 @@
     {
       "id": "evt_30282_830282002",
       "supportNameMatch": "心覚えし、京の華",
-      "label": "グルーヴ そのアイシャドウは繋がって",
+      "label": "スピグルーヴ そのアイシャドウは繋がって",
       "choices": [
         {
           "id": "c001_2036322",
@@ -1153,7 +1153,7 @@
     {
       "id": "evt_30282_830282003",
       "supportNameMatch": "心覚えし、京の華",
-      "label": "グルーヴ そのメイクは誰がために",
+      "label": "スピグルーヴ そのメイクは誰がために",
       "choices": [
         {
           "id": "c001_2027112+2040311",
@@ -1194,7 +1194,7 @@
     {
       "id": "evt_30282_801018001",
       "supportNameMatch": "心覚えし、京の華",
-      "label": "グルーヴ 峻厳にして優渥",
+      "label": "スピグルーヴ 峻厳にして優渥",
       "selection": "auto",
       "skills": [
         {
@@ -1207,7 +1207,7 @@
     {
       "id": "evt_30261_801117002",
       "supportNameMatch": "水面のプリンシパル",
-      "label": "バリア グラン・ジュテ～いつの日か～",
+      "label": "賢さバリア グラン・ジュテ～いつの日か～",
       "selection": "auto",
       "skills": [
         {
@@ -1220,7 +1220,7 @@
     {
       "id": "evt_30261_830261002",
       "supportNameMatch": "水面のプリンシパル",
-      "label": "バリア 潜在的ソウルメイト",
+      "label": "賢さバリア 潜在的ソウルメイト",
       "selection": "auto",
       "skills": [
         {
@@ -1233,7 +1233,7 @@
     {
       "id": "evt_30261_830261003",
       "supportNameMatch": "水面のプリンシパル",
-      "label": "バリア 大衆的チアフレンド",
+      "label": "賢さバリア 大衆的チアフレンド",
       "selection": "auto",
       "skills": [
         {
@@ -1251,7 +1251,7 @@
     {
       "id": "evt_30242_801129002",
       "supportNameMatch": "世界を変える眼差し",
-      "label": "アーモンド アーモンドアイは見逃さない",
+      "label": "スピアーモンド アーモンドアイは見逃さない",
       "selection": "auto",
       "skills": [
         {
@@ -1264,7 +1264,7 @@
     {
       "id": "evt_30242_830242003",
       "supportNameMatch": "世界を変える眼差し",
-      "label": "アーモンド 果てしなきアーモンドアイ",
+      "label": "スピアーモンド 果てしなきアーモンドアイ",
       "choices": [
         {
           "id": "c001_2027012+2034312",
@@ -1305,7 +1305,7 @@
     {
       "id": "evt_30287_801105002",
       "supportNameMatch": "星跨ぐメッセージ",
-      "label": "ネオ “観測者”との遭遇",
+      "label": "パワネオ “観測者”との遭遇",
       "selection": "auto",
       "skills": [
         {
@@ -1318,7 +1318,7 @@
     {
       "id": "evt_30287_830287002",
       "supportNameMatch": "星跨ぐメッセージ",
-      "label": "ネオ For “シグナル”100％",
+      "label": "パワネオ For “シグナル”100％",
       "selection": "auto",
       "skills": [
         {
@@ -1331,7 +1331,7 @@
     {
       "id": "evt_30287_830287003",
       "supportNameMatch": "星跨ぐメッセージ",
-      "label": "ネオ You Are “クルーメイト”",
+      "label": "パワネオ You Are “クルーメイト”",
       "selection": "auto",
       "skills": [
         {
@@ -1349,7 +1349,7 @@
     {
       "id": "evt_30297_801019002",
       "supportNameMatch": "全てに挑む勇ましき者",
-      "label": "デジタル エモのためなら雨の中でも！",
+      "label": "パワデジタル エモのためなら雨の中でも！",
       "choices": [
         {
           "id": "c002_2001621",
@@ -1380,7 +1380,7 @@
     {
       "id": "evt_30297_830297002",
       "supportNameMatch": "全てに挑む勇ましき者",
-      "label": "デジタル おお！汝目覚めよ！",
+      "label": "パワデジタル おお！汝目覚めよ！",
       "selection": "auto",
       "skills": [
         {
@@ -1393,7 +1393,7 @@
     {
       "id": "evt_30297_830297003",
       "supportNameMatch": "全てに挑む勇ましき者",
-      "label": "デジタル 逃げぬ者、戦う者。すなわち汝。",
+      "label": "パワデジタル 逃げぬ者、戦う者。すなわち汝。",
       "selection": "auto",
       "skills": [
         {
@@ -1411,7 +1411,7 @@
     {
       "id": "evt_30296_801087002",
       "supportNameMatch": "単焦点でつかまえて",
-      "label": "マーチャン いつも写真から見つめてる",
+      "label": "根性マーチャン いつも写真から見つめてる",
       "selection": "auto",
       "skills": [
         {
@@ -1424,7 +1424,7 @@
     {
       "id": "evt_30296_830296003",
       "supportNameMatch": "単焦点でつかまえて",
-      "label": "マーチャン この香りが残りますように",
+      "label": "根性マーチャン この香りが残りますように",
       "choices": [
         {
           "id": "c001_2042712+2043111",
@@ -1470,7 +1470,7 @@
     {
       "id": "evt_30296_830296002",
       "supportNameMatch": "単焦点でつかまえて",
-      "label": "マーチャン ターちゃんマーちゃん、行くのです！",
+      "label": "根性マーチャン ターちゃんマーちゃん、行くのです！",
       "choices": [
         {
           "id": "c002_2012621",
@@ -1501,7 +1501,7 @@
     {
       "id": "evt_30271_801005002",
       "supportNameMatch": "壇上より魔法を込めて",
-      "label": "フジ ミスディレクション",
+      "label": "根性フジ ミスディレクション",
       "selection": "auto",
       "skills": [
         {
@@ -1514,7 +1514,7 @@
     {
       "id": "evt_30271_830271001",
       "supportNameMatch": "壇上より魔法を込めて",
-      "label": "フジ 魔法使いの秘密",
+      "label": "根性フジ 魔法使いの秘密",
       "selection": "auto",
       "skills": [
         {
@@ -1527,7 +1527,7 @@
     {
       "id": "evt_30275_801003002",
       "supportNameMatch": "天才的ユートピア",
-      "label": "テイオー ボクの武器",
+      "label": "スピテイオー ボクの武器",
       "selection": "auto",
       "skills": [
         {
@@ -1540,7 +1540,7 @@
     {
       "id": "evt_30275_830275003",
       "supportNameMatch": "天才的ユートピア",
-      "label": "テイオー まったり孝行日和",
+      "label": "スピテイオー まったり孝行日和",
       "choices": [
         {
           "id": "c001_2034211+2040012",
@@ -1581,7 +1581,7 @@
     {
       "id": "evt_30275_830275002",
       "supportNameMatch": "天才的ユートピア",
-      "label": "テイオー 孝行はしたい時分に",
+      "label": "スピテイオー 孝行はしたい時分に",
       "choices": [
         {
           "id": "c001_2035021",
@@ -1612,7 +1612,7 @@
     {
       "id": "evt_30298_801107002",
       "supportNameMatch": "刀光散らしてClash！",
-      "label": "タップ いざ求めん、夢多きTreasure",
+      "label": "スピタップ いざ求めん、夢多きTreasure",
       "selection": "auto",
       "skills": [
         {
@@ -1625,7 +1625,7 @@
     {
       "id": "evt_30298_830298002",
       "supportNameMatch": "刀光散らしてClash！",
-      "label": "タップ 心のカギは",
+      "label": "スピタップ 心のカギは",
       "selection": "auto",
       "skills": [
         {
@@ -1638,7 +1638,7 @@
     {
       "id": "evt_30298_830298003",
       "supportNameMatch": "刀光散らしてClash！",
-      "label": "タップ 仲間というロマン",
+      "label": "スピタップ 仲間というロマン",
       "choices": [
         {
           "id": "c001_2004311+2012712",
@@ -1695,7 +1695,7 @@
     {
       "id": "evt_30258_801027002",
       "supportNameMatch": "瞳に闘志を胸に勝利の渇望を",
-      "label": "ライアン あくまで薦められただけ",
+      "label": "スタライアン あくまで薦められただけ",
       "selection": "auto",
       "skills": [
         {
@@ -1708,7 +1708,7 @@
     {
       "id": "evt_30258_830258001",
       "supportNameMatch": "瞳に闘志を胸に勝利の渇望を",
-      "label": "ライアン マッスル、ただひたすらに",
+      "label": "スタライアン マッスル、ただひたすらに",
       "selection": "auto",
       "skills": [
         {
@@ -1721,7 +1721,7 @@
     {
       "id": "evt_30300_801069002",
       "supportNameMatch": "賑やかな未来を乗せて走れ！",
-      "label": "チヨノ いつか咲く、その日まで……",
+      "label": "スタチヨノ いつか咲く、その日まで……",
       "selection": "auto",
       "skills": [
         {
@@ -1734,7 +1734,7 @@
     {
       "id": "evt_30300_830300001",
       "supportNameMatch": "賑やかな未来を乗せて走れ！",
-      "label": "チヨノ どすこいカード列伝！",
+      "label": "スタチヨノ どすこいカード列伝！",
       "selection": "auto",
       "skills": [
         {
@@ -1752,7 +1752,7 @@
     {
       "id": "evt_30256_830256003",
       "supportNameMatch": "白き稲妻の如く",
-      "label": "タマモ 遠くで光るその走り",
+      "label": "パワタマモ 遠くで光るその走り",
       "choices": [
         {
           "id": "c001_2025512+2033611",
@@ -1793,7 +1793,7 @@
     {
       "id": "evt_30256_830256002",
       "supportNameMatch": "白き稲妻の如く",
-      "label": "タマモ 誰かの道を照らすなら",
+      "label": "パワタマモ 誰かの道を照らすなら",
       "choices": [
         {
           "id": "c001_2016511",
@@ -1824,7 +1824,7 @@
     {
       "id": "evt_30256_801021002",
       "supportNameMatch": "白き稲妻の如く",
-      "label": "タマモ 負けられん戦い！",
+      "label": "パワタマモ 負けられん戦い！",
       "selection": "auto",
       "skills": [
         {
@@ -1837,7 +1837,7 @@
     {
       "id": "evt_30294_801112002",
       "supportNameMatch": "白に至る覚悟",
-      "label": "ハート Away in the Mountains",
+      "label": "根性ハート Away in the Mountains",
       "selection": "auto",
       "skills": [
         {
@@ -1850,7 +1850,7 @@
     {
       "id": "evt_30294_830294002",
       "supportNameMatch": "白に至る覚悟",
-      "label": "ハート もっとも輝く『魅力』",
+      "label": "根性ハート もっとも輝く『魅力』",
       "choices": [
         {
           "id": "c002_2025021",
@@ -1881,7 +1881,7 @@
     {
       "id": "evt_30294_830294003",
       "supportNameMatch": "白に至る覚悟",
-      "label": "ハート 積み重ねられた『今』",
+      "label": "根性ハート 積み重ねられた『今』",
       "selection": "auto",
       "skills": [
         {
@@ -1899,7 +1899,7 @@
     {
       "id": "evt_30293_830293003",
       "supportNameMatch": "白に至る純真",
-      "label": "タクト シンデレラの行く末",
+      "label": "根性タクト シンデレラの行く末",
       "selection": "auto",
       "skills": [
         {
@@ -1917,7 +1917,7 @@
     {
       "id": "evt_30293_801075002",
       "supportNameMatch": "白に至る純真",
-      "label": "タクト 私を育てた場所",
+      "label": "根性タクト 私を育てた場所",
       "selection": "auto",
       "skills": [
         {
@@ -1930,7 +1930,7 @@
     {
       "id": "evt_30293_830293002",
       "supportNameMatch": "白に至る純真",
-      "label": "タクト 伝え、繋いで",
+      "label": "根性タクト 伝え、繋いで",
       "choices": [
         {
           "id": "c002_2029621",
@@ -1961,7 +1961,7 @@
     {
       "id": "evt_30265_801118002",
       "supportNameMatch": "氷結晶の静域",
-      "label": "アドマイヤ ひとりが好きなクラスメイトさん",
+      "label": "スピアドマイヤ ひとりが好きなクラスメイトさん",
       "selection": "auto",
       "skills": [
         {
@@ -1974,7 +1974,7 @@
     {
       "id": "evt_30265_830265002",
       "supportNameMatch": "氷結晶の静域",
-      "label": "アドマイヤ 孤高の休日",
+      "label": "スピアドマイヤ 孤高の休日",
       "selection": "auto",
       "skills": [
         {
@@ -1987,7 +1987,7 @@
     {
       "id": "evt_30265_830265003",
       "supportNameMatch": "氷結晶の静域",
-      "label": "アドマイヤ 孤高の証明",
+      "label": "スピアドマイヤ 孤高の証明",
       "selection": "auto",
       "skills": [
         {
@@ -2005,7 +2005,7 @@
     {
       "id": "evt_30277_830277003",
       "supportNameMatch": "無機の闘志",
-      "label": "ブルボン 火炎：夢焦がれ",
+      "label": "パワブルボン 火炎：夢焦がれ",
       "selection": "auto",
       "skills": [
         {
@@ -2023,7 +2023,7 @@
     {
       "id": "evt_30277_830277002",
       "supportNameMatch": "無機の闘志",
-      "label": "ブルボン 発火：熱を帯びて",
+      "label": "パワブルボン 発火：熱を帯びて",
       "selection": "auto",
       "skills": [
         {
@@ -2036,7 +2036,7 @@
     {
       "id": "evt_30277_801026002",
       "supportNameMatch": "無機の闘志",
-      "label": "ブルボン 命令は守らなければならない",
+      "label": "パワブルボン 命令は守らなければならない",
       "selection": "auto",
       "skills": [
         {
@@ -2049,7 +2049,7 @@
     {
       "id": "evt_30248_830248003",
       "supportNameMatch": "無垢の白妙",
-      "label": "タクト Innocent Wildflower",
+      "label": "賢さタクト Innocent Wildflower",
       "selection": "auto",
       "skills": [
         {
@@ -2067,7 +2067,7 @@
     {
       "id": "evt_30248_801075002",
       "supportNameMatch": "無垢の白妙",
-      "label": "タクト 私を育てた場所",
+      "label": "賢さタクト 私を育てた場所",
       "selection": "auto",
       "skills": [
         {
@@ -2080,7 +2080,7 @@
     {
       "id": "evt_30248_830248002",
       "supportNameMatch": "無垢の白妙",
-      "label": "タクト 母なる大地の教え",
+      "label": "賢さタクト 母なる大地の教え",
       "selection": "auto",
       "skills": [
         {
@@ -2093,7 +2093,7 @@
     {
       "id": "evt_30246_830246003",
       "supportNameMatch": "誘うは夢心地",
-      "label": "ドリーム そして今日も花が咲く",
+      "label": "スピドリーム そして今日も花が咲く",
       "selection": "auto",
       "skills": [
         {
@@ -2111,7 +2111,7 @@
     {
       "id": "evt_30246_830246002",
       "supportNameMatch": "誘うは夢心地",
-      "label": "ドリーム それはただただ咲き誇る",
+      "label": "スピドリーム それはただただ咲き誇る",
       "selection": "auto",
       "skills": [
         {
@@ -2124,7 +2124,7 @@
     {
       "id": "evt_30246_801119002",
       "supportNameMatch": "誘うは夢心地",
-      "label": "ドリーム 用意周到で妹想い",
+      "label": "スピドリーム 用意周到で妹想い",
       "selection": "auto",
       "skills": [
         {
@@ -2137,7 +2137,7 @@
     {
       "id": "evt_30306_830306003",
       "supportNameMatch": "両手いっぱい、小倉愛",
-      "label": "ネイチャ 【??】可変的レアリティ",
+      "label": "賢さネイチャ 【??】可変的レアリティ",
       "selection": "auto",
       "skills": [
         {
@@ -2155,7 +2155,7 @@
     {
       "id": "evt_30306_830306002",
       "supportNameMatch": "両手いっぱい、小倉愛",
-      "label": "ネイチャ 【C+】こだわりリレイション",
+      "label": "賢さネイチャ 【C+】こだわりリレイション",
       "selection": "auto",
       "skills": [
         {
@@ -2168,7 +2168,7 @@
     {
       "id": "evt_30306_801060002",
       "supportNameMatch": "両手いっぱい、小倉愛",
-      "label": "ネイチャ （美味しい）おせっかい",
+      "label": "賢さネイチャ （美味しい）おせっかい",
       "selection": "auto",
       "skills": [
         {
