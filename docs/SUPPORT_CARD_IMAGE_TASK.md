@@ -45,15 +45,32 @@
 各サポカは実質この3つ（正方形）:
 | アセット | 寸法 | 用途目安 |
 |----------|------|----------|
-| `supportcard/support{ID}/support_card_s_{ID}` | 256×256 | 枠・SSR等焼き付き小アイコン（**現行同梱**） |
-| `.../support_thumb_{ID}` | 512×512 | 枠なし寄り |
-| `.../tex_support_card_{ID}` | 2048×2048 | フルイラスト |
+| `supportcard/support{ID}/support_card_s_{ID}` | 256×256 | **枠＋レアバッジ焼き付き**小アイコン（**現行同梱**）。タイプ印は無し |
+| `.../support_thumb_{ID}` | 512×512 | **レア枠焼き付き**（SSR=虹 / SR=金 / R=銀）。レア文字バッジは無し |
+| `.../tex_support_card_{ID}` | 2048×2048 | フルイラスト（**枠なし**） |
 
-- 縦長に近いのは一部のみ `announce/.../support_announce_{ID}`（1024×2048・ガチャ告知）。全40非対応
+- 縦長に近いのは一部のみ `announce/.../support_announce_{ID}`（1024×2048・ガチャ告知）。優先40中 **5枚のみ**
 - GitHub support-card-sp の `img/` は **160×213・連番**でゲームID直結ではない。クライアント直出しではない
+- **独立した縦用ソリッド枠テクスチャは meta に存在しない**（`%support%frame%` / `%cardframe%` = 0）。枠は thumb / card_s に焼き付き
 
 ### ゲーム画面の縦カードはランタイム合成と推定
-正方形イラストを縦クロップし、SSR・タイプ・凸などを UI スプライトで重ねている可能性が高い。
+正方形絵＋UIスプライト重ねの可能性が高い。ただし共有ソリッド枠は見つからず、ガチャ用グロー枠（135×171）のみ。
+
+### 解決策1 調査結果（2026-08-01）— 部品判定
+
+詳細・抽出物: `.cache/asset-dump/sol1-ui-parts/`（gitignore） / `SOL1_PARTS_TABLE.md`
+
+| 部品 | 判定 | 本物 |
+|------|------|------|
+| ベース絵 | OK | `tex` / `support_thumb` |
+| 角丸マスク | 正方形のみ | `tex_support_*_00000_mask`。縦専用マスクなし |
+| ソリッド枠（虹/金/銀） | **独立部品なし** | thumb/card_s 焼き付きのみ |
+| SSRグロー枠 | 別用途で存在 | `atlas/gacha` `img_supportcard_ssr_frame_effect` 135×171（ソフトグロー） |
+| レアバッジ R/SR/SSR | **OK** | `atlas/common` `utx_ico_rarity_00/01/02` 70×70 |
+| タイプ印（編成角） | **不足** | v2の `utx_ico_supportcharastatus_*` は育成系で別物。friend専用も未発見 |
+| 凸 | 候補あり | `utx_ico_limit_00/01` など |
+
+**合成モデルへの含意:** 「tex縦クロップ＋共有縦枠＋タイプ」は枠・タイプの本物が揃わず成立しない。解決策3は本物だけ（例: tex縦＋`utx_ico_rarity_*`）に限定し、無い部品は解決策4で載せない。
 
 ### 抽出環境（このPC）
 - DAT: `D:\DMM\umamusumeDMM\Umamusume\umamusume_Data\Persistent\dat`
@@ -101,11 +118,12 @@
 ## 6. 新チャットでの作業順
 
 1. 本ファイル + [ASSETS.md](./ASSETS.md) を読む  
-2. **解決策1スパイク**: 編成画面相当のタイプアイコン・SSR・枠・マスクを meta/dat から特定  
-   - 出力: 部品一覧表（meta `n`・寸法・用途）と `.cache` への抽出サンプル  
+2. ~~**解決策1スパイク**~~ **済（2026-08-01）** — 部品表は §3 / `.cache/.../SOL1_PARTS_TABLE.md`  
 3. 部品が揃う範囲で **解決策3の試作**（数枚）→ ユーザー目視  
+   - 使える本物: `tex` 縦クロップ + `utx_ico_rarity_*`（＋任意でガチャ用グロー）  
+   - 載せない: 縁伸ばし枠・育成系タイプ印・無い部品の近似  
 4. OKなら `assets:extract` / `import` 系を更新し優先40を再生成。ASSETS / GAME_UPDATE 更新  
-5. NGまたは部品不足なら **解決策4に縮退**（または A/B に戻す）を明示提案  
+5. NGまたは部品不足なら **解決策4に縮退**（A: card_s正方形維持 / C: tex縦＋レアのみ 等）を明示提案  
 6. 変更は都度コミット。**push しない**
 
 ### 受け入れ（合成成功時）
