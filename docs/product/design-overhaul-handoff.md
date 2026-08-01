@@ -129,12 +129,12 @@
 ## 7. 新チャットでの最初の指示（コピペ用）
 
 ```text
-docs/product/デザイン大改修まとめ.md と docs/TODO.md を読んでから着手。
+docs/product/design-overhaul-handoff.md と docs/TODO.md を読んでから着手。
 
 現状: Visual Foundation 済（8b8dc1b）。方向は合うが実機でまだ弱く、フォントがかすれる。
 
 次: Foundation 2（コントラスト・フォントウェイト・かすれ解消）→ UI Round 1。
-詳細はまとめ.md §5〜6。計算ロジックは変えない。
+詳細は design-overhaul-handoff.md §5〜6。計算ロジックは変えない。
 ```
 
 ---
