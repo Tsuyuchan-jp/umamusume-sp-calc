@@ -589,7 +589,7 @@ input[type="search"] {
   border: none;
   background: none;
   cursor: pointer;
-  border-radius: 6px;
+  border-radius: 18px;
   transition: transform 0.12s ease, box-shadow 0.12s ease;
 }
 
@@ -681,7 +681,7 @@ input[type="search"] {
   position: relative;
   width: 100%;
   aspect-ratio: 3 / 4;
-  border-radius: 6px;
+  border-radius: 18px;
   overflow: hidden;
   /* 画像の角丸外（透明）からタイプ色が透けないよう背景は付けない。欠落時は .card-face__ph が担当 */
   background: transparent;
