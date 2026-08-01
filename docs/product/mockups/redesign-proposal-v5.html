@@ -1,0 +1,1128 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SP Calc — Visual Proposal v5（v2見た目 × v4骨格）</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@500;700;900&display=swap"
+    rel="stylesheet"
+  />
+  <style>
+    /* =========================================================
+       Visual Proposal v5 — v2 見た目 × v4 Command Desk 骨格
+       見た目: U-tools 紫クロム・世界観背景・茶文字・幾何パネル
+       骨格: 上部合計ヒーロー / 左編成ドック / 右スキル作業台
+       現行 app/ 未改変。計算なし。
+       ========================================================= */
+    :root {
+      --c-main: #68bb09;
+      --c-main-dark: #238500;
+      --c-dark: #463f70;
+      --c-accent: #ff9900;
+      --c-accent2: #ff7300;
+      --c-accent3: #ff3276;
+      --c-font: #703a13;
+      --c-font-light: #c0a28c;
+      --c-font-accent: #625d7d;
+      --c-font-accent-light: #bebbce;
+      --c-border: #b3b0b6;
+      --c-border-light: #eae7ec;
+      --c-border-dark: #787588;
+      --c-label: #ede6e6;
+      --c-panel: #ffffff;
+      --c-primary-light: #59ccfc;
+      --c-rank-gold: #f5cf6f;
+
+      --g-widget-bg: linear-gradient(180deg, #ffffff, #dad4da);
+      --g-widget-bg-light: linear-gradient(180deg, #ffffff, #edebef);
+      --g-primary: linear-gradient(180deg, #59ccfc, #23a4f6);
+      --g-secondary: linear-gradient(180deg, #ff75a3, #f7518b);
+      --g-tertiary: linear-gradient(180deg, #fa9f40, #ff8427);
+      --g-accent: linear-gradient(180deg, #80e322, #38c306);
+      --g-chrome: linear-gradient(180deg, #5a5288, #463f70);
+      --g-gold: linear-gradient(90deg, #e9c95f, #e29403);
+
+      --t-speed: #42a5f5;
+      --t-stamina: #ef5350;
+      --t-wit: #66bb6a;
+      --t-friend: #ab47bc;
+
+      --font-ui: "Zen Maru Gothic", Meiryo, "Hiragino Sans", sans-serif;
+      --dock-w: 304px;
+      --cmd-h: 68px;
+      --r: 10px;
+      --panel-bg:
+        url("https://static.kouryaku.tools/umamusume/images/app/bg.webp?auto=format")
+          center / 180px repeat,
+        var(--c-panel);
+    }
+
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+      margin: 0;
+      font-family: var(--font-ui);
+      font-weight: 700;
+      color: var(--c-font);
+      background: var(--c-dark);
+      -webkit-font-smoothing: auto;
+      overflow: hidden;
+    }
+
+    .world-bg {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      background:
+        url("https://static.kouryaku.tools/umamusume/images/app/uma-world.webp?auto=format")
+          center top / cover no-repeat;
+    }
+    .world-bg::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        180deg,
+        rgba(70, 63, 112, 0.12) 0%,
+        rgba(70, 63, 112, 0.04) 40%,
+        rgba(70, 63, 112, 0.32) 100%
+      );
+    }
+
+    .app {
+      position: relative;
+      z-index: 1;
+      height: 100%;
+      display: grid;
+      grid-template-rows: auto var(--cmd-h) 1fr;
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: 10px 12px 12px;
+      gap: 8px;
+    }
+
+    .mock-banner {
+      padding: 8px 12px;
+      border-radius: 8px;
+      background: rgba(70, 63, 112, 0.92);
+      color: #eef0f8;
+      font-size: 12px;
+      font-weight: 700;
+      line-height: 1.4;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+    }
+    .mock-banner strong { color: var(--c-rank-gold); }
+    .mock-banner a { color: var(--c-primary-light); }
+
+    /* ---- 上部コマンド（v4骨格 × v2紫クロム） ---- */
+    .command {
+      display: grid;
+      grid-template-columns: minmax(200px, 260px) 1fr auto;
+      gap: 12px;
+      align-items: center;
+      padding: 0 14px;
+      background: var(--g-chrome);
+      color: #fff;
+      border-radius: var(--r);
+      border-bottom: 3px solid var(--c-rank-gold);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.28);
+      animation: rise 0.4s ease both;
+    }
+    .brand-kicker {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      color: var(--c-font-accent-light);
+    }
+    .brand-name {
+      margin: 0;
+      font-size: 20px;
+      font-weight: 900;
+      line-height: 1.1;
+    }
+    .brand-name span { color: var(--c-rank-gold); }
+
+    .total-block {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      min-width: 0;
+    }
+    .total-hero {
+      display: flex;
+      align-items: baseline;
+      gap: 6px;
+      padding-right: 12px;
+      border-right: 1px solid rgba(255, 255, 255, 0.22);
+    }
+    .total-hero .k {
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      color: var(--c-font-accent-light);
+    }
+    .total-hero .n {
+      font-size: 34px;
+      font-weight: 900;
+      line-height: 1;
+      color: var(--c-rank-gold);
+      font-variant-numeric: tabular-nums;
+      text-shadow: 0 2px 0 rgba(0, 0, 0, 0.25);
+    }
+    .total-hero .u {
+      font-size: 13px;
+      font-weight: 900;
+      color: #ffe9a8;
+    }
+
+    .premises {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      align-items: center;
+    }
+    .p-label {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--c-font-accent-light);
+    }
+    .p-btn {
+      appearance: none;
+      border: 1px solid #787588;
+      background: var(--g-widget-bg);
+      color: var(--c-font-accent);
+      font: inherit;
+      font-size: 12px;
+      font-weight: 700;
+      padding: 6px 10px;
+      border-radius: 6px;
+      cursor: pointer;
+      min-width: 5em;
+    }
+    .p-btn.is-on {
+      border-color: #c00f47;
+      background: var(--g-secondary);
+      color: #fff;
+    }
+    .p-seg {
+      display: inline-flex;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      border-radius: 6px;
+      overflow: hidden;
+    }
+    .p-seg button {
+      appearance: none;
+      border: 0;
+      background: rgba(255, 255, 255, 0.12);
+      color: #ddd8ef;
+      font: inherit;
+      font-size: 12px;
+      font-weight: 700;
+      padding: 6px 9px;
+      cursor: pointer;
+      border-right: 1px solid rgba(255, 255, 255, 0.15);
+    }
+    .p-seg button:last-child { border-right: 0; }
+    .p-seg button.is-on {
+      background: var(--g-tertiary);
+      color: #fff;
+    }
+
+    .ghost-btn {
+      appearance: none;
+      border: 1px solid rgba(255, 255, 255, 0.35);
+      background: rgba(255, 255, 255, 0.1);
+      color: #fff;
+      font: inherit;
+      font-size: 12px;
+      font-weight: 700;
+      padding: 7px 12px;
+      border-radius: 999px;
+      cursor: pointer;
+    }
+    .ghost-btn:hover { background: rgba(255, 255, 255, 0.2); }
+    .cmd-actions { display: flex; gap: 6px; }
+
+    /* ---- ワークスペース ---- */
+    .workspace {
+      display: grid;
+      grid-template-columns: var(--dock-w) 1fr;
+      gap: 8px;
+      min-height: 0;
+      animation: rise 0.45s 0.05s ease both;
+    }
+
+    .dock,
+    .canvas {
+      background: var(--panel-bg);
+      border-radius: var(--r);
+      box-shadow: 0 8px 28px #00000028;
+      border: 1px solid rgba(255, 255, 255, 0.55);
+      display: flex;
+      flex-direction: column;
+      min-height: 0;
+      overflow: hidden;
+    }
+
+    .dock-head,
+    .section-tag {
+      flex-shrink: 0;
+      padding: 10px 12px;
+      background: var(--g-chrome);
+      color: #fff;
+      font-size: 13px;
+      font-weight: 900;
+      letter-spacing: 0.04em;
+      border-bottom: 2px solid var(--c-rank-gold);
+    }
+
+    .dock-body {
+      padding: 10px;
+      overflow: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      min-height: 0;
+    }
+
+    .trainee {
+      display: grid;
+      grid-template-columns: 68px 1fr;
+      gap: 8px;
+      align-items: center;
+      padding: 8px;
+      background: rgba(255, 255, 255, 0.85);
+      border: 1px solid var(--c-border);
+      border-radius: 8px;
+      cursor: pointer;
+      text-align: left;
+      font: inherit;
+      color: inherit;
+    }
+    .trainee:hover { border-color: var(--c-accent); }
+    .trainee img {
+      width: 68px;
+      height: 76px;
+      object-fit: cover;
+      border-radius: 6px;
+      display: block;
+      background: var(--c-label);
+    }
+    .trainee .role {
+      font-size: 10px;
+      font-weight: 900;
+      color: var(--c-font-accent);
+      letter-spacing: 0.06em;
+    }
+    .trainee .name {
+      margin: 2px 0 0;
+      font-size: 13px;
+      font-weight: 900;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .sup-list { display: flex; flex-direction: column; gap: 6px; }
+    .sup {
+      display: grid;
+      grid-template-columns: 46px 1fr;
+      gap: 8px;
+      padding: 6px;
+      background: rgba(255, 255, 255, 0.85);
+      border: 1px solid var(--c-border);
+      border-radius: 8px;
+      cursor: pointer;
+      text-align: left;
+      font: inherit;
+      color: inherit;
+      transition: border-color 0.12s, transform 0.12s;
+    }
+    .sup:hover {
+      border-color: var(--c-accent);
+      transform: translateX(2px);
+    }
+    .sup img {
+      width: 46px;
+      height: 60px;
+      object-fit: cover;
+      border-radius: 4px;
+      display: block;
+      background: var(--c-label);
+    }
+    .sup .body { min-width: 0; display: flex; flex-direction: column; gap: 3px; }
+    .sup .top {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      min-width: 0;
+    }
+    .sup .slot {
+      flex-shrink: 0;
+      font-size: 10px;
+      font-weight: 900;
+      color: #fff;
+      background: var(--c-dark);
+      padding: 1px 5px;
+      border-radius: 3px;
+    }
+    .sup .name {
+      font-size: 12px;
+      font-weight: 900;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .type {
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      flex-shrink: 0;
+      border: 1.5px solid #fff;
+      box-shadow: 0 0 0 1px #00000022;
+    }
+    .type.speed { background: var(--t-speed); }
+    .type.stamina { background: var(--t-stamina); }
+    .type.wit { background: var(--t-wit); }
+    .type.friend { background: var(--t-friend); }
+
+    .evt-row { display: flex; flex-wrap: wrap; gap: 3px; }
+    .evt {
+      appearance: none;
+      border: 1px solid var(--c-border);
+      background: var(--g-widget-bg-light);
+      font: inherit;
+      font-size: 10px;
+      font-weight: 700;
+      color: var(--c-font-accent);
+      padding: 2px 5px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .evt.is-on {
+      border-color: var(--c-accent2);
+      background: linear-gradient(180deg, #fff8ee, #ffe4c4);
+      color: var(--c-font);
+    }
+    .evt .g {
+      display: inline-block;
+      margin-right: 2px;
+      padding: 0 2px;
+      border-radius: 2px;
+      background: var(--g-gold);
+      color: #5a3d00;
+      font-size: 9px;
+      font-weight: 900;
+    }
+    .evt-auto {
+      font-size: 10px;
+      font-weight: 700;
+      color: var(--c-font-accent);
+    }
+
+    .dock-foot {
+      margin-top: 4px;
+      padding-top: 8px;
+      border-top: 1px dashed var(--c-border);
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .foot-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px;
+      align-items: center;
+    }
+    .foot-k {
+      font-size: 10px;
+      font-weight: 900;
+      color: var(--c-font-accent);
+      width: 3.2em;
+    }
+    .chip {
+      appearance: none;
+      border: 1px solid var(--c-border);
+      background: var(--g-widget-bg);
+      font: inherit;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--c-font-accent);
+      padding: 4px 7px;
+      border-radius: 5px;
+      cursor: pointer;
+      box-shadow: 0 1px 0 #fff inset;
+    }
+    .chip.is-on {
+      border-color: var(--c-main-dark);
+      background: var(--g-accent);
+      color: #fff;
+    }
+    .chip.is-signal {
+      border-color: #c00f47;
+      background: var(--g-secondary);
+      color: #fff;
+    }
+
+    /* ---- 右キャンバス ---- */
+    .canvas-head {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 10px;
+      align-items: center;
+      padding: 10px 12px;
+      background: rgba(255, 255, 255, 0.72);
+      border-bottom: 1px solid var(--c-border-light);
+      flex-shrink: 0;
+    }
+    .section-tag {
+      padding: 5px 10px;
+      border-radius: 2px;
+      border-bottom: 0;
+      display: inline-block;
+    }
+    .flabel {
+      font-size: 11px;
+      font-weight: 900;
+      color: var(--c-font-accent);
+    }
+    .seg {
+      display: inline-flex;
+      border: 1px solid var(--c-border-dark);
+      border-radius: 6px;
+      overflow: hidden;
+      background: #fff;
+    }
+    .seg button {
+      appearance: none;
+      border: 0;
+      background: transparent;
+      font: inherit;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 6px 9px;
+      color: var(--c-font-accent);
+      cursor: pointer;
+      border-right: 1px solid var(--c-border);
+    }
+    .seg button:last-child { border-right: 0; }
+    .seg button.is-on {
+      background: var(--g-primary);
+      color: #fff;
+    }
+    .canvas-actions { margin-left: auto; }
+    .solid-btn {
+      appearance: none;
+      border: 1px solid #1a7ab8;
+      background: var(--g-primary);
+      color: #fff;
+      font: inherit;
+      font-size: 12px;
+      font-weight: 900;
+      padding: 7px 12px;
+      border-radius: 6px;
+      cursor: pointer;
+      text-shadow: 0 1px 0 rgba(0, 0, 0, 0.15);
+    }
+
+    .table-wrap {
+      overflow: auto;
+      min-height: 0;
+      flex: 1;
+      padding: 0 4px 8px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+    th {
+      position: sticky;
+      top: 0;
+      z-index: 1;
+      text-align: left;
+      font-size: 10px;
+      font-weight: 900;
+      letter-spacing: 0.05em;
+      color: var(--c-font-accent);
+      padding: 10px 10px 8px;
+      background: rgba(237, 230, 230, 0.95);
+      border-bottom: 2px solid var(--c-dark);
+    }
+    td {
+      padding: 9px 10px;
+      border-bottom: 1px solid var(--c-border-light);
+      font-weight: 700;
+      vertical-align: middle;
+      color: var(--c-font);
+    }
+    tr.is-off td {
+      opacity: 0.4;
+      text-decoration: line-through;
+    }
+    tr:hover td { background: rgba(255, 153, 0, 0.06); }
+    .origin {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 12px;
+      color: var(--c-font-accent);
+    }
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--t-speed);
+    }
+    .dot.event { background: var(--c-accent3); }
+    .dot.scenario { background: var(--c-main); }
+    .dot.char { background: var(--t-friend); }
+    .lv {
+      display: inline-grid;
+      place-items: center;
+      min-width: 2.2em;
+      padding: 2px 6px;
+      border-radius: 4px;
+      background: var(--c-dark);
+      color: #fff;
+      font-size: 10px;
+      font-weight: 900;
+    }
+    .sp {
+      font-weight: 900;
+      color: var(--c-accent2);
+      font-size: 14px;
+      font-variant-numeric: tabular-nums;
+    }
+    .tog {
+      width: 34px;
+      height: 20px;
+      border-radius: 999px;
+      border: 0;
+      background: var(--c-border);
+      position: relative;
+      cursor: pointer;
+    }
+    .tog::after {
+      content: "";
+      position: absolute;
+      top: 2px; left: 2px;
+      width: 16px; height: 16px;
+      border-radius: 50%;
+      background: #fff;
+      transition: transform 0.15s;
+      box-shadow: 0 1px 2px #0003;
+    }
+    .tog.is-on { background: var(--c-main); }
+    .tog.is-on::after { transform: translateX(14px); }
+
+    .summary-strip {
+      flex-shrink: 0;
+      display: flex;
+      gap: 16px;
+      padding: 8px 12px;
+      border-top: 1px solid var(--c-border-light);
+      background: rgba(255, 255, 255, 0.78);
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--c-font-accent);
+    }
+    .summary-strip b { color: var(--c-font); }
+
+    .inherit-pop {
+      position: absolute;
+      top: calc(10px + 2.6em + var(--cmd-h) + 6px);
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 30;
+      display: none;
+      gap: 10px;
+      align-items: center;
+      flex-wrap: wrap;
+      padding: 10px 12px;
+      background: var(--g-chrome);
+      color: #fff;
+      border-radius: 8px;
+      border: 1px solid rgba(245, 207, 111, 0.55);
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.3);
+      font-size: 12px;
+      font-weight: 700;
+    }
+    .inherit-pop.is-open { display: flex; }
+    .inherit-pop .k { color: var(--c-rank-gold); }
+    .inherit-pop select,
+    .inherit-pop input {
+      font: inherit;
+      font-size: 12px;
+      border-radius: 5px;
+      border: 1px solid #787588;
+      background: #2f2a4d;
+      color: #fff;
+      padding: 3px 6px;
+    }
+
+    .notes {
+      position: fixed;
+      right: 16px;
+      bottom: 16px;
+      z-index: 20;
+      width: min(300px, calc(100% - 32px));
+      padding: 10px 12px;
+      background: rgba(70, 63, 112, 0.94);
+      color: #e8eaf5;
+      border-radius: 8px;
+      font-size: 11px;
+      font-weight: 700;
+      line-height: 1.45;
+      border: 1px solid rgba(245, 207, 111, 0.4);
+      max-height: 36vh;
+      overflow: auto;
+    }
+    .notes h3 {
+      margin: 0 0 6px;
+      font-size: 12px;
+      color: var(--c-rank-gold);
+    }
+    .notes ul { margin: 0; padding-left: 1.1em; }
+    .notes li { margin: 3px 0; }
+    .notes a { color: var(--c-primary-light); }
+
+    .picker {
+      position: fixed;
+      inset: 0;
+      z-index: 80;
+      display: none;
+      place-items: center;
+      background: rgba(70, 63, 112, 0.55);
+      backdrop-filter: blur(3px);
+      padding: 20px;
+    }
+    .picker.is-open { display: grid; }
+    .picker-panel {
+      width: min(640px, 100%);
+      max-height: 70vh;
+      background: var(--panel-bg);
+      border-radius: 12px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 24px 48px #0006;
+      border: 2px solid var(--c-dark);
+    }
+    .picker-chrome {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 12px;
+      background: var(--g-chrome);
+      color: #fff;
+      border-bottom: 2px solid var(--c-rank-gold);
+    }
+    .picker-chrome h2 { margin: 0; font-size: 14px; font-weight: 900; }
+    .picker-grid {
+      padding: 12px;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(84px, 1fr));
+      gap: 8px;
+      overflow: auto;
+      min-height: 280px;
+    }
+    .pick {
+      aspect-ratio: 3/4;
+      border: 3px solid transparent;
+      border-radius: 6px;
+      overflow: hidden;
+      padding: 0;
+      cursor: pointer;
+      background: var(--c-label);
+    }
+    .pick img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .pick.is-selected { border-color: var(--c-accent); }
+
+    @keyframes rise {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 900px) {
+      body { overflow: auto; }
+      .app {
+        height: auto;
+        min-height: 100%;
+        grid-template-rows: auto auto auto;
+      }
+      .workspace { grid-template-columns: 1fr; }
+      .command { grid-template-columns: 1fr; padding: 10px; height: auto; }
+      .total-hero { border-right: 0; }
+      .notes { display: none; }
+      :root { --cmd-h: auto; }
+    }
+  </style>
+</head>
+<body>
+  <div class="world-bg" aria-hidden="true"></div>
+
+  <div class="app">
+    <aside class="mock-banner">
+      <strong>VISUAL MOCK v5</strong>
+      — v2 の見た目（紫・世界観・幾何パネル）＋ v4 の骨格（上部合計／左右分割）。
+      比較: <a href="./redesign-proposal-v2.html">v2</a> /
+      <a href="./redesign-proposal-v4.html">v4</a> /
+      <a href="./redesign-proposal-v3.html">v3</a>
+    </aside>
+
+    <header class="command">
+      <div class="brand">
+        <div class="brand-kicker">TRAINING PREP TOOL</div>
+        <h1 class="brand-name">SP <span>Calc</span></h1>
+      </div>
+
+      <div class="total-block">
+        <div class="total-hero">
+          <span class="k">TOTAL</span>
+          <span class="n">1,248</span>
+          <span class="u">SP</span>
+        </div>
+        <div class="premises">
+          <span class="p-label">前提</span>
+          <button type="button" class="p-btn is-on" data-kirisha>切れ者 ON</button>
+          <span class="p-label">トレLv</span>
+          <div class="p-seg">
+            <button type="button">3</button>
+            <button type="button">4</button>
+            <button type="button" class="is-on">5</button>
+          </div>
+          <button type="button" class="p-btn" id="inherit-btn">継承 OFF</button>
+        </div>
+      </div>
+
+      <div class="cmd-actions">
+        <button type="button" class="ghost-btn">メモリ</button>
+        <button type="button" class="ghost-btn">使い方</button>
+      </div>
+    </header>
+
+    <div class="inherit-pop" id="inherit-pop">
+      <span class="k">継承固有</span>
+      <label>個数
+        <select><option>1</option><option selected>2</option><option>3</option></select>
+      </label>
+      <label>Lv
+        <select><option>1</option><option>2</option><option>3</option><option selected>4</option><option>5</option></select>
+      </label>
+      <label>base SP
+        <input type="number" value="200" min="1" style="width:4.5em" />
+      </label>
+    </div>
+
+    <div class="workspace">
+      <aside class="dock" aria-label="編成">
+        <div class="dock-head">編成</div>
+        <div class="dock-body">
+          <button type="button" class="trainee" data-open-picker>
+            <img src="../../../assets/characters/112901.webp" alt="" />
+            <div>
+              <div class="role">育成ウマ娘</div>
+              <p class="name">アーモンドアイ</p>
+            </div>
+          </button>
+
+          <div class="sup-list">
+            <button type="button" class="sup" data-open-picker>
+              <img src="../../../assets/supports/30281.webp" alt="" />
+              <div class="body">
+                <div class="top">
+                  <span class="slot">1</span>
+                  <span class="type speed"></span>
+                  <span class="name">エアグルーヴ</span>
+                </div>
+                <div class="evt-row">
+                  <span class="evt is-on"><span class="g">金</span>切れ者</span>
+                  <span class="evt">右回り○</span>
+                </div>
+              </div>
+            </button>
+            <button type="button" class="sup" data-open-picker>
+              <img src="../../../assets/supports/30292.webp" alt="" />
+              <div class="body">
+                <div class="top">
+                  <span class="slot">2</span>
+                  <span class="type speed"></span>
+                  <span class="name">トウカイテイオー</span>
+                </div>
+                <div class="evt-row">
+                  <span class="evt is-on"><span class="g">金</span>先手必勝</span>
+                  <span class="evt">負けん気</span>
+                </div>
+              </div>
+            </button>
+            <button type="button" class="sup" data-open-picker>
+              <img src="../../../assets/supports/30301.webp" alt="" />
+              <div class="body">
+                <div class="top">
+                  <span class="slot">3</span>
+                  <span class="type stamina"></span>
+                  <span class="name">タップダンスシチー</span>
+                </div>
+                <div class="evt-auto"><span class="g">金</span> 自動：冷静</div>
+              </div>
+            </button>
+            <button type="button" class="sup" data-open-picker>
+              <img src="../../../assets/supports/30286.webp" alt="" />
+              <div class="body">
+                <div class="top">
+                  <span class="slot">4</span>
+                  <span class="type stamina"></span>
+                  <span class="name">メジロドーベル</span>
+                </div>
+                <div class="evt-row">
+                  <span class="evt is-on"><span class="g">金</span>食いしん坊</span>
+                </div>
+              </div>
+            </button>
+            <button type="button" class="sup" data-open-picker>
+              <img src="../../../assets/supports/30277.webp" alt="" />
+              <div class="body">
+                <div class="top">
+                  <span class="slot">5</span>
+                  <span class="type wit"></span>
+                  <span class="name">スマートファルコン</span>
+                </div>
+                <div class="evt-row">
+                  <span class="evt is-on">作戦理解</span>
+                  <span class="evt">冷静</span>
+                </div>
+              </div>
+            </button>
+            <button type="button" class="sup" data-open-picker>
+              <img src="../../../assets/supports/30271.webp" alt="" />
+              <div class="body">
+                <div class="top">
+                  <span class="slot">6</span>
+                  <span class="type friend"></span>
+                  <span class="name">駿川たづな</span>
+                </div>
+                <div class="evt-auto"><span class="g">金</span> 自動：中盤巧者</div>
+              </div>
+            </button>
+          </div>
+
+          <div class="dock-foot">
+            <div class="foot-row">
+              <span class="foot-k">リンク</span>
+              <button type="button" class="chip is-on">エアグルーヴ</button>
+              <button type="button" class="chip">テイオー</button>
+            </div>
+            <div class="foot-row">
+              <span class="foot-k">RMJ</span>
+              <button type="button" class="chip is-signal">参加</button>
+              <button type="button" class="chip">不参加</button>
+            </div>
+            <div class="foot-row">
+              <span class="foot-k">自動</span>
+              <button type="button" class="chip is-on">サポカEV</button>
+              <button type="button" class="chip is-on">シナリオ</button>
+            </div>
+          </div>
+        </div>
+      </aside>
+
+      <section class="canvas" aria-label="結果作業台">
+        <div class="canvas-head">
+          <span class="section-tag">含めるスキル</span>
+          <span class="flabel">レギュ</span>
+          <div class="seg">
+            <button type="button" class="is-on">すべて</button>
+            <button type="button">○以上</button>
+            <button type="button">◎のみ</button>
+          </div>
+          <span class="flabel">並び</span>
+          <div class="seg">
+            <button type="button" class="is-on">由来</button>
+            <button type="button">SP</button>
+            <button type="button">名前</button>
+          </div>
+          <div class="canvas-actions">
+            <button type="button" class="solid-btn">含めるをコピー</button>
+          </div>
+        </div>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th style="width:3.2em">ON</th>
+                <th>スキル</th>
+                <th>由来</th>
+                <th>ヒント</th>
+                <th style="width:4.5em">SP</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><button type="button" class="tog is-on" data-tog aria-label="含める"></button></td>
+                <td>切れ者</td>
+                <td><span class="origin"><span class="dot event"></span>イベント · エアグルーヴ</span></td>
+                <td><span class="lv">Lv3</span></td>
+                <td class="sp">162</td>
+              </tr>
+              <tr>
+                <td><button type="button" class="tog is-on" data-tog aria-label="含める"></button></td>
+                <td>先手必勝</td>
+                <td><span class="origin"><span class="dot event"></span>イベント · テイオー</span></td>
+                <td><span class="lv">Lv3</span></td>
+                <td class="sp">162</td>
+              </tr>
+              <tr>
+                <td><button type="button" class="tog is-on" data-tog aria-label="含める"></button></td>
+                <td>中盤巧者</td>
+                <td><span class="origin"><span class="dot scenario"></span>シナリオ · たづな</span></td>
+                <td><span class="lv">Lv2</span></td>
+                <td class="sp">147</td>
+              </tr>
+              <tr>
+                <td><button type="button" class="tog is-on" data-tog aria-label="含める"></button></td>
+                <td>右回り○</td>
+                <td><span class="origin"><span class="dot"></span>トレヒント · 枠1</span></td>
+                <td><span class="lv">Lv5</span></td>
+                <td class="sp">98</td>
+              </tr>
+              <tr class="is-off">
+                <td><button type="button" class="tog" data-tog aria-label="含める"></button></td>
+                <td>負けん気</td>
+                <td><span class="origin"><span class="dot"></span>トレヒント · 枠2</span></td>
+                <td><span class="lv">Lv5</span></td>
+                <td class="sp">98</td>
+              </tr>
+              <tr>
+                <td><button type="button" class="tog is-on" data-tog aria-label="含める"></button></td>
+                <td>末脚</td>
+                <td><span class="origin"><span class="dot char"></span>所持 · アーモンドアイ</span></td>
+                <td><span class="lv">Lv3</span></td>
+                <td class="sp">126</td>
+              </tr>
+              <tr>
+                <td><button type="button" class="tog is-on" data-tog aria-label="含める"></button></td>
+                <td>食いしん坊</td>
+                <td><span class="origin"><span class="dot event"></span>イベント · ドーベル</span></td>
+                <td><span class="lv">Lv3</span></td>
+                <td class="sp">162</td>
+              </tr>
+              <tr>
+                <td><button type="button" class="tog is-on" data-tog aria-label="含める"></button></td>
+                <td>作戦理解</td>
+                <td><span class="origin"><span class="dot event"></span>イベント · ファルコン</span></td>
+                <td><span class="lv">Lv2</span></td>
+                <td class="sp">98</td>
+              </tr>
+              <tr>
+                <td><button type="button" class="tog is-on" data-tog aria-label="含める"></button></td>
+                <td>冷静</td>
+                <td><span class="origin"><span class="dot event"></span>自動 · タップ</span></td>
+                <td><span class="lv">Lv2</span></td>
+                <td class="sp">112</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="summary-strip">
+          <span>計上 <b>8</b> / 除外 <b>1</b></span>
+          <span>イベント金 <b>4</b></span>
+          <span>合計は上部 TOTALと連動（モック）</span>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <aside class="notes">
+    <h3>v5 = v2 × v4</h3>
+    <ul>
+      <li>見た目: v2（紫クロム・ゴールド縁・世界観背景・茶文字）</li>
+      <li>骨格: v4（上部合計・左編成・右検証）</li>
+      <li>緑メインが欲しければ v3 色をこの骨格に載せ替え可</li>
+    </ul>
+  </aside>
+
+  <div class="picker" id="picker">
+    <div class="picker-panel">
+      <div class="picker-chrome">
+        <h2>カードを選ぶ</h2>
+        <button type="button" class="ghost-btn" id="picker-close">閉じる</button>
+      </div>
+      <div class="picker-grid" id="picker-grid"></div>
+    </div>
+  </div>
+
+  <script>
+    const ASSET = "../../../assets/supports/";
+    const CARDS = ["30281","30292","30301","30286","30277","30271","30278","30294","30304","30285"];
+    const grid = document.getElementById("picker-grid");
+    const picker = document.getElementById("picker");
+    CARDS.forEach((id, i) => {
+      const b = document.createElement("button");
+      b.type = "button";
+      b.className = "pick" + (i === 0 ? " is-selected" : "");
+      b.innerHTML = `<img src="${ASSET}${id}.webp" alt="" />`;
+      b.onclick = () => {
+        grid.querySelectorAll(".pick").forEach((x) => x.classList.remove("is-selected"));
+        b.classList.add("is-selected");
+      };
+      grid.appendChild(b);
+    });
+    document.querySelectorAll("[data-open-picker]").forEach((el) => {
+      el.addEventListener("click", () => picker.classList.add("is-open"));
+    });
+    document.getElementById("picker-close").onclick = () => picker.classList.remove("is-open");
+    picker.onclick = (e) => { if (e.target === picker) picker.classList.remove("is-open"); };
+
+    document.querySelectorAll("[data-tog]").forEach((btn) => {
+      btn.onclick = () => {
+        btn.classList.toggle("is-on");
+        btn.closest("tr").classList.toggle("is-off", !btn.classList.contains("is-on"));
+      };
+    });
+    document.querySelectorAll(".seg, .p-seg").forEach((seg) => {
+      seg.querySelectorAll("button").forEach((btn) => {
+        btn.onclick = () => {
+          seg.querySelectorAll("button").forEach((b) => b.classList.remove("is-on"));
+          btn.classList.add("is-on");
+        };
+      });
+    });
+    document.querySelector("[data-kirisha]").onclick = (e) => {
+      const on = e.currentTarget.classList.toggle("is-on");
+      e.currentTarget.textContent = on ? "切れ者 ON" : "切れ者 OFF";
+    };
+    const inheritBtn = document.getElementById("inherit-btn");
+    const inheritPop = document.getElementById("inherit-pop");
+    inheritBtn.onclick = () => {
+      const on = !inheritBtn.classList.contains("is-on");
+      inheritBtn.classList.toggle("is-on", on);
+      inheritBtn.textContent = on ? "継承 ON" : "継承 OFF";
+      inheritPop.classList.toggle("is-open", on);
+    };
+    document.querySelectorAll(".foot-row").forEach((row) => {
+      row.querySelectorAll(".chip").forEach((chip) => {
+        chip.onclick = () => {
+          row.querySelectorAll(".chip").forEach((c) => c.classList.remove("is-on", "is-signal"));
+          chip.classList.add(chip.textContent.includes("参加") && !chip.textContent.includes("不") ? "is-signal" : "is-on");
+        };
+      });
+    });
+    document.querySelectorAll(".evt").forEach((evt) => {
+      evt.onclick = (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        const row = evt.parentElement;
+        row.querySelectorAll(".evt").forEach((x) => x.classList.remove("is-on"));
+        evt.classList.add("is-on");
+      };
+    });
+  </script>
+</body>
+</html>

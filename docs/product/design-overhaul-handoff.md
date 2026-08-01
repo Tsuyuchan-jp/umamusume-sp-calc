@@ -116,8 +116,8 @@
 ユーザー方針（2026-08-02 更新）: 現行 CSS に引っ張られて大きな改修が難しいため、**先に独立モックで方向を決める**。
 
 0. **独立ビジュアルモック（進行中）** — 比較検討中  
-   - [v4 Command Desk](./mockups/redesign-proposal-v4.html)（現行 UX 思想を外した別案）  
-   - [v3 緑](./mockups/redesign-proposal-v3.html) / [v2 紫](./mockups/redesign-proposal-v2.html)  
+   - [v5](./mockups/redesign-proposal-v5.html)（**v2見た目 × v4骨格**・有力候補）  
+   - [v4](./mockups/redesign-proposal-v4.html) / [v3](./mockups/redesign-proposal-v3.html) / [v2](./mockups/redesign-proposal-v2.html)  
    現行 `app/` は触らない。フィードバック後に移植方針を決める。
 1. **方向確定後** — モックのトークン／構造を `app/` へ移植（Foundation 再塗装 or 段階置換）
 2. **Round 1 — 正しさ** — ピッカー絞込バグ、選択強調
