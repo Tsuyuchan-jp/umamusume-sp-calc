@@ -71,7 +71,7 @@ export function mergeSourceInto(list, src) {
 }
 
 /**
- * @param {"name"|"kind"|"cost"} mode
+ * @param {"name"|"kind"|"cost"|"skillId"} mode
  * @param {object[]} rows
  * @returns {object[]}
  */
@@ -97,6 +97,13 @@ export function sortPlanRows(rows, mode = "name") {
       const ca = Number(a.cost) || 0;
       const cb = Number(b.cost) || 0;
       if (ca !== cb) return cb - ca;
+      return byName(a, b);
+    });
+  } else if (mode === "skillId") {
+    normal.sort((a, b) => {
+      const ia = Number(a.skillId) || 0;
+      const ib = Number(b.skillId) || 0;
+      if (ia !== ib) return ia - ib;
       return byName(a, b);
     });
   } else {

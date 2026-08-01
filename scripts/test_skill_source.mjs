@@ -95,16 +95,19 @@ assertTruthy(
 const rows = [
   {
     name: "あ",
+    skillId: 300,
     cost: 100,
     sources: [{ kind: "event", label: "E", hintLevel: 2 }],
   },
   {
     name: "い",
+    skillId: 100,
     cost: 300,
     sources: [{ kind: "training", label: "T", hintLevel: 5 }],
   },
   {
     name: "う",
+    skillId: 200,
     cost: 200,
     sources: [{ kind: "owned", label: "O", hintLevel: 3 }],
   },
@@ -131,6 +134,13 @@ assertEq(
   byCost.map((r) => r.name).join(","),
   "い,う,あ,継承固有 × 2",
   "必要SP降順＋継承末尾"
+);
+
+const byId = sortPlanRows(rows, "skillId");
+assertEq(
+  byId.map((r) => r.name).join(","),
+  "い,う,あ,継承固有 × 2",
+  "スキルID昇順＋継承末尾"
 );
 
 console.log("skillSource / hintResolve tests passed");
