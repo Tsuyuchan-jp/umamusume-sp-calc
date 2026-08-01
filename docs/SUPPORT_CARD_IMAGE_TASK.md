@@ -127,6 +127,7 @@
 - `.cache/asset-dump/compare-vertical/`
 - `.cache/asset-dump/compare-vertical-v2/sheet_v2.png`
 - `.cache/asset-dump/compare-vertical-v3/`（v3試作・`sheet_v3.png`）
+- `.cache/asset-dump/compare-vertical-v4/`（v4試作・stretch＋タイプ印・`sheet_v4.png`）
 
 ---
 
@@ -148,8 +149,9 @@
 
 1. 本ファイル + [ASSETS.md](./ASSETS.md) を読む  
 2. ~~**解決策1スパイク**~~ **済（2026-08-01）** — 部品表は §3 / `.cache/.../SOL1_PARTS_TABLE.md`  
-3. ~~部品が揃う範囲で **解決策3の試作**~~ **v3試作済（2026-08-01）** — `npm run samples:vertical-v3` → `.cache/.../compare-vertical-v3/`  
-   - ベース: `support_thumb` 全幅維持＋縦縮尺（3:4）＋ `tex_support_thumb_00000_mask`  
+3. ~~部品が揃う範囲で **解決策3の試作**~~ **v3/v4試作済（2026-08-01）**  
+   - v3: `support_thumb` 縦縮尺。**本番候補は `{id}_stretch.png`**（共有マスク無し）。`{id}_v3.png` は枠が削れるため不可  
+   - v4: stretch + `assets/type-icons/{type}.webp` 右上固定 → `npm run samples:vertical-v4` → `.cache/.../compare-vertical-v4/`  
    - ユーザー目視で採用可否を判断  
 4. OKなら `assets:extract` / `import` 系を更新し優先40を再生成。ASSETS / GAME_UPDATE 更新  
 5. NGまたは部品不足なら **解決策4に縮退**（A: card_s正方形維持 等）を明示提案  

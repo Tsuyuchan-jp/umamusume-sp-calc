@@ -16,6 +16,7 @@ UX 改善 Phase 1（2026-08-01）で確定。抽出パイプライン Phase 1（
 |------|------|--------------|
 | サポカ | `assets/supports/` | `{supportCardId}.webp` |
 | 育成ウマ娘 | `assets/characters/` | `{characterCardId}.webp` |
+| タイプ印（共有） | `assets/type-icons/` | `{type}.webp`（speed/stamina/power/guts/wit/friend） |
 
 UI は `app/js/cardAssets.js` が URL を組み立てる。画像が無い場合はタイプ色＋短縮名のプレースホルダを表示（計算には影響しない）。
 
@@ -23,7 +24,20 @@ UI は `app/js/cardAssets.js` が URL を組み立てる。画像が無い場合
 
 - 優先サポカ **40種**（`data/priority-supports.json`）→ `assets/supports/{id}.webp`
 - 初期育成ウマ娘 **107703**（`[万福龍湯伝・頂]ナリタトップロード`）→ `assets/characters/107703.webp`
+- タイプ印 **6種**（`assets/type-icons/{type}.webp`）— カード横断で使いまわし。実行時CDN非依存
 - 目安サイズ: 長辺 256px・WebP・Phase1 合計 **約 0.6 MiB**（5MB 未満）
+
+### タイプ印の出所（同梱・再取得用）
+
+実行時は `assets/type-icons/` のみ参照。取得元 CDN への直リンクはしない。
+
+```text
+https://static.kouryaku.tools/umamusume/images/app/supports/{name}.png
+  speed / stamina / power / guts / friend … 同名
+  wit ← wisdom.png
+```
+
+再取り込み: PNG を `.cache/asset-dump/type-icon-probe/` に置き `python scripts/import_type_icons.py`
 
 ## 著作権・配布
 
