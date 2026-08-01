@@ -78,6 +78,9 @@ let cardPicker = null;
 /** 前提チップのイベントを一度だけバインド */
 let premiseChipsBound = false;
 
+/** ピッカー内タイプ絞込（すべて = ""） */
+let supportPickerTypeFilter = "";
+
 /** Pages の max-age キャッシュで古い events.json が残るのを防ぐ（版上げ時に更新） */
 const DATA_CACHE_BUST = "0.1.14";
 
@@ -107,10 +110,10 @@ const SUPPORT_TYPE_LABELS = {
 
 function getSupportFilterState() {
   return {
-    query: normalizeSearchText(document.getElementById("support-search")?.value || "").trim(),
-    eventOnly: document.getElementById("support-event-only")?.checked ?? true,
-    ssrOnly: document.getElementById("support-ssr-only")?.checked ?? false,
-    type: document.getElementById("support-type-filter")?.value || "",
+    query: "",
+    eventOnly: document.getElementById("picker-event-only")?.checked ?? true,
+    ssrOnly: document.getElementById("picker-ssr-only")?.checked ?? false,
+    type: supportPickerTypeFilter,
   };
 }
 
@@ -222,6 +225,9 @@ function renderDeckSupports() {
   if (!container || !state) return;
   container.innerHTML = "";
   for (let i = 0; i < 6; i++) {
+    const col = document.createElement("div");
+    col.className = "deck-support-col";
+
     const id = state.ui.supportIds[i];
     const s = id != null ? getSupportById(id) : null;
     const btn = document.createElement("button");
@@ -243,87 +249,59 @@ function renderDeckSupports() {
       btn.title = s.name;
     }
     btn.addEventListener("click", () => openSupportPicker(i));
-    container.appendChild(btn);
+    col.appendChild(btn);
+
+    const eventsEl = document.createElement("div");
+    eventsEl.className = "deck-slot-events";
+    eventsEl.id = `deck-slot-events-${i}`;
+    col.appendChild(eventsEl);
+
+    container.appendChild(col);
   }
+  renderColumnEvents();
 }
 
 function renderDeckDashboard() {
   renderDeckCharacter();
   renderDeckSupports();
-  updateDeckPremiseChips();
+  updateDeckFootbandMeta();
+  updateDeckAutoEventsMeta();
 }
 
 function bindPremiseChipsOnce() {
   if (premiseChipsBound) return;
   premiseChipsBound = true;
 
-  document.getElementById("deck-premise")?.addEventListener("click", (e) => {
-    const t = e.target;
-    if (!(t instanceof HTMLElement)) return;
-    if (t.id === "premise-fast-learner" || t.closest("#premise-fast-learner")) {
-      const cb = document.getElementById("fast-learner");
-      if (!cb) return;
-      cb.checked = !cb.checked;
-      updateDeckPremiseChips();
-      updateTotalBarChips();
-      recalc();
-    }
-  });
-
-  document.getElementById("deck-premise")?.addEventListener("change", (e) => {
-    if (e.target?.id === "premise-training-hint") {
-      const hidden = document.getElementById("training-hint-level");
-      if (hidden) hidden.value = e.target.value;
-      updateDeckPremiseChips();
-      updateTotalBarChips();
-      recalc();
-    }
-  });
-
-  document.getElementById("total-sp-bar-chips")?.addEventListener("click", (e) => {
+  const chipsEl = document.getElementById("total-sp-bar-chips");
+  chipsEl?.addEventListener("click", (e) => {
     const t = e.target;
     if (!(t instanceof HTMLElement)) return;
     if (t.id === "bar-premise-fast-learner" || t.closest("#bar-premise-fast-learner")) {
       const cb = document.getElementById("fast-learner");
       if (!cb) return;
       cb.checked = !cb.checked;
-      updateDeckPremiseChips();
+      updateTotalBarChips();
+      recalc();
+      return;
+    }
+    if (t.id === "bar-premise-inherit" || t.closest("#bar-premise-inherit")) {
+      const cb = document.getElementById("inherit-enabled");
+      if (!cb) return;
+      cb.checked = !cb.checked;
+      updateTotalBarChips();
+      updateDeckFootbandMeta();
+      recalc();
+    }
+  });
+
+  chipsEl?.addEventListener("change", (e) => {
+    if (e.target?.id === "bar-training-hint") {
+      const hidden = document.getElementById("training-hint-level");
+      if (hidden) hidden.value = e.target.value;
       updateTotalBarChips();
       recalc();
     }
   });
-}
-
-function buildPremiseChipsHtml({ excludedCount = 0 } = {}) {
-  const fast = document.getElementById("fast-learner")?.checked;
-  const trainingLv = document.getElementById("training-hint-level")?.value || "5";
-  const inheritOn = document.getElementById("inherit-enabled")?.checked;
-  const inheritCount = document.getElementById("inherit-count")?.value || "0";
-
-  const fastClass = fast ? "premise-chip premise-chip--on" : "premise-chip";
-  const fastLabel = fast ? "切れ者 ON" : "切れ者 OFF";
-
-  let html = `
-    <button type="button" class="${fastClass}" id="premise-fast-learner" aria-pressed="${fast ? "true" : "false"}">${fastLabel}</button>
-    <span class="premise-chip">トレヒント
-      <select id="premise-training-hint" aria-label="トレヒントLv">
-        <option value="5"${trainingLv === "5" ? " selected" : ""}>Lv5</option>
-        <option value="4"${trainingLv === "4" ? " selected" : ""}>Lv4</option>
-        <option value="3"${trainingLv === "3" ? " selected" : ""}>Lv3</option>
-      </select>
-    </span>
-    <span class="premise-chip${inheritOn ? " premise-chip--on" : ""}">継承 ${inheritOn ? `${inheritCount}個` : "OFF"}</span>
-  `;
-  if (excludedCount > 0) {
-    html += `<span class="premise-chip premise-chip--warn">手動除外 ${excludedCount}</span>`;
-  }
-  return html;
-}
-
-function updateDeckPremiseChips(excludedCount = excludedSkillIds.size) {
-  const el = document.getElementById("deck-premise");
-  if (!el) return;
-  el.innerHTML = buildPremiseChipsHtml({ excludedCount });
 }
 
 function updateTotalBarChips(excludedCount = excludedSkillIds.size) {
@@ -331,13 +309,24 @@ function updateTotalBarChips(excludedCount = excludedSkillIds.size) {
   if (!el) return;
   const fast = document.getElementById("fast-learner")?.checked;
   const trainingLv = document.getElementById("training-hint-level")?.value || "5";
+  const inheritOn = document.getElementById("inherit-enabled")?.checked;
+  const inheritCount = document.getElementById("inherit-count")?.value || "0";
   const fastClass = fast ? "premise-chip premise-chip--on" : "premise-chip";
+  const inheritClass = inheritOn ? "premise-chip premise-chip--on" : "premise-chip";
+
   let html = `
-    <button type="button" class="${fastClass}" id="bar-premise-fast-learner">切れ者 ${fast ? "ON" : "OFF"}</button>
-    <span class="premise-chip">トレ Lv${escapeHtml(trainingLv)}</span>
+    <button type="button" class="${fastClass}" id="bar-premise-fast-learner" aria-pressed="${fast ? "true" : "false"}">切れ者 ${fast ? "ON" : "OFF"}</button>
+    <span class="premise-chip">トレヒント
+      <select id="bar-training-hint" aria-label="トレヒントLv">
+        <option value="5"${trainingLv === "5" ? " selected" : ""}>Lv5</option>
+        <option value="4"${trainingLv === "4" ? " selected" : ""}>Lv4</option>
+        <option value="3"${trainingLv === "3" ? " selected" : ""}>Lv3</option>
+      </select>
+    </span>
+    <button type="button" class="${inheritClass}" id="bar-premise-inherit" aria-pressed="${inheritOn ? "true" : "false"}">継承 ${inheritOn ? `${inheritCount}個` : "OFF"}</button>
   `;
   if (excludedCount > 0) {
-    html += `<span class="premise-chip premise-chip--warn">除外${excludedCount}</span>`;
+    html += `<span class="premise-chip premise-chip--warn">除外 ${excludedCount}</span>`;
   }
   el.innerHTML = html;
 }
@@ -365,23 +354,17 @@ function buildSupportPickerItems(slotIndex) {
     state.ui.supportIds.filter((id, idx) => id != null && idx !== slotIndex)
   );
   const filters = getSupportFilterState();
-  const externalQuery = normalizeSearchText(
-    document.getElementById("support-search")?.value || ""
-  ).trim();
 
   return [...state.supports]
     .filter((s) => {
       if (occupied.has(s.id)) return false;
-      if (!supportMatchesFilters(s, filters, state.ui.supportIds[slotIndex])) return false;
-      if (externalQuery && !supportSearchHaystack(s).includes(externalQuery)) return false;
-      return true;
+      return supportMatchesFilters(s, filters, state.ui.supportIds[slotIndex]);
     })
     .sort((a, b) => b.id - a.id)
     .map((s) => {
       const typeStyle = getSupportTypeStyle(s.type);
       return {
         id: s.id,
-        // キャラ名のみ（衣装タイトル除外）＋ローマ字
         searchText: buildCharacterNameSearchText(s.characterName || s.name),
         html: buildCardFaceHtml({
           imageUrl: supportImageUrl(s.id),
@@ -414,11 +397,17 @@ function openCharacterPicker() {
 
 function openSupportPicker(slotIndex) {
   if (!cardPicker) return;
+  renderPickerTypeChips();
   cardPicker.open({
     title: `サポートカード 枠${slotIndex + 1}`,
-    items: buildSupportPickerItems(slotIndex),
+    getItems: () => buildSupportPickerItems(slotIndex),
     selectedId: state.ui.supportIds[slotIndex],
     allowClear: true,
+    showSupportFilters: true,
+    onFiltersChange: () => {
+      const active = document.querySelector("#card-picker-type-chips .type-chip.is-active");
+      supportPickerTypeFilter = active?.dataset?.type ?? "";
+    },
     onPick: (id) => {
       state.ui.supportIds[slotIndex] = id;
       renderDeckSupports();
@@ -433,15 +422,28 @@ function renderSupportSlots() {
   renderDeckDashboard();
 }
 
-function bindSupportFilters() {
-  const refresh = () => {
-    if (!state) return;
-    renderDeckSupports();
-  };
-  document.getElementById("support-search").addEventListener("input", refresh);
-  document.getElementById("support-event-only").addEventListener("change", refresh);
-  document.getElementById("support-ssr-only").addEventListener("change", refresh);
-  document.getElementById("support-type-filter").addEventListener("change", refresh);
+function renderPickerTypeChips() {
+  const container = document.getElementById("card-picker-type-chips");
+  if (!container) return;
+  const types = [
+    { value: "", label: "すべて" },
+    { value: "speed", label: "スピ" },
+    { value: "stamina", label: "スタ" },
+    { value: "power", label: "パワ" },
+    { value: "guts", label: "根性" },
+    { value: "wit", label: "賢さ" },
+    { value: "friend", label: "友人" },
+  ];
+  container.innerHTML = types
+    .map(({ value, label }) => {
+      const active = supportPickerTypeFilter === value;
+      return `<button type="button" class="type-chip${active ? " is-active" : ""}" data-type="${escapeHtml(value)}" aria-pressed="${active ? "true" : "false"}">${escapeHtml(label)}</button>`;
+    })
+    .join("");
+}
+
+function bindPickerFilters() {
+  renderPickerTypeChips();
 }
 
 function renderCharacterSelect() {
@@ -764,33 +766,137 @@ function bindMemoryDialog() {
   });
 }
 
+function getEventsForSupport(support) {
+  if (!support) return [];
+  return (state.events.events || []).filter(
+    (evt) => evt.supportNameMatch && support.name.includes(evt.supportNameMatch)
+  );
+}
+
+function renderSingleEventGroup(evt, container, compact = false) {
+  if (evt.selection === "single") {
+    const group = document.createElement("fieldset");
+    group.className = compact ? "event-single-group event-single-group--compact" : "event-single-group";
+    const legend = document.createElement("legend");
+    legend.textContent = compact ? evt.label.replace(/^[^ ]+ /, "") : evt.label;
+    group.appendChild(legend);
+
+    const current = state.ui.eventChoiceIds.get(evt.id) ?? "none";
+    const choices = [
+      ...(evt.choices || []),
+      { id: "none", label: "未選択", skills: [] },
+    ];
+
+    for (const choice of choices) {
+      const row = document.createElement("div");
+      row.className = "radio-row radio-row--compact";
+      const inputId = `evt-${evt.id}-${choice.id}`;
+      const checked = current === choice.id ? "checked" : "";
+      const shortLabel = compact ? choice.label.replace(/^① |^② /, "") : choice.label;
+      row.innerHTML = `
+        <input type="radio" name="evt-${evt.id}" id="${inputId}" value="${escapeHtml(choice.id)}" ${checked} />
+        <label for="${inputId}">${escapeHtml(shortLabel)}</label>
+      `;
+      group.appendChild(row);
+      row.querySelector("input").addEventListener("change", (e) => {
+        if (!e.target.checked) return;
+        state.ui.eventChoiceIds.set(evt.id, choice.id);
+        recalc();
+      });
+    }
+    container.appendChild(group);
+    return;
+  }
+
+  if (evt.selection === "toggle") {
+    const div = document.createElement("div");
+    div.className = "checkbox-row checkbox-row--compact";
+    const checked = state.ui.enabledEventIds.has(evt.id) ? "checked" : "";
+    div.innerHTML = `
+      <input type="checkbox" id="evt-${evt.id}" data-id="${evt.id}" ${checked} />
+      <label for="evt-${evt.id}">${escapeHtml(evt.label)}</label>
+    `;
+    container.appendChild(div);
+    div.querySelector("input").addEventListener("change", (e) => {
+      if (e.target.checked) state.ui.enabledEventIds.add(evt.id);
+      else state.ui.enabledEventIds.delete(evt.id);
+      recalc();
+    });
+  }
+}
+
+function renderColumnEvents() {
+  if (!state) return;
+  for (let i = 0; i < 6; i++) {
+    const container = document.getElementById(`deck-slot-events-${i}`);
+    if (!container) continue;
+    container.innerHTML = "";
+    const id = state.ui.supportIds[i];
+    const support = id != null ? getSupportById(id) : null;
+    if (!support) continue;
+
+    const singles = getEventsForSupport(support).filter(
+      (evt) => evt.selection === "single" || evt.selection === "toggle"
+    );
+    for (const evt of singles) {
+      renderSingleEventGroup(evt, container, true);
+    }
+  }
+}
+
+function updateDeckAutoEventsMeta() {
+  const meta = document.getElementById("deck-auto-events-meta");
+  if (!meta || !state) return;
+  const events = (state.events.events || []).filter(isEventSupportInDeck);
+  const autoCount = events.filter((evt) => evt.selection === "auto").length;
+  if (autoCount === 0) {
+    meta.hidden = true;
+    meta.textContent = "";
+    return;
+  }
+  meta.hidden = false;
+  meta.textContent = `自動計上イベント ${autoCount}件（詳細は足元帯）`;
+}
+
+function updateDeckFootbandMeta() {
+  const meta = document.getElementById("deck-footband-meta");
+  if (!meta) return;
+  const inheritOn = document.getElementById("inherit-enabled")?.checked;
+  const linkId = state?.ui?.scenarioLinkChoiceId ?? "link_dotou";
+  const link = state?.scenario?.linkSkills?.find((e) => e.id === linkId);
+  const parts = [];
+  if (inheritOn) parts.push("継承ON");
+  if (link?.label) parts.push(link.label);
+  meta.textContent = parts.length ? parts.join(" · ") : "";
+}
+
 function renderEvents() {
   const autoContainer = document.getElementById("event-auto");
   const autoCollapse = document.getElementById("event-auto-collapse");
   const autoSummary = document.getElementById("event-auto-summary");
-  const singleContainer = document.getElementById("event-single");
   const emptyHint = document.getElementById("event-empty-hint");
-  autoContainer.innerHTML = "";
-  singleContainer.innerHTML = "";
+  if (autoContainer) autoContainer.innerHTML = "";
+
+  renderColumnEvents();
+  updateDeckAutoEventsMeta();
+  updateDeckFootbandMeta();
 
   const events = (state.events.events || []).filter(isEventSupportInDeck);
   if (events.length === 0) {
-    emptyHint.hidden = false;
-    autoCollapse.hidden = true;
+    if (emptyHint) emptyHint.hidden = false;
+    if (autoCollapse) autoCollapse.hidden = true;
     return;
   }
-  emptyHint.hidden = true;
+  if (emptyHint) emptyHint.hidden = true;
 
   const autoEvents = events.filter((evt) => evt.selection === "auto");
+  if (!autoCollapse) return;
   if (autoEvents.length === 0) {
     autoCollapse.hidden = true;
   } else {
     autoCollapse.hidden = false;
-    autoSummary.textContent = `${autoEvents.length}件（自動計上）`;
-  }
-
-  for (const evt of events) {
-    if (evt.selection === "auto") {
+    if (autoSummary) autoSummary.textContent = `${autoEvents.length}件（自動計上）`;
+    for (const evt of autoEvents) {
       const div = document.createElement("div");
       div.className = "event-auto-item";
       div.innerHTML = `
@@ -798,56 +904,7 @@ function renderEvents() {
         <div class="hint">${escapeHtml(formatSkillList(evt.skills))}（自動計上）</div>
       `;
       autoContainer.appendChild(div);
-      continue;
     }
-
-    if (evt.selection === "single") {
-      const group = document.createElement("fieldset");
-      group.className = "event-single-group";
-      const legend = document.createElement("legend");
-      legend.textContent = evt.label;
-      group.appendChild(legend);
-
-      const current = state.ui.eventChoiceIds.get(evt.id) ?? "none";
-      const choices = [
-        ...(evt.choices || []),
-        { id: "none", label: "未選択（発生しない）", skills: [] },
-      ];
-
-      for (const choice of choices) {
-        const row = document.createElement("div");
-        row.className = "radio-row";
-        const inputId = `evt-${evt.id}-${choice.id}`;
-        const checked = current === choice.id ? "checked" : "";
-        row.innerHTML = `
-          <input type="radio" name="evt-${evt.id}" id="${inputId}" value="${escapeHtml(choice.id)}" ${checked} />
-          <label for="${inputId}">${escapeHtml(choice.label)}</label>
-        `;
-        group.appendChild(row);
-        row.querySelector("input").addEventListener("change", (e) => {
-          if (!e.target.checked) return;
-          state.ui.eventChoiceIds.set(evt.id, choice.id);
-          recalc();
-        });
-      }
-      singleContainer.appendChild(group);
-      continue;
-    }
-
-    // toggle（後方互換）
-    const div = document.createElement("div");
-    div.className = "checkbox-row";
-    const checked = state.ui.enabledEventIds.has(evt.id) ? "checked" : "";
-    div.innerHTML = `
-      <input type="checkbox" id="evt-${evt.id}" data-id="${evt.id}" ${checked} />
-      <label for="evt-${evt.id}">${escapeHtml(evt.label)}</label>
-    `;
-    singleContainer.appendChild(div);
-    div.querySelector("input").addEventListener("change", (e) => {
-      if (e.target.checked) state.ui.enabledEventIds.add(evt.id);
-      else state.ui.enabledEventIds.delete(evt.id);
-      recalc();
-    });
   }
 }
 
@@ -955,6 +1012,7 @@ function renderScenarioLinkRadios() {
     row.querySelector("input").addEventListener("change", (e) => {
       if (e.target.checked) {
         state.ui.scenarioLinkChoiceId = entry.id;
+        updateDeckFootbandMeta();
         recalc();
       }
     });
@@ -1214,7 +1272,6 @@ function recalc({ resetFilterExclusions = false } = {}) {
 
   renderPlanWarnings(plan.unresolved);
   updateTotalDisplay(plan.total);
-  updateDeckPremiseChips(excludedSkillIds.size);
   updateTotalBarChips(excludedSkillIds.size);
   updateSkillCountDisplay(plan);
   updateCopyIncludedSkillsButton(plan);
@@ -1311,18 +1368,11 @@ function bindResultSort() {
 
 function bindOptions() {
   const onOptionChange = () => {
-    updateDeckPremiseChips();
     updateTotalBarChips();
+    updateDeckFootbandMeta();
     recalc();
   };
-  [
-    "fast-learner",
-    "training-hint-level",
-    "inherit-enabled",
-    "inherit-count",
-    "inherit-hint",
-    "inherit-base",
-  ].forEach((id) => {
+  ["inherit-count", "inherit-hint", "inherit-base"].forEach((id) => {
     const el = document.getElementById(id);
     el.addEventListener("change", onOptionChange);
     el.addEventListener("input", onOptionChange);
@@ -1407,12 +1457,14 @@ async function init() {
       gridEl: document.getElementById("card-picker-grid"),
       closeBtn: document.getElementById("card-picker-close"),
       clearBtn: document.getElementById("card-picker-clear"),
+      filtersEl: document.getElementById("card-picker-filters"),
     });
 
     document.getElementById("deck-character")?.addEventListener("click", openCharacterPicker);
     bindPremiseChipsOnce();
+    bindPickerFilters();
     renderDeckDashboard();
-    bindSupportFilters();
+    updateTotalBarChips();
 
     renderEventScopeNotice();
     bindEventScopeDisclosure();

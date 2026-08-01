@@ -74,27 +74,22 @@
               <li>
                 <strong>サポートカードを最大6枚</strong>選ぶ
                 <ul>
-                  <li>初期は「イベント対応のみ」ON。全件を見たいときはチェックを外す</li>
+                  <li>ピッカー内で「イベント対応のみ」ON。全件を見たいときはチェックを外す</li>
                   <li>検索・SSR・タイプでも絞れる</li>
                 </ul>
               </li>
               <li>
                 <strong>イベント・シナリオ</strong>を必要なら調整
                 <ul>
+                  <li>選択式イベントは各サポカ列の下。シナリオリンク等は上段足元の帯</li>
                   <li>自動イベントは編成に応じて計上</li>
-                  <li>選択式イベント・シナリオリンク・RMJ（ラーメン）はラジオで1つ選ぶ</li>
                 </ul>
               </li>
               <li>
-                必要なら <strong>オプション</strong>
-                <ul>
-                  <li>切れ者（全スキル追加割引）</li>
-                  <li>継承固有（本数・ヒントLv・基準SP）</li>
-                  <li>トレヒントLv（編成サポカのトレヒントを一括指定。既定5）</li>
-                </ul>
+                画面下部の <strong>合計 SP バー</strong> で切れ者・トレLv・継承を変更できる
               </li>
               <li>
-                画面下部（または結果パネル）の <strong>合計 SP</strong> を確認
+                下段作業台で <strong>合計 SP</strong> を確認し、不要スキルを除外
                 <ul>
                   <li>結果一覧の「含める」を外すとそのスキルを合計から除外できる</li>
                   <li>「含めるスキルをコピー」で、ON のスキル名をカンマ区切りでクリップボードへコピーできる（外部ツール向け）</li>
@@ -125,7 +120,7 @@
                 <tbody>
                   <tr>
                     <td>サポカのトレヒント</td>
-                    <td>オプションで 3 / 4 / 5（既定5）</td>
+                    <td>下部バーで 3 / 4 / 5（既定5）</td>
                   </tr>
                   <tr>
                     <td>育成ウマ娘の所持スキル</td>
@@ -189,13 +184,13 @@
               A. 取得可能なスキルをすべて買うための <strong>理論必要量の見積もり</strong>です。レース報酬やイベントで実際にいくら貯まるかは扱いません。
             </p>
             <p><strong>Q. イベント非対応のサポカを入れても意味ある？</strong><br />
-              A. <strong>トレヒント（既定 Lv5）</strong> は乗ります。オプションで Lv を下げると控えめ見積もりになります。イベント由来のスキルは計上されません（イベント欄の「※サポカイベントについて」で対応一覧を確認できます）。
+              A. <strong>トレヒント（既定 Lv5）</strong> は乗ります。下部バーで Lv を下げると控えめ見積もりになります。イベント由来のスキルは計上されません（上段足元帯の「※サポカイベントについて」で対応一覧を確認できます）。
             </p>
             <p><strong>Q. シナリオリンクの白と金の違いは？</strong><br />
               A. リンク条件のキャラが、育成ウマ娘かサポカ6枠にいれば金、いなければ白として計上します。
             </p>
             <p><strong>Q. 固有スキル本体は合計に入る？</strong><br />
-              A. 入りません（SP購入リスト外）。<strong>継承固有</strong>だけ、オプションで手動加算できます。
+              A. 入りません（SP購入リスト外）。<strong>継承固有</strong>だけ、下部バーまたは足元帯で手動加算できます。
             </p>
             <p><strong>Q. 「含める」を外すと何が起きる？</strong><br />
               A. その表示行（およびまとめて表示している下位スキル）が合計から外れます。対人レギュで取らないスキル向けです。
@@ -232,277 +227,276 @@
         </details>
       </div>
     </dialog>
-    <main>
+
+    <main class="app-main">
       <div id="load-error" class="panel error" hidden></div>
       <div id="plan-warnings" class="panel warning" hidden></div>
 
-      <section class="panel panel--deck">
-        <div class="deck-heading">
-          <h2>編成</h2>
-          <p class="hint deck-heading__scenario">シナリオ: らっしゃい！トレセン軒！（固定）</p>
-        </div>
-        <div class="deck-dashboard">
-          <div class="deck-dashboard__row">
-            <div class="deck-character-wrap">
-              <span class="deck-slot-label">育成ウマ娘</span>
+      <div class="snap-zone snap-zone--deck" id="snap-zone-deck">
+        <section class="panel panel--deck">
+          <div class="deck-heading">
+            <h2>編成</h2>
+            <p class="hint deck-heading__scenario">シナリオ: らっしゃい！トレセン軒！（固定）</p>
+          </div>
+          <div class="deck-dashboard">
+            <div class="deck-dashboard__row">
+              <div class="deck-character-wrap">
+                <span class="deck-slot-label">育成ウマ娘</span>
+                <button
+                  type="button"
+                  id="deck-character"
+                  class="deck-slot deck-slot--character"
+                  aria-label="育成ウマ娘を選択"
+                ></button>
+              </div>
+              <div class="deck-supports-wrap">
+                <span class="deck-slot-label">サポートカード（6枚）</span>
+                <div class="deck-supports" id="deck-supports"></div>
+              </div>
+            </div>
+            <p id="deck-auto-events-meta" class="deck-auto-events-meta" hidden></p>
+          </div>
+
+          <details class="deck-footband" id="deck-footband">
+            <summary class="deck-footband__summary">
+              <span>シナリオ・継承の詳細</span>
+              <span id="deck-footband-meta" class="deck-footband__meta"></span>
+            </summary>
+            <div class="deck-footband__body">
+              <div class="deck-footband__inherit" id="deck-inherit-detail">
+                <p class="deck-footband__section-label">継承固有の詳細</p>
+                <div class="options-row options-row--inherit">
+                  <label>
+                    個数
+                    <input type="number" id="inherit-count" min="2" max="6" value="4" style="width: 4rem" />
+                  </label>
+                  <label>
+                    ヒントLv
+                    <input type="number" id="inherit-hint" min="1" max="5" value="3" style="width: 4rem" />
+                  </label>
+                  <label>
+                    baseSp
+                    <input type="number" id="inherit-base" min="1" value="200" style="width: 5rem" />
+                  </label>
+                </div>
+              </div>
+
+              <div class="event-panel-heading event-panel-heading--footband">
+                <button
+                  type="button"
+                  id="event-scope-trigger"
+                  class="event-scope-trigger"
+                  aria-expanded="false"
+                  aria-controls="event-scope-panel"
+                >
+                  ※サポカイベントについて
+                </button>
+                <div id="event-scope-panel" class="event-scope-panel warning" role="note" hidden>
+                  <p class="event-scope-panel__lead">
+                    <strong id="event-scope-lead">サポカイベントは優先40種のみ対応</strong>
+                  </p>
+                  <p class="event-scope-panel__body">
+                    イベント由来のスキルは、対応リストのサポカを編成したときだけ計上されます。それ以外のサポカはトレヒントのみ反映されます。
+                  </p>
+                  <p id="event-scope-list-title" class="event-scope-panel__list-title">対応サポカ一覧（40種）</p>
+                  <ol id="event-priority-support-list" class="event-scope-list"></ol>
+                </div>
+              </div>
+
+              <details id="event-auto-collapse" class="collapse-section collapse-section--footband">
+                <summary class="collapse-summary">
+                  <span>サポカイベント（自動）</span>
+                  <span id="event-auto-summary" class="collapse-meta"></span>
+                </summary>
+                <div id="event-auto" class="event-section collapse-body"></div>
+              </details>
+
+              <h3 class="subsection-title subsection-title--footband">シナリオリンク（1択）</h3>
+              <div id="scenario-link" class="event-section"></div>
+
+              <h3 class="subsection-title subsection-title--footband">シニア12月 RMJ（1択）</h3>
+              <div id="scenario-senior-rmj" class="event-section"></div>
+
+              <details id="scenario-auto-collapse" class="collapse-section collapse-section--footband">
+                <summary class="collapse-summary">
+                  <span>シナリオ自動計上</span>
+                  <span id="scenario-auto-summary" class="collapse-meta"></span>
+                </summary>
+                <div id="scenario-auto" class="event-section collapse-body"></div>
+              </details>
+            </div>
+          </details>
+
+          <p id="event-empty-hint" class="hint deck-event-empty-hint" hidden>
+            該当サポカがデッキにいません。6枠に編成するとイベントが表示されます。
+          </p>
+
+          <select id="character-select" hidden aria-hidden="true"></select>
+        </section>
+      </div>
+
+      <div class="snap-zone snap-zone--workbench" id="snap-zone-workbench">
+        <section class="panel panel--workbench">
+          <div class="result-panel-heading">
+            <h2>結果（作業台）</h2>
+            <div class="result-panel-heading__meta">
+              <span id="skill-count-meta" class="skill-count-meta">スキル数 —</span>
               <button
                 type="button"
-                id="deck-character"
-                class="deck-slot deck-slot--character"
-                aria-label="育成ウマ娘を選択"
-              ></button>
-            </div>
-            <div class="deck-supports-wrap">
-              <span class="deck-slot-label">サポートカード（6枚）</span>
-              <div class="deck-supports" id="deck-supports"></div>
-            </div>
-          </div>
-          <div id="deck-premise" class="deck-premise" aria-label="計算前提"></div>
-        </div>
-        <details class="deck-filters-collapse">
-          <summary>サポカ検索・絞込（ピッカー用）</summary>
-          <div class="support-filters">
-            <input
-              type="search"
-              id="support-search"
-              placeholder="サポカ名で検索（ひらがな可）"
-              autocomplete="off"
-            />
-            <label class="checkbox-row support-filter-check">
-              <input type="checkbox" id="support-event-only" checked />
-              イベント対応のみ
-            </label>
-            <label class="checkbox-row support-filter-check">
-              <input type="checkbox" id="support-ssr-only" />
-              SSRのみ
-            </label>
-            <label class="support-type-label">
-              タイプ
-              <select id="support-type-filter">
-                <option value="">すべて</option>
-                <option value="speed">スピード</option>
-                <option value="stamina">スタミナ</option>
-                <option value="power">パワー</option>
-                <option value="guts">根性</option>
-                <option value="wit">賢さ</option>
-                <option value="friend">友人</option>
-              </select>
-            </label>
-          </div>
-        </details>
-        <select id="character-select" hidden aria-hidden="true"></select>
-      </section>
-
-      <section class="panel panel--options">
-        <h2>オプション</h2>
-        <input type="checkbox" id="fast-learner" hidden aria-hidden="true" />
-        <div class="options-row">
-          <label class="checkbox-row">
-            <input type="checkbox" id="inherit-enabled" />
-            継承固有を含める
-          </label>
-          <label>
-            個数
-            <input type="number" id="inherit-count" min="2" max="6" value="4" style="width: 4rem" />
-          </label>
-          <label>
-            ヒントLv
-            <input type="number" id="inherit-hint" min="1" max="5" value="3" style="width: 4rem" />
-          </label>
-          <label>
-            baseSp
-            <input type="number" id="inherit-base" min="1" value="200" style="width: 5rem" />
-          </label>
-        </div>
-        <select id="training-hint-level" hidden aria-hidden="true">
-          <option value="5" selected>5</option>
-          <option value="4">4</option>
-          <option value="3">3</option>
-        </select>
-        <p class="hint options-note">
-          切れ者・トレヒントLvは編成欄の前提チップから変更できます。トレヒントは編成サポカに一律適用（イベント・シナリオ由来は変えません）。
-        </p>
-      </section>
-
-      <section class="panel">
-        <div class="event-panel-heading">
-          <h2>イベント・シナリオスキル</h2>
-          <button
-            type="button"
-            id="event-scope-trigger"
-            class="event-scope-trigger"
-            aria-expanded="false"
-            aria-controls="event-scope-panel"
-          >
-            ※サポカイベントについて
-          </button>
-          <div id="event-scope-panel" class="event-scope-panel warning" role="note" hidden>
-            <p class="event-scope-panel__lead">
-              <strong id="event-scope-lead">サポカイベントは優先40種のみ対応</strong>
-            </p>
-            <p class="event-scope-panel__body">
-              イベント由来のスキルは、対応リストのサポカを編成したときだけ計上されます。それ以外のサポカはトレヒントのみ反映されます。
-            </p>
-            <p id="event-scope-list-title" class="event-scope-panel__list-title">対応サポカ一覧（40種）</p>
-            <ol id="event-priority-support-list" class="event-scope-list"></ol>
-          </div>
-        </div>
-        <details id="event-auto-collapse" class="collapse-section">
-          <summary class="collapse-summary">
-            <span>サポカイベント（自動）</span>
-            <span id="event-auto-summary" class="collapse-meta"></span>
-          </summary>
-          <div id="event-auto" class="event-section collapse-body"></div>
-        </details>
-        <h3 class="subsection-title">サポカイベント（選択）</h3>
-        <div id="event-single" class="event-section"></div>
-        <p id="event-empty-hint" class="hint" hidden>
-          該当サポカがデッキにいません。6枠に編成するとイベントが表示されます。
-        </p>
-        <h3 class="subsection-title">シナリオリンク（1択）</h3>
-        <div id="scenario-link" class="event-section"></div>
-        <h3 class="subsection-title">シニア12月 RMJ（1択）</h3>
-        <div id="scenario-senior-rmj" class="event-section"></div>
-        <details id="scenario-auto-collapse" class="collapse-section">
-          <summary class="collapse-summary">
-            <span>シナリオ自動計上</span>
-            <span id="scenario-auto-summary" class="collapse-meta"></span>
-          </summary>
-          <div id="scenario-auto" class="event-section collapse-body"></div>
-        </details>
-      </section>
-
-      <section class="panel panel--workbench">
-        <div class="result-panel-heading">
-          <h2>結果（作業台）</h2>
-          <div class="result-panel-heading__meta">
-            <span id="skill-count-meta" class="skill-count-meta">スキル数 —</span>
-            <button
-              type="button"
-              id="copy-included-skills"
-              class="copy-included-skills"
-              disabled
-            >
-              含めるスキルをコピー
-            </button>
-          </div>
-        </div>
-        <div class="total-box">合計必要SP: <span id="total-sp">—</span></div>
-        <div id="skill-filter-box" class="skill-filter-box" aria-live="polite">
-          <div class="skill-filter-box__title">レギュ絞込</div>
-          <div class="skill-filters">
-            <label class="skill-filter-label">
-              バ場
-              <select id="skill-filter-ground">
-                <option value="">未選択</option>
-                <option value="turf">芝</option>
-                <option value="dirt">ダート</option>
-              </select>
-            </label>
-            <label class="skill-filter-label">
-              距離
-              <select id="skill-filter-distance">
-                <option value="">未選択</option>
-                <option value="short">短距離</option>
-                <option value="mile">マイル</option>
-                <option value="mid">中距離</option>
-                <option value="long">長距離</option>
-              </select>
-            </label>
-            <label class="skill-filter-label">
-              作戦
-              <select id="skill-filter-style">
-                <option value="">未選択</option>
-                <option value="nige">逃げ</option>
-                <option value="senko">先行</option>
-                <option value="sashi">差し</option>
-                <option value="oikomi">追込</option>
-              </select>
-            </label>
-            <div class="skill-filter-action">
-              <span class="skill-filter-action__spacer" aria-hidden="true">作戦</span>
-              <button
-                type="button"
-                id="skill-filter-apply"
-                class="skill-filter-apply"
+                id="copy-included-skills"
+                class="copy-included-skills"
                 disabled
-                aria-describedby="skill-filter-pending"
               >
-                適用
+                含めるスキルをコピー
               </button>
             </div>
           </div>
-          <p id="skill-filter-pending" class="skill-filter-box__status" hidden>
-            未適用の絞込があります
-          </p>
-        </div>
-        <p class="hint">
-          絞込は「適用」で確定します。確定時にレギュに合わないスキルを合計から除外し、「含める」の手動変更はやり直されます。編成変更で追加されたスキルには確定済みの絞込が自動でかかります。
-        </p>
-        <p class="hint">一覧の「含める」チェックを外すと合計から除外されます。</p>
-        <div class="result-sort-bar">
-          <span class="result-sort-bar__label" id="result-sort-label">表示順</span>
-          <div
-            class="result-sort-seg"
-            role="group"
-            aria-labelledby="result-sort-label"
-          >
-            <button
-              type="button"
-              class="result-sort-seg__btn is-active"
-              data-sort="skillId"
-              aria-pressed="true"
-            >
-              スキルID
-            </button>
-            <button
-              type="button"
-              class="result-sort-seg__btn"
-              data-sort="kind"
-              aria-pressed="false"
-            >
-              由来種別
-            </button>
-            <button
-              type="button"
-              class="result-sort-seg__btn"
-              data-sort="cost"
-              aria-pressed="false"
-            >
-              必要SP
-            </button>
+          <div id="skill-filter-box" class="skill-filter-box" aria-live="polite">
+            <div class="skill-filter-box__title">レギュ絞込</div>
+            <div class="skill-filters">
+              <label class="skill-filter-label">
+                バ場
+                <select id="skill-filter-ground">
+                  <option value="">未選択</option>
+                  <option value="turf">芝</option>
+                  <option value="dirt">ダート</option>
+                </select>
+              </label>
+              <label class="skill-filter-label">
+                距離
+                <select id="skill-filter-distance">
+                  <option value="">未選択</option>
+                  <option value="short">短距離</option>
+                  <option value="mile">マイル</option>
+                  <option value="mid">中距離</option>
+                  <option value="long">長距離</option>
+                </select>
+              </label>
+              <label class="skill-filter-label">
+                作戦
+                <select id="skill-filter-style">
+                  <option value="">未選択</option>
+                  <option value="nige">逃げ</option>
+                  <option value="senko">先行</option>
+                  <option value="sashi">差し</option>
+                  <option value="oikomi">追込</option>
+                </select>
+              </label>
+              <div class="skill-filter-action">
+                <span class="skill-filter-action__spacer" aria-hidden="true">作戦</span>
+                <button
+                  type="button"
+                  id="skill-filter-apply"
+                  class="skill-filter-apply"
+                  disabled
+                  aria-describedby="skill-filter-pending"
+                >
+                  適用
+                </button>
+              </div>
+            </div>
+            <p id="skill-filter-pending" class="skill-filter-box__status" hidden>
+              未適用の絞込があります
+            </p>
           </div>
-        </div>
-        <div style="overflow-x: auto; max-height: 480px">
-          <table>
-            <thead>
-              <tr>
-                <th>含める</th>
-                <th>スキル</th>
-                <th>条件</th>
-                <th>ヒントLv</th>
-                <th>必要SP</th>
-                <th>由来</th>
-              </tr>
-            </thead>
-            <tbody id="result-body"></tbody>
-          </table>
-        </div>
-      </section>
+          <p class="hint">
+            絞込は「適用」で確定します。確定時にレギュに合わないスキルを合計から除外し、「含める」の手動変更はやり直されます。編成変更で追加されたスキルには確定済みの絞込が自動でかかります。
+          </p>
+          <p class="hint">一覧の「含める」チェックを外すと合計から除外されます。合計は画面下部のバーを参照してください。</p>
+          <div class="result-sort-bar">
+            <span class="result-sort-bar__label" id="result-sort-label">表示順</span>
+            <div
+              class="result-sort-seg"
+              role="group"
+              aria-labelledby="result-sort-label"
+            >
+              <button
+                type="button"
+                class="result-sort-seg__btn is-active"
+                data-sort="skillId"
+                aria-pressed="true"
+              >
+                スキルID
+              </button>
+              <button
+                type="button"
+                class="result-sort-seg__btn"
+                data-sort="kind"
+                aria-pressed="false"
+              >
+                由来種別
+              </button>
+              <button
+                type="button"
+                class="result-sort-seg__btn"
+                data-sort="cost"
+                aria-pressed="false"
+              >
+                必要SP
+              </button>
+            </div>
+          </div>
+          <div class="result-table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>含める</th>
+                  <th>スキル</th>
+                  <th>条件</th>
+                  <th>ヒントLv</th>
+                  <th>必要SP</th>
+                  <th>由来</th>
+                </tr>
+              </thead>
+              <tbody id="result-body"></tbody>
+            </table>
+          </div>
+        </section>
+      </div>
     </main>
+
     <div id="total-sp-bar" class="total-sp-bar" aria-live="polite">
       <div class="total-sp-bar-inner">
-        <span class="total-sp-bar-label">合計必要SP</span>
-        <span id="total-sp-bar-value" class="total-sp-bar-value">—</span>
-        <span id="total-sp-delta" class="total-sp-delta" hidden></span>
+        <div class="total-sp-bar__total">
+          <span class="total-sp-bar-label">合計必要SP</span>
+          <span id="total-sp-bar-value" class="total-sp-bar-value">—</span>
+          <span id="total-sp-delta" class="total-sp-delta" hidden></span>
+        </div>
         <div id="total-sp-bar-chips" class="total-sp-bar-chips" aria-label="計算前提"></div>
       </div>
     </div>
+
+    <input type="checkbox" id="fast-learner" hidden aria-hidden="true" />
+    <input type="checkbox" id="inherit-enabled" hidden aria-hidden="true" />
+    <select id="training-hint-level" hidden aria-hidden="true">
+      <option value="5" selected>5</option>
+      <option value="4">4</option>
+      <option value="3">3</option>
+    </select>
+    <span id="total-sp" hidden aria-hidden="true"></span>
 
     <dialog id="card-picker" class="card-picker" aria-labelledby="card-picker-title">
       <div class="card-picker__chrome">
         <h2 id="card-picker-title" class="card-picker__title"></h2>
         <button type="button" id="card-picker-close" class="card-picker__close" aria-label="閉じる">×</button>
+      </div>
+      <div id="card-picker-filters" class="card-picker__filters" hidden>
+        <div class="card-picker__filter-row">
+          <label class="checkbox-row card-picker__filter-check">
+            <input type="checkbox" id="picker-event-only" checked />
+            イベント対応のみ
+          </label>
+          <label class="checkbox-row card-picker__filter-check">
+            <input type="checkbox" id="picker-ssr-only" />
+            SSRのみ
+          </label>
+        </div>
+        <div
+          id="card-picker-type-chips"
+          class="card-picker__type-chips"
+          role="group"
+          aria-label="タイプ絞込"
+        ></div>
       </div>
       <input
         type="search"
