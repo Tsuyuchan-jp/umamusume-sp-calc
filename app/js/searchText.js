@@ -161,6 +161,100 @@ const DIGRAPHS = {
   ヴォ: "vo",
 };
 
+/** ローマ字→カタカナ（長いトークン優先） */
+const ROMAJI_TO_KANA_ENTRIES = (() => {
+  /** @type {Map<string, string>} */
+  const map = new Map();
+  for (const [kana, roma] of Object.entries(DIGRAPHS)) {
+    map.set(roma, kana);
+  }
+  for (const [kana, roma] of Object.entries(KANA_ROMAJI)) {
+    if (kana === "ー" || kana === "ッ") continue;
+    if (!map.has(roma)) map.set(roma, kana);
+  }
+  // よく使う別名
+  map.set("si", "シ");
+  map.set("ti", "ティ");
+  map.set("tu", "ツ");
+  map.set("hu", "フ");
+  map.set("zi", "ジ");
+  map.set("di", "ディ");
+  map.set("du", "ドゥ");
+  map.set("sya", "シャ");
+  map.set("syu", "シュ");
+  map.set("syo", "ショ");
+  map.set("tya", "チャ");
+  map.set("tyu", "チュ");
+  map.set("tyo", "チョ");
+  return [...map.entries()].sort((a, b) => b[0].length - a[0].length);
+})();
+
+const VOWELS = new Set(["a", "i", "u", "e", "o"]);
+
+/**
+ * ローマ字をカタカナへ（ai → アイ、a-mondo / aamondo → アーモンド）。
+ * 変換できない文字が残ったら null（フォールバック用）。
+ */
+export function romajiToKana(input) {
+  const s = String(input).toLowerCase().replace(/'/g, "");
+  let out = "";
+  let i = 0;
+  while (i < s.length) {
+    // 単独のハイフンは長音
+    if (s[i] === "-" || s[i] === "—") {
+      out += "ー";
+      i += 1;
+      continue;
+    }
+    // 促音: kk / tt / pp など（nn はンなので除外）
+    if (
+      i + 1 < s.length &&
+      s[i] === s[i + 1] &&
+      !VOWELS.has(s[i]) &&
+      s[i] !== "n" &&
+      /[bcdfghjklmpqrstvwxyz]/.test(s[i])
+    ) {
+      out += "ッ";
+      i += 1;
+      continue;
+    }
+    let matched = false;
+    for (const [roma, kana] of ROMAJI_TO_KANA_ENTRIES) {
+      if (s.startsWith(roma, i)) {
+        out += kana;
+        i += roma.length;
+        // 長音: 直後が同じ母音（aamondo）またはハイフン（a-mondo）
+        const lastVowel = [...roma].reverse().find((c) => VOWELS.has(c));
+        if (lastVowel && i < s.length && (s[i] === "-" || s[i] === lastVowel)) {
+          out += "ー";
+          i += 1;
+        }
+        matched = true;
+        break;
+      }
+    }
+    if (!matched) return null;
+  }
+  return out;
+}
+
+/**
+ * ピッカー入力の正規化。
+ * 英字のみ（ハイフン可）ならローマ字→かなにしてから照合する
+ * （ai が daiamondo の部分一致に引っかからないようにする）。
+ */
+export function normalizeSearchQuery(raw) {
+  const trimmed = String(raw).trim();
+  if (!trimmed) return "";
+  if (/^[a-zA-Z\-']+$/.test(trimmed)) {
+    const kana = romajiToKana(trimmed);
+    if (kana) return normalizeSearchText(kana);
+    // 変換不能時は従来どおり小文字ローマ字（部分一致）
+    return trimmed.toLowerCase();
+  }
+  return normalizeSearchText(trimmed);
+}
+
 /**
  * カタカナ（またはひらがな）文字列をローマ字にする。
  * 漢字など非かなはそのまま残す。
