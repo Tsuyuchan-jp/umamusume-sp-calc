@@ -154,7 +154,8 @@
    - v4: stretch + `assets/type-icons/{type}.webp` 右上固定 → `npm run samples:vertical-v4` → `.cache/.../compare-vertical-v4/`  
    - **タイプ印の位置・サイズ確定（240×320基準）**: size=52 / margin top=1 / right=4（余白トリム後）  
    - ユーザー目視OK。**量産パイプライン組み込み済（2026-08-01）** — `assets:extract`（thumb）→ `assets:import`（縦合成）  
-4. ~~OKなら `assets:extract` / `import` 系を更新し優先40を再生成。ASSETS / GAME_UPDATE 更新~~ **済**  
+   - **枠外余白トリム追加（2026-08-01）**: 512上で固定 inset L10/T3/R10/B12 → stretch。タイプ印座標は未再調整（ずれ時は別指示）  
+4. ~~OKなら `assets:extract` / `import` 系を更新し優先40を再生成。ASSETS / GAME_UPDATE 更新~~ **済**（トリム後は `assets:import` 再実行）  
 5. NGまたは部品不足なら **解決策4に縮退**（A: card_s正方形維持 等）を明示提案  
 6. 変更は都度コミット。**push しない**
 
@@ -179,12 +180,13 @@
 
 ```text
 npm run assets:extract  → .cache/asset-dump/flat/supports/{id}.png  (support_thumb)
-npm run assets:import   → assets/supports/{id}.webp  (240×320 + タイプ印)
+npm run assets:import   → assets/supports/{id}.webp  (枠外トリム + 240×320 + タイプ印)
 ```
 
 - `scripts/extract_card_assets.py` … `support_thumb` / `piece_icon`
-- `scripts/import_card_assets.mjs` + `import_card_images.py` … 縦縮尺 + タイプ印合成 → webp
-- 試作比較: `npm run samples:vertical-v4` → `.cache/.../compare-vertical-v4/`
+- `scripts/import_card_assets.mjs` + `import_card_images.py` … 枠外トリム + 縦縮尺 + タイプ印合成 → webp
+- `scripts/support_vertical_card.py` … inset L10/T3/R10/B12（512基準・SSR実測）→ stretch → タイプ印
+- 試作比較: `npm run samples:vertical-v4` / `npm run samples:trim` → `.cache/.../compare-*/`
 
 ---
 
