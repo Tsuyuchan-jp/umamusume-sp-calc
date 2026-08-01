@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SP Calc — Visual Proposal v1（モック）</title>
+  <title>SP Calc — Visual Proposal v1.1（モック・芝テーマ）</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
@@ -12,26 +12,33 @@
   />
   <style>
     /* =========================================================
-       Visual Proposal v1 — 「Paddock Brief」
+       Visual Proposal v1.1 — 「Paddock Brief」芝テーマ
        現行 app/css とは無関係の独立モック。計算ロジックなし。
        ========================================================= */
     :root {
-      /* 紙面：冷たいインク紙（クリーム系を避ける） */
-      --paper-0: #d4dde6;
-      --paper-1: #e9eef3;
-      --paper-2: #f4f7fa;
-      --ink: #0a1520;
-      --ink-soft: #243646;
-      --ink-mute: #3d5366;
-      --line: #b7c4d0;
-      --line-strong: #6d8296;
+      /* 紙面：青空＋芝のレース場イメージ */
+      --paper-0: #c8e0f0;
+      --paper-1: #e4f0e8;
+      --paper-2: #f7fbf8;
+      --ink: #14241a;
+      --ink-soft: #2a4034;
+      --ink-mute: #4a6556;
+      --line: #b8cfc0;
+      --line-strong: #6d8f78;
 
-      /* 信号色：合計と ON だけ */
-      --signal: #e23a1a;
-      --signal-deep: #b02910;
-      --signal-soft: #ffe4dc;
-      --ok: #0a8f78;
-      --ok-soft: #d8f3ec;
+      /* ウマ娘寄り：ピンク信号＋芝グリーン＋結果ゴールド */
+      --signal: #ff4d7a;
+      --signal-deep: #c9184a;
+      --signal-soft: #ffe0ea;
+      --turf: #2f9e4a;
+      --turf-deep: #1b6b32;
+      --turf-mid: #3bb554;
+      --turf-soft: #e6f7eb;
+      --gold: #ffe566;
+      --gold-deep: #e6b800;
+      --ok: #2f9e4a;
+      --ok-soft: #e6f7eb;
+      --dirt: #a67c52;
 
       /* タイプ（補助） */
       --t-speed: #2f6feb;
@@ -44,13 +51,13 @@
       --r-sm: 6px;
       --r-md: 10px;
       --r-lg: 16px;
-      --shadow-lift: 0 10px 28px rgba(10, 21, 32, 0.12);
-      --shadow-bar: 0 -8px 32px rgba(10, 21, 32, 0.18);
+      --shadow-lift: 0 10px 28px rgba(20, 36, 26, 0.12);
+      --shadow-bar: 0 -10px 36px rgba(27, 107, 50, 0.35);
 
       --font-brand: "Dela Gothic One", "Hiragino Sans", sans-serif;
       --font-ui: "Zen Maru Gothic", "Hiragino Sans", sans-serif;
 
-      --bar-h: 72px;
+      --bar-h: 76px;
       --page-max: 1180px;
     }
 
@@ -62,27 +69,32 @@
       font-weight: 500;
       color: var(--ink);
       background:
-        radial-gradient(1200px 600px at 12% -10%, #c5d8e8 0%, transparent 55%),
-        radial-gradient(900px 500px at 100% 0%, #f0d8c8 0%, transparent 45%),
-        linear-gradient(165deg, var(--paper-0), var(--paper-1) 40%, #dde6ee);
+        radial-gradient(1100px 520px at 8% -8%, #9fd0f0 0%, transparent 55%),
+        radial-gradient(900px 480px at 100% 0%, #b8e8c4 0%, transparent 48%),
+        linear-gradient(165deg, var(--paper-0), var(--paper-1) 42%, #d5e8dc);
       min-height: 100vh;
       padding-bottom: calc(var(--bar-h) + 48px);
       -webkit-font-smoothing: auto;
       text-rendering: optimizeLegibility;
     }
 
-    /* トラック曲線の地紋 */
+    /* 芝レーン風の地紋 */
     body::before {
       content: "";
       position: fixed;
       inset: 0;
       pointer-events: none;
-      opacity: 0.22;
+      opacity: 0.28;
       background:
         repeating-linear-gradient(
-          -12deg,
-          transparent 0 28px,
-          rgba(10, 21, 32, 0.035) 28px 29px
+          -8deg,
+          transparent 0 22px,
+          rgba(47, 158, 74, 0.06) 22px 23px
+        ),
+        repeating-linear-gradient(
+          82deg,
+          transparent 0 40px,
+          rgba(20, 36, 26, 0.03) 40px 41px
         );
       z-index: 0;
     }
@@ -99,8 +111,8 @@
       margin: 16px auto 0;
       width: min(var(--page-max), calc(100% - 32px));
       padding: 10px 14px;
-      background: #122033;
-      color: #e8eef5;
+      background: linear-gradient(90deg, var(--turf-deep), #245c38);
+      color: #eef8f0;
       border-radius: var(--r-md);
       font-size: 13px;
       font-weight: 700;
@@ -109,13 +121,14 @@
       align-items: baseline;
       flex-wrap: wrap;
       animation: rise 0.5s ease both;
+      border-bottom: 3px solid var(--gold);
     }
     .mock-banner strong {
-      color: #ffb39f;
+      color: var(--gold);
       font-family: var(--font-brand);
       letter-spacing: 0.02em;
     }
-    .mock-banner span { opacity: 0.85; font-weight: 500; }
+    .mock-banner span { opacity: 0.9; font-weight: 500; }
 
     /* ---------- Brand header ---------- */
     .brand {
@@ -226,7 +239,7 @@
       width: 220px;
       height: 220px;
       border-radius: 50%;
-      border: 18px solid rgba(226, 58, 26, 0.06);
+      border: 18px solid rgba(47, 158, 74, 0.1);
       pointer-events: none;
     }
 
@@ -471,7 +484,7 @@
     }
     .seg button:last-child { border-right: 0; }
     .seg button.is-on {
-      background: var(--ink);
+      background: var(--turf-deep);
       color: #fff;
     }
     .bench-actions {
@@ -482,7 +495,7 @@
     .solid-btn {
       appearance: none;
       border: 0;
-      background: var(--ink);
+      background: var(--turf-deep);
       color: #fff;
       font: inherit;
       font-weight: 700;
@@ -493,7 +506,7 @@
       transition: transform 0.12s, background 0.12s;
     }
     .solid-btn:hover {
-      background: #1a2d40;
+      background: var(--turf);
       transform: translateY(-1px);
     }
 
@@ -524,7 +537,7 @@
       text-decoration-thickness: 1.5px;
     }
     .skill-table tr:hover td {
-      background: rgba(226, 58, 26, 0.04);
+      background: rgba(47, 158, 74, 0.06);
     }
     .origin {
       display: inline-flex;
@@ -549,7 +562,7 @@
       min-width: 2.2em;
       padding: 2px 6px;
       border-radius: 6px;
-      background: var(--ink);
+      background: var(--turf-deep);
       color: #fff;
       font-size: 11px;
       font-weight: 900;
@@ -591,8 +604,8 @@
       bottom: calc(var(--bar-h) + 10px);
       transform: translateX(-50%) translateY(8px);
       width: min(720px, calc(100% - 24px));
-      background: #122033;
-      color: #e8eef5;
+      background: linear-gradient(180deg, #245c38, var(--turf-deep));
+      color: #eef8f0;
       border-radius: var(--r-md);
       padding: 10px 14px;
       display: none;
@@ -600,7 +613,8 @@
       gap: 12px;
       flex-wrap: wrap;
       z-index: 40;
-      box-shadow: 0 8px 24px rgba(10, 21, 32, 0.35);
+      box-shadow: 0 8px 24px rgba(27, 107, 50, 0.4);
+      border: 1.5px solid rgba(255, 229, 102, 0.45);
       opacity: 0;
       transition: opacity 0.2s, transform 0.2s;
     }
@@ -614,7 +628,7 @@
       font-size: 11px;
       font-weight: 900;
       letter-spacing: 0.08em;
-      color: #9fb0c2;
+      color: var(--gold);
     }
     .inherit-sheet label {
       display: inline-flex;
@@ -629,13 +643,13 @@
       font-weight: 700;
       font-size: 12px;
       border-radius: 6px;
-      border: 1px solid #3a5168;
-      background: #1a2d42;
+      border: 1px solid #4a9a5e;
+      background: #164a28;
       color: #fff;
       padding: 4px 8px;
     }
 
-    /* ---------- Total SP bar ---------- */
+    /* ---------- Total SP bar（芝レーン） ---------- */
     .total-bar {
       position: fixed;
       left: 0;
@@ -643,14 +657,34 @@
       bottom: 0;
       z-index: 50;
       height: var(--bar-h);
-      background: #0a1520;
+      background:
+        linear-gradient(180deg, #4ec46a 0%, var(--turf-mid) 28%, var(--turf) 62%, var(--turf-deep) 100%);
       color: #fff;
       box-shadow: var(--shadow-bar);
       display: flex;
       align-items: stretch;
       justify-content: center;
+      border-top: 3px solid var(--gold);
+      overflow: hidden;
+    }
+    /* 芝の縦筋 */
+    .total-bar::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.22;
+      background: repeating-linear-gradient(
+        90deg,
+        transparent 0 14px,
+        rgba(255, 255, 255, 0.12) 14px 15px,
+        transparent 15px 28px,
+        rgba(0, 0, 0, 0.08) 28px 29px
+      );
     }
     .total-inner {
+      position: relative;
+      z-index: 1;
       width: min(var(--page-max), calc(100% - 24px));
       display: grid;
       grid-template-columns: auto 1fr;
@@ -667,21 +701,23 @@
       font-size: 11px;
       font-weight: 900;
       letter-spacing: 0.1em;
-      color: #8fa3b6;
+      color: rgba(255, 255, 255, 0.78);
+      text-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);
     }
     .total-score .value {
       font-family: var(--font-brand);
       font-size: 36px;
       line-height: 1;
-      color: #ff6a4a;
+      color: var(--gold);
       font-variant-numeric: tabular-nums;
       letter-spacing: 0.02em;
+      text-shadow: 0 2px 0 rgba(27, 107, 50, 0.45);
       animation: pulse-soft 2.4s ease-in-out infinite;
     }
     .total-score .unit {
       font-size: 13px;
       font-weight: 900;
-      color: #ffb39f;
+      color: #fff8c8;
     }
     .premise-row {
       display: flex;
@@ -692,9 +728,9 @@
     }
     .p-chip {
       appearance: none;
-      border: 1.5px solid #3a5168;
-      background: #152536;
-      color: #d7e2ec;
+      border: 1.5px solid rgba(255, 255, 255, 0.35);
+      background: rgba(20, 70, 36, 0.45);
+      color: #f2fff5;
       font: inherit;
       font-size: 12px;
       font-weight: 700;
@@ -704,39 +740,39 @@
       min-width: 5.5em;
       transition: border-color 0.12s, background 0.12s, color 0.12s;
     }
-    .p-chip:hover { border-color: #6d8296; }
+    .p-chip:hover { border-color: rgba(255, 255, 255, 0.7); }
     .p-chip.is-on {
-      border-color: #ff6a4a;
-      background: #3a1a14;
-      color: #ffb39f;
+      border-color: var(--gold);
+      background: rgba(255, 229, 102, 0.22);
+      color: #fff8c8;
     }
     .p-seg {
       display: inline-flex;
-      border: 1.5px solid #3a5168;
+      border: 1.5px solid rgba(255, 255, 255, 0.35);
       border-radius: 9px;
       overflow: hidden;
     }
     .p-seg button {
       appearance: none;
       border: 0;
-      background: #152536;
-      color: #9fb0c2;
+      background: rgba(20, 70, 36, 0.45);
+      color: rgba(255, 255, 255, 0.75);
       font: inherit;
       font-size: 12px;
       font-weight: 700;
       padding: 8px 11px;
       cursor: pointer;
-      border-right: 1px solid #2a3f54;
+      border-right: 1px solid rgba(255, 255, 255, 0.2);
     }
     .p-seg button:last-child { border-right: 0; }
     .p-seg button.is-on {
-      background: #ff6a4a;
-      color: #1a0805;
+      background: var(--gold);
+      color: #1a4a22;
     }
     .p-meta {
       font-size: 11px;
       font-weight: 700;
-      color: #8fa3b6;
+      color: rgba(255, 255, 255, 0.78);
       margin-right: 4px;
     }
 
@@ -878,8 +914,8 @@
 </head>
 <body>
   <aside class="mock-banner" aria-label="モック注記">
-    <strong>VISUAL MOCK v1</strong>
-    <span>現行アプリは未改変。見た目専用の独立提案です（計算なし・静的データ）。</span>
+    <strong>VISUAL MOCK v1.1</strong>
+    <span>芝テーマ版。現行アプリは未改変。見た目専用の独立提案です（計算なし・静的データ）。</span>
   </aside>
 
   <div class="shell">
@@ -1109,7 +1145,8 @@
     <h3>この案の狙い（現行コードから離れた点）</h3>
     <ul>
       <li><strong>ブランドをヒーローに</strong> — 細いヘッダーではなく Dela Gothic の製品名が最初の信号。</li>
-      <li><strong>インク紙＋信号赤</strong> — 紫グラデ／クリーム＋セリフを避け、冷たい紙面に合計だけ炎色。</li>
+      <li><strong>芝レーンの合計バー</strong> — トータルバーをレース場の芝グリーン＋ゴールド縁に。数値は結果発表っぽいゴールド。</li>
+      <li><strong>ウマ娘寄りの色</strong> — アクセントはピンク（信号）、紙面は青空＋緑、ON は芝グリーン。</li>
       <li><strong>ウェイトを落とさない</strong> — UI は 700/900 固定。かすれの主因だった 400＋薄いグレーを使わない。</li>
       <li><strong>列下はパネル</strong> — ラジオ行ではなく選択パネル。金スキルを最上段に置く前提の見た目。</li>
       <li><strong>継承はバーの上</strong> — 足元帯から外し、継承 ON で合計バー直上にシートが出る（下のバーで切替可）。</li>
