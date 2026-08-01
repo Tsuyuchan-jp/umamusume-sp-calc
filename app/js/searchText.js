@@ -164,8 +164,13 @@ const DIGRAPHS = {
 /**
  * カタカナ（またはひらがな）文字列をローマ字にする。
  * 漢字など非かなはそのまま残す。
+ * @param {string} input
+ * @param {{ longVowel?: "double" | "hyphen" }} [options]
+ *   - double: アー → aa（既定）
+ *   - hyphen: アー → a-（a-mondo 形式）
  */
-export function kanaToRomaji(input) {
+export function kanaToRomaji(input, options = {}) {
+  const longVowel = options.longVowel === "hyphen" ? "hyphen" : "double";
   const s = toKatakana(input);
   let out = "";
   let i = 0;
@@ -188,7 +193,9 @@ export function kanaToRomaji(input) {
     }
     if (ch === "ー") {
       const m = out.match(/[aeiou]$/i);
-      out += m ? m[0] : "";
+      if (m) {
+        out += longVowel === "hyphen" ? "-" : m[0];
+      }
       i += 1;
       continue;
     }
@@ -207,10 +214,17 @@ export function kanaToRomaji(input) {
 /**
  * キャラ名からピッカー用 searchText を作る（かな＋ローマ字）。
  * 衣装タイトルは含めない。
+ * ローマ字は長音の二重母音（aamondo）とハイフン（a-mondo）の両方を持つ。
  */
 export function buildCharacterNameSearchText(characterName) {
   const base = characterBaseName(characterName);
   const kana = normalizeSearchText(base);
-  const romaji = kanaToRomaji(base);
-  return romaji && romaji !== kana ? `${kana} ${romaji}` : kana;
+  const romajiDouble = kanaToRomaji(base, { longVowel: "double" });
+  const romajiHyphen = kanaToRomaji(base, { longVowel: "hyphen" });
+  const parts = [kana];
+  if (romajiDouble && romajiDouble !== kana) parts.push(romajiDouble);
+  if (romajiHyphen && romajiHyphen !== kana && romajiHyphen !== romajiDouble) {
+    parts.push(romajiHyphen);
+  }
+  return parts.join(" ");
 }
