@@ -1439,6 +1439,18 @@ body.layout-split .total-sp-bar__total {
   min-width: 0;
   flex: 1 1 auto;
   width: 100%;
+  /* ギャラリー: app-main padding 内＝結果パネル左端に縦線 */
+  border-left: 1px solid rgba(255, 255, 255, 0.22);
+  padding-left: 0.85rem;
+  box-sizing: border-box;
+}
+
+/* ギャラリー: バー内枠を app-main（1200px + padding 1rem）と揃える */
+body.layout-gallery .total-sp-bar-inner,
+body:not(.layout-split) .total-sp-bar-inner {
+  max-width: 1200px;
+  padding: 0.55rem 1rem 0.65rem;
+  box-sizing: border-box;
 }
 
 body.layout-split .total-sp-bar-value {

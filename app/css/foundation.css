@@ -321,22 +321,27 @@ header p {
 
 .total-sp-bar-value {
   display: inline-block;
-  min-width: 7.5ch;
+  /* 最大5桁＋カンマ（例: 12,345）で幅固定。SPが桁で動かない */
+  width: 6ch;
+  min-width: 6ch;
+  max-width: 6ch;
   font-variant-numeric: tabular-nums;
   font-weight: var(--font-weight-black);
   font-size: 2rem;
   line-height: 1;
-  text-align: left;
+  text-align: right;
   color: var(--accent-total);
   text-shadow: none;
-  letter-spacing: -0.02em;
+  letter-spacing: 0;
 }
 
 .total-sp-bar-unit {
   display: inline;
+  flex: 0 0 auto;
   font-size: 0.8rem;
   font-weight: var(--font-weight-bold);
   color: var(--accent-total-bright);
+  margin-left: 0.2rem;
 }
 
 .total-sp-bar--flash-up .total-sp-bar-value {
@@ -416,15 +421,15 @@ header p {
   color: #fff;
 }
 
-/* 合計ヒーロー（桁変化で前提がずれないよう幅固定）＋前提右寄せ */
+/* 合計ヒーロー: 縦線は結果枠左端側。数値は最大5桁幅固定で SP を安定配置 */
 .total-sp-bar__total {
   display: flex;
   flex: 0 0 auto;
   align-items: baseline;
-  gap: 0.4rem 0.5rem;
-  min-width: 10.5rem;
-  padding-right: 0.75rem;
-  border-right: 1px solid rgba(255, 255, 255, 0.18);
+  gap: 0.35rem 0.4rem;
+  min-width: 0;
+  padding-right: 0;
+  border-right: 0;
 }
 
 .total-sp-bar-chips {
