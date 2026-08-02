@@ -69,7 +69,7 @@
 | 機能 | 方針 |
 |------|------|
 | メモリ | 1設計 = 1スナップショット（編成・前提・除外・絞込）。ギャラリー上段／スプリット左がプレビューになる |
-| スクショ | 主面 = 編成の顔（6枚＋合計＋前提）。記事貼付向け専用カード想定。詳細は [screenshot-requirements.md](./screenshot-requirements.md) |
+| スクショ | 主面 = 編成の顔（専用横長カード）。**正本モック v28.1 採用**。本実装はモックを完璧に移植。詳細は [screenshot-requirements.md](./screenshot-requirements.md) |
 
 状態境界: `app/js/designSnapshot.js` を正とする。
 

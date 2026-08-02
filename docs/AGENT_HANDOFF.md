@@ -17,6 +17,7 @@
 | 公開 URL | https://Tsuyuchan-jp.github.io/umamusume-sp-calc/app/ |
 | push / Pages | **v1.0.0 まで push しない**（ローカルコミットのみ） |
 | 初期編成 | 育成112901（アーモンドアイ）/ 枠1エアグルーヴ・枠2テイオー・枠3タップ・枠4ドトウ・枠5ヤング・枠6たづな |
+| 編成スクショ | **モック v28.1 採用**。本実装は正本モックを完璧に移植（[product/screenshot-requirements.md](./product/screenshot-requirements.md)） |
 
 通し確認・版履歴の詳細は [CHANGELOG.md](./CHANGELOG.md)。
 

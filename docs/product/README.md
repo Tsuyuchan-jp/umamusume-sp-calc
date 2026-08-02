@@ -5,8 +5,8 @@
 | ファイル | 内容 |
 |----------|------|
 | [UX.md](./UX.md) | UX 思想 |
-| [screenshot-requirements.md](./screenshot-requirements.md) | 編成スクショ要件（すり合わせ中） |
-| [mockups/screenshot-share-hero.html](./mockups/screenshot-share-hero.html) | **編成スクショ主案（型C·v28.1）** |
+| [screenshot-requirements.md](./screenshot-requirements.md) | 編成スクショ要件（**v28.1 採用**・本実装はモック完璧移植） |
+| [mockups/screenshot-share-hero.html](./mockups/screenshot-share-hero.html) | **編成スクショ正本モック（型C·v28.1·採用）** |
 | [mockups/screenshot-share-left-options.html](./mockups/screenshot-share-left-options.html) | 左レイアウト比較（旧 L1〜L4） |
 | [mockups/screenshot-share-left-fresh.html](./mockups/screenshot-share-left-fresh.html) | **左レイアウト刷新比較（A〜E）** |
 | [mockups/screenshot-share-type-b.html](./mockups/screenshot-share-type-b.html) | 編成スクショ主案（型B比較） |
