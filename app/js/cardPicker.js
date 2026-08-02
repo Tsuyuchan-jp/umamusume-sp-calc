@@ -47,10 +47,12 @@ export function createCardPicker(root) {
         return;
       }
 
-      const chip = e.target.closest("[data-type]");
-      if (!chip || !(chip instanceof HTMLElement)) return;
+      const chip = e.target.closest("button.type-chip[data-type]");
+      if (!chip || !(chip instanceof HTMLElement) || !root.filtersEl.contains(chip)) {
+        return;
+      }
       const type = chip.dataset.type ?? "";
-      const chips = root.filtersEl.querySelectorAll("[data-type]");
+      const chips = root.filtersEl.querySelectorAll("button.type-chip[data-type]");
       for (const el of chips) {
         el.classList.toggle("is-active", el === chip);
         el.setAttribute("aria-pressed", el === chip ? "true" : "false");

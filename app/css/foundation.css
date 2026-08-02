@@ -1182,12 +1182,12 @@ tr:hover td {
   box-shadow: 0 0 0 1.5px rgba(255, 255, 255, 0.5);
 }
 
-.type-chip__dot[data-type="speed"] { background: #2a8fc4; }
-.type-chip__dot[data-type="stamina"] { background: #d04545; }
-.type-chip__dot[data-type="power"] { background: #e08820; }
-.type-chip__dot[data-type="guts"] { background: #d04a82; }
-.type-chip__dot[data-type="wit"] { background: #3a9e4a; }
-.type-chip__dot[data-type="friend"] { background: #c9a020; }
+.type-chip__dot--speed { background: #2a8fc4; }
+.type-chip__dot--stamina { background: #d04545; }
+.type-chip__dot--power { background: #e08820; }
+.type-chip__dot--guts { background: #d04a82; }
+.type-chip__dot--wit { background: #3a9e4a; }
+.type-chip__dot--friend { background: #c9a020; }
 
 .type-chip.is-active {
   background: #fff;

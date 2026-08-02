@@ -6,7 +6,7 @@ import {
   shortSupportLabel,
   supportImageUrl,
 } from "./cardAssets.js";
-import { createCardPicker } from "./cardPicker.js";
+import { createCardPicker } from "./cardPicker.js?v=1.0.4";
 import {
   buildCharacterNameSearchText,
   normalizeSearchText,
@@ -57,7 +57,7 @@ import {
   copyShareCardPng,
   renderShareCardToMount,
   saveShareCardPng,
-} from "./shareCard.js?v=1.0.3";
+} from "./shareCard.js?v=1.0.4";
 
 /** 継承固有の baseSp（UIでは非編集・固定） */
 const INHERIT_BASE_SP = 200;
@@ -121,7 +121,7 @@ let splitEvtOpen = null;
 let supportPickerTypeFilter = "";
 
 /** Pages の max-age キャッシュで古い events.json が残るのを防ぐ（版上げ時に更新） */
-const DATA_CACHE_BUST = "1.0.3";
+const DATA_CACHE_BUST = "1.0.4";
 
 async function loadJson(path) {
   const sep = path.includes("?") ? "&" : "?";
@@ -871,7 +871,7 @@ function renderPickerTypeChips() {
     .map(({ value, label }) => {
       const active = supportPickerTypeFilter === value;
       const dot = value
-        ? `<span class="type-chip__dot" data-type="${escapeHtml(value)}"></span>`
+        ? `<span class="type-chip__dot type-chip__dot--${escapeHtml(value)}" aria-hidden="true"></span>`
         : "";
       return `<button type="button" class="type-chip${active ? " is-active" : ""}" data-type="${escapeHtml(value)}" aria-pressed="${active ? "true" : "false"}">${dot}${escapeHtml(label)}</button>`;
     })
