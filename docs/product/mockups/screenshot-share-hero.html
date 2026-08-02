@@ -293,22 +293,24 @@
       --gold-fs: 0.6875rem;
       --gold-lh: 1.3;
       --gold-pad-y: 0.45em;
+      /* チップ縦間隔の単一正本（同一サポ内＝サポ間で揃える） */
+      --gold-v-gap: 0.4em;
       display: grid;
       grid-template-columns: 1fr 1fr;
       column-gap: 1.1em;
-      row-gap: 0.55em;
+      row-gap: var(--gold-v-gap);
       align-content: start;
     }
     /*
       1行目: サポ名 + 1つ目チップ（同一グリッド行 → align-items で中央揃え）
       2行目以降: チップのみ（grid-column: 2）
-      ※高さ推測・padding-top・line-height合わせは不要
+      縦ギャップは --gold-v-gap のみ（ボード行間と同じ）
     */
     .gold-row {
       display: grid;
       grid-template-columns: 5.2em minmax(0, 1fr);
       column-gap: 0.55em;
-      row-gap: 0.35em;
+      row-gap: var(--gold-v-gap);
       align-items: center;
       min-width: 0;
     }
