@@ -396,39 +396,51 @@
       color: #ffc0d6;
     }
 
-    .base-input {
-      width: 3.4rem;
-      margin: 0;
-      padding: 0.25rem 0.35rem;
-      border: 1px solid #c8c4d4;
-      border-radius: 5px;
-      font: inherit;
-      font-size: 0.78rem;
-      font-weight: 700;
-      color: #333;
-      background: #fff;
-      text-align: center;
-    }
-
-    .cost-hint {
+    .unit-cost {
       margin-left: auto;
-      font-size: 0.72rem;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 0.12rem;
+      min-width: 9.5rem;
+      padding: 0.3rem 0.55rem;
+      border-radius: 8px;
+      border: 1px solid rgba(245, 207, 111, 0.35);
+      background: rgba(0, 0, 0, 0.18);
+      line-height: 1.2;
+    }
+    .unit-cost__kicker {
+      font-size: 0.62rem;
+      font-weight: 700;
       color: #bebbce;
-      white-space: nowrap;
+      letter-spacing: 0.04em;
     }
-    .cost-hint b {
-      color: #59ccfc;
+    .unit-cost__main {
+      font-size: 0.78rem;
+      font-weight: 900;
+      color: #fff;
+    }
+    .unit-cost__main b {
+      font-size: 1.15rem;
       font-variant-numeric: tabular-nums;
+      color: #59ccfc;
+      margin: 0 0.15rem;
     }
-    .cost-hint__prem {
-      color: #ede6e6;
-      opacity: 0.85;
+    .unit-cost__meta {
+      font-size: 0.64rem;
+      font-weight: 700;
+      color: #cfcadf;
+    }
+    .unit-cost__meta em {
+      font-style: normal;
+      color: #ffc0d6;
     }
 
     @media (max-width: 720px) {
-      .cost-hint {
+      .unit-cost {
         margin-left: 0;
         width: 100%;
+        align-items: flex-start;
       }
       .total .v { font-size: 1.5rem; }
     }
@@ -442,8 +454,8 @@
       <h1>継承パラメータ編集UI — 案2モック</h1>
       <p>
         <strong>操作:</strong> 下部バーの「継承」チップを押すとパネル開閉。
-        加算はトグル。個数 2–6・ヒントLv 1–5・baseSp（既定200）。
-        継承分はバーの切れ者前提を反映。汎用行のみ。本アプリには未配線。
+        加算はトグル。編集は個数とヒントLvのみ（baseSpは200固定・非表示）。
+        右端は「1本あたりの必要SP」（ヒントLv＋切れ者反映）。本アプリには未配線。
       </p>
     </header>
 
@@ -452,7 +464,7 @@
       <p>パネル操作に連動して、継承行の表示だけ更新します（計算式の再実装はなし）。</p>
       <div class="fake-row" id="fake-inherit-row">
         <span>継承固有 × <span id="fake-count">4</span></span>
-        <span>Lv<span id="fake-lv">3</span> / base <span id="fake-base">200</span> → <b id="fake-cost">640</b> SP</span>
+        <span>Lv<span id="fake-lv">3</span> · 1本 <span id="fake-unit">140</span> → <b id="fake-cost">560</b> SP</span>
       </div>
     </section>
 
@@ -462,7 +474,7 @@
         <li>チップ文言: OFF時は「継承 OFF」、ON時は「継承 N本」</li>
         <li>開いている間はチップに金アウトライン（開閉状態が分かる）</li>
         <li>外側クリック / Esc / × で閉じる（ON状態は維持）</li>
-        <li>加算はトグル。継承分の表示はバーの切れ者前提を反映</li>
+        <li>加算はトグル。右端は1本あたり必要SP（Lv＋切れ者）。baseSp入力なし</li>
       </ul>
     </aside>
   </div>
@@ -507,7 +519,7 @@
         </div>
 
         <div class="field" role="group" aria-label="ヒントLv">
-          <span>Lv</span>
+          <span>ヒントLv</span>
           <div class="seg" id="seg-lv">
             <button type="button" data-lv="1">1</button>
             <button type="button" data-lv="2">2</button>
@@ -517,21 +529,10 @@
           </div>
         </div>
 
-        <label class="field" for="base-input">
-          <span>baseSp</span>
-          <input
-            class="base-input"
-            id="base-input"
-            type="number"
-            min="1"
-            step="1"
-            value="200"
-          />
-        </label>
-
-        <div class="cost-hint">
-          継承分 <b id="ref-cost">640</b> SP
-          <span class="cost-hint__prem" id="ref-prem" hidden></span>
+        <div class="unit-cost" aria-live="polite">
+          <span class="unit-cost__kicker">継承固有 1本</span>
+          <span class="unit-cost__main"><b id="unit-cost">140</b>SP</span>
+          <span class="unit-cost__meta" id="unit-meta">ヒントLv3 · 切れ者なし</span>
         </div>
       </div>
     </div>
@@ -543,7 +544,7 @@
       <div class="bar-main">
         <div class="total">
           <span class="k">TOTAL</span>
-          <span class="v" id="total-value">12,480</span>
+          <span class="v" id="total-value">12,400</span>
           <span class="u">SP</span>
         </div>
         <div class="chips" aria-label="計算前提">
@@ -569,33 +570,33 @@
 
   <script>
     (function () {
+      const BASE_SP = 200;
+      /* 本番 spCost.js と同じ割引（見た目確認用） */
+      const HINT_DISCOUNTS = [0, 0.1, 0.2, 0.3, 0.35, 0.4];
+
       const state = {
         open: false,
         enabled: true,
         count: 4,
         lv: 3,
-        base: 200,
         fast: false,
       };
 
       const pop = document.getElementById("inherit-pop");
       const chip = document.getElementById("chip-inherit");
       const chipFast = document.getElementById("chip-fast");
-      const baseInput = document.getElementById("base-input");
       const closeBtn = document.getElementById("inherit-close");
       const togEnabled = document.getElementById("tog-enabled");
       const togLabel = document.getElementById("tog-enabled-label");
 
-      /** ヒント割引の概算（本番 calc の見た目確認用。正確再現はしない） */
-      function hintMult(lv) {
-        const table = { 1: 1, 2: 0.9, 3: 0.8, 4: 0.7, 5: 0.6 };
-        return table[lv] ?? 1;
+      function calcSkillCost(baseSp, hintLevel, fastLearner) {
+        const lv = Math.max(0, Math.min(5, hintLevel | 0));
+        const discount = HINT_DISCOUNTS[lv] + (fastLearner ? 0.1 : 0);
+        return Math.floor(baseSp * Math.max(0, 1 - discount));
       }
 
       function unitCost() {
-        let c = Math.floor(state.base * hintMult(state.lv));
-        if (state.fast) c = Math.floor(c * 0.9);
-        return c;
+        return calcSkillCost(BASE_SP, state.lv, state.fast);
       }
 
       function totalInherit() {
@@ -625,22 +626,25 @@
 
         setSeg(document.getElementById("seg-count"), "data-count", state.count);
         setSeg(document.getElementById("seg-lv"), "data-lv", state.lv);
-        baseInput.value = String(state.base);
 
-        const cost = totalInherit();
-        document.getElementById("ref-cost").textContent = cost.toLocaleString("ja-JP");
-        /* バーの切れ者前提を反映。OFF時は括弧なしでノイズを減らす */
-        document.getElementById("ref-prem").textContent = state.fast ? "（切れ者反映）" : "";
-        document.getElementById("ref-prem").hidden = !state.fast;
+        const unit = unitCost();
+        const total = totalInherit();
+        document.getElementById("unit-cost").textContent = unit.toLocaleString("ja-JP");
+        const fastLabel = state.fast
+          ? '<em>切れ者あり</em>'
+          : "切れ者なし";
+        document.getElementById("unit-meta").innerHTML =
+          `ヒントLv${state.lv} · ${fastLabel}`;
+
         document.getElementById("fake-count").textContent = String(state.count);
         document.getElementById("fake-lv").textContent = String(state.lv);
-        document.getElementById("fake-base").textContent = String(state.base);
-        document.getElementById("fake-cost").textContent = cost.toLocaleString("ja-JP");
+        document.getElementById("fake-unit").textContent = unit.toLocaleString("ja-JP");
+        document.getElementById("fake-cost").textContent = total.toLocaleString("ja-JP");
         document.getElementById("fake-inherit-row").classList.toggle("is-off", !state.enabled);
 
         /* ダミーTOTAL: 継承差分だけ反映 */
         const baseTotal = 11840;
-        document.getElementById("total-value").textContent = (baseTotal + cost).toLocaleString("ja-JP");
+        document.getElementById("total-value").textContent = (baseTotal + total).toLocaleString("ja-JP");
       }
 
       function setOpen(open) {
@@ -671,12 +675,6 @@
         const btn = e.target.closest("button[data-lv]");
         if (!btn) return;
         state.lv = Number(btn.getAttribute("data-lv"));
-        render();
-      });
-
-      baseInput.addEventListener("change", () => {
-        const n = Number(baseInput.value);
-        state.base = Number.isFinite(n) && n > 0 ? Math.floor(n) : 200;
         render();
       });
 
