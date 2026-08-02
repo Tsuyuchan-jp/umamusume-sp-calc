@@ -305,12 +305,12 @@
     .right__trainee img {
       width: 52px;
       height: 52px;
-      object-fit: cover;
-      object-position: center top;
-      /* 角丸にしない（グラス角の内側で四角が食い込むのを防ぐ） */
+      object-fit: contain;
+      object-position: center center;
       border-radius: 0;
       display: block;
-      background: #463f70;
+      /* 角丸アイコンの裏に下地色が出るので付けない */
+      background: transparent;
     }
     .right__trainee-lab {
       font-size: 9px;
