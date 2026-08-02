@@ -101,15 +101,23 @@ body {
   inset: 0;
   z-index: 0;
   pointer-events: none;
-  /* 下寄せで芝を画面内に。オーバーレイはモック相当に抑え芝を隠さない */
+  /* U-tools / H5 モック寄り: 引きの構図（cover + top）。クローズアップしない */
   background:
-    linear-gradient(180deg, rgba(70, 63, 112, 0.28), rgba(70, 63, 112, 0.08) 42%, rgba(70, 63, 112, 0.38)),
-    var(--world-image) center bottom / cover no-repeat,
+    var(--world-image) center top / cover no-repeat,
     #463f70;
 }
 
 .world-bg::after {
-  content: none;
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(70, 63, 112, 0.12),
+    rgba(70, 63, 112, 0.04) 40%,
+    rgba(70, 63, 112, 0.32)
+  );
+  pointer-events: none;
 }
 
 body > header,
@@ -124,13 +132,27 @@ body > .app-main {
   z-index: 1000;
 }
 
-/* ---- ヘッダー（H5 寄り） ---- */
+/* ---- ヘッダー（H-Mock: gallery = g-brand 相当） ---- */
 header,
 .app-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  box-sizing: border-box;
+  width: min(1200px, calc(100% - 1.5rem));
+  margin: 0 auto;
+  padding: 0.65rem 0.9rem;
   background: linear-gradient(180deg, var(--ink-mid) 0%, var(--ink-deep) 100%);
   box-shadow: var(--shadow-md);
   border-bottom: 3px solid var(--c-gold, #f5cf6f);
-  padding: 0.75rem 1.25rem;
+  border-radius: 0 0 10px 10px;
+}
+
+/* gallery: modebar の直下（H-Mock 順） */
+body.layout-gallery > .app-header,
+body:not(.layout-split) > .app-header {
+  margin-top: 0;
 }
 
 .app-brand-accent {
@@ -138,26 +160,31 @@ header,
 }
 
 header h1 {
+  margin: 0;
   font-weight: var(--font-weight-black);
   letter-spacing: 0.02em;
-  font-size: 1.35rem;
+  font-size: 1.125rem;
+  line-height: 1.2;
 }
 
 header p {
+  margin: 0.15rem 0 0;
   font-weight: var(--font-weight-medium);
+  font-size: 0.75rem;
   opacity: 0.88;
 }
 
 .help-open-btn {
+  margin-top: 0;
   border-radius: var(--radius-pill);
-  border: 1px solid rgba(255, 255, 255, 0.28);
+  border: 1px solid rgba(255, 255, 255, 0.35);
   font-weight: var(--font-weight-medium);
-  transition: background 0.15s ease, transform 0.12s ease;
+  transition: background 0.15s ease;
 }
 
 .help-open-btn:hover {
   background: rgba(255, 255, 255, 0.14);
-  transform: translateY(-1px);
+  transform: none;
 }
 
 /* ---- パネル（H5 幾何タイル面） ---- */

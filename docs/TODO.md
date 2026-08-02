@@ -40,7 +40,7 @@
 
 ## 現在フォーカス（1行）
 
-**P0 見た目** — 芝・幾何・左ゾーン済。ヘッダーは比較モックで選定待ち（[product/mockups/header-options.html](./product/mockups/header-options.html)）。
+**P1 へ** — 結果作業台の見た目／ピッカー刷新（推奨 P-A＋薄い P-B）。ヘッダーは H-Mock 反映済。
 
 ---
 
@@ -48,7 +48,7 @@
 
 ### P0
 
-- [ ] **ヘッダー安定化＋見た目刷新** — 選定中（H-Mock / H-A / H-B / H-C）。比較: [product/mockups/header-options.html](./product/mockups/header-options.html)
+（なし）
 
 ### P1
 
@@ -88,10 +88,11 @@
 
 ## 最近完了（直近のみ残す）
 
-- [x] 2026-08-02 **世界観背景に芝**・**幾何タイル bg.webp**・**スプリット左ゾーン分け**
-- [x] 2026-08-02 **ヘッダー比較モック** — [product/mockups/header-options.html](./product/mockups/header-options.html)（選定待ち）
+- [x] 2026-08-02 **背景を U-tools/H5 引き構図へ**・**ヘッダー H-Mock 反映**（modebar→ブランド／split コマンド）
+- [x] 2026-08-02 **幾何タイル bg.webp**・**スプリット左ゾーン分け**
+- [x] 2026-08-02 **ヘッダー比較モック** — [product/mockups/header-options.html](./product/mockups/header-options.html)
 - [x] 2026-08-02 **実機デザイン指摘6点を backlog 化**
-- [x] 2026-08-02 **B方針確定**・UI Round 1・デュアル骨格OK・スプリット足元／H1・ギャップ調査・FB反映・移植
+- [x] 2026-08-02 **B方針確定**・UI Round 1・デュアル骨格OK・スプリット足元／H1・移植
 - [x] 2026-08-02 Visual Foundation／質感パス／モック v1〜H5
 - [x] 2026-08-01 由来表示・ピッカー検索・初期デッキ・docs・サポカ縦カード・育成264
 

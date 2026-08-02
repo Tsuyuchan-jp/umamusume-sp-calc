@@ -15,6 +15,17 @@
   </head>
   <body>
     <div class="world-bg" aria-hidden="true"></div>
+
+    <aside class="layout-modebar" aria-label="レイアウト切替">
+      <span class="layout-modebar__label">表示</span>
+      <div class="layout-mode-seg" role="group" aria-label="レイアウト">
+        <button type="button" class="layout-mode-seg__btn is-on" data-layout-mode="gallery">ギャラリー</button>
+        <button type="button" class="layout-mode-seg__btn" data-layout-mode="split">スプリット</button>
+        <button type="button" class="layout-mode-seg__btn" data-layout-mode="auto">自動（幅）</button>
+      </div>
+      <span class="layout-modebar__hint" id="layout-mode-hint">ギャラリー: 上段編成・下段作業台</span>
+    </aside>
+
     <header class="app-header">
       <div class="header-text">
         <h1>SP <span class="app-brand-accent">Calc</span><span class="app-version">v0.1.14</span></h1>
@@ -29,16 +40,6 @@
         </button>
       </div>
     </header>
-
-    <aside class="layout-modebar" aria-label="レイアウト切替">
-      <span class="layout-modebar__label">表示</span>
-      <div class="layout-mode-seg" role="group" aria-label="レイアウト">
-        <button type="button" class="layout-mode-seg__btn is-on" data-layout-mode="gallery">ギャラリー</button>
-        <button type="button" class="layout-mode-seg__btn" data-layout-mode="split">スプリット</button>
-        <button type="button" class="layout-mode-seg__btn" data-layout-mode="auto">自動（幅）</button>
-      </div>
-      <span class="layout-modebar__hint" id="layout-mode-hint">ギャラリー: 上段編成・下段作業台</span>
-    </aside>
 
     <dialog id="memory-dialog" class="memory-dialog" aria-labelledby="memory-dialog-title">
       <div class="memory-dialog__chrome">

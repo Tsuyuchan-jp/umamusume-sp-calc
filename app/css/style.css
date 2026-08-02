@@ -1164,19 +1164,22 @@ input[type="search"] {
   cursor: pointer;
 }
 
-/* ---- レイアウトモードバー（常に操作可能） ---- */
+/* ---- レイアウトモードバー（H-Mock: 中央寄せの独立帯） ---- */
 .layout-modebar {
   display: flex;
   flex-wrap: wrap;
   gap: 0.4rem 0.75rem;
   align-items: center;
-  padding: 0.4rem 1rem;
+  box-sizing: border-box;
+  width: min(1200px, calc(100% - 1.5rem));
+  margin: 0.5rem auto 0;
+  padding: 0.45rem 0.75rem;
   background: rgba(70, 63, 112, 0.94);
   color: #eee;
   font-size: 0.75rem;
-  border-bottom: 2px solid #f5cf6f;
-  position: sticky;
-  top: 0;
+  border-bottom: 3px solid #f5cf6f;
+  border-radius: 8px;
+  position: relative;
   z-index: 60;
   flex-shrink: 0;
 }
@@ -1238,6 +1241,8 @@ body.layout-split > .layout-modebar {
   position: relative;
   flex-shrink: 0;
   z-index: 60;
+  width: min(1480px, calc(100% - 1.5rem));
+  margin: 0.5rem auto 0;
 }
 
 /* 合計バーを上部コマンド化（DOM は applyLayoutMode で modebar 直後へ移動） */
