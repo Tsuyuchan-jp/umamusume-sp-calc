@@ -3,15 +3,15 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>編成スクショ — 主案 v26（計上スキル数・切れ者OFF）</title>
+  <title>編成スクショ — 主案 v27（切れ者揃え・金チップ視認）</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;600;700&family=Zen+Kaku+Gothic+New:wght@500;700;900&display=swap" rel="stylesheet" />
   <style>
     /*
-      主案 v25 — ほぼ採用の微調整
-      - レギュ帯: 条件1行 + トレヒント/継承を2行
-      - 金スキル枠は内容量に応じて縦に伸びる（除外は残り）
+      主案 v27 — 切れ者縦揃え・金チップ視認性
+      - 切れ者 ON/OFF の光学的中央揃え
+      - 金チップ縦幅を拡大、除外は内容サイズ（無理に伸ばさない）
     */
     :root {
       --ink: #1a1630;
@@ -200,22 +200,25 @@
       font-weight: 500;
       color: var(--ink-soft);
     }
-    /* タイトル段の右：切れ者のみコンパクトに */
+    /* タイトル段の右：切れ者（ON/OFF を光学的に中央揃え） */
     .fast-inline {
       display: inline-flex;
       align-items: center;
-      gap: 6px;
+      gap: 7px;
       flex-shrink: 0;
-      padding: 5px 8px 5px 5px;
+      height: 34px;
+      padding: 0 11px 0 4px;
       border-radius: 999px;
       background: #eaf9e4;
       border: 1px solid #b7e6a8;
+      box-sizing: border-box;
     }
     .fast-inline__mark {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      padding: 6px 10px;
+      height: 26px;
+      padding: 0 11px;
       border-radius: 999px;
       background: #38c306;
       color: #fff;
@@ -223,12 +226,21 @@
       font-weight: 900;
       letter-spacing: 0.04em;
       line-height: 1;
+      box-sizing: border-box;
     }
     .fast-inline__state {
-      font-size: 12px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      height: 26px;
+      min-width: 2.1em;
+      font-size: 13px;
       font-weight: 900;
+      letter-spacing: 0.06em;
+      line-height: 1;
       color: #2a7a08;
-      padding-right: 4px;
+      /* ラテン大文字の光学的な上寄りをわずかに補正 */
+      transform: translateY(0.5px);
     }
     .fast-inline.is-off {
       background: #f1eef5;
@@ -244,9 +256,8 @@
     .work {
       flex: 1;
       min-height: 0;
-      display: grid;
-      /* 金は内容量で伸び、除外は残りの下限付き */
-      grid-template-rows: auto minmax(96px, 1fr);
+      display: flex;
+      flex-direction: column;
       gap: 8px;
     }
 
@@ -261,12 +272,13 @@
       background: #faf9fc;
     }
     .panel--gold {
-      flex-shrink: 0;
+      flex: 1 1 auto;
+      min-height: 0;
       border-color: #efe8c8;
       background: #fffdf6;
     }
     .panel--off {
-      min-height: 96px;
+      flex: 0 0 auto;
       border-color: #e4dde9;
       background: #f7f5fb;
     }
@@ -281,14 +293,14 @@
     .gold-board {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 4px 12px;
+      gap: 6px 12px;
       align-content: start;
     }
     .gold-row {
       display: grid;
       grid-template-columns: 5.2em minmax(0, 1fr);
-      gap: 5px;
-      align-items: start;
+      gap: 6px;
+      align-items: center;
       min-width: 0;
     }
     /* .gold-row より後に置く（同一要素の display 上書き防止） */
@@ -299,31 +311,33 @@
       font-weight: 500;
       color: #8a849e;
       text-align: right;
-      padding-top: 2px;
       white-space: nowrap;
+      line-height: 1.2;
     }
     .gold-row.is-scn .gold-row__src { color: var(--accent-2); }
     .gold-row__chips {
       display: flex;
       flex-direction: column;
-      gap: 3px;
+      gap: 4px;
       min-width: 0;
     }
     .gold-chip {
       display: flex;
       align-items: center;
       width: 100%;
-      padding: 2px 8px 2px 7px;
-      border-radius: 6px;
-      font-size: 10px;
+      min-height: 26px;
+      padding: 5px 10px 5px 9px;
+      border-radius: 7px;
+      font-size: 11px;
       font-weight: 700;
-      line-height: 1.35;
+      line-height: 1.3;
       color: #3d2a08;
       background: linear-gradient(115deg, #fff8d4 0%, #ffe97a 42%, #f6d24a 78%, #efc53a 100%);
       border: 1px solid #e5c54e;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
+      box-sizing: border-box;
     }
     .gold-chip__name {
       text-shadow:
@@ -340,7 +354,7 @@
     .off-chip {
       display: inline-flex;
       align-items: center;
-      padding: 6px 12px;
+      padding: 5px 11px;
       border-radius: 8px;
       font-size: 12px;
       font-weight: 700;
@@ -514,13 +528,13 @@
 <body>
   <div class="shell">
     <div class="banner">
-      <strong>主案 v26 · 文言／OFF／金+4修正</strong> —
-      項目名「計上スキル数」。切れ者OFFをトグル確認可。金+4は初期非表示に修正。
+      <strong>主案 v27 · 切れ者揃え・金チップ視認</strong> —
+      ON/OFF 縦中央揃え。金チップ縦幅拡大。除外は内容サイズのまま。
       比較: <a href="./screenshot-share-left-fresh.html">A〜E</a>
     </div>
 
-    <h1 class="page-title">編成スクショ · 共有カード主案 v26</h1>
-    <p class="lead">計上スキル数の文言、切れ者OFF、金+4トグルを確認してください。</p>
+    <h1 class="page-title">編成スクショ · 共有カード主案 v27</h1>
+    <p class="lead">切れ者バッジの揃えと、金チップの読みやすさを確認してください。</p>
 
     <div class="demo-bar">
       <button type="button" id="toggle-gold-plus" aria-pressed="false">金スキル +4 を仮表示</button>
@@ -528,7 +542,7 @@
       <span>金+4は通常非表示。切れ者はカード内バッジの見た目切替です（数値は変えません）。</span>
     </div>
 
-    <article class="share" aria-label="共有カード主案 v26">
+    <article class="share" aria-label="共有カード主案 v27">
       <section class="left">
         <div class="strip">
           <div class="strip__cell">
@@ -673,7 +687,7 @@
     </article>
 
     <div class="judge">
-      <strong>判断のお願い</strong>（v26）<br />
+      <strong>判断のお願い</strong>（v27）<br />
       返事例: <code>採用</code> / <code>方向違い</code> / <code>惜しい：〇〇</code>
     </div>
   </div>
