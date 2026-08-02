@@ -18,6 +18,7 @@
 | サポカ | `assets/supports/` | `{supportCardId}.webp` |
 | 育成ウマ娘 | `assets/characters/` | `{characterCardId}.webp` |
 | タイプ印（共有） | `assets/type-icons/` | `{type}.webp`（speed/stamina/power/guts/wit/friend） |
+| UI 背景 | `assets/ui/` | `uma-world.png`（横長・競馬場。世界観背景） |
 
 UI は `app/js/cardAssets.js` が URL を組み立てる。画像が無い場合はタイプ色＋短縮名のプレースホルダ（計算には影響しない）。
 
@@ -26,6 +27,7 @@ UI は `app/js/cardAssets.js` が URL を組み立てる。画像が無い場合
 - 優先サポカ **40種** → `assets/supports/{id}.webp`
 - 育成ウマ娘 **全カード**（`chr_icon` + dress フォールバック）→ `assets/characters/{id}.webp`
 - タイプ印 **6種** — 実行時 CDN 非依存
+- UI 背景 `assets/ui/uma-world.png` — 横長イラスト（空＋芝）。旧 U-tools 縦長 webp は使わない
 - 目安サイズ: サポカ **240×320**・キャラ長辺 256px・WebP
 
 ### タイプ印の出所（再取得用）

@@ -13,7 +13,9 @@
   --surface-glass: rgba(255, 255, 255, 0.94);
   /* モック H5 と同じ幾何タイル（パネル面） */
   --panel: url("https://static.kouryaku.tools/umamusume/images/app/bg.webp?auto=format") center / 180px repeat, #fff;
-  --world-image: url("https://static.kouryaku.tools/umamusume/images/app/uma-world.webp?auto=format");
+  /* 横長の競馬場イラスト（同梱）。gallery/split で幅が跳ねないようレイアウト幅も統一 */
+  --world-image: url("../../assets/ui/uma-world.png");
+  --layout-max: 1480px;
 
   /* 文字 */
   --text-primary: #703a13;
@@ -101,15 +103,12 @@ body {
   inset: 0;
   z-index: 0;
   pointer-events: none;
-  /*
-   * U-tools 参考: 画面の高さに画像全体の縦構図を合わせ、空＋芝の両方を見せる。
-   * cover+top だと空だけ、cover+bottom だと芝に寄りすぎる。
-   */
+  /* 横長イラスト: cover で全面。空〜芝が画面内に入るよう中央寄せ */
   background-color: #463f70;
   background-image: var(--world-image);
   background-repeat: no-repeat;
   background-position: center center;
-  background-size: auto 100%;
+  background-size: cover;
 }
 
 .world-bg::after {
@@ -118,8 +117,8 @@ body {
   inset: 0;
   background: linear-gradient(
     180deg,
-    rgba(70, 63, 112, 0.1),
-    rgba(70, 63, 112, 0.02) 45%,
+    rgba(70, 63, 112, 0.12),
+    rgba(70, 63, 112, 0.04) 40%,
     rgba(70, 63, 112, 0.28)
   );
   pointer-events: none;

@@ -426,7 +426,7 @@ header p {
 
 main,
 .app-main {
-  max-width: 1200px;
+  max-width: var(--layout-max, 1480px);
   margin: 0 auto;
   padding: 1rem;
   display: grid;
@@ -1101,7 +1101,7 @@ input[type="search"] {
 
 .inherit-popover__inner {
   pointer-events: auto;
-  max-width: 1200px;
+  max-width: var(--layout-max, 1480px);
   margin: 0 auto;
   padding: 0.65rem 1rem 0.75rem;
   background: linear-gradient(180deg, #5a5288, #463f70);
@@ -1171,7 +1171,7 @@ input[type="search"] {
   gap: 0.4rem 0.75rem;
   align-items: center;
   box-sizing: border-box;
-  width: min(1200px, calc(100% - 1.5rem));
+  width: min(var(--layout-max, 1480px), calc(100% - 1.5rem));
   margin: 0.5rem auto 0;
   padding: 0.45rem 0.75rem;
   background: rgba(70, 63, 112, 0.94);
@@ -1241,7 +1241,8 @@ body.layout-split > .layout-modebar {
   position: relative;
   flex-shrink: 0;
   z-index: 60;
-  width: min(1480px, calc(100% - 1.5rem));
+  /* gallery と同じ幅（切替で跳ねない） */
+  width: min(var(--layout-max, 1480px), calc(100% - 1.5rem));
   margin: 0.5rem auto 0;
 }
 
@@ -1259,9 +1260,9 @@ body.layout-split > .total-sp-bar,
   right: auto;
   flex-shrink: 0;
   z-index: 55;
-  /* app-main と同じ箱: max 1480 + 左右 0.75rem padding */
+  /* app-main と同じ箱: --layout-max + 左右 padding */
   box-sizing: border-box;
-  max-width: 1480px;
+  max-width: var(--layout-max, 1480px);
   width: 100%;
   margin: 0.35rem auto 0;
   padding: 0 0.75rem;
@@ -1403,10 +1404,10 @@ body:not(.layout-split) .total-sp-bar__main::before {
   pointer-events: none;
 }
 
-/* ギャラリー: バー内枠を app-main（1200px + padding 1rem）と揃える */
+/* ギャラリー: バー内枠を app-main と同幅に揃える（切替で跳ねない） */
 body.layout-gallery .total-sp-bar-inner,
 body:not(.layout-split) .total-sp-bar-inner {
-  max-width: 1200px;
+  max-width: var(--layout-max, 1480px);
   padding: 0.55rem 1rem 0.65rem;
   box-sizing: border-box;
 }
@@ -1416,7 +1417,7 @@ body.layout-split .total-sp-bar-value {
 }
 
 body.layout-split > .app-main {
-  max-width: 1480px;
+  max-width: var(--layout-max, 1480px);
   width: 100%;
   box-sizing: border-box;
   flex: 1 1 auto;
@@ -2339,7 +2340,7 @@ body.layout-split .panel--workbench {
 }
 
 .total-sp-bar-inner {
-  max-width: 1200px;
+  max-width: var(--layout-max, 1480px);
   margin: 0 auto;
   padding: 0.55rem 1rem 0.65rem;
   display: flex;
