@@ -1,0 +1,566 @@
+/**
+ * 編成スクショ共有カード（正本モック v28.1 忠実移植）
+ * スコープ: .share-card-mount 配下のみ
+ */
+
+.share-card-mount {
+  position: fixed;
+  left: -12000px;
+  top: 0;
+  z-index: -1;
+  pointer-events: none;
+  visibility: hidden;
+}
+
+.share-card-mount .share {
+  --ink: #1a1630;
+  --ink-soft: #5a5478;
+  --line: #ebe6f2;
+  --bg: #ffffff;
+  --accent: #463f70;
+  --accent-2: #7b6fd6;
+  --font-display: "Shippori Mincho", "Hiragino Mincho ProN", "Yu Mincho", serif;
+  --font-ui: "Zen Kaku Gothic New", "Hiragino Sans", "Yu Gothic UI", Meiryo, sans-serif;
+
+  box-sizing: border-box;
+  width: 1080px;
+  max-width: 1080px;
+  aspect-ratio: 16 / 9;
+  margin: 0;
+  background: var(--bg);
+  border-radius: 4px;
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+  font-family: var(--font-ui);
+  font-weight: 700;
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+}
+
+.share-card-mount .share *,
+.share-card-mount .share *::before,
+.share-card-mount .share *::after {
+  box-sizing: border-box;
+}
+
+/* ========== 左 ========== */
+.share-card-mount .left {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  background: #fff;
+}
+
+.share-card-mount .strip {
+  display: grid;
+  grid-template-columns: 1.35fr 0.85fr 1.1fr;
+  background: #1a1630;
+  color: #fff;
+  flex-shrink: 0;
+}
+
+.share-card-mount .strip__cell {
+  padding: 11px 14px;
+  border-right: 1px solid rgba(255, 255, 255, 0.12);
+  min-width: 0;
+}
+
+.share-card-mount .strip__cell:last-child {
+  border-right: 0;
+}
+
+.share-card-mount .strip__lab {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: #f5cf6f;
+  margin-bottom: 4px;
+}
+
+.share-card-mount .strip__sp {
+  font-family: var(--font-display);
+  font-size: 34px;
+  font-weight: 700;
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+}
+
+.share-card-mount .strip__sp em {
+  font-style: normal;
+  font-size: 0.38em;
+  color: #ff9a4a;
+  margin-left: 3px;
+  vertical-align: 0.35em;
+}
+
+.share-card-mount .strip__val {
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+.share-card-mount .strip__val small {
+  display: block;
+  margin-top: 2px;
+  font-size: 10px;
+  font-weight: 500;
+  color: #b8b2c8;
+}
+
+.share-card-mount .strip__regu {
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: 0.01em;
+}
+
+.share-card-mount .strip__prem {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin-top: 5px;
+}
+
+.share-card-mount .strip__prem span {
+  font-size: 10px;
+  font-weight: 500;
+  color: #b8b2c8;
+  line-height: 1.2;
+}
+
+.share-card-mount .strip__count {
+  display: flex;
+  align-items: baseline;
+  gap: 1px;
+  line-height: 1;
+}
+
+.share-card-mount .strip__count-on {
+  font-family: var(--font-display);
+  font-size: 34px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.share-card-mount .strip__count-den {
+  font-size: 13px;
+  font-weight: 600;
+  color: #9a94ae;
+  margin-left: 1px;
+}
+
+.share-card-mount .body {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 12px 14px 12px;
+}
+
+.share-card-mount .head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.share-card-mount .head__title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.share-card-mount .head__sub {
+  margin: 3px 0 0;
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--ink-soft);
+}
+
+.share-card-mount .fast-inline {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  flex-shrink: 0;
+  height: 34px;
+  padding: 0 11px 0 4px;
+  border-radius: 999px;
+  background: #eaf9e4;
+  border: 1px solid #b7e6a8;
+}
+
+.share-card-mount .fast-inline__mark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 26px;
+  padding: 0 11px;
+  border-radius: 999px;
+  background: #38c306;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 900;
+  letter-spacing: 0.04em;
+  line-height: 1;
+}
+
+.share-card-mount .fast-inline__state {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 26px;
+  min-width: 2.1em;
+  font-size: 13px;
+  font-weight: 900;
+  letter-spacing: 0.06em;
+  line-height: 1;
+  color: #2a7a08;
+}
+
+.share-card-mount .fast-inline.is-off {
+  background: #f1eef5;
+  border-color: #d5cfe0;
+}
+
+.share-card-mount .fast-inline.is-off .fast-inline__mark {
+  background: #9a94ae;
+}
+
+.share-card-mount .fast-inline.is-off .fast-inline__state {
+  color: #6a6478;
+}
+
+.share-card-mount .work {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.share-card-mount .panel {
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 8px 10px 10px;
+  border-radius: 10px;
+  border: 1px solid var(--line);
+  background: #faf9fc;
+}
+
+.share-card-mount .panel--gold {
+  flex: 0 0 auto;
+  border-color: #efe8c8;
+  background: #fffdf6;
+}
+
+.share-card-mount .panel--off {
+  flex: 1 1 auto;
+  min-height: 6.5em;
+  min-width: 0;
+  border-color: #e4dde9;
+  background: #f7f5fb;
+}
+
+.share-card-mount .panel--off.is-empty {
+  display: none;
+}
+
+.share-card-mount .panel__lab {
+  font-size: 12px;
+  font-weight: 900;
+  color: #5a5478;
+}
+
+.share-card-mount .panel--gold .panel__lab {
+  color: #8a6a14;
+}
+
+.share-card-mount .panel--off .panel__lab {
+  color: #6a6478;
+}
+
+.share-card-mount .gold-board {
+  --gold-fs: 0.6875rem;
+  --gold-lh: 1.3;
+  --gold-pad-y: 0.45em;
+  --gold-v-gap: 0.4em;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 1.1em;
+  row-gap: var(--gold-v-gap);
+  align-content: start;
+}
+
+.share-card-mount .gold-row {
+  display: grid;
+  grid-template-columns: 5.2em minmax(0, 1fr);
+  column-gap: 0.55em;
+  row-gap: var(--gold-v-gap);
+  align-items: center;
+  min-width: 0;
+}
+
+.share-card-mount .gold-row__src {
+  grid-column: 1;
+  grid-row: 1;
+  justify-self: end;
+  font-size: calc(var(--gold-fs) * 0.91);
+  font-weight: 500;
+  line-height: var(--gold-lh);
+  color: #8a849e;
+  white-space: nowrap;
+}
+
+.share-card-mount .gold-row.is-scn .gold-row__src {
+  color: var(--accent-2);
+}
+
+.share-card-mount .gold-chip {
+  grid-column: 2;
+  display: flex;
+  align-items: center;
+  min-width: 0;
+  width: 100%;
+  padding: var(--gold-pad-y) 0.85em var(--gold-pad-y) 0.75em;
+  border-radius: 0.45em;
+  font-size: var(--gold-fs);
+  font-weight: 700;
+  line-height: var(--gold-lh);
+  color: #3d2a08;
+  background: linear-gradient(115deg, #fff8d4 0%, #ffe97a 42%, #f6d24a 78%, #efc53a 100%);
+  border: 1px solid #e5c54e;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.share-card-mount .gold-chip__name {
+  text-shadow:
+    0 0 1px rgba(255, 255, 255, 0.7),
+    0 1px 1px rgba(255, 255, 255, 0.55);
+}
+
+.share-card-mount .off-body {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-height: 0;
+  flex: 1;
+}
+
+.share-card-mount .off-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  align-content: flex-start;
+  min-height: 0;
+}
+
+.share-card-mount .off-chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 5px 11px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: #6a6478;
+  background: #fff;
+  border: 1px solid #d8d2e2;
+  text-decoration: line-through;
+  text-decoration-color: #b0a9c0;
+}
+
+.share-card-mount .off-chip--more {
+  flex-shrink: 0;
+  align-self: flex-start;
+  text-decoration: none;
+  color: #7a7488;
+  background: #f0ecf5;
+  border: 1px dashed #c4bdd0;
+  font-weight: 700;
+}
+
+.share-card-mount .off-chip--more[hidden] {
+  display: none;
+}
+
+/* ========== 右 ========== */
+.share-card-mount .right {
+  position: relative;
+  min-width: 0;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 18px 18px 18px 16px;
+  overflow: hidden;
+  background:
+    linear-gradient(
+      165deg,
+      rgba(90, 72, 160, 0.38) 0%,
+      rgba(55, 48, 110, 0.48) 55%,
+      rgba(40, 36, 88, 0.55) 100%
+    ),
+    url("../assets/ui/uma-world.png") center / cover no-repeat;
+}
+
+.share-card-mount .right::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: url("https://static.kouryaku.tools/umamusume/images/app/bg.webp?auto=format") center / 160px repeat;
+  opacity: 0.22;
+  mix-blend-mode: soft-light;
+  pointer-events: none;
+}
+
+.share-card-mount .right > * {
+  position: relative;
+  z-index: 1;
+}
+
+.share-card-mount .right__trainee {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.14);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.2),
+    0 4px 14px rgba(26, 22, 48, 0.18);
+  backdrop-filter: blur(10px) saturate(1.15);
+  -webkit-backdrop-filter: blur(10px) saturate(1.15);
+  color: #fff;
+  overflow: hidden;
+}
+
+.share-card-mount .right__trainee img {
+  width: 52px;
+  height: 52px;
+  object-fit: contain;
+  display: block;
+  background: transparent;
+}
+
+.share-card-mount .right__trainee-lab {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: #f5cf6f;
+}
+
+.share-card-mount .right__trainee-name {
+  margin: 2px 0 0;
+  font-family: var(--font-display);
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+.share-card-mount .grid-stage {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  padding: 14px 16px 16px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.18),
+    0 8px 22px rgba(26, 22, 48, 0.2);
+  backdrop-filter: blur(10px) saturate(1.15);
+  -webkit-backdrop-filter: blur(10px) saturate(1.15);
+  overflow: hidden;
+}
+
+.share-card-mount .grid-bleed {
+  flex: 1;
+  min-height: 0;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-rows: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  align-items: center;
+  justify-items: center;
+}
+
+.share-card-mount .grid-bleed figure {
+  margin: 0;
+  height: 100%;
+  width: auto;
+  max-width: 100%;
+  aspect-ratio: 3 / 4;
+  overflow: visible;
+  background: transparent;
+  border: 0;
+}
+
+.share-card-mount .grid-bleed img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.35));
+}
+
+/* 結果ツールバー: スクショ操作ボタン */
+.result-toolbar__share {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin-left: auto;
+  flex-shrink: 0;
+}
+
+.share-card-btn {
+  box-sizing: border-box;
+  font: inherit;
+  font-size: 0.72rem;
+  font-weight: 900;
+  line-height: 1.25;
+  padding: 0.35rem 0.7rem;
+  border: 0;
+  border-radius: 6px;
+  cursor: pointer;
+  white-space: nowrap;
+  flex-shrink: 0;
+  background: #f0ecf5;
+  color: #463f70;
+}
+
+.share-card-btn--primary {
+  background: linear-gradient(180deg, #f5cf6f, #e8b84a);
+  color: #1a1630;
+}
+
+.share-card-btn:not(:disabled):hover {
+  filter: brightness(1.06);
+}
+
+.share-card-btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  filter: grayscale(0.35);
+}
+
+.share-card-btn--error {
+  background: linear-gradient(180deg, #ff75a3, #f7518b) !important;
+  color: #fff !important;
+}
+
+.share-card-btn:focus-visible {
+  outline: 2px solid #f5cf6f;
+  outline-offset: 2px;
+}
