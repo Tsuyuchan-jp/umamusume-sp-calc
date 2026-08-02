@@ -1595,7 +1595,7 @@ function recalc() {
             : `<input type="checkbox" class="include-check" data-skill-id="${row.skillId}" ${included ? "checked" : ""} ${isReguExcluded ? "disabled" : ""} aria-label="ON" title="${escapeHtml(toggleTitle)}" />`
         }
       </td>
-      <td>
+      <td class="result-skill-cell">
         <div class="result-skill-name">${escapeHtml(row.name)}<span class="result-skill-lv">Lv${row.hintLevel}</span></div>
         <div class="result-skill-sub">${renderActivationSubline(row)}</div>
       </td>

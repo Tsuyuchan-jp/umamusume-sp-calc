@@ -222,6 +222,8 @@ body.layout-split .panel--deck > .app-header {
 .panel--workbench {
   background: var(--panel);
   box-shadow: var(--shadow-lg);
+  overflow: hidden;
+  padding-top: 0;
 }
 
 .hint {
