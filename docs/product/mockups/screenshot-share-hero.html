@@ -251,19 +251,34 @@
       font-weight: 700;
     }
 
-    /* 右：余白のあるギャラリー（ぱんぱんにしない） */
+    /* 右：余白のあるギャラリー＋世界観背景 */
     .right {
       position: relative;
       min-width: 0;
       min-height: 0;
-      background:
-        radial-gradient(circle at 80% 20%, rgba(123, 111, 214, 0.22), transparent 42%),
-        linear-gradient(165deg, #2f2a4a 0%, #1a1630 55%, #141122 100%);
       display: flex;
       flex-direction: column;
       gap: 14px;
       padding: 18px 18px 18px 16px;
       overflow: hidden;
+      /* アプリ同梱の世界観 + 薄い暗幕（読みやすさ） */
+      background:
+        linear-gradient(165deg, rgba(45, 40, 72, 0.72) 0%, rgba(26, 22, 48, 0.82) 100%),
+        url("../../../assets/ui/uma-world.png") center / cover no-repeat;
+    }
+    .right::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      /* U-tools 系パネルタイルを淡く重ねる */
+      background: url("https://static.kouryaku.tools/umamusume/images/app/bg.webp?auto=format") center / 160px repeat;
+      opacity: 0.14;
+      pointer-events: none;
+    }
+    .right > * {
+      position: relative;
+      z-index: 1;
     }
 
     .right__trainee {
@@ -273,8 +288,9 @@
       gap: 12px;
       padding: 10px 12px;
       border-radius: 12px;
-      background: rgba(255,255,255,0.06);
-      border: 1px solid rgba(255,255,255,0.1);
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.16);
+      backdrop-filter: blur(6px);
       color: #fff;
     }
     .right__trainee img {
@@ -307,16 +323,17 @@
       gap: 8px;
       padding: 12px;
       border-radius: 14px;
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(255,255,255,0.1);
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.06);
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.14);
+      backdrop-filter: blur(4px);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.08);
     }
     .grid-stage__label {
       flex-shrink: 0;
       font-size: 10px;
       font-weight: 900;
       letter-spacing: 0.1em;
-      color: #c8c2de;
+      color: #ddd8ef;
       padding: 0 2px;
     }
     .grid-bleed {
@@ -326,22 +343,27 @@
       grid-template-columns: repeat(3, minmax(0, 1fr));
       grid-template-rows: repeat(2, minmax(0, 1fr));
       gap: 10px;
+      align-items: center;
+      justify-items: center;
     }
+    /* サポは 3:4 を維持し、セル内は縮尺のみ（cover で下部を切らない） */
     .grid-bleed figure {
       margin: 0;
-      min-width: 0;
-      min-height: 0;
+      height: 100%;
+      width: auto;
+      max-width: 100%;
+      aspect-ratio: 3 / 4;
       overflow: hidden;
-      border-radius: 10px;
-      background: #2a2548;
+      border-radius: 8px;
+      background: rgba(255,255,255,0.06);
       box-shadow: 0 6px 16px rgba(0,0,0,0.28);
-      border: 1px solid rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.1);
     }
     .grid-bleed img {
       width: 100%;
       height: 100%;
-      object-fit: cover;
-      object-position: center top;
+      object-fit: contain;
+      object-position: center center;
       display: block;
     }
 
@@ -368,16 +390,15 @@
 <body>
   <div class="shell">
     <div class="banner">
-      <strong>主案 v9 · 大枠採用（型Cハイブリッド）</strong> —
-      右サポに余白を入れて余裕のある見え方へ。
-      参考: <a href="./screenshot-share-refs.html">一覧</a> ·
-      比較: <a href="./screenshot-share-type-b.html">型B</a>
+      <strong>主案 v10 · 大枠採用（型Cハイブリッド）</strong> —
+      サポは 3:4 維持・contain（下部を切らない）。右背景はアプリ世界観＋U-tools タイル。
+      参考: <a href="./screenshot-share-refs.html">一覧</a>
     </div>
 
-    <h1 class="page-title">編成スクショ · 共有カード主案 v9</h1>
-    <p class="lead">大枠は確定。右ギャラリーは余白・角丸・ギャップで「リッチで余裕」を狙う。</p>
+    <h1 class="page-title">編成スクショ · 共有カード主案 v10</h1>
+    <p class="lead">大枠確定。サポの縦横比を守り、右面に世界観背景を乗せる。</p>
 
-    <article class="share" aria-label="共有カード主案 v9">
+    <article class="share" aria-label="共有カード主案 v10">
       <section class="left">
         <div class="eyebrow">
           <span class="eyebrow__cat">TRESENKEN · NEED SP</span>

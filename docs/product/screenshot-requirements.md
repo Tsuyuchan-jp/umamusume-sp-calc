@@ -15,7 +15,8 @@
 | 項目 | 方針 |
 |------|------|
 | 骨格 | 左＝情報（SP・前提・金・条件）／右＝育成要約＋サポ3×2 |
-| 右グリッド | **余白・角丸・ギャップあり**（ぱんぱん詰めはしない） |
+| 右グリッド | **余白あり**。サポは **3:4 維持・縮尺のみ**（cover で切らない） |
+| 右背景 | アプリ `uma-world` ＋ U-tools `bg.webp` タイル（淡く） |
 | 載せない（右） | 金キャプション、タイプ丸 |
 | 立ち絵 | 保留（大枠確定後に必要なら再検討） |
 
@@ -81,7 +82,7 @@ UX 初期方針（顔＝6＋合計＋前提）は土台として維持。記事�
 
 ## 次ステップ
 
-1. ~~主案モック~~ → [mockups/screenshot-share-hero.html](./mockups/screenshot-share-hero.html)（**v9・大枠採用・右余白磨き** · 目視待ち）  
+1. ~~主案モック~~ → [mockups/screenshot-share-hero.html](./mockups/screenshot-share-hero.html)（**v10・サポ比率＋世界観背景** · 目視待ち）  
    比較: [型B](./mockups/screenshot-share-type-b.html) · 参考: [screenshot-share-refs.html](./mockups/screenshot-share-refs.html)
    ※旧三連: [mockups/screenshot-share-options.html](./mockups/screenshot-share-options.html)（参考のみ）
 2. 主案承認 → 本実装（html2canvas 等は実装時）
