@@ -26,6 +26,7 @@
 | **必須（最低限）** | 育成＋サポ6、前提チップ、合計 SP |
 | **欲しい** | 設計名（メモリ名）、**計上スキル数** |
 | **レイアウト次第で載せたい** | 選択イベント（特に **金スキル関連**）。見せ方はモックで決める |
+| **見た目候補（モック確認中）** | 育成は **立ち絵ヒーロー**（chr_icon よりリッチ）。サポは **3×2**。本番アセットはクライアント抽出の可否を要調査（公式／攻略の直リンクは不採用） |
 | **付記まで可** | 除外は **件数のみ**（リストは出さない） |
 | **載せない** | 除外の中身リスト、結果表（スキル一覧の詳細） |
 
@@ -70,7 +71,7 @@ UX 初期方針（顔＝6＋合計＋前提）は土台として維持。記事�
 
 ## 次ステップ
 
-1. ~~主案モック~~ → [mockups/screenshot-share-hero.html](./mockups/screenshot-share-hero.html)（**v3・育成＋サポ3×2** · 目視待ち）  
+1. ~~主案モック~~ → [mockups/screenshot-share-hero.html](./mockups/screenshot-share-hero.html)（**v4・立ち絵ヒーロー＋サポ3×2** · 目視待ち）  
    ※旧三連: [mockups/screenshot-share-options.html](./mockups/screenshot-share-options.html)（参考のみ）
 2. 主案承認 → 本実装（html2canvas 等は実装時）
 3. TODO 更新＋ローカルコミット（push しない）

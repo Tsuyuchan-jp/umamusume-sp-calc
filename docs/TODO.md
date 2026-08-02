@@ -40,7 +40,7 @@
 
 ## 現在フォーカス（1行）
 
-**P2 編成スクショ** — 主案モック目視待ち（[screenshot-share-hero.html](./product/mockups/screenshot-share-hero.html)）
+**P2 編成スクショ** — 主案 v4 目視待ち（立ち絵ヒーロー · [screenshot-share-hero.html](./product/mockups/screenshot-share-hero.html)）
 
 ---
 
