@@ -220,6 +220,8 @@ function extractCharacters(db) {
   const cardNames = loadTextMap(db, 4);
   const characters = [];
   for (const [cardId, setId] of [...cardSets.entries()].sort((a, b) => a[0] - b[0])) {
+    // 育成不可の疑似カード（91xxxxx 等: skill_set=0）は名簿に載せない
+    if (!setId || cardId >= 9_000_000) continue;
     const byRank = {};
     for (const [rank, skillId] of setSkills.get(setId) || []) {
       const key = String(rank);

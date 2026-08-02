@@ -84,7 +84,7 @@ let splitEvtOpen = null;
 let supportPickerTypeFilter = "";
 
 /** Pages の max-age キャッシュで古い events.json が残るのを防ぐ（版上げ時に更新） */
-const DATA_CACHE_BUST = "0.1.14";
+const DATA_CACHE_BUST = "0.1.15";
 
 async function loadJson(path) {
   const sep = path.includes("?") ? "&" : "?";

@@ -12,7 +12,7 @@
 | アプリ | 実用段階・公開済み（v0.1.14）。SP計算・UI・集計実装済み |
 | データ | skills / supports / characters / events / toresenken **あり**（件数は `data/meta.json`） |
 | events | 優先40・111イベント（U-tools+mdb + preserve。30307/30308 は GameWith 一時） |
-| カード画像 | サポカ縦40 + 育成 `chr_icon` 全264 同梱済み（[ops/ASSETS.md](./ops/ASSETS.md)） |
+| カード画像 | サポカ縦40 + 育成 `chr_icon` 全262 同梱済み（[ops/ASSETS.md](./ops/ASSETS.md)） |
 | extract 元 mdb | `D:\DMM\...\Persistent\master\master.mdb`（AppData 既定は無しが多い） |
 | 公開 URL | https://Tsuyuchan-jp.github.io/umamusume-sp-calc/app/ |
 | push / Pages | **v1.0.0 まで push しない**（ローカルコミットのみ） |

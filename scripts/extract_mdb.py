@@ -174,6 +174,9 @@ def extract_characters(conn: sqlite3.Connection) -> list[dict]:
 
     characters = []
     for card_id, set_id in sorted(card_sets.items()):
+        # 育成不可の疑似カード（91xxxxx 等: skill_set=0）は名簿に載せない
+        if not set_id or card_id >= 9_000_000:
+            continue
         by_rank: dict[int, list[int]] = defaultdict(list)
         for rank, skill_id in set_skills.get(set_id, []):
             by_rank[rank].append(skill_id)
