@@ -2601,7 +2601,8 @@ tr.excluded td {
   color: #fff;
   border: 0;
   border-bottom: 2px solid var(--c-gold, #f5cf6f);
-  border-radius: 0;
+  /* パネル上角と同半径。クリップ AA と自己描画の両方で白フリンジを抑える */
+  border-radius: var(--radius-lg, 16px) var(--radius-lg, 16px) 0 0;
 }
 
 .wb-regu-top {

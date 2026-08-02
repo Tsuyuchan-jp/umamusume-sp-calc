@@ -156,7 +156,7 @@ body > .app-main {
   box-shadow: none;
   border: 0;
   border-bottom: 3px solid var(--c-gold, #f5cf6f);
-  border-radius: 0;
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
 }
 
 .app-brand-accent {
@@ -211,7 +211,10 @@ body.layout-split .panel--deck > .app-header {
 }
 
 .panel--deck {
-  background: var(--panel);
+  /* タイル下の基色を紫に：角丸 overflow クリップの AA が白を拾わない */
+  background: url("https://static.kouryaku.tools/umamusume/images/app/bg.webp?auto=format")
+      center / 180px repeat,
+    var(--ink-deep);
   box-shadow: var(--shadow-lg);
   /* 紫クロムが端まで来る面では白縁はリムに見えるので撤去（分離は影に任せる） */
   border: none;
@@ -221,7 +224,9 @@ body.layout-split .panel--deck > .app-header {
 }
 
 .panel--workbench {
-  background: var(--panel);
+  background: url("https://static.kouryaku.tools/umamusume/images/app/bg.webp?auto=format")
+      center / 180px repeat,
+    var(--ink-deep);
   box-shadow: var(--shadow-lg);
   border: none;
   overflow: hidden;
