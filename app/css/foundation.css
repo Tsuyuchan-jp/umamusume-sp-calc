@@ -213,8 +213,8 @@ body.layout-split .panel--deck > .app-header {
 .panel--deck {
   background: var(--panel);
   box-shadow: var(--shadow-lg);
-  /* 紫クロムが端まで来るので白い縁取りは弱める（意図しない白1pxリム防止） */
-  border-color: rgba(255, 255, 255, 0.16);
+  /* 紫クロムが端まで来る面では白縁はリムに見えるので撤去（分離は影に任せる） */
+  border: none;
   /* g-brand をパネル上端に食い込ませる */
   overflow: hidden;
   padding-top: 0;
@@ -223,7 +223,7 @@ body.layout-split .panel--deck > .app-header {
 .panel--workbench {
   background: var(--panel);
   box-shadow: var(--shadow-lg);
-  border-color: rgba(255, 255, 255, 0.16);
+  border: none;
   overflow: hidden;
   padding-top: 0;
 }
