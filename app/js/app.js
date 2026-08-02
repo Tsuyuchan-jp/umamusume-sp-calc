@@ -485,6 +485,7 @@ function syncInheritPopoverAnchor() {
 
 function updateTotalBarChips(excludedCount = excludedSkillIds.size) {
   const el = document.getElementById("total-sp-bar-chips");
+  const excludedEl = document.getElementById("total-sp-bar-excluded");
   if (!el) return;
 
   const fast = document.getElementById("fast-learner")?.checked;
@@ -508,8 +509,14 @@ function updateTotalBarChips(excludedCount = excludedSkillIds.size) {
       <button type="button" class="premise-lv${trainingLv === "5" ? " is-on" : ""}" data-training-lv="5">5</button>
     </div>
     <button type="button" class="${inheritClass}" id="bar-premise-inherit" aria-pressed="${inherit.enabled ? "true" : "false"}" aria-expanded="${inheritPopoverOpen ? "true" : "false"}" aria-controls="inherit-popover" title="継承パラメータを開く">継承 ${inherit.enabled ? `${inherit.count}本` : "OFF"}</button>
-    ${excludedCount > 0 ? `<span class="premise-chip premise-chip--warn">除外 ${excludedCount}</span>` : ""}
   `;
+
+  if (excludedEl) {
+    excludedEl.innerHTML =
+      excludedCount > 0
+        ? `<span class="premise-chip premise-chip--warn">除外 ${excludedCount}</span>`
+        : "";
+  }
 
   syncInheritPopoverUi();
 }

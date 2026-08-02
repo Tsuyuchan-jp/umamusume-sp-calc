@@ -514,6 +514,13 @@ body.layout-split .panel--deck > .app-header {
   flex: 1 1 auto;
 }
 
+.total-sp-bar-excluded {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  margin-left: 0.35rem;
+}
+
 .premise-chip__prefix {
   font-weight: var(--font-weight-bold);
   opacity: 0.85;

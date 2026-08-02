@@ -1835,20 +1835,6 @@ body.layout-split .panel--workbench {
     width: 4.75rem;
   }
 
-  .total-sp-bar-inner {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 0.45rem;
-  }
-
-  .total-sp-bar__total {
-    justify-content: center;
-  }
-
-  .total-sp-bar-chips {
-    justify-content: center;
-  }
-
   .total-sp-bar-value {
     font-size: 1.45rem;
   }
@@ -2679,6 +2665,114 @@ table.result-skills .col-sp {
     scroll-margin-bottom: calc(7.75rem + env(safe-area-inset-bottom, 0px));
   }
 
+  /* 合計バー: 1段目 TOTAL＋除外 / 2段目 前提チップ */
+  body.layout-gallery .total-sp-bar__main,
+  body:not(.layout-split) .total-sp-bar__main {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-rows: auto auto;
+    gap: 0.4rem 0.5rem;
+    align-items: center;
+    padding-left: 0;
+  }
+
+  body.layout-gallery .total-sp-bar__main::before,
+  body:not(.layout-split) .total-sp-bar__main::before {
+    display: none;
+  }
+
+  body.layout-gallery .total-sp-bar__total,
+  body:not(.layout-split) .total-sp-bar__total {
+    grid-column: 1;
+    grid-row: 1;
+    justify-content: flex-start;
+  }
+
+  body.layout-gallery .total-sp-bar-excluded,
+  body:not(.layout-split) .total-sp-bar-excluded {
+    grid-column: 2;
+    grid-row: 1;
+    justify-self: end;
+    align-self: center;
+    margin-left: 0;
+  }
+
+  body.layout-gallery .total-sp-bar-chips,
+  body:not(.layout-split) .total-sp-bar-chips {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    margin-left: 0;
+    justify-content: flex-start;
+    flex: none;
+    width: 100%;
+  }
+
+  .total-sp-bar-chips .premise-chip {
+    min-height: 2.5rem;
+  }
+
+  .total-sp-bar-chips .premise-chip--training {
+    display: inline-flex;
+    align-items: stretch;
+    min-height: 2.5rem;
+    padding: 0;
+    overflow: hidden;
+  }
+
+  .total-sp-bar-chips .premise-chip__prefix {
+    display: inline-flex;
+    align-items: center;
+    min-height: 2.5rem;
+    padding: 0 0.45rem 0 0.55rem;
+  }
+
+  .total-sp-bar-chips .premise-lv {
+    min-width: 2.15rem;
+    width: auto;
+    height: auto;
+    align-self: stretch;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 0.35rem;
+    border-radius: 0;
+  }
+
+  /* 結果ツールバー: 並びラベル非表示・1段配置 */
+  .result-toolbar {
+    flex-wrap: nowrap;
+    align-items: center;
+    gap: 0.45rem;
+  }
+
+  .result-toolbar__fl {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  .result-sort-bar {
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+
+  .result-sort-seg {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .copy-included-skills {
+    margin-left: auto;
+    flex-shrink: 0;
+    min-height: 2.5rem;
+  }
+
   .workbench-body {
     padding-bottom: 1.25rem;
   }
@@ -2723,15 +2817,6 @@ table.result-skills .col-sp {
     min-height: 2.5rem;
     padding: 0.4rem 0.65rem;
     font-size: 0.72rem;
-  }
-
-  .total-sp-bar-chips .premise-chip {
-    min-height: 2.5rem;
-  }
-
-  .total-sp-bar-chips .premise-lv {
-    min-width: 2.5rem;
-    height: 2.5rem;
   }
 
   .include-check {
@@ -2831,21 +2916,17 @@ table.result-skills .col-sp {
     min-height: 2.5rem;
     padding: 0.35rem 0.55rem;
   }
-
-  .copy-included-skills {
-    min-height: 2.5rem;
-  }
 }
 
 @media (max-width: 480px) {
   body.layout-gallery,
   body:not(.layout-split) {
-    /* 合計バーが縦積みになるため clearance をさらに確保（1199px ルールより後勝ち） */
-    padding-bottom: calc(10.25rem + env(safe-area-inset-bottom, 0px) + var(--layout-stack, 0.5rem));
+    /* 2段合計バー＋前提チップ折り返し */
+    padding-bottom: calc(9.5rem + env(safe-area-inset-bottom, 0px) + var(--layout-stack, 0.5rem));
   }
 
   .snap-zone--workbench {
-    scroll-margin-bottom: calc(10.25rem + env(safe-area-inset-bottom, 0px));
+    scroll-margin-bottom: calc(9.5rem + env(safe-area-inset-bottom, 0px));
   }
 
   .workbench-body {
