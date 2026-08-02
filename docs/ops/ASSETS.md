@@ -25,7 +25,7 @@ UI は `app/js/cardAssets.js` が URL を組み立てる。画像が無い場合
 ## 同梱範囲
 
 - 優先サポカ **40種** → `assets/supports/{id}.webp`
-- 育成ウマ娘 **全カード**（`chr_icon` のみ。card_id → race_dress → 未使用 dress）→ `assets/characters/{id}.webp`
+- 育成ウマ娘 **全カード**（`chr_icon` キー = `race_dress_id`）→ `assets/characters/{id}.webp`
 - タイプ印 **6種** — 実行時 CDN 非依存
 - UI 背景 `assets/ui/uma-world.png` — 横長イラスト（空＋芝）。旧 U-tools 縦長 webp は使わない
 - 目安サイズ: サポカ **240×320**・キャラ長辺 256px・WebP
@@ -86,7 +86,7 @@ npm run assets:audit-dupes   # 別カードなのに同一 webp が無いか（0
 | 種別 | meta 名 |
 |------|---------|
 | サポカ縦カード元 | `supportcard/support{ID}/support_thumb_{ID}` |
-| 育成カード | `chr_icon` のみ（`piece_icon` 不使用）。キー: card_id → race_dress（他カードIDと一致ならスキップ）→ 同キャラ未使用 dress |
+| 育成カード | `chr_icon` のみ（`piece_icon` 不使用）。キー正本は `card_rarity_data.race_dress_id`（カード名⇔衣装名一致）。race 無しの特殊カードのみフォールバック |
 
 import 時のサポカ後処理（`scripts/support_vertical_card.py`）:
 

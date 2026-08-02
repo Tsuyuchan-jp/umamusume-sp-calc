@@ -2,9 +2,8 @@
 
 サポカは support_thumb（512×512・レア枠焼き付き）を抽出。import 側で縦合成する。
 育成は chr_icon のみ（piece_icon 不使用）。
-  1) chr_icon_{cardId}
-  2) race_dress_id（他育成カードIDと一致する場合はスキップ）
-  3) 同キャラ dress_data の未使用 chr_icon キー
+正本キーは card_rarity_data.race_dress_id（カード名と衣装名が一致する）。
+race が無い特殊カードのみ card_id / 未使用 dress へフォールバック。
 """
 from __future__ import annotations
 
@@ -251,19 +250,16 @@ def resolve_chr_icon_key(
 ) -> tuple[int | None, str]:
     """カードに対応する chr_icon キーを返す。(key, via)
 
-    piece_icon は使わない。
+    正本: race_dress_id（text_data のカード名⇔衣装名が一致する）。
+    piece_icon / card_id 優先は使わない（後発衣装が card ID を再利用するため）。
     """
+    race = race_dress_id(master_conn, card_id)
+    if race is not None and meta_has_chr_icon(meta_conn, chara_id, race):
+        return race, "race_dress"
+
+    # 特殊カード（91xxxxx 等）: race が無い場合のみフォールバック
     if meta_has_chr_icon(meta_conn, chara_id, card_id):
         return card_id, "card_id"
-
-    race = race_dress_id(master_conn, card_id)
-    # 他育成カードの ID と一致する race_dress は「前作衣装の流用」なのでスキップ
-    if (
-        race is not None
-        and race not in sibling_card_ids
-        and meta_has_chr_icon(meta_conn, chara_id, race)
-    ):
-        return race, "race_dress"
 
     dresses = dress_ids_from_dress_data(master_conn, chara_id)
     claimed = {sid for sid in sibling_card_ids if meta_has_chr_icon(meta_conn, chara_id, sid)}
