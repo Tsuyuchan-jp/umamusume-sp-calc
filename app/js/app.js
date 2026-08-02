@@ -926,7 +926,6 @@ function restoreDesign(snapshot) {
   renderEvents();
   renderScenarioLinkRadios();
   renderSeniorRmjRadios();
-  updateSkillFilterBoxUI();
   recalc();
   return true;
 }
