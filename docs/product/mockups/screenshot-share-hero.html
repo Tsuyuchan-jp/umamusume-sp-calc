@@ -239,8 +239,6 @@
       letter-spacing: 0.06em;
       line-height: 1;
       color: #2a7a08;
-      /* ラテン大文字の光学的な上寄りをわずかに補正 */
-      transform: translateY(0.5px);
     }
     .fast-inline.is-off {
       background: #f1eef5;
@@ -279,6 +277,8 @@
     }
     .panel--off {
       flex: 0 0 auto;
+      /* チップ2〜3行分の下限。余白で伸ばし切らず、金側の余りは奪わない */
+      min-height: 6.5em;
       border-color: #e4dde9;
       background: #f7f5fb;
     }
@@ -528,13 +528,13 @@
 <body>
   <div class="shell">
     <div class="banner">
-      <strong>主案 v27 · 切れ者揃え・金チップ視認</strong> —
-      ON/OFF 縦中央揃え。金チップ縦幅拡大。除外は内容サイズのまま。
+      <strong>主案 v27.1 · 除外の下限を戻す</strong> —
+      切れ者は幾何中央のまま（光学補正なし）。除外は2〜3行分の下限余白。
       比較: <a href="./screenshot-share-left-fresh.html">A〜E</a>
     </div>
 
-    <h1 class="page-title">編成スクショ · 共有カード主案 v27</h1>
-    <p class="lead">切れ者バッジの揃えと、金チップの読みやすさを確認してください。</p>
+    <h1 class="page-title">編成スクショ · 共有カード主案 v27.1</h1>
+    <p class="lead">除外枠に2〜3行分の余裕があるか確認してください。</p>
 
     <div class="demo-bar">
       <button type="button" id="toggle-gold-plus" aria-pressed="false">金スキル +4 を仮表示</button>
@@ -687,7 +687,7 @@
     </article>
 
     <div class="judge">
-      <strong>判断のお願い</strong>（v27）<br />
+      <strong>判断のお願い</strong>（v27.1）<br />
       返事例: <code>採用</code> / <code>方向違い</code> / <code>惜しい：〇〇</code>
     </div>
   </div>
