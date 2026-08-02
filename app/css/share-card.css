@@ -19,7 +19,7 @@
   height: 608px;
 }
 
-/* 共有ボタン: 広幅は layout-modebar 右端、狭幅は合計バー（JS で DOM 移動） */
+/* 共有ボタン: 広幅は layout-modebar 右端、狭幅は結果見出し横（JS で DOM 移動） */
 .layout-share {
   display: flex;
   flex-shrink: 0;
@@ -30,10 +30,24 @@
   margin-left: auto;
 }
 
-.layout-share--in-bar {
-  margin-left: 0;
-  justify-content: center;
-  width: 100%;
+.layout-share--on-panel .share-card-btn {
+  border: 1px solid #c8c0d8;
+  background: linear-gradient(180deg, #fff, #f3f0f7);
+  color: #463f70;
+}
+
+.layout-share--on-panel .share-card-btn:not(:disabled):hover {
+  background: linear-gradient(180deg, #fff, #ebe6f2);
+}
+
+.layout-share--on-panel .share-card-btn--primary {
+  background: linear-gradient(180deg, #f5cf6f, #e8b84a);
+  color: #1a1630;
+  border-color: #e8b84a;
+}
+
+.layout-share--on-panel .share-card-btn--primary:not(:disabled):hover {
+  background: linear-gradient(180deg, #f8d984, #efc25a);
 }
 
 .share-card-btn {
@@ -91,10 +105,10 @@
 }
 
 @media (max-width: 1199px) {
-  .layout-share--in-bar .share-card-btn {
-    min-height: 2.5rem;
-    padding: 0.45rem 0.85rem;
-    font-size: 0.74rem;
+  .layout-share--on-panel .share-card-btn {
+    min-height: 2.25rem;
+    padding: 0.35rem 0.65rem;
+    font-size: 0.7rem;
   }
 }
 

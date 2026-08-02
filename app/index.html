@@ -124,7 +124,7 @@
                 </ul>
               </li>
               <li>
-                広い画面ではモードバー右端、狭い画面では下部合計バーから <strong>画像コピー／PNG</strong> で編成の共有カードを出力できる
+                広い画面ではモードバー右端、狭い画面では<strong>結果</strong>見出し横から <strong>画像コピー／PNG</strong> で編成の共有カードを出力できる
               </li>
               <li>
                 前回閉じたときの編成・前提・除外などは <strong>自動で戻ります</strong>。名前を付けて残したいときはヘッダーの <strong>メモリ</strong>（上限20件・サムネ一覧）
@@ -433,8 +433,11 @@
           <!-- 白本体（見出し・並び・表） -->
           <div class="workbench-body">
             <div class="result-panel-heading">
-              <h2 class="result-zt result-zt--plain">結果</h2>
-              <span id="skill-count-meta" class="skill-count-meta">ONスキル数 —</span>
+              <div class="result-panel-heading__main">
+                <h2 class="result-zt result-zt--plain">結果</h2>
+                <span id="skill-count-meta" class="skill-count-meta">ONスキル数 —</span>
+              </div>
+              <div id="result-panel-share" class="result-panel-share" hidden aria-hidden="true"></div>
             </div>
 
             <div class="result-toolbar">
@@ -572,7 +575,6 @@
 
     <div id="total-sp-bar" class="total-sp-bar" aria-live="polite">
       <div class="total-sp-bar-inner">
-        <div id="total-sp-bar-share" class="total-sp-bar__share" hidden aria-hidden="true"></div>
         <div class="total-sp-bar__brand">
           <strong class="total-sp-bar__brand-title">SP <span class="app-brand-accent">Calc</span></strong>
         </div>

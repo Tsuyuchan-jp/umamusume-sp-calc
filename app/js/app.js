@@ -1523,19 +1523,20 @@ function resolveLayoutMode(pref) {
 function placeLayoutShare(narrow) {
   const share = document.getElementById("layout-share");
   const modebar = document.querySelector(".layout-modebar");
-  const shareSlot = document.getElementById("total-sp-bar-share");
+  const panelSlot = document.getElementById("result-panel-share");
   if (!share) return;
-  if (narrow && shareSlot) {
-    shareSlot.appendChild(share);
-    share.classList.add("layout-share--in-bar");
-    shareSlot.hidden = false;
-    shareSlot.removeAttribute("aria-hidden");
+  if (narrow && panelSlot) {
+    panelSlot.appendChild(share);
+    share.classList.add("layout-share--on-panel");
+    share.classList.remove("layout-share--in-bar");
+    panelSlot.hidden = false;
+    panelSlot.removeAttribute("aria-hidden");
   } else if (modebar) {
     modebar.appendChild(share);
-    share.classList.remove("layout-share--in-bar");
-    if (shareSlot) {
-      shareSlot.hidden = true;
-      shareSlot.setAttribute("aria-hidden", "true");
+    share.classList.remove("layout-share--on-panel", "layout-share--in-bar");
+    if (panelSlot) {
+      panelSlot.hidden = true;
+      panelSlot.setAttribute("aria-hidden", "true");
     }
   }
 }
@@ -1876,6 +1877,29 @@ function renderSourceBadges(row) {
     .join("");
 }
 
+/** 狭幅: スキル名の下に折り返し表示する由来（読みやすさ優先） */
+function renderSourceStacked(row) {
+  const sources = orderSourcesByAdopted(row.sources || [], row.hintLevel);
+  if (!sources.length) {
+    return '<span class="result-skill-sources__empty">—</span>';
+  }
+  const adoptedLv = Number(row.hintLevel) || 0;
+  return sources
+    .map((src) => {
+      const kindLabel = formatSourceKindLabel(src.kind);
+      const adopted = src.hintLevel === adoptedLv;
+      const lineClass = [
+        "result-skill-source-line",
+        adopted ? "result-skill-source-line--adopted" : "",
+      ]
+        .filter(Boolean)
+        .join(" ");
+      const detail = src.label ? escapeHtml(src.label) : "—";
+      return `<div class="${lineClass}"><span class="badge badge--source-${src.kind}"><span class="badge__kind">${escapeHtml(kindLabel)}</span></span><span class="result-skill-source-detail">${detail}</span><span class="result-skill-source-lv">Lv${src.hintLevel}</span></div>`;
+    })
+    .join("");
+}
+
 function getResultSortMode() {
   const active = document.querySelector(".result-sort-seg__btn.is-active");
   const v = active?.dataset?.sort || "skillId";
@@ -2008,6 +2032,7 @@ function recalc() {
       <td class="result-skill-cell">
         <div class="result-skill-name">${escapeHtml(row.name)}<span class="result-skill-lv">Lv${row.hintLevel}</span></div>
         <div class="result-skill-sub">${renderActivationSubline(row)}</div>
+        <div class="result-skill-sources result-skill-sources--narrow">${renderSourceStacked(row)}</div>
       </td>
       <td class="result-skill-sp col-sp">${costDetail}</td>
       <td class="skill-source-cell">${renderSourceBadges(row)}</td>
