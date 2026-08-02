@@ -598,105 +598,167 @@ input[type="search"] {
   font-size: 0.8rem;
 }
 
-/* ---- デュアル: 足元帯 C + 自動チップ ---- */
+/* ---- デュアル: 足元シナリオ（リンク / RMJ チップ） ---- */
 .deck-footband {
   margin-top: 0.75rem;
   border: 1px solid #e4e8ec;
   border-radius: 8px;
   background: #f7f9fb;
   font-size: 0.85rem;
-  padding: 0.55rem 0.75rem 0.65rem;
+  padding: 0.45rem 0.55rem 0.5rem;
 }
 
-.deck-layer-c {
+.deck-scenario-bar {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.scn-chip-group {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5rem 0.75rem;
-  align-items: flex-start;
+  align-items: center;
+  gap: 0.3rem 0.35rem;
+  min-width: 0;
 }
 
-.deck-c-group {
-  display: inline-flex;
-  flex-wrap: wrap;
-  gap: 0.35rem 0.5rem;
-  align-items: flex-start;
-  padding: 0.3rem 0.5rem;
-  border-radius: 6px;
-  background: #fff;
-  border: 1px solid #e0e4ea;
-  max-width: 100%;
-}
-
-.deck-c-group__lbl {
-  font-size: 0.65rem;
-  font-weight: 700;
-  color: #6a5a90;
+.scn-chip-group__lbl {
+  flex: 0 0 auto;
+  font-size: 0.62rem;
+  font-weight: 900;
+  color: #625d7d;
   letter-spacing: 0.04em;
-  padding: 0.15rem 0.35rem 0 0;
-  border-right: 1px solid #d8d0e8;
-  margin-right: 0.15rem;
-  align-self: center;
+  min-width: 2.4rem;
 }
 
-.deck-footband__meta {
-  font-size: 0.72rem;
-  color: #888;
-  align-self: center;
-  margin-left: auto;
+.scn-chip-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.28rem;
+  min-width: 0;
+  flex: 1 1 auto;
+}
+
+.scn-chip {
+  appearance: none;
+  border: 1.5px solid #c8c0d8;
+  background: linear-gradient(180deg, #fff, #f3f0f7);
+  color: #463f70;
+  font: inherit;
+  font-size: 0.68rem;
+  font-weight: 800;
+  line-height: 1.2;
+  padding: 0.28rem 0.5rem;
+  border-radius: 999px;
+  cursor: pointer;
+  white-space: nowrap;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.scn-chip:hover {
+  border-color: #9080b8;
+}
+
+.scn-chip.is-on {
+  border-color: #68bb09;
+  background: linear-gradient(180deg, #8fd42a, #68bb09);
+  color: #fff;
+  box-shadow: 0 1px 4px rgba(104, 187, 9, 0.35);
+}
+
+.scn-chip.scn-chip--rmj.is-on {
+  border-color: #c00f47;
+  background: linear-gradient(180deg, #ff6b9a, #ff3276);
+  box-shadow: 0 1px 4px rgba(255, 50, 118, 0.35);
 }
 
 .deck-scenario-auto {
-  margin-top: 0.5rem;
-  padding: 0.45rem 0.55rem;
-  border-radius: 8px;
+  margin-top: 0.4rem;
+  border-radius: 6px;
   background: #fff;
   border: 1px solid #e0e4ea;
 }
 
-.deck-scenario-auto__head {
+.deck-scenario-auto__summary {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
-  gap: 0.4rem;
-  margin-bottom: 0.35rem;
+  gap: 0.35rem 0.5rem;
+  padding: 0.35rem 0.5rem;
+  cursor: pointer;
+  list-style: none;
+  font-size: 0.7rem;
+  font-weight: 800;
+  color: #463f70;
 }
 
-.deck-scenario-auto__title {
-  font-size: 0.72rem;
+.deck-scenario-auto__summary::-webkit-details-marker {
+  display: none;
+}
+
+.deck-scenario-auto__summary::before {
+  content: "▸";
+  color: #9080b8;
+  font-size: 0.65rem;
+}
+
+.deck-scenario-auto[open] > .deck-scenario-auto__summary::before {
+  content: "▾";
+}
+
+.deck-scenario-auto__count {
+  color: #ff7300;
   font-weight: 900;
-  color: #463f70;
+}
+
+.deck-scenario-auto__hint {
+  margin-left: auto;
+  font-size: 0.6rem;
+  font-weight: 700;
+  color: #888;
 }
 
 .scenario-auto-list {
   display: flex;
   flex-direction: column;
-  gap: 0.3rem;
+  gap: 0.25rem;
+  padding: 0 0.45rem 0.45rem;
 }
 
 .scenario-auto-row {
-  padding: 0.3rem 0.4rem;
+  padding: 0.25rem 0.35rem;
   border-radius: 5px;
   background: #f7f4ff;
   border: 1px solid #e4dcf3;
 }
 
 .scenario-auto-row__label {
-  font-size: 0.7rem;
+  font-size: 0.65rem;
   font-weight: 900;
   color: #4a2d7a;
 }
 
 .scenario-auto-row__skills {
-  font-size: 0.65rem;
+  font-size: 0.6rem;
   font-weight: 700;
   color: #625d7d;
-  margin-top: 0.1rem;
+  margin-top: 0.05rem;
   line-height: 1.35;
 }
 
 .scenario-auto-empty {
   margin: 0;
-  font-size: 0.7rem;
+  font-size: 0.68rem;
   color: #888;
+  padding: 0.2rem 0.35rem 0.45rem;
+}
+
+/* 旧 C ラベル／radio チップ行は残さない（後方互換セレクタのみ最小） */
+.deck-c-group__lbl,
+.deck-footband__meta {
+  display: none;
 }
 
 .auto-events-chip {
@@ -1240,6 +1302,10 @@ body.layout-split > .layout-modebar {
 }
 
 /* 合計バーを上部コマンド化（DOM は applyLayoutMode で modebar 直後へ移動） */
+body.layout-split > .app-header {
+  display: none;
+}
+
 body.layout-split > .total-sp-bar,
 .total-sp-bar.total-sp-bar--split-cmd {
   position: relative;
@@ -1248,11 +1314,27 @@ body.layout-split > .total-sp-bar,
   right: auto;
   flex-shrink: 0;
   z-index: 55;
+  /* app-main と同じ箱: max 1480 + 左右 0.75rem padding */
+  box-sizing: border-box;
   max-width: 1480px;
-  width: calc(100% - 1.5rem);
+  width: 100%;
   margin: 0.35rem auto 0;
+  padding: 0 0.75rem;
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+}
+
+body.layout-split .total-sp-bar-inner {
+  display: grid;
+  grid-template-columns: 7.5rem minmax(0, 1fr);
+  align-items: center;
+  gap: 0.75rem 1rem;
+  max-width: none;
+  margin: 0;
+  padding: 0.4rem 0.85rem;
+  background: linear-gradient(180deg, #5a5288 0%, #463f70 100%);
   border-radius: 10px;
-  border-top: 0;
   border-bottom: 3px solid #f5cf6f;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.28);
 }
@@ -1262,7 +1344,19 @@ body.layout-split .total-sp-bar__brand {
   flex-direction: column;
   gap: 0.1rem;
   flex-shrink: 0;
-  min-width: 5.5rem;
+  min-width: 0;
+}
+
+body.layout-split .total-sp-bar__brand .header-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+  margin-top: 0.2rem;
+}
+
+body.layout-split .total-sp-bar__brand .help-open-btn {
+  font-size: 0.62rem;
+  padding: 0.18rem 0.45rem;
 }
 
 .total-sp-bar__brand {
@@ -1283,15 +1377,48 @@ body.layout-split .total-sp-bar__brand {
   line-height: 1.1;
 }
 
-body.layout-split .total-sp-bar-inner {
-  max-width: none;
-  padding: 0.45rem 0.9rem;
-  flex-wrap: nowrap;
-  gap: 0.75rem 1rem;
+.total-sp-bar__main {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 0.85rem;
+  min-width: 0;
+  flex: 1 1 auto;
+  width: 100%;
+  justify-content: space-between;
+}
+
+body.layout-split .total-sp-bar__main {
+  width: auto;
+  justify-content: flex-start;
+}
+
+.total-sp-bar-unit {
+  display: none;
+  font-size: 0.78rem;
+  font-weight: 800;
+  color: #ffe9a8;
+}
+
+.total-sp-bar-label--split {
+  display: none;
+}
+
+body.layout-split .total-sp-bar-label--gallery {
+  display: none;
+}
+
+body.layout-split .total-sp-bar-label--split {
+  display: inline;
+}
+
+body.layout-split .total-sp-bar-unit {
+  display: inline;
 }
 
 body.layout-split .total-sp-bar-label {
   color: #bebbce;
+  font-size: 0.68rem;
 }
 
 body.layout-split .total-sp-bar-value {
@@ -1299,9 +1426,37 @@ body.layout-split .total-sp-bar-value {
   color: #f5cf6f;
 }
 
+body.layout-split .total-sp-bar-chips {
+  justify-content: flex-start;
+}
+
+body.layout-split .total-sp-bar-chips .premise-chip {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.35);
+  color: #ddd8ef;
+}
+
+body.layout-split .total-sp-bar-chips .premise-chip--on {
+  background: linear-gradient(180deg, #ff6b9a, #ff3276);
+  border-color: #c00f47;
+  color: #fff;
+}
+
+body.layout-split .total-sp-bar-chips .premise-chip--training {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.35);
+  color: #ddd8ef;
+}
+
+body.layout-split .total-sp-bar-chips .premise-lv.is-on {
+  background: linear-gradient(180deg, #ff9a3c, #ff7300);
+  color: #fff;
+}
+
 body.layout-split > .app-main {
   max-width: 1480px;
   width: 100%;
+  box-sizing: border-box;
   flex: 1 1 auto;
   min-height: 0;
   height: auto;
@@ -1559,8 +1714,8 @@ body.layout-split .split-evt-pane:not([hidden]) {
 body.layout-split .deck-footband {
   flex-shrink: 0;
   margin-top: 0.45rem;
-  max-height: 32%;
-  overflow: auto;
+  max-height: none;
+  overflow: visible;
 }
 
 body.layout-split .panel--deck,
@@ -1581,6 +1736,10 @@ body.layout-split .panel--workbench {
     padding-bottom: 5.5rem;
   }
 
+  body.layout-split > .app-header {
+    display: flex;
+  }
+
   body.layout-split > .total-sp-bar,
   .total-sp-bar.total-sp-bar--split-cmd {
     position: fixed;
@@ -1590,9 +1749,20 @@ body.layout-split .panel--workbench {
     width: auto;
     max-width: none;
     margin: 0;
+    padding: 0;
+    background: linear-gradient(180deg, #5a5288 0%, #463f70 100%);
+    border: 0;
+    border-top: 1px solid rgba(245, 207, 111, 0.45);
+    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.25);
+  }
+
+  body.layout-split .total-sp-bar-inner {
+    display: flex;
+    grid-template-columns: none;
     border-radius: 0;
     border-bottom: 0;
-    border-top: 1px solid #d8dee6;
+    box-shadow: none;
+    background: transparent;
   }
 
   body.layout-split .total-sp-bar__brand {

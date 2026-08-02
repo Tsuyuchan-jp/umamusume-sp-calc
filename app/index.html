@@ -300,25 +300,26 @@
             </div>
           </aside>
 
-          <!-- C: シナリオ選択＋シナリオ自動（サポカ自動は列下） -->
+          <!-- シナリオ: リンク / RMJ チップ + 自動（確認） -->
           <div class="deck-footband" id="deck-footband">
-            <div class="deck-layer-c" id="deck-layer-c">
-              <div class="deck-c-group">
-                <span class="deck-c-group__lbl" title="シナリオ系">C</span>
-                <div id="scenario-link" class="event-section event-section--inline"></div>
+            <div class="deck-scenario-bar" id="deck-layer-c">
+              <div class="scn-chip-group" role="group" aria-label="シナリオリンク">
+                <span class="scn-chip-group__lbl">リンク</span>
+                <div id="scenario-link" class="scn-chip-row"></div>
               </div>
-              <div class="deck-c-group">
-                <div id="scenario-senior-rmj" class="event-section event-section--inline"></div>
+              <div class="scn-chip-group" role="group" aria-label="RMJラーメン">
+                <span class="scn-chip-group__lbl">RMJ</span>
+                <div id="scenario-senior-rmj" class="scn-chip-row"></div>
               </div>
-              <span id="deck-footband-meta" class="deck-footband__meta"></span>
             </div>
-            <div class="deck-scenario-auto" aria-label="シナリオ自動計上">
-              <div class="deck-scenario-auto__head">
-                <span class="deck-c-group__lbl">自動</span>
-                <span class="deck-scenario-auto__title">シナリオ自動（確認のみ）</span>
-              </div>
+            <details class="deck-scenario-auto" id="deck-scenario-auto-wrap">
+              <summary class="deck-scenario-auto__summary">
+                <span class="deck-scenario-auto__summary-label">シナリオ自動</span>
+                <span id="scenario-auto-count" class="deck-scenario-auto__count">0件</span>
+                <span class="deck-scenario-auto__hint">確認のみ</span>
+              </summary>
               <div id="scenario-auto" class="scenario-auto-list"></div>
-            </div>
+            </details>
           </div>
 
           <p id="event-empty-hint" class="hint deck-event-empty-hint" hidden>
@@ -451,16 +452,20 @@
 
     <div id="total-sp-bar" class="total-sp-bar" aria-live="polite">
       <div class="total-sp-bar-inner">
-        <div class="total-sp-bar__brand" aria-hidden="true">
+        <div class="total-sp-bar__brand">
           <span class="total-sp-bar__mode">SPLIT</span>
           <strong class="total-sp-bar__brand-title">SP <span class="app-brand-accent">Calc</span></strong>
         </div>
-        <div class="total-sp-bar__total">
-          <span class="total-sp-bar-label">合計必要SP</span>
-          <span id="total-sp-bar-value" class="total-sp-bar-value">—</span>
-          <span id="total-sp-delta" class="total-sp-delta" hidden></span>
+        <div class="total-sp-bar__main">
+          <div class="total-sp-bar__total">
+            <span class="total-sp-bar-label total-sp-bar-label--gallery">合計必要SP</span>
+            <span class="total-sp-bar-label total-sp-bar-label--split">TOTAL</span>
+            <span id="total-sp-bar-value" class="total-sp-bar-value">—</span>
+            <span class="total-sp-bar-unit">SP</span>
+            <span id="total-sp-delta" class="total-sp-delta" hidden></span>
+          </div>
+          <div id="total-sp-bar-chips" class="total-sp-bar-chips" aria-label="計算前提"></div>
         </div>
-        <div id="total-sp-bar-chips" class="total-sp-bar-chips" aria-label="計算前提"></div>
       </div>
     </div>
 

@@ -1062,35 +1062,19 @@ function updateAutoEventsChip() {
 }
 
 function updateDeckFootbandMeta() {
-  const meta = document.getElementById("deck-footband-meta");
-  if (!meta) return;
-  const inheritOn = document.getElementById("inherit-enabled")?.checked;
-  const linkId = state?.ui?.scenarioLinkChoiceId ?? "link_dotou";
-  const link = state?.scenario?.linkSkills?.find((e) => e.id === linkId);
-  const parts = [];
-  if (inheritOn) parts.push("継承ON");
-  if (link?.label) parts.push(link.label);
-  meta.textContent = parts.length ? parts.join(" · ") : "";
+  /* 旧メタ行は廃止。リンク名はチップ title で示す */
 }
 
-function renderEvents() {
-  const emptyHint = document.getElementById("event-empty-hint");
-
-  renderColumnEvents();
-  updateAutoEventsChip();
-  updateDeckFootbandMeta();
-
-  const events = (state.events.events || []).filter(isEventSupportInDeck);
-  if (emptyHint) emptyHint.hidden = events.length > 0;
-}
-
-/** シナリオ自動計上（足元帯にコンパクト常時表示） */
+/** シナリオ自動計上（折りたたみ・確認のみ） */
 function renderScenarioAuto() {
   const container = document.getElementById("scenario-auto");
+  const countEl = document.getElementById("scenario-auto-count");
   if (!container) return;
   container.innerHTML = "";
 
   const entries = state.scenario.scenarioAutoSkills || [];
+  if (countEl) countEl.textContent = `${entries.length}件`;
+
   if (entries.length === 0) {
     container.innerHTML = `<p class="scenario-auto-empty">シナリオ自動なし</p>`;
     return;
@@ -1106,8 +1090,19 @@ function renderScenarioAuto() {
   }
 }
 
+function renderEvents() {
+  const emptyHint = document.getElementById("event-empty-hint");
+
+  renderColumnEvents();
+  updateAutoEventsChip();
+  updateDeckFootbandMeta();
+
+  const events = (state.events.events || []).filter(isEventSupportInDeck);
+  if (emptyHint) emptyHint.hidden = events.length > 0;
+}
+
 function bindAutoEventsDialog() {
-  /* サポカ自動は列下、シナリオ自動は足元インライン。モーダルは使わない */
+  /* サポカ自動は列下、シナリオ自動は足元折りたたみ。モーダルは使わない */
 }
 
 /** localStorage キー: レイアウト好み gallery | split | auto */
@@ -1124,12 +1119,22 @@ function placeTotalSpBar(enteringSplit) {
   const bar = document.getElementById("total-sp-bar");
   const modebar = document.querySelector(".layout-modebar");
   const main = document.querySelector(".app-main");
+  const actions = document.querySelector(".header-actions");
+  const brand = document.querySelector(".total-sp-bar__brand");
+  const header = document.querySelector(".app-header");
   if (!bar) return;
+  const narrow = window.matchMedia("(max-width: 900px)").matches;
   bar.classList.toggle("total-sp-bar--split-cmd", enteringSplit);
   if (enteringSplit && modebar) {
     modebar.after(bar);
   } else if (main) {
     main.after(bar);
+  }
+  /* 狭幅ではヘッダーを残すので、アクションはヘッダー側へ */
+  if (enteringSplit && !narrow && brand && actions) {
+    brand.appendChild(actions);
+  } else if (header && actions) {
+    header.appendChild(actions);
   }
 }
 
@@ -1182,48 +1187,70 @@ function bindLayoutMode() {
   });
   window.addEventListener("resize", () => {
     if (pref === "auto") sync();
+    else placeTotalSpBar(resolveLayoutMode(pref) === "split");
   });
   sync();
 }
 
-/** シニア12月 RMJ ラーメン選択（相互排他ラジオ1択） */
+/** シナリオリンク／RMJ 用の短いチップ表示名 */
+const LINK_CHIP_LABELS = {
+  link_fine_motion: "ファイン",
+  link_top_road: "トップロード",
+  link_calstone: "カルストン",
+  link_dotou: "ドトウ",
+  link_nature: "ネイチャ",
+  link_tazuna_halo: "たづな／ハロー",
+};
+
+const RMJ_CHIP_LABELS = {
+  ramen_special: "スペシャル",
+  ramen_yokubari: "よくばり",
+  ramen_shugyoku: "珠玉",
+};
+
+function shortLinkChipLabel(entry) {
+  return LINK_CHIP_LABELS[entry.id] || String(entry.label || "").replace(/リンク$/, "");
+}
+
+function shortRmjChipLabel(choice) {
+  return (
+    RMJ_CHIP_LABELS[choice.id] ||
+    String(choice.label || "")
+      .replace(/トレセンラーメン$/, "")
+      .replace(/ラーメン$/, "")
+  );
+}
+
+/** シニア12月 RMJ ラーメン選択（チップ1択） */
 function renderSeniorRmjRadios() {
   const container = document.getElementById("scenario-senior-rmj");
+  if (!container) return;
   container.innerHTML = "";
   const rmj = state.scenario.seniorRmjChoice;
   if (!rmj?.choices?.length) return;
-
-  const group = document.createElement("fieldset");
-  group.className = "event-single-group event-single-group--inline";
-  const legend = document.createElement("legend");
-  legend.textContent = "RMJ";
-  group.appendChild(legend);
 
   const defaultId = rmj.defaultChoiceId ?? rmj.choices[0].id;
   const current = state.ui.seniorRmjChoiceId ?? defaultId;
 
   for (const choice of rmj.choices) {
-    const row = document.createElement("div");
-    row.className = "radio-row radio-row--chip";
-    const inputId = `scn-rmj-${choice.id}`;
-    const checked = current === choice.id ? "checked" : "";
+    const btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "scn-chip scn-chip--rmj" + (current === choice.id ? " is-on" : "");
+    btn.setAttribute("aria-pressed", current === choice.id ? "true" : "false");
+    btn.textContent = shortRmjChipLabel(choice);
     const skillNote =
-      choice.skills?.length > 0
-        ? `<span class="hint"> — ${escapeHtml(formatSkillList(choice.skills))}</span>`
-        : "";
-    row.innerHTML = `
-      <input type="radio" name="scenario-senior-rmj" id="${inputId}" value="${escapeHtml(choice.id)}" ${checked} />
-      <label for="${inputId}">${escapeHtml(choice.label)}${skillNote}</label>
-    `;
-    group.appendChild(row);
-    row.querySelector("input").addEventListener("change", (e) => {
-      if (e.target.checked) {
-        state.ui.seniorRmjChoiceId = choice.id;
-        recalc();
-      }
+      choice.skills?.length > 0 ? formatSkillList(choice.skills) : "";
+    btn.title = skillNote
+      ? `${choice.label}（${skillNote}）`
+      : choice.label || shortRmjChipLabel(choice);
+    btn.addEventListener("click", () => {
+      if (state.ui.seniorRmjChoiceId === choice.id) return;
+      state.ui.seniorRmjChoiceId = choice.id;
+      renderSeniorRmjRadios();
+      recalc();
     });
+    container.appendChild(btn);
   }
-  container.appendChild(group);
 }
 
 /** 編成に応じたリンクヒント（白 or 金）を表示用に解決 */
@@ -1237,44 +1264,35 @@ function getResolvedLinkSkill(linkEntry) {
   return resolveLinkSkill(linkEntry, deckIds);
 }
 
-/** シナリオリンクは相互排他のラジオ1択（未選択なし・常に全リンク表示） */
+/** シナリオリンクは相互排他のチップ1択（未選択なし） */
 function renderScenarioLinkRadios() {
   const container = document.getElementById("scenario-link");
+  if (!container) return;
   container.innerHTML = "";
   const links = state.scenario.linkSkills || [];
   if (links.length === 0) return;
 
-  const group = document.createElement("fieldset");
-  group.className = "event-single-group event-single-group--inline";
-  const legend = document.createElement("legend");
-  legend.textContent = "リンク";
-  group.appendChild(legend);
-
   const current = state.ui.scenarioLinkChoiceId ?? "link_dotou";
 
   for (const entry of links) {
-    const row = document.createElement("div");
-    row.className = "radio-row radio-row--chip";
-    const inputId = `scn-link-${entry.id}`;
-    const checked = current === entry.id ? "checked" : "";
+    const btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "scn-chip" + (current === entry.id ? " is-on" : "");
+    btn.setAttribute("aria-pressed", current === entry.id ? "true" : "false");
+    btn.textContent = shortLinkChipLabel(entry);
     const resolved = getResolvedLinkSkill(entry);
-    const skillNote = resolved
-      ? `<span class="hint"> — ${escapeHtml(resolved.skillName)} Lv${resolved.hintLevel}</span>`
-      : "";
-    row.innerHTML = `
-      <input type="radio" name="scenario-link" id="${inputId}" value="${escapeHtml(entry.id)}" ${checked} />
-      <label for="${inputId}">${escapeHtml(entry.label)}${skillNote}</label>
-    `;
-    group.appendChild(row);
-    row.querySelector("input").addEventListener("change", (e) => {
-      if (e.target.checked) {
-        state.ui.scenarioLinkChoiceId = entry.id;
-        updateDeckFootbandMeta();
-        recalc();
-      }
+    btn.title = resolved
+      ? `${entry.label} → ${resolved.skillName} Lv${resolved.hintLevel}`
+      : entry.label || shortLinkChipLabel(entry);
+    btn.addEventListener("click", () => {
+      if (state.ui.scenarioLinkChoiceId === entry.id) return;
+      state.ui.scenarioLinkChoiceId = entry.id;
+      renderScenarioLinkRadios();
+      updateDeckFootbandMeta();
+      recalc();
     });
+    container.appendChild(btn);
   }
-  container.appendChild(group);
 }
 
 function buildEnabledScenarioEntryIds() {
