@@ -40,7 +40,7 @@
 
 ## 現在フォーカス（1行）
 
-**P2 編成スクショ** — 大枠採用済 · v10 目視（サポ比率＋世界観背景 · [screenshot-share-hero.html](./product/mockups/screenshot-share-hero.html)）
+**P2 編成スクショ** — 右パネル採用済 · 角の食い込み修正目視（[screenshot-share-hero.html](./product/mockups/screenshot-share-hero.html)）
 
 ---
 
