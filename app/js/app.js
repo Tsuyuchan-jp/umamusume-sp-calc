@@ -422,6 +422,42 @@ function syncInheritPopoverUi() {
 function setInheritPopoverOpen(open) {
   inheritPopoverOpen = Boolean(open);
   syncInheritPopoverUi();
+  if (inheritPopoverOpen) {
+    requestAnimationFrame(() => syncInheritPopoverAnchor());
+  }
+}
+
+/**
+ * 継承パネルを合計バーに追従させる。
+ * gallery: バー直上 / split: 上部コマンド直下。隙間は --layout-stack。
+ */
+function syncInheritPopoverAnchor() {
+  const pop = document.getElementById("inherit-popover");
+  const bar = document.getElementById("total-sp-bar");
+  if (!pop || !bar || !inheritPopoverOpen) return;
+
+  const rootStyle = getComputedStyle(document.documentElement);
+  const stackRaw = rootStyle.getPropertyValue("--layout-stack").trim() || "0.5rem";
+  const rootFont = parseFloat(rootStyle.fontSize) || 16;
+  const stackMatch = stackRaw.match(/^([\d.]+)rem$/i);
+  const stackPx = stackMatch
+    ? parseFloat(stackMatch[1]) * rootFont
+    : Number.parseFloat(stackRaw) || 8;
+
+  const rect = bar.getBoundingClientRect();
+  const isSplit = document.body.classList.contains("layout-split");
+  const gap = Math.round(stackPx);
+
+  pop.classList.toggle("inherit-popover--below", isSplit);
+  pop.classList.toggle("inherit-popover--above", !isSplit);
+
+  if (isSplit) {
+    pop.style.top = `${Math.round(rect.bottom + gap)}px`;
+    pop.style.bottom = "auto";
+  } else {
+    pop.style.bottom = `${Math.round(window.innerHeight - rect.top + gap)}px`;
+    pop.style.top = "auto";
+  }
 }
 
 function updateTotalBarChips(excludedCount = excludedSkillIds.size) {
@@ -503,6 +539,10 @@ function bindInheritPopover() {
     if (!(t instanceof Node)) return;
     if (t.closest?.("#inherit-popover") || t.closest?.("#bar-premise-inherit")) return;
     setInheritPopoverOpen(false);
+  });
+
+  window.addEventListener("resize", () => {
+    if (inheritPopoverOpen) syncInheritPopoverAnchor();
   });
 }
 
@@ -1365,6 +1405,9 @@ function applyLayoutMode(effective) {
   document.body.classList.toggle("layout-split", enteringSplit);
   document.body.classList.toggle("layout-gallery", !enteringSplit);
   placeTotalSpBar(enteringSplit);
+  if (inheritPopoverOpen) {
+    requestAnimationFrame(() => syncInheritPopoverAnchor());
+  }
 }
 
 function bindLayoutMode() {
@@ -1400,6 +1443,9 @@ function bindLayoutMode() {
   window.addEventListener("resize", () => {
     if (pref === "auto") sync();
     else placeTotalSpBar(resolveLayoutMode(pref) === "split");
+    if (inheritPopoverOpen) {
+      requestAnimationFrame(() => syncInheritPopoverAnchor());
+    }
   });
   sync();
 }

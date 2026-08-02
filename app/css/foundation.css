@@ -551,15 +551,17 @@ body.layout-split .panel--deck > .app-header {
   outline-offset: 1px;
 }
 
-/* ---- 継承パラメータパネル（バー直上・1行グリッド） ---- */
+/* ---- 継承パラメータパネル（合計バーに追従アンカー） ---- */
 .inherit-popover {
   position: fixed;
   left: 0;
   right: 0;
-  bottom: calc(4.75rem + 0.55rem);
+  /* top/bottom は JS がバー実測＋ --layout-stack で設定 */
   z-index: 1001;
   pointer-events: none;
-  padding: 0 0.75rem;
+  padding-left: var(--layout-gutter, 0.75rem);
+  padding-right: var(--layout-gutter, 0.75rem);
+  box-sizing: border-box;
 }
 
 .inherit-popover[hidden] {
@@ -582,6 +584,18 @@ body.layout-split .panel--deck > .app-header {
   border: 1px solid rgba(245, 207, 111, 0.55);
   border-radius: 10px;
   box-shadow: 0 8px 28px rgba(0, 0, 0, 0.32);
+}
+
+/* ギャラリー: バー直上 → 影は上方向を弱め、下に寄せた密着感 */
+.inherit-popover--above .inherit-popover__inner {
+  box-shadow: 0 -6px 22px rgba(0, 0, 0, 0.28);
+}
+
+/* スプリット: 上部コマンド直下 */
+.inherit-popover--below .inherit-popover__inner {
+  max-width: var(--layout-chrome-max, 1480px);
+  width: min(var(--layout-chrome-max, 1480px), 100%);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.28);
 }
 
 .inherit-popover__main {
