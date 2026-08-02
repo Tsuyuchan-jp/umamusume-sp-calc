@@ -40,7 +40,7 @@
 
 ## 現在フォーカス（1行）
 
-**P2 編成スクショ** — 左レイアウト L1〜L4 比較目視（[screenshot-share-left-options.html](./product/mockups/screenshot-share-left-options.html)）
+**P2 編成スクショ** — 左レイアウト刷新 A〜E 目視（[screenshot-share-left-fresh.html](./product/mockups/screenshot-share-left-fresh.html)）
 
 ---
 
@@ -60,7 +60,7 @@
   - メモリ（localStorage）は済。共有用の画像書き出しは未着手  
   - 要件メモ: [product/screenshot-requirements.md](./product/screenshot-requirements.md)  
   - 用途第一: 攻略記事貼付。専用横長カード。コピー優先＋保存。モード非依存  
-  - 次: **左レイアウト比較** → [mockups/screenshot-share-left-options.html](./product/mockups/screenshot-share-left-options.html)（`L2` / `L3` / `惜しい：…`）  
+  - 次: **左レイアウト刷新** → [mockups/screenshot-share-left-fresh.html](./product/mockups/screenshot-share-left-fresh.html)（`A`〜`E` / 惜しい＋一言）  
   - 受け入れ（暫定）: 現在設計を1枚の共有カードとして保存／コピーできる
 
 - [ ] **タイプ印位置の最終微調整**（ユーザー指示があったときだけ）  

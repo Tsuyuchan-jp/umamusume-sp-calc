@@ -83,7 +83,8 @@ UX 初期方針（顔＝6＋合計＋前提）は土台として維持。記事�
 ## 次ステップ
 
 1. ~~主案モック~~ → [mockups/screenshot-share-hero.html](./mockups/screenshot-share-hero.html)（v22）  
-   **左レイアウト比較中** → [mockups/screenshot-share-left-options.html](./mockups/screenshot-share-left-options.html)（L1〜L4）  
+   **左レイアウト刷新中** → [mockups/screenshot-share-left-fresh.html](./mockups/screenshot-share-left-fresh.html)（A〜E）  
+   旧比較: [left-options L1〜L4](./mockups/screenshot-share-left-options.html)  
    比較: [型B](./mockups/screenshot-share-type-b.html) · 参考: [screenshot-share-refs.html](./mockups/screenshot-share-refs.html)
    ※旧三連: [mockups/screenshot-share-options.html](./mockups/screenshot-share-options.html)（参考のみ）
 2. 主案承認 → 本実装（html2canvas 等は実装時）
