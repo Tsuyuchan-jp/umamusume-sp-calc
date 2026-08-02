@@ -3,17 +3,15 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>編成スクショ — 主案 v7（型C寄り）</title>
+  <title>編成スクショ — 主案 v8（C · LayerX×TellerNovel）</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@700;900&display=swap" rel="stylesheet" />
   <style>
     /*
-      主案 v7 — 型C寄り（企業スライド：文章｜写真グリッド）
-      参考: LayerXオフィス / TellerNovel 働き方・制度
-      - 左: タイトル＋数値・条件（余白と階層）
-      - 右: サポ3×2を一体のビジュアルブロック
-      アプリUI部品のコラージュはしない
+      主案 v8 — 型C継続
+      LayerX寄り（左テキスト／右グリッド一体）× TellerNovel（黒タグでカテゴリ分け）
+      - 金スキルは左一覧 → 右はサポカ画像のみ（キャプション・タイプ丸なし）
     */
     :root {
       --ink: #1a1630;
@@ -24,15 +22,10 @@
       --accent: #463f70;
       --accent-2: #7b6fd6;
       --gold: #c9a227;
-      --gold-soft: #fff4d0;
-      --pink: #ff3276;
       --orange: #ff7300;
+      --pink: #ff3276;
       --green: #38c306;
       --font: "Zen Maru Gothic", Meiryo, "Hiragino Sans", sans-serif;
-      --t-speed: #42a5f5;
-      --t-stamina: #ef5350;
-      --t-wit: #66bb6a;
-      --t-friend: #ab47bc;
     }
 
     * { box-sizing: border-box; }
@@ -64,6 +57,7 @@
     }
     .banner strong { color: #f5cf6f; }
     .banner em { font-style: normal; color: #59ccfc; }
+    .banner a { color: #59ccfc; }
 
     h1.page-title {
       margin: 0 0 4px;
@@ -76,10 +70,10 @@
       color: #ddd8ef;
       font-size: 13px;
       line-height: 1.5;
-      max-width: 46rem;
+      max-width: 48rem;
     }
 
-    /* ========== 共有カード（型C） ========== */
+    /* ========== 共有カード v8 ========== */
     .share {
       width: 100%;
       max-width: 1080px;
@@ -90,7 +84,7 @@
       overflow: hidden;
       box-shadow: 0 18px 50px rgba(0,0,0,.35);
       display: grid;
-      grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+      grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
       animation: rise .4s ease both;
     }
     @keyframes rise {
@@ -98,15 +92,15 @@
       to { opacity: 1; transform: none; }
     }
 
-    /* 左：情報 */
+    /* 左：LayerX的な余白＋TellerNovel的タグ */
     .left {
-      padding: 28px 28px 22px 32px;
+      padding: 26px 26px 20px 30px;
       display: flex;
       flex-direction: column;
-      gap: 16px;
+      gap: 14px;
       min-width: 0;
       background:
-        radial-gradient(circle at 0% 0%, rgba(123, 111, 214, 0.1), transparent 42%),
+        radial-gradient(circle at 0% 0%, rgba(123, 111, 214, 0.09), transparent 40%),
         #fff;
     }
 
@@ -121,7 +115,6 @@
       font-weight: 900;
       letter-spacing: 0.14em;
       color: var(--accent-2);
-      text-transform: uppercase;
     }
     .eyebrow__brand {
       font-size: 10px;
@@ -131,10 +124,9 @@
 
     .title {
       margin: 0;
-      font-size: clamp(22px, 2.8vw, 30px);
+      font-size: clamp(22px, 2.7vw, 28px);
       font-weight: 900;
       line-height: 1.2;
-      letter-spacing: 0.01em;
       color: var(--ink);
     }
     .title-sub {
@@ -149,10 +141,10 @@
       align-items: flex-end;
       justify-content: space-between;
       gap: 12px;
-      padding: 4px 0 2px;
+      padding: 2px 0 0;
     }
     .sp-num {
-      font-size: clamp(40px, 5.4vw, 56px);
+      font-size: clamp(40px, 5.2vw, 54px);
       font-weight: 900;
       line-height: 0.9;
       color: var(--accent);
@@ -175,15 +167,51 @@
     }
     .sp-meta strong { color: var(--ink); }
 
+    /* TellerNovel風：黒ピル＋本文 */
+    .blocks {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-top: 2px;
+    }
+    .block {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 10px 12px;
+      align-items: start;
+    }
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 24px;
+      padding: 3px 10px;
+      border-radius: 6px;
+      background: #111;
+      color: #fff;
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: 0.04em;
+      white-space: nowrap;
+    }
+    .block__body {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--ink-soft);
+      line-height: 1.5;
+      padding-top: 2px;
+    }
+    .block__body strong { color: var(--ink); font-weight: 900; }
+
     .tags {
       display: flex;
       flex-wrap: wrap;
-      gap: 6px;
+      gap: 5px;
     }
     .tag {
       display: inline-flex;
       align-items: center;
-      padding: 4px 10px;
+      padding: 3px 9px;
       border-radius: 999px;
       font-size: 11px;
       font-weight: 900;
@@ -191,231 +219,104 @@
       color: var(--ink-soft);
       border: 1px solid var(--line);
     }
-    .tag.is-key {
-      background: var(--accent);
-      border-color: var(--accent);
-      color: #fff;
-    }
-    .tag.is-hot {
-      background: var(--pink);
-      border-color: var(--pink);
-      color: #fff;
-    }
-    .tag.is-ok {
-      background: var(--green);
-      border-color: var(--green);
-      color: #fff;
-    }
+    .tag.is-key { background: var(--accent); border-color: var(--accent); color: #fff; }
+    .tag.is-hot { background: var(--pink); border-color: var(--pink); color: #fff; }
+    .tag.is-ok { background: var(--green); border-color: var(--green); color: #fff; }
 
-    .sections {
-      display: grid;
-      gap: 12px;
-      margin-top: auto;
-    }
-    .sec {
-      display: grid;
-      grid-template-columns: 72px 1fr;
-      gap: 10px;
-      align-items: start;
-    }
-    .sec__label {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 22px;
-      padding: 3px 8px;
-      border-radius: 4px;
-      background: var(--ink);
-      color: #fff;
-      font-size: 10px;
-      font-weight: 900;
-      letter-spacing: 0.04em;
-      white-space: nowrap;
-    }
-    .sec__body {
-      font-size: 12px;
-      font-weight: 700;
-      color: var(--ink-soft);
-      line-height: 1.55;
-    }
-    .sec__body strong { color: var(--ink); font-weight: 900; }
-    .sec__body ul {
+    .gold-list {
       list-style: none;
       margin: 0;
       padding: 0;
       display: grid;
-      gap: 3px;
+      grid-template-columns: 1fr 1fr;
+      gap: 3px 14px;
     }
-    .sec__body li {
+    .gold-list li {
       display: grid;
-      grid-template-columns: 5.5em 1fr;
-      gap: 6px;
+      grid-template-columns: 4.8em 1fr;
+      gap: 4px;
+      font-size: 11px;
+      font-weight: 900;
+      color: var(--ink);
+      line-height: 1.35;
     }
-    .sec__body li span { color: #8a849e; }
-    .sec__body li.is-mute span:last-child,
-    .sec__body li.is-mute strong { color: #b0aabc; font-weight: 700; }
+    .gold-list li span { color: #8a849e; font-weight: 700; }
+    .gold-list li.is-mute,
+    .gold-list li.is-mute strong { color: #b0aabc; font-weight: 700; }
 
     .foot-note {
-      margin-top: 2px;
+      margin-top: auto;
       font-size: 10px;
       color: #9a96aa;
       font-weight: 700;
     }
 
-    /* 右：ビジュアルグリッド（型Cの写真ブロック） */
+    /* 右：LayerX的ギャラリー（サポ画像のみ） */
     .right {
       position: relative;
       min-width: 0;
       min-height: 0;
-      padding: 18px;
-      background: linear-gradient(160deg, #3d3758 0%, #2a2548 55%, #1a1630 100%);
+      background: #1a1630;
       display: flex;
       flex-direction: column;
-      gap: 12px;
+      padding: 0;
+      overflow: hidden;
     }
 
-    .right__head {
+    .right__trainee {
+      flex-shrink: 0;
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      gap: 8px;
-      color: #fff;
-      padding: 0 2px;
-    }
-    .right__head h2 {
-      margin: 0;
-      font-size: 13px;
-      font-weight: 900;
-      letter-spacing: 0.04em;
-    }
-    .right__head span {
-      font-size: 10px;
-      color: #c8c2de;
-      font-weight: 700;
-    }
-
-    .trainee {
-      display: grid;
-      grid-template-columns: 64px 1fr;
       gap: 10px;
-      align-items: center;
-      padding: 8px 10px;
-      border-radius: 10px;
-      background: rgba(255,255,255,0.08);
-      border: 1px solid rgba(255,255,255,0.12);
+      padding: 12px 14px;
+      background: linear-gradient(180deg, #2a2548, #1f1a38);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
       color: #fff;
     }
-    .trainee img {
-      width: 64px;
-      height: 64px;
+    .right__trainee img {
+      width: 48px;
+      height: 48px;
       object-fit: cover;
       object-position: center top;
-      border-radius: 8px;
+      border-radius: 6px;
       display: block;
       background: #463f70;
     }
-    .trainee__lab {
-      font-size: 10px;
+    .right__trainee-lab {
+      font-size: 9px;
+      font-weight: 900;
+      letter-spacing: 0.08em;
       color: #f5cf6f;
-      font-weight: 900;
-      letter-spacing: 0.06em;
     }
-    .trainee__name {
+    .right__trainee-name {
       margin: 2px 0 0;
-      font-size: 16px;
+      font-size: 14px;
       font-weight: 900;
-    }
-    .trainee__sub {
-      margin: 2px 0 0;
-      font-size: 11px;
-      color: #c8c2de;
-      font-weight: 700;
     }
 
-    .grid-wrap {
+    .grid-bleed {
       flex: 1;
       min-height: 0;
-      border-radius: 14px;
-      overflow: hidden;
-      background: rgba(0,0,0,0.18);
-      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.08);
-      padding: 8px;
-    }
-    .sup-grid {
-      height: 100%;
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
       grid-template-rows: repeat(2, minmax(0, 1fr));
-      gap: 8px;
+      gap: 3px;
+      padding: 3px;
+      background: #0e0c18;
     }
-    .card {
+    .grid-bleed figure {
+      margin: 0;
       min-width: 0;
       min-height: 0;
-      display: grid;
-      grid-template-rows: minmax(0, 1fr) auto;
-      gap: 0;
-      border-radius: 10px;
       overflow: hidden;
-      background: #fff;
-      box-shadow: 0 4px 14px rgba(0,0,0,0.22);
+      background: #2a2548;
     }
-    .card__face {
-      position: relative;
-      min-height: 0;
-      background: #ede6e6;
-    }
-    .card__face img {
+    .grid-bleed img {
       width: 100%;
       height: 100%;
       object-fit: cover;
       object-position: center top;
       display: block;
-    }
-    .card__dot {
-      position: absolute;
-      top: 5px;
-      right: 5px;
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      border: 1.5px solid #fff;
-      box-shadow: 0 0 0 1px #0002;
-    }
-    .card__dot.speed { background: var(--t-speed); }
-    .card__dot.stamina { background: var(--t-stamina); }
-    .card__dot.wit { background: var(--t-wit); }
-    .card__dot.friend { background: var(--t-friend); }
-    .card__cap {
-      padding: 5px 6px 6px;
-      background: #fff;
-      text-align: center;
-    }
-    .card__name {
-      margin: 0;
-      font-size: 10px;
-      font-weight: 900;
-      color: var(--ink);
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      line-height: 1.2;
-    }
-    .card__gold {
-      margin: 2px 0 0;
-      font-size: 9px;
-      font-weight: 900;
-      color: #7a5200;
-      background: linear-gradient(180deg, #fff6d0, #ffd978);
-      border-radius: 3px;
-      padding: 1px 3px;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-    .card__gold.is-empty {
-      color: #a8a0b8;
-      background: #f0eef5;
-      font-weight: 700;
     }
 
     .judge {
@@ -436,27 +337,23 @@
       color: #59ccfc;
       font-size: .92em;
     }
-
-    .hint {
-      margin-top: 10px;
-      color: #c8c2de;
-      font-size: 12px;
-      line-height: 1.5;
-    }
   </style>
 </head>
 <body>
   <div class="shell">
     <div class="banner">
-      <strong>主案 v7 · 型C寄り（現状ベスト候補）</strong> —
-      企業スライド構図。型B比較は <a href="./screenshot-share-type-b.html" style="color:#59ccfc">こちら</a>。
-      返事は <em>C採用</em> / <em>B採用</em> / <em>惜しい＋一言</em>。
+      <strong>主案 v8 · 型Cハイブリッド</strong> —
+      LayerX寄り（左右分割・右グリッド一体）× TellerNovel（黒タグ分け）。
+      金は左一覧、右はサポ画像のみ（タイプ丸なし）。
+      比較: <a href="./screenshot-share-hero.html">※本ファイルが現行主案</a> /
+      <a href="./screenshot-share-type-b.html">型B</a> /
+      <a href="./screenshot-share-refs.html">参考一覧</a>
     </div>
 
-    <h1 class="page-title">編成スクショ · 共有カード主案 v7</h1>
-    <p class="lead">左で「いくらの必要SP・どんな前提か」を読み、右で編成の顔（育成＋サポ3×2）を見る。</p>
+    <h1 class="page-title">編成スクショ · 共有カード主案 v8</h1>
+    <p class="lead">左で読む・右で見る。金スキルの重複表示をやめて、右グリッドをきれいに見せる。</p>
 
-    <article class="share" aria-label="共有カード主案 v7 型C">
+    <article class="share" aria-label="共有カード主案 v8">
       <section class="left">
         <div class="eyebrow">
           <span class="eyebrow__cat">TRESENKEN · NEED SP</span>
@@ -476,20 +373,25 @@
           </div>
         </div>
 
-        <div class="tags" aria-label="前提">
-          <span class="tag is-ok">切れ者</span>
-          <span class="tag is-key">ヒント Lv3</span>
-          <span class="tag is-hot">RMJ 参加</span>
-          <span class="tag">継承 +120</span>
-          <span class="tag">エアリンク</span>
-          <span class="tag">レギュ ◎のみ</span>
-        </div>
+        <div class="blocks">
+          <div class="block">
+            <span class="pill">前提</span>
+            <div class="block__body">
+              <div class="tags">
+                <span class="tag is-ok">切れ者</span>
+                <span class="tag is-key">ヒント Lv3</span>
+                <span class="tag is-hot">RMJ 参加</span>
+                <span class="tag">継承 +120</span>
+                <span class="tag">エアリンク</span>
+                <span class="tag">レギュ ◎のみ</span>
+              </div>
+            </div>
+          </div>
 
-        <div class="sections">
-          <div class="sec">
-            <span class="sec__label">金スキル</span>
-            <div class="sec__body">
-              <ul>
+          <div class="block">
+            <span class="pill">金スキル</span>
+            <div class="block__body">
+              <ul class="gold-list">
                 <li><span>スピエア</span><strong>切れ者</strong></li>
                 <li><span>スピテイオー</span><strong>先手必勝</strong></li>
                 <li><span>スピタップ</span><strong>冷静</strong></li>
@@ -499,11 +401,12 @@
               </ul>
             </div>
           </div>
-          <div class="sec">
-            <span class="sec__label">条件</span>
-            <div class="sec__body">
+
+          <div class="block">
+            <span class="pill">条件</span>
+            <div class="block__body">
               シナリオ <strong>トレセン軒</strong> ／ ヒント <strong>Lv3換算</strong> ／ 継承固有 <strong>+120</strong><br />
-              除外スキル名は載せない（件数のみ）。結果表は別途。
+              除外は件数のみ。結果表は含まない。
             </div>
           </div>
         </div>
@@ -512,57 +415,29 @@
       </section>
 
       <section class="right">
-        <div class="right__head">
-          <h2>SUPPORT DECK</h2>
-          <span>3×2</span>
-        </div>
-
-        <div class="trainee">
+        <div class="right__trainee">
           <img src="../../../assets/characters/112901.webp" alt="" />
           <div>
-            <div class="trainee__lab">TRAINEE</div>
-            <p class="trainee__name">アーモンドアイ</p>
-            <p class="trainee__sub">育成ウマ娘</p>
+            <div class="right__trainee-lab">TRAINEE</div>
+            <p class="right__trainee-name">アーモンドアイ</p>
           </div>
         </div>
 
-        <div class="grid-wrap">
-          <div class="sup-grid" aria-label="サポートカード 3×2">
-            <div class="card">
-              <div class="card__face"><span class="card__dot speed"></span><img src="../../../assets/supports/30282.webp" alt="" /></div>
-              <div class="card__cap"><p class="card__name">エアグルーヴ</p><p class="card__gold">切れ者</p></div>
-            </div>
-            <div class="card">
-              <div class="card__face"><span class="card__dot speed"></span><img src="../../../assets/supports/30275.webp" alt="" /></div>
-              <div class="card__cap"><p class="card__name">テイオー</p><p class="card__gold">先手必勝</p></div>
-            </div>
-            <div class="card">
-              <div class="card__face"><span class="card__dot speed"></span><img src="../../../assets/supports/30298.webp" alt="" /></div>
-              <div class="card__cap"><p class="card__name">タップ</p><p class="card__gold">冷静</p></div>
-            </div>
-            <div class="card">
-              <div class="card__face"><span class="card__dot stamina"></span><img src="../../../assets/supports/30304.webp" alt="" /></div>
-              <div class="card__cap"><p class="card__name">ドトウ</p><p class="card__gold">豪脚</p></div>
-            </div>
-            <div class="card">
-              <div class="card__face"><span class="card__dot wit"></span><img src="../../../assets/supports/30289.webp" alt="" /></div>
-              <div class="card__cap"><p class="card__name">ヤング</p><p class="card__gold is-empty">—</p></div>
-            </div>
-            <div class="card">
-              <div class="card__face"><span class="card__dot friend"></span><img src="../../../assets/supports/30305.webp" alt="" /></div>
-              <div class="card__cap"><p class="card__name">たづな</p><p class="card__gold">中盤巧者</p></div>
-            </div>
-          </div>
+        <!-- サポ画像のみ・ギャップ細め・キャプションなし -->
+        <div class="grid-bleed" aria-label="サポートカード">
+          <figure><img src="../../../assets/supports/30282.webp" alt="エアグルーヴ" /></figure>
+          <figure><img src="../../../assets/supports/30275.webp" alt="テイオー" /></figure>
+          <figure><img src="../../../assets/supports/30298.webp" alt="タップ" /></figure>
+          <figure><img src="../../../assets/supports/30304.webp" alt="ドトウ" /></figure>
+          <figure><img src="../../../assets/supports/30289.webp" alt="ヤング" /></figure>
+          <figure><img src="../../../assets/supports/30305.webp" alt="たづな" /></figure>
         </div>
       </section>
     </article>
 
-    <p class="hint">参考型: 左テキスト＋右グリッド（LayerX / TellerNovel）。立ち絵ヒーローは一旦置かず、育成は右上の要約＋既存アイコン。</p>
-
     <div class="judge">
       <strong>判断のお願い</strong><br />
-      型Bも見る: <a href="./screenshot-share-type-b.html" style="color:#59ccfc">screenshot-share-type-b.html</a><br />
-      返事例: <code>C採用</code> / <code>B採用</code> / <code>CベースでBの〇〇だけ</code> / <code>惜しい：〇〇</code>
+      返事例: <code>採用</code> / <code>方向違い</code> / <code>惜しい：〇〇</code>
     </div>
   </div>
 </body>

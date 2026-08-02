@@ -26,7 +26,7 @@
 | **必須（最低限）** | 育成＋サポ6、前提チップ、合計 SP |
 | **欲しい** | 設計名（メモリ名）、**計上スキル数** |
 | **レイアウト次第で載せたい** | 選択イベント（特に **金スキル関連**）。見せ方はモックで決める |
-| **見た目候補（モック確認中）** | **型C寄り**（左＝SP・条件、右＝育成要約＋サポ3×2グリッド）。企業スライド構図。立ち絵は保留 |
+| **見た目候補（モック確認中）** | **型C v8**: LayerX×TellerNovel。金は左、右はサポ画像のみ（タイプ丸なし） |
 | **付記まで可** | 除外は **件数のみ**（リストは出さない） |
 | **載せない** | 除外の中身リスト、結果表（スキル一覧の詳細） |
 
@@ -71,8 +71,8 @@ UX 初期方針（顔＝6＋合計＋前提）は土台として維持。記事�
 
 ## 次ステップ
 
-1. ~~主案モック~~ → [mockups/screenshot-share-hero.html](./mockups/screenshot-share-hero.html)（**v7・型C** · 現状ベスト候補）  
-   比較: [型B](./mockups/screenshot-share-type-b.html) · 参考候補: [screenshot-share-refs.html](./mockups/screenshot-share-refs.html)
+1. ~~主案モック~~ → [mockups/screenshot-share-hero.html](./mockups/screenshot-share-hero.html)（**v8・Cハイブリッド** · 目視待ち）  
+   比較: [型B](./mockups/screenshot-share-type-b.html) · 参考: [screenshot-share-refs.html](./mockups/screenshot-share-refs.html)
    ※旧三連: [mockups/screenshot-share-options.html](./mockups/screenshot-share-options.html)（参考のみ）
 2. 主案承認 → 本実装（html2canvas 等は実装時）
 3. TODO 更新＋ローカルコミット（push しない）

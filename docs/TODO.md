@@ -40,7 +40,7 @@
 
 ## 現在フォーカス（1行）
 
-**P2 編成スクショ** — 型C(v7) vs 型B 比較目視（[C](./product/mockups/screenshot-share-hero.html) / [B](./product/mockups/screenshot-share-type-b.html)）
+**P2 編成スクショ** — 主案 v8 目視待ち（Cハイブリッド · [screenshot-share-hero.html](./product/mockups/screenshot-share-hero.html)）
 
 ---
 
