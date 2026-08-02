@@ -78,6 +78,9 @@ let cardPicker = null;
 /** 前提チップのイベントを一度だけバインド */
 let premiseChipsBound = false;
 
+/** スプリット左ドックでフォーカス中のサポ枠（0–5）。ギャラリーでは未使用 */
+let focusSupportSlot = null;
+
 /** ピッカー内タイプ絞込（すべて = ""） */
 let supportPickerTypeFilter = "";
 
@@ -205,18 +208,27 @@ function renderDeckCharacter() {
   if (!btn || !state) return;
   const c = getCharacterById(state.ui.characterId);
   if (!c) {
-    btn.innerHTML = buildCardFaceHtml({ empty: true, square: true });
+    btn.innerHTML = `${buildCardFaceHtml({ empty: true, square: true })}
+      <span class="deck-trainee-meta">
+        <span class="deck-trainee-meta__lbl">育成</span>
+        <span class="deck-trainee-meta__name">未選択</span>
+      </span>`;
     return;
   }
   const label = formatCharacterDisplayName(c.name);
-  btn.innerHTML = buildCardFaceHtml({
+  const short = shortCharacterLabel(c.name);
+  btn.innerHTML = `${buildCardFaceHtml({
     imageUrl: characterImageUrl(c.id),
     typeStyle: { bg: "linear-gradient(160deg,#d4dce4,#8a9aaa)", ink: "#1c2420", label: "ウマ" },
     rarity: "",
-    label: shortCharacterLabel(c.name),
+    label: short,
     square: true,
     showTextOverlay: false,
-  });
+  })}
+    <span class="deck-trainee-meta">
+      <span class="deck-trainee-meta__lbl">育成</span>
+      <span class="deck-trainee-meta__name">${escapeHtml(short)}</span>
+    </span>`;
   btn.title = label;
 }
 
@@ -226,7 +238,8 @@ function renderDeckSupports() {
   container.innerHTML = "";
   for (let i = 0; i < 6; i++) {
     const col = document.createElement("div");
-    col.className = "deck-support-col";
+    col.className = "deck-support-col" + (focusSupportSlot === i ? " is-focus" : "");
+    col.dataset.slot = String(i);
 
     const id = state.ui.supportIds[i];
     const s = id != null ? getSupportById(id) : null;
@@ -235,17 +248,20 @@ function renderDeckSupports() {
     btn.className = "deck-slot";
     btn.dataset.slot = String(i);
     btn.setAttribute("aria-label", `枠${i + 1}を選択`);
+    const badge = `<span class="deck-slot-badge" aria-hidden="true">${i + 1}</span>`;
     if (!s) {
-      btn.innerHTML = buildCardFaceHtml({ empty: true });
+      btn.innerHTML = badge + buildCardFaceHtml({ empty: true });
     } else {
       const typeStyle = getSupportTypeStyle(s.type);
-      btn.innerHTML = buildCardFaceHtml({
-        imageUrl: supportImageUrl(s.id),
-        typeStyle,
-        rarity: s.rarity,
-        label: shortSupportLabel(s),
-        showTextOverlay: false,
-      });
+      btn.innerHTML =
+        badge +
+        buildCardFaceHtml({
+          imageUrl: supportImageUrl(s.id),
+          typeStyle,
+          rarity: s.rarity,
+          label: shortSupportLabel(s),
+          showTextOverlay: false,
+        });
       btn.title = s.name;
     }
     btn.addEventListener("click", () => openSupportPicker(i));
@@ -877,6 +893,55 @@ function renderChoicePanelButtons(container, evt, onAfter) {
   }
 }
 
+function isSplitLayout() {
+  return document.body.classList.contains("layout-split");
+}
+
+function setFocusSupportSlot(slotIndex) {
+  focusSupportSlot = slotIndex;
+  document.querySelectorAll(".deck-support-col").forEach((el) => {
+    const i = Number(el.dataset.slot);
+    el.classList.toggle("is-focus", focusSupportSlot === i);
+  });
+}
+
+function closeSplitEvtPane() {
+  const pane = document.getElementById("split-evt-pane");
+  if (pane) pane.hidden = true;
+  setFocusSupportSlot(null);
+}
+
+function openEventChoicePane(evt, slotIndex) {
+  const pane = document.getElementById("split-evt-pane");
+  const title = document.getElementById("split-evt-pane-title");
+  const sub = document.getElementById("split-evt-pane-sub");
+  const body = document.getElementById("split-evt-pane-body");
+  if (!pane || !body) return;
+
+  if (typeof slotIndex === "number") setFocusSupportSlot(slotIndex);
+
+  const support =
+    typeof slotIndex === "number" && state?.ui?.supportIds[slotIndex] != null
+      ? getSupportById(state.ui.supportIds[slotIndex])
+      : null;
+  const slotLabel =
+    typeof slotIndex === "number" ? `${slotIndex + 1}. ` : "";
+  const name = support ? shortSupportLabel(support) : "";
+  title.textContent = `A · ${slotLabel}${name || evt.label}`;
+  sub.textContent =
+    evt.selection === "toggle" ? "複数・ON/OFF" : "単一選択 · 金を最上段";
+
+  const refresh = () => {
+    renderColumnEvents();
+    renderChoicePanelButtons(body, evt, () => {
+      recalc();
+      refresh();
+    });
+  };
+  refresh();
+  pane.hidden = false;
+}
+
 function openEventChoiceDialog(evt) {
   const dialog = document.getElementById("event-choice-dialog");
   const title = document.getElementById("event-choice-dialog-title");
@@ -897,12 +962,20 @@ function openEventChoiceDialog(evt) {
   if (typeof dialog.showModal === "function") dialog.showModal();
 }
 
+function openEventChoiceUi(evt, slotIndex) {
+  if (isSplitLayout()) openEventChoicePane(evt, slotIndex);
+  else openEventChoiceDialog(evt);
+}
+
 function bindEventChoiceDialog() {
   const dialog = document.getElementById("event-choice-dialog");
   const closeBtn = document.getElementById("event-choice-close");
   closeBtn?.addEventListener("click", () => dialog?.close());
   dialog?.addEventListener("click", (e) => {
     if (e.target === dialog) dialog.close();
+  });
+  document.getElementById("split-evt-pane-close")?.addEventListener("click", () => {
+    closeSplitEvtPane();
   });
 }
 
@@ -960,7 +1033,7 @@ function renderColumnEvents() {
         btn.className = "deck-evt-sum" + (kind === "gold" ? " deck-evt-sum--gold" : "");
         btn.innerHTML = `${kindBadgeHtml(kind)}${escapeHtml(label)}<span class="deck-evt-sum__more">全${n}択 · タップで詳細</span>`;
       }
-      btn.addEventListener("click", () => openEventChoiceDialog(evt));
+      btn.addEventListener("click", () => openEventChoiceUi(evt, i));
       container.appendChild(btn);
     }
 
@@ -1047,6 +1120,19 @@ function resolveLayoutMode(pref) {
   return pref === "split" ? "split" : "gallery";
 }
 
+function placeTotalSpBar(enteringSplit) {
+  const bar = document.getElementById("total-sp-bar");
+  const modebar = document.querySelector(".layout-modebar");
+  const main = document.querySelector(".app-main");
+  if (!bar) return;
+  bar.classList.toggle("total-sp-bar--split-cmd", enteringSplit);
+  if (enteringSplit && modebar) {
+    modebar.after(bar);
+  } else if (main) {
+    main.after(bar);
+  }
+}
+
 function applyLayoutMode(effective) {
   const enteringSplit = effective === "split";
   /* ギャラリーで下にスクロールしたまま split の overflow:hidden に入ると切替バーが画面外で操作不能になる */
@@ -1054,11 +1140,14 @@ function applyLayoutMode(effective) {
     window.scrollTo(0, 0);
     document.documentElement.scrollTop = 0;
     document.body.scrollTop = 0;
+  } else {
+    closeSplitEvtPane();
   }
   document.documentElement.classList.toggle("layout-split", enteringSplit);
   document.documentElement.classList.toggle("layout-gallery", !enteringSplit);
   document.body.classList.toggle("layout-split", enteringSplit);
   document.body.classList.toggle("layout-gallery", !enteringSplit);
+  placeTotalSpBar(enteringSplit);
 }
 
 function bindLayoutMode() {
@@ -1077,9 +1166,9 @@ function bindLayoutMode() {
       if (pref === "auto") {
         hint.textContent = `自動: いま ${effective === "split" ? "スプリット" : "ギャラリー"}（境界 1200px）`;
       } else if (effective === "split") {
-        hint.textContent = "スプリット: 左=編成 / 右=作業台 · A列下 · B件数チップ · C足元";
+        hint.textContent = "スプリット: 上=合計 · 左=2×3ドック+A詳細 · 右=作業台";
       } else {
-        hint.textContent = "ギャラリー: 上段編成・下段作業台 · A列下 · B件数チップ · C足元";
+        hint.textContent = "ギャラリー: 上段編成・下段作業台 · A列下詳細";
       }
     }
   };

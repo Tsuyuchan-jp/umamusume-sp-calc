@@ -286,6 +286,20 @@
             </div>
           </div>
 
+          <!-- スプリット専用: A 詳細ペイン（ギャラリーでは非表示） -->
+          <aside id="split-evt-pane" class="split-evt-pane" hidden>
+            <div class="split-evt-pane__head">
+              <div>
+                <div id="split-evt-pane-title" class="split-evt-pane__title">A · イベント選択</div>
+                <div id="split-evt-pane-sub" class="split-evt-pane__sub">左のサポカ要約を選ぶと詳細が出ます</div>
+              </div>
+              <button type="button" id="split-evt-pane-close" class="split-evt-pane__close" aria-label="閉じる">×</button>
+            </div>
+            <div id="split-evt-pane-body" class="split-evt-pane__body">
+              <p class="split-evt-pane__empty">サポカの要約をタップすると、ここに選択肢が出ます</p>
+            </div>
+          </aside>
+
           <!-- C: シナリオ選択＋シナリオ自動（サポカ自動は列下） -->
           <div class="deck-footband" id="deck-footband">
             <div class="deck-layer-c" id="deck-layer-c">
@@ -437,6 +451,10 @@
 
     <div id="total-sp-bar" class="total-sp-bar" aria-live="polite">
       <div class="total-sp-bar-inner">
+        <div class="total-sp-bar__brand" aria-hidden="true">
+          <span class="total-sp-bar__mode">SPLIT</span>
+          <strong class="total-sp-bar__brand-title">SP <span class="app-brand-accent">Calc</span></strong>
+        </div>
         <div class="total-sp-bar__total">
           <span class="total-sp-bar-label">合計必要SP</span>
           <span id="total-sp-bar-value" class="total-sp-bar-value">—</span>

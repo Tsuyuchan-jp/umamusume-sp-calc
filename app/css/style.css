@@ -1219,35 +1219,100 @@ input[type="search"] {
   color: #3a2a00;
 }
 
-/* ---- スプリット（H1）: 切替時は先頭へ戻し、左右ペインのみスクロール ---- */
+/* ---- デュアル: スプリット（H1） ---- */
 html.layout-split {
   height: 100%;
   overflow: hidden;
 }
 
 body.layout-split {
+  display: flex;
+  flex-direction: column;
   height: 100%;
   overflow: hidden;
-  padding-bottom: 5.5rem;
+  padding-bottom: 0;
 }
 
 body.layout-split > .layout-modebar {
-  position: sticky;
-  top: 0;
+  position: relative;
+  flex-shrink: 0;
   z-index: 60;
+}
+
+/* 合計バーを上部コマンド化（DOM は applyLayoutMode で modebar 直後へ移動） */
+body.layout-split > .total-sp-bar,
+.total-sp-bar.total-sp-bar--split-cmd {
+  position: relative;
+  bottom: auto;
+  left: auto;
+  right: auto;
+  flex-shrink: 0;
+  z-index: 55;
+  max-width: 1480px;
+  width: calc(100% - 1.5rem);
+  margin: 0.35rem auto 0;
+  border-radius: 10px;
+  border-top: 0;
+  border-bottom: 3px solid #f5cf6f;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.28);
+}
+
+body.layout-split .total-sp-bar__brand {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+  flex-shrink: 0;
+  min-width: 5.5rem;
+}
+
+.total-sp-bar__brand {
+  display: none;
+}
+
+.total-sp-bar__mode {
+  font-size: 0.62rem;
+  font-weight: 900;
+  letter-spacing: 0.06em;
+  color: #bebbce;
+}
+
+.total-sp-bar__brand-title {
+  font-size: 1.05rem;
+  font-weight: 900;
+  color: #fff;
+  line-height: 1.1;
+}
+
+body.layout-split .total-sp-bar-inner {
+  max-width: none;
+  padding: 0.45rem 0.9rem;
+  flex-wrap: nowrap;
+  gap: 0.75rem 1rem;
+}
+
+body.layout-split .total-sp-bar-label {
+  color: #bebbce;
+}
+
+body.layout-split .total-sp-bar-value {
+  font-size: 1.85rem;
+  color: #f5cf6f;
 }
 
 body.layout-split > .app-main {
   max-width: 1480px;
-  /* header〜modebar〜下部バーを除いた残り。左右だけ内部スクロール */
-  height: calc(100dvh - 5.5rem - 7.5rem);
-  max-height: calc(100dvh - 5.5rem - 7.5rem);
+  width: 100%;
+  flex: 1 1 auto;
+  min-height: 0;
+  height: auto;
+  max-height: none;
   grid-template-columns: minmax(300px, 420px) 1fr;
   grid-template-rows: auto 1fr;
   align-items: stretch;
   overflow: hidden;
   gap: 0.5rem;
   padding: 0.5rem 0.75rem;
+  margin: 0 auto;
 }
 
 body.layout-split #load-error,
@@ -1259,17 +1324,243 @@ body.layout-split #snap-zone-deck,
 body.layout-split #snap-zone-workbench {
   min-height: 0;
   height: 100%;
-  overflow: auto;
+  overflow: hidden;
 }
 
 body.layout-split #snap-zone-deck {
   grid-column: 1;
   grid-row: 2;
+  display: flex;
+  flex-direction: column;
 }
 
 body.layout-split #snap-zone-workbench {
   grid-column: 2;
   grid-row: 2;
+}
+
+body.layout-split .panel--deck {
+  flex: 1 1 auto;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  padding: 0.65rem 0.7rem 0.55rem;
+}
+
+body.layout-split .panel--workbench {
+  min-height: 0;
+  height: 100%;
+  overflow: auto;
+}
+
+body.layout-split .deck-heading {
+  flex-shrink: 0;
+  margin-bottom: 0.45rem;
+}
+
+body.layout-split .deck-heading h2 {
+  font-size: 0.92rem;
+}
+
+body.layout-split .deck-heading__scenario {
+  display: none;
+}
+
+/* 左ドック: 育成横並び + サポ 2×3 */
+body.layout-split .deck-dashboard {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow: auto;
+}
+
+body.layout-split .deck-dashboard__row {
+  flex-direction: column;
+  gap: 0.55rem;
+}
+
+body.layout-split .deck-character-wrap,
+body.layout-split .deck-supports-wrap {
+  width: 100%;
+  flex: none;
+}
+
+body.layout-split .deck-slot-label {
+  display: none;
+}
+
+body.layout-split .deck-supports {
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+}
+
+body.layout-split .deck-support-col {
+  padding: 0.4rem;
+  border: 2px solid #b3b0b6;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.92);
+  gap: 0.3rem;
+  transition: border-color 0.12s ease, box-shadow 0.12s ease;
+}
+
+body.layout-split .deck-support-col.is-focus {
+  border-color: #ff7300;
+  box-shadow: 0 0 0 2px rgba(255, 115, 0, 0.25);
+}
+
+body.layout-split .deck-support-col .deck-slot {
+  position: relative;
+}
+
+.deck-slot-badge {
+  display: none;
+}
+
+body.layout-split .deck-slot-badge {
+  display: block;
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  z-index: 2;
+  background: #463f70;
+  color: #fff;
+  font-size: 0.62rem;
+  font-weight: 900;
+  padding: 0.05rem 0.3rem;
+  border-radius: 3px;
+  line-height: 1.2;
+}
+
+body.layout-split .deck-slot--character {
+  display: grid;
+  grid-template-columns: 72px 1fr;
+  gap: 0.5rem;
+  align-items: center;
+  width: 100%;
+  max-width: none;
+  padding: 0.45rem;
+  border: 1px solid #b3b0b6;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.92);
+}
+
+body.layout-split .deck-slot--character .card-face {
+  width: 72px;
+  max-width: 72px;
+}
+
+body.layout-split .deck-trainee-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  min-width: 0;
+  text-align: left;
+}
+
+.deck-trainee-meta {
+  display: none;
+}
+
+body.layout-split .deck-trainee-meta__lbl {
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: #625d7d;
+}
+
+body.layout-split .deck-trainee-meta__name {
+  font-size: 0.88rem;
+  font-weight: 900;
+  color: #703a13;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+body.layout-split .deck-evt-sum {
+  font-size: 0.62rem;
+  min-height: 2.4em;
+}
+
+body.layout-split .deck-support-col.is-focus .deck-evt-sum:not(.deck-evt-sum--auto) {
+  border-style: solid;
+  border-color: #ffd7a8;
+  background: #fff8ee;
+}
+
+/* A 詳細ペイン（スプリット左） */
+.split-evt-pane {
+  display: none;
+  flex-direction: column;
+  flex-shrink: 0;
+  max-height: 42%;
+  min-height: 0;
+  border-top: 2px solid #463f70;
+  background: rgba(255, 255, 255, 0.94);
+  margin: 0.35rem -0.15rem 0;
+}
+
+body.layout-split .split-evt-pane:not([hidden]) {
+  display: flex;
+}
+
+.split-evt-pane__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 0.5rem;
+  padding: 0.45rem 0.55rem;
+  background: #f3eef8;
+  border-bottom: 1px solid #eae7ec;
+  flex-shrink: 0;
+}
+
+.split-evt-pane__title {
+  font-size: 0.78rem;
+  font-weight: 900;
+  color: #463f70;
+}
+
+.split-evt-pane__sub {
+  font-size: 0.62rem;
+  font-weight: 700;
+  color: #625d7d;
+  margin-top: 0.1rem;
+}
+
+.split-evt-pane__close {
+  appearance: none;
+  border: 0;
+  background: transparent;
+  font-size: 1.2rem;
+  line-height: 1;
+  color: #625d7d;
+  cursor: pointer;
+  padding: 0.1rem 0.35rem;
+}
+
+.split-evt-pane__body {
+  overflow: auto;
+  padding: 0.45rem 0.55rem 0.55rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  min-height: 0;
+}
+
+.split-evt-pane__empty {
+  margin: 0;
+  padding: 0.75rem 0.4rem;
+  text-align: center;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #625d7d;
+}
+
+body.layout-split .deck-footband {
+  flex-shrink: 0;
+  margin-top: 0.45rem;
+  max-height: 32%;
+  overflow: auto;
 }
 
 body.layout-split .panel--deck,
@@ -1284,8 +1575,28 @@ body.layout-split .panel--workbench {
   }
 
   body.layout-split {
+    display: block;
     height: auto;
     overflow: auto;
+    padding-bottom: 5.5rem;
+  }
+
+  body.layout-split > .total-sp-bar,
+  .total-sp-bar.total-sp-bar--split-cmd {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: auto;
+    max-width: none;
+    margin: 0;
+    border-radius: 0;
+    border-bottom: 0;
+    border-top: 1px solid #d8dee6;
+  }
+
+  body.layout-split .total-sp-bar__brand {
+    display: none;
   }
 
   body.layout-split > .app-main {
@@ -1294,6 +1605,7 @@ body.layout-split .panel--workbench {
     height: auto;
     max-height: none;
     overflow: visible;
+    flex: none;
   }
 
   body.layout-split #snap-zone-deck,
@@ -1303,6 +1615,14 @@ body.layout-split .panel--workbench {
     height: auto;
     max-height: none;
     overflow: visible;
+  }
+
+  body.layout-split .deck-supports {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  body.layout-split .split-evt-pane:not([hidden]) {
+    max-height: none;
   }
 }
 
