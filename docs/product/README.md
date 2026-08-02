@@ -7,6 +7,7 @@
 | [UX.md](./UX.md) | UX 思想 |
 | [PRIORITY_SUPPORTS.md](./PRIORITY_SUPPORTS.md) | 優先40サポカ一覧 |
 | [design-overhaul-handoff.md](./design-overhaul-handoff.md) | デザイン大改修の引継ぎ |
+| [design-polish-backlog.md](./design-polish-backlog.md) | 細かいデザイン残件（P0/P1・人間確認待ち） |
 | [mockups/hybrid-h5-dual.html](./mockups/hybrid-h5-dual.html) | **H2⇄H1デュアル試用（推奨確認中）** |
 | [mockups/hybrid-index.html](./mockups/hybrid-index.html) | ハイブリッド案入口（H1〜H5） |
 | [mockups/redesign-proposal-v5.html](./mockups/redesign-proposal-v5.html) | v2見た目 × v4骨格 |
