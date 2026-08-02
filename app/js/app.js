@@ -122,7 +122,7 @@ let splitEvtOpen = null;
 let supportPickerTypeFilter = "";
 
 /** Pages の max-age キャッシュで古い events.json が残るのを防ぐ（版上げ時に更新） */
-const DATA_CACHE_BUST = "1.0.1";
+const DATA_CACHE_BUST = "1.0.0";
 
 async function loadJson(path) {
   const sep = path.includes("?") ? "&" : "?";
@@ -2321,24 +2321,8 @@ function bindShareCardButtons() {
           title: model.title,
           totalSp: model.totalSp,
         });
-        const result = await saveShareCardPng(card, mount, filename);
-        if (result.mode === "cancelled") {
-          showShareCardButtonFeedback(btn, defaultLabel, "キャンセル", false);
-        } else if (!result.ok) {
-          showShareCardButtonFeedback(btn, defaultLabel, "保存に失敗", true);
-        } else if (result.mode === "share") {
-          showShareCardButtonFeedback(btn, defaultLabel, "共有しました", false);
-        } else if (result.mode === "picker") {
-          showShareCardButtonFeedback(btn, defaultLabel, "保存しました", false);
-        } else {
-          // a[download]: ダイアログが出ない端末向けに行き先を明示
-          showShareCardButtonFeedback(
-            btn,
-            defaultLabel,
-            "DL開始（フォルダ確認）",
-            false
-          );
-        }
+        await saveShareCardPng(card, mount, filename);
+        showShareCardButtonFeedback(btn, defaultLabel, "保存しました", false);
       }
     } catch (e) {
       console.error(e);

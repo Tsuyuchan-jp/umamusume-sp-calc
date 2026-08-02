@@ -15,7 +15,7 @@ const DEFAULT_STYLE = {
 };
 
 /** 画像 URL のキャッシュ回避（追加前の 404 が残るのを防ぐ。版上げ時に更新） */
-const ASSET_CACHE_BUST = "1.0.1";
+const ASSET_CACHE_BUST = "0.1.18";
 
 /** @param {string} [type] */
 export function getSupportTypeStyle(type) {
@@ -46,11 +46,6 @@ export function supportImageUrl(supportId) {
 /** 育成ウマ娘画像 URL */
 export function characterImageUrl(characterId) {
   return assetUrl(`characters/${characterId}.webp`);
-}
-
-/** UI 画像 URL（共有カード背景など） */
-export function uiAssetUrl(filename) {
-  return assetUrl(`ui/${filename}`);
 }
 
 /** カード表示用の短い名前 */
