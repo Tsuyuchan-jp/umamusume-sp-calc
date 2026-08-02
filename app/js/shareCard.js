@@ -1,6 +1,6 @@
 /**
- * 編成スクショ共有カード — 正本モック v28.1 忠実移植
- * データ組み立て・DOM 描画・溢れ measure・画像化
+ * 編成スクショ共有カード — 正本モック v28.1 直移植
+ * DOM 骨格はモックと同一。JS はテキスト／画像／金行・除外の差し替えのみ。
  */
 
 import { characterImageUrl, supportImageUrl } from "./cardAssets.js";
@@ -10,7 +10,10 @@ import {
 } from "./scenarioLink.js";
 import { GROUND_LABELS } from "./skillActivation.js";
 import { buildSupportOrderMap } from "./skillSource.js";
-import { formatTrainingSourceLabel, shortNameForSupport } from "./supportShortName.js";
+import {
+  formatTrainingSourceLabel,
+  shortNameForSupport,
+} from "./supportShortName.js";
 
 /** スクショ用レギュ表示（モック準拠のフル表記） */
 const SHARE_DISTANCE_LABELS = {
@@ -29,7 +32,7 @@ const SHARE_STYLE_LABELS = {
 
 const CARD_WIDTH_PX = 1080;
 const CARD_HEIGHT_PX = 608;
-let html2canvasPromise = null;
+let snapdomPromise = null;
 
 /**
  * @param {number} n
@@ -89,11 +92,12 @@ function countSkills(rows) {
  * @param {object} scenario
  * @param {object} ui
  * @param {object[]} supports
- * @returns {{ rmjIds: Set<number>, linkIds: Set<number> }}
+ * @returns {{ rmjIds: Set<number>, linkIds: Set<number>, autoIds: Set<number> }}
  */
 function buildScenarioGoldSkillIds(scenario, ui, supports) {
   const rmjIds = new Set();
   const linkIds = new Set();
+  const autoIds = new Set();
   const supportById = new Map(supports.map((s) => [s.id, s]));
   const deckIds = getDeckLinkCharacterIds(
     ui.characterId,
@@ -111,23 +115,51 @@ function buildScenarioGoldSkillIds(scenario, ui, supports) {
   }
 
   for (const entry of scenario?.linkSkills || []) {
+    const withLink = entry.skillWithLink?.skillId;
+    const without = entry.skillWithoutLink?.skillId;
+    if (withLink != null) linkIds.add(Number(withLink));
+    if (without != null) linkIds.add(Number(without));
     const resolved = resolveLinkSkill(entry, deckIds);
     if (resolved?.skillId != null) linkIds.add(Number(resolved.skillId));
   }
 
-  return { rmjIds, linkIds };
+  for (const entry of scenario?.scenarioAutoSkills || []) {
+    for (const sk of entry.skills || []) {
+      if (sk.skillId != null) autoIds.add(Number(sk.skillId));
+    }
+  }
+
+  return { rmjIds, linkIds, autoIds };
 }
 
 /**
- * 計上 ON の金スキルをグループ化
+ * 金行の表示由来は「その金スキル自身」の sources だけ使う。
+ * チェーン下位のサポ由来を拾うと RMJ/たづな等が誤帰属する。
+ * @param {object} row
+ * @returns {object[]}
+ */
+function sourcesForGoldRow(row) {
+  const sources = row.sources || [];
+  const own = sources.filter(
+    (src) => src.skillId == null || Number(src.skillId) === Number(row.skillId)
+  );
+  return own.length ? own : sources.filter((src) => src.kind !== "owned");
+}
+
+/**
+ * 計上 ON の金スキルをグループ化（モックの gold-row 単位）
  * @param {object} params
  * @returns {{ label: string, isScn: boolean, order: number, skills: string[] }[]}
  */
 function collectGoldGroups(params) {
-  const { plan, ui, supports, scenario, skillById } = params;
+  const { plan, ui, supports, scenario } = params;
   const supportById = new Map(supports.map((s) => [s.id, s]));
   const supportOrder = buildSupportOrderMap(ui.supportIds);
-  const { rmjIds, linkIds } = buildScenarioGoldSkillIds(scenario, ui, supports);
+  const { rmjIds, linkIds, autoIds } = buildScenarioGoldSkillIds(
+    scenario,
+    ui,
+    supports
+  );
 
   /** @type {Map<string, { label: string, isScn: boolean, order: number, skills: string[] }>} */
   const groups = new Map();
@@ -145,25 +177,13 @@ function collectGoldGroups(params) {
   for (const row of plan.rows) {
     if (row.excluded || row.isInherit || row.rarity !== 2) continue;
 
-    const sources = row.sources || [];
-    const nonOwned = sources.filter((src) => src.kind !== "owned");
-    if (nonOwned.length === 0) continue;
+    const sources = sourcesForGoldRow(row).filter((src) => src.kind !== "owned");
+    if (!sources.length) continue;
 
-    const supportSrc = nonOwned.find(
-      (src) =>
-        (src.kind === "event" || src.kind === "training") && src.supportId != null
-    );
-    if (supportSrc) {
-      const support = supportById.get(supportSrc.supportId);
-      const label =
-        formatTrainingSourceLabel(support) || shortNameForSupport(support) || "サポ";
-      const order = supportOrder.get(supportSrc.supportId) ?? 50;
-      addSkill(`sup:${supportSrc.supportId}`, label, false, order, row.name);
-      continue;
-    }
+    const sid = row.skillId != null ? Number(row.skillId) : null;
 
-    if (nonOwned.some((src) => src.kind === "scenario")) {
-      const sid = row.skillId;
+    // シナリオ系を優先（チェーン下位のサポ由来より）
+    if (sources.some((src) => src.kind === "scenario") || (sid != null && (rmjIds.has(sid) || linkIds.has(sid) || autoIds.has(sid)))) {
       let label = "シナリオ";
       let order = 102;
       if (sid != null && rmjIds.has(sid)) {
@@ -172,12 +192,30 @@ function collectGoldGroups(params) {
       } else if (sid != null && linkIds.has(sid)) {
         label = "リンク";
         order = 101;
+      } else if (sid != null && autoIds.has(sid)) {
+        label = "シナリオ";
+        order = 102;
       }
       addSkill(`scn:${label}`, label, true, order, row.name);
       continue;
     }
 
-    const eventSrc = nonOwned.find((src) => src.kind === "event");
+    const supportSrc = sources.find(
+      (src) =>
+        (src.kind === "event" || src.kind === "training") && src.supportId != null
+    );
+    if (supportSrc) {
+      const support = supportById.get(supportSrc.supportId);
+      const label =
+        formatTrainingSourceLabel(support) ||
+        shortNameForSupport(support) ||
+        "サポ";
+      const order = supportOrder.get(Number(supportSrc.supportId)) ?? 50;
+      addSkill(`sup:${supportSrc.supportId}`, label, false, order, row.name);
+      continue;
+    }
+
+    const eventSrc = sources.find((src) => src.kind === "event");
     if (eventSrc) {
       addSkill(
         `evt:${eventSrc.label || row.name}`,
@@ -280,19 +318,18 @@ function makeOffChip(name) {
  * @param {string[]} names
  */
 function fitManualExclusions(cardEl, names) {
-  const offPanel = cardEl.querySelector(".panel--off");
-  const offBody = cardEl.querySelector(".off-body");
   const offList = cardEl.querySelector(".off-list");
   const moreChip = cardEl.querySelector(".off-chip--more");
+  const offBody = cardEl.querySelector(".off-body");
 
-  if (!offPanel || !offBody || !offList || !moreChip) return;
+  if (!offList || !moreChip || !offBody) return;
 
   if (!names.length) {
-    offPanel.classList.add("is-empty");
+    offList.replaceChildren();
+    moreChip.classList.remove("is-shown");
     return;
   }
 
-  offPanel.classList.remove("is-empty");
   const gap = 6;
   let visible = names.length;
 
@@ -305,9 +342,9 @@ function fitManualExclusions(cardEl, names) {
     const hidden = names.length - visible;
     if (hidden > 0) {
       moreChip.textContent = `他 ${hidden} 件`;
-      moreChip.hidden = false;
+      moreChip.classList.add("is-shown");
     } else {
-      moreChip.hidden = true;
+      moreChip.classList.remove("is-shown");
     }
 
     const moreH = hidden > 0 ? moreChip.offsetHeight : 0;
@@ -319,18 +356,19 @@ function fitManualExclusions(cardEl, names) {
   if (visible <= 0 && names.length > 0) {
     offList.replaceChildren();
     moreChip.textContent = `他 ${names.length} 件`;
-    moreChip.hidden = false;
+    moreChip.classList.add("is-shown");
   }
 }
 
 /**
+ * モック DOM 骨格そのまま＋データ差し替え
  * @param {object} model
  * @returns {HTMLElement}
  */
 export function renderShareCardElement(model) {
   const article = document.createElement("article");
   article.className = "share";
-  article.setAttribute("aria-label", "編成共有カード");
+  article.setAttribute("aria-label", "共有カード主案 v28.1");
 
   const goldRowsHtml = model.goldGroups
     .map((group) => {
@@ -345,79 +383,82 @@ export function renderShareCardElement(model) {
     })
     .join("");
 
-  const supportFigures = model.supportIds
-    .map((id) => {
-      if (id == null) {
-        return "<figure></figure>";
-      }
-      const url = supportImageUrl(id);
-      return `<figure><img src="${escapeHtml(url)}" alt="" /></figure>`;
-    })
-    .join("");
+  const supportFigures = Array.from({ length: 6 }, (_, i) => {
+    const id = model.supportIds[i];
+    if (id == null) return "<figure></figure>";
+    return `<figure><img src="${escapeHtml(supportImageUrl(id))}" alt="" /></figure>`;
+  }).join("");
 
-  const charUrl = model.characterId != null ? characterImageUrl(model.characterId) : "";
+  const charUrl =
+    model.characterId != null ? characterImageUrl(model.characterId) : "";
+  const fastOn = model.fastLearner;
 
+  // DOM 骨格はモック article.share と同一
   article.innerHTML = `
-    <section class="left">
-      <div class="strip">
-        <div class="strip__cell">
-          <div class="strip__lab">必要SP</div>
-          <div class="strip__sp">${formatSp(model.totalSp)}<em>SP</em></div>
-        </div>
-        <div class="strip__cell">
-          <div class="strip__lab">計上スキル数</div>
-          <div class="strip__count">
-            <span class="strip__count-on">${model.skillCountOn}</span><span class="strip__count-den">/${model.skillCountTotal}</span>
+      <section class="left">
+        <div class="strip">
+          <div class="strip__cell">
+            <div class="strip__lab">必要SP</div>
+            <div class="strip__sp">${formatSp(model.totalSp)}<em>SP</em></div>
           </div>
-          <div class="strip__val"><small>レギュ除外 ${model.reguExcludedCount}</small></div>
-        </div>
-        <div class="strip__cell">
-          <div class="strip__lab">レギュ</div>
-          <div class="strip__regu">${escapeHtml(model.reguLine)}</div>
-          <div class="strip__prem">
-            <span>${escapeHtml(model.trainingLine)}</span>
-            <span>${escapeHtml(model.inheritLine)}</span>
+          <div class="strip__cell">
+            <div class="strip__lab">計上スキル数</div>
+            <div class="strip__count">
+              <span class="strip__count-on">${model.skillCountOn}</span><span class="strip__count-den">/${model.skillCountTotal}</span>
+            </div>
+            <div class="strip__val"><small>レギュ除外 ${model.reguExcludedCount}</small></div>
           </div>
-        </div>
-      </div>
-      <div class="body">
-        <div class="head">
-          <div>
-            <h2 class="head__title">${escapeHtml(model.title)}</h2>
-            <p class="head__sub">${escapeHtml(model.subtitle)}</p>
-          </div>
-          <div class="fast-inline${model.fastLearner ? "" : " is-off"}" title="切れ者 ${model.fastLearner ? "ON" : "OFF"}">
-            <span class="fast-inline__mark">切れ者</span>
-            <span class="fast-inline__state">${model.fastLearner ? "ON" : "OFF"}</span>
-          </div>
-        </div>
-        <div class="work">
-          <div class="panel panel--gold">
-            <div class="panel__lab">金スキル</div>
-            <div class="gold-board">${goldRowsHtml}</div>
-          </div>
-          <div class="panel panel--off${model.manualExcluded.length ? "" : " is-empty"}">
-            <div class="panel__lab">除外</div>
-            <div class="off-body">
-              <div class="off-list"></div>
-              <span class="off-chip off-chip--more" hidden>他 0 件</span>
+          <div class="strip__cell">
+            <div class="strip__lab">レギュ</div>
+            <div class="strip__regu">${escapeHtml(model.reguLine)}</div>
+            <div class="strip__prem">
+              <span>${escapeHtml(model.trainingLine)}</span>
+              <span>${escapeHtml(model.inheritLine)}</span>
             </div>
           </div>
         </div>
-      </div>
-    </section>
-    <section class="right">
-      <div class="right__trainee">
-        <img src="${escapeHtml(charUrl)}" alt="" />
-        <div>
-          <div class="right__trainee-lab">育成ウマ娘</div>
-          <p class="right__trainee-name">${escapeHtml(model.subtitle)}</p>
+
+        <div class="body">
+          <div class="head">
+            <div>
+              <h2 class="head__title">${escapeHtml(model.title)}</h2>
+              <p class="head__sub">${escapeHtml(model.subtitle)}</p>
+            </div>
+            <div class="fast-inline${fastOn ? "" : " is-off"}" title="切れ者 ${fastOn ? "ON" : "OFF"}">
+              <span class="fast-inline__mark">切れ者</span>
+              <span class="fast-inline__state">${fastOn ? "ON" : "OFF"}</span>
+            </div>
+          </div>
+
+          <div class="work">
+            <div class="panel panel--gold">
+              <div class="panel__lab">金スキル</div>
+              <div class="gold-board">${goldRowsHtml}</div>
+            </div>
+
+            <div class="panel panel--off">
+              <div class="panel__lab">除外</div>
+              <div class="off-body">
+                <div class="off-list"></div>
+                <span class="off-chip off-chip--more">他 0 件</span>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
-      <div class="grid-stage">
-        <div class="grid-bleed" aria-label="サポートカード">${supportFigures}</div>
-      </div>
-    </section>
+      </section>
+
+      <section class="right">
+        <div class="right__trainee">
+          <img src="${escapeHtml(charUrl)}" alt="" />
+          <div>
+            <div class="right__trainee-lab">育成ウマ娘</div>
+            <p class="right__trainee-name">${escapeHtml(model.subtitle)}</p>
+          </div>
+        </div>
+        <div class="grid-stage">
+          <div class="grid-bleed" aria-label="サポートカード">${supportFigures}</div>
+        </div>
+      </section>
   `;
 
   fitManualExclusions(article, model.manualExcluded);
@@ -425,7 +466,6 @@ export function renderShareCardElement(model) {
 }
 
 /**
- * マウントへ描画してカード要素を返す
  * @param {HTMLElement} mount
  * @param {object} model
  * @returns {Promise<HTMLElement>}
@@ -452,17 +492,15 @@ export async function renderShareCardToMount(mount, model) {
     )
   );
 
-  fitManualExclusions(card, model.manualExcluded);
-
-  // レイアウト確定を待つ（aspect-ratio 非対応環境でも高さが効くよう CSS で固定済み）
-  await new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve)));
+  await new Promise((resolve) =>
+    requestAnimationFrame(() => requestAnimationFrame(resolve))
+  );
   fitManualExclusions(card, model.manualExcluded);
 
   return card;
 }
 
 /**
- * キャプチャ用にマウントを一時可視化
  * @param {HTMLElement} mount
  */
 function beginShareCardCapture(mount) {
@@ -477,53 +515,15 @@ function endShareCardCapture(mount) {
 }
 
 /**
- * html2canvas 向けにクローン側のスタイルを補正
- * @param {Document} doc
- * @param {HTMLElement} clonedCard
+ * @returns {Promise<{ toCanvas: Function, toBlob: Function, toPng: Function }>}
  */
-function patchClonedShareCard(doc, clonedCard) {
-  const mount = clonedCard.closest(".share-card-mount");
-  if (mount) {
-    mount.style.opacity = "1";
-    mount.style.zIndex = "2147483646";
-    mount.style.width = `${CARD_WIDTH_PX}px`;
-    mount.style.height = `${CARD_HEIGHT_PX}px`;
+async function loadSnapdom() {
+  if (!snapdomPromise) {
+    snapdomPromise = import(
+      "https://cdn.jsdelivr.net/npm/@zumer/snapdom@2.23.1/+esm"
+    ).then((mod) => mod.snapdom);
   }
-
-  clonedCard.style.width = `${CARD_WIDTH_PX}px`;
-  clonedCard.style.height = `${CARD_HEIGHT_PX}px`;
-
-  // backdrop-filter は html2canvas で真っ白になることがある
-  for (const el of clonedCard.querySelectorAll(".right__trainee, .grid-stage")) {
-    el.style.backdropFilter = "none";
-    el.style.webkitBackdropFilter = "none";
-  }
-
-  // 外部タイルは CORS で落ちることがあるためグラデーションのみ残す
-  const right = clonedCard.querySelector(".right");
-  if (right) {
-    right.style.backgroundImage =
-      "linear-gradient(165deg, rgba(90, 72, 160, 0.38) 0%, rgba(55, 48, 110, 0.48) 55%, rgba(40, 36, 88, 0.55) 100%), url('../assets/ui/uma-world.png')";
-    right.style.backgroundSize = "cover, cover";
-    right.style.backgroundPosition = "center, center";
-    right.style.backgroundRepeat = "no-repeat, no-repeat";
-  }
-
-  const pseudo = doc.createElement("style");
-  pseudo.textContent = ".right::before{display:none!important}";
-  doc.head.appendChild(pseudo);
-}
-
-/**
- * @returns {Promise<Function>}
- */
-async function loadHtml2Canvas() {
-  if (!html2canvasPromise) {
-    html2canvasPromise = import(
-      "https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/+esm"
-    ).then((mod) => mod.default);
-  }
-  return html2canvasPromise;
+  return snapdomPromise;
 }
 
 /**
@@ -532,7 +532,7 @@ async function loadHtml2Canvas() {
  * @returns {Promise<HTMLCanvasElement>}
  */
 export async function captureShareCardElement(cardEl, mount) {
-  const html2canvas = await loadHtml2Canvas();
+  const snapdom = await loadSnapdom();
 
   if (document.fonts?.ready) {
     await document.fonts.ready;
@@ -542,15 +542,12 @@ export async function captureShareCardElement(cardEl, mount) {
   void cardEl.offsetHeight;
 
   try {
-    return await html2canvas(cardEl, {
+    // snapdom: ブラウザネイティブ描画（backdrop-filter / フォント / ::before に強い）
+    return await snapdom.toCanvas(cardEl, {
       width: CARD_WIDTH_PX,
       height: CARD_HEIGHT_PX,
       scale: 2,
-      useCORS: true,
-      allowTaint: true,
-      backgroundColor: "#ffffff",
-      logging: false,
-      onclone: patchClonedShareCard,
+      embedFonts: true,
     });
   } finally {
     endShareCardCapture(mount);
