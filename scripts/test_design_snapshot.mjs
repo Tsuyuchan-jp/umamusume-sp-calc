@@ -10,6 +10,11 @@ import {
   listEntries,
   saveEntry,
 } from "../app/js/designMemory.js";
+import {
+  DESIGN_SESSION_STORAGE_KEY,
+  loadSessionSnapshot,
+  saveSessionSnapshot,
+} from "../app/js/designSession.js";
 
 /** @returns {Storage} */
 function createMemoryStorage() {
@@ -118,5 +123,16 @@ for (let i = 0; i < DESIGN_MEMORY_MAX_ENTRIES + 2; i++) {
   );
 }
 assert.equal(listEntries(storage).length, DESIGN_MEMORY_MAX_ENTRIES);
+
+// --- designSession（メモリとは別キー） ---
+const sessionStore = createMemoryStorage();
+assert.equal(loadSessionSnapshot(sessionStore), null);
+saveSessionSnapshot(snap, sessionStore);
+assert.ok(sessionStore.getItem(DESIGN_SESSION_STORAGE_KEY));
+const loaded = loadSessionSnapshot(sessionStore);
+assert.equal(loaded.version, 1);
+assert.equal(loaded.characterId, 105801);
+saveSessionSnapshot({ version: 2 }, sessionStore);
+assert.equal(loadSessionSnapshot(sessionStore)?.characterId, 105801);
 
 console.log("test_design_snapshot: OK");

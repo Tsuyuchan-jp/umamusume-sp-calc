@@ -1324,23 +1324,131 @@ tr:hover td {
   display: none;
 }
 
-/* ---- ダイアログ ---- */
+/* ---- ダイアログ（紫クロム頭＋金縁・ピッカー寄せ） ---- */
 .help-dialog,
 .memory-dialog {
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-lg);
-  border: 1px solid var(--border-default);
+  border-radius: 12px;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.32);
+  border: 2px solid var(--ink-deep);
+  overflow: hidden;
 }
 
 .help-dialog__chrome,
 .memory-dialog__chrome {
-  background: linear-gradient(135deg, var(--ink-deep) 0%, var(--ink-mid) 100%);
+  background: linear-gradient(180deg, var(--ink-mid) 0%, var(--ink-deep) 100%);
+  border-bottom: 3px solid var(--c-gold, #f5cf6f);
+  padding: 0.75rem 1rem;
+  border-radius: 0;
+}
+
+.help-dialog__title,
+.memory-dialog__title {
+  font-weight: 900;
+  color: #fff;
+  letter-spacing: 0.01em;
+}
+
+.help-dialog__close,
+.memory-dialog__close {
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+}
+
+.help-dialog__close:hover,
+.memory-dialog__close:hover {
+  background: rgba(255, 255, 255, 0.22);
+  border-color: var(--c-gold, #f5cf6f);
+}
+
+.help-dialog__body,
+.memory-dialog__body {
+  background:
+    radial-gradient(circle at 12% 8%, rgba(245, 207, 111, 0.12), transparent 42%),
+    radial-gradient(circle at 88% 0%, rgba(70, 63, 112, 0.06), transparent 38%),
+    var(--panel, #fff);
+  border-radius: 0;
 }
 
 .help-section {
   border-radius: var(--radius-md);
   border-color: var(--border-default);
-  background: var(--surface-muted);
+  background: linear-gradient(180deg, #fff, var(--surface-muted, #f6f4f8));
+  margin-bottom: 0.65rem;
+}
+
+.help-section summary {
+  font-weight: 900;
+  color: var(--ink-deep);
+  padding: 0.7rem 0.9rem;
+}
+
+.help-section summary::before {
+  color: var(--ink-deep);
+}
+
+.help-section__content {
+  padding: 0 0.9rem 0.95rem;
+}
+
+.memory-save-row input {
+  border-color: var(--border-default);
+  border-radius: var(--radius-sm);
+}
+
+.memory-save-row button {
+  font-weight: 900;
+  border: 1.5px solid var(--ink-deep);
+  border-radius: var(--radius-sm);
+  background: linear-gradient(180deg, var(--ink-mid) 0%, var(--ink-deep) 100%);
+  color: #fff;
+}
+
+.memory-save-row button:hover {
+  filter: brightness(1.08);
+  border-color: var(--c-gold, #f5cf6f);
+}
+
+.memory-item {
+  border: 1.5px solid var(--border-default);
+  border-radius: 8px;
+  background: linear-gradient(180deg, #fff, #f6f4f8);
+  box-shadow: 0 1px 2px rgba(70, 63, 112, 0.06);
+}
+
+.memory-item__name {
+  font-weight: 900;
+  color: var(--ink-deep);
+}
+
+.memory-item__actions .memory-restore-btn {
+  font-weight: 900;
+  border-color: var(--ink-deep);
+  color: var(--ink-deep);
+  background: #fff;
+  border-radius: var(--radius-sm);
+}
+
+.memory-item__actions .memory-restore-btn:hover {
+  background: var(--ink-deep);
+  color: #fff;
+}
+
+.memory-item__actions .memory-delete-btn {
+  font-weight: 800;
+  border-color: #c43a5a;
+  color: #c43a5a;
+  background: #fff;
+  border-radius: var(--radius-sm);
+}
+
+.memory-item__actions .memory-delete-btn:hover {
+  background: #c43a5a;
+  color: #fff;
+}
+
+.memory-hint {
+  color: var(--ink-muted, #625d7d);
 }
 
 /* ---- 絞込・その他（結果ツールバーは style.css の H5 寄せが正） ---- */

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>リンク／RMJ チップ — 選択中デザイン</title>
+  <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@700;900&display=swap" rel="stylesheet" />
+  <style>
+    :root { --ink: #463f70; --font: "Zen Maru Gothic", Meiryo, sans-serif; }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; font-family: var(--font); font-weight: 700;
+      background: #3d3758; color: #703a13; padding: 1.25rem;
+    }
+    h1 { color: #f5cf6f; font-size: 1rem; margin: 0 0 0.5rem; }
+    .note { color: #ddd8ef; font-size: 0.78rem; margin: 0 0 1rem; line-height: 1.5; }
+    .grid { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+    .card {
+      background: #fff; border: 2px solid var(--ink); border-radius: 10px; padding: 0.85rem;
+    }
+    .card h2 { margin: 0 0 0.35rem; font-size: 0.82rem; color: var(--ink); }
+    .card p { margin: 0 0 0.65rem; font-size: 0.68rem; color: #625d7d; line-height: 1.4; }
+    .row { display: flex; flex-wrap: wrap; gap: 0.35rem; align-items: center; }
+    .lbl { font-size: 0.62rem; font-weight: 900; color: #625d7d; min-width: 2.4rem; }
+    .pick { outline: 2px solid #ff3276; outline-offset: 2px; }
+
+    .chip {
+      appearance: none; border: 1.5px solid #c8c0d8;
+      background: linear-gradient(180deg, #fff, #f3f0f7); color: #463f70;
+      font: inherit; font-size: 0.68rem; font-weight: 800;
+      padding: 0.28rem 0.5rem; border-radius: 999px; cursor: default;
+    }
+    .mark {
+      display: inline-block; margin-right: 0.28rem; padding: 0.05rem 0.28rem;
+      border-radius: 3px; font-size: 0.58rem; font-weight: 900;
+      background: linear-gradient(90deg, #e9c95f, #e29403); color: #5a3d00;
+    }
+    .gold {
+      border-color: #e0c878;
+      background: linear-gradient(180deg, #fffaf0, #ffe9b8);
+      color: #6a5220;
+    }
+    /* 旧: 選択＝金塗り強調（属性と被る） */
+    .old-on {
+      border-color: #c98910;
+      background: linear-gradient(180deg, #f0d060, #e29403);
+      color: #3a2a00;
+      box-shadow: 0 1px 5px rgba(226, 148, 3, 0.4);
+    }
+    /* 案A（推奨）: 金塗り＋紫リング */
+    .ring-on {
+      border-color: #c98910;
+      background: linear-gradient(180deg, #f0d060, #e29403);
+      color: #3a2a00;
+      box-shadow: 0 0 0 2px #fff, 0 0 0 4px #463f70, 0 2px 8px rgba(70, 63, 112, 0.28);
+      transform: translateY(-1px);
+    }
+    /* 案B: 金塗り＋ピンクリング */
+    .pink-on {
+      border-color: #c98910;
+      background: linear-gradient(180deg, #f0d060, #e29403);
+      color: #3a2a00;
+      box-shadow: 0 0 0 2px #fff, 0 0 0 4px #f7518b;
+    }
+  </style>
+</head>
+<body>
+  <h1>リンク／RMJ — 選択中デザイン</h1>
+  <p class="note">金スキル色と「選択中」を分離。推奨は案A（紫リング）。本番はこの案で実装済み。</p>
+  <div class="grid">
+    <section class="card">
+      <h2>現行寄り（問題）</h2>
+      <p>選択も金塗り強化 → 属性との差が弱い</p>
+      <div class="row"><span class="lbl">リンク</span>
+        <span class="chip gold old-on"><span class="mark">金</span>アガッてきた！</span>
+        <span class="chip gold"><span class="mark">金</span>食いしん坊</span>
+        <span class="chip">白ヒント例</span>
+      </div>
+    </section>
+    <section class="card pick">
+      <h2>案A（推奨・採用）</h2>
+      <p>金塗りは属性。選択は紫の二重リング</p>
+      <div class="row"><span class="lbl">リンク</span>
+        <span class="chip gold ring-on"><span class="mark">金</span>アガッてきた！</span>
+        <span class="chip gold"><span class="mark">金</span>食いしん坊</span>
+        <span class="chip">白ヒント例</span>
+      </div>
+      <div class="row" style="margin-top:0.5rem"><span class="lbl">RMJ</span>
+        <span class="chip gold ring-on"><span class="mark">金</span>全身全霊</span>
+        <span class="chip gold"><span class="mark">金</span>アガッてきた！</span>
+      </div>
+    </section>
+    <section class="card">
+      <h2>案B</h2>
+      <p>ピンクリング。ONチップと色が近い</p>
+      <div class="row"><span class="lbl">リンク</span>
+        <span class="chip gold pink-on"><span class="mark">金</span>アガッてきた！</span>
+        <span class="chip gold"><span class="mark">金</span>食いしん坊</span>
+      </div>
+    </section>
+  </div>
+</body>
+</html>

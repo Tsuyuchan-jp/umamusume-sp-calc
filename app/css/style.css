@@ -629,43 +629,46 @@ input[type="search"] {
   max-width: 100%;
   overflow: hidden;
   text-overflow: ellipsis;
+  transition: box-shadow 0.12s ease, transform 0.12s ease, border-color 0.12s ease, filter 0.12s ease;
 }
 
 .scn-chip:hover {
   border-color: #9080b8;
 }
 
-.scn-chip.is-on {
+/* 選択中（非金）: ピンク塗り */
+.scn-chip.is-on:not(.scn-chip--gold) {
   border-color: #c00f47;
   background: linear-gradient(180deg, #ff75a3, #f7518b);
   color: #fff;
   box-shadow: 0 1px 4px rgba(255, 50, 118, 0.35);
 }
 
-.scn-chip.scn-chip--rmj.is-on {
-  /* RMJ も金表示に統一（後方互換セレクタ） */
-  border-color: #c98910;
-  background: linear-gradient(180deg, #f0d060, #e29403);
-  color: #3a2a00;
-  box-shadow: 0 1px 5px rgba(226, 148, 3, 0.4);
-}
-
-/* シナリオリンク効果で金になっているスキル */
+/* 金スキル属性（未選択は少し抑える） */
 .scn-chip.scn-chip--gold {
-  border-color: #e9b84a;
-  background: linear-gradient(180deg, #fff8e0, #ffe29a);
-  color: #5a3d00;
+  border-color: #e0c878;
+  background: linear-gradient(180deg, #fffaf0, #ffe9b8);
+  color: #6a5220;
+  filter: saturate(0.92);
 }
 
 .scn-chip.scn-chip--gold:hover {
   border-color: #e29403;
+  filter: none;
 }
 
-.scn-chip.scn-chip--gold.is-on {
+/* 金 + 選択中: 金塗りは維持し、紫リングで選択を示す */
+.scn-chip.scn-chip--gold.is-on,
+.scn-chip.scn-chip--rmj.is-on {
   border-color: #c98910;
   background: linear-gradient(180deg, #f0d060, #e29403);
   color: #3a2a00;
-  box-shadow: 0 1px 5px rgba(226, 148, 3, 0.4);
+  filter: none;
+  box-shadow:
+    0 0 0 2px #fff,
+    0 0 0 4px #463f70,
+    0 2px 8px rgba(70, 63, 112, 0.28);
+  transform: translateY(-1px);
 }
 
 .scn-chip__gold-mark {
@@ -767,26 +770,77 @@ input[type="search"] {
   padding: 0.2rem 0.35rem 0.45rem;
 }
 
-/* ---- A: 列下要約 ---- */
+/* ---- 列下イベント（1行コンパクト） ---- */
 .deck-evt-sum {
-  display: block;
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
   width: 100%;
+  box-sizing: border-box;
+  min-height: 1.7rem;
+  height: 1.7rem;
   text-align: left;
   font: inherit;
   font-size: 0.68rem;
   font-weight: 700;
-  line-height: 1.35;
-  padding: 0.3rem 0.35rem;
+  line-height: 1.2;
+  padding: 0 0.35rem 0 0;
   border-radius: 5px;
-  border: 1px solid #ffd7a8;
+  border: 1px solid #d8d0e0;
   background: #fff8ee;
   color: #703a13;
   cursor: pointer;
-  margin: 0 0 0.3rem;
+  margin: 0 0 0.28rem;
+  overflow: hidden;
 }
 
 .deck-evt-sum:hover {
   border-color: #ff7300;
+}
+
+.deck-evt-sum__bar {
+  flex: 0 0 4px;
+  align-self: stretch;
+  width: 4px;
+  border-radius: 4px 0 0 4px;
+  background: #c8c0d4;
+}
+
+.deck-evt-sum__name {
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.deck-evt-sum__meta {
+  flex: 0 0 auto;
+  font-size: 0.58rem;
+  font-weight: 900;
+  color: #625d7d;
+  opacity: 0.85;
+  padding-right: 0.1rem;
+}
+
+.deck-evt-sum--white {
+  background: #f7f5fa;
+  border-color: #d4cfe0;
+  color: #4a4560;
+}
+
+.deck-evt-sum--white .deck-evt-sum__bar {
+  background: #b8b4c8;
+}
+
+.deck-evt-sum--stat {
+  background: #eef8ff;
+  border-color: #b8d8f0;
+  color: #0c5b92;
+}
+
+.deck-evt-sum--stat .deck-evt-sum__bar {
+  background: #59ccfc;
 }
 
 .deck-evt-sum--auto {
@@ -795,25 +849,26 @@ input[type="search"] {
   color: #4a2d7a;
 }
 
+.deck-evt-sum--auto .deck-evt-sum__bar {
+  background: #9b7ad4;
+}
+
 .deck-evt-sum--gold {
   background: linear-gradient(180deg, #fff6d6, #ffe29a);
   border-color: #e9b84a;
   color: #5a3d00;
-  box-shadow: inset 0 0 0 1px rgba(233, 185, 74, 0.35);
+  box-shadow: inset 0 0 0 1px rgba(233, 185, 74, 0.25);
 }
 
-.deck-evt-sum--gold .deck-evt-sum__more {
+.deck-evt-sum--gold .deck-evt-sum__bar {
+  background: linear-gradient(180deg, #f0d060, #e29403);
+}
+
+.deck-evt-sum--gold .deck-evt-sum__meta {
   color: #8a6a20;
 }
 
-.deck-evt-sum__more {
-  display: block;
-  font-size: 0.58rem;
-  font-weight: 700;
-  color: #625d7d;
-  margin-top: 0.1rem;
-}
-
+/* 詳細ダイアログ／ペイン内の種別バッジ（列下では使わない） */
 .evt-badge {
   display: inline-flex;
   align-items: center;
@@ -826,6 +881,7 @@ input[type="search"] {
   font-weight: 900;
   line-height: 1;
   flex-shrink: 0;
+  margin-right: 0.28rem;
 }
 
 .evt-badge--gold {

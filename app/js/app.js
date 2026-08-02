@@ -26,6 +26,10 @@ import {
   saveEntry as saveMemoryEntry,
 } from "./designMemory.js";
 import {
+  loadSessionSnapshot,
+  saveSessionSnapshot,
+} from "./designSession.js";
+import {
   getDeckLinkCharacterIds,
   resolveLinkSkill,
 } from "./scenarioLink.js";
@@ -83,6 +87,9 @@ let inheritPopoverOpen = false;
 
 /** 継承パネルのイベントを一度だけバインド */
 let inheritPopoverBound = false;
+
+/** セッション自動保存の debounce */
+let sessionSaveTimer = null;
 
 /** スプリット左ドックでフォーカス中のサポ枠（0–5）。ギャラリーでは未使用 */
 let focusSupportSlot = null;
@@ -861,6 +868,16 @@ function captureCurrentDesign() {
   });
 }
 
+/** 前回セッションを debounce 保存（メモリ一覧とは別） */
+function scheduleSessionSave() {
+  if (!state) return;
+  clearTimeout(sessionSaveTimer);
+  sessionSaveTimer = setTimeout(() => {
+    if (!state) return;
+    saveSessionSnapshot(captureCurrentDesign());
+  }, 350);
+}
+
 /**
  * スナップショットを画面へ復元
  * @param {object} snapshot
@@ -1168,8 +1185,8 @@ function openEventChoicePane(evt, slotIndex) {
   const slotLabel =
     typeof slotIndex === "number" ? `${slotIndex + 1}. ` : "";
   const name = support ? shortSupportLabel(support) : "";
-  title.textContent = `A · ${slotLabel}${name || evt.label}`;
-  sub.textContent = "カード帯クリック / 同じ要約 / Esc で閉じる";
+  title.textContent = `${slotLabel}${name || evt.label}`;
+  sub.textContent = "カード帯・同じ項目・Esc で閉じる";
 
   const refresh = () => {
     renderColumnEvents();
@@ -1189,9 +1206,9 @@ function openEventChoiceDialog(evt) {
   const sub = document.getElementById("event-choice-dialog-sub");
   const body = document.getElementById("event-choice-dialog-body");
   if (!dialog || !body) return;
-  title.textContent = `A · ${evt.label}`;
+  title.textContent = evt.label;
   sub.textContent =
-    evt.selection === "toggle" ? "複数・ON/OFF" : "単一選択 · 金を最上段";
+    evt.selection === "toggle" ? "ON/OFF を切り替え" : "金・白・ステから必ず1つ選びます";
   const refresh = () => {
     renderColumnEvents();
     renderChoicePanelButtons(body, evt, () => {
@@ -1290,16 +1307,26 @@ function renderColumnEvents() {
         splitEvtOpen.slotIndex === i;
       if (evt.selection === "toggle") {
         const on = state.ui.enabledEventIds.has(evt.id);
-        btn.className = "deck-evt-sum";
-        btn.innerHTML = `${kindBadgeHtml("white")}${escapeHtml(evt.label.replace(/^[^ ]+ /, ""))}<span class="deck-evt-sum__more">${on ? "ON" : "OFF"} · ${paneOpen ? "再タップで閉じる" : "タップで詳細"}</span>`;
+        const label = evt.label.replace(/^[^ ]+ /, "");
+        btn.className = "deck-evt-sum deck-evt-sum--white";
+        btn.title = on ? "ON · タップで詳細" : "OFF · タップで詳細";
+        if (paneOpen) btn.title = "タップで閉じる";
+        btn.innerHTML = `<span class="deck-evt-sum__bar" aria-hidden="true"></span><span class="deck-evt-sum__name">${escapeHtml(label)}</span><span class="deck-evt-sum__meta">${on ? "ON" : "OFF"}</span>`;
       } else {
         const choiceId = resolveEventChoiceId(evt);
         const choice = (evt.choices || []).find((c) => c.id === choiceId);
         const kind = choice ? choiceKind(choice) : "stat";
         const label = choice ? shortChoiceLabel(choice) : "選択";
         const n = (evt.choices || []).length;
-        btn.className = "deck-evt-sum" + (kind === "gold" ? " deck-evt-sum--gold" : "");
-        btn.innerHTML = `${kindBadgeHtml(kind)}${escapeHtml(label)}<span class="deck-evt-sum__more">${paneOpen ? "再タップで閉じる" : `全${n}択 · タップで詳細`}</span>`;
+        const kindClass =
+          kind === "gold"
+            ? "deck-evt-sum--gold"
+            : kind === "white"
+              ? "deck-evt-sum--white"
+              : "deck-evt-sum--stat";
+        btn.className = `deck-evt-sum ${kindClass}`;
+        btn.title = paneOpen ? "タップで閉じる" : `全${n}択 · タップで詳細`;
+        btn.innerHTML = `<span class="deck-evt-sum__bar" aria-hidden="true"></span><span class="deck-evt-sum__name">${escapeHtml(label)}</span><span class="deck-evt-sum__meta">${n}</span>`;
       }
       btn.addEventListener("click", () => openEventChoiceUi(evt, i));
       container.appendChild(btn);
@@ -1313,8 +1340,8 @@ function renderColumnEvents() {
       btn.type = "button";
       btn.className =
         "deck-evt-sum" + (isGold ? " deck-evt-sum--gold" : " deck-evt-sum--auto");
-      btn.innerHTML = `${kindBadgeHtml(isGold ? "gold" : "auto")}${escapeHtml(label)}<span class="deck-evt-sum__more">自動計上（確認のみ）</span>`;
       btn.title = evt.label || "自動計上";
+      btn.innerHTML = `<span class="deck-evt-sum__bar" aria-hidden="true"></span><span class="deck-evt-sum__name">${escapeHtml(label)}</span><span class="deck-evt-sum__meta">自動</span>`;
       btn.addEventListener("click", () => {
         /* サポカ自動は列下で完結。編集不可のためダイアログは開かない */
       });
@@ -1426,9 +1453,9 @@ function bindLayoutMode() {
       if (pref === "auto") {
         hint.textContent = `自動: いま ${effective === "split" ? "スプリット" : "ギャラリー"}（境界 1200px）`;
       } else if (effective === "split") {
-        hint.textContent = "スプリット: 上=合計 · 左=2×3ドック+A詳細 · 右=作業台";
+        hint.textContent = "スプリット: 上＝合計 · 左＝編成・イベント / 右＝結果";
       } else {
-        hint.textContent = "ギャラリー: 上段編成・下段作業台 · A列下詳細";
+        hint.textContent = "ギャラリー: 上段＝編成 / 下段＝結果";
       }
     }
   };
@@ -1832,6 +1859,8 @@ function recalc() {
       });
     }
   }
+
+  scheduleSessionSave();
 }
 
 function bindCopyIncludedSkills() {
@@ -1992,7 +2021,13 @@ async function init() {
     bindResultSort();
     bindCopyIncludedSkills();
     committedSkillFilter = readSkillFilterFromUI();
-    recalc();
+
+    const session = loadSessionSnapshot();
+    if (session && restoreDesign(session)) {
+      /* 前回セッションを復元（restoreDesign 内で recalc） */
+    } else {
+      recalc();
+    }
   } catch (e) {
     showError(
       `データの読み込みに失敗しました: ${e.message}\n\n` +

@@ -23,7 +23,7 @@
         <button type="button" class="layout-mode-seg__btn" data-layout-mode="split">スプリット</button>
         <button type="button" class="layout-mode-seg__btn" data-layout-mode="auto">自動（幅）</button>
       </div>
-      <span class="layout-modebar__hint" id="layout-mode-hint">ギャラリー: 上段編成・下段作業台</span>
+      <span class="layout-modebar__hint" id="layout-mode-hint">ギャラリー: 上段＝編成 / 下段＝結果</span>
     </aside>
 
     <dialog id="memory-dialog" class="memory-dialog" aria-labelledby="memory-dialog-title">
@@ -32,7 +32,7 @@
         <button type="button" id="memory-close" class="memory-dialog__close" aria-label="閉じる">×</button>
       </div>
       <div class="memory-dialog__body">
-        <p class="memory-hint">編成・前提・除外・レギュ絞込を1設計として保存し、あとから切り替えられます（このブラウザに保存）。</p>
+        <p class="memory-hint">名前を付けて設計を保存し、あとから切り替えられます（このブラウザに保存）。前回の続きは自動で戻るので、メモリは名前付きの控え用です。</p>
         <div class="memory-save-row">
           <input
             type="text"
@@ -85,7 +85,7 @@
               <li>
                 <strong>イベント・シナリオ</strong>を必要なら調整
                 <ul>
-                  <li>選択式イベントは各サポカ列の下（要約→詳細）。サポカ自動も列下。シナリオリンク／RMJ／シナリオ自動は編成足元帯</li>
+                  <li>選択式イベントは各サポカの下から選べます。自動計上イベントも同じ場所に表示。シナリオリンク／RMJ／シナリオ自動は編成の下帯</li>
                   <li>対応サポカ一覧は「使い方」内</li>
                 </ul>
               </li>
@@ -93,14 +93,14 @@
                 画面下部の <strong>合計 SP バー</strong> で切れ者・トレLv・継承を変更できる（継承チップでパネルを開き、加算・個数・ヒントLvを設定）
               </li>
               <li>
-                下段作業台で <strong>合計 SP</strong> を確認し、不要スキルを除外
+                下段の <strong>結果</strong> で合計 SP を確認し、不要スキルを除外
                 <ul>
                   <li>結果一覧の ON を外すとそのスキルを合計から除外できる</li>
                   <li>「ONスキルをコピー」で、ON のスキル名をカンマ区切りでクリップボードへコピーできる（外部ツール向け）</li>
                 </ul>
               </li>
               <li>
-                ヘッダーの <strong>メモリ</strong> で現在の設計（編成・前提・除外・レギュ）を名前付き保存し、あとから復元できる
+                前回閉じたときの編成・前提・除外などは <strong>自動で戻ります</strong>。名前を付けて残したいときはヘッダーの <strong>メモリ</strong> を使います
               </li>
             </ol>
           </div>
@@ -293,13 +293,13 @@
             <aside id="split-evt-pane" class="split-evt-pane" hidden>
               <div class="split-evt-pane__head">
                 <div>
-                  <div id="split-evt-pane-title" class="split-evt-pane__title">A · イベント選択</div>
-                  <div id="split-evt-pane-sub" class="split-evt-pane__sub">左のサポカ要約を選ぶと詳細が出ます</div>
+                  <div id="split-evt-pane-title" class="split-evt-pane__title">イベントを選ぶ</div>
+                  <div id="split-evt-pane-sub" class="split-evt-pane__sub">サポカ下のイベントを選ぶと選択肢が出ます</div>
                 </div>
                 <button type="button" id="split-evt-pane-close" class="split-evt-pane__close" aria-label="閉じる">×</button>
               </div>
               <div id="split-evt-pane-body" class="split-evt-pane__body">
-                <p class="split-evt-pane__empty">サポカの要約をタップすると、ここに選択肢が出ます</p>
+                <p class="split-evt-pane__empty">サポカ下のイベントをタップすると、ここに選択肢が出ます</p>
               </div>
             </aside>
 
@@ -319,7 +319,7 @@
                 <summary class="deck-scenario-auto__summary">
                   <span class="deck-scenario-auto__summary-label">シナリオ自動</span>
                   <span id="scenario-auto-count" class="deck-scenario-auto__count">0件</span>
-                  <span class="deck-scenario-auto__hint">確認のみ</span>
+                  <span class="deck-scenario-auto__hint">常に計上</span>
                 </summary>
                 <div id="scenario-auto" class="scenario-auto-list"></div>
               </details>
@@ -340,7 +340,7 @@
           <div class="wb-regu" aria-label="対人レギュ">
             <div class="wb-regu-top">
               <strong>対人レギュ</strong>
-              <span>先に決める · 表は削る作業専用</span>
+              <span>バ場・距離・作戦で非対応を除外</span>
             </div>
             <div class="wb-dims">
               <div class="wb-dim">
@@ -547,8 +547,8 @@
     <dialog id="event-choice-dialog" class="event-choice-dialog" aria-labelledby="event-choice-dialog-title">
       <div class="event-choice-dialog__chrome">
         <div>
-          <h2 id="event-choice-dialog-title" class="event-choice-dialog__title">A · イベント選択</h2>
-          <p class="event-choice-dialog__sub" id="event-choice-dialog-sub">金・白・ステから選ぶ（未選択なし）</p>
+          <h2 id="event-choice-dialog-title" class="event-choice-dialog__title">イベントを選ぶ</h2>
+          <p class="event-choice-dialog__sub" id="event-choice-dialog-sub">金・白・ステから必ず1つ選びます</p>
         </div>
         <button type="button" id="event-choice-close" class="event-choice-dialog__close" aria-label="閉じる">×</button>
       </div>
