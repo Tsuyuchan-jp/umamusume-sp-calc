@@ -273,9 +273,7 @@
       color: #fff;
       box-shadow: 0 2px 6px rgba(192,15,71,.35);
       pointer-events: none;
-      display: none;
     }
-    .pk-item.is-selected .pk-corner { display: block; }
 
     .pk-foot {
       padding: 0.55rem 0.85rem 0.75rem;
@@ -507,8 +505,10 @@
       btn.className = "pk-item" + (selected ? " is-selected" : "");
       btn.dataset.id = String(item.id);
       if (item.type) btn.dataset.type = item.type;
+      btn.setAttribute("aria-pressed", selected ? "true" : "false");
+      btn.setAttribute("aria-label", item.name + (selected ? "（選択中）" : ""));
       btn.innerHTML = `
-        <span class="pk-corner">選択中</span>
+        ${selected ? '<span class="pk-corner" aria-hidden="true">選択中</span>' : ""}
         <span class="pk-item__face"><img src="${src}" alt="" onerror="this.parentElement.style.background='linear-gradient(160deg,#c8cdd2,#8a9299)'" /></span>
       `;
       return btn;
