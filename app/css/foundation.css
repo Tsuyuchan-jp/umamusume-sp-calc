@@ -156,8 +156,8 @@ body > .app-main {
   box-shadow: none;
   border: 0;
   border-bottom: 3px solid var(--c-gold, #f5cf6f);
-  /* 角丸は親パネルの overflow クリップに任せる（二重 AA 防止） */
-  border-radius: 0;
+  /* modebar と同じく、紫面自身が上角を描く */
+  border-radius: 8px 8px 0 0;
 }
 
 .app-brand-accent {
@@ -212,62 +212,32 @@ body.layout-split .panel--deck > .app-header {
 }
 
 .panel--deck {
-  /* overflow:hidden + 角丸は Chromium で白っぽい AA フリンジになる。
-     上角はパネル紫背景の border-radius のみで描き、白タイルはクロム下へ。 */
+  /* modebar / トータルバーと同じ: 角丸は紫クロム自身が描く（親 clip しない） */
   position: relative;
-  isolation: isolate;
   overflow: visible;
-  background: var(--ink-deep);
+  background: var(--panel);
   border: none;
-  border-radius: var(--radius-lg);
+  border-radius: 0 0 8px 8px;
   box-shadow: var(--shadow-lg);
   padding-top: 0;
-  /* app-header 実測 ≈ 59.6px。折り返し余裕を少し見る */
-  --chrome-band: 3.75rem;
 }
 
-/* 幾何タイルはヘッダー下のみ（上角の AA に白を混ぜない） */
 .panel--deck::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  top: var(--chrome-band);
-  z-index: -1;
-  pointer-events: none;
-  border-radius: 0 0 var(--radius-lg) var(--radius-lg);
-  background: url("https://static.kouryaku.tools/umamusume/images/app/bg.webp?auto=format")
-      center / 180px repeat,
-    #fff;
+  content: none;
 }
 
 .panel--workbench {
   position: relative;
-  isolation: isolate;
   overflow: visible;
-  background: var(--ink-deep);
+  background: var(--panel);
   border: none;
-  border-radius: var(--radius-lg);
+  border-radius: 0 0 8px 8px;
   box-shadow: var(--shadow-lg);
   padding-top: 0;
-  /* wb-regu 実測 ≈ 91px */
-  --chrome-band: 5.75rem;
 }
 
 .panel--workbench::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  top: var(--chrome-band);
-  z-index: -1;
-  pointer-events: none;
-  border-radius: 0 0 var(--radius-lg) var(--radius-lg);
-  background: url("https://static.kouryaku.tools/umamusume/images/app/bg.webp?auto=format")
-      center / 180px repeat,
-    #fff;
+  content: none;
 }
 
 .hint {
