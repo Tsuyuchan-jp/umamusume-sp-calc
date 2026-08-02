@@ -218,11 +218,6 @@ header p {
   box-shadow: var(--shadow-sm);
 }
 
-.auto-events-chip {
-  font-family: var(--font-body);
-  font-weight: var(--font-weight-bold);
-}
-
 .layout-modebar {
   font-family: var(--font-body);
   font-weight: var(--font-weight-medium);

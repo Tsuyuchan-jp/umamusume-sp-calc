@@ -285,8 +285,6 @@ function renderDeckSupports() {
 function renderDeckDashboard() {
   renderDeckCharacter();
   renderDeckSupports();
-  updateDeckFootbandMeta();
-  updateAutoEventsChip();
 }
 
 function bindPremiseChipsOnce() {
@@ -322,7 +320,6 @@ function bindPremiseChipsOnce() {
       if (!cb) return;
       cb.checked = !cb.checked;
       updateTotalBarChips();
-      updateDeckFootbandMeta();
       recalc();
     }
   });
@@ -1060,14 +1057,13 @@ function renderColumnEvents() {
   }
 }
 
-function updateAutoEventsChip() {
-  /* サポカ自動は列下、シナリオ自動は足元インライン。件数チップは使わない */
-  const chip = document.getElementById("auto-events-open");
-  if (chip) chip.hidden = true;
-}
+function renderEvents() {
+  const emptyHint = document.getElementById("event-empty-hint");
 
-function updateDeckFootbandMeta() {
-  /* 旧メタ行は廃止。リンク名はチップ title で示す */
+  renderColumnEvents();
+
+  const events = (state.events.events || []).filter(isEventSupportInDeck);
+  if (emptyHint) emptyHint.hidden = events.length > 0;
 }
 
 /** シナリオ自動計上（折りたたみ・確認のみ） */
@@ -1093,21 +1089,6 @@ function renderScenarioAuto() {
     `;
     container.appendChild(div);
   }
-}
-
-function renderEvents() {
-  const emptyHint = document.getElementById("event-empty-hint");
-
-  renderColumnEvents();
-  updateAutoEventsChip();
-  updateDeckFootbandMeta();
-
-  const events = (state.events.events || []).filter(isEventSupportInDeck);
-  if (emptyHint) emptyHint.hidden = events.length > 0;
-}
-
-function bindAutoEventsDialog() {
-  /* サポカ自動は列下、シナリオ自動は足元折りたたみ。モーダルは使わない */
 }
 
 /** localStorage キー: レイアウト好み gallery | split | auto */
@@ -1292,7 +1273,6 @@ function renderScenarioLinkRadios() {
       if (state.ui.scenarioLinkChoiceId === entry.id) return;
       state.ui.scenarioLinkChoiceId = entry.id;
       renderScenarioLinkRadios();
-      updateDeckFootbandMeta();
       recalc();
     });
     container.appendChild(btn);
@@ -1734,7 +1714,6 @@ async function init() {
     bindPremiseChipsOnce();
     bindPickerFilters();
     bindLayoutMode();
-    bindAutoEventsDialog();
     bindEventChoiceDialog();
     bindInheritPopover();
     renderDeckDashboard();

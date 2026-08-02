@@ -799,31 +799,6 @@ input[type="search"] {
   display: none;
 }
 
-.auto-events-chip {
-  appearance: none;
-  border: 1.5px solid #7b5bb8;
-  background: linear-gradient(180deg, #f7f4ff, #ebe4ff);
-  color: #4a2d7a;
-  font: inherit;
-  font-size: 0.78rem;
-  font-weight: 700;
-  padding: 0.35rem 0.7rem;
-  border-radius: 999px;
-  cursor: pointer;
-  align-self: center;
-}
-
-.auto-events-chip:hover {
-  border-color: #e07030;
-  background: linear-gradient(180deg, #fff8ee, #ffe8cc);
-}
-
-.auto-events-chip strong {
-  color: #e07030;
-  font-size: 0.95em;
-  margin: 0 0.15em;
-}
-
 .event-section--inline {
   display: contents;
 }
@@ -915,80 +890,6 @@ input[type="search"] {
   padding: 0;
   border: none;
   display: block;
-}
-
-/* ---- 自動計上モーダル ---- */
-.auto-events-dialog {
-  border: 2px solid #463f70;
-  border-radius: 12px;
-  padding: 0;
-  max-width: 480px;
-  width: calc(100% - 2rem);
-  font-family: inherit;
-  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.35);
-}
-
-.auto-events-dialog::backdrop {
-  background: rgba(30, 24, 50, 0.55);
-}
-
-.auto-events-dialog__chrome {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 0.75rem;
-  padding: 0.75rem 0.9rem;
-  background: linear-gradient(180deg, #5a5288, #463f70);
-  color: #fff;
-  border-bottom: 2px solid #f5cf6f;
-}
-
-.auto-events-dialog__title {
-  margin: 0;
-  font-size: 0.95rem;
-}
-
-.auto-events-dialog__sub {
-  margin: 0.2rem 0 0;
-  font-size: 0.7rem;
-  color: #bebbce;
-}
-
-.auto-events-dialog__close {
-  border: 1px solid rgba(255, 255, 255, 0.35);
-  background: rgba(255, 255, 255, 0.1);
-  color: #fff;
-  font-size: 1.1rem;
-  line-height: 1;
-  width: 2rem;
-  height: 2rem;
-  border-radius: 6px;
-  cursor: pointer;
-}
-
-.auto-events-dialog__body {
-  padding: 0.75rem 0.9rem 1rem;
-  max-height: 55vh;
-  overflow: auto;
-}
-
-.auto-events-dialog__note {
-  margin: 0 0 0.65rem;
-  font-size: 0.78rem;
-  color: #625d7d;
-  line-height: 1.4;
-}
-
-.auto-events-dialog__section {
-  margin: 0.65rem 0 0.35rem;
-  font-size: 0.78rem;
-  color: #463f70;
-  border-bottom: 1px solid #e8e4f0;
-  padding-bottom: 0.2rem;
-}
-
-.auto-events-dialog__section:first-of-type {
-  margin-top: 0;
 }
 
 /* ---- A: 列下要約 ---- */
