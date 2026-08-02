@@ -11,6 +11,9 @@
   --surface-muted: #f5f3f8;
   --surface-sunken: #ebe7f2;
   --surface-glass: rgba(255, 255, 255, 0.94);
+  /* モック H5 と同じ幾何タイル（パネル面） */
+  --panel: url("https://static.kouryaku.tools/umamusume/images/app/bg.webp?auto=format") center / 180px repeat, #fff;
+  --world-image: url("https://static.kouryaku.tools/umamusume/images/app/uma-world.webp?auto=format");
 
   /* 文字 */
   --text-primary: #703a13;
@@ -98,9 +101,10 @@ body {
   inset: 0;
   z-index: 0;
   pointer-events: none;
+  /* 下寄せで芝を画面内に。オーバーレイはモック相当に抑え芝を隠さない */
   background:
-    linear-gradient(180deg, rgba(70, 63, 112, 0.55), rgba(70, 63, 112, 0.35) 45%, rgba(70, 63, 112, 0.72)),
-    url("https://static.kouryaku.tools/umamusume/images/app/uma-world.webp?auto=format") center top / cover no-repeat,
+    linear-gradient(180deg, rgba(70, 63, 112, 0.28), rgba(70, 63, 112, 0.08) 42%, rgba(70, 63, 112, 0.38)),
+    var(--world-image) center bottom / cover no-repeat,
     #463f70;
 }
 
@@ -156,10 +160,10 @@ header p {
   transform: translateY(-1px);
 }
 
-/* ---- パネル（S-A カード面） ---- */
+/* ---- パネル（H5 幾何タイル面） ---- */
 .panel {
-  background: var(--surface);
-  border: 1px solid var(--border-default);
+  background: var(--panel);
+  border: 1px solid rgba(255, 255, 255, 0.55);
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-md);
   padding: 1.1rem 1.35rem;
@@ -173,12 +177,13 @@ header p {
 }
 
 .panel--deck {
-  background: linear-gradient(180deg, var(--surface) 0%, var(--surface-muted) 100%);
+  background: var(--panel);
   box-shadow: var(--shadow-lg);
-  border-color: var(--border-default);
+  border-color: rgba(255, 255, 255, 0.55);
 }
 
 .panel--workbench {
+  background: var(--panel);
   box-shadow: var(--shadow-lg);
 }
 

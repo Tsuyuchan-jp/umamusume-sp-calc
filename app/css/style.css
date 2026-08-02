@@ -527,7 +527,7 @@ input[type="search"] {
 /* ---- 編成ダッシュボード（二段構え・上段） ---- */
 .panel--deck {
   padding-bottom: 0.65rem;
-  background: linear-gradient(180deg, #fff 0%, #fafbfc 100%);
+  /* 背景は foundation の --panel（幾何タイル）に委譲 */
   box-shadow: 0 2px 8px rgba(44, 62, 80, 0.06);
 }
 
@@ -1615,20 +1615,46 @@ body.layout-split .deck-support-col.is-focus .deck-evt-sum:not(.deck-evt-sum--au
   background: #fff8ee;
 }
 
-/* A 詳細ペイン（スプリット左） */
+/* A 詳細ペイン（スプリット左）— カード帯と別ゾーンに見せる */
 .split-evt-pane {
   display: none;
   flex-direction: column;
   flex-shrink: 0;
   max-height: 42%;
   min-height: 0;
-  border-top: 2px solid #463f70;
-  background: rgba(255, 255, 255, 0.94);
-  margin: 0.35rem -0.15rem 0;
+  margin: 0.55rem 0 0;
+  border: 1px solid rgba(70, 63, 112, 0.22);
+  border-radius: 10px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.97);
+  box-shadow: 0 -6px 18px rgba(70, 63, 112, 0.08), inset 0 1px 0 #fff;
 }
 
 body.layout-split .split-evt-pane:not([hidden]) {
   display: flex;
+}
+
+/* カード帯: イベント帯と視覚的に分離 */
+body.layout-split .deck-dashboard {
+  position: relative;
+  padding: 0.45rem 0.4rem 0.55rem;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.55);
+  border: 1px solid rgba(70, 63, 112, 0.12);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
+body.layout-split .deck-dashboard::after {
+  content: "カード";
+  position: absolute;
+  top: -0.45rem;
+  left: 0.55rem;
+  padding: 0 0.35rem;
+  font-size: 0.62rem;
+  font-weight: 900;
+  letter-spacing: 0.06em;
+  color: #625d7d;
+  background: var(--panel, #fff);
 }
 
 .split-evt-pane__head {
@@ -1636,43 +1662,50 @@ body.layout-split .split-evt-pane:not([hidden]) {
   justify-content: space-between;
   align-items: flex-start;
   gap: 0.5rem;
-  padding: 0.45rem 0.55rem;
-  background: #f3eef8;
-  border-bottom: 1px solid #eae7ec;
+  padding: 0.5rem 0.65rem;
+  background: linear-gradient(180deg, #5a5288 0%, #463f70 100%);
+  border-bottom: 2px solid #f5cf6f;
   flex-shrink: 0;
+  color: #fff;
 }
 
 .split-evt-pane__title {
   font-size: 0.78rem;
   font-weight: 900;
-  color: #463f70;
+  color: #fff;
 }
 
 .split-evt-pane__sub {
   font-size: 0.62rem;
   font-weight: 700;
-  color: #625d7d;
+  color: #bebbce;
   margin-top: 0.1rem;
 }
 
 .split-evt-pane__close {
   appearance: none;
   border: 0;
-  background: transparent;
-  font-size: 1.2rem;
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 6px;
+  font-size: 1.15rem;
   line-height: 1;
-  color: #625d7d;
+  color: #fff;
   cursor: pointer;
-  padding: 0.1rem 0.35rem;
+  padding: 0.15rem 0.45rem;
+}
+
+.split-evt-pane__close:hover {
+  background: rgba(255, 255, 255, 0.22);
 }
 
 .split-evt-pane__body {
   overflow: auto;
-  padding: 0.45rem 0.55rem 0.55rem;
+  padding: 0.5rem 0.55rem 0.6rem;
   display: flex;
   flex-direction: column;
   gap: 0.35rem;
   min-height: 0;
+  background: linear-gradient(180deg, #f7f4fb 0%, #fff 40%);
 }
 
 .split-evt-pane__empty {
@@ -1686,7 +1719,7 @@ body.layout-split .split-evt-pane:not([hidden]) {
 
 body.layout-split .deck-footband {
   flex-shrink: 0;
-  margin-top: 0.45rem;
+  margin-top: 0.55rem;
   max-height: none;
   overflow: visible;
 }

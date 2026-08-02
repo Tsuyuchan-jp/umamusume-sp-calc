@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ヘッダー案比較 — SP Calc</title>
+  <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@700;900&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --c-dark: #463f70;
+      --c-gold: #f5cf6f;
+      --g-chrome: linear-gradient(180deg, #5a5288, #463f70);
+      --font: "Zen Maru Gothic", Meiryo, sans-serif;
+      --panel: url("https://static.kouryaku.tools/umamusume/images/app/bg.webp?auto=format") center/180px repeat, #fff;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; font-family: var(--font); font-weight: 700; color: #703a13;
+      background: #2a2540; padding: 20px 16px 48px;
+    }
+    h1 { color: #fff; font-size: 1.25rem; margin: 0 0 0.35rem; }
+    .lead { color: #bebbce; font-size: 0.85rem; margin: 0 0 1.25rem; max-width: 52rem; line-height: 1.5; }
+    .grid { display: grid; gap: 1.25rem; max-width: 1100px; }
+    @media (min-width: 900px) { .grid { grid-template-columns: 1fr 1fr; } }
+    .card {
+      background: #1e1a30; border: 1px solid #3d3758; border-radius: 12px;
+      padding: 12px; color: #ddd8ef;
+    }
+    .card h2 { margin: 0 0 4px; font-size: 0.95rem; color: var(--c-gold); }
+    .card .tag { font-size: 0.7rem; color: #9a94b0; margin-bottom: 10px; }
+    .card ul { margin: 8px 0 0; padding-left: 1.1rem; font-size: 0.75rem; color: #bebbce; line-height: 1.45; }
+    .frame {
+      background: url("https://static.kouryaku.tools/umamusume/images/app/uma-world.webp?auto=format") center bottom / cover;
+      border-radius: 8px; overflow: hidden; border: 1px solid #554d78;
+      min-height: 200px; position: relative;
+    }
+    .frame::after {
+      content: ""; position: absolute; inset: 0;
+      background: linear-gradient(180deg, rgba(70,63,112,.25), rgba(70,63,112,.1) 50%, rgba(70,63,112,.35));
+      pointer-events: none;
+    }
+    .frame > * { position: relative; z-index: 1; }
+    .ghost {
+      border: 1px solid rgba(255,255,255,.35); background: rgba(255,255,255,.1); color: #fff;
+      font: inherit; font-size: 11px; padding: 5px 9px; border-radius: 999px; cursor: default;
+    }
+    .seg {
+      display: inline-flex; border: 1px solid rgba(255,255,255,.35); border-radius: 6px; overflow: hidden;
+    }
+    .seg span {
+      font-size: 10px; font-weight: 900; padding: 5px 8px; color: #ddd8ef; border-right: 1px solid rgba(255,255,255,.2);
+    }
+    .seg span:last-child { border-right: 0; }
+    .seg span.on { background: var(--c-gold); color: #3a2a00; }
+    .pbtn {
+      border: 1px solid #b3b0b6; background: linear-gradient(180deg,#fff,#dad4da);
+      font: inherit; font-size: 10px; padding: 4px 8px; border-radius: 5px; color: #625d7d;
+    }
+    .pbtn.on { background: linear-gradient(180deg,#ff75a3,#f7518b); border-color: transparent; color: #fff; }
+    .panel-bit {
+      margin: 8px; background: var(--panel); border-radius: 8px; min-height: 72px;
+      border: 1px solid #fff8; box-shadow: 0 4px 14px #0004;
+    }
+    .label-mode {
+      display: flex; gap: 6px; margin: 0 0 6px; font-size: 10px;
+    }
+    .label-mode button {
+      font: inherit; font-size: 10px; font-weight: 900; padding: 4px 10px; border-radius: 6px;
+      border: 1px solid #554d78; background: #2a2540; color: #bebbce; cursor: pointer;
+    }
+    .label-mode button.is-on { background: var(--c-gold); color: #3a2a00; border-color: transparent; }
+    .views .view { display: none; }
+    .views .view.is-on { display: block; }
+
+    /* ---- H-Mock ---- */
+    .hm-modebar {
+      margin: 8px; padding: 6px 10px; background: rgba(70,63,112,.94); border-radius: 6px;
+      border-bottom: 2px solid var(--c-gold); display: flex; gap: 8px; align-items: center; font-size: 10px; color: #fff;
+    }
+    .hm-brand {
+      margin: 0 8px; padding: 8px 12px; background: var(--g-chrome); color: #fff;
+      border-radius: 8px 8px 0 0; border-bottom: 2px solid var(--c-gold);
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .hm-brand h3 { margin: 0; font-size: 14px; }
+    .hm-brand h3 span { color: var(--c-gold); }
+    .hm-cmd {
+      margin: 8px; padding: 6px 12px; background: var(--g-chrome); color: #fff; border-radius: 8px;
+      border-bottom: 2px solid var(--c-gold); display: flex; align-items: center; gap: 10px;
+    }
+    .hm-cmd .n { font-size: 22px; font-weight: 900; color: var(--c-gold); }
+
+    /* ---- H-A ---- */
+    .ha-chrome {
+      margin: 8px; padding: 8px 12px; background: var(--g-chrome); color: #fff; border-radius: 8px;
+      border-bottom: 2px solid var(--c-gold); display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+    }
+    .ha-chrome h3 { margin: 0; font-size: 14px; }
+    .ha-chrome h3 span { color: var(--c-gold); }
+    .ha-chrome .spacer { flex: 1; }
+    .ha-total {
+      display: none; align-items: baseline; gap: 4px; padding-right: 8px; border-right: 1px solid #fff3;
+    }
+    .views[data-mode="split"] .ha-total { display: flex; }
+    .ha-total .n { font-size: 22px; font-weight: 900; color: var(--c-gold); }
+    .ha-prems { display: none; gap: 6px; }
+    .views[data-mode="split"] .ha-prems { display: flex; }
+    .ha-bar {
+      position: absolute; left: 8px; right: 8px; bottom: 8px; padding: 6px 10px;
+      background: var(--g-chrome); border-radius: 8px; border-bottom: 2px solid var(--c-gold);
+      color: #fff; font-size: 11px; display: flex; justify-content: space-between;
+    }
+    .views[data-mode="split"] .ha-bar { display: none; }
+
+    /* ---- H-B ---- */
+    .hb-slot {
+      margin: 8px; height: 56px; padding: 0 12px; background: var(--g-chrome); color: #fff;
+      border-radius: 8px; border-bottom: 2px solid var(--c-gold);
+      display: grid; grid-template-columns: 140px 1fr auto; align-items: center; gap: 8px;
+    }
+    .hb-slot h3 { margin: 0; font-size: 13px; }
+    .hb-slot h3 span { color: var(--c-gold); }
+    .hb-mid { display: flex; align-items: center; gap: 8px; min-width: 0; }
+    .hb-mid .sub { font-size: 10px; color: #bebbce; }
+    .views[data-mode="split"] .hb-mid .sub { display: none; }
+    .hb-mid .tot { display: none; align-items: baseline; gap: 4px; }
+    .views[data-mode="split"] .hb-mid .tot { display: flex; }
+    .hb-mid .n { font-size: 20px; font-weight: 900; color: var(--c-gold); }
+    .hb-prems { display: none; gap: 4px; flex-wrap: wrap; }
+    .views[data-mode="split"] .hb-prems { display: flex; }
+
+    /* ---- H-C ---- */
+    .hc-bar {
+      margin: 8px; padding: 7px 10px; background: var(--g-chrome); color: #fff; border-radius: 8px;
+      border-bottom: 2px solid var(--c-gold);
+      display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px;
+    }
+    .hc-bar .brand { font-size: 13px; font-weight: 900; }
+    .hc-bar .brand span { color: var(--c-gold); }
+    .hc-extra {
+      display: none; align-items: center; gap: 8px; margin-left: auto; margin-right: 8px;
+    }
+    .views[data-mode="split"] .hc-extra { display: flex; }
+    .hc-extra .n { font-size: 18px; font-weight: 900; color: var(--c-gold); }
+  </style>
+</head>
+<body>
+  <h1>ヘッダー案比較</h1>
+  <p class="lead">
+    切替でヘッダーが消えたり出たりしないこと、かつダサさを解消することが目的。
+    各カード内の「ギャラリー／スプリット」で切替イメージを確認できます（本番 app は未反映）。
+  </p>
+
+  <div class="grid">
+    <!-- H-Mock -->
+    <article class="card">
+      <h2>H-Mock · モック準拠</h2>
+      <p class="tag">gallery = パネル頭のブランド帯 ／ split = 上部コマンド（TOTAL込み）</p>
+      <div class="label-mode" data-for="mock">
+        <button type="button" class="is-on" data-m="gallery">ギャラリー</button>
+        <button type="button" data-m="split">スプリット</button>
+      </div>
+      <div class="frame views" id="view-mock" data-mode="gallery">
+        <div class="view is-on" data-v="gallery">
+          <div class="hm-modebar"><span>表示</span><div class="seg"><span class="on">ギャラリー</span><span>スプリット</span></div></div>
+          <div class="hm-brand"><h3>SP <span>Calc</span></h3><div><button class="ghost" type="button">メモリ</button> <button class="ghost" type="button">使い方</button></div></div>
+          <div class="panel-bit" style="margin-top:0;border-radius:0 0 8px 8px"></div>
+        </div>
+        <div class="view" data-v="split">
+          <div class="hm-modebar"><span>表示</span><div class="seg"><span>ギャラリー</span><span class="on">スプリット</span></div></div>
+          <div class="hm-cmd">
+            <h3 style="margin:0;font-size:13px">SP <span style="color:var(--c-gold)">Calc</span></h3>
+            <span style="font-size:10px;color:#bebbce">TOTAL</span><span class="n">1,248</span>
+            <button class="pbtn on" type="button">切れ者</button>
+            <span class="spacer" style="flex:1"></span>
+            <button class="ghost" type="button">メモリ</button>
+          </div>
+          <div class="panel-bit"></div>
+        </div>
+      </div>
+      <ul>
+        <li>見た目の正本。切替で「消える」感じはモックでは2DOMのため起きにくい</li>
+        <li>app 移植時はブランド帯の高さがモードで変わる点に注意</li>
+      </ul>
+    </article>
+
+    <!-- H-A -->
+    <article class="card">
+      <h2>H-A · 常設クロム＋splitだけ中身増</h2>
+      <p class="tag">推奨寄り。上の紫帯は常時。TOTALは gallery=下／split=上に合流</p>
+      <div class="label-mode" data-for="a">
+        <button type="button" class="is-on" data-m="gallery">ギャラリー</button>
+        <button type="button" data-m="split">スプリット</button>
+      </div>
+      <div class="frame views" id="view-a" data-mode="gallery">
+        <div class="ha-chrome">
+          <h3>SP <span>Calc</span></h3>
+          <div class="ha-total"><span style="font-size:10px;color:#bebbce">TOTAL</span><span class="n">1,248</span></div>
+          <div class="ha-prems"><button class="pbtn on" type="button">切れ者</button><button class="pbtn" type="button">トレ5</button></div>
+          <span class="spacer"></span>
+          <button class="ghost" type="button">メモリ</button>
+          <button class="ghost" type="button">使い方</button>
+        </div>
+        <div class="hm-modebar" style="margin-top:0"><span>表示</span><div class="seg"><span class="on">ギャラリー</span><span>スプリット</span></div></div>
+        <div class="panel-bit" style="min-height:88px"></div>
+        <div class="ha-bar"><span>TOTAL <b style="color:var(--c-gold)">1,248</b></span><span>切れ者 · トレ5</span></div>
+      </div>
+      <ul>
+        <li>ブランドが消えない。ガタつきは「帯の中身が増える」程度</li>
+        <li>modebar とクロムの二重感は要調整</li>
+      </ul>
+    </article>
+
+    <!-- H-B -->
+    <article class="card">
+      <h2>H-B · 固定高さスロット</h2>
+      <p class="tag">常に同じ高さの1帯。中身だけ差し替え（レイアウトシフト最小）</p>
+      <div class="label-mode" data-for="b">
+        <button type="button" class="is-on" data-m="gallery">ギャラリー</button>
+        <button type="button" data-m="split">スプリット</button>
+      </div>
+      <div class="frame views" id="view-b" data-mode="gallery">
+        <div class="hm-modebar"><span>表示</span><div class="seg"><span class="on">ギャラリー</span><span>スプリット</span></div></div>
+        <div class="hb-slot">
+          <h3>SP <span>Calc</span></h3>
+          <div class="hb-mid">
+            <span class="sub">真の必要SP · トレセン軒</span>
+            <div class="tot"><span style="font-size:10px;color:#bebbce">TOTAL</span><span class="n">1,248</span></div>
+            <div class="hb-prems"><button class="pbtn on" type="button">切れ者</button></div>
+          </div>
+          <div><button class="ghost" type="button">メモリ</button></div>
+        </div>
+        <div class="panel-bit"></div>
+      </div>
+      <ul>
+        <li>切替で周囲が跳ねないのが最大の利点</li>
+        <li>56px に詰め込むと split の TOTAL が窮屈</li>
+      </ul>
+    </article>
+
+    <!-- H-C -->
+    <article class="card">
+      <h2>H-C · modebar にブランド統合</h2>
+      <p class="tag">別ヘッダー廃止。切替バーが唯一の上クロム</p>
+      <div class="label-mode" data-for="c">
+        <button type="button" class="is-on" data-m="gallery">ギャラリー</button>
+        <button type="button" data-m="split">スプリット</button>
+      </div>
+      <div class="frame views" id="view-c" data-mode="gallery">
+        <div class="hc-bar">
+          <span class="brand">SP <span>Calc</span></span>
+          <div class="seg"><span class="on">ギャラリー</span><span>スプリット</span><span>自動</span></div>
+          <div class="hc-extra"><span style="font-size:10px;color:#bebbce">TOTAL</span><span class="n">1,248</span><button class="pbtn on" type="button">切れ者</button></div>
+          <span style="margin-left:auto"></span>
+          <button class="ghost" type="button">メモリ</button>
+          <button class="ghost" type="button">使い方</button>
+        </div>
+        <div class="panel-bit" style="min-height:100px"></div>
+      </div>
+      <ul>
+        <li>層が1つ減り、ダサい「二重ヘッダー」が消える</li>
+        <li>情報密度が高く、狭幅で折り返しが起きやすい</li>
+      </ul>
+    </article>
+  </div>
+
+  <p class="lead" style="margin-top:1.5rem">
+    戻る: <a href="./hybrid-index.html" style="color:#59ccfc">モック一覧</a>
+    · 本番反映は選定後（docs/product/design-polish-backlog.md）
+  </p>
+
+  <script>
+    document.querySelectorAll(".label-mode").forEach((row) => {
+      row.addEventListener("click", (e) => {
+        const btn = e.target.closest("button[data-m]");
+        if (!btn) return;
+        row.querySelectorAll("button").forEach((b) => b.classList.toggle("is-on", b === btn));
+        const id = "view-" + row.dataset.for;
+        const root = document.getElementById(id);
+        if (!root) return;
+        const mode = btn.dataset.m;
+        root.dataset.mode = mode;
+        root.querySelectorAll(".view").forEach((v) => {
+          v.classList.toggle("is-on", v.dataset.v === mode);
+        });
+        /* H-A/B/C は data-mode で CSS 切替。H-Mock は .view */
+        const seg = root.querySelector(".seg");
+        if (seg && !root.querySelector(".view")) {
+          const spans = seg.querySelectorAll("span");
+          if (spans[0] && spans[1]) {
+            spans[0].classList.toggle("on", mode === "gallery");
+            spans[1].classList.toggle("on", mode === "split");
+          }
+        }
+      });
+    });
+  </script>
+</body>
+</html>
