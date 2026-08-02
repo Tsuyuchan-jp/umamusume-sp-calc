@@ -1724,19 +1724,6 @@ body.layout-split:has(.split-evt-pane:not([hidden])) .deck-dashboard {
     inset 0 1px 0 rgba(255, 255, 255, 0.8);
 }
 
-body.layout-split .deck-dashboard::after {
-  content: "カード";
-  position: absolute;
-  top: -0.45rem;
-  left: 0.55rem;
-  padding: 0 0.35rem;
-  font-size: 0.62rem;
-  font-weight: 900;
-  letter-spacing: 0.06em;
-  color: #625d7d;
-  background: var(--panel, #fff);
-}
-
 .split-evt-pane__head {
   display: flex;
   justify-content: space-between;
