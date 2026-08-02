@@ -1344,14 +1344,6 @@ tr:hover td {
 }
 
 /* ---- 絞込・その他（結果ツールバーは style.css の H5 寄せが正） ---- */
-.skill-filter-box--pending {
-  outline-color: var(--warn);
-}
-
-.skill-filter-apply:not(:disabled) {
-  font-weight: var(--font-weight-bold);
-}
-
 .copy-included-skills:not(:disabled) {
   font-weight: var(--font-weight-black);
 }
@@ -1369,11 +1361,6 @@ input:focus {
   outline: none;
   border-color: var(--accent-on);
   box-shadow: var(--focus-ring);
-}
-
-.collapse-section {
-  border-radius: var(--radius-sm);
-  border-color: var(--border-subtle);
 }
 
 .panel.error {

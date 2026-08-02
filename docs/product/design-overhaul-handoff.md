@@ -70,7 +70,7 @@
 | … | リンク／RMJ | **済（チップ化）** | 「C」廃止・短縮名チップ。スキル詳細は title |
 | 13 | 継承編集 UI／上展開 | **済（実機OK）** | チップ＝パネル開閉。加算トグル・個数・Lv。base固定200。式表示。gallery直上/split直下 |
 | 14 | ピッカー Round 1 | **済** | タイプ絞込は keepId でも適用。選択はピンク outline |
-| 15 | foundation ↔ style 二重定義 | **途中** | 旧緑 premise 等が style に残存（後勝ちで上書き） |
+| 15 | foundation ↔ style 二重定義 | **済** | style.css から旧 premise/合計バー色・未使用 collapse/skill-filter を削除。foundation 末尾の幽霊上書きも整理 |
 
 ### 優先（人間確認待ち・計算ロジックは触らない）
 
