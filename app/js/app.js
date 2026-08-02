@@ -1266,7 +1266,15 @@ function bindEventChoiceDialog() {
   });
 }
 
-/** 列下要約の並び: 金（選択中 or 選択肢に金あり）→ 白/ステ → 自動 */
+/** 列下要約の並び: 金自動 → 金選択式 → 白/ステ選択式 → 非金自動 */
+function columnEventSortKey(evt) {
+  if (evt.selection === "auto") {
+    return goldSkillNamesFromSkills(evt.skills).length > 0 ? 0 : 4;
+  }
+  return selectableEventSortKey(evt) + 1;
+}
+
+/** 選択式イベント内の並び: 金 → 白 → ステ/toggle */
 function selectableEventSortKey(evt) {
   if (evt.selection === "toggle") return 2;
   const choices = evt.choices || [];
@@ -1290,13 +1298,40 @@ function renderColumnEvents() {
     const support = id != null ? getSupportById(id) : null;
     if (!support) continue;
 
-    const events = getEventsForSupport(support);
-    const selectables = events
-      .filter((evt) => evt.selection === "single" || evt.selection === "toggle")
-      .sort((a, b) => selectableEventSortKey(a) - selectableEventSortKey(b));
-    const autos = events.filter((evt) => evt.selection === "auto");
+    const events = getEventsForSupport(support)
+      .map((evt, index) => ({ evt, index }))
+      .sort((a, b) => {
+        const ka = columnEventSortKey(a.evt);
+        const kb = columnEventSortKey(b.evt);
+        if (ka !== kb) return ka - kb;
+        return a.index - b.index;
+      })
+      .map(({ evt }) => evt);
 
-    for (const evt of selectables) {
+    for (const evt of events) {
+      if (evt.selection === "auto") {
+        const golds = goldSkillNamesFromSkills(evt.skills);
+        const isGold = golds.length > 0;
+        const label =
+          golds.length > 0
+            ? golds.join("／")
+            : evt.skills?.[0]?.skillName || "自動";
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.className =
+          "deck-evt-sum" + (isGold ? " deck-evt-sum--gold" : " deck-evt-sum--auto");
+        btn.title =
+          golds.length > 0
+            ? `${evt.label || "自動計上"} — ${golds.join("、")}`
+            : evt.label || "自動計上";
+        btn.innerHTML = `<span class="deck-evt-sum__bar" aria-hidden="true"></span><span class="deck-evt-sum__name">${escapeHtml(label)}</span><span class="deck-evt-sum__meta">自動</span>`;
+        btn.addEventListener("click", () => {
+          /* サポカ自動は列下で完結。編集不可のためダイアログは開かない */
+        });
+        container.appendChild(btn);
+        continue;
+      }
+
       const btn = document.createElement("button");
       btn.type = "button";
       const paneOpen =
@@ -1328,22 +1363,6 @@ function renderColumnEvents() {
         btn.innerHTML = `<span class="deck-evt-sum__bar" aria-hidden="true"></span><span class="deck-evt-sum__name">${escapeHtml(label)}</span><span class="deck-evt-sum__meta">${n}</span>`;
       }
       btn.addEventListener("click", () => openEventChoiceUi(evt, i));
-      container.appendChild(btn);
-    }
-
-    for (const evt of autos) {
-      const golds = goldSkillNamesFromSkills(evt.skills);
-      const isGold = golds.length > 0;
-      const label = golds[0] || evt.skills?.[0]?.skillName || "自動";
-      const btn = document.createElement("button");
-      btn.type = "button";
-      btn.className =
-        "deck-evt-sum" + (isGold ? " deck-evt-sum--gold" : " deck-evt-sum--auto");
-      btn.title = evt.label || "自動計上";
-      btn.innerHTML = `<span class="deck-evt-sum__bar" aria-hidden="true"></span><span class="deck-evt-sum__name">${escapeHtml(label)}</span><span class="deck-evt-sum__meta">自動</span>`;
-      btn.addEventListener("click", () => {
-        /* サポカ自動は列下で完結。編集不可のためダイアログは開かない */
-      });
       container.appendChild(btn);
     }
   }

@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>設計メモリ — 編成サムネ案</title>
+  <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@700;900&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --ink: #463f70;
+      --font: "Zen Maru Gothic", Meiryo, sans-serif;
+      --border: #d8d0e8;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: var(--font);
+      font-weight: 700;
+      background: #3d3758;
+      color: #463f70;
+      padding: 1.25rem;
+    }
+    h1 { color: #f5cf6f; font-size: 1rem; margin: 0 0 0.4rem; }
+    .note {
+      color: #ddd8ef;
+      font-size: 0.78rem;
+      margin: 0 0 1rem;
+      line-height: 1.55;
+      max-width: 54rem;
+    }
+    .grid {
+      display: grid;
+      gap: 1rem;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    }
+    .card {
+      background: #fff;
+      border: 2px solid var(--ink);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    .card__head {
+      padding: 0.65rem 0.85rem 0.45rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .card__head h2 {
+      margin: 0 0 0.2rem;
+      font-size: 0.84rem;
+      color: var(--ink);
+    }
+    .card__head p {
+      margin: 0;
+      font-size: 0.66rem;
+      color: #625d7d;
+      line-height: 1.45;
+    }
+    .tag {
+      display: inline-block;
+      margin-bottom: 0.35rem;
+      padding: 0.1rem 0.38rem;
+      border-radius: 4px;
+      font-size: 0.6rem;
+      font-weight: 900;
+      background: #eeeaf6;
+      color: var(--ink);
+    }
+    .dialog-body {
+      padding: 0.75rem 0.85rem 0.9rem;
+      background:
+        radial-gradient(circle at 12% 8%, rgba(245, 207, 111, 0.12), transparent 42%),
+        #fff;
+    }
+    .hint-line {
+      margin: 0 0 0.65rem;
+      font-size: 0.68rem;
+      color: #625d7d;
+      line-height: 1.45;
+    }
+    .save-row {
+      display: flex;
+      gap: 0.45rem;
+      margin-bottom: 0.75rem;
+    }
+    .save-row input {
+      flex: 1;
+      min-width: 0;
+      padding: 0.38rem 0.5rem;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      font: inherit;
+      font-size: 0.78rem;
+    }
+    .save-row button {
+      flex-shrink: 0;
+      padding: 0.38rem 0.7rem;
+      border: 1.5px solid var(--ink);
+      border-radius: 6px;
+      background: linear-gradient(180deg, #5a5288, var(--ink));
+      color: #fff;
+      font: inherit;
+      font-size: 0.74rem;
+      font-weight: 900;
+    }
+    .list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    .item {
+      display: flex;
+      align-items: center;
+      gap: 0.55rem;
+      padding: 0.55rem 0.6rem;
+      border: 1.5px solid var(--border);
+      border-radius: 8px;
+      background: linear-gradient(180deg, #fff, #f6f4f8);
+    }
+    .item__meta { flex: 1; min-width: 0; }
+    .item__name {
+      font-size: 0.82rem;
+      font-weight: 900;
+      color: var(--ink);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .item__sub {
+      margin-top: 0.12rem;
+      font-size: 0.66rem;
+      color: #625d7d;
+    }
+    .item__actions {
+      display: flex;
+      gap: 0.3rem;
+      flex-shrink: 0;
+    }
+    .item__actions button {
+      padding: 0.28rem 0.5rem;
+      border-radius: 6px;
+      font: inherit;
+      font-size: 0.68rem;
+      font-weight: 800;
+      cursor: default;
+    }
+    .restore {
+      border: 1.5px solid var(--ink);
+      background: #fff;
+      color: var(--ink);
+    }
+    .delete {
+      border: 1px solid #c43a5a;
+      background: #fff;
+      color: #c43a5a;
+    }
+
+    /* サムネ共通 */
+    .thumb img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      object-position: center bottom;
+    }
+    .thumb .ph {
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(160deg, #e8e4f0, #c8c0d8);
+      border-radius: 3px;
+    }
+
+    /* 案A: 育成1枚 + サポ6枚横一列 */
+    .a .thumb-row {
+      display: flex;
+      gap: 0.18rem;
+      flex-shrink: 0;
+    }
+    .a .thumb--char {
+      width: 2.1rem;
+      height: 2.9rem;
+      flex-shrink: 0;
+    }
+    .a .thumb--sup {
+      width: 1.35rem;
+      height: 2.9rem;
+    }
+
+    /* 案B: 育成左 + サポ2×3ミニグリッド */
+    .b .thumb-wrap {
+      display: flex;
+      gap: 0.28rem;
+      flex-shrink: 0;
+    }
+    .b .thumb--char {
+      width: 2.2rem;
+      height: 3.1rem;
+    }
+    .b .thumb-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1.2rem);
+      grid-template-rows: repeat(2, 1.45rem);
+      gap: 0.14rem;
+    }
+
+    /* 案C: サムネのみ大きめ（名前は下） */
+    .c .item {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0.4rem;
+    }
+    .c .item__top {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.5rem;
+    }
+    .c .thumb-strip {
+      display: flex;
+      gap: 0.2rem;
+      flex: 1;
+      min-width: 0;
+      overflow-x: auto;
+      padding-bottom: 0.1rem;
+    }
+    .c .thumb--char { width: 2.4rem; height: 3.2rem; flex-shrink: 0; }
+    .c .thumb--sup { width: 1.5rem; height: 3.2rem; flex-shrink: 0; }
+    .c .item__actions { justify-content: flex-end; }
+
+    .pick { outline: 2px solid #ff3276; outline-offset: 2px; }
+  </style>
+</head>
+<body>
+  <h1>設計メモリ — 編成サムネ案</h1>
+  <p class="note">
+    画像データは保存しない（スナップショットの ID から既存アセットを表示）。<br />
+    サンプル: グランアレグリア（30301）・ナイスネイチャ（30306）を含む編成。採用案を番号で返事ください。未承認のため本実装はまだしません。
+  </p>
+
+  <div class="grid">
+    <section class="card a">
+      <div class="card__head">
+        <span class="tag">案A</span>
+        <h2>横一列コンパクト</h2>
+        <p>育成1＋サポ6を1行。行高を抑えてリストに収まりやすい。</p>
+      </div>
+      <div class="dialog-body">
+        <p class="hint-line">名前を付けて設計を保存…（省略）</p>
+        <div class="save-row">
+          <input type="text" value="パワ寄せ・グラン編" readonly />
+          <button type="button">保存</button>
+        </div>
+        <ul class="list">
+          <li class="item">
+            <div class="thumb-row" aria-hidden="true">
+              <div class="thumb thumb--char"><img src="../../../assets/characters/105801.webp" alt="" /></div>
+              <div class="thumb thumb--sup"><img src="../../../assets/supports/30301.webp" alt="" /></div>
+              <div class="thumb thumb--sup"><img src="../../../assets/supports/30306.webp" alt="" /></div>
+              <div class="thumb thumb--sup"><img src="../../../assets/supports/30271.webp" alt="" /></div>
+              <div class="thumb thumb--sup"><img src="../../../assets/supports/30305.webp" alt="" /></div>
+              <div class="thumb thumb--sup"><img src="../../../assets/supports/30242.webp" alt="" /></div>
+              <div class="thumb thumb--sup"><img src="../../../assets/supports/30157.webp" alt="" /></div>
+            </div>
+            <div class="item__meta">
+              <div class="item__name">パワ寄せ・グラン編</div>
+              <div class="item__sub">2026/08/02 18:00 · 12,450 SP</div>
+            </div>
+            <div class="item__actions">
+              <button type="button" class="restore">復元</button>
+              <button type="button" class="delete">削除</button>
+            </div>
+          </li>
+          <li class="item">
+            <div class="thumb-row" aria-hidden="true">
+              <div class="thumb thumb--char"><img src="../../../assets/characters/105801.webp" alt="" /></div>
+              <div class="thumb thumb--sup"><img src="../../../assets/supports/30306.webp" alt="" /></div>
+              <div class="thumb thumb--sup"><img src="../../../assets/supports/30301.webp" alt="" /></div>
+              <div class="thumb thumb--sup"><img src="../../../assets/supports/30258.webp" alt="" /></div>
+              <div class="thumb thumb--sup"><img src="../../../assets/supports/30138.webp" alt="" /></div>
+              <div class="thumb thumb--sup"><img src="../../../assets/supports/30054.webp" alt="" /></div>
+              <div class="thumb thumb--sup"><img src="../../../assets/supports/30239.webp" alt="" /></div>
+            </div>
+            <div class="item__meta">
+              <div class="item__name">賢さネイチャ軸</div>
+              <div class="item__sub">2026/08/01 14:20 · 11,980 SP</div>
+            </div>
+            <div class="item__actions">
+              <button type="button" class="restore">復元</button>
+              <button type="button" class="delete">削除</button>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="card b pick">
+      <div class="card__head">
+        <span class="tag" style="background:#463f70;color:#fff">案B（推奨）</span>
+        <h2>育成 + 2×3 グリッド</h2>
+        <p>編成画面に近い形。サポの並びが分かりやすい。幅はやや広め。</p>
+      </div>
+      <div class="dialog-body">
+        <div class="save-row">
+          <input type="text" placeholder="設計名" readonly />
+          <button type="button">保存</button>
+        </div>
+        <ul class="list">
+          <li class="item">
+            <div class="thumb-wrap" aria-hidden="true">
+              <div class="thumb thumb--char"><img src="../../../assets/characters/105801.webp" alt="" /></div>
+              <div class="thumb-grid">
+                <div class="thumb"><img src="../../../assets/supports/30301.webp" alt="" /></div>
+                <div class="thumb"><img src="../../../assets/supports/30306.webp" alt="" /></div>
+                <div class="thumb"><img src="../../../assets/supports/30271.webp" alt="" /></div>
+                <div class="thumb"><img src="../../../assets/supports/30305.webp" alt="" /></div>
+                <div class="thumb"><img src="../../../assets/supports/30242.webp" alt="" /></div>
+                <div class="thumb"><img src="../../../assets/supports/30157.webp" alt="" /></div>
+              </div>
+            </div>
+            <div class="item__meta">
+              <div class="item__name">パワ寄せ・グラン編</div>
+              <div class="item__sub">2026/08/02 18:00 · 12,450 SP</div>
+            </div>
+            <div class="item__actions">
+              <button type="button" class="restore">復元</button>
+              <button type="button" class="delete">削除</button>
+            </div>
+          </li>
+          <li class="item">
+            <div class="thumb-wrap" aria-hidden="true">
+              <div class="thumb thumb--char"><img src="../../../assets/characters/105801.webp" alt="" /></div>
+              <div class="thumb-grid">
+                <div class="thumb"><img src="../../../assets/supports/30306.webp" alt="" /></div>
+                <div class="thumb"><img src="../../../assets/supports/30301.webp" alt="" /></div>
+                <div class="thumb"><img src="../../../assets/supports/30258.webp" alt="" /></div>
+                <div class="thumb"><img src="../../../assets/supports/30138.webp" alt="" /></div>
+                <div class="thumb"><img src="../../../assets/supports/30054.webp" alt="" /></div>
+                <div class="thumb"><img src="../../../assets/supports/30239.webp" alt="" /></div>
+              </div>
+            </div>
+            <div class="item__meta">
+              <div class="item__name">賢さネイチャ軸</div>
+              <div class="item__sub">2026/08/01 14:20 · 11,980 SP</div>
+            </div>
+            <div class="item__actions">
+              <button type="button" class="restore">復元</button>
+              <button type="button" class="delete">削除</button>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="card c">
+      <div class="card__head">
+        <span class="tag">案C</span>
+        <h2>サムネ上・メタ下</h2>
+        <p>サムネを大きく。スマホ縦では横スクロールになる可能性あり。</p>
+      </div>
+      <div class="dialog-body">
+        <ul class="list">
+          <li class="item">
+            <div class="item__top">
+              <div class="thumb-strip" aria-hidden="true">
+                <div class="thumb thumb--char"><img src="../../../assets/characters/105801.webp" alt="" /></div>
+                <div class="thumb thumb--sup"><img src="../../../assets/supports/30301.webp" alt="" /></div>
+                <div class="thumb thumb--sup"><img src="../../../assets/supports/30306.webp" alt="" /></div>
+                <div class="thumb thumb--sup"><img src="../../../assets/supports/30271.webp" alt="" /></div>
+                <div class="thumb thumb--sup"><img src="../../../assets/supports/30305.webp" alt="" /></div>
+                <div class="thumb thumb--sup"><img src="../../../assets/supports/30242.webp" alt="" /></div>
+                <div class="thumb thumb--sup"><img src="../../../assets/supports/30157.webp" alt="" /></div>
+              </div>
+              <div class="item__actions">
+                <button type="button" class="restore">復元</button>
+                <button type="button" class="delete">削除</button>
+              </div>
+            </div>
+            <div class="item__meta">
+              <div class="item__name">パワ寄せ・グラン編</div>
+              <div class="item__sub">2026/08/02 18:00 · 12,450 SP</div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </section>
+  </div>
+</body>
+</html>
