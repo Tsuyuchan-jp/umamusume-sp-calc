@@ -710,33 +710,17 @@ tr:hover td {
   background: var(--surface-muted);
 }
 
-/* ---- 絞込・その他 ---- */
-.skill-filter-box {
-  border-radius: var(--radius-md);
-  border-color: var(--border-default);
-  background: var(--surface-muted);
-  box-shadow: var(--shadow-sm);
-}
-
+/* ---- 絞込・その他（結果ツールバーは style.css の H5 寄せが正） ---- */
 .skill-filter-box--pending {
-  border-color: var(--warn);
-  box-shadow: 0 0 0 3px rgba(212, 136, 6, 0.15);
+  outline-color: var(--warn);
 }
 
 .skill-filter-apply:not(:disabled) {
-  background: linear-gradient(180deg, var(--ink-light) 0%, var(--ink-mid) 100%);
-  color: #fff;
-  border: none;
-  border-radius: var(--radius-sm);
   font-weight: var(--font-weight-bold);
 }
 
 .copy-included-skills:not(:disabled) {
-  border-radius: var(--radius-pill);
-  border-color: var(--accent-on);
-  background: var(--accent-on-soft);
-  color: var(--accent-on-deep);
-  font-weight: var(--font-weight-bold);
+  font-weight: var(--font-weight-black);
 }
 
 select,

@@ -333,52 +333,44 @@
       <div class="snap-zone snap-zone--workbench" id="snap-zone-workbench">
         <section class="panel panel--workbench">
           <div class="result-panel-heading">
-            <h2>結果（作業台）</h2>
-            <div class="result-panel-heading__meta">
-              <span id="skill-count-meta" class="skill-count-meta">スキル数 —</span>
-              <button
-                type="button"
-                id="copy-included-skills"
-                class="copy-included-skills"
-                disabled
-              >
-                含めるスキルをコピー
-              </button>
-            </div>
+            <h2 class="result-zt">結果作業台</h2>
+            <span id="skill-count-meta" class="skill-count-meta">スキル数 —</span>
           </div>
-          <div id="skill-filter-box" class="skill-filter-box" aria-live="polite">
-            <div class="skill-filter-box__title">レギュ絞込</div>
-            <div class="skill-filters">
-              <label class="skill-filter-label">
-                バ場
-                <select id="skill-filter-ground">
-                  <option value="">未選択</option>
-                  <option value="turf">芝</option>
-                  <option value="dirt">ダート</option>
-                </select>
-              </label>
-              <label class="skill-filter-label">
-                距離
-                <select id="skill-filter-distance">
-                  <option value="">未選択</option>
-                  <option value="short">短距離</option>
-                  <option value="mile">マイル</option>
-                  <option value="mid">中距離</option>
-                  <option value="long">長距離</option>
-                </select>
-              </label>
-              <label class="skill-filter-label">
-                作戦
-                <select id="skill-filter-style">
-                  <option value="">未選択</option>
-                  <option value="nige">逃げ</option>
-                  <option value="senko">先行</option>
-                  <option value="sashi">差し</option>
-                  <option value="oikomi">追込</option>
-                </select>
-              </label>
-              <div class="skill-filter-action">
-                <span class="skill-filter-action__spacer" aria-hidden="true">作戦</span>
+
+          <!-- H5 ツール行: タグ＋レギュ＋並び＋コピー（要件はそのまま、見た目のみ） -->
+          <div class="result-toolbar">
+            <span class="result-toolbar__tag">含めるスキル</span>
+            <div id="skill-filter-box" class="skill-filter-box" aria-live="polite">
+              <span class="result-toolbar__fl">レギュ</span>
+              <div class="skill-filters">
+                <label class="skill-filter-label">
+                  バ場
+                  <select id="skill-filter-ground">
+                    <option value="">未選択</option>
+                    <option value="turf">芝</option>
+                    <option value="dirt">ダート</option>
+                  </select>
+                </label>
+                <label class="skill-filter-label">
+                  距離
+                  <select id="skill-filter-distance">
+                    <option value="">未選択</option>
+                    <option value="short">短距離</option>
+                    <option value="mile">マイル</option>
+                    <option value="mid">中距離</option>
+                    <option value="long">長距離</option>
+                  </select>
+                </label>
+                <label class="skill-filter-label">
+                  作戦
+                  <select id="skill-filter-style">
+                    <option value="">未選択</option>
+                    <option value="nige">逃げ</option>
+                    <option value="senko">先行</option>
+                    <option value="sashi">差し</option>
+                    <option value="oikomi">追込</option>
+                  </select>
+                </label>
                 <button
                   type="button"
                   id="skill-filter-apply"
@@ -389,50 +381,59 @@
                   適用
                 </button>
               </div>
+              <p id="skill-filter-pending" class="skill-filter-box__status" hidden>
+                未適用の絞込があります
+              </p>
             </div>
-            <p id="skill-filter-pending" class="skill-filter-box__status" hidden>
-              未適用の絞込があります
-            </p>
-          </div>
-          <p class="hint">
-            絞込は「適用」で確定します。確定時にレギュに合わないスキルを合計から除外し、「含める」の手動変更はやり直されます。編成変更で追加されたスキルには確定済みの絞込が自動でかかります。
-          </p>
-          <p class="hint">一覧の「含める」チェックを外すと合計から除外されます。合計は画面下部のバーを参照してください。</p>
-          <div class="result-sort-bar">
-            <span class="result-sort-bar__label" id="result-sort-label">表示順</span>
-            <div
-              class="result-sort-seg"
-              role="group"
-              aria-labelledby="result-sort-label"
+            <div class="result-sort-bar">
+              <span class="result-toolbar__fl" id="result-sort-label">並び</span>
+              <div
+                class="result-sort-seg"
+                role="group"
+                aria-labelledby="result-sort-label"
+              >
+                <button
+                  type="button"
+                  class="result-sort-seg__btn is-active"
+                  data-sort="skillId"
+                  aria-pressed="true"
+                >
+                  スキルID
+                </button>
+                <button
+                  type="button"
+                  class="result-sort-seg__btn"
+                  data-sort="kind"
+                  aria-pressed="false"
+                >
+                  由来種別
+                </button>
+                <button
+                  type="button"
+                  class="result-sort-seg__btn"
+                  data-sort="cost"
+                  aria-pressed="false"
+                >
+                  必要SP
+                </button>
+              </div>
+            </div>
+            <button
+              type="button"
+              id="copy-included-skills"
+              class="copy-included-skills"
+              disabled
             >
-              <button
-                type="button"
-                class="result-sort-seg__btn is-active"
-                data-sort="skillId"
-                aria-pressed="true"
-              >
-                スキルID
-              </button>
-              <button
-                type="button"
-                class="result-sort-seg__btn"
-                data-sort="kind"
-                aria-pressed="false"
-              >
-                由来種別
-              </button>
-              <button
-                type="button"
-                class="result-sort-seg__btn"
-                data-sort="cost"
-                aria-pressed="false"
-              >
-                必要SP
-              </button>
-            </div>
+              含めるをコピー
+            </button>
           </div>
+
+          <p class="hint result-toolbar-hint">
+            絞込は「適用」で確定。確定時にレギュ外を除外し「含める」の手動変更はやり直されます。一覧のトグルで合計から外せます。
+          </p>
+
           <div class="result-table-wrap">
-            <table>
+            <table class="result-skills">
               <thead>
                 <tr>
                   <th>含める</th>

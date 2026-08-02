@@ -40,7 +40,7 @@
 
 ## 現在フォーカス（1行）
 
-**P1 結果作業台の見た目パリティ** — モック寄せ（含めるトグル・レギュ絞込）。列／要件は維持。詳細: [product/design-polish-backlog.md](./product/design-polish-backlog.md)
+**P1 カードピッカー刷新** — 推奨 P-A＋薄い P-B。育成／サポカとも0から。詳細: [product/design-polish-backlog.md](./product/design-polish-backlog.md)
 
 ---
 
@@ -52,11 +52,7 @@
 
 ### P1
 
-- [ ] **結果作業台の見た目パリティ**（次チャットの本命・backlog #2）  
-  - 含めるトグル・レギュ絞込など見た目をモックへ。表の列／レギュ要件／計算は変えない  
-  - 参照: `docs/product/mockups/hybrid-h5-dual.html` · [product/UX.md](./product/UX.md)
-
-- [ ] **カードピッカー刷新**（結果枠の直後・backlog #4）  
+- [ ] **カードピッカー刷新**（次チャットの本命・backlog #4）  
   - 推奨（P-A＋薄い P-B）で実装。見たあと別案可  
   - 育成／サポカとも0から刷新（選択中表示の改善を含む）
 
@@ -93,6 +89,7 @@
 
 ## 最近完了（直近のみ残す）
 
+- [x] 2026-08-02 **結果作業台の見た目パリティ** — H5ツール行・含めるトグル・レギュ／並び／コピー寄せ（列・計算は維持）
 - [x] 2026-08-02 **split 縦隙間の二重加算を除去** — 空 grid 行＋row-gap が padding-top と二重（A=8 / B=16 → 両方 8px）
 - [x] 2026-08-02 **主要面の隙間を統一** — `--layout-stack` / `--layout-gutter`
 - [x] 2026-08-02 **レイアウトをモック型に** — クロム 1480 固定、本文 gallery 1180／split 1480
