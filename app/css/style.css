@@ -527,7 +527,7 @@ input[type="search"] {
 
 /* ---- 編成ダッシュボード（二段構え・上段） ---- */
 .panel--deck {
-  padding-bottom: 0.65rem;
+  padding-bottom: var(--panel-pad-y, 0.85rem);
   /* 背景は foundation の --panel（幾何タイル）に委譲 */
   box-shadow: 0 2px 8px rgba(44, 62, 80, 0.06);
 }
