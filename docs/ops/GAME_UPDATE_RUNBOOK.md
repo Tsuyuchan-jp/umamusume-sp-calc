@@ -218,7 +218,7 @@ git add .
 git commit -m "chore: ゲーム更新に伴うデータ再 extract（YYYY-MM-DD）"
 ```
 
-**push 方針（現行）**: UX 思想が完成した **v1.0.0** まで `git push` / Pages 反映は行わない。ローカルコミットのみで復元点を残す。v1.0.0 以降は従来どおり:
+**push 方針**: 変更を本番へ反映するときは `git push`（Pages は GitHub Actions）。
 
 ```powershell
 git push

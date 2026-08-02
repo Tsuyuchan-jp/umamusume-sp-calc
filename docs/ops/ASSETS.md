@@ -46,7 +46,7 @@ https://static.kouryaku.tools/umamusume/images/app/supports/{name}.png
 
 - 非公式・非商用。画像の権利はゲーム権利者に帰属
 - **必要最小限のみ同梱**
-- 公開 Pages への反映（`git push`）は **v1.0.0** まで行わない
+- 公開 Pages への反映は通常どおり `git push`（v1.0.0 で初反映済み）
 
 ## 抽出パイプライン
 

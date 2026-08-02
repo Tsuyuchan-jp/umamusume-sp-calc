@@ -9,16 +9,16 @@
 
 | 項目 | 状態 |
 |------|------|
-| アプリ | 実用段階・公開済み（v0.1.14）。SP計算・UI・集計実装済み |
+| アプリ | **v1.0.0** 公開。SP計算・デュアルUI・スクショ・スマホ対応・集計実装済み |
 | データ | skills / supports / characters / events / toresenken **あり**（件数は `data/meta.json`） |
 | events | 優先40・111イベント（U-tools+mdb + preserve。30307/30308 は GameWith 一時） |
 | カード画像 | サポカ縦40 + 育成 `chr_icon` 全262 同梱済み（[ops/ASSETS.md](./ops/ASSETS.md)） |
 | extract 元 mdb | `D:\DMM\...\Persistent\master\master.mdb`（AppData 既定は無しが多い） |
 | 公開 URL | https://Tsuyuchan-jp.github.io/umamusume-sp-calc/app/ |
-| push / Pages | **v1.0.0 まで push しない**（ローカルコミットのみ） |
+| push / Pages | **通常どおり push 可**（v1.0.0 で初反映。以降は変更のたびコミット＋明示時 push） |
 | 初期編成 | 育成112901（アーモンドアイ）/ 枠1エアグルーヴ・枠2テイオー・枠3タップ・枠4ドトウ・枠5ヤング・枠6たづな |
-| 編成スクショ | **本実装完了・実機OK**（v28.1・snapdom・layout-modebar 右端）。[product/screenshot-requirements.md](./product/screenshot-requirements.md) |
-| v1 レビュー | M1〜M4・スマホ対応 **実機OKでクローズ**。次は **v1.0.0 公開準備** → [TODO.md](./TODO.md) |
+| 編成スクショ | **本実装完了・実機OK**（v28.1・snapdom）。[product/screenshot-requirements.md](./product/screenshot-requirements.md) |
+| v1 レビュー | M1〜M4・スマホ対応 **クローズ**。次は TODO Open（回帰拡充・ゲーム更新・30307/30308 等） |
 
 通し確認・版履歴の詳細は [CHANGELOG.md](./CHANGELOG.md)。
 

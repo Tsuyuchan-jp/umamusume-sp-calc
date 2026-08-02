@@ -52,7 +52,7 @@ npm run serve
 
 `configure-pages` が「Pages site failed / Not Found」になる場合は、Source が Actions 未設定のことが多い。設定後に workflow を rerun する。
 
-**注意**: UX 完了の **v1.0.0 まで push しない**方針（[ASSETS.md](./ASSETS.md) / [TODO.md](../TODO.md)）。
+**注意**: 公開反映は `git push`（Pages は GitHub Actions）。手順は上記。
 
 ## Python / PATH
 

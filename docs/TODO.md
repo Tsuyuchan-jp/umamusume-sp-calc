@@ -40,7 +40,7 @@
 
 ## 現在フォーカス（1行）
 
-**P3 v1.0.0 公開準備** — 共有タイトル／ファイル名合意実装済。CHANGELOG・README・初 push 準備
+**公開後フォロー** — v1.0.0 反映後のスモーク／スマホ本体確認。Open は回帰・ゲーム更新・30307/30308
 
 ---
 
@@ -57,6 +57,7 @@
 ### P2
 
 - [ ] **回帰テスト拡充** — 実機確認ケース全般（バグ取りとセット）。**スマホ本体での広範確認は v1.0.0 公開後**
+- [ ] **v1.0.0 Pages スモーク** — ヘッダー版 `v1.0.0`・既定合計・共有／メモリ／リセットの通し確認
 
 ### P3 / 条件付き
 
@@ -65,14 +66,12 @@
   - 手順: `npm run extract:events` → `compare:events` → `apply:events` のあと、`events.preserve.json` から GameWith 一時手載せ6件（`evt_30307_*` / `evt_30308_*`）を削除。docs の件数・注記も更新  
   - 関連: [ops/GAME_UPDATE_RUNBOOK.md](./ops/GAME_UPDATE_RUNBOOK.md) / events preserve
 
-- [ ] **v1.0.0 公開準備** — UX 残り（ピッカー等）が閉じた。CHANGELOG・README・**初 push / Pages 反映**  
-  - 制約: それまで `git push` しない（[ops/ASSETS.md](./ops/ASSETS.md) / [ops/GAME_UPDATE_RUNBOOK.md](./ops/GAME_UPDATE_RUNBOOK.md)）
-
 - [ ] **ゲーム更新追従** — 発生時のみ [ops/GAME_UPDATE_RUNBOOK.md](./ops/GAME_UPDATE_RUNBOOK.md)（mdb → events → assets:extract/import → verify）
 
 ---
 
-- [x] 2026-08-03 **編成タイトル見た目 B＋初期リセット R1/P4** — 見出し風＋鉛筆。リセットは編成右の循環アイコン（確認付き）
+- [x] 2026-08-03 **v1.0.0 公開準備** — CHANGELOG・README・版上げ・初 push / Pages
+- [x] 2026-08-03 **編成タイトル見た目 B＋初期リセット R1/P4** — 見出し風＋鉛筆。リセットは編成右の循環アイコン＋テキスト（確認付き）
 - [x] 2026-08-03 **編成タイトル入力欄** — 編成見出し直下。共有／PNG名の正本。育成変更は手編集維持（B）。メモリ連携
 - [x] 2026-08-03 **共有カード タイトル／PNG名** — 編成タイトル優先。保存名 `{名前}-{YYYYMMDD}-{SP}sp.png`
 - [x] 2026-08-03 **スマホ対応** — ≤1199 ギャラリー固定・共有は結果見出し・由来折り返し・合計バー2段・ツールバー1段・トレLvセグメント修正。**実機OKでクローズ**（スマホ本体の広範確認は v1.0.0 公開後）
