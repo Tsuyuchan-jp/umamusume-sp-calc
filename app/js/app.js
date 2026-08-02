@@ -867,11 +867,11 @@ function renderChoicePanelButtons(container, evt, onAfter) {
       evt.label.replace(/^[①②③④⑤⑥⑦⑧⑨⑩]\s*/, "") ||
       "ON/OFF";
     btn.innerHTML = `
-      <div class="evt-choice-panel__kind">${kindBadgeHtml("white")}</div>
-      <div>
-        <div class="evt-choice-panel__title">${escapeHtml(title)}</div>
-      </div>
-      <div class="evt-choice-panel__pick">${on ? "ON" : "OFF"}</div>`;
+      <span class="evt-choice-panel__kind">${kindBadgeHtml("white")}</span>
+      <span class="evt-choice-panel__main">
+        <span class="evt-choice-panel__title">${escapeHtml(title)}</span>
+      </span>
+      <span class="evt-choice-panel__pick">${on ? "ON" : "OFF"}</span>`;
     btn.onclick = () => {
       if (state.ui.enabledEventIds.has(evt.id)) state.ui.enabledEventIds.delete(evt.id);
       else state.ui.enabledEventIds.add(evt.id);
@@ -881,11 +881,6 @@ function renderChoicePanelButtons(container, evt, onAfter) {
     return;
   }
 
-  const hint = document.createElement("p");
-  hint.className = "evt-choice-hint";
-  hint.textContent = "1つ選択 · 金スキルがある選択肢を上に表示（未選択なし）";
-  container.appendChild(hint);
-
   const current = resolveEventChoiceId(evt);
   for (const choice of sortChoicesGoldFirst(evt.choices || [])) {
     const kind = choiceKind(choice);
@@ -893,12 +888,12 @@ function renderChoicePanelButtons(container, evt, onAfter) {
     btn.type = "button";
     btn.className = "evt-choice-panel" + (current === choice.id ? " is-on" : "");
     btn.innerHTML = `
-      <div class="evt-choice-panel__kind">${kindBadgeHtml(kind)}</div>
-      <div>
-        <div class="evt-choice-panel__title">${escapeHtml(shortChoiceLabel(choice))}</div>
+      <span class="evt-choice-panel__kind">${kindBadgeHtml(kind)}</span>
+      <span class="evt-choice-panel__main">
+        <span class="evt-choice-panel__title">${escapeHtml(shortChoiceLabel(choice))}</span>
         ${choicePanelDescHtml(choice.skills, "ステータス分岐など")}
-      </div>
-      <div class="evt-choice-panel__pick">${current === choice.id ? "選択中" : "選ぶ"}</div>`;
+      </span>
+      <span class="evt-choice-panel__pick">${current === choice.id ? "選択中" : "選ぶ"}</span>`;
     btn.onclick = () => {
       state.ui.eventChoiceIds.set(evt.id, choice.id);
       onAfter();
@@ -943,10 +938,7 @@ function openEventChoicePane(evt, slotIndex) {
     typeof slotIndex === "number" ? `${slotIndex + 1}. ` : "";
   const name = support ? shortSupportLabel(support) : "";
   title.textContent = `A · ${slotLabel}${name || evt.label}`;
-  sub.textContent =
-    evt.selection === "toggle"
-      ? "複数・ON/OFF · 同じ要約で閉じる / Esc"
-      : "単一選択 · 金を最上段 · 同じ要約で閉じる / Esc";
+  sub.textContent = "カード帯クリック / 同じ要約 / Esc で閉じる";
 
   const refresh = () => {
     renderColumnEvents();
@@ -1015,6 +1007,14 @@ function bindEventChoiceDialog() {
     if (!isSplitLayout()) return;
     const pane = document.getElementById("split-evt-pane");
     if (!pane || pane.hidden) return;
+    closeSplitEvtPane();
+  });
+  /* 編成上部（カード帯）クリックはモーダル風に先にペインを閉じる。要約は openEventChoiceUi 側 */
+  document.querySelector(".deck-dashboard")?.addEventListener("click", (e) => {
+    if (!isSplitLayout()) return;
+    const pane = document.getElementById("split-evt-pane");
+    if (!pane || pane.hidden) return;
+    if (e.target.closest(".deck-evt-sum")) return;
     closeSplitEvtPane();
   });
 }

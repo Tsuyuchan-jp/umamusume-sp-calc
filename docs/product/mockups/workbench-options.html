@@ -303,17 +303,93 @@
     <aside class="note">
       <h2>別件：詳細ペインの閉じ方（スプリット）</h2>
       <ol>
-        <li><span class="rec">実装済</span> — <b>同じ要約を再タップで閉じる</b>（トグル）。閉じるボタンも残置</li>
+        <li><span class="rec">実装済</span> — <b>同じ要約を再タップで閉じる</b></li>
         <li><span class="rec">実装済</span> — <b>Esc</b> で閉じる</li>
-        <li>任意 — カード帯の空白クリックで閉じる（誤タップに注意・未実装）</li>
-        <li>やらない — 選択肢を選んだ瞬間に自動で閉じる（複数選択・見比べに向かない）</li>
+        <li><span class="rec">実装済</span> — <b>編成カード帯クリック</b>で先にペインを閉じる（モーダル風）</li>
+        <li>やらない — 選択肢を選んだ瞬間に自動で閉じる</li>
       </ol>
     </aside>
 
     <div class="grid">
+      <!-- W-H ハイブリッド -->
+      <article class="card span2">
+        <h2>W-H · レギュ儀式 × 削る表 <span class="pill">推奨（ハイブリッド）</span></h2>
+        <p class="tagline">W-B の紫クロムで対人レギュを先に決める + W-A の静かな表（ON／スキル／SP／由来）。並びとコピーは表側ツール。</p>
+        <div class="frame" style="min-height: 460px;">
+          <section class="bench" style="min-height: 430px;" aria-label="W-H プレビュー">
+            <div class="wb-regu">
+              <div class="wb-regu-top">
+                <strong>対人レギュ</strong>
+                <span>先に決めて適用 · 表は削る作業専用</span>
+              </div>
+              <div class="wb-dims">
+                <div class="wb-dim">
+                  <label>バ場</label>
+                  <div class="seg">
+                    <button type="button" class="is-on">芝</button>
+                    <button type="button">ダート</button>
+                  </div>
+                </div>
+                <div class="wb-dim">
+                  <label>距離</label>
+                  <div class="seg">
+                    <button type="button">短</button>
+                    <button type="button">マイル</button>
+                    <button type="button" class="is-on">中</button>
+                    <button type="button">長</button>
+                  </div>
+                </div>
+                <div class="wb-dim">
+                  <label>作戦</label>
+                  <div class="seg">
+                    <button type="button">逃</button>
+                    <button type="button" class="is-on">先</button>
+                    <button type="button">差</button>
+                    <button type="button">追</button>
+                  </div>
+                </div>
+                <button type="button" class="apply" style="align-self:flex-end">適用</button>
+              </div>
+            </div>
+            <div class="wa-head" style="padding-top:10px">
+              <h3 class="wa-title">結果</h3>
+              <div class="wa-meta">含める <b>72</b> / 75</div>
+            </div>
+            <div class="wa-tools" style="border-bottom:1px solid var(--line)">
+              <span class="fl">並び</span>
+              <div class="seg">
+                <button type="button" class="is-on" data-sort>由来</button>
+                <button type="button" data-sort>SP</button>
+                <button type="button" data-sort>名前</button>
+              </div>
+              <span class="grow"></span>
+              <button type="button" class="solid">含めるをコピー</button>
+            </div>
+            <div class="wa-board">
+              <table>
+                <thead>
+                  <tr>
+                    <th class="col-on">ON</th>
+                    <th>スキル</th>
+                    <th class="col-sp">必要SP</th>
+                    <th>由来</th>
+                  </tr>
+                </thead>
+                <tbody id="wh-body"></tbody>
+              </table>
+            </div>
+          </section>
+        </div>
+        <ul class="why">
+          <li>レギュはクロム帯で「前提固定」の儀式感（W-B）</li>
+          <li>表は W-A と同じ4列・視線 ON→名前→SP。説明文や余分なタグなし</li>
+          <li>並び／コピーだけ薄いツール行に残す（レギュと役割分離）</li>
+        </ul>
+      </article>
+
       <!-- W-A -->
       <article class="card">
-        <h2>W-A · 削る作業台 <span class="pill">推奨</span></h2>
+        <h2>W-A · 削る作業台 <span class="pill alt">元案</span></h2>
         <p class="tagline">見出しを静かにして表を主役に。条件・Lv はスキル名の下へ。レギュは薄い1行。</p>
         <div class="frame">
           <section class="bench" aria-label="W-A プレビュー">
@@ -361,7 +437,7 @@
 
       <!-- W-B -->
       <article class="card">
-        <h2>W-B · レギュ決定バー <span class="pill alt">代替</span></h2>
+        <h2>W-B · レギュ決定バー <span class="pill alt">元案</span></h2>
         <p class="tagline">対人レギュを「先に決める」儀式にする。表は削る作業専用。</p>
         <div class="frame">
           <section class="bench" aria-label="W-B プレビュー">
@@ -532,6 +608,7 @@
 
     renderWA();
     renderWB();
+    document.getElementById("wh-body").innerHTML = document.getElementById("wa-body").innerHTML;
 
     document.querySelectorAll("[data-tog]").forEach((btn) => {
       btn.addEventListener("click", () => {

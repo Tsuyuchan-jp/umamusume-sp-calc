@@ -40,7 +40,7 @@
 
 ## 現在フォーカス（1行）
 
-**結果作業台 再設計の選定** — モック [product/mockups/workbench-options.html](./product/mockups/workbench-options.html)（W-A 推奨 / W-B）。詳細ペイン閉じ方も同ページ。選定後に実装 → ピッカー
+**結果作業台 再設計の選定** — モック [product/mockups/workbench-options.html](./product/mockups/workbench-options.html)（**W-H 推奨** / W-A / W-B）。選定後に実装 → ピッカー
 
 ---
 
@@ -53,7 +53,7 @@
 ### P1
 
 - [ ] **結果作業台 再設計の選定→実装**（モック確認中）  
-  - 比較: [product/mockups/workbench-options.html](./product/mockups/workbench-options.html)（W-A 推奨 / W-B）  
+  - 比較: [product/mockups/workbench-options.html](./product/mockups/workbench-options.html)（**W-H** = W-B儀式×W-A表 / W-A / W-B）  
   - 列圧縮（条件・Lv をサブ行）は選定時に合意
 
 - [ ] **カードピッカー刷新**（結果枠の直後・backlog #4）  
@@ -93,6 +93,7 @@
 
 ## 最近完了（直近のみ残す）
 
+- [x] 2026-08-02 **詳細ペイン見た目再設計**＋カード帯クリックで閉じる（モーダル風）
 - [x] 2026-08-02 **スプリット詳細ペインの閉じ方** — 同じ要約の再タップ／Esc（ギャラリーは従来どおり）
 - [x] 2026-08-02 **詳細選択肢の二重表示修正** — label と skills 一覧の重複を解消
 - [x] 2026-08-02 **結果作業台の見た目パリティ** — H5ツール行・含めるトグル・レギュ／並び／コピー寄せ（列・計算は維持）
