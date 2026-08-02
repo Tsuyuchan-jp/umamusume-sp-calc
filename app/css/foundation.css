@@ -802,6 +802,52 @@ body.layout-split .panel--deck > .app-header {
   color: #9a96ad;
 }
 
+@media (max-width: 1199px) {
+  .inherit-popover__inner {
+    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-areas:
+      "main close"
+      "formula formula";
+  }
+
+  .inherit-formula {
+    align-items: flex-start;
+  }
+
+  .inherit-popover__close {
+    width: 2.5rem;
+    height: 2.5rem;
+    font-size: 1.15rem;
+  }
+
+  .inherit-seg button {
+    min-height: 2.5rem;
+    min-width: 2.5rem;
+    height: auto;
+  }
+
+  .inherit-tog {
+    width: 2.75rem;
+    height: 1.65rem;
+  }
+
+  .card-picker {
+    width: min(96vw, 40rem);
+    max-height: min(92dvh, 90vh);
+    --picker-shelf-h: min(16rem, 34dvh);
+  }
+
+  .card-picker__close {
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+
+  .type-chip {
+    min-height: 2.5rem;
+    padding: 0.4rem 0.75rem;
+  }
+}
+
 @media (max-width: 860px) {
   .inherit-popover__inner {
     grid-template-columns: minmax(0, 1fr) auto;

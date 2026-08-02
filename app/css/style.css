@@ -973,6 +973,22 @@ input[type="search"] {
   box-shadow: 0 16px 48px rgba(0, 0, 0, 0.35);
 }
 
+@media (max-width: 1199px) {
+  .event-choice-dialog {
+    width: calc(100vw - 1.25rem);
+    max-width: 440px;
+  }
+
+  .event-choice-dialog__close {
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+
+  .evt-choice-panel {
+    min-height: 2.5rem;
+  }
+}
+
 .event-choice-dialog::backdrop {
   background: rgba(30, 24, 50, 0.55);
 }
@@ -1812,7 +1828,7 @@ body.layout-split .panel--workbench {
 @media (max-width: 480px) {
   .deck-supports {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 0.45rem;
+    gap: 0.55rem;
   }
 
   .deck-slot--character {
@@ -1837,8 +1853,9 @@ body.layout-split .panel--workbench {
     font-size: 1.45rem;
   }
 
-  body {
-    padding-bottom: calc(5.75rem + var(--layout-stack, 0.5rem));
+  body.layout-gallery,
+  body:not(.layout-split) {
+    padding-bottom: calc(8.5rem + var(--layout-stack, 0.5rem));
   }
 }
 
@@ -2632,4 +2649,135 @@ table.result-skills .col-sp {
   padding-left: 1.25rem;
   font-size: 0.8rem;
   line-height: 1.6;
+}
+
+/* ---- 狭幅（≤1199px）: スマホ対応 v1 ---- */
+@media (max-width: 1199px) {
+  body > .layout-modebar {
+    display: none !important;
+  }
+
+  body.layout-gallery,
+  body:not(.layout-split) {
+    padding-bottom: calc(7.25rem + var(--layout-stack, 0.5rem));
+  }
+
+  .total-sp-bar__share:not([hidden]) {
+    display: flex;
+    flex: 1 1 100%;
+    justify-content: center;
+    gap: 0.4rem;
+    padding-bottom: 0.35rem;
+    margin-bottom: 0.1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+  }
+
+  .total-sp-bar-inner:has(.total-sp-bar__share:not([hidden])) {
+    flex-wrap: wrap;
+    align-items: stretch;
+    gap: 0.45rem 0.65rem;
+  }
+
+  main,
+  .app-main {
+    padding-left: max(var(--layout-gutter, 0.75rem), 0.65rem);
+    padding-right: max(var(--layout-gutter, 0.75rem), 0.65rem);
+  }
+
+  .deck-supports {
+    gap: 0.65rem;
+  }
+
+  .deck-slot-events,
+  .deck-evt-sum {
+    line-height: 1.35;
+  }
+
+  .deck-evt-sum {
+    min-height: 2.5rem;
+  }
+
+  .scn-chip {
+    min-height: 2.5rem;
+    padding: 0.4rem 0.55rem;
+    font-size: 0.72rem;
+  }
+
+  .regu-seg button {
+    min-height: 2.5rem;
+    padding: 0.4rem 0.65rem;
+    font-size: 0.72rem;
+  }
+
+  .total-sp-bar-chips .premise-chip {
+    min-height: 2.5rem;
+  }
+
+  .total-sp-bar-chips .premise-lv {
+    min-width: 2.5rem;
+    height: 2.5rem;
+  }
+
+  .include-check {
+    width: 44px;
+    height: 26px;
+  }
+
+  .include-check::after {
+    width: 22px;
+    height: 22px;
+    top: 2px;
+    left: 2px;
+  }
+
+  .include-check:checked::after {
+    transform: translateX(18px);
+  }
+
+  table.result-skills {
+    font-size: 0.78rem;
+  }
+
+  table.result-skills th,
+  table.result-skills td {
+    padding: 0.5rem 0.35rem;
+    vertical-align: top;
+  }
+
+  table.result-skills .col-on {
+    width: 3rem;
+    min-width: 3rem;
+  }
+
+  table.result-skills .result-skill-cell {
+    min-width: 4.75rem;
+    word-break: break-word;
+  }
+
+  table.result-skills .col-sp {
+    white-space: nowrap;
+    min-width: 4.25rem;
+  }
+
+  table.result-skills .skill-source-cell {
+    max-width: 7.5rem;
+  }
+
+  table.result-skills .skill-source-cell .badge {
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 100%;
+    margin-right: 0;
+  }
+
+  .result-sort-seg__btn {
+    min-height: 2.5rem;
+    padding: 0.35rem 0.55rem;
+  }
+
+  .copy-included-skills {
+    min-height: 2.5rem;
+  }
 }

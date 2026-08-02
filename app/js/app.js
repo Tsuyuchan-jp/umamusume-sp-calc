@@ -1502,14 +1502,42 @@ function renderScenarioAuto() {
   }
 }
 
-/** localStorage キー: レイアウト好み gallery | split | auto */
+/** localStorage キー: レイアウト好み gallery | split（旧 auto は gallery へ移行） */
 const LAYOUT_MODE_KEY = "umamusume-sp-calc-layout-mode";
+const LAYOUT_NARROW_MQ = "(max-width: 1199px)";
+
+function isLayoutNarrow() {
+  return window.matchMedia(LAYOUT_NARROW_MQ).matches;
+}
+
+function normalizeLayoutPref(pref) {
+  if (pref === "auto") return "gallery";
+  return pref === "split" ? "split" : "gallery";
+}
 
 function resolveLayoutMode(pref) {
-  if (pref === "auto") {
-    return window.matchMedia("(min-width: 1200px)").matches ? "split" : "gallery";
+  if (isLayoutNarrow()) return "gallery";
+  return normalizeLayoutPref(pref);
+}
+
+function placeLayoutShare(narrow) {
+  const share = document.getElementById("layout-share");
+  const modebar = document.querySelector(".layout-modebar");
+  const shareSlot = document.getElementById("total-sp-bar-share");
+  if (!share) return;
+  if (narrow && shareSlot) {
+    shareSlot.appendChild(share);
+    share.classList.add("layout-share--in-bar");
+    shareSlot.hidden = false;
+    shareSlot.removeAttribute("aria-hidden");
+  } else if (modebar) {
+    modebar.appendChild(share);
+    share.classList.remove("layout-share--in-bar");
+    if (shareSlot) {
+      shareSlot.hidden = true;
+      shareSlot.setAttribute("aria-hidden", "true");
+    }
   }
-  return pref === "split" ? "split" : "gallery";
 }
 
 function placeTotalSpBar(enteringSplit) {
@@ -1520,19 +1548,20 @@ function placeTotalSpBar(enteringSplit) {
   const brand = document.querySelector(".total-sp-bar__brand");
   const header = document.querySelector(".app-header");
   if (!bar) return;
-  const narrow = window.matchMedia("(max-width: 900px)").matches;
-  bar.classList.toggle("total-sp-bar--split-cmd", enteringSplit);
-  if (enteringSplit && modebar) {
+  const narrow = isLayoutNarrow();
+  const splitBar = enteringSplit && !narrow;
+  bar.classList.toggle("total-sp-bar--split-cmd", splitBar);
+  if (splitBar && modebar) {
     modebar.after(bar);
   } else if (main) {
     main.after(bar);
   }
-  /* 狭幅ではヘッダーを残すので、アクションはヘッダー側へ */
-  if (enteringSplit && !narrow && brand && actions) {
+  if (splitBar && brand && actions) {
     brand.appendChild(actions);
   } else if (header && actions) {
     header.appendChild(actions);
   }
+  placeLayoutShare(narrow);
 }
 
 function applyLayoutMode(effective) {
@@ -1558,36 +1587,38 @@ function applyLayoutMode(effective) {
 function bindLayoutMode() {
   const hint = document.getElementById("layout-mode-hint");
   const buttons = document.querySelectorAll("[data-layout-mode]");
-  let pref = localStorage.getItem(LAYOUT_MODE_KEY) || "gallery";
-  if (!["gallery", "split", "auto"].includes(pref)) pref = "gallery";
+  let pref = normalizeLayoutPref(localStorage.getItem(LAYOUT_MODE_KEY) || "gallery");
+  if (localStorage.getItem(LAYOUT_MODE_KEY) === "auto") {
+    localStorage.setItem(LAYOUT_MODE_KEY, "gallery");
+  }
 
   const sync = () => {
+    const narrow = isLayoutNarrow();
+    document.documentElement.classList.toggle("layout-narrow", narrow);
+    document.body.classList.toggle("layout-narrow", narrow);
     const effective = resolveLayoutMode(pref);
     applyLayoutMode(effective);
     buttons.forEach((btn) => {
       btn.classList.toggle("is-on", btn.getAttribute("data-layout-mode") === pref);
     });
     if (hint) {
-      if (pref === "auto") {
-        hint.textContent = `自動: いま ${effective === "split" ? "スプリット" : "ギャラリー"}（境界 1200px）`;
-      } else if (effective === "split") {
-        hint.textContent = "スプリット: 上＝合計 · 左＝編成・イベント / 右＝結果";
-      } else {
-        hint.textContent = "ギャラリー: 上段＝編成 / 下段＝結果";
-      }
+      hint.textContent =
+        effective === "split"
+          ? "スプリット: 上＝合計 · 左＝編成・イベント / 右＝結果"
+          : "ギャラリー: 上段＝編成 / 下段＝結果";
     }
   };
 
   buttons.forEach((btn) => {
     btn.addEventListener("click", () => {
-      pref = btn.getAttribute("data-layout-mode") || "gallery";
+      if (isLayoutNarrow()) return;
+      pref = normalizeLayoutPref(btn.getAttribute("data-layout-mode") || "gallery");
       localStorage.setItem(LAYOUT_MODE_KEY, pref);
       sync();
     });
   });
   window.addEventListener("resize", () => {
-    if (pref === "auto") sync();
-    else placeTotalSpBar(resolveLayoutMode(pref) === "split");
+    sync();
     if (inheritPopoverOpen) {
       requestAnimationFrame(() => syncInheritPopoverAnchor());
     }

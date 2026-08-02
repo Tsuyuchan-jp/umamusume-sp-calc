@@ -19,7 +19,7 @@
   height: 608px;
 }
 
-/* 共有ボタン（両モード共通: 最上部 layout-modebar 右端） */
+/* 共有ボタン: 広幅は layout-modebar 右端、狭幅は合計バー（JS で DOM 移動） */
 .layout-share {
   display: flex;
   flex-shrink: 0;
@@ -28,6 +28,12 @@
   align-items: center;
   justify-content: flex-end;
   margin-left: auto;
+}
+
+.layout-share--in-bar {
+  margin-left: 0;
+  justify-content: center;
+  width: 100%;
 }
 
 .share-card-btn {
@@ -81,6 +87,14 @@
   .layout-share .share-card-btn {
     font-size: 0.68rem;
     padding: 0.3rem 0.55rem;
+  }
+}
+
+@media (max-width: 1199px) {
+  .layout-share--in-bar .share-card-btn {
+    min-height: 2.5rem;
+    padding: 0.45rem 0.85rem;
+    font-size: 0.74rem;
   }
 }
 

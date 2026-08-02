@@ -22,7 +22,6 @@
       <div class="layout-mode-seg" role="group" aria-label="レイアウト">
         <button type="button" class="layout-mode-seg__btn is-on" data-layout-mode="gallery">ギャラリー</button>
         <button type="button" class="layout-mode-seg__btn" data-layout-mode="split">スプリット</button>
-        <button type="button" class="layout-mode-seg__btn" data-layout-mode="auto">自動（幅）</button>
       </div>
       <span class="layout-modebar__hint" id="layout-mode-hint">ギャラリー: 上段＝編成 / 下段＝結果</span>
       <div class="layout-share" id="layout-share" aria-label="編成画像の共有">
@@ -88,9 +87,9 @@
           <div class="help-section__content">
             <ol>
               <li>
-                上部の <strong>レイアウト切替</strong>（ギャラリー／スプリット／自動）で画面構成を選ぶ
+                広い画面では上部の <strong>レイアウト切替</strong>（ギャラリー／スプリット）で画面構成を選ぶ。狭い画面はギャラリー固定
                 <ul>
-                  <li>ギャラリー＝上段編成・下段結果／スプリット＝左右同時。自動は幅（目安1200px以上）で切替</li>
+                  <li>ギャラリー＝上段編成・下段結果／スプリット＝左右同時（目安1200px以上）</li>
                 </ul>
               </li>
               <li><strong>育成ウマ娘</strong>を選ぶ（覚醒は最大想定。初期値あり）</li>
@@ -125,7 +124,7 @@
                 </ul>
               </li>
               <li>
-                モードバー右端の <strong>画像コピー／PNG</strong> で編成の共有カードを出力できる
+                広い画面ではモードバー右端、狭い画面では下部合計バーから <strong>画像コピー／PNG</strong> で編成の共有カードを出力できる
               </li>
               <li>
                 前回閉じたときの編成・前提・除外などは <strong>自動で戻ります</strong>。名前を付けて残したいときはヘッダーの <strong>メモリ</strong>（上限20件・サムネ一覧）
@@ -139,13 +138,10 @@
           <div class="help-section__content">
             <ul>
               <li>
-                <strong>ギャラリー</strong>: 上段で編成の顔と列下イベント、下段で結果表。合計バーは画面下部固定
+                <strong>ギャラリー</strong>: 上段で編成の顔と列下イベント、下段で結果表。合計バーは画面下部固定（スマホ含む）
               </li>
               <li>
-                <strong>スプリット</strong>: 左で編成＋イベント詳細、右で結果表。合計バーは上部（モードバー直下）
-              </li>
-              <li>
-                <strong>自動（幅）</strong>: 広い画面ではスプリット、狭い画面ではギャラリーへ切替（目安1200px）
+                <strong>スプリット</strong>: 左で編成＋イベント詳細、右で結果表。合計バーは上部（モードバー直下）。目安1200px以上
               </li>
               <li>
                 <strong>画像コピー／PNG</strong>: 編成の顔・必要SP・金スキル・除外要約などを載せた横長カード。クリップボードまたはファイル保存
@@ -248,7 +244,7 @@
               A. 取得可能なスキルをすべて買うための <strong>理論必要量の見積もり</strong>です。レース報酬やイベントで実際にいくら貯まるかは扱いません。
             </p>
             <p><strong>Q. ギャラリーとスプリットの違いは？</strong><br />
-              A. ギャラリーは上段編成・下段結果、スプリットは左右で編成と結果を同時に扱います。自動は画面幅で切替します（目安1200px）。
+              A. ギャラリーは上段編成・下段結果、スプリットは左右で編成と結果を同時に扱います。狭い画面（目安1200px未満）はギャラリー固定です。
             </p>
             <p><strong>Q. 「画像コピー」「PNG」は何が出る？</strong><br />
               A. 編成共有用の横長カードです。必要SP・金スキル・除外要約などを載せ、クリップボードまたは PNG ファイルとして出力します。
@@ -576,6 +572,7 @@
 
     <div id="total-sp-bar" class="total-sp-bar" aria-live="polite">
       <div class="total-sp-bar-inner">
+        <div id="total-sp-bar-share" class="total-sp-bar__share" hidden aria-hidden="true"></div>
         <div class="total-sp-bar__brand">
           <strong class="total-sp-bar__brand-title">SP <span class="app-brand-accent">Calc</span></strong>
         </div>
