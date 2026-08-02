@@ -7,17 +7,18 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;500;700;800&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@500;700;900&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="css/style.css" />
     <link rel="stylesheet" href="css/foundation.css" />
   </head>
   <body>
-    <header>
+    <div class="world-bg" aria-hidden="true"></div>
+    <header class="app-header">
       <div class="header-text">
-        <h1>umamusume-sp-calc<span class="app-version">v0.1.14</span></h1>
-        <p>取得可能スキル全習得の理論必要SP（ヒント想定込み）</p>
+        <h1>SP <span class="app-brand-accent">Calc</span><span class="app-version">v0.1.14</span></h1>
+        <p>真の必要SP · トレセン軒</p>
       </div>
       <div class="header-actions">
         <button type="button" id="memory-open" class="help-open-btn" aria-haspopup="dialog" aria-controls="memory-dialog">
@@ -98,8 +99,8 @@
               <li>
                 <strong>イベント・シナリオ</strong>を必要なら調整
                 <ul>
-                  <li>選択式イベントは各サポカ列の下。シナリオリンク／RMJ は編成足元帯</li>
-                  <li>自動計上は「自動計上 N件」チップからモーダルで確認（編集不可）</li>
+                  <li>選択式イベントは各サポカ列の下（要約→詳細）。サポカ自動も列下。シナリオリンク／RMJ／シナリオ自動は編成足元帯</li>
+                  <li>対応サポカ一覧は「使い方」内</li>
                 </ul>
               </li>
               <li>
@@ -116,6 +117,18 @@
                 ヘッダーの <strong>メモリ</strong> で現在の設計（編成・前提・除外・レギュ）を名前付き保存し、あとから復元できる
               </li>
             </ol>
+          </div>
+        </details>
+
+        <details class="help-section">
+          <summary>サポカイベントの対応範囲</summary>
+          <div class="help-section__content">
+            <p>
+              <strong id="event-scope-lead">サポカイベントは優先40種のみ対応</strong><br />
+              イベント由来のスキルは、対応リストのサポカを編成したときだけ計上されます。それ以外のサポカはトレヒントのみ反映されます。
+            </p>
+            <p id="event-scope-list-title" class="event-scope-panel__list-title">対応サポカ一覧（40種）</p>
+            <ol id="event-priority-support-list" class="event-scope-list"></ol>
           </div>
         </details>
 
@@ -201,7 +214,7 @@
               A. 取得可能なスキルをすべて買うための <strong>理論必要量の見積もり</strong>です。レース報酬やイベントで実際にいくら貯まるかは扱いません。
             </p>
             <p><strong>Q. イベント非対応のサポカを入れても意味ある？</strong><br />
-              A. <strong>トレヒント（既定 Lv5）</strong> は乗ります。下部バーで Lv を下げると控えめ見積もりになります。イベント由来のスキルは計上されません（「※サポカイベントについて」で対応一覧を確認できます）。
+              A. <strong>トレヒント（既定 Lv5）</strong> は乗ります。下部バーで Lv を下げると控えめ見積もりになります。イベント由来のスキルは計上されません（「使い方」内の対応一覧を確認できます）。
             </p>
             <p><strong>Q. シナリオリンクの白と金の違いは？</strong><br />
               A. リンク条件のキャラが、育成ウマ娘かサポカ6枠にいれば金、いなければ白として計上します。
@@ -273,7 +286,7 @@
             </div>
           </div>
 
-          <!-- C: シナリオ系＋ B: 自動計上チップ（一覧はモーダル） -->
+          <!-- C: シナリオ選択＋シナリオ自動（サポカ自動は列下） -->
           <div class="deck-footband" id="deck-footband">
             <div class="deck-layer-c" id="deck-layer-c">
               <div class="deck-c-group">
@@ -283,39 +296,14 @@
               <div class="deck-c-group">
                 <div id="scenario-senior-rmj" class="event-section event-section--inline"></div>
               </div>
-              <button
-                type="button"
-                id="auto-events-open"
-                class="auto-events-chip"
-                aria-haspopup="dialog"
-                aria-controls="auto-events-dialog"
-                hidden
-              >
-                自動計上 <strong id="auto-events-count">0</strong> 件
-              </button>
               <span id="deck-footband-meta" class="deck-footband__meta"></span>
             </div>
-
-            <div class="event-panel-heading event-panel-heading--footband">
-              <button
-                type="button"
-                id="event-scope-trigger"
-                class="event-scope-trigger"
-                aria-expanded="false"
-                aria-controls="event-scope-panel"
-              >
-                ※サポカイベントについて
-              </button>
-              <div id="event-scope-panel" class="event-scope-panel warning" role="note" hidden>
-                <p class="event-scope-panel__lead">
-                  <strong id="event-scope-lead">サポカイベントは優先40種のみ対応</strong>
-                </p>
-                <p class="event-scope-panel__body">
-                  イベント由来のスキルは、対応リストのサポカを編成したときだけ計上されます。それ以外のサポカはトレヒントのみ反映されます。
-                </p>
-                <p id="event-scope-list-title" class="event-scope-panel__list-title">対応サポカ一覧（40種）</p>
-                <ol id="event-priority-support-list" class="event-scope-list"></ol>
+            <div class="deck-scenario-auto" aria-label="シナリオ自動計上">
+              <div class="deck-scenario-auto__head">
+                <span class="deck-c-group__lbl">自動</span>
+                <span class="deck-scenario-auto__title">シナリオ自動（確認のみ）</span>
               </div>
+              <div id="scenario-auto" class="scenario-auto-list"></div>
             </div>
           </div>
 
@@ -501,27 +489,6 @@
         <button type="button" id="event-choice-close" class="event-choice-dialog__close" aria-label="閉じる">×</button>
       </div>
       <div id="event-choice-dialog-body" class="event-choice-dialog__body"></div>
-    </dialog>
-
-    <!-- B: 自動計上一覧（インライン折りたたみしない） -->
-    <dialog id="auto-events-dialog" class="auto-events-dialog" aria-labelledby="auto-events-dialog-title">
-      <div class="auto-events-dialog__chrome">
-        <div>
-          <h2 id="auto-events-dialog-title" class="auto-events-dialog__title">自動計上 · 確認一覧</h2>
-          <p class="auto-events-dialog__sub">編集不可 · 表には反映済み</p>
-        </div>
-        <button type="button" id="auto-events-close" class="auto-events-dialog__close" aria-label="閉じる">×</button>
-      </div>
-      <div class="auto-events-dialog__body">
-        <p class="auto-events-dialog__note">
-          サポカ自動イベントとシナリオ自動計上をまとめて表示します。ページを伸ばさないため、一覧はこのモーダルのみです。
-        </p>
-        <h3 class="auto-events-dialog__section">サポカ自動</h3>
-        <div id="event-auto" class="event-section"></div>
-        <p id="event-auto-empty" class="hint" hidden>編成中のサポカに自動イベントはありません。</p>
-        <h3 class="auto-events-dialog__section">シナリオ自動</h3>
-        <div id="scenario-auto" class="event-section"></div>
-      </div>
     </dialog>
 
     <dialog id="card-picker" class="card-picker" aria-labelledby="card-picker-title">

@@ -59,11 +59,11 @@
   --shadow-inset: inset 0 1px 0 rgba(255, 255, 255, 0.65);
 
   /* タイポ */
-  --font-body: "M PLUS Rounded 1c", "Hiragino Maru Gothic ProN", "Hiragino Sans", sans-serif;
+  --font-body: "Zen Maru Gothic", "Hiragino Maru Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
   --font-weight-normal: 500;
-  --font-weight-medium: 500;
+  --font-weight-medium: 700;
   --font-weight-bold: 700;
-  --font-weight-black: 800;
+  --font-weight-black: 900;
 
   /* 間隔 */
   --space-xs: 0.25rem;
@@ -86,23 +86,54 @@ html {
 body {
   font-family: var(--font-body);
   font-weight: var(--font-weight-normal);
-  background: var(--bg-page-gradient);
+  background: var(--ink-deep);
   background-attachment: fixed;
   color: var(--text-primary);
   -webkit-font-smoothing: auto;
+  position: relative;
 }
 
-/* ---- ヘッダー ---- */
-header {
+.world-bg {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(180deg, rgba(70, 63, 112, 0.55), rgba(70, 63, 112, 0.35) 45%, rgba(70, 63, 112, 0.72)),
+    url("https://static.kouryaku.tools/umamusume/images/app/uma-world.webp?auto=format") center top / cover no-repeat,
+    #463f70;
+}
+
+.world-bg::after {
+  content: none;
+}
+
+body > header,
+body > .layout-modebar,
+body > .app-main,
+body > .inherit-popover,
+body > .total-sp-bar {
+  position: relative;
+  z-index: 1;
+}
+
+/* ---- ヘッダー（H5 寄り） ---- */
+header,
+.app-header {
   background: linear-gradient(180deg, var(--ink-mid) 0%, var(--ink-deep) 100%);
   box-shadow: var(--shadow-md);
   border-bottom: 3px solid var(--c-gold, #f5cf6f);
-  padding: 0.85rem 1.5rem;
+  padding: 0.75rem 1.25rem;
+}
+
+.app-brand-accent {
+  color: var(--c-gold, #f5cf6f);
 }
 
 header h1 {
   font-weight: var(--font-weight-black);
   letter-spacing: 0.02em;
+  font-size: 1.35rem;
 }
 
 header p {
@@ -316,13 +347,42 @@ header p {
 }
 
 .total-sp-bar-chips .premise-chip--training {
-  min-width: 5.75rem;
-  gap: 0.15rem;
+  min-width: auto;
+  gap: 0.2rem;
+  padding: 0.25rem 0.4rem 0.25rem 0.55rem;
+  align-items: center;
 }
 
 .premise-chip__prefix {
   font-weight: var(--font-weight-bold);
   opacity: 0.85;
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+}
+
+.premise-lv {
+  appearance: none;
+  border: 0;
+  background: rgba(70, 63, 112, 0.08);
+  color: inherit;
+  font: inherit;
+  font-weight: var(--font-weight-black);
+  font-size: 0.72rem;
+  min-width: 1.55rem;
+  height: 1.55rem;
+  border-radius: 5px;
+  cursor: pointer;
+  line-height: 1;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.premise-lv.is-on {
+  background: linear-gradient(180deg, #fa9f40, #ff8427);
+  color: #fff;
 }
 
 /* ---- 表示順セグメント ---- */

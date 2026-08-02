@@ -276,6 +276,13 @@ function bindPremiseChipsOnce() {
   chipsEl?.addEventListener("click", (e) => {
     const t = e.target;
     if (!(t instanceof HTMLElement)) return;
+
+    /* 詳細は inherit ボタンの外にあるため先に処理 */
+    if (t.closest("[data-inherit-detail]")) {
+      setInheritPopoverOpen(true);
+      return;
+    }
+
     if (t.id === "bar-premise-fast-learner" || t.closest("#bar-premise-fast-learner")) {
       const cb = document.getElementById("fast-learner");
       if (!cb) return;
@@ -284,27 +291,26 @@ function bindPremiseChipsOnce() {
       recalc();
       return;
     }
+
+    /* トレLv セグメント */
+    const lvBtn = t.closest("[data-training-lv]");
+    if (lvBtn && chipsEl.contains(lvBtn)) {
+      const lv = lvBtn.getAttribute("data-training-lv");
+      const hidden = document.getElementById("training-hint-level");
+      if (hidden && lv) hidden.value = lv;
+      updateTotalBarChips();
+      recalc();
+      return;
+    }
+
     if (t.id === "bar-premise-inherit" || t.closest("#bar-premise-inherit")) {
       const cb = document.getElementById("inherit-enabled");
       if (!cb) return;
-      /* 詳細ボタンは ON/OFF せずポップオーバーだけ */
-      if (t.closest("[data-inherit-detail]")) {
-        setInheritPopoverOpen(true);
-        return;
-      }
-      cb.checked = !cb.checked;
+      const turningOn = !cb.checked;
+      cb.checked = turningOn;
       updateTotalBarChips();
       updateDeckFootbandMeta();
-      setInheritPopoverOpen(cb.checked);
-      recalc();
-    }
-  });
-
-  chipsEl?.addEventListener("change", (e) => {
-    if (e.target?.id === "bar-training-hint") {
-      const hidden = document.getElementById("training-hint-level");
-      if (hidden) hidden.value = e.target.value;
-      updateTotalBarChips();
+      setInheritPopoverOpen(turningOn);
       recalc();
     }
   });
@@ -322,14 +328,12 @@ function updateTotalBarChips(excludedCount = excludedSkillIds.size) {
 
   let html = `
     <button type="button" class="${fastClass}" id="bar-premise-fast-learner" aria-pressed="${fast ? "true" : "false"}">切れ者 ${fast ? "ON" : "OFF"}</button>
-    <span class="premise-chip premise-chip--training">
+    <div class="premise-chip premise-chip--training" role="group" aria-label="トレヒントLv">
       <span class="premise-chip__prefix">トレ</span>
-      <select id="bar-training-hint" aria-label="トレヒントLv">
-        <option value="5"${trainingLv === "5" ? " selected" : ""}>Lv5</option>
-        <option value="4"${trainingLv === "4" ? " selected" : ""}>Lv4</option>
-        <option value="3"${trainingLv === "3" ? " selected" : ""}>Lv3</option>
-      </select>
-    </span>
+      <button type="button" class="premise-lv${trainingLv === "3" ? " is-on" : ""}" data-training-lv="3">3</button>
+      <button type="button" class="premise-lv${trainingLv === "4" ? " is-on" : ""}" data-training-lv="4">4</button>
+      <button type="button" class="premise-lv${trainingLv === "5" ? " is-on" : ""}" data-training-lv="5">5</button>
+    </div>
     <button type="button" class="${inheritClass}" id="bar-premise-inherit" aria-pressed="${inheritOn ? "true" : "false"}">継承 ${inheritOn ? `${inheritCount}本` : "OFF"}</button>
     ${inheritOn ? `<button type="button" class="premise-chip premise-chip--detail" data-inherit-detail aria-controls="inherit-popover">詳細</button>` : ""}
   `;
@@ -519,15 +523,7 @@ function renderEventScopeNotice() {
 }
 
 function bindEventScopeDisclosure() {
-  const trigger = document.getElementById("event-scope-trigger");
-  const panel = document.getElementById("event-scope-panel");
-  if (!trigger || !panel) return;
-
-  trigger.addEventListener("click", () => {
-    const open = panel.hidden;
-    panel.hidden = !open;
-    trigger.setAttribute("aria-expanded", String(open));
-  });
+  /* 足元帯からは外し、使い方ダイアログ内に配置 */
 }
 
 /** ヘッダー「使い方」→ 説明書ダイアログ */
@@ -933,7 +929,20 @@ function bindInheritPopover() {
   });
 }
 
-/** 列下: Aは要約タップで詳細、B自動は金スキル名のみ */
+/** 列下要約の並び: 金（選択中 or 選択肢に金あり）→ 白/ステ → 自動 */
+function selectableEventSortKey(evt) {
+  if (evt.selection === "toggle") return 2;
+  const choices = evt.choices || [];
+  const hasGold = choices.some((c) => choiceKind(c) === "gold");
+  const choiceId = resolveEventChoiceId(evt);
+  const current = choices.find((c) => c.id === choiceId);
+  const curKind = current ? choiceKind(current) : "stat";
+  if (curKind === "gold" || hasGold) return 0;
+  if (curKind === "white") return 1;
+  return 2;
+}
+
+/** 列下: Aは要約タップで詳細。Bサポカ自動は列下のみ（金なら金トーン） */
 function renderColumnEvents() {
   if (!state) return;
   for (let i = 0; i < 6; i++) {
@@ -945,17 +954,17 @@ function renderColumnEvents() {
     if (!support) continue;
 
     const events = getEventsForSupport(support);
-    const selectables = events.filter(
-      (evt) => evt.selection === "single" || evt.selection === "toggle"
-    );
+    const selectables = events
+      .filter((evt) => evt.selection === "single" || evt.selection === "toggle")
+      .sort((a, b) => selectableEventSortKey(a) - selectableEventSortKey(b));
     const autos = events.filter((evt) => evt.selection === "auto");
 
     for (const evt of selectables) {
       const btn = document.createElement("button");
       btn.type = "button";
-      btn.className = "deck-evt-sum";
       if (evt.selection === "toggle") {
         const on = state.ui.enabledEventIds.has(evt.id);
+        btn.className = "deck-evt-sum";
         btn.innerHTML = `${kindBadgeHtml("white")}${escapeHtml(evt.label.replace(/^[^ ]+ /, ""))}<span class="deck-evt-sum__more">${on ? "ON" : "OFF"} · タップで切替</span>`;
       } else {
         const choiceId = resolveEventChoiceId(evt);
@@ -963,6 +972,7 @@ function renderColumnEvents() {
         const kind = choice ? choiceKind(choice) : "stat";
         const label = choice ? shortChoiceLabel(choice) : "選択";
         const n = (evt.choices || []).length;
+        btn.className = "deck-evt-sum" + (kind === "gold" ? " deck-evt-sum--gold" : "");
         btn.innerHTML = `${kindBadgeHtml(kind)}${escapeHtml(label)}<span class="deck-evt-sum__more">全${n}択 · タップで詳細</span>`;
       }
       btn.addEventListener("click", () => openEventChoiceDialog(evt));
@@ -971,14 +981,16 @@ function renderColumnEvents() {
 
     for (const evt of autos) {
       const golds = goldSkillNamesFromSkills(evt.skills);
+      const isGold = golds.length > 0;
       const label = golds[0] || evt.skills?.[0]?.skillName || "自動";
       const btn = document.createElement("button");
       btn.type = "button";
-      btn.className = "deck-evt-sum deck-evt-sum--auto";
-      btn.innerHTML = `${kindBadgeHtml("auto")}${escapeHtml(label)}`;
-      btn.title = "自動計上（一覧は件数チップから）";
+      btn.className =
+        "deck-evt-sum" + (isGold ? " deck-evt-sum--gold" : " deck-evt-sum--auto");
+      btn.innerHTML = `${kindBadgeHtml(isGold ? "gold" : "auto")}${escapeHtml(label)}<span class="deck-evt-sum__more">自動計上（確認のみ）</span>`;
+      btn.title = evt.label || "自動計上";
       btn.addEventListener("click", () => {
-        document.getElementById("auto-events-open")?.click();
+        /* サポカ自動は列下で完結。編集不可のためダイアログは開かない */
       });
       container.appendChild(btn);
     }
@@ -986,18 +998,9 @@ function renderColumnEvents() {
 }
 
 function updateAutoEventsChip() {
+  /* サポカ自動は列下、シナリオ自動は足元インライン。件数チップは使わない */
   const chip = document.getElementById("auto-events-open");
-  const countEl = document.getElementById("auto-events-count");
-  if (!chip || !countEl || !state) return;
-
-  const supportAuto = (state.events.events || []).filter(
-    (evt) => isEventSupportInDeck(evt) && evt.selection === "auto"
-  ).length;
-  const scenarioAuto = (state.scenario.scenarioAutoSkills || []).length;
-  const total = supportAuto + scenarioAuto;
-
-  countEl.textContent = String(total);
-  chip.hidden = total === 0;
+  if (chip) chip.hidden = true;
 }
 
 function updateDeckFootbandMeta() {
@@ -1013,64 +1016,40 @@ function updateDeckFootbandMeta() {
 }
 
 function renderEvents() {
-  const autoContainer = document.getElementById("event-auto");
   const emptyHint = document.getElementById("event-empty-hint");
-  const autoEmpty = document.getElementById("event-auto-empty");
-  if (autoContainer) autoContainer.innerHTML = "";
 
   renderColumnEvents();
   updateAutoEventsChip();
   updateDeckFootbandMeta();
 
   const events = (state.events.events || []).filter(isEventSupportInDeck);
-  if (events.length === 0) {
-    if (emptyHint) emptyHint.hidden = false;
-  } else if (emptyHint) {
-    emptyHint.hidden = true;
-  }
-
-  const autoEvents = events.filter((evt) => evt.selection === "auto");
-  if (autoEmpty) autoEmpty.hidden = autoEvents.length > 0;
-  if (!autoContainer) return;
-  for (const evt of autoEvents) {
-    const div = document.createElement("div");
-    div.className = "event-auto-item";
-    div.innerHTML = `
-      <div class="event-auto-label">${escapeHtml(evt.label)}</div>
-      <div class="hint">${escapeHtml(formatSkillList(evt.skills))}（自動計上）</div>
-    `;
-    autoContainer.appendChild(div);
-  }
+  if (emptyHint) emptyHint.hidden = events.length > 0;
 }
 
-/** シナリオ自動計上（確認用・モーダル内） */
+/** シナリオ自動計上（足元帯にコンパクト常時表示） */
 function renderScenarioAuto() {
   const container = document.getElementById("scenario-auto");
   if (!container) return;
   container.innerHTML = "";
 
   const entries = state.scenario.scenarioAutoSkills || [];
+  if (entries.length === 0) {
+    container.innerHTML = `<p class="scenario-auto-empty">シナリオ自動なし</p>`;
+    return;
+  }
   for (const entry of entries) {
     const div = document.createElement("div");
-    div.className = "event-auto-item";
+    div.className = "scenario-auto-row";
     div.innerHTML = `
-      <div class="event-auto-label">${escapeHtml(entry.label)}</div>
-      <div class="hint">${escapeHtml(formatSkillList(entry.skills))}（自動計上）</div>
+      <div class="scenario-auto-row__label">${escapeHtml(entry.label)}</div>
+      <div class="scenario-auto-row__skills">${escapeHtml(formatSkillList(entry.skills))}</div>
     `;
     container.appendChild(div);
   }
-  updateAutoEventsChip();
 }
 
 function bindAutoEventsDialog() {
-  const dialog = document.getElementById("auto-events-dialog");
-  const openBtn = document.getElementById("auto-events-open");
-  const closeBtn = document.getElementById("auto-events-close");
-  if (!dialog || !openBtn) return;
-  openBtn.addEventListener("click", () => {
-    if (typeof dialog.showModal === "function") dialog.showModal();
-  });
-  closeBtn?.addEventListener("click", () => dialog.close());
+  /* サポカ自動は列下、シナリオ自動は足元インライン。モーダルは使わない */
 }
 
 /** localStorage キー: レイアウト好み gallery | split | auto */

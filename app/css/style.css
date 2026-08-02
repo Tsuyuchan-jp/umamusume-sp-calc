@@ -645,6 +645,60 @@ input[type="search"] {
   margin-left: auto;
 }
 
+.deck-scenario-auto {
+  margin-top: 0.5rem;
+  padding: 0.45rem 0.55rem;
+  border-radius: 8px;
+  background: #fff;
+  border: 1px solid #e0e4ea;
+}
+
+.deck-scenario-auto__head {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-bottom: 0.35rem;
+}
+
+.deck-scenario-auto__title {
+  font-size: 0.72rem;
+  font-weight: 900;
+  color: #463f70;
+}
+
+.scenario-auto-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.scenario-auto-row {
+  padding: 0.3rem 0.4rem;
+  border-radius: 5px;
+  background: #f7f4ff;
+  border: 1px solid #e4dcf3;
+}
+
+.scenario-auto-row__label {
+  font-size: 0.7rem;
+  font-weight: 900;
+  color: #4a2d7a;
+}
+
+.scenario-auto-row__skills {
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: #625d7d;
+  margin-top: 0.1rem;
+  line-height: 1.35;
+}
+
+.scenario-auto-empty {
+  margin: 0;
+  font-size: 0.7rem;
+  color: #888;
+}
+
 .auto-events-chip {
   appearance: none;
   border: 1.5px solid #7b5bb8;
@@ -863,6 +917,17 @@ input[type="search"] {
   background: #f7f4ff;
   border-color: #d4c4f0;
   color: #4a2d7a;
+}
+
+.deck-evt-sum--gold {
+  background: linear-gradient(180deg, #fff6d6, #ffe29a);
+  border-color: #e9b84a;
+  color: #5a3d00;
+  box-shadow: inset 0 0 0 1px rgba(233, 185, 74, 0.35);
+}
+
+.deck-evt-sum--gold .deck-evt-sum__more {
+  color: #8a6a20;
 }
 
 .deck-evt-sum__more {
