@@ -128,12 +128,17 @@ function supportSearchHaystack(s) {
   );
 }
 
+/**
+ * サポカピッカー絞込。
+ * keepId（枠の現在選択）は eventOnly / SSR のみすり抜け可。
+ * タイプ絞込はすり抜けない（全タイプに選択中が出るバグ防止）。
+ */
 function supportMatchesFilters(s, filters, keepId) {
+  if (filters.type && s.type !== filters.type) return false;
+  if (filters.query && !supportSearchHaystack(s).includes(filters.query)) return false;
   if (keepId != null && s.id === keepId) return true;
   if (filters.eventOnly && !prioritySupportIdSet.has(s.id)) return false;
   if (filters.ssrOnly && s.rarity !== "SSR") return false;
-  if (filters.type && s.type !== filters.type) return false;
-  if (filters.query && !supportSearchHaystack(s).includes(filters.query)) return false;
   return true;
 }
 

@@ -2293,20 +2293,13 @@ body.layout-split .panel--workbench {
   border-color: transparent;
 }
 
-.card-picker__item:hover .card-face__img {
+.card-picker__item:hover:not(.card-picker__item--selected) .card-face__img {
   filter: drop-shadow(0 4px 10px rgba(26, 95, 138, 0.35));
 }
 
 .card-picker__item--selected {
   border-color: transparent;
   box-shadow: none;
-}
-
-.card-picker__item--selected .card-face__img {
-  filter:
-    drop-shadow(0 0 1.5px #1f6f5a)
-    drop-shadow(0 0 2.5px #1f6f5a)
-    drop-shadow(0 3px 8px rgba(0, 0, 0, 0.2));
 }
 
 .card-picker__empty {

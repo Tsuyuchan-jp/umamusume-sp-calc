@@ -626,8 +626,8 @@ tr:hover td {
 .card-picker__item--selected .card-face__img {
   filter:
     drop-shadow(0 0 0 2px var(--accent-on))
-    drop-shadow(0 0 0 4px rgba(0, 168, 173, 0.35))
-    drop-shadow(0 6px 16px rgba(26, 36, 51, 0.2));
+    drop-shadow(0 0 0 5px rgba(255, 50, 118, 0.45))
+    drop-shadow(0 6px 16px rgba(26, 36, 51, 0.22));
   transform: scale(1.02);
 }
 
@@ -635,11 +635,22 @@ tr:hover td {
   filter: drop-shadow(0 6px 14px rgba(26, 36, 51, 0.18));
 }
 
+.card-picker__item--selected {
+  outline: 3px solid var(--accent-on);
+  outline-offset: 3px;
+  border-radius: 10px;
+  z-index: 1;
+}
+
+.card-picker__item--selected:hover {
+  outline-color: var(--accent-on);
+}
+
 .card-picker__item--selected:hover .card-face__img {
   filter:
     drop-shadow(0 0 0 2px var(--accent-on))
-    drop-shadow(0 0 0 4px rgba(0, 168, 173, 0.45))
-    drop-shadow(0 8px 18px rgba(26, 36, 51, 0.22));
+    drop-shadow(0 0 0 5px rgba(255, 50, 118, 0.55))
+    drop-shadow(0 8px 18px rgba(26, 36, 51, 0.24));
   transform: scale(1.03);
 }
 
