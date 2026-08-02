@@ -5,6 +5,7 @@
 | ファイル | 内容 |
 |----------|------|
 | [UX.md](./UX.md) | UX 思想 |
+| [screenshot-requirements.md](./screenshot-requirements.md) | 編成スクショ要件（すり合わせ中） |
 | [PRIORITY_SUPPORTS.md](./PRIORITY_SUPPORTS.md) | 優先40サポカ一覧 |
 | [design-overhaul-handoff.md](./design-overhaul-handoff.md) | デザイン大改修の引継ぎ |
 | [design-polish-backlog.md](./design-polish-backlog.md) | 実機デザイン指摘（進捗・ヘッダー選定） |
