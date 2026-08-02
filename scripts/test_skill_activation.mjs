@@ -4,6 +4,7 @@ import {
   parseEffectSlot,
   isSkillCompatible,
   mergeActivations,
+  getDisplayActivation,
   formatActivationTagLabels,
   branchMatchesFilter,
   collectPlanSkillIds,
@@ -144,6 +145,39 @@ assertTrue(
   merged.branches.some((b) => b.distances.includes("short")),
   "merge short branch"
 );
+
+// 表示行のみでレギュ判定（チェーン下位の条件なしで緩まない）
+const sympathy = parseSkillActivation("", "", "", ""); // 制約なし
+const connect = parseSkillActivation("", "ground_type==1", "", ""); // 芝
+const chainSkillById = new Map([
+  [201631, { id: 201631, activation: sympathy }],
+  [201632, { id: 201632, activation: connect }],
+]);
+const connectRow = {
+  skillId: 201632,
+  isInherit: false,
+  chainSkillIds: [201631, 201632],
+};
+assertFalse(
+  isSkillCompatible(
+    getDisplayActivation(201632, connectRow.chainSkillIds, chainSkillById),
+    { ground: "dirt" }
+  ),
+  "コネクト行: ダートで非互換（下位シンパシーを OR しない）"
+);
+assertTrue(
+  isSkillCompatible(
+    getDisplayActivation(201632, connectRow.chainSkillIds, chainSkillById),
+    { ground: "turf" }
+  ),
+  "コネクト行: 芝で互換"
+);
+const incompatibleDirt = getIncompatibleSkillIds(
+  [connectRow],
+  { ground: "dirt" },
+  chainSkillById
+);
+assertTrue(incompatibleDirt.has(201632), "コネクト行: ダート絞込で除外");
 
 // 絞込未選択
 assertTrue(isSkillCompatible(styleOnly, {}), "filter empty");

@@ -6,18 +6,18 @@
 
 ## 結論（1行）
 
-コア SP 計算・金白／○◎・既存ユニットテストは健全。公開前に直すなら **レギュ×チェーン OR 合成** が最優先。他は復元堅牢性・セッション欠落・テスト穴。
+コア SP 計算・金白／○◎・既存ユニットテストは健全。**M1（レギュ×チェーン）は 2026-08-02 案Aで修正済**。次は M3（手動 OFF）・M2（復元 ID）など。
 
 ## テスト現状
 
-| スイート | 結果（2026-08-02） |
-|----------|-------------------|
-| `scripts/test_sp.mjs` | 通過（デフォルト合計 4281 含む） |
-| `scripts/test_skill_activation.mjs` | 通過 |
+| スイート | 結果 |
+|----------|------|
+| `scripts/test_sp.mjs` | 通過 |
+| `scripts/test_skill_activation.mjs` | 通過（コネクト／シンパシー チェーン含む） |
 | `scripts/test_design_snapshot.mjs` | 通過 |
 | `scripts/test_copy_included_skills.mjs` | 通過 |
 
-未整備: 継承固有 SP の回帰、`recalc()` フルパスの統合、コネクト系レギュの実データケース。
+未整備: 継承固有 SP の回帰、`recalc()` フルパスの統合。
 
 ## 重大度の定義
 
@@ -37,12 +37,19 @@
 
 ### 中
 
-| ID | 箇所 | 内容 | 検証 |
+| ID | 箇所 | 内容 | 状態 |
 |----|------|------|------|
-| **M1** | [`app/js/skillActivation.js`](../../app/js/skillActivation.js) `getDisplayActivation` / `mergeActivations` | **レギュがチェーン下位の「条件なし」で緩む**。金「コネクト」（芝）行に白「シンパシー」（条件なし）を OR 結合するため、**ダート**レギュでも互換扱いになり合計に残る | コネクトが入る編成でレギュ「ダート」→ 金行が OFF にならず SP が減らない |
-| **M2** | [`app/js/app.js`](../../app/js/app.js) `restoreDesign` | セッション／メモリ復元で `characterId` / `supportIds` の存在検証なし。削除・不正 ID は黙って欠落し合計がずれる | localStorage に存在しない ID を入れて再読込 |
-| **M3** | `pruneManualExclusions` + `recalc` | デッキ変更で表示行 ID が変わると（○→◎繰り上げ・金統合など）、以前の手動 OFF が消えて ON に戻る | 手動 OFF → サポ変更で行 ID 変化 → 再出現時 ON |
-| **M4** | `scheduleSessionSave`（350ms debounce） | 変更直後にタブを閉じると最終編集がセッションに残らない | 変更直後クローズ→再開 |
+| ~~**M1**~~ | `getDisplayActivation` | レギュがチェーン下位で緩む | **修正済**（案A: 表示行 skillId のみ） |
+| **M2** | `restoreDesign` | 復元で ID 未検証 | Open |
+| **M3** | `pruneManualExclusions` | デッキ変更で手動 OFF 消失 | Open |
+| **M4** | `scheduleSessionSave` | debounce で即閉じ欠落 | Open |
+
+<details>
+<summary>M1 旧記述（修正前）</summary>
+
+金「コネクト」行に白「シンパシー」を OR 結合し、ダートレギュでも互換扱いになっていた。
+
+</details>
 
 ### 軽
 
@@ -62,12 +69,12 @@
 
 ## 推奨修正順（次フェーズ）
 
-1. **M1**（レギュ×チェーン）— 仕様を決めてから実装。候補: 表示行（最上段）の activation のみで互換判定／下位は表示バッジ用に OR 維持、など  
-2. **M3**（手動 OFF の行 ID 変化）— 受け入れを決める（グループ単位で保持 vs 現状維持）  
-3. **M2**（復元時 ID 検証＋警告）  
-4. **M4** — `beforeunload` / `visibilitychange` で flush を検討（必須度は低め）  
-5. **L7** — 上記修正とセットでテスト追加  
-6. スマホ最低限・公開準備はバグ取り後（[TODO.md](../TODO.md)）
+1. ~~**M1**~~ — **完了**（2026-08-02）
+2. **M3**（手動 OFF の行 ID 変化）— 受け入れを決める
+3. **M2**（復元時 ID 検証＋警告）
+4. **M4** — `beforeunload` / `visibilitychange` で flush を検討（必須度は低め）
+5. **L7** — 上記修正とセットでテスト追加
+6. スマホ最低限・公開準備はバグ取り後（[TODO.md](../TODO.md))
 
 ## PC 通しスモーク（調査用）
 

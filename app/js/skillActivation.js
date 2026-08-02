@@ -203,19 +203,18 @@ export function mergeActivations(activations) {
 }
 
 /**
+ * 表示行（最上段 skillId）の activation のみ。レギュ互換・条件バッジ用。
+ * チェーン下位は OR 結合しない（白「シンパシー」等で金行のレギュが緩まない）。
  * @param {number} skillId
- * @param {number[]} chainSkillIds
+ * @param {number[]} [_chainSkillIds] 互換のため残す（未使用）
  * @param {Map<number, object>} skillById
  */
-export function getDisplayActivation(skillId, chainSkillIds, skillById) {
-  const ids = chainSkillIds?.length ? chainSkillIds : [skillId];
-  const activations = ids
-    .map((id) => skillById.get(id)?.activation)
-    .filter(Boolean);
-  if (activations.length === 0) {
+export function getDisplayActivation(skillId, _chainSkillIds, skillById) {
+  const skill = skillById.get(skillId);
+  if (!skill?.activation) {
     return { branches: [emptyBranch()], tags: emptyBranch() };
   }
-  return mergeActivations(activations);
+  return skill.activation;
 }
 
 /**
