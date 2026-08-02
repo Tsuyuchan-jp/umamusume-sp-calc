@@ -3,15 +3,15 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>編成スクショ — 主案 v16（金グラデ＋余白）</title>
+  <title>編成スクショ — 主案 v17（金縦並び＋レギュ／除外）</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;600;700&family=Zen+Kaku+Gothic+New:wght@500;700;900&display=swap" rel="stylesheet" />
   <style>
     /*
-      主案 v16 — 型C継続
-      - 金: 立体なしの淡グラデで金らしさ／選択中のみ／2列でスペース活用
-      - フォント: Shippori Mincho（見出し）＋ Zen Kaku（UI・チップ）
+      主案 v17 — 型C継続
+      - 金: 淡グラデ維持・チップは縦並びで左端揃え／2列グリッド
+      - 条件枠を廃し、レギュチップ＋手動除外リストへ
     */
     :root {
       --ink: #1a1630;
@@ -231,11 +231,11 @@
     .gold-board {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 5px 12px;
+      gap: 6px 14px;
     }
     .gold-row {
       display: grid;
-      grid-template-columns: max-content minmax(0, 1fr);
+      grid-template-columns: 5.6em minmax(0, 1fr);
       gap: 6px;
       align-items: start;
       min-width: 0;
@@ -247,19 +247,21 @@
       line-height: 1.55;
       white-space: nowrap;
       padding-top: 2px;
+      text-align: right;
     }
     .gold-row.is-scn .gold-row__src { color: var(--accent-2); }
     .gold-row__chips {
       display: flex;
-      flex-wrap: wrap;
+      flex-direction: column;
+      align-items: stretch;
       gap: 3px;
       min-width: 0;
     }
     /* 立体なし・淡い縦グラデで金らしさ（影・ハイライト無し） */
     .gold-chip {
-      display: inline-flex;
+      display: flex;
       align-items: center;
-      max-width: 100%;
+      width: 100%;
       padding: 2px 8px 2px 7px;
       border-radius: 6px;
       font-family: var(--font-ui);
@@ -271,6 +273,27 @@
       border: 1px solid #dfc35a;
       border-left: 3px solid #e0b020;
       white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .off-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px;
+    }
+    .off-chip {
+      display: inline-flex;
+      align-items: center;
+      padding: 2px 8px;
+      border-radius: 6px;
+      font-size: 10px;
+      font-weight: 600;
+      color: #7a748e;
+      background: #f3f1f7;
+      border: 1px solid #e2dde8;
+      text-decoration: line-through;
+      text-decoration-color: #c4bfd0;
     }
 
     .foot-note {
@@ -430,15 +453,15 @@
 <body>
   <div class="shell">
     <div class="banner">
-      <strong>主案 v16 · 金グラデ＋2列</strong> —
-      立体なし淡グラデで金らしさ、金は2列配置、トレヒント表記、フッタにアプリ名。
+      <strong>主案 v17 · 金縦並び＋レギュ／除外</strong> —
+      金チップは縦並びで左端揃え。条件枠をレギュ＋手動除外に置換。
       参考: <a href="./screenshot-share-refs.html">一覧</a>
     </div>
 
-    <h1 class="page-title">編成スクショ · 共有カード主案 v16</h1>
-    <p class="lead">金の色味・並び・トレヒント・フッタを確認してください。</p>
+    <h1 class="page-title">編成スクショ · 共有カード主案 v17</h1>
+    <p class="lead">金の縦並び、レギュチップ、手動除外リストを確認してください。</p>
 
-    <article class="share" aria-label="共有カード主案 v16（初期編成）">
+    <article class="share" aria-label="共有カード主案 v17（初期編成）">
       <section class="left">
         <div class="eyebrow">
           <span class="eyebrow__cat">必要SP</span>
@@ -451,10 +474,10 @@
         </div>
 
         <div class="sp-row">
-          <div class="sp-num">9,715<em>SP</em></div>
+          <div class="sp-num">3,492<em>SP</em></div>
           <div class="sp-meta">
-            計上 <strong>76</strong> スキル<br />
-            除外 <strong>0</strong> 件
+            計上 <strong>23</strong> スキル<br />
+            手動除外 <strong>3</strong> 件
           </div>
         </div>
 
@@ -539,10 +562,24 @@
           </div>
 
           <div class="block">
-            <span class="pill">条件</span>
+            <span class="pill">レギュ</span>
             <div class="block__body">
-              シナリオ <strong>トレセン軒</strong> ／ トレヒント <strong>Lv5</strong> ／ 継承固有 <strong>×4 · Lv3</strong><br />
-              金は計算で選ばれているサポ・シナリオ由来のみ。除外は件数のみ。結果表は含まない。
+              <div class="tags">
+                <span class="tag is-key">芝</span>
+                <span class="tag is-key">中距離</span>
+                <span class="tag is-key">先行</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="block">
+            <span class="pill">除外</span>
+            <div class="block__body">
+              <div class="off-list">
+                <span class="off-chip">ペースアップ</span>
+                <span class="off-chip">コーナー回復○</span>
+                <span class="off-chip">集中力</span>
+              </div>
             </div>
           </div>
         </div>
@@ -573,7 +610,7 @@
     </article>
 
     <div class="judge">
-      <strong>判断のお願い</strong>（金グラデ・2列・トレヒント・フッタ）<br />
+      <strong>判断のお願い</strong>（金縦並び・レギュ／除外）<br />
       返事例: <code>採用</code> / <code>方向違い</code> / <code>惜しい：〇〇</code>
     </div>
   </div>
