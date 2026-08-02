@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>編成スクショ — 主案 v25（レギュ整列・金枠伸縮）</title>
+  <title>編成スクショ — 主案 v26（計上スキル数・切れ者OFF）</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;600;700&family=Zen+Kaku+Gothic+New:wght@500;700;900&display=swap" rel="stylesheet" />
@@ -103,7 +103,7 @@
     .strip__lab {
       font-size: 9px;
       font-weight: 700;
-      letter-spacing: 0.1em;
+      letter-spacing: 0.06em;
       color: #f5cf6f;
       margin-bottom: 4px;
     }
@@ -224,11 +224,21 @@
       letter-spacing: 0.04em;
       line-height: 1;
     }
-    .fast-inline__on {
+    .fast-inline__state {
       font-size: 12px;
       font-weight: 900;
       color: #2a7a08;
       padding-right: 4px;
+    }
+    .fast-inline.is-off {
+      background: #f1eef5;
+      border-color: #d5cfe0;
+    }
+    .fast-inline.is-off .fast-inline__mark {
+      background: #9a94ae;
+    }
+    .fast-inline.is-off .fast-inline__state {
+      color: #6a6478;
     }
 
     .work {
@@ -274,8 +284,6 @@
       gap: 4px 12px;
       align-content: start;
     }
-    .gold-extra { display: none; }
-    body.is-gold-plus .gold-extra { display: grid; }
     .gold-row {
       display: grid;
       grid-template-columns: 5.2em minmax(0, 1fr);
@@ -283,6 +291,9 @@
       align-items: start;
       min-width: 0;
     }
+    /* .gold-row より後に置く（同一要素の display 上書き防止） */
+    .gold-row.gold-extra { display: none; }
+    body.is-gold-plus .gold-row.gold-extra { display: grid; }
     .gold-row__src {
       font-size: 10px;
       font-weight: 500;
@@ -503,20 +514,21 @@
 <body>
   <div class="shell">
     <div class="banner">
-      <strong>主案 v25 · ほぼ採用の微調整</strong> —
-      レギュ帯の前提を2行化。金枠は件数に応じて縦伸縮（下のトグルで+4を確認可）。
+      <strong>主案 v26 · 文言／OFF／金+4修正</strong> —
+      項目名「計上スキル数」。切れ者OFFをトグル確認可。金+4は初期非表示に修正。
       比較: <a href="./screenshot-share-left-fresh.html">A〜E</a>
     </div>
 
-    <h1 class="page-title">編成スクショ · 共有カード主案 v25</h1>
-    <p class="lead">レギュ帯の読みやすさと、金スキルが増えたときの枠の伸び方を確認してください。</p>
+    <h1 class="page-title">編成スクショ · 共有カード主案 v26</h1>
+    <p class="lead">計上スキル数の文言、切れ者OFF、金+4トグルを確認してください。</p>
 
     <div class="demo-bar">
       <button type="button" id="toggle-gold-plus" aria-pressed="false">金スキル +4 を仮表示</button>
-      <span>カード比率は固定のまま、金パネルだけ内容量で伸び、除外は残りスペースを使います。</span>
+      <button type="button" id="toggle-fast" aria-pressed="true">切れ者を OFF 表示にする</button>
+      <span>金+4は通常非表示。切れ者はカード内バッジの見た目切替です（数値は変えません）。</span>
     </div>
 
-    <article class="share" aria-label="共有カード主案 v25">
+    <article class="share" aria-label="共有カード主案 v26">
       <section class="left">
         <div class="strip">
           <div class="strip__cell">
@@ -524,7 +536,7 @@
             <div class="strip__sp">7,666<em>SP</em></div>
           </div>
           <div class="strip__cell">
-            <div class="strip__lab">計上</div>
+            <div class="strip__lab">計上スキル数</div>
             <div class="strip__count">
               <span class="strip__count-on">61</span><span class="strip__count-den">/79</span>
             </div>
@@ -546,9 +558,9 @@
               <h2 class="head__title">初期編成サンプル</h2>
               <p class="head__sub">[The Changer]アーモンドアイ</p>
             </div>
-            <div class="fast-inline" title="切れ者 ON">
+            <div class="fast-inline" id="fast-badge" title="切れ者 ON">
               <span class="fast-inline__mark">切れ者</span>
-              <span class="fast-inline__on">ON</span>
+              <span class="fast-inline__state" id="fast-state">ON</span>
             </div>
           </div>
 
@@ -661,16 +673,27 @@
     </article>
 
     <div class="judge">
-      <strong>判断のお願い</strong>（v25）<br />
+      <strong>判断のお願い</strong>（v26）<br />
       返事例: <code>採用</code> / <code>方向違い</code> / <code>惜しい：〇〇</code>
     </div>
   </div>
   <script>
-    const btn = document.getElementById("toggle-gold-plus");
-    btn.addEventListener("click", () => {
+    const goldBtn = document.getElementById("toggle-gold-plus");
+    goldBtn.addEventListener("click", () => {
       const on = document.body.classList.toggle("is-gold-plus");
-      btn.setAttribute("aria-pressed", on ? "true" : "false");
-      btn.textContent = on ? "金スキル +4 を隠す（通常に戻す）" : "金スキル +4 を仮表示";
+      goldBtn.setAttribute("aria-pressed", on ? "true" : "false");
+      goldBtn.textContent = on ? "金スキル +4 を隠す（通常に戻す）" : "金スキル +4 を仮表示";
+    });
+
+    const fastBtn = document.getElementById("toggle-fast");
+    const fastBadge = document.getElementById("fast-badge");
+    const fastState = document.getElementById("fast-state");
+    fastBtn.addEventListener("click", () => {
+      const off = fastBadge.classList.toggle("is-off");
+      fastBtn.setAttribute("aria-pressed", off ? "false" : "true");
+      fastState.textContent = off ? "OFF" : "ON";
+      fastBadge.title = off ? "切れ者 OFF" : "切れ者 ON";
+      fastBtn.textContent = off ? "切れ者を ON 表示に戻す" : "切れ者を OFF 表示にする";
     });
   </script>
 </body>

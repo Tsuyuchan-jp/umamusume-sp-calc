@@ -40,7 +40,7 @@
 
 ## 現在フォーカス（1行）
 
-**P2 編成スクショ** — v25 目視（[screenshot-share-hero.html](./product/mockups/screenshot-share-hero.html)）
+**P2 編成スクショ** — v26 目視（[screenshot-share-hero.html](./product/mockups/screenshot-share-hero.html)）
 
 ---
 
@@ -60,7 +60,7 @@
   - メモリ（localStorage）は済。共有用の画像書き出しは未着手  
   - 要件メモ: [product/screenshot-requirements.md](./product/screenshot-requirements.md)  
   - 用途第一: 攻略記事貼付。専用横長カード。コピー優先＋保存。モード非依存  
-  - 次: **v25 目視** → [mockups/screenshot-share-hero.html](./product/mockups/screenshot-share-hero.html)（ほぼ採用・レギュ整列／金枠伸縮）  
+  - 次: **v26 目視** → [mockups/screenshot-share-hero.html](./product/mockups/screenshot-share-hero.html)（計上スキル数／切れ者OFF／金+4修正）  
   - 受け入れ（暫定）: 現在設計を1枚の共有カードとして保存／コピーできる
 
 - [ ] **タイプ印位置の最終微調整**（ユーザー指示があったときだけ）  
