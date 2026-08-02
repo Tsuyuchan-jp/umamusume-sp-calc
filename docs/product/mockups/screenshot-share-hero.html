@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>編成スクショ — 主案 v20（金さらに明るく）</title>
+  <title>編成スクショ — 主案 v21（金影＋タップ復帰）</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;600;700&family=Zen+Kaku+Gothic+New:wght@500;700;900&display=swap" rel="stylesheet" />
@@ -271,6 +271,8 @@
       color: #3d2a08;
       background: linear-gradient(115deg, #fff8d4 0%, #ffe97a 42%, #f6d24a 78%, #efc53a 100%);
       border: 1px solid #e5c54e;
+      /* スキル名を金地から少し浮かせる */
+      text-shadow: 0 0 2px rgba(255, 255, 255, 0.85), 0 1px 0 rgba(255, 255, 255, 0.55);
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
@@ -452,16 +454,15 @@
 <body>
   <div class="shell">
     <div class="banner">
-      <strong>主案 v20 · 金さらに明るく</strong> —
-      前回の低SPは<strong>モック用ワンショット計算</strong>でレギュキーを日本語にした誤り（本番UIは data-value=turf/mid/senko のみ。日本語ラベルは表示専用）。
-      金グラデをゲーム参照寄りに明るく。
+      <strong>主案 v21 · 金テキスト影＋タップ復帰</strong> —
+      金チップ名に薄い白シャドウ。スピタップは選択金として再表示（先行レギュでは計上OFFだが、選択イベントの金として載せる）。
       参考: <a href="./screenshot-share-refs.html">一覧</a>
     </div>
 
-    <h1 class="page-title">編成スクショ · 共有カード主案 v20</h1>
-    <p class="lead">ゲーム参照寄りに明るくした金チップを確認してください。</p>
+    <h1 class="page-title">編成スクショ · 共有カード主案 v21</h1>
+    <p class="lead">金名の白シャドウと、スピタップ行の復帰を確認してください。</p>
 
-    <article class="share" aria-label="共有カード主案 v20（初期編成）">
+    <article class="share" aria-label="共有カード主案 v21（初期編成）">
       <section class="left">
         <div class="eyebrow">
           <span class="eyebrow__cat">必要SP</span>
@@ -509,6 +510,13 @@
                   <div class="gold-row__chips">
                     <span class="gold-chip">迸る気迫</span>
                     <span class="gold-chip">正々堂々</span>
+                  </div>
+                </div>
+                <div class="gold-row">
+                  <span class="gold-row__src">スピタップ</span>
+                  <div class="gold-row__chips">
+                    <span class="gold-chip">トップランナー</span>
+                    <span class="gold-chip">飛竜乗雲</span>
                   </div>
                 </div>
                 <div class="gold-row">
@@ -603,7 +611,7 @@
     </article>
 
     <div class="judge">
-      <strong>判断のお願い</strong>（金明るさ）<br />
+      <strong>判断のお願い</strong>（金テキスト影・タップ復帰）<br />
       返事例: <code>採用</code> / <code>方向違い</code> / <code>惜しい：〇〇</code>
     </div>
   </div>
