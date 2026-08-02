@@ -36,8 +36,8 @@
 |------|------|
 | **必須（最低限）** | 育成＋サポ6、前提チップ、合計 SP |
 | **欲しい** | 設計名（メモリ名）、**計上スキル数** |
-| **レイアウト次第で載せたい** | 選択イベント（特に **金スキル関連**）。見せ方はモックで決める |
-| **見た目（大枠採用）** | 型C v11: LayerX×TellerNovel。右パネル採用（グラス＋世界観）。サポは3:4・contain。初期編成サンプル流し込み済 |
+| **レイアウト次第で載せたい** | 選択イベントの **金スキル**（サポ選択の全件＋RMJ／リンクが金のとき同枠） |
+| **見た目（大枠採用）** | 型C v12: LayerX×TellerNovel。右パネル採用。金は選択結果フル。フォントは IBM Plex Sans JP（候補比較中） |
 | **付記まで可** | 除外は **件数のみ**（リストは出さない） |
 | **載せない** | 除外の中身リスト、結果表（スキル一覧の詳細） |
 
@@ -82,7 +82,7 @@ UX 初期方針（顔＝6＋合計＋前提）は土台として維持。記事�
 
 ## 次ステップ
 
-1. ~~主案モック~~ → [mockups/screenshot-share-hero.html](./mockups/screenshot-share-hero.html)（**v11・初期編成サンプル** · 目視待ち）  
+1. ~~主案モック~~ → [mockups/screenshot-share-hero.html](./mockups/screenshot-share-hero.html)（**v12・金フル＋IBM Plex** · 目視待ち）  
    比較: [型B](./mockups/screenshot-share-type-b.html) · 参考: [screenshot-share-refs.html](./mockups/screenshot-share-refs.html)
    ※旧三連: [mockups/screenshot-share-options.html](./mockups/screenshot-share-options.html)（参考のみ）
 2. 主案承認 → 本実装（html2canvas 等は実装時）
