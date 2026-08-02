@@ -332,7 +332,7 @@
 
       <div class="snap-zone snap-zone--workbench" id="snap-zone-workbench">
         <section class="panel panel--workbench">
-          <!-- W-H: レギュ儀式バー -->
+          <!-- 紫クロム（角丸はここ自身が描く） -->
           <div class="wb-regu" aria-label="対人レギュ">
             <div class="wb-regu-top">
               <strong>対人レギュ</strong>
@@ -370,67 +370,70 @@
             </div>
           </div>
 
-          <div class="result-panel-heading">
-            <h2 class="result-zt result-zt--plain">結果</h2>
-            <span id="skill-count-meta" class="skill-count-meta">ONスキル数 —</span>
-          </div>
-
-          <div class="result-toolbar">
-            <span class="result-toolbar__fl" id="result-sort-label">並び</span>
-            <div class="result-sort-bar">
-              <div
-                class="result-sort-seg"
-                role="group"
-                aria-labelledby="result-sort-label"
-              >
-                <button
-                  type="button"
-                  class="result-sort-seg__btn is-active"
-                  data-sort="skillId"
-                  aria-pressed="true"
-                >
-                  スキルID
-                </button>
-                <button
-                  type="button"
-                  class="result-sort-seg__btn"
-                  data-sort="kind"
-                  aria-pressed="false"
-                >
-                  由来種別
-                </button>
-                <button
-                  type="button"
-                  class="result-sort-seg__btn"
-                  data-sort="cost"
-                  aria-pressed="false"
-                >
-                  必要SP
-                </button>
-              </div>
+          <!-- 白本体（見出し・並び・表） -->
+          <div class="workbench-body">
+            <div class="result-panel-heading">
+              <h2 class="result-zt result-zt--plain">結果</h2>
+              <span id="skill-count-meta" class="skill-count-meta">ONスキル数 —</span>
             </div>
-            <button
-              type="button"
-              id="copy-included-skills"
-              class="copy-included-skills"
-              disabled
-            >
-              ONスキルをコピー
-            </button>
-          </div>
 
-          <div class="result-table-wrap">
-            <table class="result-skills">
-              <thead>
-                <tr>
-                  <th class="col-on">ON</th>
-                  <th>スキル</th>
-                  <th class="col-sp">必要SP</th>
-                  <th>由来</th>
-                </tr>
-              </thead>
-              <tbody id="result-body"></tbody>
-            </table>
+            <div class="result-toolbar">
+              <span class="result-toolbar__fl" id="result-sort-label">並び</span>
+              <div class="result-sort-bar">
+                <div
+                  class="result-sort-seg"
+                  role="group"
+                  aria-labelledby="result-sort-label"
+                >
+                  <button
+                    type="button"
+                    class="result-sort-seg__btn is-active"
+                    data-sort="skillId"
+                    aria-pressed="true"
+                  >
+                    スキルID
+                  </button>
+                  <button
+                    type="button"
+                    class="result-sort-seg__btn"
+                    data-sort="kind"
+                    aria-pressed="false"
+                  >
+                    由来種別
+                  </button>
+                  <button
+                    type="button"
+                    class="result-sort-seg__btn"
+                    data-sort="cost"
+                    aria-pressed="false"
+                  >
+                    必要SP
+                  </button>
+                </div>
+              </div>
+              <button
+                type="button"
+                id="copy-included-skills"
+                class="copy-included-skills"
+                disabled
+              >
+                ONスキルをコピー
+              </button>
+            </div>
+
+            <div class="result-table-wrap">
+              <table class="result-skills">
+                <thead>
+                  <tr>
+                    <th class="col-on">ON</th>
+                    <th>スキル</th>
+                    <th class="col-sp">必要SP</th>
+                    <th>由来</th>
+                  </tr>
+                </thead>
+                <tbody id="result-body"></tbody>
+              </table>
+            </div>
           </div>
         </section>
       </div>

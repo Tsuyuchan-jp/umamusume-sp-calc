@@ -1523,11 +1523,22 @@ body.layout-split .panel--workbench {
   height: 100%;
   display: flex;
   flex-direction: column;
-  /* 角は .wb-regu が描く。表スクロールは .result-table-wrap */
   overflow: visible;
 }
 
-body.layout-split .panel--workbench > :not(.result-table-wrap) {
+body.layout-split .panel--workbench > .wb-regu {
+  flex-shrink: 0;
+}
+
+body.layout-split .workbench-body {
+  flex: 1 1 auto;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+body.layout-split .workbench-body > :not(.result-table-wrap) {
   flex-shrink: 0;
 }
 
@@ -2598,18 +2609,31 @@ tr.excluded td {
 
 /* ---- 結果作業台（W-H） ---- */
 
-/* レギュ儀式バー（編成 g-brand と同様にパネル上端へ食い込む） */
+/* 紫クロム: 角丸は自身が描く（親白面の上に載せない） */
 .wb-regu {
   box-sizing: border-box;
-  width: auto;
-  margin: 0 calc(-1 * var(--panel-pad-x, 1rem)) 0.5rem;
+  flex-shrink: 0;
+  width: 100%;
+  margin: 0;
   padding: 0.65rem var(--panel-pad-x, 1rem);
   background: linear-gradient(180deg, #5a5288, #463f70);
   color: #fff;
   border: 0;
   border-bottom: 2px solid var(--c-gold, #f5cf6f);
-  /* modebar / トータルバーと同じく、紫面自身が上角を描く */
   border-radius: 8px 8px 0 0;
+}
+
+/* 白本体: 見出し・並び・表 */
+.workbench-body {
+  box-sizing: border-box;
+  flex: 1 1 auto;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: var(--panel-pad-y, 0.85rem) var(--panel-pad-x, 1rem);
+  background: var(--panel, #fff);
+  border-radius: 0 0 8px 8px;
 }
 
 .wb-regu-top {
@@ -2820,11 +2844,7 @@ tr.excluded td {
   padding: 0 0.15rem 0.35rem;
 }
 
-.panel--workbench {
-  overflow: visible;
-  padding-top: 0;
-  box-shadow: 0 2px 8px rgba(44, 62, 80, 0.06);
-}
+/* .panel--workbench の見た目は foundation（透明ラッパ＋影）に集約 */
 
 table.result-skills {
   width: 100%;

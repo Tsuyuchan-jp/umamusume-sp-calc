@@ -226,14 +226,17 @@ body.layout-split .panel--deck > .app-header {
   content: none;
 }
 
+/* 結果枠: 透明ラッパ。見た目は .wb-regu（紫）＋ .workbench-body（白） */
 .panel--workbench {
   position: relative;
-  overflow: visible;
-  background: var(--panel);
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  background: transparent;
   border: none;
-  border-radius: 0 0 8px 8px;
+  border-radius: 8px;
   box-shadow: var(--shadow-lg);
-  padding-top: 0;
+  overflow: visible;
 }
 
 .panel--workbench::before {
