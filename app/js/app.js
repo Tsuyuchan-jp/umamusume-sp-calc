@@ -1192,7 +1192,7 @@ function bindLayoutMode() {
   sync();
 }
 
-/** シニア12月 RMJ ラーメン選択（チップ1択・表示はスキル名） */
+/** シニア12月 RMJ ラーメン選択（チップ1択・表示はスキル名／すべて金） */
 function renderSeniorRmjRadios() {
   const container = document.getElementById("scenario-senior-rmj");
   if (!container) return;
@@ -1207,9 +1207,10 @@ function renderSeniorRmjRadios() {
     const skillName = choice.skills?.[0]?.skillName || choice.label || choice.id;
     const btn = document.createElement("button");
     btn.type = "button";
-    btn.className = "scn-chip scn-chip--rmj" + (current === choice.id ? " is-on" : "");
+    btn.className =
+      "scn-chip scn-chip--gold" + (current === choice.id ? " is-on" : "");
     btn.setAttribute("aria-pressed", current === choice.id ? "true" : "false");
-    btn.textContent = skillName;
+    btn.innerHTML = `<span class="scn-chip__gold-mark" aria-hidden="true">金</span>${escapeHtml(skillName)}`;
     const skillNote =
       choice.skills?.length > 0 ? formatSkillList(choice.skills) : "";
     btn.title = skillNote

@@ -669,9 +669,11 @@ input[type="search"] {
 }
 
 .scn-chip.scn-chip--rmj.is-on {
-  border-color: #c00f47;
-  background: linear-gradient(180deg, #ff6b9a, #ff3276);
-  box-shadow: 0 1px 4px rgba(255, 50, 118, 0.35);
+  /* RMJ も金表示に統一（後方互換セレクタ） */
+  border-color: #c98910;
+  background: linear-gradient(180deg, #f0d060, #e29403);
+  color: #3a2a00;
+  box-shadow: 0 1px 5px rgba(226, 148, 3, 0.4);
 }
 
 /* シナリオリンク効果で金になっているスキル */
@@ -1417,76 +1419,18 @@ body.layout-split .total-sp-bar__brand .help-open-btn {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 0.5rem 0.85rem;
+  gap: 0.45rem 0.75rem;
   min-width: 0;
   flex: 1 1 auto;
   width: 100%;
-  justify-content: space-between;
 }
 
 body.layout-split .total-sp-bar__main {
   width: auto;
-  justify-content: flex-start;
-}
-
-.total-sp-bar-unit {
-  display: none;
-  font-size: 0.78rem;
-  font-weight: 800;
-  color: #ffe9a8;
-}
-
-.total-sp-bar-label--split {
-  display: none;
-}
-
-body.layout-split .total-sp-bar-label--gallery {
-  display: none;
-}
-
-body.layout-split .total-sp-bar-label--split {
-  display: inline;
-}
-
-body.layout-split .total-sp-bar-unit {
-  display: inline;
-}
-
-body.layout-split .total-sp-bar-label {
-  color: #bebbce;
-  font-size: 0.68rem;
 }
 
 body.layout-split .total-sp-bar-value {
-  font-size: 1.85rem;
-  color: #f5cf6f;
-}
-
-body.layout-split .total-sp-bar-chips {
-  justify-content: flex-start;
-}
-
-body.layout-split .total-sp-bar-chips .premise-chip {
-  background: rgba(255, 255, 255, 0.12);
-  border-color: rgba(255, 255, 255, 0.35);
-  color: #ddd8ef;
-}
-
-body.layout-split .total-sp-bar-chips .premise-chip--on {
-  background: linear-gradient(180deg, #ff6b9a, #ff3276);
-  border-color: #c00f47;
-  color: #fff;
-}
-
-body.layout-split .total-sp-bar-chips .premise-chip--training {
-  background: rgba(255, 255, 255, 0.1);
-  border-color: rgba(255, 255, 255, 0.35);
-  color: #ddd8ef;
-}
-
-body.layout-split .total-sp-bar-chips .premise-lv.is-on {
-  background: linear-gradient(180deg, #ff9a3c, #ff7300);
-  color: #fff;
+  font-size: 2rem;
 }
 
 body.layout-split > .app-main {

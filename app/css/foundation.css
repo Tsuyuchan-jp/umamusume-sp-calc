@@ -320,11 +320,23 @@ header p {
 }
 
 .total-sp-bar-value {
+  display: inline-block;
+  min-width: 7.5ch;
+  font-variant-numeric: tabular-nums;
   font-weight: var(--font-weight-black);
-  font-size: 1.85rem;
+  font-size: 2rem;
+  line-height: 1;
+  text-align: left;
   color: var(--accent-total);
   text-shadow: none;
   letter-spacing: -0.02em;
+}
+
+.total-sp-bar-unit {
+  display: inline;
+  font-size: 0.8rem;
+  font-weight: var(--font-weight-bold);
+  color: var(--accent-total-bright);
 }
 
 .total-sp-bar--flash-up .total-sp-bar-value {
@@ -345,15 +357,81 @@ header p {
   font-weight: var(--font-weight-bold);
 }
 
+/* ---- トータルバー上の前提チップ（H5モック pbtn / pseg 寄せ・gallery/split 共通） ---- */
 .total-sp-bar-chips .premise-chip {
-  min-width: 5.25rem;
+  min-width: 5.5rem;
+  border-radius: 6px;
+  border: 1px solid #787588;
+  background: linear-gradient(180deg, #fff, #dad4da);
+  color: #625d7d;
+  box-shadow: none;
+  font-size: 0.75rem;
+  font-weight: var(--font-weight-bold);
+  padding: 0.35rem 0.65rem;
+}
+
+.total-sp-bar-chips .premise-chip--on {
+  background: linear-gradient(180deg, #ff75a3, #f7518b);
+  border-color: #c00f47;
+  color: #fff;
+  box-shadow: none;
+}
+
+.total-sp-bar-chips .premise-chip--warn {
+  background: rgba(255, 244, 212, 0.95);
+  border-color: rgba(245, 207, 111, 0.55);
+  color: #9a6b10;
+  min-width: auto;
 }
 
 .total-sp-bar-chips .premise-chip--training {
   min-width: auto;
-  gap: 0.2rem;
-  padding: 0.25rem 0.4rem 0.25rem 0.55rem;
-  align-items: center;
+  gap: 0;
+  padding: 0;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  background: rgba(255, 255, 255, 0.08);
+  color: #ddd8ef;
+}
+
+.total-sp-bar-chips .premise-chip__prefix {
+  padding: 0 0.45rem 0 0.55rem;
+  opacity: 0.9;
+  color: #bebbce;
+}
+
+.total-sp-bar-chips .premise-lv {
+  background: rgba(255, 255, 255, 0.12);
+  color: #ddd8ef;
+  border-radius: 0;
+  min-width: 1.7rem;
+  height: 1.85rem;
+  font-size: 0.75rem;
+}
+
+.total-sp-bar-chips .premise-lv.is-on {
+  background: linear-gradient(180deg, #fa9f40, #ff8427);
+  color: #fff;
+}
+
+/* 合計ヒーロー（桁変化で前提がずれないよう幅固定）＋前提右寄せ */
+.total-sp-bar__total {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: baseline;
+  gap: 0.4rem 0.5rem;
+  min-width: 10.5rem;
+  padding-right: 0.75rem;
+  border-right: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.total-sp-bar-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin-left: auto;
+  justify-content: flex-end;
+  flex: 1 1 auto;
 }
 
 .premise-chip__prefix {
