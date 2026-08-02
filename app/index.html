@@ -26,21 +26,6 @@
       <span class="layout-modebar__hint" id="layout-mode-hint">ギャラリー: 上段編成・下段作業台</span>
     </aside>
 
-    <header class="app-header">
-      <div class="header-text">
-        <h1>SP <span class="app-brand-accent">Calc</span><span class="app-version">v0.1.14</span></h1>
-        <p>真の必要SP · トレセン軒</p>
-      </div>
-      <div class="header-actions">
-        <button type="button" id="memory-open" class="help-open-btn" aria-haspopup="dialog" aria-controls="memory-dialog">
-          メモリ
-        </button>
-        <button type="button" id="help-open" class="help-open-btn" aria-haspopup="dialog" aria-controls="help-dialog">
-          使い方
-        </button>
-      </div>
-    </header>
-
     <dialog id="memory-dialog" class="memory-dialog" aria-labelledby="memory-dialog-title">
       <div class="memory-dialog__chrome">
         <h2 id="memory-dialog-title" class="memory-dialog__title">設計メモリ</h2>
@@ -265,6 +250,20 @@
 
       <div class="snap-zone snap-zone--deck" id="snap-zone-deck">
         <section class="panel panel--deck">
+          <!-- H-Mock: g-brand 相当。編成パネルの先頭クロム（浮いた別帯にしない） -->
+          <header class="app-header">
+            <div class="header-text">
+              <h1>SP <span class="app-brand-accent">Calc</span><span class="app-version">v0.1.14</span></h1>
+            </div>
+            <div class="header-actions">
+              <button type="button" id="memory-open" class="help-open-btn" aria-haspopup="dialog" aria-controls="memory-dialog">
+                メモリ
+              </button>
+              <button type="button" id="help-open" class="help-open-btn" aria-haspopup="dialog" aria-controls="help-dialog">
+                使い方
+              </button>
+            </div>
+          </header>
           <div class="deck-heading">
             <h2>編成</h2>
             <p class="hint deck-heading__scenario">シナリオ: らっしゃい！トレセン軒！（固定）</p>

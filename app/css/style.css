@@ -1246,7 +1246,8 @@ body.layout-split > .layout-modebar {
 }
 
 /* 合計バーを上部コマンド化（DOM は applyLayoutMode で modebar 直後へ移動） */
-body.layout-split > .app-header {
+/* H-Mock: split ではパネル内 g-brand を隠し、s-cmd 相当の上部バーがブランドを担う */
+body.layout-split .panel--deck > .app-header {
   display: none;
 }
 
@@ -1750,8 +1751,10 @@ body.layout-split .panel--workbench {
     padding-bottom: 5.5rem;
   }
 
-  body.layout-split > .app-header {
+  /* 狭幅スプリット: 上部コマンドではなく下端バー＋パネル内ブランドを残す */
+  body.layout-split .panel--deck > .app-header {
     display: flex;
+    margin: 0 -0.7rem 0.55rem;
   }
 
   body.layout-split > .total-sp-bar,

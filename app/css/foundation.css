@@ -101,10 +101,15 @@ body {
   inset: 0;
   z-index: 0;
   pointer-events: none;
-  /* U-tools / H5 モック寄り: 引きの構図（cover + top）。クローズアップしない */
-  background:
-    var(--world-image) center top / cover no-repeat,
-    #463f70;
+  /*
+   * U-tools 参考: 画面の高さに画像全体の縦構図を合わせ、空＋芝の両方を見せる。
+   * cover+top だと空だけ、cover+bottom だと芝に寄りすぎる。
+   */
+  background-color: #463f70;
+  background-image: var(--world-image);
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: auto 100%;
 }
 
 .world-bg::after {
@@ -113,14 +118,13 @@ body {
   inset: 0;
   background: linear-gradient(
     180deg,
-    rgba(70, 63, 112, 0.12),
-    rgba(70, 63, 112, 0.04) 40%,
-    rgba(70, 63, 112, 0.32)
+    rgba(70, 63, 112, 0.1),
+    rgba(70, 63, 112, 0.02) 45%,
+    rgba(70, 63, 112, 0.28)
   );
   pointer-events: none;
 }
 
-body > header,
 body > .layout-modebar,
 body > .app-main {
   position: relative;
@@ -132,49 +136,42 @@ body > .app-main {
   z-index: 1000;
 }
 
-/* ---- ヘッダー（H-Mock: gallery = g-brand 相当） ---- */
-header,
-.app-header {
+/* ---- ヘッダー（H-Mock g-brand: 編成パネル先頭の一体クロム） ---- */
+.panel--deck > .app-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 0.75rem;
   box-sizing: border-box;
-  width: min(1200px, calc(100% - 1.5rem));
-  margin: 0 auto;
+  width: auto;
+  /* padding-top:0 のパネルに対し、左右だけ負マージンで端まで伸ばす */
+  margin: 0 -1.35rem 0.85rem;
   padding: 0.65rem 0.9rem;
   background: linear-gradient(180deg, var(--ink-mid) 0%, var(--ink-deep) 100%);
-  box-shadow: var(--shadow-md);
+  box-shadow: none;
+  border: 0;
   border-bottom: 3px solid var(--c-gold, #f5cf6f);
-  border-radius: 0 0 10px 10px;
-}
-
-/* gallery: modebar の直下（H-Mock 順） */
-body.layout-gallery > .app-header,
-body:not(.layout-split) > .app-header {
-  margin-top: 0;
+  border-radius: 0;
 }
 
 .app-brand-accent {
   color: var(--c-gold, #f5cf6f);
 }
 
-header h1 {
+.panel--deck > .app-header h1 {
   margin: 0;
   font-weight: var(--font-weight-black);
   letter-spacing: 0.02em;
   font-size: 1.125rem;
   line-height: 1.2;
+  color: #fff;
 }
 
-header p {
-  margin: 0.15rem 0 0;
-  font-weight: var(--font-weight-medium);
-  font-size: 0.75rem;
-  opacity: 0.88;
+.panel--deck > .app-header .app-version {
+  color: rgba(255, 255, 255, 0.75);
 }
 
-.help-open-btn {
+.panel--deck > .app-header .help-open-btn {
   margin-top: 0;
   border-radius: var(--radius-pill);
   border: 1px solid rgba(255, 255, 255, 0.35);
@@ -182,9 +179,14 @@ header p {
   transition: background 0.15s ease;
 }
 
-.help-open-btn:hover {
+.panel--deck > .app-header .help-open-btn:hover {
   background: rgba(255, 255, 255, 0.14);
   transform: none;
+}
+
+/* スプリット: ブランドは上部コマンド側。パネル内 g-brand は出さない */
+body.layout-split .panel--deck > .app-header {
+  display: none;
 }
 
 /* ---- パネル（H5 幾何タイル面） ---- */
@@ -207,6 +209,9 @@ header p {
   background: var(--panel);
   box-shadow: var(--shadow-lg);
   border-color: rgba(255, 255, 255, 0.55);
+  /* g-brand をパネル上端に食い込ませる */
+  overflow: hidden;
+  padding-top: 0;
 }
 
 .panel--workbench {
