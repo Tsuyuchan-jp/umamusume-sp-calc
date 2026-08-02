@@ -81,6 +81,9 @@ let premiseChipsBound = false;
 /** スプリット左ドックでフォーカス中のサポ枠（0–5）。ギャラリーでは未使用 */
 let focusSupportSlot = null;
 
+/** スプリット詳細ペインで開いているイベント（再タップ閉じ用） */
+let splitEvtOpen = null;
+
 /** ピッカー内タイプ絞込（すべて = ""） */
 let supportPickerTypeFilter = "";
 
@@ -846,6 +849,12 @@ function resolveEventChoiceId(evt) {
   return cur;
 }
 
+/** 選択肢パネル用。label と skills 一覧は同内容なので二重表示しない */
+function choicePanelDescHtml(skills, emptyFallback) {
+  if (skills && skills.length > 0) return "";
+  return `<div class="evt-choice-panel__desc">${escapeHtml(emptyFallback)}</div>`;
+}
+
 function renderChoicePanelButtons(container, evt, onAfter) {
   container.innerHTML = "";
   if (evt.selection === "toggle") {
@@ -853,11 +862,14 @@ function renderChoicePanelButtons(container, evt, onAfter) {
     const btn = document.createElement("button");
     btn.type = "button";
     btn.className = "evt-choice-panel" + (on ? " is-on" : "");
+    const title =
+      formatSkillList(evt.skills) ||
+      evt.label.replace(/^[①②③④⑤⑥⑦⑧⑨⑩]\s*/, "") ||
+      "ON/OFF";
     btn.innerHTML = `
       <div class="evt-choice-panel__kind">${kindBadgeHtml("white")}</div>
       <div>
-        <div class="evt-choice-panel__title">${escapeHtml(evt.label)}</div>
-        <div class="evt-choice-panel__desc">${escapeHtml(formatSkillList(evt.skills) || "ON/OFF")}</div>
+        <div class="evt-choice-panel__title">${escapeHtml(title)}</div>
       </div>
       <div class="evt-choice-panel__pick">${on ? "ON" : "OFF"}</div>`;
     btn.onclick = () => {
@@ -884,7 +896,7 @@ function renderChoicePanelButtons(container, evt, onAfter) {
       <div class="evt-choice-panel__kind">${kindBadgeHtml(kind)}</div>
       <div>
         <div class="evt-choice-panel__title">${escapeHtml(shortChoiceLabel(choice))}</div>
-        <div class="evt-choice-panel__desc">${escapeHtml(formatSkillList(choice.skills) || "ステータス分岐など")}</div>
+        ${choicePanelDescHtml(choice.skills, "ステータス分岐など")}
       </div>
       <div class="evt-choice-panel__pick">${current === choice.id ? "選択中" : "選ぶ"}</div>`;
     btn.onclick = () => {
@@ -910,6 +922,7 @@ function setFocusSupportSlot(slotIndex) {
 function closeSplitEvtPane() {
   const pane = document.getElementById("split-evt-pane");
   if (pane) pane.hidden = true;
+  splitEvtOpen = null;
   setFocusSupportSlot(null);
 }
 
@@ -931,7 +944,9 @@ function openEventChoicePane(evt, slotIndex) {
   const name = support ? shortSupportLabel(support) : "";
   title.textContent = `A · ${slotLabel}${name || evt.label}`;
   sub.textContent =
-    evt.selection === "toggle" ? "複数・ON/OFF" : "単一選択 · 金を最上段";
+    evt.selection === "toggle"
+      ? "複数・ON/OFF · 同じ要約で閉じる / Esc"
+      : "単一選択 · 金を最上段 · 同じ要約で閉じる / Esc";
 
   const refresh = () => {
     renderColumnEvents();
@@ -941,6 +956,7 @@ function openEventChoicePane(evt, slotIndex) {
     });
   };
   refresh();
+  splitEvtOpen = { evtId: evt.id, slotIndex };
   pane.hidden = false;
 }
 
@@ -965,8 +981,22 @@ function openEventChoiceDialog(evt) {
 }
 
 function openEventChoiceUi(evt, slotIndex) {
-  if (isSplitLayout()) openEventChoicePane(evt, slotIndex);
-  else openEventChoiceDialog(evt);
+  if (isSplitLayout()) {
+    const pane = document.getElementById("split-evt-pane");
+    const sameOpen =
+      pane &&
+      !pane.hidden &&
+      splitEvtOpen &&
+      splitEvtOpen.evtId === evt.id &&
+      splitEvtOpen.slotIndex === slotIndex;
+    if (sameOpen) {
+      closeSplitEvtPane();
+      return;
+    }
+    openEventChoicePane(evt, slotIndex);
+    return;
+  }
+  openEventChoiceDialog(evt);
 }
 
 function bindEventChoiceDialog() {
@@ -977,6 +1007,14 @@ function bindEventChoiceDialog() {
     if (e.target === dialog) dialog.close();
   });
   document.getElementById("split-evt-pane-close")?.addEventListener("click", () => {
+    closeSplitEvtPane();
+  });
+  /* スプリット詳細のみ: Esc で閉じる（ギャラリーのダイアログはネイティブ Esc） */
+  document.addEventListener("keydown", (e) => {
+    if (e.key !== "Escape") return;
+    if (!isSplitLayout()) return;
+    const pane = document.getElementById("split-evt-pane");
+    if (!pane || pane.hidden) return;
     closeSplitEvtPane();
   });
 }
@@ -1022,10 +1060,15 @@ function renderColumnEvents() {
     for (const evt of selectables) {
       const btn = document.createElement("button");
       btn.type = "button";
+      const paneOpen =
+        isSplitLayout() &&
+        splitEvtOpen &&
+        splitEvtOpen.evtId === evt.id &&
+        splitEvtOpen.slotIndex === i;
       if (evt.selection === "toggle") {
         const on = state.ui.enabledEventIds.has(evt.id);
         btn.className = "deck-evt-sum";
-        btn.innerHTML = `${kindBadgeHtml("white")}${escapeHtml(evt.label.replace(/^[^ ]+ /, ""))}<span class="deck-evt-sum__more">${on ? "ON" : "OFF"} · タップで切替</span>`;
+        btn.innerHTML = `${kindBadgeHtml("white")}${escapeHtml(evt.label.replace(/^[^ ]+ /, ""))}<span class="deck-evt-sum__more">${on ? "ON" : "OFF"} · ${paneOpen ? "再タップで閉じる" : "タップで詳細"}</span>`;
       } else {
         const choiceId = resolveEventChoiceId(evt);
         const choice = (evt.choices || []).find((c) => c.id === choiceId);
@@ -1033,7 +1076,7 @@ function renderColumnEvents() {
         const label = choice ? shortChoiceLabel(choice) : "選択";
         const n = (evt.choices || []).length;
         btn.className = "deck-evt-sum" + (kind === "gold" ? " deck-evt-sum--gold" : "");
-        btn.innerHTML = `${kindBadgeHtml(kind)}${escapeHtml(label)}<span class="deck-evt-sum__more">全${n}択 · タップで詳細</span>`;
+        btn.innerHTML = `${kindBadgeHtml(kind)}${escapeHtml(label)}<span class="deck-evt-sum__more">${paneOpen ? "再タップで閉じる" : `全${n}択 · タップで詳細`}</span>`;
       }
       btn.addEventListener("click", () => openEventChoiceUi(evt, i));
       container.appendChild(btn);
