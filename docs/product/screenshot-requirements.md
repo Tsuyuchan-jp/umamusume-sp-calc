@@ -108,7 +108,7 @@ excludeMax = workHeight - goldHeight - gap
 | 項目 | 内容 |
 |------|------|
 | ボタン置き場 | 両モード共通で最上部 `layout-modebar` 右端（カード面・トータルバーには載せない） |
-| 画像化 | `@zumer/snapdom`（CDN） |
+| 画像化 | `@zumer/snapdom`（CDN）。画面外マウントのままキャプチャ（フラッシュなし） |
 | 見た目正本 | mockups/screenshot-share-hero.html v28.1 |
 
 ## 次ステップ
