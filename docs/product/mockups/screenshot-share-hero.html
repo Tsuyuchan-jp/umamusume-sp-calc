@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>編成スクショ — 主案 v21（金影＋タップ復帰）</title>
+  <title>編成スクショ — 主案 v22（影強化）</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;600;700&family=Zen+Kaku+Gothic+New:wght@500;700;900&display=swap" rel="stylesheet" />
@@ -271,11 +271,18 @@
       color: #3d2a08;
       background: linear-gradient(115deg, #fff8d4 0%, #ffe97a 42%, #f6d24a 78%, #efc53a 100%);
       border: 1px solid #e5c54e;
-      /* スキル名を金地から少し浮かせる */
-      text-shadow: 0 0 2px rgba(255, 255, 255, 0.85), 0 1px 0 rgba(255, 255, 255, 0.55);
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
+    }
+    /* 白シャドウは文字ノード側へ（薄いと金地で潰れるので輪郭寄り） */
+    .gold-chip__name {
+      text-shadow:
+        -1px 0 0 rgba(255, 255, 255, 0.95),
+        1px 0 0 rgba(255, 255, 255, 0.95),
+        0 -1px 0 rgba(255, 255, 255, 0.95),
+        0 1px 0 rgba(255, 255, 255, 0.95),
+        0 1px 2px rgba(255, 255, 255, 0.8);
     }
 
     .off-list {
@@ -454,15 +461,16 @@
 <body>
   <div class="shell">
     <div class="banner">
-      <strong>主案 v21 · 金テキスト影＋タップ復帰</strong> —
-      金チップ名に薄い白シャドウ。スピタップは選択金として再表示（先行レギュでは計上OFFだが、選択イベントの金として載せる）。
+      <strong>主案 v22 · タップ除外・計上61・影強化</strong> —
+      スピタップ金は先行レギュで除外のまま非表示。計上はアプリONスキル数と同じく継承×4込みで61。
+      金名の白シャドウを輪郭寄りに強化。
       参考: <a href="./screenshot-share-refs.html">一覧</a>
     </div>
 
-    <h1 class="page-title">編成スクショ · 共有カード主案 v21</h1>
-    <p class="lead">金名の白シャドウと、スピタップ行の復帰を確認してください。</p>
+    <h1 class="page-title">編成スクショ · 共有カード主案 v22</h1>
+    <p class="lead">金名シャドウの見え方を確認してください。</p>
 
-    <article class="share" aria-label="共有カード主案 v21（初期編成）">
+    <article class="share" aria-label="共有カード主案 v22（初期編成）">
       <section class="left">
         <div class="eyebrow">
           <span class="eyebrow__cat">必要SP</span>
@@ -477,7 +485,7 @@
         <div class="sp-row">
           <div class="sp-num">7,666<em>SP</em></div>
           <div class="sp-meta">
-            計上 <strong>58</strong> スキル<br />
+            計上 <strong>61</strong> スキル<br />
             手動除外 <strong>3</strong> 件
           </div>
         </div>
@@ -501,61 +509,54 @@
                 <div class="gold-row">
                   <span class="gold-row__src">スピグルーヴ</span>
                   <div class="gold-row__chips">
-                    <span class="gold-chip">王手</span>
-                    <span class="gold-chip">千鍛万錬</span>
+                    <span class="gold-chip"><span class="gold-chip__name">王手</span></span>
+                    <span class="gold-chip"><span class="gold-chip__name">千鍛万錬</span></span>
                   </div>
                 </div>
                 <div class="gold-row">
                   <span class="gold-row__src">スピテイオー</span>
                   <div class="gold-row__chips">
-                    <span class="gold-chip">迸る気迫</span>
-                    <span class="gold-chip">正々堂々</span>
-                  </div>
-                </div>
-                <div class="gold-row">
-                  <span class="gold-row__src">スピタップ</span>
-                  <div class="gold-row__chips">
-                    <span class="gold-chip">トップランナー</span>
-                    <span class="gold-chip">飛竜乗雲</span>
+                    <span class="gold-chip"><span class="gold-chip__name">迸る気迫</span></span>
+                    <span class="gold-chip"><span class="gold-chip__name">正々堂々</span></span>
                   </div>
                 </div>
                 <div class="gold-row">
                   <span class="gold-row__src">スタドトウ</span>
                   <div class="gold-row__chips">
-                    <span class="gold-chip">弧線のプロフェッサー</span>
-                    <span class="gold-chip">パスファインダー</span>
+                    <span class="gold-chip"><span class="gold-chip__name">弧線のプロフェッサー</span></span>
+                    <span class="gold-chip"><span class="gold-chip__name">パスファインダー</span></span>
                   </div>
                 </div>
                 <div class="gold-row">
                   <span class="gold-row__src">賢ヤング</span>
                   <div class="gold-row__chips">
-                    <span class="gold-chip">尻尾の滝登り</span>
-                    <span class="gold-chip">前人未到</span>
+                    <span class="gold-chip"><span class="gold-chip__name">尻尾の滝登り</span></span>
+                    <span class="gold-chip"><span class="gold-chip__name">前人未到</span></span>
                   </div>
                 </div>
                 <div class="gold-row">
                   <span class="gold-row__src">友人たづな</span>
                   <div class="gold-row__chips">
-                    <span class="gold-chip">時中の妙</span>
-                    <span class="gold-chip">お先に失礼っ！</span>
+                    <span class="gold-chip"><span class="gold-chip__name">時中の妙</span></span>
+                    <span class="gold-chip"><span class="gold-chip__name">お先に失礼っ！</span></span>
                   </div>
                 </div>
                 <div class="gold-row is-scn">
                   <span class="gold-row__src">RMJ</span>
                   <div class="gold-row__chips">
-                    <span class="gold-chip">いいとこ入った！</span>
+                    <span class="gold-chip"><span class="gold-chip__name">いいとこ入った！</span></span>
                   </div>
                 </div>
                 <div class="gold-row is-scn">
                   <span class="gold-row__src">リンク</span>
                   <div class="gold-row__chips">
-                    <span class="gold-chip">ネバーギブアップ</span>
+                    <span class="gold-chip"><span class="gold-chip__name">ネバーギブアップ</span></span>
                   </div>
                 </div>
                 <div class="gold-row is-scn">
                   <span class="gold-row__src">シナリオ</span>
                   <div class="gold-row__chips">
-                    <span class="gold-chip">極上の感謝を！</span>
+                    <span class="gold-chip"><span class="gold-chip__name">極上の感謝を！</span></span>
                   </div>
                 </div>
               </div>
@@ -611,7 +612,7 @@
     </article>
 
     <div class="judge">
-      <strong>判断のお願い</strong>（金テキスト影・タップ復帰）<br />
+      <strong>判断のお願い</strong>（金名シャドウ）<br />
       返事例: <code>採用</code> / <code>方向違い</code> / <code>惜しい：〇〇</code>
     </div>
   </div>
