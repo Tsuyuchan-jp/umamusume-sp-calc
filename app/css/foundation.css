@@ -643,6 +643,11 @@ tr:hover td {
 
 /* ---- ピッカー（R3 土台 + R1 部品） ---- */
 .card-picker {
+  --picker-pad-x: 1rem;
+  --picker-pad-y: 0.65rem;
+  --picker-gap: 0.55rem;
+  --picker-shelf-h: min(18rem, 38vh);
+
   width: min(96vw, 40rem);
   max-height: 90vh;
   padding: 0;
@@ -661,12 +666,21 @@ tr:hover td {
   background: rgba(0, 0, 0, 0.52);
 }
 
+/* グローバル input[type=search] の上書き（style.css 由来の枠・余白を無効化） */
+.card-picker input[type="search"] {
+  width: auto;
+  margin: 0;
+  border: none;
+  border-radius: 0;
+  padding: 0;
+}
+
 .card-picker__chrome {
   display: grid;
   grid-template-columns: auto 1fr auto;
   gap: 0.75rem;
   align-items: center;
-  padding: 0.85rem 1rem;
+  padding: 0.85rem var(--picker-pad-x);
   background: linear-gradient(180deg, var(--ink-mid) 0%, var(--ink-deep) 100%);
   border-bottom: 2px solid var(--c-gold);
 }
@@ -750,15 +764,31 @@ tr:hover td {
   padding: 0;
 }
 
+/* 絞込＋検索の共通コントロール帯（育成は検索のみ） */
+.card-picker__controls {
+  display: flex;
+  flex-direction: column;
+  gap: var(--picker-gap);
+  padding: var(--picker-pad-y) var(--picker-pad-x);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(0, 0, 0, 0.12);
+}
+
 .card-picker__filters {
-  padding: 0.65rem 1rem 0.35rem;
+  display: flex;
+  flex-direction: column;
+  gap: var(--picker-gap);
+  padding: 0;
+}
+
+.card-picker__filters[hidden] {
+  display: none;
 }
 
 .card-picker__tools {
   display: flex;
   flex-wrap: wrap;
   gap: 0.4rem;
-  margin-bottom: 0.45rem;
 }
 
 .card-picker__tog {
@@ -817,7 +847,7 @@ tr:hover td {
   display: flex;
   gap: 0.35rem;
   overflow-x: auto;
-  padding-bottom: 0.25rem;
+  padding-bottom: 0.1rem;
   -webkit-overflow-scrolling: touch;
 }
 
@@ -863,38 +893,61 @@ tr:hover td {
   outline-offset: 2px;
 }
 
-.card-picker__search-wrap {
-  padding: 0.35rem 1rem 0.55rem;
+/* 検索: アイコン＋入力の flex シェル（背景画像ハック廃止） */
+.card-picker__search-field {
+  width: 100%;
 }
 
 .card-picker__search {
-  display: block;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
   width: 100%;
-  margin: 0;
-  padding: 0.5rem 0.85rem 0.5rem 2.2rem;
-  border: 1px solid rgba(255, 255, 255, 0.18);
+  min-height: 2.5rem;
+  padding: 0 0.85rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: var(--radius-pill);
-  background: rgba(255, 255, 255, 0.1)
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%23bebbce'%3E%3Cpath d='M11.5 10.5 15 14M7 12a5 5 0 1 1 0-10 5 5 0 0 1 0 10z' stroke='%23bebbce' stroke-width='1.6' fill='none' stroke-linecap='round'/%3E%3C/svg%3E")
-    0.75rem 50% / 16px no-repeat;
-  color: var(--text-on-dark);
-  font: inherit;
-  font-size: 0.82rem;
-  box-shadow: none;
+  background: rgba(0, 0, 0, 0.28);
+  cursor: text;
+  transition: border-color 0.12s ease, box-shadow 0.12s ease;
 }
 
-.card-picker__search::placeholder {
+.card-picker__search:focus-within {
+  border-color: var(--c-gold);
+  box-shadow: 0 0 0 2px rgba(245, 207, 111, 0.28);
+}
+
+.card-picker__search-icon {
+  flex-shrink: 0;
   color: #bebbce;
 }
 
-.card-picker__search:focus {
+.card-picker__search-input {
+  flex: 1;
+  min-width: 0;
+  background: transparent;
+  color: var(--text-on-dark);
+  font: inherit;
+  font-size: 0.82rem;
+  font-weight: var(--font-weight-medium);
+  line-height: 1.35;
+}
+
+.card-picker__search-input::placeholder {
+  color: #9a94b0;
+}
+
+.card-picker__search-input:focus {
   outline: none;
-  border-color: var(--accent-on);
-  box-shadow: 0 0 0 3px rgba(255, 50, 118, 0.22);
+}
+
+/* 検索クリアボタン（WebKit）がアイコンと重ならないよう */
+.card-picker__search-input::-webkit-search-cancel-button {
+  margin-left: 0.25rem;
 }
 
 .card-picker__body {
-  margin: 0 0.65rem 0.55rem;
+  margin: var(--picker-pad-y) var(--picker-pad-x);
   padding: 0.55rem;
   border-radius: var(--radius-md);
   background: rgba(0, 0, 0, 0.28);
@@ -905,9 +958,8 @@ tr:hover td {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(4.5rem, 1fr));
   gap: 0.65rem 0.5rem;
-  /* 固定高さ: 絞込で段数が変わってもダイアログ全体は跳ねない */
-  min-height: min(18rem, 38vh);
-  max-height: min(18rem, 38vh);
+  min-height: var(--picker-shelf-h);
+  max-height: var(--picker-shelf-h);
   overflow-x: hidden;
   overflow-y: auto;
   padding: 0.35rem;
@@ -920,7 +972,7 @@ tr:hover td {
 
 .card-picker__item {
   position: relative;
-  padding: 0.15rem;
+  padding: 0.2rem;
   border: none;
   border-radius: 12px;
   overflow: visible;
@@ -928,10 +980,14 @@ tr:hover td {
   cursor: pointer;
 }
 
+.card-picker__item .card-face {
+  transition: transform 0.14s ease, box-shadow 0.14s ease;
+}
+
 .card-picker__badge {
   position: absolute;
-  top: -2px;
-  right: -2px;
+  top: 0;
+  right: 0;
   z-index: 2;
   font-size: 0.58rem;
   font-weight: var(--font-weight-black);
@@ -943,34 +999,28 @@ tr:hover td {
   pointer-events: none;
 }
 
-.card-picker__item:hover:not(.card-picker__item--selected) .card-face__img {
-  filter: drop-shadow(0 6px 14px rgba(26, 36, 51, 0.22));
+.card-picker__item:hover:not(.card-picker__item--selected) .card-face {
   transform: translateY(-2px);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.28);
 }
 
+/* 選択中: 金枠＋角バッジのみ（ピンク outline は使わない） */
 .card-picker__item--selected {
-  outline: 3px solid var(--accent-on);
-  outline-offset: 2px;
   z-index: 1;
 }
 
-.card-picker__item--selected .card-face__img {
+.card-picker__item--selected .card-face {
   box-shadow:
     0 0 0 2px #1a1630,
     0 0 0 4px var(--c-gold),
-    0 6px 16px rgba(26, 36, 51, 0.22);
+    0 0 18px rgba(245, 207, 111, 0.4);
 }
 
-.card-picker__item--selected:hover {
-  outline-color: var(--accent-on);
-}
-
-.card-picker__item--selected:hover .card-face__img {
+.card-picker__item--selected:hover .card-face {
   box-shadow:
     0 0 0 2px #1a1630,
     0 0 0 4px var(--c-gold),
-    0 0 20px rgba(245, 207, 111, 0.45),
-    0 8px 18px rgba(26, 36, 51, 0.24);
+    0 0 24px rgba(245, 207, 111, 0.55);
 }
 
 .card-picker__empty {
@@ -978,7 +1028,7 @@ tr:hover td {
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: min(18rem, 38vh);
+  min-height: var(--picker-shelf-h);
   text-align: center;
   color: #9a94b0;
   margin: 0;
@@ -989,7 +1039,7 @@ tr:hover td {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0.35rem 1rem 0.85rem;
+  padding: 0.25rem var(--picker-pad-x) 0.85rem;
   font-size: 0.7rem;
   color: #9a94b0;
 }
