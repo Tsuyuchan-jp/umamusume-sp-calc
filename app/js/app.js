@@ -1982,7 +1982,7 @@ function updateSkillCountDisplay(plan) {
     totalCount += w;
     if (!row.excluded) onCount += w;
   }
-  el.textContent = `ONスキル数 ${onCount}/${totalCount}`;
+  el.innerHTML = `ONスキル数 <b>${onCount}</b>/<b>${totalCount}</b>`;
 }
 
 /** ONスキルコピーボタンの有効／無効を更新 */

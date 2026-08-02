@@ -2753,6 +2753,31 @@ table.result-skills .col-sp {
   color: var(--text-secondary, #625d7d);
 }
 
+/* 広幅（PC）: ONスキル数を右端・大きめ表示 */
+@media (min-width: 1200px) {
+  .result-panel-heading__main {
+    flex: 1 1 auto;
+    width: 100%;
+    justify-content: space-between;
+    align-items: baseline;
+    flex-wrap: nowrap;
+  }
+
+  .skill-count-meta {
+    margin-left: auto;
+    text-align: right;
+    font-size: 0.82rem;
+    letter-spacing: 0.02em;
+  }
+
+  .skill-count-meta b {
+    font-size: 1.2rem;
+    font-weight: 900;
+    color: var(--ink-deep, #2a2340);
+    letter-spacing: -0.02em;
+  }
+}
+
 .copy-included-skills {
   box-sizing: border-box;
   margin-left: auto;
