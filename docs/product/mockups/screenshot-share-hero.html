@@ -3,15 +3,16 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>編成スクショ — 主案 v2（スペース活用）</title>
+  <title>編成スクショ — 主案 v3（育成＋サポ3×2）</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@700;900&display=swap" rel="stylesheet" />
   <style>
     /*
-      主案 v2 — 「スペースを有効活用」で丸ごと差し替え
-      正本質感: hybrid-h5 / v2（紫クロム・金ライン・bgタイル・世界観）
-      変更点: カードを面いっぱいに伸ばす / 右カラムは縦使い / 金行は枠対応グリッド
+      主案 v3 — 丸ごと差し替え
+      OK: 大きく・スペースを使う
+      変更: サポはアプリ基準の 3×2（メモリ案B / memory-deck-thumb と同型）
+      金スキルは各サポ枠の直下（列対応で余白を浪費しない）
     */
     :root {
       --c-dark: #463f70;
@@ -102,7 +103,7 @@
     }
     .stage-label span { color: #ddd8ef; font-size: 11px; }
 
-    /* ========== 共有カード v2 ========== */
+    /* ========== 共有カード v3 ========== */
     .share {
       width: 100%;
       max-width: 1080px;
@@ -113,7 +114,7 @@
       border: 3px solid rgba(255,255,255,.4);
       box-shadow: 0 16px 44px rgba(0,0,0,.4);
       display: grid;
-      grid-template-rows: auto minmax(0, 1fr) auto auto;
+      grid-template-rows: auto minmax(0, 1fr) auto;
       background: var(--panel);
       animation: rise .45s ease both;
     }
@@ -163,54 +164,87 @@
 
     .share__body {
       display: grid;
-      grid-template-columns: minmax(0, 1fr) 210px;
+      grid-template-columns: minmax(0, 1.35fr) minmax(200px, 0.55fr);
       min-height: 0;
     }
 
+    /* 左：育成＋3×2（アプリ同型を大きく） */
     .share__deck {
-      padding: 8px 8px 4px 12px;
-      display: flex;
-      flex-direction: column;
+      padding: 10px 10px 8px 14px;
+      display: grid;
+      grid-template-columns: 0.95fr 1.55fr;
+      gap: 10px;
       min-width: 0;
       min-height: 0;
     }
 
-    .share__faces {
-      flex: 1;
+    .trainee {
+      min-width: 0;
       min-height: 0;
       display: grid;
-      grid-template-columns: 1.2fr repeat(6, 1fr);
-      gap: 6px;
-      align-items: stretch;
+      grid-template-rows: auto minmax(0, 1fr) auto;
+      gap: 4px;
+    }
+    .trainee__lab,
+    .slot__lab {
+      font-size: 10px;
+      text-align: center;
+      color: var(--c-accent);
+      font-weight: 900;
+      letter-spacing: .04em;
+      line-height: 1;
+    }
+    .trainee__face {
+      position: relative;
+      min-height: 0;
+      border-radius: 8px;
+      overflow: hidden;
+      border: 2.5px solid var(--c-dark);
+      background: var(--c-label);
+      box-shadow: 0 4px 12px rgba(70,63,112,.22);
+    }
+    .trainee__face img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+    }
+    .trainee__name {
+      margin: 0;
+      font-size: 13px;
+      text-align: center;
+      font-weight: 900;
+      color: var(--c-font);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .sup-grid {
+      min-width: 0;
+      min-height: 0;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      grid-template-rows: repeat(2, minmax(0, 1fr));
+      gap: 7px;
     }
 
     .slot {
       min-width: 0;
       min-height: 0;
       display: grid;
-      grid-template-rows: auto minmax(0, 1fr) auto;
-      gap: 3px;
-    }
-    .slot__lab {
-      font-size: 9px;
-      text-align: center;
-      color: var(--c-accent);
-      font-weight: 900;
-      line-height: 1;
+      grid-template-rows: minmax(0, 1fr) auto auto;
+      gap: 2px;
     }
     .slot__face {
       position: relative;
       min-height: 0;
-      height: 100%;
       border-radius: 6px;
       overflow: hidden;
       border: 2px solid var(--c-border);
       background: var(--c-label);
-      box-shadow: 0 2px 5px rgba(70,63,112,.14);
-    }
-    .slot--trainee .slot__face {
-      border-color: var(--c-dark);
-      box-shadow: 0 3px 8px rgba(70,63,112,.24);
+      box-shadow: 0 2px 6px rgba(70,63,112,.14);
     }
     .slot__face img {
       width: 100%;
@@ -233,25 +267,48 @@
     .slot__dot.friend { background: var(--t-friend); }
     .slot__name {
       margin: 0;
-      font-size: 10px;
+      font-size: 11px;
       text-align: center;
+      font-weight: 900;
       color: var(--c-font);
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
-      font-weight: 900;
       line-height: 1.15;
     }
+    .slot__gold {
+      margin: 0;
+      font-size: 10px;
+      text-align: center;
+      font-weight: 900;
+      color: #7a5200;
+      background: linear-gradient(180deg, #fff6d0, #ffd978);
+      border: 1px solid #e9b84a;
+      border-radius: 4px;
+      padding: 2px 3px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      line-height: 1.2;
+    }
+    .slot__gold.is-empty {
+      color: #b8ad7a;
+      background: rgba(255,255,255,.45);
+      border-style: dashed;
+      border-color: #dcc07a;
+      font-weight: 700;
+    }
 
+    /* 右：数値＋前提（縦にしっかり） */
     .share__stats {
       display: flex;
       flex-direction: column;
       justify-content: space-between;
       gap: 10px;
-      padding: 10px 12px;
+      padding: 12px 14px;
       background:
-        linear-gradient(180deg, rgba(70,63,112,.07), transparent 30%),
-        radial-gradient(circle at 85% 0%, rgba(245,207,111,.24), transparent 55%),
+        linear-gradient(180deg, rgba(70,63,112,.07), transparent 28%),
+        radial-gradient(circle at 85% 0%, rgba(245,207,111,.26), transparent 55%),
         linear-gradient(180deg, #fff, #f1eef6);
       border-left: 1px solid var(--c-border-light);
       min-height: 0;
@@ -264,24 +321,24 @@
     }
     .share__sp {
       margin: 4px 0 0;
-      font-size: clamp(36px, 4.8vw, 48px);
+      font-size: clamp(38px, 5vw, 52px);
       font-weight: 900;
-      line-height: .92;
+      line-height: .9;
       color: var(--c-dark);
     }
     .share__sp em {
       font-style: normal;
-      font-size: .34em;
+      font-size: .32em;
       color: var(--c-orange);
       margin-left: 2px;
-      vertical-align: .42em;
+      vertical-align: .45em;
     }
     .share__count {
-      margin-top: 8px;
-      font-size: 12px;
+      margin-top: 10px;
+      font-size: 13px;
       color: var(--c-accent);
       font-weight: 900;
-      line-height: 1.35;
+      line-height: 1.4;
     }
     .share__count strong { color: var(--c-dark); font-size: 1.12em; }
 
@@ -294,7 +351,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 6px 8px;
+      padding: 7px 8px;
       border-radius: 6px;
       border: 1px solid var(--c-border);
       background: var(--g-widget);
@@ -314,61 +371,6 @@
       color: #fff;
     }
 
-    /* 金行：上の枠列と揃えたグリッド（面を無駄にしない） */
-    .share__gold {
-      display: grid;
-      grid-template-columns: 1.2fr repeat(6, 1fr) 210px;
-      gap: 6px;
-      align-items: stretch;
-      padding: 6px 12px 6px 12px;
-      background: linear-gradient(180deg, #fff8df, #ffe59a);
-      border-top: 1px solid #e9c45f;
-    }
-    .gold-cell {
-      min-width: 0;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      gap: 1px;
-      padding: 5px 4px;
-      border-radius: 6px;
-      background: rgba(255,255,255,.7);
-      border: 1px solid #e9b84a;
-      text-align: center;
-      line-height: 1.15;
-    }
-    .gold-cell.is-empty {
-      background: rgba(255,255,255,.35);
-      border-style: dashed;
-      border-color: #dcc07a;
-      color: #b89640;
-    }
-    .gold-cell__from {
-      font-size: 9px;
-      font-weight: 700;
-      color: #9a6b00;
-    }
-    .gold-cell__name {
-      font-size: 11px;
-      font-weight: 900;
-      color: #5a3d00;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      max-width: 100%;
-    }
-    .gold-meta {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 0 4px;
-      font-size: 11px;
-      font-weight: 900;
-      color: #7a5a10;
-      letter-spacing: .04em;
-    }
-
     .share__foot {
       display: flex;
       align-items: center;
@@ -382,7 +384,7 @@
     }
     .share__foot strong { color: var(--c-gold); }
 
-    /* 埋め込みコンテキスト */
+    /* 埋め込み */
     .contexts {
       display: grid;
       grid-template-columns: 1.15fr .85fr;
@@ -392,8 +394,7 @@
     @media (max-width: 860px) {
       .contexts { grid-template-columns: 1fr; }
       .share__body { grid-template-columns: 1fr 170px; }
-      .share__gold { grid-template-columns: 1.2fr repeat(6, 1fr) 170px; }
-      .chips .chip { font-size: 11px; padding: 5px 6px; }
+      .share__deck { grid-template-columns: 0.85fr 1.4fr; gap: 7px; }
     }
 
     .ctx {
@@ -422,26 +423,24 @@
       box-shadow: 0 6px 16px #0002;
     }
 
-    /* 縮小でもレイアウト比率は維持（フォントだけ縮小） */
     .is-embed .share__title { font-size: 13px; }
-    .is-embed .share__sp { font-size: 28px; }
+    .is-embed .share__sp { font-size: 30px; }
     .is-embed .share__kicker { font-size: 8px; padding: 1px 5px; }
     .is-embed .share__brand { font-size: 9px; }
-    .is-embed .slot__lab { font-size: 7px; }
-    .is-embed .slot__name { font-size: 8px; }
-    .is-embed .chip { font-size: 9px; padding: 4px 5px; }
-    .is-embed .gold-cell__from { font-size: 7px; }
-    .is-embed .gold-cell__name { font-size: 9px; }
-    .is-embed .gold-meta { font-size: 9px; }
-    .is-embed .share__count { font-size: 10px; }
+    .is-embed .trainee__lab,
+    .is-embed .slot__lab { font-size: 8px; }
+    .is-embed .trainee__name { font-size: 10px; }
+    .is-embed .slot__name { font-size: 9px; }
+    .is-embed .slot__gold { font-size: 8px; padding: 1px 2px; }
+    .is-embed .chip { font-size: 10px; padding: 5px 6px; }
+    .is-embed .share__count { font-size: 10px; margin-top: 6px; }
     .is-embed .share__sp-label { font-size: 8px; }
     .is-embed .share__foot { font-size: 8px; padding: 4px 10px; }
     .is-embed .share__head { padding: 5px 10px; }
-    .is-embed .share__deck { padding: 5px 5px 2px 8px; }
-    .is-embed .share__stats { padding: 6px 8px; }
-    .is-embed .share__gold { padding: 4px 8px; gap: 4px; }
-    .is-embed .share__body { grid-template-columns: minmax(0,1fr) 150px; }
-    .is-embed .share__gold { grid-template-columns: 1.2fr repeat(6, 1fr) 150px; }
+    .is-embed .share__deck { padding: 6px 6px 5px 8px; gap: 6px; }
+    .is-embed .share__stats { padding: 8px; }
+    .is-embed .share__body { grid-template-columns: minmax(0,1.35fr) 140px; }
+    .is-embed .sup-grid { gap: 4px; }
     .is-embed .slot__dot { width: 9px; height: 9px; top: 2px; right: 2px; }
 
     .x-fake {
@@ -488,20 +487,20 @@
   <div class="world" aria-hidden="true"></div>
   <div class="shell">
     <div class="banner">
-      <strong>主案 v2 · 丸ごと差し替え</strong> — フィードバック「スペースを有効活用」。
-      カードを面いっぱいに伸ばし、右カラムは縦使い、金行は枠列と揃えました。
-      返事は <em>採用</em> / <em>方向違い</em> / <em>惜しい＋一言</em> のみでOK。
+      <strong>主案 v3 · 丸ごと差し替え</strong> —
+      「大きく・スペース活用」は維持。サポをアプリ基準の <em>3×2</em>（メモリ案B同型）に変更。
+      金スキルは各枠の直下。返事は <em>採用</em> / <em>方向違い</em> / <em>惜しい＋一言</em> のみ。
     </div>
 
-    <h1 class="page-title">編成スクショ · 共有カード主案 v2</h1>
-    <p class="lead">16:9 の中を埋める。余白でスカスカに見せず、編成の顔と数値が同時に読める密度。</p>
+    <h1 class="page-title">編成スクショ · 共有カード主案 v3</h1>
+    <p class="lead">育成を大きく、サポは 3×2。アプリの編成の顔と同じ筋で、16:9 を埋める。</p>
 
     <div class="stage-label">
       <h2>OUTPUT · 16:9 共有カード</h2>
-      <span>v1 からレイアウトごと差し替え</span>
+      <span>育成＋サポ3×2 · 金は枠下</span>
     </div>
 
-    <article class="share" aria-label="共有カード主案 v2">
+    <article class="share" aria-label="共有カード主案 v3">
       <header class="share__head">
         <div class="share__head-left">
           <span class="share__kicker">トレセン軒</span>
@@ -512,41 +511,44 @@
 
       <div class="share__body">
         <section class="share__deck">
-          <div class="share__faces">
-            <div class="slot slot--trainee">
-              <div class="slot__lab">育成</div>
-              <div class="slot__face"><img src="../../../assets/characters/112901.webp" alt="" /></div>
-              <p class="slot__name">アーモンドアイ</p>
+          <div class="trainee">
+            <div class="trainee__lab">育成</div>
+            <div class="trainee__face">
+              <img src="../../../assets/characters/112901.webp" alt="" />
             </div>
+            <p class="trainee__name">アーモンドアイ</p>
+          </div>
+
+          <div class="sup-grid" aria-label="サポート 3×2">
             <div class="slot">
-              <div class="slot__lab">枠1</div>
               <div class="slot__face"><span class="slot__dot speed"></span><img src="../../../assets/supports/30282.webp" alt="" /></div>
               <p class="slot__name">エアグルーヴ</p>
+              <p class="slot__gold">切れ者</p>
             </div>
             <div class="slot">
-              <div class="slot__lab">枠2</div>
               <div class="slot__face"><span class="slot__dot speed"></span><img src="../../../assets/supports/30275.webp" alt="" /></div>
               <p class="slot__name">テイオー</p>
+              <p class="slot__gold">先手必勝</p>
             </div>
             <div class="slot">
-              <div class="slot__lab">枠3</div>
               <div class="slot__face"><span class="slot__dot speed"></span><img src="../../../assets/supports/30298.webp" alt="" /></div>
               <p class="slot__name">タップ</p>
+              <p class="slot__gold">冷静</p>
             </div>
             <div class="slot">
-              <div class="slot__lab">枠4</div>
               <div class="slot__face"><span class="slot__dot stamina"></span><img src="../../../assets/supports/30304.webp" alt="" /></div>
               <p class="slot__name">ドトウ</p>
+              <p class="slot__gold">豪脚</p>
             </div>
             <div class="slot">
-              <div class="slot__lab">枠5</div>
               <div class="slot__face"><span class="slot__dot wit"></span><img src="../../../assets/supports/30289.webp" alt="" /></div>
               <p class="slot__name">ヤング</p>
+              <p class="slot__gold is-empty">—</p>
             </div>
             <div class="slot">
-              <div class="slot__lab">枠6</div>
               <div class="slot__face"><span class="slot__dot friend"></span><img src="../../../assets/supports/30305.webp" alt="" /></div>
               <p class="slot__name">たづな</p>
+              <p class="slot__gold">中盤巧者</p>
             </div>
           </div>
         </section>
@@ -565,38 +567,6 @@
             <span class="chip">レギュ ◎のみ</span>
           </div>
         </aside>
-      </div>
-
-      <div class="share__gold" aria-label="金スキル選択">
-        <div class="gold-cell is-empty">
-          <span class="gold-cell__from">育成</span>
-          <span class="gold-cell__name">—</span>
-        </div>
-        <div class="gold-cell">
-          <span class="gold-cell__from">スピエア</span>
-          <span class="gold-cell__name">切れ者</span>
-        </div>
-        <div class="gold-cell">
-          <span class="gold-cell__from">スピテイオー</span>
-          <span class="gold-cell__name">先手必勝</span>
-        </div>
-        <div class="gold-cell">
-          <span class="gold-cell__from">スピタップ</span>
-          <span class="gold-cell__name">冷静</span>
-        </div>
-        <div class="gold-cell">
-          <span class="gold-cell__from">スタドトウ</span>
-          <span class="gold-cell__name">豪脚</span>
-        </div>
-        <div class="gold-cell is-empty">
-          <span class="gold-cell__from">賢ヤング</span>
-          <span class="gold-cell__name">—</span>
-        </div>
-        <div class="gold-cell">
-          <span class="gold-cell__from">友人たづな</span>
-          <span class="gold-cell__name">中盤巧者</span>
-        </div>
-        <div class="gold-meta">金スキル選択</div>
       </div>
 
       <footer class="share__foot">
@@ -621,14 +591,18 @@
             </header>
             <div class="share__body">
               <section class="share__deck">
-                <div class="share__faces">
-                  <div class="slot slot--trainee"><div class="slot__lab">育成</div><div class="slot__face"><img src="../../../assets/characters/112901.webp" alt="" /></div><p class="slot__name">アーモンドアイ</p></div>
-                  <div class="slot"><div class="slot__lab">枠1</div><div class="slot__face"><span class="slot__dot speed"></span><img src="../../../assets/supports/30282.webp" alt="" /></div><p class="slot__name">エア</p></div>
-                  <div class="slot"><div class="slot__lab">枠2</div><div class="slot__face"><span class="slot__dot speed"></span><img src="../../../assets/supports/30275.webp" alt="" /></div><p class="slot__name">テイオー</p></div>
-                  <div class="slot"><div class="slot__lab">枠3</div><div class="slot__face"><span class="slot__dot speed"></span><img src="../../../assets/supports/30298.webp" alt="" /></div><p class="slot__name">タップ</p></div>
-                  <div class="slot"><div class="slot__lab">枠4</div><div class="slot__face"><span class="slot__dot stamina"></span><img src="../../../assets/supports/30304.webp" alt="" /></div><p class="slot__name">ドトウ</p></div>
-                  <div class="slot"><div class="slot__lab">枠5</div><div class="slot__face"><span class="slot__dot wit"></span><img src="../../../assets/supports/30289.webp" alt="" /></div><p class="slot__name">ヤング</p></div>
-                  <div class="slot"><div class="slot__lab">枠6</div><div class="slot__face"><span class="slot__dot friend"></span><img src="../../../assets/supports/30305.webp" alt="" /></div><p class="slot__name">たづな</p></div>
+                <div class="trainee">
+                  <div class="trainee__lab">育成</div>
+                  <div class="trainee__face"><img src="../../../assets/characters/112901.webp" alt="" /></div>
+                  <p class="trainee__name">アーモンドアイ</p>
+                </div>
+                <div class="sup-grid">
+                  <div class="slot"><div class="slot__face"><span class="slot__dot speed"></span><img src="../../../assets/supports/30282.webp" alt="" /></div><p class="slot__name">エア</p><p class="slot__gold">切れ者</p></div>
+                  <div class="slot"><div class="slot__face"><span class="slot__dot speed"></span><img src="../../../assets/supports/30275.webp" alt="" /></div><p class="slot__name">テイオー</p><p class="slot__gold">先手必勝</p></div>
+                  <div class="slot"><div class="slot__face"><span class="slot__dot speed"></span><img src="../../../assets/supports/30298.webp" alt="" /></div><p class="slot__name">タップ</p><p class="slot__gold">冷静</p></div>
+                  <div class="slot"><div class="slot__face"><span class="slot__dot stamina"></span><img src="../../../assets/supports/30304.webp" alt="" /></div><p class="slot__name">ドトウ</p><p class="slot__gold">豪脚</p></div>
+                  <div class="slot"><div class="slot__face"><span class="slot__dot wit"></span><img src="../../../assets/supports/30289.webp" alt="" /></div><p class="slot__name">ヤング</p><p class="slot__gold is-empty">—</p></div>
+                  <div class="slot"><div class="slot__face"><span class="slot__dot friend"></span><img src="../../../assets/supports/30305.webp" alt="" /></div><p class="slot__name">たづな</p><p class="slot__gold">中盤巧者</p></div>
                 </div>
               </section>
               <aside class="share__stats">
@@ -643,16 +617,6 @@
                   <span class="chip is-signal">RMJ</span>
                 </div>
               </aside>
-            </div>
-            <div class="share__gold">
-              <div class="gold-cell is-empty"><span class="gold-cell__name">—</span></div>
-              <div class="gold-cell"><span class="gold-cell__name">切れ者</span></div>
-              <div class="gold-cell"><span class="gold-cell__name">先手必勝</span></div>
-              <div class="gold-cell"><span class="gold-cell__name">冷静</span></div>
-              <div class="gold-cell"><span class="gold-cell__name">豪脚</span></div>
-              <div class="gold-cell is-empty"><span class="gold-cell__name">—</span></div>
-              <div class="gold-cell"><span class="gold-cell__name">中盤巧者</span></div>
-              <div class="gold-meta">金</div>
             </div>
             <footer class="share__foot"><span><strong>トレセン軒</strong></span><span>結果表なし</span></footer>
           </article>
@@ -681,14 +645,16 @@
               </header>
               <div class="share__body">
                 <section class="share__deck">
-                  <div class="share__faces">
-                    <div class="slot slot--trainee"><div class="slot__face"><img src="../../../assets/characters/112901.webp" alt="" /></div></div>
-                    <div class="slot"><div class="slot__face"><span class="slot__dot speed"></span><img src="../../../assets/supports/30282.webp" alt="" /></div></div>
-                    <div class="slot"><div class="slot__face"><span class="slot__dot speed"></span><img src="../../../assets/supports/30275.webp" alt="" /></div></div>
-                    <div class="slot"><div class="slot__face"><span class="slot__dot speed"></span><img src="../../../assets/supports/30298.webp" alt="" /></div></div>
-                    <div class="slot"><div class="slot__face"><span class="slot__dot stamina"></span><img src="../../../assets/supports/30304.webp" alt="" /></div></div>
-                    <div class="slot"><div class="slot__face"><span class="slot__dot wit"></span><img src="../../../assets/supports/30289.webp" alt="" /></div></div>
-                    <div class="slot"><div class="slot__face"><span class="slot__dot friend"></span><img src="../../../assets/supports/30305.webp" alt="" /></div></div>
+                  <div class="trainee">
+                    <div class="trainee__face"><img src="../../../assets/characters/112901.webp" alt="" /></div>
+                  </div>
+                  <div class="sup-grid">
+                    <div class="slot"><div class="slot__face"><span class="slot__dot speed"></span><img src="../../../assets/supports/30282.webp" alt="" /></div><p class="slot__gold">切れ者</p></div>
+                    <div class="slot"><div class="slot__face"><span class="slot__dot speed"></span><img src="../../../assets/supports/30275.webp" alt="" /></div><p class="slot__gold">先手必勝</p></div>
+                    <div class="slot"><div class="slot__face"><span class="slot__dot speed"></span><img src="../../../assets/supports/30298.webp" alt="" /></div><p class="slot__gold">冷静</p></div>
+                    <div class="slot"><div class="slot__face"><span class="slot__dot stamina"></span><img src="../../../assets/supports/30304.webp" alt="" /></div><p class="slot__gold">豪脚</p></div>
+                    <div class="slot"><div class="slot__face"><span class="slot__dot wit"></span><img src="../../../assets/supports/30289.webp" alt="" /></div><p class="slot__gold is-empty">—</p></div>
+                    <div class="slot"><div class="slot__face"><span class="slot__dot friend"></span><img src="../../../assets/supports/30305.webp" alt="" /></div><p class="slot__gold">中盤巧者</p></div>
                   </div>
                 </section>
                 <aside class="share__stats">
@@ -701,16 +667,6 @@
                     <span class="chip is-signal">RMJ</span>
                   </div>
                 </aside>
-              </div>
-              <div class="share__gold">
-                <div class="gold-cell is-empty"><span class="gold-cell__name">—</span></div>
-                <div class="gold-cell"><span class="gold-cell__name">切れ者</span></div>
-                <div class="gold-cell"><span class="gold-cell__name">先手必勝</span></div>
-                <div class="gold-cell"><span class="gold-cell__name">冷静</span></div>
-                <div class="gold-cell"><span class="gold-cell__name">豪脚</span></div>
-                <div class="gold-cell is-empty"><span class="gold-cell__name">—</span></div>
-                <div class="gold-cell"><span class="gold-cell__name">中盤巧者</span></div>
-                <div class="gold-meta">金</div>
               </div>
               <footer class="share__foot"><span><strong>トレセン軒</strong> SP計算</span></footer>
             </article>

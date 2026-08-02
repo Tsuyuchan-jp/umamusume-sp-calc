@@ -70,7 +70,7 @@ UX 初期方針（顔＝6＋合計＋前提）は土台として維持。記事�
 
 ## 次ステップ
 
-1. ~~主案モック~~ → [mockups/screenshot-share-hero.html](./mockups/screenshot-share-hero.html)（**v2・スペース活用** · 目視待ち）  
+1. ~~主案モック~~ → [mockups/screenshot-share-hero.html](./mockups/screenshot-share-hero.html)（**v3・育成＋サポ3×2** · 目視待ち）  
    ※旧三連: [mockups/screenshot-share-options.html](./mockups/screenshot-share-options.html)（参考のみ）
 2. 主案承認 → 本実装（html2canvas 等は実装時）
 3. TODO 更新＋ローカルコミット（push しない）
