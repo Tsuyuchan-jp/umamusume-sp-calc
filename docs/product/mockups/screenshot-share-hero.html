@@ -290,15 +290,20 @@
     .panel--off .panel__lab { color: #6a6478; }
 
     .gold-board {
+      /* チップ基準。サポ名の line-height もここから合わせる（px 補正なし） */
+      --gold-fs: 0.6875rem;
+      --gold-lh: 1.3;
+      --gold-pad-y-ratio: 0.45;
+      --gold-chip-h: calc(var(--gold-fs) * (var(--gold-lh) + 2 * var(--gold-pad-y-ratio)));
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 6px 12px;
+      gap: 0.55em 1.1em;
       align-content: start;
     }
     .gold-row {
       display: grid;
       grid-template-columns: 5.2em minmax(0, 1fr);
-      gap: 6px;
+      gap: 0.55em;
       align-items: start;
       min-width: 0;
     }
@@ -306,31 +311,34 @@
     .gold-row.gold-extra { display: none; }
     body.is-gold-plus .gold-row.gold-extra { display: grid; }
     .gold-row__src {
-      font-size: 10px;
+      font-size: calc(var(--gold-fs) * 0.91);
       font-weight: 500;
       color: #8a849e;
       text-align: right;
-      padding-top: 2px;
       white-space: nowrap;
-      line-height: 1.2;
+      /* 行ボックス高＝1つ目チップ高 → 文字は行内中央＝チップ内テキストと揃う */
+      line-height: var(--gold-chip-h);
     }
     .gold-row.is-scn .gold-row__src { color: var(--accent-2); }
     .gold-row__chips {
       display: flex;
       flex-direction: column;
-      gap: 4px;
+      gap: 0.35em;
       min-width: 0;
     }
     .gold-chip {
       display: flex;
       align-items: center;
       width: 100%;
-      min-height: 26px;
-      padding: 5px 10px 5px 9px;
-      border-radius: 7px;
-      font-size: 11px;
+      padding:
+        calc(var(--gold-fs) * var(--gold-pad-y-ratio))
+        0.85em
+        calc(var(--gold-fs) * var(--gold-pad-y-ratio))
+        0.75em;
+      border-radius: 0.45em;
+      font-size: var(--gold-fs);
       font-weight: 700;
-      line-height: 1.3;
+      line-height: var(--gold-lh);
       color: #3d2a08;
       background: linear-gradient(115deg, #fff8d4 0%, #ffe97a 42%, #f6d24a 78%, #efc53a 100%);
       border: 1px solid #e5c54e;
