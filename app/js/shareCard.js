@@ -3,7 +3,7 @@
  * DOM 骨格はモックと同一。JS はテキスト／画像／金行・除外の差し替えのみ。
  */
 
-import { characterImageUrl, characterBaseName, supportImageUrl } from "./cardAssets.js";
+import { characterImageUrl, characterBaseName, supportImageUrl, uiAssetUrl } from "./cardAssets.js";
 import {
   getDeckLinkCharacterIds,
   resolveLinkSkill,
@@ -393,9 +393,12 @@ export function renderShareCardElement(model) {
 
   const charUrl =
     model.characterId != null ? characterImageUrl(model.characterId) : "";
+  const worldUrl = uiAssetUrl("uma-world.png");
+  const tileUrl = uiAssetUrl("share-tile.webp");
   const fastOn = model.fastLearner;
 
   // DOM 骨格はモック article.share と同一
+  // 右背景は CSS background ではなく img／絶対URL（snapdom が相対・外部CDNを取りこぼしやすい）
   article.innerHTML = `
       <section class="left">
         <div class="strip">
@@ -450,6 +453,13 @@ export function renderShareCardElement(model) {
       </section>
 
       <section class="right">
+        <img class="right__world" src="${escapeHtml(worldUrl)}" alt="" decoding="async" />
+        <div
+          class="right__tile"
+          style="background-image:url('${escapeHtml(tileUrl)}')"
+          aria-hidden="true"
+        ></div>
+        <div class="right__shade" aria-hidden="true"></div>
         <div class="right__trainee">
           <img src="${escapeHtml(charUrl)}" alt="" />
           <div>
@@ -606,18 +616,71 @@ export function buildShareCardFilename({
 }
 
 /**
+ * PNG を端末へ保存／共有する。
+ * モバイルは Web Share、対応ブラウザは保存ダイアログ、それ以外はダウンロード開始。
  * @param {HTMLElement} cardEl
  * @param {HTMLElement} mount
  * @param {string} [filename]
+ * @returns {Promise<{ ok: boolean, mode: "share"|"picker"|"download"|"cancelled"|"error" }>}
  */
 export async function saveShareCardPng(
   cardEl,
   mount,
   filename = "umamusume-formation.png"
 ) {
-  const canvas = await captureShareCardElement(cardEl, mount);
-  const link = document.createElement("a");
-  link.download = filename;
-  link.href = canvas.toDataURL("image/png");
-  link.click();
+  try {
+    const canvas = await captureShareCardElement(cardEl, mount);
+    const blob = await canvasToBlob(canvas);
+    if (!blob) return { ok: false, mode: "error" };
+
+    const file = new File([blob], filename, { type: "image/png" });
+
+    // スマホ等: OS の共有シート（保存先をユーザーが選べる）
+    if (typeof navigator.canShare === "function" && navigator.canShare({ files: [file] })) {
+      try {
+        await navigator.share({ files: [file], title: filename });
+        return { ok: true, mode: "share" };
+      } catch (e) {
+        if (e?.name === "AbortError") return { ok: false, mode: "cancelled" };
+        /* 共有失敗時は下位フォールバックへ */
+      }
+    }
+
+    // Chromium 系: 保存ダイアログ
+    if (typeof window.showSaveFilePicker === "function") {
+      try {
+        const handle = await window.showSaveFilePicker({
+          suggestedName: filename,
+          types: [
+            {
+              description: "PNG 画像",
+              accept: { "image/png": [".png"] },
+            },
+          ],
+        });
+        const writable = await handle.createWritable();
+        await writable.write(blob);
+        await writable.close();
+        return { ok: true, mode: "picker" };
+      } catch (e) {
+        if (e?.name === "AbortError") return { ok: false, mode: "cancelled" };
+        /* ピッカー失敗時は a[download] へ */
+      }
+    }
+
+    // フォールバック: ブラウザ標準のダウンロード（場所は端末のダウンロードフォルダ等）
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.download = filename;
+    link.href = url;
+    link.rel = "noopener";
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+    window.setTimeout(() => URL.revokeObjectURL(url), 4000);
+    return { ok: true, mode: "download" };
+  } catch (e) {
+    console.error(e);
+    return { ok: false, mode: "error" };
+  }
 }

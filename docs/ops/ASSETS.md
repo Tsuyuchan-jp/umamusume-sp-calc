@@ -18,7 +18,7 @@
 | サポカ | `assets/supports/` | `{supportCardId}.webp` |
 | 育成ウマ娘 | `assets/characters/` | `{characterCardId}.webp` |
 | タイプ印（共有） | `assets/type-icons/` | `{type}.webp`（speed/stamina/power/guts/wit/friend） |
-| UI 背景 | `assets/ui/` | `uma-world.png`（横長・競馬場。世界観背景） |
+| UI 背景 | `assets/ui/` | `uma-world.png`（横長・競馬場。世界観背景）、`share-tile.webp`（共有カード右の幾何タイル） |
 
 UI は `app/js/cardAssets.js` が URL を組み立てる。画像が無い場合はタイプ色＋短縮名のプレースホルダ（計算には影響しない）。
 
