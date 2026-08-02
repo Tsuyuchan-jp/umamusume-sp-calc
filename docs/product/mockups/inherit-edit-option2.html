@@ -258,14 +258,15 @@
       color: #fff;
     }
 
-    /* ---- 案2: バー直上ポップオーバー ---- */
+    /* ---- 案2: バー直上の独立パネル ---- */
     .inherit-pop {
       position: fixed;
       left: 0;
       right: 0;
-      bottom: calc(var(--bar-h) + 0.15rem);
+      bottom: calc(var(--bar-h) + 0.55rem);
       z-index: 1001;
       pointer-events: none;
+      padding: 0 0.75rem;
     }
     .inherit-pop[hidden] { display: none !important; }
     .inherit-pop__inner {
@@ -276,9 +277,8 @@
       background: var(--g-chrome);
       color: #fff;
       border: 1px solid rgba(245, 207, 111, 0.55);
-      border-bottom: 0;
-      border-radius: 10px 10px 0 0;
-      box-shadow: 0 -10px 28px rgba(0, 0, 0, 0.28);
+      border-radius: 10px;
+      box-shadow: 0 8px 28px rgba(0, 0, 0, 0.32);
     }
     .inherit-pop__head {
       display: flex;
@@ -352,8 +352,48 @@
       background: var(--g-lv);
       color: #fff;
     }
-    .seg--onoff button.is-on {
+
+    /* 加算 ON/OFF トグル */
+    .tog {
+      appearance: none;
+      width: 2.35rem;
+      height: 1.35rem;
+      padding: 0;
+      border: 1px solid rgba(255, 255, 255, 0.28);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.18);
+      position: relative;
+      cursor: pointer;
+      flex-shrink: 0;
+      vertical-align: middle;
+    }
+    .tog::after {
+      content: "";
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      width: 1rem;
+      height: 1rem;
+      border-radius: 50%;
+      background: #fff;
+      transition: transform 0.15s ease;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+    }
+    .tog.is-on {
       background: var(--g-on);
+      border-color: #c00f47;
+    }
+    .tog.is-on::after {
+      transform: translateX(1rem);
+    }
+    .tog-label {
+      min-width: 1.6rem;
+      font-size: 0.7rem;
+      font-weight: 900;
+      color: #bebbce;
+    }
+    .tog-label.is-on {
+      color: #ffc0d6;
     }
 
     .base-input {
@@ -380,6 +420,10 @@
       color: #59ccfc;
       font-variant-numeric: tabular-nums;
     }
+    .cost-hint__prem {
+      color: #ede6e6;
+      opacity: 0.85;
+    }
 
     @media (max-width: 720px) {
       .cost-hint {
@@ -398,8 +442,8 @@
       <h1>継承パラメータ編集UI — 案2モック</h1>
       <p>
         <strong>操作:</strong> 下部バーの「継承」チップを押すとパネル開閉。
-        ON/OFF はパネル内。個数 2–6・ヒントLv 1–5・baseSp（既定200）。
-        汎用行のみ（親名・固有名なし）。本アプリには未配線。
+        加算はトグル。個数 2–6・ヒントLv 1–5・baseSp（既定200）。
+        継承分はバーの切れ者前提を反映。汎用行のみ。本アプリには未配線。
       </p>
     </header>
 
@@ -418,7 +462,7 @@
         <li>チップ文言: OFF時は「継承 OFF」、ON時は「継承 N本」</li>
         <li>開いている間はチップに金アウトライン（開閉状態が分かる）</li>
         <li>外側クリック / Esc / × で閉じる（ON状態は維持）</li>
-        <li>切れ者・トレLvチップは従来どおり（このモックでは装飾のみ）</li>
+        <li>加算はトグル。継承分の表示はバーの切れ者前提を反映</li>
       </ul>
     </aside>
   </div>
@@ -438,12 +482,17 @@
         <button type="button" class="inherit-pop__close" id="inherit-close" aria-label="閉じる">×</button>
       </div>
       <div class="inherit-pop__body">
-        <div class="field" role="group" aria-label="継承のON/OFF">
+        <div class="field">
           <span>加算</span>
-          <div class="seg seg--onoff">
-            <button type="button" data-enabled="0" id="btn-off">OFF</button>
-            <button type="button" data-enabled="1" id="btn-on" class="is-on">ON</button>
-          </div>
+          <button
+            type="button"
+            class="tog is-on"
+            id="tog-enabled"
+            role="switch"
+            aria-checked="true"
+            aria-label="継承の加算"
+          ></button>
+          <span class="tog-label is-on" id="tog-enabled-label">ON</span>
         </div>
 
         <div class="field" role="group" aria-label="個数">
@@ -481,8 +530,8 @@
         </label>
 
         <div class="cost-hint">
-          参考合計 <b id="ref-cost">640</b> SP
-          <span id="ref-formula">（概算・切れ者OFF想定）</span>
+          継承分 <b id="ref-cost">640</b> SP
+          <span class="cost-hint__prem" id="ref-prem" hidden></span>
         </div>
       </div>
     </div>
@@ -534,6 +583,8 @@
       const chipFast = document.getElementById("chip-fast");
       const baseInput = document.getElementById("base-input");
       const closeBtn = document.getElementById("inherit-close");
+      const togEnabled = document.getElementById("tog-enabled");
+      const togLabel = document.getElementById("tog-enabled-label");
 
       /** ヒント割引の概算（本番 calc の見た目確認用。正確再現はしない） */
       function hintMult(lv) {
@@ -567,13 +618,20 @@
 
         pop.hidden = !state.open;
 
-        setSeg(document.querySelector(".seg--onoff"), "data-enabled", state.enabled ? 1 : 0);
+        togEnabled.classList.toggle("is-on", state.enabled);
+        togEnabled.setAttribute("aria-checked", state.enabled ? "true" : "false");
+        togLabel.textContent = state.enabled ? "ON" : "OFF";
+        togLabel.classList.toggle("is-on", state.enabled);
+
         setSeg(document.getElementById("seg-count"), "data-count", state.count);
         setSeg(document.getElementById("seg-lv"), "data-lv", state.lv);
         baseInput.value = String(state.base);
 
         const cost = totalInherit();
         document.getElementById("ref-cost").textContent = cost.toLocaleString("ja-JP");
+        /* バーの切れ者前提を反映。OFF時は括弧なしでノイズを減らす */
+        document.getElementById("ref-prem").textContent = state.fast ? "（切れ者反映）" : "";
+        document.getElementById("ref-prem").hidden = !state.fast;
         document.getElementById("fake-count").textContent = String(state.count);
         document.getElementById("fake-lv").textContent = String(state.lv);
         document.getElementById("fake-base").textContent = String(state.base);
@@ -597,10 +655,8 @@
 
       closeBtn.addEventListener("click", () => setOpen(false));
 
-      document.querySelector(".seg--onoff").addEventListener("click", (e) => {
-        const btn = e.target.closest("button[data-enabled]");
-        if (!btn) return;
-        state.enabled = btn.getAttribute("data-enabled") === "1";
+      togEnabled.addEventListener("click", () => {
+        state.enabled = !state.enabled;
         render();
       });
 
