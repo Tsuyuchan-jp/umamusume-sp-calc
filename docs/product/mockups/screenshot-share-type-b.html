@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>編成スクショ — 主案 型B（プロフィール横長）</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@700;900&display=swap" rel="stylesheet" />
+  <style>
+    /*
+      型B — 人物プロフィール横長
+      参考: 経歴シート（右に縦長ポートレート、左〜中央にラベル付き情報枠）
+      型C（v7）との比較用。アプリ部品コラージュはしない。
+    */
+    :root {
+      --ink: #1a1630;
+      --ink-soft: #5a5478;
+      --line: #e5e1ec;
+      --muted: #9a96aa;
+      --bg: #f3f1f6;
+      --card: #ffffff;
+      --head: #2a2548;
+      --accent: #463f70;
+      --gold: #f5cf6f;
+      --orange: #ff7300;
+      --pink: #ff3276;
+      --green: #38c306;
+      --font: "Zen Maru Gothic", Meiryo, "Hiragino Sans", sans-serif;
+      --t-speed: #42a5f5;
+      --t-stamina: #ef5350;
+      --t-wit: #66bb6a;
+      --t-friend: #ab47bc;
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: var(--font);
+      font-weight: 700;
+      color: var(--ink);
+      background: #2f2a48;
+      -webkit-font-smoothing: auto;
+    }
+
+    .shell {
+      width: min(1120px, calc(100% - 24px));
+      margin: 0 auto;
+      padding: 20px 0 44px;
+    }
+
+    .banner {
+      margin-bottom: 14px;
+      padding: 12px 14px;
+      background: rgba(26, 22, 48, 0.92);
+      color: #eeeaf8;
+      border-radius: 10px;
+      border-bottom: 3px solid var(--gold);
+      font-size: 12.5px;
+      line-height: 1.55;
+    }
+    .banner strong { color: var(--gold); }
+    .banner a { color: #59ccfc; }
+    .banner em { font-style: normal; color: #59ccfc; }
+
+    h1.page-title {
+      margin: 0 0 4px;
+      color: #fff;
+      font-size: 20px;
+      font-weight: 900;
+    }
+    .lead {
+      margin: 0 0 16px;
+      color: #ddd8ef;
+      font-size: 13px;
+      line-height: 1.5;
+      max-width: 46rem;
+    }
+
+    /* ========== 型B カード ========== */
+    .share {
+      width: 100%;
+      max-width: 1080px;
+      aspect-ratio: 16 / 9;
+      margin: 0 auto;
+      background: var(--bg);
+      border-radius: 4px;
+      overflow: hidden;
+      box-shadow: 0 18px 50px rgba(0,0,0,.35);
+      display: grid;
+      grid-template-rows: auto minmax(0, 1fr);
+      animation: rise .4s ease both;
+    }
+    @keyframes rise {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: none; }
+    }
+
+    /* ヘッダー帯：名前＋キャッチ（SP） */
+    .top {
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+      gap: 0;
+      background: var(--card);
+      border-bottom: 1px solid var(--line);
+    }
+    .top__id {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 18px 14px 20px;
+    }
+    .top__mark {
+      width: 28px;
+      height: 28px;
+      flex-shrink: 0;
+      background: linear-gradient(135deg, var(--accent) 50%, #8b83b8 50%);
+    }
+    .top__name {
+      margin: 0;
+      font-size: clamp(18px, 2.4vw, 24px);
+      font-weight: 900;
+      line-height: 1.15;
+    }
+    .top__role {
+      margin: 3px 0 0;
+      font-size: 11px;
+      color: var(--ink-soft);
+      font-weight: 700;
+    }
+    .top__catch {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px 18px;
+      background: var(--head);
+      color: #fff;
+      text-align: center;
+    }
+    .top__catch-label {
+      font-size: 10px;
+      letter-spacing: 0.08em;
+      color: #c8c2de;
+      font-weight: 900;
+      margin-bottom: 2px;
+    }
+    .top__catch-sp {
+      font-size: clamp(28px, 3.8vw, 40px);
+      font-weight: 900;
+      line-height: 1;
+      color: var(--gold);
+    }
+    .top__catch-sp em {
+      font-style: normal;
+      font-size: 0.36em;
+      color: #ffb088;
+      margin-left: 3px;
+      vertical-align: 0.35em;
+    }
+
+    /* 本体：情報ベントー | 縦長ポートレート */
+    .body {
+      display: grid;
+      grid-template-columns: minmax(0, 1.25fr) minmax(220px, 0.72fr);
+      min-height: 0;
+      overflow: hidden;
+    }
+
+    .bento {
+      min-width: 0;
+      min-height: 0;
+      padding: 12px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: auto minmax(0, 1.1fr) auto;
+      gap: 8px;
+    }
+
+    .box {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 2px;
+      overflow: hidden;
+      min-width: 0;
+      min-height: 0;
+      display: flex;
+      flex-direction: column;
+    }
+    .box__h {
+      flex-shrink: 0;
+      padding: 5px 8px;
+      background: var(--head);
+      color: #fff;
+      font-size: 10px;
+      font-weight: 900;
+      letter-spacing: 0.06em;
+    }
+    .box__h.is-gray { background: #6a6488; }
+    .box__b {
+      flex: 1;
+      min-height: 0;
+      padding: 8px;
+      overflow: auto;
+    }
+
+    .box--wide { grid-column: 1 / -1; }
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+    }
+    .chip {
+      display: inline-flex;
+      padding: 3px 8px;
+      border-radius: 3px;
+      font-size: 10px;
+      font-weight: 900;
+      background: #eeeaf6;
+      color: var(--ink-soft);
+    }
+    .chip.is-key { background: var(--accent); color: #fff; }
+    .chip.is-ok { background: var(--green); color: #fff; }
+    .chip.is-hot { background: var(--pink); color: #fff; }
+
+    .kv {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: grid;
+      gap: 5px;
+      font-size: 11px;
+      font-weight: 900;
+    }
+    .kv li {
+      display: grid;
+      grid-template-columns: 5.2em 1fr;
+      gap: 6px;
+      padding-bottom: 4px;
+      border-bottom: 1px dotted var(--line);
+      color: var(--ink-soft);
+    }
+    .kv li strong { color: var(--ink); }
+    .kv li.is-mute strong { color: var(--muted); font-weight: 700; }
+
+    .meta-line {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--ink-soft);
+      line-height: 1.5;
+    }
+    .meta-line strong { color: var(--ink); font-weight: 900; }
+
+    .counts {
+      display: flex;
+      gap: 14px;
+      font-size: 12px;
+      font-weight: 900;
+      color: var(--ink-soft);
+    }
+    .counts strong {
+      color: var(--ink);
+      font-size: 1.15em;
+    }
+
+    /* サポ 3×2（ベントー内） */
+    .sup-grid {
+      height: 100%;
+      min-height: 120px;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      grid-template-rows: repeat(2, minmax(0, 1fr));
+      gap: 6px;
+    }
+    .slot {
+      min-width: 0;
+      min-height: 0;
+      display: grid;
+      grid-template-rows: minmax(0, 1fr) auto;
+      border: 1px solid var(--line);
+      border-radius: 3px;
+      overflow: hidden;
+      background: #faf8fc;
+    }
+    .slot__face {
+      position: relative;
+      min-height: 0;
+      background: #ede6e6;
+    }
+    .slot__face img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+    }
+    .slot__dot {
+      position: absolute;
+      top: 3px; right: 3px;
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      border: 1px solid #fff;
+    }
+    .slot__dot.speed { background: var(--t-speed); }
+    .slot__dot.stamina { background: var(--t-stamina); }
+    .slot__dot.wit { background: var(--t-wit); }
+    .slot__dot.friend { background: var(--t-friend); }
+    .slot__cap {
+      padding: 2px 3px 3px;
+      text-align: center;
+      background: #fff;
+    }
+    .slot__name {
+      margin: 0;
+      font-size: 9px;
+      font-weight: 900;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      line-height: 1.15;
+    }
+    .slot__gold {
+      margin: 1px 0 0;
+      font-size: 8px;
+      font-weight: 900;
+      color: #7a5200;
+      background: #ffe9a8;
+      border-radius: 2px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .slot__gold.is-empty {
+      color: var(--muted);
+      background: #f0eef5;
+      font-weight: 700;
+    }
+
+    /* 右：縦長ポートレート（立ち絵） */
+    .portrait {
+      position: relative;
+      min-width: 0;
+      min-height: 0;
+      background: #1a1630;
+      overflow: hidden;
+      border-left: 1px solid var(--line);
+    }
+    .portrait img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: left center;
+      display: block;
+    }
+    .portrait__meta {
+      position: absolute;
+      left: 0; right: 0; bottom: 0;
+      z-index: 1;
+      padding: 28px 10px 10px;
+      background: linear-gradient(180deg, transparent, rgba(26,22,48,.92));
+      color: #fff;
+      text-align: center;
+    }
+    .portrait__lab {
+      font-size: 9px;
+      font-weight: 900;
+      letter-spacing: 0.1em;
+      color: var(--gold);
+    }
+    .portrait__name {
+      margin: 2px 0 0;
+      font-size: 14px;
+      font-weight: 900;
+    }
+    .portrait__sub {
+      margin: 2px 0 0;
+      font-size: 10px;
+      color: #c8c2de;
+      font-weight: 700;
+    }
+
+    .judge {
+      margin-top: 18px;
+      padding: 12px 14px;
+      background: rgba(26, 22, 48, 0.92);
+      color: #fff;
+      border-radius: 10px;
+      border-bottom: 3px solid var(--gold);
+      font-size: 13px;
+      line-height: 1.55;
+    }
+    .judge strong { color: var(--gold); }
+    .judge code {
+      background: rgba(0,0,0,.25);
+      padding: 1px 6px;
+      border-radius: 4px;
+      color: #59ccfc;
+      font-size: .92em;
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <div class="banner">
+      <strong>型B · プロフィール横長</strong> —
+      右に縦長ポートレート、左にラベル付き情報枠（経歴シート型）。
+      型C（好評）は <a href="./screenshot-share-hero.html">v7</a>。比較して <em>C / B / 惜しい</em> で返事ください。
+    </div>
+
+    <h1 class="page-title">編成スクショ · 型B 主案</h1>
+    <p class="lead">上段で設計名と必要SP、左で前提・金・サポ・条件、右で育成の顔（半裁立ち絵）。</p>
+
+    <article class="share" aria-label="共有カード 型B">
+      <header class="top">
+        <div class="top__id">
+          <div class="top__mark" aria-hidden="true"></div>
+          <div>
+            <h2 class="top__name">切れ者前提・パワ寄せ</h2>
+            <p class="top__role">トレセン軒 · ウマ娘 SP 計算 · 設計スナップショット</p>
+          </div>
+        </div>
+        <div class="top__catch">
+          <div>
+            <div class="top__catch-label">必要 SP（除外後）</div>
+            <div class="top__catch-sp">12,450<em>SP</em></div>
+          </div>
+        </div>
+      </header>
+
+      <div class="body">
+        <div class="bento">
+          <div class="box">
+            <div class="box__h">前提</div>
+            <div class="box__b">
+              <div class="chips">
+                <span class="chip is-ok">切れ者</span>
+                <span class="chip is-key">ヒント Lv3</span>
+                <span class="chip is-hot">RMJ 参加</span>
+                <span class="chip">継承 +120</span>
+                <span class="chip">エアリンク</span>
+                <span class="chip">レギュ ◎のみ</span>
+              </div>
+              <div class="counts" style="margin-top:8px">
+                <span>計上 <strong>42</strong></span>
+                <span>除外 <strong>3</strong></span>
+              </div>
+            </div>
+          </div>
+
+          <div class="box">
+            <div class="box__h">金スキル選択</div>
+            <div class="box__b">
+              <ul class="kv">
+                <li><span>スピエア</span><strong>切れ者</strong></li>
+                <li><span>スピテイオー</span><strong>先手必勝</strong></li>
+                <li><span>スピタップ</span><strong>冷静</strong></li>
+                <li><span>スタドトウ</span><strong>豪脚</strong></li>
+                <li class="is-mute"><span>賢ヤング</span><strong>—</strong></li>
+                <li><span>友人たづな</span><strong>中盤巧者</strong></li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="box box--wide">
+            <div class="box__h is-gray">サポート 3×2</div>
+            <div class="box__b" style="padding:6px">
+              <div class="sup-grid">
+                <div class="slot">
+                  <div class="slot__face"><span class="slot__dot speed"></span><img src="../../../assets/supports/30282.webp" alt="" /></div>
+                  <div class="slot__cap"><p class="slot__name">エア</p><p class="slot__gold">切れ者</p></div>
+                </div>
+                <div class="slot">
+                  <div class="slot__face"><span class="slot__dot speed"></span><img src="../../../assets/supports/30275.webp" alt="" /></div>
+                  <div class="slot__cap"><p class="slot__name">テイオー</p><p class="slot__gold">先手必勝</p></div>
+                </div>
+                <div class="slot">
+                  <div class="slot__face"><span class="slot__dot speed"></span><img src="../../../assets/supports/30298.webp" alt="" /></div>
+                  <div class="slot__cap"><p class="slot__name">タップ</p><p class="slot__gold">冷静</p></div>
+                </div>
+                <div class="slot">
+                  <div class="slot__face"><span class="slot__dot stamina"></span><img src="../../../assets/supports/30304.webp" alt="" /></div>
+                  <div class="slot__cap"><p class="slot__name">ドトウ</p><p class="slot__gold">豪脚</p></div>
+                </div>
+                <div class="slot">
+                  <div class="slot__face"><span class="slot__dot wit"></span><img src="../../../assets/supports/30289.webp" alt="" /></div>
+                  <div class="slot__cap"><p class="slot__name">ヤング</p><p class="slot__gold is-empty">—</p></div>
+                </div>
+                <div class="slot">
+                  <div class="slot__face"><span class="slot__dot friend"></span><img src="../../../assets/supports/30305.webp" alt="" /></div>
+                  <div class="slot__cap"><p class="slot__name">たづな</p><p class="slot__gold">中盤巧者</p></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="box box--wide">
+            <div class="box__h is-gray">条件メモ</div>
+            <div class="box__b">
+              <p class="meta-line">
+                シナリオ <strong>トレセン軒</strong> ／ ヒント <strong>Lv3換算</strong> ／ 継承固有 <strong>+120 SP</strong> ／
+                除外は件数のみ（一覧なし）／ 結果表は含まない
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <aside class="portrait" aria-label="育成立ち絵">
+          <img src="./_refs/standee-half-crop-ref.png" alt="" />
+          <div class="portrait__meta">
+            <div class="portrait__lab">TRAINEE</div>
+            <p class="portrait__name">アーモンドアイ</p>
+            <p class="portrait__sub">The Changer</p>
+          </div>
+        </aside>
+      </div>
+    </article>
+
+    <div class="judge">
+      <strong>比較のお願い</strong><br />
+      型C: <code>screenshot-share-hero.html</code>（今いちばん良い）<br />
+      返事例: <code>C採用</code> / <code>B採用</code> / <code>CベースでBの〇〇だけ</code> / <code>惜しい：〇〇</code>
+    </div>
+  </div>
+</body>
+</html>
