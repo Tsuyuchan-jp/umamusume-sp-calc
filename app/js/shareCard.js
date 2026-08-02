@@ -616,8 +616,17 @@ export async function saveShareCardPng(
   filename = "umamusume-formation.png"
 ) {
   const canvas = await captureShareCardElement(cardEl, mount);
+  const blob = await canvasToBlob(canvas);
+  if (!blob) throw new Error("PNG の生成に失敗しました");
+
+  // data URL は大きい画像でブラウザの上限に当たり本番で DL できないことがある
+  const url = URL.createObjectURL(blob);
   const link = document.createElement("a");
   link.download = filename;
-  link.href = canvas.toDataURL("image/png");
+  link.href = url;
+  link.rel = "noopener";
+  document.body.appendChild(link);
   link.click();
+  link.remove();
+  window.setTimeout(() => URL.revokeObjectURL(url), 4000);
 }
