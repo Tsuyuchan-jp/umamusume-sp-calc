@@ -18,7 +18,7 @@
 | push / Pages | **v1.0.0 まで push しない**（ローカルコミットのみ） |
 | 初期編成 | 育成112901（アーモンドアイ）/ 枠1エアグルーヴ・枠2テイオー・枠3タップ・枠4ドトウ・枠5ヤング・枠6たづな |
 | 編成スクショ | **本実装完了・実機OK**（v28.1・snapdom・layout-modebar 右端）。[product/screenshot-requirements.md](./product/screenshot-requirements.md) |
-| v1 レビュー | M1 修正済。次は M3 → [product/v1-review-findings.md](./product/v1-review-findings.md) |
+| v1 レビュー | M1・M3 実機OK。次は M2 → [product/v1-review-findings.md](./product/v1-review-findings.md) |
 
 通し確認・版履歴の詳細は [CHANGELOG.md](./CHANGELOG.md)。
 
