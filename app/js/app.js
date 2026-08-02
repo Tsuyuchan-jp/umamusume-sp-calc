@@ -340,7 +340,7 @@ function updateTotalBarChips(excludedCount = excludedSkillIds.size) {
   el.innerHTML = `
     <button type="button" class="${fastClass}" id="bar-premise-fast-learner" aria-pressed="${fast ? "true" : "false"}">切れ者 ${fast ? "ON" : "OFF"}</button>
     <div class="premise-chip premise-chip--training" role="group" aria-label="トレヒントLv">
-      <span class="premise-chip__prefix">トレ</span>
+      <span class="premise-chip__prefix">トレLv</span>
       <button type="button" class="premise-lv${trainingLv === "3" ? " is-on" : ""}" data-training-lv="3">3</button>
       <button type="button" class="premise-lv${trainingLv === "4" ? " is-on" : ""}" data-training-lv="4">4</button>
       <button type="button" class="premise-lv${trainingLv === "5" ? " is-on" : ""}" data-training-lv="5">5</button>

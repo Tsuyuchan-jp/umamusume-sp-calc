@@ -395,9 +395,11 @@ header p {
 }
 
 .total-sp-bar-chips .premise-chip__prefix {
-  padding: 0 0.45rem 0 0.55rem;
+  padding: 0 0.35rem 0 0.5rem;
   opacity: 0.9;
   color: #bebbce;
+  font-size: 0.68rem;
+  white-space: nowrap;
 }
 
 .total-sp-bar-chips .premise-lv {
