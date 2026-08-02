@@ -3,15 +3,15 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>編成スクショ — 主案 v13（Zen Kaku）</title>
+  <title>編成スクショ — 主案 v14（金チップ＋Shippori）</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@500;700;900&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;600;700&family=Zen+Kaku+Gothic+New:wght@500;700;900&display=swap" rel="stylesheet" />
   <style>
     /*
-      主案 v13 — 型C継続
-      - 金: サポ1行に選択金を併記／RMJ・リンクも同枠
-      - フォント: Zen Kaku Gothic New（候補2）
+      主案 v14 — 型C継続
+      - 金: ゲーム風ゴールドチップ／サポ・シナリオ由来の取得可能金を全載せ（育成所持・進化は除外）
+      - フォント: Shippori Mincho（見出し）＋ Zen Kaku（UI・チップ）
     */
     :root {
       --ink: #1a1630;
@@ -25,14 +25,15 @@
       --orange: #ff7300;
       --pink: #ff3276;
       --green: #38c306;
-      --font: "Zen Kaku Gothic New", "Hiragino Sans", "Yu Gothic UI", Meiryo, sans-serif;
+      --font-display: "Shippori Mincho", "Hiragino Mincho ProN", "Yu Mincho", serif;
+      --font-ui: "Zen Kaku Gothic New", "Hiragino Sans", "Yu Gothic UI", Meiryo, sans-serif;
     }
 
     * { box-sizing: border-box; }
     body {
       margin: 0;
       min-height: 100vh;
-      font-family: var(--font);
+      font-family: var(--font-ui);
       font-weight: 700;
       color: var(--ink);
       background: #2f2a48;
@@ -94,10 +95,10 @@
 
     /* 左：LayerX的な余白＋TellerNovel的タグ */
     .left {
-      padding: 22px 22px 16px 26px;
+      padding: 18px 18px 14px 22px;
       display: flex;
       flex-direction: column;
-      gap: 11px;
+      gap: 8px;
       min-width: 0;
       background:
         radial-gradient(circle at 0% 0%, rgba(123, 111, 214, 0.09), transparent 40%),
@@ -124,15 +125,16 @@
 
     .title {
       margin: 0;
-      font-size: clamp(22px, 2.7vw, 28px);
-      font-weight: 900;
+      font-family: var(--font-display);
+      font-size: clamp(20px, 2.5vw, 26px);
+      font-weight: 700;
       line-height: 1.2;
       color: var(--ink);
-      letter-spacing: -0.01em;
+      letter-spacing: 0.02em;
     }
     .title-sub {
       margin: 4px 0 0;
-      font-size: 12px;
+      font-size: 11px;
       color: var(--ink-soft);
       font-weight: 500;
     }
@@ -145,11 +147,12 @@
       padding: 2px 0 0;
     }
     .sp-num {
-      font-size: clamp(40px, 5.2vw, 54px);
-      font-weight: 900;
+      font-family: var(--font-display);
+      font-size: clamp(36px, 4.6vw, 48px);
+      font-weight: 700;
       line-height: 0.9;
       color: var(--accent);
-      letter-spacing: -0.03em;
+      letter-spacing: -0.02em;
       font-variant-numeric: tabular-nums;
     }
     .sp-num em {
@@ -225,34 +228,51 @@
     .tag.is-hot { background: var(--pink); border-color: var(--pink); color: #fff; }
     .tag.is-ok { background: var(--green); border-color: var(--green); color: #fff; }
 
-    .gold-list {
-      list-style: none;
-      margin: 0;
-      padding: 0;
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 3px 0;
+    .gold-board {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
     }
-    .gold-list li {
+    .gold-row {
       display: grid;
-      grid-template-columns: max-content minmax(0, 1fr);
-      gap: 10px;
-      align-items: baseline;
-      font-size: 11px;
-      font-weight: 700;
-      color: var(--ink);
-      line-height: 1.4;
+      grid-template-columns: 5.8em minmax(0, 1fr);
+      gap: 6px;
+      align-items: start;
     }
-    .gold-list li span {
-      color: #8a849e;
+    .gold-row__src {
+      font-size: 10px;
       font-weight: 500;
+      color: #8a849e;
+      line-height: 1.55;
+      white-space: nowrap;
+      padding-top: 2px;
+    }
+    .gold-row.is-scn .gold-row__src { color: var(--accent-2); }
+    .gold-row__chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 3px;
+      min-width: 0;
+    }
+    /* ゲーム内の金スキルバーを簡略化（アイコンなし） */
+    .gold-chip {
+      display: inline-flex;
+      align-items: center;
+      max-width: 100%;
+      padding: 2px 8px;
+      border-radius: 6px;
+      font-family: var(--font-ui);
+      font-size: 10px;
+      font-weight: 700;
+      line-height: 1.35;
+      color: #3f2a08;
+      background: linear-gradient(180deg, #ffe98a 0%, #f5c62a 48%, #e8a60f 100%);
+      border: 1px solid #d49a12;
+      box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.7),
+        0 1px 2px rgba(90, 55, 0, 0.2);
       white-space: nowrap;
     }
-    .gold-list li strong {
-      min-width: 0;
-      font-weight: 700;
-    }
-    .gold-list li.is-scn span { color: var(--accent-2); }
 
     .foot-note {
       margin-top: auto;
@@ -330,8 +350,9 @@
     }
     .right__trainee-name {
       margin: 2px 0 0;
+      font-family: var(--font-display);
       font-size: 14px;
-      font-weight: 900;
+      font-weight: 700;
       line-height: 1.25;
     }
 
@@ -340,7 +361,6 @@
       min-height: 0;
       display: flex;
       flex-direction: column;
-      gap: 10px;
       /* 角丸グラスの曲線部にカードが被らないよう余白を多めに */
       padding: 14px 16px 16px;
       border-radius: 14px;
@@ -352,15 +372,6 @@
       backdrop-filter: blur(10px) saturate(1.15);
       -webkit-backdrop-filter: blur(10px) saturate(1.15);
       overflow: hidden;
-    }
-    .grid-stage__label {
-      flex-shrink: 0;
-      font-size: 10px;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      color: #f0ecff;
-      padding: 0 2px;
-      text-shadow: 0 1px 2px rgba(26,22,48,0.45);
     }
     .grid-bleed {
       flex: 1;
@@ -419,15 +430,15 @@
 <body>
   <div class="shell">
     <div class="banner">
-      <strong>主案 v13 · Zen Kaku Gothic New</strong> —
-      サポ金は1行に併記、前提から RMJ／リンクタグ削除、育成表記をゲーム名に。
+      <strong>主案 v14 · 金チップ＋Shippori</strong> —
+      サポ／シナリオ由来の取得可能金を全載せ（育成所持・進化は除外）。SUPPORTラベル削除。
       参考: <a href="./screenshot-share-refs.html">一覧</a>
     </div>
 
-    <h1 class="page-title">編成スクショ · 共有カード主案 v13</h1>
-    <p class="lead">金のまとめ方・育成表記・フォント（候補2: Zen Kaku）を確認してください。</p>
+    <h1 class="page-title">編成スクショ · 共有カード主案 v14</h1>
+    <p class="lead">金スキルの見た目・網羅範囲・フォント（候補3: Shippori＋Zen Kaku）を確認してください。</p>
 
-    <article class="share" aria-label="共有カード主案 v13（初期編成）">
+    <article class="share" aria-label="共有カード主案 v14（初期編成）">
       <section class="left">
         <div class="eyebrow">
           <span class="eyebrow__cat">TRESENKEN · NEED SP</span>
@@ -462,15 +473,72 @@
           <div class="block">
             <span class="pill">金スキル</span>
             <div class="block__body">
-              <ul class="gold-list">
-                <li><span>スピグルーヴ</span><strong>王手 · 千鍛万錬</strong></li>
-                <li><span>スピテイオー</span><strong>迸る気迫 · 正々堂々</strong></li>
-                <li><span>スピタップ</span><strong>トップランナー · 飛竜乗雲</strong></li>
-                <li><span>スタドトウ</span><strong>弧線のプロフェッサー · パスファインダー</strong></li>
-                <li><span>賢ヤング</span><strong>尻尾の滝登り · 前人未到</strong></li>
-                <li class="is-scn"><span>RMJ</span><strong>いいとこ入った！</strong></li>
-                <li class="is-scn"><span>リンク</span><strong>ネバーギブアップ</strong></li>
-              </ul>
+              <div class="gold-board">
+                <div class="gold-row">
+                  <span class="gold-row__src">スピグルーヴ</span>
+                  <div class="gold-row__chips">
+                    <span class="gold-chip">王手</span>
+                    <span class="gold-chip">千鍛万錬</span>
+                    <span class="gold-chip">錦上添花</span>
+                  </div>
+                </div>
+                <div class="gold-row">
+                  <span class="gold-row__src">スピテイオー</span>
+                  <div class="gold-row__chips">
+                    <span class="gold-chip">迸る気迫</span>
+                    <span class="gold-chip">正々堂々</span>
+                    <span class="gold-chip">夢の舞台へ</span>
+                  </div>
+                </div>
+                <div class="gold-row">
+                  <span class="gold-row__src">スピタップ</span>
+                  <div class="gold-row__chips">
+                    <span class="gold-chip">コンセントレーション</span>
+                    <span class="gold-chip">トップランナー</span>
+                    <span class="gold-chip">飛竜乗雲</span>
+                  </div>
+                </div>
+                <div class="gold-row">
+                  <span class="gold-row__src">スタドトウ</span>
+                  <div class="gold-row__chips">
+                    <span class="gold-chip">弧線のプロフェッサー</span>
+                    <span class="gold-chip">パスファインダー</span>
+                    <span class="gold-chip">曙光</span>
+                    <span class="gold-chip">悠々自適</span>
+                  </div>
+                </div>
+                <div class="gold-row">
+                  <span class="gold-row__src">賢ヤング</span>
+                  <div class="gold-row__chips">
+                    <span class="gold-chip">コール&amp;レスポンス</span>
+                    <span class="gold-chip">イノベーション</span>
+                    <span class="gold-chip">尻尾の滝登り</span>
+                    <span class="gold-chip">前人未到</span>
+                  </div>
+                </div>
+                <div class="gold-row is-scn">
+                  <span class="gold-row__src">RMJ</span>
+                  <div class="gold-row__chips">
+                    <span class="gold-chip">火事場のバ鹿力</span>
+                    <span class="gold-chip">いいとこ入った！</span>
+                    <span class="gold-chip">好奇心</span>
+                  </div>
+                </div>
+                <div class="gold-row is-scn">
+                  <span class="gold-row__src">リンク</span>
+                  <div class="gold-row__chips">
+                    <span class="gold-chip">ネバーギブアップ</span>
+                    <span class="gold-chip">英俊豪傑</span>
+                  </div>
+                </div>
+                <div class="gold-row is-scn">
+                  <span class="gold-row__src">シナリオ</span>
+                  <div class="gold-row__chips">
+                    <span class="gold-chip">時中の妙</span>
+                    <span class="gold-chip">極上の感謝を！</span>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
 
@@ -478,7 +546,7 @@
             <span class="pill">条件</span>
             <div class="block__body">
               シナリオ <strong>トレセン軒</strong> ／ ヒント <strong>Lv5</strong> ／ 継承固有 <strong>×4 · Lv3</strong><br />
-              金は選択結果の全件（サポ・RMJ・リンク）。除外は件数のみ。結果表は含まない。
+              金はサポ・シナリオ由来の取得可能分。除外は件数のみ。結果表は含まない。
             </div>
           </div>
         </div>
@@ -496,7 +564,6 @@
         </div>
 
         <div class="grid-stage">
-          <div class="grid-stage__label">SUPPORT · 3×2</div>
           <div class="grid-bleed" aria-label="サポートカード">
             <figure><img src="../../../assets/supports/30282.webp" alt="スピグルーヴ" /></figure>
             <figure><img src="../../../assets/supports/30275.webp" alt="スピテイオー" /></figure>
@@ -510,9 +577,8 @@
     </article>
 
     <div class="judge">
-      <strong>判断のお願い</strong>（金1行併記・育成表記・Zen Kaku）<br />
+      <strong>判断のお願い</strong>（金チップ・取得可能全載せ・Shippori）<br />
       返事例: <code>採用</code> / <code>方向違い</code> / <code>惜しい：〇〇</code>
-      （次フォント試す場合は <code>惜しい：フォントは明朝</code> など）
     </div>
   </div>
 </body>
