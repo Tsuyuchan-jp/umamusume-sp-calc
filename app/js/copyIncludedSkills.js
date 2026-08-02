@@ -1,5 +1,5 @@
 /**
- * 結果一覧の「含める」ON 行を外部ツール向けに整形・コピーする pure 関数群。
+ * 結果一覧の ON 行を外部ツール向けに整形・コピーする pure 関数群。
  */
 
 /**
@@ -13,7 +13,7 @@ export function getIncludedSkillRows(rows) {
 }
 
 /**
- * 含める ON のスキル名をカンマ区切り1行に整形
+ * ON のスキル名をカンマ区切り1行に整形
  * @param {Array<{ name: string, skillId: number|null, excluded?: boolean, isInherit?: boolean }>} rows
  * @returns {string}
  */

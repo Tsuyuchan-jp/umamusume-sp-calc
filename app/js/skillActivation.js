@@ -334,7 +334,43 @@ export function getIncompatibleSkillIds(rows, filter, skillById) {
 }
 
 /**
+ * 手動除外から一覧に無い skillId を除去
+ * @param {Set<number>} manualExcluded
+ * @param {object[]} rows
+ * @returns {Set<number>} 現在の skillId 集合
+ */
+export function pruneManualExclusions(manualExcluded, rows) {
+  const currentIds = collectPlanSkillIds(rows);
+  for (const sid of [...manualExcluded]) {
+    if (!currentIds.has(sid)) manualExcluded.delete(sid);
+  }
+  return currentIds;
+}
+
+/**
+ * 表示・合計用の除外 = 手動 ∪ レギュ非互換
+ * @param {Set<number>} manualExcluded
+ * @param {object[]} rows
+ * @param {{ ground?: string, distance?: string, style?: string }} filter
+ * @param {Map<number, object>} skillById
+ * @returns {Set<number>}
+ */
+export function getEffectiveExcludedSkillIds(
+  manualExcluded,
+  rows,
+  filter,
+  skillById
+) {
+  const effective = new Set(manualExcluded);
+  for (const sid of getIncompatibleSkillIds(rows, filter, skillById)) {
+    effective.add(sid);
+  }
+  return effective;
+}
+
+/**
  * 一覧外の除外 ID を掃除し、新規 skillId にのみ絞込除外を加算
+ * @deprecated 手動／レギュ合成モデルでは getEffectiveExcludedSkillIds を使用
  * @param {Set<number>} excludedSkillIds
  * @param {object[]} rows
  * @param {Set<number>} previousSkillIds

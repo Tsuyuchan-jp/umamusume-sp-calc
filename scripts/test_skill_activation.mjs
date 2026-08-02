@@ -10,6 +10,8 @@ import {
   getIncompatibleSkillIds,
   applyIncrementalFilterExclusions,
   applyFullFilterExclusions,
+  pruneManualExclusions,
+  getEffectiveExcludedSkillIds,
   skillFiltersEqual,
 } from "../app/js/skillActivation.js";
 
@@ -222,6 +224,32 @@ applyFullFilterExclusions(
   skillById
 );
 assertEq([...excludedFull].sort(), [10], "full filter: only incompatible ids");
+
+// 手動／レギュ合成
+const manual = new Set([20]);
+pruneManualExclusions(manual, rows);
+assertTrue(manual.has(20), "prune: keep manual in plan");
+manual.add(999);
+pruneManualExclusions(manual, rows);
+assertFalse(manual.has(999), "prune: drop manual not in plan");
+
+const effective = getEffectiveExcludedSkillIds(
+  new Set([20]),
+  rows,
+  { ground: "turf" },
+  skillById
+);
+assertTrue(effective.has(20), "effective: manual excluded");
+assertTrue(effective.has(30), "effective: regu incompatible");
+assertTrue(effective.has(10), "effective: regu incompatible existing");
+
+const effectiveOnlyRegu = getEffectiveExcludedSkillIds(
+  new Set(),
+  rows,
+  { ground: "turf" },
+  skillById
+);
+assertFalse(effectiveOnlyRegu.has(20), "effective: compatible not excluded");
 
 console.log("skillActivation tests passed");
 

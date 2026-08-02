@@ -30,13 +30,12 @@ import {
   resolveLinkSkill,
 } from "./scenarioLink.js";
 import {
-  applyFullFilterExclusions,
-  applyIncrementalFilterExclusions,
-  collectPlanSkillIds,
   formatActivationTagLabels,
   getDisplayActivation,
+  getEffectiveExcludedSkillIds,
+  getIncompatibleSkillIds,
   hasActivationConstraints,
-  skillFiltersEqual,
+  pruneManualExclusions,
 } from "./skillActivation.js";
 import {
   formatSourceKindLabel,
@@ -47,14 +46,11 @@ import {
 /** @type {object|null} */
 let state = null;
 
-/** @type {Set<number>} */
+/** @type {Set<number>} 手動 OFF のみ（レギュ非互換は都度合成） */
 const excludedSkillIds = new Set();
 
-/** 確定済みレギュ絞込（適用ボタンで更新） */
+/** 確定済みレギュ絞込（セグメント選択で即更新） */
 let committedSkillFilter = { ground: "", distance: "", style: "" };
-
-/** 前回 plan の skillId 集合（増分絞込用） */
-let previousPlanSkillIds = new Set();
 
 /** 直近の計画（コピー用） */
 let currentPlan = null;
@@ -609,14 +605,31 @@ function writeDesignOptions(options = {}) {
   }
 }
 
-/** 確定レギュをドラフト UI に反映 */
-function writeSkillFilterDraft(filter = {}) {
-  const ground = document.getElementById("skill-filter-ground");
-  const distance = document.getElementById("skill-filter-distance");
-  const style = document.getElementById("skill-filter-style");
-  if (ground) ground.value = filter.ground || "";
-  if (distance) distance.value = filter.distance || "";
-  if (style) style.value = filter.style || "";
+/** 確定レギュをセグメント UI に反映 */
+function writeSkillFilterUI(filter = {}) {
+  for (const axis of ["ground", "distance", "style"]) {
+    const value = filter[axis] || "";
+    const seg = document.querySelector(`.regu-seg[data-filter="${axis}"]`);
+    if (!seg) continue;
+    seg.querySelectorAll("button[data-value]").forEach((btn) => {
+      const on = btn.dataset.value === value;
+      btn.classList.toggle("is-on", on);
+      btn.setAttribute("aria-pressed", on ? "true" : "false");
+    });
+  }
+}
+
+/** セグメント UI からレギュ絞込を読む */
+function readSkillFilterFromUI() {
+  const read = (axis) =>
+    document
+      .querySelector(`.regu-seg[data-filter="${axis}"] button.is-on`)
+      ?.getAttribute("data-value") || "";
+  return {
+    ground: read("ground"),
+    distance: read("distance"),
+    style: read("style"),
+  };
 }
 
 /** 現在の画面状態をスナップショット化 */
@@ -669,8 +682,7 @@ function restoreDesign(snapshot) {
     distance: applied.committedSkillFilter.distance || "",
     style: applied.committedSkillFilter.style || "",
   };
-  writeSkillFilterDraft(committedSkillFilter);
-  previousPlanSkillIds = new Set();
+  writeSkillFilterUI(committedSkillFilter);
   previousTotal = null;
 
   syncHiddenCharacterSelect();
@@ -1395,10 +1407,10 @@ function updateSkillCountDisplay(plan) {
     totalCount += w;
     if (!row.excluded) onCount += w;
   }
-  el.textContent = `スキル数 ${onCount}/${totalCount}`;
+  el.textContent = `ONスキル数 ${onCount}/${totalCount}`;
 }
 
-/** 含めるスキルコピーボタンの有効／無効を更新 */
+/** ONスキルコピーボタンの有効／無効を更新 */
 function updateCopyIncludedSkillsButton(plan) {
   const btn = document.getElementById("copy-included-skills");
   if (!btn || btn.dataset.feedback === "1") return;
@@ -1422,32 +1434,11 @@ function showCopyIncludedSkillsFeedback(message, isError = false) {
   }, 2000);
 }
 
-function getDraftSkillFilterState() {
-  return {
-    ground: document.getElementById("skill-filter-ground")?.value || "",
-    distance: document.getElementById("skill-filter-distance")?.value || "",
-    style: document.getElementById("skill-filter-style")?.value || "",
-  };
-}
-
 function getSkillByIdMap() {
   return new Map(state.skills.map((s) => [s.id, s]));
 }
 
-/** 絞込ボックスの未適用表示を更新 */
-function updateSkillFilterBoxUI() {
-  const box = document.getElementById("skill-filter-box");
-  const btn = document.getElementById("skill-filter-apply");
-  const status = document.getElementById("skill-filter-pending");
-  if (!box || !btn) return;
-
-  const pending = !skillFiltersEqual(getDraftSkillFilterState(), committedSkillFilter);
-  box.classList.toggle("skill-filter-box--pending", pending);
-  btn.disabled = !pending;
-  if (status) status.hidden = !pending;
-}
-
-function renderActivationTags(row) {
+function renderActivationSubline(row) {
   if (row.isInherit || row.skillId == null) return "—";
   const skillById = getSkillByIdMap();
   const activation = getDisplayActivation(
@@ -1455,7 +1446,9 @@ function renderActivationTags(row) {
     row.chainSkillIds || [row.skillId],
     skillById
   );
-  if (!hasActivationConstraints(activation.tags)) return "—";
+  if (!hasActivationConstraints(activation.tags)) {
+    return '<span class="result-skill-sub__empty">条件なし</span>';
+  }
   const labels = formatActivationTagLabels(activation.tags);
   return labels
     .map((label) => `<span class="badge badge--condition">${escapeHtml(label)}</span>`)
@@ -1521,7 +1514,7 @@ function renderPlanWarnings(unresolved) {
   console.warn("未解決スキル:", unresolved);
 }
 
-function recalc({ resetFilterExclusions = false } = {}) {
+function recalc() {
   if (!state) return;
 
   const planParams = {
@@ -1532,7 +1525,7 @@ function recalc({ resetFilterExclusions = false } = {}) {
     scenario: state.scenario,
     characterId: state.ui.characterId,
     supportIds: getSupportIds(),
-    excludedSkillIds,
+    excludedSkillIds: new Set(),
     fastLearner: document.getElementById("fast-learner").checked,
     inheritEnabled: document.getElementById("inherit-enabled").checked,
     inheritCount: Number(document.getElementById("inherit-count").value) || 0,
@@ -1547,34 +1540,25 @@ function recalc({ resetFilterExclusions = false } = {}) {
 
   let plan = buildSkillPlan(planParams);
   const skillById = getSkillByIdMap();
-
-  if (resetFilterExclusions) {
-    applyFullFilterExclusions(
-      excludedSkillIds,
-      plan.rows,
-      committedSkillFilter,
-      skillById
-    );
-    plan = buildSkillPlan({ ...planParams, excludedSkillIds });
-    previousPlanSkillIds = collectPlanSkillIds(plan.rows);
-  } else {
-    previousPlanSkillIds = applyIncrementalFilterExclusions(
-      excludedSkillIds,
-      plan.rows,
-      previousPlanSkillIds,
-      committedSkillFilter,
-      skillById
-    );
-    plan = buildSkillPlan({ ...planParams, excludedSkillIds });
-  }
-
-  updateSkillFilterBoxUI();
+  pruneManualExclusions(excludedSkillIds, plan.rows);
+  const reguExcluded = getIncompatibleSkillIds(
+    plan.rows,
+    committedSkillFilter,
+    skillById
+  );
+  const effectiveExcluded = getEffectiveExcludedSkillIds(
+    excludedSkillIds,
+    plan.rows,
+    committedSkillFilter,
+    skillById
+  );
+  plan = buildSkillPlan({ ...planParams, excludedSkillIds: effectiveExcluded });
 
   currentPlan = plan;
 
   renderPlanWarnings(plan.unresolved);
   updateTotalDisplay(plan.total);
-  updateTotalBarChips(excludedSkillIds.size);
+  updateTotalBarChips(effectiveExcluded.size);
   updateSkillCountDisplay(plan);
   updateCopyIncludedSkillsButton(plan);
 
@@ -1585,28 +1569,37 @@ function recalc({ resetFilterExclusions = false } = {}) {
   });
   for (const row of displayRows) {
     const tr = document.createElement("tr");
-    if (row.skillId != null && excludedSkillIds.has(row.skillId)) {
-      tr.classList.add("excluded");
-    }
-    const included =
-      row.skillId == null || !excludedSkillIds.has(row.skillId);
+    const isReguExcluded =
+      row.skillId != null && reguExcluded.has(row.skillId);
+    const isManualExcluded =
+      row.skillId != null && excludedSkillIds.has(row.skillId);
+    const included = row.skillId == null || !row.excluded;
+    if (!included) tr.classList.add("is-off");
+
     const costDetail =
       row.includesLower && Array.isArray(row.chainCosts) && row.chainCosts.length > 1
-        ? `${row.cost} <span class="hint">(${row.chainCosts.join("+")})</span>`
+        ? `${row.cost} <span class="result-sp-detail">(${row.chainCosts.join("+")})</span>`
         : String(row.cost);
 
+    const toggleTitle = isReguExcluded
+      ? "レギュ非互換のため OFF"
+      : isManualExcluded
+        ? "手動で OFF"
+        : "";
+
     tr.innerHTML = `
-      <td>
+      <td class="col-on">
         ${
           row.isInherit
             ? "—"
-            : `<input type="checkbox" class="include-check" data-skill-id="${row.skillId}" ${included ? "checked" : ""} />`
+            : `<input type="checkbox" class="include-check" data-skill-id="${row.skillId}" ${included ? "checked" : ""} ${isReguExcluded ? "disabled" : ""} aria-label="ON" title="${escapeHtml(toggleTitle)}" />`
         }
       </td>
-      <td>${escapeHtml(row.name)}</td>
-      <td class="skill-condition-cell">${renderActivationTags(row)}</td>
-      <td>${row.hintLevel}</td>
-      <td>${costDetail}</td>
+      <td>
+        <div class="result-skill-name">${escapeHtml(row.name)}<span class="result-skill-lv">Lv${row.hintLevel}</span></div>
+        <div class="result-skill-sub">${renderActivationSubline(row)}</div>
+      </td>
+      <td class="result-skill-sp col-sp">${costDetail}</td>
       <td class="skill-source-cell">${renderSourceBadges(row)}</td>
     `;
     tbody.appendChild(tr);
@@ -1642,15 +1635,18 @@ function bindCopyIncludedSkills() {
 }
 
 function bindSkillFilters() {
-  const onDraftChange = () => updateSkillFilterBoxUI();
-  ["skill-filter-ground", "skill-filter-distance", "skill-filter-style"].forEach(
-    (id) => {
-      document.getElementById(id)?.addEventListener("change", onDraftChange);
-    }
-  );
-  document.getElementById("skill-filter-apply")?.addEventListener("click", () => {
-    committedSkillFilter = getDraftSkillFilterState();
-    recalc({ resetFilterExclusions: true });
+  document.querySelectorAll(".regu-seg").forEach((seg) => {
+    seg.addEventListener("click", (e) => {
+      const btn = e.target.closest("button[data-value]");
+      if (!btn || !seg.contains(btn)) return;
+      seg.querySelectorAll("button[data-value]").forEach((b) => {
+        const on = b === btn;
+        b.classList.toggle("is-on", on);
+        b.setAttribute("aria-pressed", on ? "true" : "false");
+      });
+      committedSkillFilter = readSkillFilterFromUI();
+      recalc();
+    });
   });
 }
 
@@ -1775,7 +1771,7 @@ async function init() {
     bindSkillFilters();
     bindResultSort();
     bindCopyIncludedSkills();
-    committedSkillFilter = getDraftSkillFilterState();
+    committedSkillFilter = readSkillFilterFromUI();
     recalc();
   } catch (e) {
     showError(
