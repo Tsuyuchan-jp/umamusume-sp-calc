@@ -258,7 +258,9 @@
       color: #fff;
     }
 
-    /* ---- 案2: バー直上の独立パネル ---- */
+    /* ---- 案2: バー直上の独立パネル ----
+       1行構成: [タイトル+操作] | [計算式] | [閉じる]
+       ヘッダ行を分離しないことで縦幅を抑える */
     .inherit-pop {
       position: fixed;
       left: 0;
@@ -271,30 +273,48 @@
     .inherit-pop[hidden] { display: none !important; }
     .inherit-pop__inner {
       pointer-events: auto;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto auto;
+      grid-template-areas: "main formula close";
+      align-items: center;
+      column-gap: 0.75rem;
+      row-gap: 0.45rem;
       max-width: var(--max);
       margin: 0 auto;
-      padding: 0.7rem 1rem 0.8rem;
+      padding: 0.55rem 0.7rem;
       background: var(--g-chrome);
       color: #fff;
       border: 1px solid rgba(245, 207, 111, 0.55);
       border-radius: 10px;
       box-shadow: 0 8px 28px rgba(0, 0, 0, 0.32);
     }
-    .inherit-pop__head {
+
+    .inherit-pop__main {
+      grid-area: main;
       display: flex;
+      flex-wrap: wrap;
       align-items: center;
-      justify-content: space-between;
-      gap: 0.75rem;
-      margin-bottom: 0.55rem;
+      gap: 0.5rem 0.85rem;
+      min-width: 0;
     }
     .inherit-pop__title {
       margin: 0;
       font-size: 0.82rem;
       font-weight: 900;
       color: var(--c-gold);
+      white-space: nowrap;
     }
+    .inherit-pop__fields {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.5rem 0.85rem;
+    }
+
     .inherit-pop__close {
+      grid-area: close;
       appearance: none;
+      align-self: center;
       width: 1.75rem;
       height: 1.75rem;
       border-radius: 6px;
@@ -305,13 +325,6 @@
       font-size: 1rem;
       line-height: 1;
       cursor: pointer;
-    }
-
-    .inherit-pop__body {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.65rem 1rem;
-      align-items: center;
     }
 
     .field {
@@ -396,98 +409,82 @@
       color: #ffc0d6;
     }
 
-    .unit-cost {
-      margin-left: auto;
+    /* 計算式（閉じるボタンと列を分け、ラベルは数値横に置いて縦を圧縮） */
+    .inherit-formula {
+      grid-area: formula;
       display: flex;
       flex-direction: column;
       align-items: flex-end;
-      gap: 0.2rem;
-      min-width: 12.5rem;
-      padding: 0.35rem 0.65rem 0.4rem;
+      gap: 0.12rem;
+      padding: 0.2rem 0.55rem;
       border-radius: 8px;
       border: 1px solid rgba(245, 207, 111, 0.35);
       background: rgba(0, 0, 0, 0.18);
-      line-height: 1.25;
+      line-height: 1.15;
     }
-    .unit-cost__kicker {
-      font-size: 0.62rem;
-      font-weight: 700;
-      color: #bebbce;
-      letter-spacing: 0.04em;
-      align-self: stretch;
-    }
-    .unit-cost__formula {
+    .inherit-formula__eq {
       display: flex;
-      flex-wrap: wrap;
       align-items: baseline;
-      justify-content: flex-end;
-      gap: 0.2rem 0.28rem;
-      font-size: 0.72rem;
-      font-weight: 700;
-      color: #ddd8ef;
+      gap: 0.28rem;
       font-variant-numeric: tabular-nums;
+      white-space: nowrap;
     }
-    .unit-cost__term {
+    .inherit-formula__term {
       display: inline-flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 0.05rem;
-      min-width: 2.4rem;
+      align-items: baseline;
+      gap: 0.15rem;
     }
-    .unit-cost__term b {
-      font-size: 1.05rem;
+    .inherit-formula__term b {
+      font-size: 1rem;
       font-weight: 900;
       color: #59ccfc;
-      line-height: 1.1;
     }
-    .unit-cost__term--total b {
-      font-size: 1.2rem;
+    .inherit-formula__term--total b {
+      font-size: 1.1rem;
       color: #ffe9a8;
     }
-    .unit-cost__term small {
+    .inherit-formula__term small {
       font-size: 0.58rem;
       font-weight: 700;
       color: #bebbce;
-      letter-spacing: 0.02em;
-      white-space: nowrap;
     }
-    .unit-cost__op {
-      font-size: 0.85rem;
+    .inherit-formula__op {
+      font-size: 0.82rem;
       font-weight: 900;
       color: #cfcadf;
-      padding-bottom: 0.7rem;
     }
-    .unit-cost__meta {
-      font-size: 0.64rem;
+    .inherit-formula__meta {
+      margin: 0;
+      font-size: 0.62rem;
       font-weight: 700;
       color: #cfcadf;
-      align-self: stretch;
-      text-align: right;
     }
-    .unit-cost__meta em {
+    .inherit-formula__meta em {
       font-style: normal;
       color: #ffc0d6;
     }
-    .unit-cost.is-off .unit-cost__term--total b {
+    .inherit-formula.is-off .inherit-formula__term--total b {
       color: #9a96ad;
       text-decoration: line-through;
       text-decoration-thickness: 1.5px;
     }
-    .unit-cost.is-off .unit-cost__meta {
+    .inherit-formula.is-off .inherit-formula__meta {
       color: #9a96ad;
     }
 
-    @media (max-width: 720px) {
-      .unit-cost {
-        margin-left: 0;
-        width: 100%;
+    @media (max-width: 860px) {
+      .inherit-pop__inner {
+        grid-template-columns: minmax(0, 1fr) auto;
+        grid-template-areas:
+          "main close"
+          "formula formula";
+      }
+      .inherit-formula {
         align-items: flex-start;
       }
-      .unit-cost__formula,
-      .unit-cost__meta {
-        justify-content: flex-start;
-        text-align: left;
-      }
+    }
+
+    @media (max-width: 720px) {
       .total .v { font-size: 1.5rem; }
     }
   </style>
@@ -501,7 +498,7 @@
       <p>
         <strong>操作:</strong> 下部バーの「継承」チップを押すとパネル開閉。
         加算はトグル。編集は個数とヒントLvのみ（baseSpは200固定・非表示）。
-        右端は「1本SP × 個数 = 合計」の式表示（ヒントLv＋切れ者反映）。本アプリには未配線。
+        計算式は右列・閉じるは独立列の1行グリッド（ヒントLv＋切れ者反映）。本アプリには未配線。
       </p>
     </header>
 
@@ -520,7 +517,7 @@
         <li>チップ文言: OFF時は「継承 OFF」、ON時は「継承 N本」</li>
         <li>開いている間はチップに金アウトライン（開閉状態が分かる）</li>
         <li>外側クリック / Esc / × で閉じる（ON状態は維持）</li>
-        <li>加算はトグル。右端は 1本SP × 個数 = 合計。baseSp入力なし</li>
+        <li>加算はトグル。計算式は右列・閉じるは独立列。baseSp入力なし</li>
       </ul>
     </aside>
   </div>
@@ -535,67 +532,64 @@
     aria-labelledby="inherit-pop-title"
   >
     <div class="inherit-pop__inner">
-      <div class="inherit-pop__head">
+      <div class="inherit-pop__main">
         <h2 id="inherit-pop-title" class="inherit-pop__title">継承固有</h2>
-        <button type="button" class="inherit-pop__close" id="inherit-close" aria-label="閉じる">×</button>
-      </div>
-      <div class="inherit-pop__body">
-        <div class="field">
-          <span>加算</span>
-          <button
-            type="button"
-            class="tog is-on"
-            id="tog-enabled"
-            role="switch"
-            aria-checked="true"
-            aria-label="継承の加算"
-          ></button>
-          <span class="tog-label is-on" id="tog-enabled-label">ON</span>
-        </div>
-
-        <div class="field" role="group" aria-label="個数">
-          <span>個数</span>
-          <div class="seg" id="seg-count">
-            <button type="button" data-count="2">2</button>
-            <button type="button" data-count="3">3</button>
-            <button type="button" data-count="4" class="is-on">4</button>
-            <button type="button" data-count="5">5</button>
-            <button type="button" data-count="6">6</button>
+        <div class="inherit-pop__fields">
+          <div class="field">
+            <span>加算</span>
+            <button
+              type="button"
+              class="tog is-on"
+              id="tog-enabled"
+              role="switch"
+              aria-checked="true"
+              aria-label="継承の加算"
+            ></button>
+            <span class="tog-label is-on" id="tog-enabled-label">ON</span>
           </div>
-        </div>
 
-        <div class="field" role="group" aria-label="ヒントLv">
-          <span>ヒントLv</span>
-          <div class="seg" id="seg-lv">
-            <button type="button" data-lv="1">1</button>
-            <button type="button" data-lv="2">2</button>
-            <button type="button" data-lv="3" class="is-on">3</button>
-            <button type="button" data-lv="4">4</button>
-            <button type="button" data-lv="5">5</button>
+          <div class="field" role="group" aria-label="個数">
+            <span>個数</span>
+            <div class="seg" id="seg-count">
+              <button type="button" data-count="2">2</button>
+              <button type="button" data-count="3">3</button>
+              <button type="button" data-count="4" class="is-on">4</button>
+              <button type="button" data-count="5">5</button>
+              <button type="button" data-count="6">6</button>
+            </div>
           </div>
-        </div>
 
-        <div class="unit-cost" id="unit-cost-box" aria-live="polite">
-          <span class="unit-cost__kicker">必要SP</span>
-          <div class="unit-cost__formula">
-            <span class="unit-cost__term">
-              <b id="unit-cost">140</b>
-              <small>1本</small>
-            </span>
-            <span class="unit-cost__op" aria-hidden="true">×</span>
-            <span class="unit-cost__term">
-              <b id="unit-count">4</b>
-              <small>個数</small>
-            </span>
-            <span class="unit-cost__op" aria-hidden="true">＝</span>
-            <span class="unit-cost__term unit-cost__term--total">
-              <b id="unit-total">560</b>
-              <small>合計</small>
-            </span>
+          <div class="field" role="group" aria-label="ヒントLv">
+            <span>ヒントLv</span>
+            <div class="seg" id="seg-lv">
+              <button type="button" data-lv="1">1</button>
+              <button type="button" data-lv="2">2</button>
+              <button type="button" data-lv="3" class="is-on">3</button>
+              <button type="button" data-lv="4">4</button>
+              <button type="button" data-lv="5">5</button>
+            </div>
           </div>
-          <span class="unit-cost__meta" id="unit-meta">ヒントLv3 · 切れ者なし</span>
         </div>
       </div>
+
+      <aside class="inherit-formula" id="unit-cost-box" aria-live="polite" aria-label="必要SP">
+        <div class="inherit-formula__eq">
+          <span class="inherit-formula__term">
+            <b id="unit-cost">140</b><small>1本</small>
+          </span>
+          <span class="inherit-formula__op" aria-hidden="true">×</span>
+          <span class="inherit-formula__term">
+            <b id="unit-count">4</b><small>個</small>
+          </span>
+          <span class="inherit-formula__op" aria-hidden="true">＝</span>
+          <span class="inherit-formula__term inherit-formula__term--total">
+            <b id="unit-total">560</b><small>SP</small>
+          </span>
+        </div>
+        <p class="inherit-formula__meta" id="unit-meta">ヒントLv3 · 切れ者なし</p>
+      </aside>
+
+      <button type="button" class="inherit-pop__close" id="inherit-close" aria-label="閉じる">×</button>
     </div>
   </div>
 
