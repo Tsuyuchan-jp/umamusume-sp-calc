@@ -5,6 +5,7 @@
 | ファイル | 内容 |
 |----------|------|
 | [UX.md](./UX.md) | UX 思想 |
+| [v1-review-findings.md](./v1-review-findings.md) | **v1.0.0 向けレビュー棚卸し**（致命／中／軽） |
 | [screenshot-requirements.md](./screenshot-requirements.md) | 編成スクショ要件（**本実装完了・実機OK**・v28.1） |
 | [mockups/screenshot-share-hero.html](./mockups/screenshot-share-hero.html) | **編成スクショ正本モック（型C·v28.1·採用）** |
 | [mockups/screenshot-share-left-options.html](./mockups/screenshot-share-left-options.html) | 左レイアウト比較（旧 L1〜L4） |

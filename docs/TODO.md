@@ -40,7 +40,7 @@
 
 ## 現在フォーカス（1行）
 
-**P2 回帰テスト拡充** — 実機で確認したケースを `npm test` に追加（余裕があれば）
+**P0 レビュー調査クローズ → 次は M1（レギュ×チェーン）修正** — 正本 [product/v1-review-findings.md](./product/v1-review-findings.md)
 
 ---
 
@@ -48,15 +48,20 @@
 
 ### P0
 
-（なし）
+- [ ] **M1 レギュ×チェーン OR 合成** — 金「コネクト」等がダートで残る。表示行 activation 判定へ（要仕様確定）  
+  - 詳細: [product/v1-review-findings.md](./product/v1-review-findings.md) M1
 
 ### P1
 
-（なし）
+- [ ] **M3 手動 OFF と行 ID 変化** — デッキ変更で手動除外が消える件。受け入れ方針を決めてから
+- [ ] **M2 復元時 ID 検証** — 不正 character/support ID の警告またはスキップ明示
+- [ ] **M1/M3 の回帰テスト** — 実データケースを `npm test` に追加（L7）
 
 ### P2
 
-- [ ] **回帰テスト拡充** — 実機で確認したケースを `npm test` に追加
+- [ ] **M4 セッション debounce flush** — `visibilitychange` / `beforeunload` 検討（必須度低）
+- [ ] **回帰テスト拡充** — 実機確認ケース全般（バグ取りとセット）
+- [ ] **スマホ最低限** — 大きな崩れ・主要操作不能の解消（本格最適化は後段）
 
 ### P3 / 条件付き
 
@@ -72,6 +77,7 @@
 
 ---
 
+- [x] 2026-08-02 **v1.0.0 向けレビュー調査** — 棚卸し完了。[product/v1-review-findings.md](./product/v1-review-findings.md)
 - [x] 2026-08-02 **使い方ドキュメント追従** — ヘルプ／README を現行UIに合わせ、使い方モーダルを固定高さ＋ボディ内スクロールに。**実機OKでクローズ**
 - [x] 2026-08-02 **編成スクショ本実装** — v28.1 モック忠実移植。shareCard.js + share-card.css + snapdom。ボタンは layout-modebar 右端。画面外キャプチャ。**実機OKでクローズ**
 - [x] 2026-08-02 **編成スクショ主案モック採用** — v28.1（型C・D寄り）。正本は screenshot-share-hero.html。本実装はモック完璧移植が必須

@@ -33,6 +33,7 @@ AI 新チャットは [AGENT_HANDOFF.md](./AGENT_HANDOFF.md) から。
 | 構成・データフロー | [ops/ARCHITECTURE.md](./ops/ARCHITECTURE.md) |
 | U-tools パース（壊れ時） | [ops/UTOOLS_EVENT_PARSE.md](./ops/UTOOLS_EVENT_PARSE.md) |
 | UX 判断 | [product/UX.md](./product/UX.md) |
+| v1.0.0 レビュー棚卸し | [product/v1-review-findings.md](./product/v1-review-findings.md) |
 | デザイン大改修の引継ぎ | [product/design-overhaul-handoff.md](./product/design-overhaul-handoff.md) |
 | 見た目モック | [product/mockups/hybrid-index.html](./product/mockups/hybrid-index.html)（ハイブリッド入口） |
 | 優先40サポカ一覧 | [product/PRIORITY_SUPPORTS.md](./product/PRIORITY_SUPPORTS.md) |
