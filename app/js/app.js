@@ -1868,7 +1868,7 @@ function recalc() {
 
   let plan = buildSkillPlan(planParams);
   const skillById = getSkillByIdMap();
-  pruneManualExclusions(excludedSkillIds, plan.rows);
+  pruneManualExclusions(excludedSkillIds, plan.rows, skillById);
   const reguExcluded = getIncompatibleSkillIds(
     plan.rows,
     committedSkillFilter,

@@ -261,11 +261,23 @@ assertEq([...excludedFull].sort(), [10], "full filter: only incompatible ids");
 
 // 手動／レギュ合成
 const manual = new Set([20]);
-pruneManualExclusions(manual, rows);
+pruneManualExclusions(manual, rows, skillById);
 assertTrue(manual.has(20), "prune: keep manual in plan");
 manual.add(999);
-pruneManualExclusions(manual, rows);
+pruneManualExclusions(manual, rows, skillById);
 assertFalse(manual.has(999), "prune: drop manual not in plan");
+
+// チェーン下位の手動 OFF を表示行 ID へ引き継ぎ（白→金・○→◎）
+const remapSkillById = new Map([
+  [201631, { id: 201631, groupId: 20163, activation: sympathy }],
+  [201632, { id: 201632, groupId: 20163, activation: connect }],
+]);
+const manualLower = new Set([201631]);
+pruneManualExclusions(manualLower, [connectRow], remapSkillById);
+assertTrue(
+  manualLower.has(201632) && !manualLower.has(201631),
+  "remap: chain lower id → display row id"
+);
 
 const effective = getEffectiveExcludedSkillIds(
   new Set([20]),

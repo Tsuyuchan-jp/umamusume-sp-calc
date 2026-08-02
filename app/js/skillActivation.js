@@ -309,6 +309,74 @@ export function collectPlanSkillIds(rows) {
 }
 
 /**
+ * 表示行とチェーン／グループの対応（手動除外の引き継ぎ用）
+ * @param {object[]} rows
+ * @param {Map<number, object>} skillById
+ */
+export function buildManualExclusionRemap(rows, skillById) {
+  const displayIds = new Set();
+  /** @type {Map<number, number>} */
+  const memberToDisplay = new Map();
+  /** @type {Map<number, number>} */
+  const groupToDisplay = new Map();
+
+  for (const row of rows) {
+    if (row.isInherit || row.skillId == null) continue;
+    const displayId = row.skillId;
+    displayIds.add(displayId);
+
+    for (const cid of [displayId, ...(row.chainSkillIds || [])]) {
+      memberToDisplay.set(cid, displayId);
+    }
+
+    const skill = skillById.get(displayId);
+    if (skill?.groupId != null) {
+      groupToDisplay.set(skill.groupId, displayId);
+    }
+  }
+
+  return { displayIds, memberToDisplay, groupToDisplay };
+}
+
+/**
+ * 手動除外を整理: 計画外 ID は削除。チェーン／グループ内なら表示行 ID へ引き継ぎ。
+ * @param {Set<number>} manualExcluded
+ * @param {object[]} rows
+ * @param {Map<number, object>} skillById
+ * @returns {Set<number>} 現在の表示行 skillId 集合
+ */
+export function pruneManualExclusions(manualExcluded, rows, skillById) {
+  const { displayIds, memberToDisplay, groupToDisplay } = buildManualExclusionRemap(
+    rows,
+    skillById
+  );
+
+  for (const sid of [...manualExcluded]) {
+    if (displayIds.has(sid)) continue;
+
+    const byMember = memberToDisplay.get(sid);
+    if (byMember != null) {
+      manualExcluded.delete(sid);
+      manualExcluded.add(byMember);
+      continue;
+    }
+
+    const skill = skillById.get(sid);
+    const byGroup =
+      skill?.groupId != null ? groupToDisplay.get(skill.groupId) : undefined;
+    if (byGroup != null) {
+      manualExcluded.delete(sid);
+      manualExcluded.add(byGroup);
+      continue;
+    }
+
+    manualExcluded.delete(sid);
+  }
+
+  return displayIds;
+}
+
+/**
  * 絞込で非互換な skillId
  * @param {object[]} rows
  * @param {{ ground?: string, distance?: string, style?: string }} filter
@@ -330,20 +398,6 @@ export function getIncompatibleSkillIds(rows, filter, skillById) {
     }
   }
   return out;
-}
-
-/**
- * 手動除外から一覧に無い skillId を除去
- * @param {Set<number>} manualExcluded
- * @param {object[]} rows
- * @returns {Set<number>} 現在の skillId 集合
- */
-export function pruneManualExclusions(manualExcluded, rows) {
-  const currentIds = collectPlanSkillIds(rows);
-  for (const sid of [...manualExcluded]) {
-    if (!currentIds.has(sid)) manualExcluded.delete(sid);
-  }
-  return currentIds;
 }
 
 /**

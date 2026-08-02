@@ -40,7 +40,7 @@
 
 ## 現在フォーカス（1行）
 
-**P1 M3（手動 OFF と行 ID 変化）** — 次のバグ取り。正本 [product/v1-review-findings.md](./product/v1-review-findings.md)
+**P1 M3（手動 OFF 引き継ぎ）** — 実機確認待ち。次は M2
 
 ---
 
@@ -52,9 +52,8 @@
 
 ### P1
 
-- [ ] **M3 手動 OFF と行 ID 変化** — デッキ変更で手動除外が消える件。受け入れ方針を決めてから
+- [~] **M3 手動 OFF と行 ID 変化** — チェーン／グループ内は表示行 ID へ引き継ぎ実装済。実機確認待ち
 - [ ] **M2 復元時 ID 検証** — 不正 character/support ID の警告またはスキップ明示
-- [ ] **M3 の回帰テスト** — 実データケースを `npm test` に追加（L7）
 
 ### P2
 
@@ -76,7 +75,7 @@
 
 ---
 
-- [x] 2026-08-02 **M1 レギュ×チェーン OR 合成** — 案A: 表示行 skillId の activation のみで判定。コネクト回帰テスト追加
+- [x] 2026-08-02 **M1 レギュ×チェーン OR 合成** — 案A: 表示行 skillId の activation のみで判定。コネクト回帰テスト追加。**実機OKでクローズ**
 - [x] 2026-08-02 **v1.0.0 向けレビュー調査** — 棚卸し完了。[product/v1-review-findings.md](./product/v1-review-findings.md)
 - [x] 2026-08-02 **使い方ドキュメント追従** — ヘルプ／README を現行UIに合わせ、使い方モーダルを固定高さ＋ボディ内スクロールに。**実機OKでクローズ**
 - [x] 2026-08-02 **編成スクショ本実装** — v28.1 モック忠実移植。shareCard.js + share-card.css + snapdom。ボタンは layout-modebar 右端。画面外キャプチャ。**実機OKでクローズ**
