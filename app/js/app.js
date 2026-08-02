@@ -1481,6 +1481,7 @@ function placeTotalSpBar(enteringSplit) {
   const modebar = document.querySelector(".layout-modebar");
   const main = document.querySelector(".app-main");
   const actions = document.querySelector(".header-actions");
+  const share = document.getElementById("header-share");
   const brand = document.querySelector(".total-sp-bar__brand");
   const header = document.querySelector(".app-header");
   if (!bar) return;
@@ -1496,6 +1497,22 @@ function placeTotalSpBar(enteringSplit) {
     brand.appendChild(actions);
   } else if (header && actions) {
     header.appendChild(actions);
+  }
+  /*
+   * 共有ボタンはトータルバーに載せない。
+   * 広幅スプリットでは app-header が消えるため、最上部 modebar 右端へ退避。
+   * ギャラリー／狭幅スプリットでは app-header 内（メモリの左）へ戻す。
+   */
+  if (share) {
+    if (enteringSplit && !narrow && modebar) {
+      modebar.appendChild(share);
+    } else if (header) {
+      if (actions && actions.parentElement === header) {
+        header.insertBefore(share, actions);
+      } else {
+        header.appendChild(share);
+      }
+    }
   }
 }
 

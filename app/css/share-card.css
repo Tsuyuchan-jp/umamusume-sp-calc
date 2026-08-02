@@ -22,14 +22,7 @@
   opacity: 1;
 }
 
-.result-toolbar__share {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.35rem;
-  margin-left: auto;
-  flex-shrink: 0;
-}
-
+/* 共有ボタン（最上部 .header-share。結果ツールバーには置かない） */
 .share-card-btn {
   box-sizing: border-box;
   font: inherit;
@@ -69,6 +62,62 @@
 .share-card-btn:focus-visible {
   outline: 2px solid #f5cf6f;
   outline-offset: 2px;
+}
+
+/* 紫ヘッダー上 */
+.panel--deck > .app-header .share-card-btn {
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  background: rgba(255, 255, 255, 0.14);
+  color: #fff;
+}
+
+.panel--deck > .app-header .share-card-btn--primary {
+  background: linear-gradient(180deg, #f5cf6f, #e8b84a);
+  color: #1a1630;
+  border-color: #f5cf6f;
+}
+
+.panel--deck > .app-header .share-card-btn:not(:disabled):hover {
+  background: rgba(255, 255, 255, 0.22);
+}
+
+.panel--deck > .app-header .share-card-btn--primary:not(:disabled):hover {
+  background: linear-gradient(180deg, #f8d984, #efc25a);
+  filter: none;
+}
+
+/* 広幅スプリット退避先（modebar 右端。トータルバーには載せない） */
+.layout-modebar > .header-share {
+  margin-left: auto;
+}
+
+.layout-modebar .share-card-btn {
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  background: rgba(255, 255, 255, 0.14);
+  color: #fff;
+}
+
+.layout-modebar .share-card-btn--primary {
+  background: linear-gradient(180deg, #f5cf6f, #e8b84a);
+  color: #1a1630;
+  border-color: #f5cf6f;
+}
+
+.layout-modebar .share-card-btn:not(:disabled):hover {
+  background: rgba(255, 255, 255, 0.22);
+}
+
+.layout-modebar .share-card-btn--primary:not(:disabled):hover {
+  background: linear-gradient(180deg, #f8d984, #efc25a);
+  filter: none;
+}
+
+@media (max-width: 560px) {
+  .header-share .share-card-btn,
+  .layout-modebar .share-card-btn {
+    font-size: 0.68rem;
+    padding: 0.3rem 0.55rem;
+  }
 }
 
 /*

@@ -54,8 +54,21 @@ header p {
 .header-actions {
   display: flex;
   flex-shrink: 0;
+  flex-wrap: wrap;
   gap: 0.5rem;
-  align-items: flex-start;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+/* 共有ボタン専用枠（.header-actions とは別。トータルバーへは移さない） */
+.header-share {
+  display: flex;
+  flex-shrink: 0;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  align-items: center;
+  justify-content: flex-end;
+  margin-left: auto;
 }
 
 .help-open-btn:hover {
@@ -2573,6 +2586,7 @@ table.result-skills .col-sp {
 
 .copy-included-skills {
   box-sizing: border-box;
+  margin-left: auto;
   font: inherit;
   font-size: 0.72rem;
   font-weight: 900;

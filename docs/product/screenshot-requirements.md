@@ -107,7 +107,7 @@ excludeMax = workHeight - goldHeight - gap
 
 | 項目 | 内容 |
 |------|------|
-| ボタン置き場 | 結果ツールバー（コピー優先＋PNG保存） |
+| ボタン置き場 | 最上部ヘッダー内 `.header-share`（メモリの左）。広幅スプリット時のみ modebar 右端へ退避（トータルバーには載せない） |
 | 画像化 | `@zumer/snapdom`（CDN） |
 | 見た目正本 | mockups/screenshot-share-hero.html v28.1 |
 
