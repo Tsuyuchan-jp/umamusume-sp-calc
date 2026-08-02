@@ -3,15 +3,15 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>編成スクショ — 主案 v15（フラット金＋必要SP）</title>
+  <title>編成スクショ — 主案 v16（金グラデ＋余白）</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;600;700&family=Zen+Kaku+Gothic+New:wght@500;700;900&display=swap" rel="stylesheet" />
   <style>
     /*
-      主案 v15 — 型C継続
-      - 金: フラットチップ／計算で選ばれているサポ・シナリオ由来のみ（育成所持・進化は除外）
-      - フォント: Shippori Mincho（見出し）＋ Zen Kaku（UI・チップ）採用寄り
+      主案 v16 — 型C継続
+      - 金: 立体なしの淡グラデで金らしさ／選択中のみ／2列でスペース活用
+      - フォント: Shippori Mincho（見出し）＋ Zen Kaku（UI・チップ）
     */
     :root {
       --ink: #1a1630;
@@ -229,15 +229,16 @@
     .tag.is-ok { background: var(--green); border-color: var(--green); color: #fff; }
 
     .gold-board {
-      display: flex;
-      flex-direction: column;
-      gap: 5px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5px 12px;
     }
     .gold-row {
       display: grid;
-      grid-template-columns: 5.8em minmax(0, 1fr);
+      grid-template-columns: max-content minmax(0, 1fr);
       gap: 6px;
       align-items: start;
+      min-width: 0;
     }
     .gold-row__src {
       font-size: 10px;
@@ -254,20 +255,21 @@
       gap: 3px;
       min-width: 0;
     }
-    /* 全体に合わせたフラット金チップ（立体グラデなし） */
+    /* 立体なし・淡い縦グラデで金らしさ（影・ハイライト無し） */
     .gold-chip {
       display: inline-flex;
       align-items: center;
       max-width: 100%;
-      padding: 2px 8px;
+      padding: 2px 8px 2px 7px;
       border-radius: 6px;
       font-family: var(--font-ui);
       font-size: 10px;
       font-weight: 700;
       line-height: 1.35;
-      color: #6a5220;
-      background: #f3e9c2;
-      border: 1px solid #e0c878;
+      color: #5c4514;
+      background: linear-gradient(180deg, #fbf3d0 0%, #f0d978 100%);
+      border: 1px solid #dfc35a;
+      border-left: 3px solid #e0b020;
       white-space: nowrap;
     }
 
@@ -276,6 +278,7 @@
       font-size: 10px;
       color: #9a96aa;
       font-weight: 500;
+      letter-spacing: 0.02em;
     }
 
     /* 右：世界観背景（オーバーレイ薄め・彩度を残す）＋入れ子角丸なし */
@@ -427,15 +430,15 @@
 <body>
   <div class="shell">
     <div class="banner">
-      <strong>主案 v15 · フラット金＋必要SP</strong> —
-      金は計算で選ばれているサポ／シナリオ由来のみ。チップはフラット。フォントは維持。
+      <strong>主案 v16 · 金グラデ＋2列</strong> —
+      立体なし淡グラデで金らしさ、金は2列配置、トレヒント表記、フッタにアプリ名。
       参考: <a href="./screenshot-share-refs.html">一覧</a>
     </div>
 
-    <h1 class="page-title">編成スクショ · 共有カード主案 v15</h1>
-    <p class="lead">フラット金チップ・選択中の金・eyebrow「必要SP」を確認してください。</p>
+    <h1 class="page-title">編成スクショ · 共有カード主案 v16</h1>
+    <p class="lead">金の色味・並び・トレヒント・フッタを確認してください。</p>
 
-    <article class="share" aria-label="共有カード主案 v15（初期編成）">
+    <article class="share" aria-label="共有カード主案 v16（初期編成）">
       <section class="left">
         <div class="eyebrow">
           <span class="eyebrow__cat">必要SP</span>
@@ -461,7 +464,7 @@
             <div class="block__body">
               <div class="tags">
                 <span class="tag is-ok">切れ者</span>
-                <span class="tag is-key">ヒント Lv5</span>
+                <span class="tag is-key">トレヒント Lv5</span>
                 <span class="tag">継承 ×4 Lv3</span>
               </div>
             </div>
@@ -538,13 +541,13 @@
           <div class="block">
             <span class="pill">条件</span>
             <div class="block__body">
-              シナリオ <strong>トレセン軒</strong> ／ ヒント <strong>Lv5</strong> ／ 継承固有 <strong>×4 · Lv3</strong><br />
+              シナリオ <strong>トレセン軒</strong> ／ トレヒント <strong>Lv5</strong> ／ 継承固有 <strong>×4 · Lv3</strong><br />
               金は計算で選ばれているサポ・シナリオ由来のみ。除外は件数のみ。結果表は含まない。
             </div>
           </div>
         </div>
 
-        <p class="foot-note">設計スナップショットより生成 · 記事・ポスト貼付用</p>
+        <p class="foot-note">umamusume-sp-calc</p>
       </section>
 
       <section class="right">
@@ -570,7 +573,7 @@
     </article>
 
     <div class="judge">
-      <strong>判断のお願い</strong>（フラット金・選択中の金・eyebrow）<br />
+      <strong>判断のお願い</strong>（金グラデ・2列・トレヒント・フッタ）<br />
       返事例: <code>採用</code> / <code>方向違い</code> / <code>惜しい：〇〇</code>
     </div>
   </div>
