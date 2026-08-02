@@ -615,13 +615,21 @@ export function buildShareCardFilename({
   return `${namePart}-${y}${m}${d}-${sp}sp.png`;
 }
 
+/** タッチ主体端末か（PC は false → 直接ダウンロード） */
+function prefersMobileShareSave() {
+  return (
+    typeof navigator.share === "function" &&
+    window.matchMedia("(pointer: coarse)").matches
+  );
+}
+
 /**
  * PNG を端末へ保存／共有する。
- * モバイルは Web Share、対応ブラウザは保存ダイアログ、それ以外はダウンロード開始。
+ * モバイルは Web Share、PC はブラウザの直接ダウンロード。
  * @param {HTMLElement} cardEl
  * @param {HTMLElement} mount
  * @param {string} [filename]
- * @returns {Promise<{ ok: boolean, mode: "share"|"picker"|"download"|"cancelled"|"error" }>}
+ * @returns {Promise<{ ok: boolean, mode: "share"|"download"|"cancelled"|"error" }>}
  */
 export async function saveShareCardPng(
   cardEl,
@@ -636,9 +644,13 @@ export async function saveShareCardPng(
     const file = new File([blob], filename, { type: "image/png" });
 
     // スマホ等: OS の共有シート（保存先をユーザーが選べる）
-    if (typeof navigator.canShare === "function" && navigator.canShare({ files: [file] })) {
+    if (
+      prefersMobileShareSave() &&
+      typeof navigator.canShare === "function" &&
+      navigator.canShare({ files: [file] })
+    ) {
       try {
-        await navigator.share({ files: [file], title: filename });
+        await navigator.share({ files: [file] });
         return { ok: true, mode: "share" };
       } catch (e) {
         if (e?.name === "AbortError") return { ok: false, mode: "cancelled" };
@@ -646,29 +658,7 @@ export async function saveShareCardPng(
       }
     }
 
-    // Chromium 系: 保存ダイアログ
-    if (typeof window.showSaveFilePicker === "function") {
-      try {
-        const handle = await window.showSaveFilePicker({
-          suggestedName: filename,
-          types: [
-            {
-              description: "PNG 画像",
-              accept: { "image/png": [".png"] },
-            },
-          ],
-        });
-        const writable = await handle.createWritable();
-        await writable.write(blob);
-        await writable.close();
-        return { ok: true, mode: "picker" };
-      } catch (e) {
-        if (e?.name === "AbortError") return { ok: false, mode: "cancelled" };
-        /* ピッカー失敗時は a[download] へ */
-      }
-    }
-
-    // フォールバック: ブラウザ標準のダウンロード（場所は端末のダウンロードフォルダ等）
+    // PC: ブラウザ標準のダウンロード（ダウンロードフォルダへ直接保存）
     const url = URL.createObjectURL(blob);
     const link = document.createElement("a");
     link.download = filename;
