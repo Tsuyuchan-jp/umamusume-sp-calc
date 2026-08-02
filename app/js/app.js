@@ -2006,7 +2006,6 @@ function bindShareCardButtons() {
   const cleanupMount = () => {
     mount.replaceChildren();
     mount.setAttribute("aria-hidden", "true");
-    mount.classList.remove("share-card-mount--capture");
   };
 
   const runShare = async (mode) => {

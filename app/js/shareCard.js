@@ -505,20 +505,6 @@ export async function renderShareCardToMount(mount, model) {
 }
 
 /**
- * @param {HTMLElement} mount
- */
-function beginShareCardCapture(mount) {
-  mount.classList.add("share-card-mount--capture");
-}
-
-/**
- * @param {HTMLElement} mount
- */
-function endShareCardCapture(mount) {
-  mount.classList.remove("share-card-mount--capture");
-}
-
-/**
  * @returns {Promise<{ toCanvas: Function, toBlob: Function, toPng: Function }>}
  */
 async function loadSnapdom() {
@@ -532,32 +518,26 @@ async function loadSnapdom() {
 
 /**
  * @param {HTMLElement} cardEl
- * @param {HTMLElement} mount
+ * @param {HTMLElement} [_mount] 互換のため残す（画面外マウント想定）
  * @returns {Promise<HTMLCanvasElement>}
  */
-export async function captureShareCardElement(cardEl, mount) {
+export async function captureShareCardElement(cardEl, _mount) {
   const snapdom = await loadSnapdom();
 
   if (document.fonts?.ready) {
     await document.fonts.ready;
   }
 
-  beginShareCardCapture(mount);
   void cardEl.offsetHeight;
 
-  try {
-    // snapdom: ブラウザネイティブ描画（backdrop-filter / フォント / ::before に強い）
-    return await snapdom.toCanvas(cardEl, {
-      width: CARD_WIDTH_PX,
-      height: CARD_HEIGHT_PX,
-      scale: 2,
-      embedFonts: true,
-      // Google Fonts（Shippori / Zen Kaku）を埋め込み可能にする
-      fontStylesheetDomains: ["fonts.googleapis.com", "fonts.gstatic.com"],
-    });
-  } finally {
-    endShareCardCapture(mount);
-  }
+  // 画面外マウントのままキャプチャ（一時可視化しない）
+  return snapdom.toCanvas(cardEl, {
+    width: CARD_WIDTH_PX,
+    height: CARD_HEIGHT_PX,
+    scale: 2,
+    embedFonts: true,
+    fontStylesheetDomains: ["fonts.googleapis.com", "fonts.gstatic.com"],
+  });
 }
 
 /**

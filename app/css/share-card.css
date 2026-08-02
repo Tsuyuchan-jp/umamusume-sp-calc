@@ -5,21 +5,18 @@
  */
 
 /* ---- マウント／操作 UI（本番用。モック外） ---- */
+/* 画面外に常置。opacity:0 / visibility:hidden だとキャプチャが真っ白になるため、
+   位置だけ外して描画は有効にする（ユーザーには見えない） */
 .share-card-mount {
   position: fixed;
-  left: 0;
+  left: -12000px;
   top: 0;
   z-index: -1;
   pointer-events: none;
-  opacity: 0;
+  opacity: 1;
   overflow: hidden;
   width: 1080px;
   height: 608px;
-}
-
-.share-card-mount.share-card-mount--capture {
-  z-index: 2147483646;
-  opacity: 1;
 }
 
 /* 共有ボタン（両モード共通: 最上部 layout-modebar 右端） */
