@@ -861,10 +861,10 @@ input[type="search"] {
 }
 
 .deck-evt-sum--gold {
-  /* 金のみ選中名を最大2行まで見せる（モーダルなしで確認用） */
+  /* 金のみ選中名を最大2行まで見せる（1スキル1行・Lv付き） */
   height: auto;
   min-height: 1.7rem;
-  max-height: 3.05rem;
+  max-height: 3.25rem;
   align-items: stretch;
   padding: 0.22rem 0.35rem 0.22rem 0;
   background: linear-gradient(180deg, #fff6d6, #ffe29a);
@@ -873,19 +873,28 @@ input[type="search"] {
   box-shadow: inset 0 0 0 1px rgba(233, 185, 74, 0.25);
 }
 
+.deck-evt-sum--gold.deck-evt-sum--gold-1line {
+  max-height: 1.7rem;
+}
+
 .deck-evt-sum--gold .deck-evt-sum__bar {
   background: linear-gradient(180deg, #f0d060, #e29403);
 }
 
 .deck-evt-sum--gold .deck-evt-sum__name {
-  white-space: normal;
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
-  line-clamp: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.06rem;
+  line-height: 1.15;
+  overflow: hidden;
+  align-self: center;
+}
+
+.deck-evt-sum--gold .deck-evt-sum__skill-line {
+  white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  align-self: center;
 }
 
 .deck-evt-sum--gold .deck-evt-sum__meta {

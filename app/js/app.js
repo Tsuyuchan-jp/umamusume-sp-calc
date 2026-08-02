@@ -1099,11 +1099,35 @@ function shortChoiceLabel(choice) {
   return (choice?.label || "").replace(/^[①②③④⑤⑥⑦⑧⑨⑩]\s*/, "");
 }
 
-function goldSkillNamesFromSkills(skills) {
+function goldSkillsFromList(skills) {
   const map = getSkillByIdMap();
   return (skills || [])
     .filter((sk) => map.get(sk.skillId)?.rarity === 2)
-    .map((sk) => sk.skillName);
+    .map((sk) => ({
+      skillName: sk.skillName,
+      hintLevel: sk.hintLevel,
+    }));
+}
+
+function goldSkillNamesFromSkills(skills) {
+  return goldSkillsFromList(skills).map((sk) => sk.skillName);
+}
+
+/** 列下・金スキル行（1スキル1行・Lv付き） */
+function columnGoldSkillLinesHtml(skills) {
+  const golds = goldSkillsFromList(skills);
+  return golds
+    .map(
+      (sk) =>
+        `<span class="deck-evt-sum__skill-line">${escapeHtml(`${sk.skillName} Lv${sk.hintLevel}`)}</span>`
+    )
+    .join("");
+}
+
+function columnGoldSkillTitleText(skills) {
+  return goldSkillsFromList(skills)
+    .map((sk) => `${sk.skillName} Lv${sk.hintLevel}`)
+    .join("、");
 }
 
 /** single の選択IDを既定へ正規化（未選択なし） */
@@ -1332,21 +1356,21 @@ function renderColumnEvents() {
 
     for (const evt of events) {
       if (evt.selection === "auto") {
-        const golds = goldSkillNamesFromSkills(evt.skills);
+        const golds = goldSkillsFromList(evt.skills);
         const isGold = golds.length > 0;
-        const label =
-          golds.length > 0
-            ? golds.join("／")
-            : evt.skills?.[0]?.skillName || "自動";
+        const label = isGold
+          ? columnGoldSkillLinesHtml(evt.skills)
+          : escapeHtml(evt.skills?.[0]?.skillName || "自動");
         const btn = document.createElement("button");
         btn.type = "button";
         btn.className =
-          "deck-evt-sum" + (isGold ? " deck-evt-sum--gold" : " deck-evt-sum--auto");
-        btn.title =
-          golds.length > 0
-            ? `${evt.label || "自動計上"} — ${golds.join("、")}`
-            : evt.label || "自動計上";
-        btn.innerHTML = `<span class="deck-evt-sum__bar" aria-hidden="true"></span><span class="deck-evt-sum__name">${escapeHtml(label)}</span><span class="deck-evt-sum__meta">自動</span>`;
+          "deck-evt-sum" +
+          (isGold ? " deck-evt-sum--gold" : " deck-evt-sum--auto") +
+          (isGold && golds.length === 1 ? " deck-evt-sum--gold-1line" : "");
+        btn.title = isGold
+          ? `${evt.label || "自動計上"} — ${columnGoldSkillTitleText(evt.skills)}`
+          : evt.label || "自動計上";
+        btn.innerHTML = `<span class="deck-evt-sum__bar" aria-hidden="true"></span><span class="deck-evt-sum__name">${label}</span><span class="deck-evt-sum__meta">自動</span>`;
         btn.addEventListener("click", () => {
           /* サポカ自動は列下で完結。編集不可のためダイアログは開かない */
         });
@@ -1372,7 +1396,11 @@ function renderColumnEvents() {
         const choiceId = resolveEventChoiceId(evt);
         const choice = (evt.choices || []).find((c) => c.id === choiceId);
         const kind = choice ? choiceKind(choice) : "stat";
-        const label = choice ? shortChoiceLabel(choice) : "選択";
+        const golds = kind === "gold" && choice ? goldSkillsFromList(choice.skills) : [];
+        const nameHtml =
+          kind === "gold" && choice
+            ? columnGoldSkillLinesHtml(choice.skills)
+            : escapeHtml(choice ? shortChoiceLabel(choice) : "選択");
         const n = (evt.choices || []).length;
         const kindClass =
           kind === "gold"
@@ -1380,9 +1408,14 @@ function renderColumnEvents() {
             : kind === "white"
               ? "deck-evt-sum--white"
               : "deck-evt-sum--stat";
-        btn.className = `deck-evt-sum ${kindClass}`;
+        btn.className =
+          `deck-evt-sum ${kindClass}` +
+          (kind === "gold" && golds.length === 1 ? " deck-evt-sum--gold-1line" : "");
         btn.title = paneOpen ? "タップで閉じる" : `全${n}択 · タップで詳細`;
-        btn.innerHTML = `<span class="deck-evt-sum__bar" aria-hidden="true"></span><span class="deck-evt-sum__name">${escapeHtml(label)}</span><span class="deck-evt-sum__meta">${n}</span>`;
+        if (kind === "gold" && choice && !paneOpen) {
+          btn.title = `${btn.title} — ${columnGoldSkillTitleText(choice.skills)}`;
+        }
+        btn.innerHTML = `<span class="deck-evt-sum__bar" aria-hidden="true"></span><span class="deck-evt-sum__name">${nameHtml}</span><span class="deck-evt-sum__meta">${n}</span>`;
       }
       btn.addEventListener("click", () => openEventChoiceUi(evt, i));
       container.appendChild(btn);
