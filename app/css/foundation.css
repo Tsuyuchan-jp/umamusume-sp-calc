@@ -212,45 +212,62 @@ body.layout-split .panel--deck > .app-header {
 }
 
 .panel--deck {
+  /* overflow:hidden + 角丸は Chromium で白っぽい AA フリンジになる。
+     上角はパネル紫背景の border-radius のみで描き、白タイルはクロム下へ。 */
   position: relative;
   isolation: isolate;
-  /* クリップ要素の背景は紫のみ（白タイルを載せると角AAが白フリンジになる） */
+  overflow: visible;
   background: var(--ink-deep);
-  box-shadow: var(--shadow-lg);
   border: none;
-  overflow: hidden;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
   padding-top: 0;
+  /* app-header 実測 ≈ 59.6px。折り返し余裕を少し見る */
+  --chrome-band: 3.75rem;
 }
 
-/* 幾何タイルは背面レイヤへ（角の AA 対象外） */
+/* 幾何タイルはヘッダー下のみ（上角の AA に白を混ぜない） */
 .panel--deck::before {
   content: "";
   position: absolute;
-  inset: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: var(--chrome-band);
   z-index: -1;
   pointer-events: none;
+  border-radius: 0 0 var(--radius-lg) var(--radius-lg);
   background: url("https://static.kouryaku.tools/umamusume/images/app/bg.webp?auto=format")
-    center / 180px repeat;
+      center / 180px repeat,
+    #fff;
 }
 
 .panel--workbench {
   position: relative;
   isolation: isolate;
+  overflow: visible;
   background: var(--ink-deep);
-  box-shadow: var(--shadow-lg);
   border: none;
-  overflow: hidden;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
   padding-top: 0;
+  /* wb-regu 実測 ≈ 91px */
+  --chrome-band: 5.75rem;
 }
 
 .panel--workbench::before {
   content: "";
   position: absolute;
-  inset: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: var(--chrome-band);
   z-index: -1;
   pointer-events: none;
+  border-radius: 0 0 var(--radius-lg) var(--radius-lg);
   background: url("https://static.kouryaku.tools/umamusume/images/app/bg.webp?auto=format")
-    center / 180px repeat;
+      center / 180px repeat,
+    #fff;
 }
 
 .hint {

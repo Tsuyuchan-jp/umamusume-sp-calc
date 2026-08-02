@@ -1506,9 +1506,15 @@ body.layout-split .panel--deck {
   min-height: 0;
   display: flex;
   flex-direction: column;
-  overflow: hidden;
-  /* split では g-brand 非表示なので通常のパネル余白 */
+  /* split では g-brand 非表示のため通常の白パネル。overflow は中の dashboard が担当 */
+  overflow: visible;
+  background: var(--panel, #fff);
+  --chrome-band: 0px;
   padding: var(--panel-pad-y, 0.85rem) var(--panel-pad-x, 1rem);
+}
+
+body.layout-split .panel--deck::before {
+  display: none;
 }
 
 body.layout-split .panel--workbench {
@@ -1517,7 +1523,8 @@ body.layout-split .panel--workbench {
   height: 100%;
   display: flex;
   flex-direction: column;
-  overflow: hidden;
+  /* 角 AA 対策: パネル自体は clip しない。表スクロールは .result-table-wrap */
+  overflow: visible;
 }
 
 body.layout-split .panel--workbench > :not(.result-table-wrap) {
@@ -2814,7 +2821,7 @@ tr.excluded td {
 }
 
 .panel--workbench {
-  overflow: hidden;
+  overflow: visible;
   padding-top: 0;
   box-shadow: 0 2px 8px rgba(44, 62, 80, 0.06);
 }
