@@ -110,11 +110,14 @@ body {
 
 body > header,
 body > .layout-modebar,
-body > .app-main,
-body > .inherit-popover,
-body > .total-sp-bar {
+body > .app-main {
   position: relative;
   z-index: 1;
+}
+
+/* トータルバーは fixed のまま */
+.total-sp-bar {
+  z-index: 1000;
 }
 
 /* ---- ヘッダー（H5 寄り） ---- */
@@ -383,6 +386,27 @@ header p {
 .premise-lv.is-on {
   background: linear-gradient(180deg, #fa9f40, #ff8427);
   color: #fff;
+}
+
+.premise-chip--inherit-field {
+  min-width: auto;
+  gap: 0.25rem;
+  cursor: default;
+  background: rgba(255, 255, 255, 0.92);
+  color: #463f70;
+  font-size: 0.72rem;
+}
+
+.premise-chip--inherit-field input {
+  width: 2.75rem;
+  margin: 0;
+  padding: 0.15rem 0.25rem;
+  border: 1px solid #c8c4d4;
+  border-radius: 4px;
+  font: inherit;
+  font-weight: 700;
+  color: #333;
+  background: #fff;
 }
 
 /* ---- 表示順セグメント ---- */

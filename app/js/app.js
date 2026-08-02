@@ -277,12 +277,6 @@ function bindPremiseChipsOnce() {
     const t = e.target;
     if (!(t instanceof HTMLElement)) return;
 
-    /* 詳細は inherit ボタンの外にあるため先に処理 */
-    if (t.closest("[data-inherit-detail]")) {
-      setInheritPopoverOpen(true);
-      return;
-    }
-
     if (t.id === "bar-premise-fast-learner" || t.closest("#bar-premise-fast-learner")) {
       const cb = document.getElementById("fast-learner");
       if (!cb) return;
@@ -292,7 +286,6 @@ function bindPremiseChipsOnce() {
       return;
     }
 
-    /* トレLv セグメント */
     const lvBtn = t.closest("[data-training-lv]");
     if (lvBtn && chipsEl.contains(lvBtn)) {
       const lv = lvBtn.getAttribute("data-training-lv");
@@ -306,11 +299,9 @@ function bindPremiseChipsOnce() {
     if (t.id === "bar-premise-inherit" || t.closest("#bar-premise-inherit")) {
       const cb = document.getElementById("inherit-enabled");
       if (!cb) return;
-      const turningOn = !cb.checked;
-      cb.checked = turningOn;
+      cb.checked = !cb.checked;
       updateTotalBarChips();
       updateDeckFootbandMeta();
-      setInheritPopoverOpen(turningOn);
       recalc();
     }
   });
@@ -319,10 +310,21 @@ function bindPremiseChipsOnce() {
 function updateTotalBarChips(excludedCount = excludedSkillIds.size) {
   const el = document.getElementById("total-sp-bar-chips");
   if (!el) return;
+  const active = document.activeElement;
+  const keepFocusId =
+    active instanceof HTMLInputElement &&
+    ["inherit-count", "inherit-hint", "inherit-base"].includes(active.id)
+      ? active.id
+      : null;
+  const keepSelStart = keepFocusId ? active.selectionStart : null;
+  const keepSelEnd = keepFocusId ? active.selectionEnd : null;
+
   const fast = document.getElementById("fast-learner")?.checked;
   const trainingLv = document.getElementById("training-hint-level")?.value || "5";
   const inheritOn = document.getElementById("inherit-enabled")?.checked;
-  const inheritCount = document.getElementById("inherit-count")?.value || "0";
+  const inheritCount = document.getElementById("inherit-count")?.value || "4";
+  const inheritHint = document.getElementById("inherit-hint")?.value || "3";
+  const inheritBase = document.getElementById("inherit-base")?.value || "200";
   const fastClass = fast ? "premise-chip premise-chip--on" : "premise-chip";
   const inheritClass = inheritOn ? "premise-chip premise-chip--on" : "premise-chip";
 
@@ -334,14 +336,63 @@ function updateTotalBarChips(excludedCount = excludedSkillIds.size) {
       <button type="button" class="premise-lv${trainingLv === "4" ? " is-on" : ""}" data-training-lv="4">4</button>
       <button type="button" class="premise-lv${trainingLv === "5" ? " is-on" : ""}" data-training-lv="5">5</button>
     </div>
-    <button type="button" class="${inheritClass}" id="bar-premise-inherit" aria-pressed="${inheritOn ? "true" : "false"}">継承 ${inheritOn ? `${inheritCount}本` : "OFF"}</button>
-    ${inheritOn ? `<button type="button" class="premise-chip premise-chip--detail" data-inherit-detail aria-controls="inherit-popover">詳細</button>` : ""}
+    <button type="button" class="${inheritClass}" id="bar-premise-inherit" aria-pressed="${inheritOn ? "true" : "false"}">継承 ${inheritOn ? "ON" : "OFF"}</button>
   `;
+  if (inheritOn) {
+    html += `
+      <label class="premise-chip premise-chip--inherit-field">
+        個数
+        <input type="number" id="inherit-count" min="2" max="6" value="${escapeHtml(String(inheritCount))}" />
+      </label>
+      <label class="premise-chip premise-chip--inherit-field">
+        Lv
+        <input type="number" id="inherit-hint" min="1" max="5" value="${escapeHtml(String(inheritHint))}" />
+      </label>
+      <label class="premise-chip premise-chip--inherit-field">
+        base
+        <input type="number" id="inherit-base" min="1" value="${escapeHtml(String(inheritBase))}" />
+      </label>
+    `;
+  } else {
+    html += `
+      <input type="hidden" id="inherit-count" value="${escapeHtml(String(inheritCount))}" />
+      <input type="hidden" id="inherit-hint" value="${escapeHtml(String(inheritHint))}" />
+      <input type="hidden" id="inherit-base" value="${escapeHtml(String(inheritBase))}" />
+    `;
+  }
   if (excludedCount > 0) {
     html += `<span class="premise-chip premise-chip--warn">除外 ${excludedCount}</span>`;
   }
   el.innerHTML = html;
-  syncInheritPopoverVisibility();
+  bindInheritInlineFields();
+
+  /* recalc のたび再描画しても入力フォーカスを維持 */
+  if (keepFocusId) {
+    const field = document.getElementById(keepFocusId);
+    if (field && field.type !== "hidden") {
+      field.focus();
+      if (typeof keepSelStart === "number" && field.setSelectionRange) {
+        try {
+          field.setSelectionRange(keepSelStart, keepSelEnd);
+        } catch {
+          /* number input 等で未対応でも無視 */
+        }
+      }
+    }
+  }
+}
+
+function bindInheritInlineFields() {
+  const onOptionChange = () => {
+    updateDeckFootbandMeta();
+    recalc();
+  };
+  ["inherit-count", "inherit-hint", "inherit-base"].forEach((id) => {
+    const field = document.getElementById(id);
+    if (!field || field.type === "hidden") return;
+    field.addEventListener("change", onOptionChange);
+    field.addEventListener("input", onOptionChange);
+  });
 }
 
 function buildCharacterPickerItems() {
@@ -909,25 +960,13 @@ function bindEventChoiceDialog() {
   });
 }
 
-function setInheritPopoverOpen(open) {
-  const pop = document.getElementById("inherit-popover");
-  if (!pop) return;
-  const inheritOn = document.getElementById("inherit-enabled")?.checked;
-  pop.hidden = !(open && inheritOn);
+function setInheritPopoverOpen(_open) {
+  /* 上展開は廃止。継承パラメータはトータルバー内インライン */
 }
 
-function syncInheritPopoverVisibility() {
-  const pop = document.getElementById("inherit-popover");
-  if (!pop) return;
-  const inheritOn = document.getElementById("inherit-enabled")?.checked;
-  if (!inheritOn) pop.hidden = true;
-}
+function syncInheritPopoverVisibility() {}
 
-function bindInheritPopover() {
-  document.getElementById("inherit-popover-close")?.addEventListener("click", () => {
-    setInheritPopoverOpen(false);
-  });
-}
+function bindInheritPopover() {}
 
 /** 列下要約の並び: 金（選択中 or 選択肢に金あり）→ 白/ステ → 自動 */
 function selectableEventSortKey(evt) {
@@ -1550,16 +1589,7 @@ function bindResultSort() {
 }
 
 function bindOptions() {
-  const onOptionChange = () => {
-    updateTotalBarChips();
-    updateDeckFootbandMeta();
-    recalc();
-  };
-  ["inherit-count", "inherit-hint", "inherit-base"].forEach((id) => {
-    const el = document.getElementById(id);
-    el.addEventListener("change", onOptionChange);
-    el.addEventListener("input", onOptionChange);
-  });
+  /* 継承入力は updateTotalBarChips → bindInheritInlineFields で都度配線 */
 }
 
 /** タイトル（＋任意でレアリティ・タイプ）でサポカを検索 */
