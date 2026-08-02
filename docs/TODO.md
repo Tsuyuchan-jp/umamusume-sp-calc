@@ -40,7 +40,7 @@
 
 ## 現在フォーカス（1行）
 
-**P2 編成スクショ** — 右パネル採用済 · 角の食い込み修正目視（[screenshot-share-hero.html](./product/mockups/screenshot-share-hero.html)）
+**P2 編成スクショ** — v11 初期編成サンプル目視（[screenshot-share-hero.html](./product/mockups/screenshot-share-hero.html)）
 
 ---
 
@@ -60,7 +60,7 @@
   - メモリ（localStorage）は済。共有用の画像書き出しは未着手  
   - 要件メモ: [product/screenshot-requirements.md](./product/screenshot-requirements.md)  
   - 用途第一: 攻略記事貼付。専用横長カード。コピー優先＋保存。モード非依存  
-  - 次: **主案目視** → [mockups/screenshot-share-hero.html](./product/mockups/screenshot-share-hero.html)（採用 / 方向違い / 惜しい＋一言）  
+  - 次: **v11 目視**（初期編成の実データ入り）→ [mockups/screenshot-share-hero.html](./product/mockups/screenshot-share-hero.html)（採用 / 方向違い / 惜しい＋一言）  
   - 受け入れ（暫定）: 現在設計を1枚の共有カードとして保存／コピーできる
 
 - [ ] **タイプ印位置の最終微調整**（ユーザー指示があったときだけ）  

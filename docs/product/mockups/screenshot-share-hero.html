@@ -3,15 +3,16 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>編成スクショ — 主案 v8（C · LayerX×TellerNovel）</title>
+  <title>編成スクショ — 主案 v11（初期編成サンプル）</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@700;900&display=swap" rel="stylesheet" />
   <style>
     /*
-      主案 v8 — 型C継続
+      主案 v11 — 型C継続＋初期編成サンプル流し込み
       LayerX寄り（左テキスト／右グリッド一体）× TellerNovel（黒タグでカテゴリ分け）
       - 金スキルは左一覧 → 右はサポカ画像のみ（キャプション・タイプ丸なし）
+      - SP・金・前提は buildSkillPlan（切れ者ON・継承×4 Lv3・ヒントLv5・既定イベント）
     */
     :root {
       --ink: #1a1630;
@@ -233,14 +234,18 @@
     }
     .gold-list li {
       display: grid;
-      grid-template-columns: 4.8em 1fr;
+      grid-template-columns: 5.6em minmax(0, 1fr);
       gap: 4px;
-      font-size: 11px;
+      font-size: 10.5px;
       font-weight: 900;
       color: var(--ink);
       line-height: 1.35;
     }
     .gold-list li span { color: #8a849e; font-weight: 700; }
+    .gold-list li strong {
+      min-width: 0;
+      overflow-wrap: anywhere;
+    }
     .gold-list li.is-mute,
     .gold-list li.is-mute strong { color: #b0aabc; font-weight: 700; }
 
@@ -408,15 +413,15 @@
 <body>
   <div class="shell">
     <div class="banner">
-      <strong>主案 v10.4 · 右パネル採用（型Cハイブリッド）</strong> —
-      右デザイン採用。グラス角へのカード食い込みを余白で回避、矩形影を drop-shadow に変更。
+      <strong>主案 v11 · 初期編成サンプル流し込み</strong> —
+      アプリ既定の育成＋サポ6・既定イベント選択・切れ者ON／継承×4 Lv3／ヒントLv5で SP・金・件数を実計算。
       参考: <a href="./screenshot-share-refs.html">一覧</a>
     </div>
 
-    <h1 class="page-title">編成スクショ · 共有カード主案 v10</h1>
-    <p class="lead">大枠確定。サポの縦横比を守り、右面に世界観背景を乗せる。</p>
+    <h1 class="page-title">編成スクショ · 共有カード主案 v11</h1>
+    <p class="lead">大枠確定済み。文言・折り返し・件数の見え方を記事貼付想定で確認してください。</p>
 
-    <article class="share" aria-label="共有カード主案 v10">
+    <article class="share" aria-label="共有カード主案 v11（初期編成）">
       <section class="left">
         <div class="eyebrow">
           <span class="eyebrow__cat">TRESENKEN · NEED SP</span>
@@ -424,15 +429,15 @@
         </div>
 
         <div>
-          <h2 class="title">切れ者前提・パワ寄せ</h2>
+          <h2 class="title">初期編成サンプル</h2>
           <p class="title-sub">アーモンドアイ · The Changer</p>
         </div>
 
         <div class="sp-row">
-          <div class="sp-num">12,450<em>SP</em></div>
+          <div class="sp-num">9,715<em>SP</em></div>
           <div class="sp-meta">
-            計上 <strong>42</strong> スキル<br />
-            除外 <strong>3</strong> 件
+            計上 <strong>76</strong> スキル<br />
+            除外 <strong>0</strong> 件
           </div>
         </div>
 
@@ -442,11 +447,10 @@
             <div class="block__body">
               <div class="tags">
                 <span class="tag is-ok">切れ者</span>
-                <span class="tag is-key">ヒント Lv3</span>
-                <span class="tag is-hot">RMJ 参加</span>
-                <span class="tag">継承 +120</span>
-                <span class="tag">エアリンク</span>
-                <span class="tag">レギュ ◎のみ</span>
+                <span class="tag is-key">ヒント Lv5</span>
+                <span class="tag is-hot">RMJ よくばり</span>
+                <span class="tag">継承 ×4 Lv3</span>
+                <span class="tag">ドトウリンク</span>
               </div>
             </div>
           </div>
@@ -455,12 +459,12 @@
             <span class="pill">金スキル</span>
             <div class="block__body">
               <ul class="gold-list">
-                <li><span>スピエア</span><strong>切れ者</strong></li>
-                <li><span>スピテイオー</span><strong>先手必勝</strong></li>
-                <li><span>スピタップ</span><strong>冷静</strong></li>
-                <li><span>スタドトウ</span><strong>豪脚</strong></li>
-                <li class="is-mute"><span>賢ヤング</span><strong>—</strong></li>
-                <li><span>友人たづな</span><strong>中盤巧者</strong></li>
+                <li><span>スピグルーヴ</span><strong>王手</strong></li>
+                <li><span>スピテイオー</span><strong>迸る気迫</strong></li>
+                <li><span>スピタップ</span><strong>トップランナー</strong></li>
+                <li><span>スタドトウ</span><strong>弧線のプロフェッサー</strong></li>
+                <li><span>賢ヤング</span><strong>尻尾の滝登り</strong></li>
+                <li class="is-mute"><span>友人たづな</span><strong>—</strong></li>
               </ul>
             </div>
           </div>
@@ -468,8 +472,8 @@
           <div class="block">
             <span class="pill">条件</span>
             <div class="block__body">
-              シナリオ <strong>トレセン軒</strong> ／ ヒント <strong>Lv3換算</strong> ／ 継承固有 <strong>+120</strong><br />
-              除外は件数のみ。結果表は含まない。
+              シナリオ <strong>トレセン軒</strong> ／ ヒント <strong>Lv5</strong> ／ 継承固有 <strong>×4 · Lv3</strong><br />
+              金は各サポの既定選択のうち代表1件。除外は件数のみ。結果表は含まない。
             </div>
           </div>
         </div>
@@ -489,19 +493,19 @@
         <div class="grid-stage">
           <div class="grid-stage__label">SUPPORT · 3×2</div>
           <div class="grid-bleed" aria-label="サポートカード">
-            <figure><img src="../../../assets/supports/30282.webp" alt="エアグルーヴ" /></figure>
-            <figure><img src="../../../assets/supports/30275.webp" alt="テイオー" /></figure>
-            <figure><img src="../../../assets/supports/30298.webp" alt="タップ" /></figure>
-            <figure><img src="../../../assets/supports/30304.webp" alt="ドトウ" /></figure>
-            <figure><img src="../../../assets/supports/30289.webp" alt="ヤング" /></figure>
-            <figure><img src="../../../assets/supports/30305.webp" alt="たづな" /></figure>
+            <figure><img src="../../../assets/supports/30282.webp" alt="スピグルーヴ" /></figure>
+            <figure><img src="../../../assets/supports/30275.webp" alt="スピテイオー" /></figure>
+            <figure><img src="../../../assets/supports/30298.webp" alt="スピタップ" /></figure>
+            <figure><img src="../../../assets/supports/30304.webp" alt="スタドトウ" /></figure>
+            <figure><img src="../../../assets/supports/30289.webp" alt="賢ヤング" /></figure>
+            <figure><img src="../../../assets/supports/30305.webp" alt="友人たづな" /></figure>
           </div>
         </div>
       </section>
     </article>
 
     <div class="judge">
-      <strong>判断のお願い</strong><br />
+      <strong>判断のお願い</strong>（初期編成の実データ入り）<br />
       返事例: <code>採用</code> / <code>方向違い</code> / <code>惜しい：〇〇</code>
     </div>
   </div>
