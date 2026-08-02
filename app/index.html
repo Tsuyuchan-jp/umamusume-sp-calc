@@ -25,6 +25,18 @@
         <button type="button" class="layout-mode-seg__btn" data-layout-mode="auto">自動（幅）</button>
       </div>
       <span class="layout-modebar__hint" id="layout-mode-hint">ギャラリー: 上段＝編成 / 下段＝結果</span>
+      <div class="layout-share" id="layout-share" aria-label="編成画像の共有">
+        <button
+          type="button"
+          id="copy-share-card"
+          class="share-card-btn share-card-btn--primary"
+        >
+          画像コピー
+        </button>
+        <button type="button" id="save-share-card" class="share-card-btn">
+          PNG
+        </button>
+      </div>
     </aside>
 
     <dialog id="memory-dialog" class="memory-dialog" aria-labelledby="memory-dialog-title">
@@ -255,18 +267,6 @@
           <header class="app-header">
             <div class="header-text">
               <h1>SP <span class="app-brand-accent">Calc</span><span class="app-version">v0.1.14</span></h1>
-            </div>
-            <div class="header-share" id="header-share" aria-label="編成画像の共有">
-              <button
-                type="button"
-                id="copy-share-card"
-                class="share-card-btn share-card-btn--primary"
-              >
-                画像コピー
-              </button>
-              <button type="button" id="save-share-card" class="share-card-btn">
-                PNG
-              </button>
             </div>
             <div class="header-actions">
               <button type="button" id="memory-open" class="help-open-btn" aria-haspopup="dialog" aria-controls="memory-dialog">

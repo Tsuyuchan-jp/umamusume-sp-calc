@@ -22,7 +22,17 @@
   opacity: 1;
 }
 
-/* 共有ボタン（最上部 .header-share。結果ツールバーには置かない） */
+/* 共有ボタン（両モード共通: 最上部 layout-modebar 右端） */
+.layout-share {
+  display: flex;
+  flex-shrink: 0;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  align-items: center;
+  justify-content: flex-end;
+  margin-left: auto;
+}
+
 .share-card-btn {
   box-sizing: border-box;
   font: inherit;
@@ -30,22 +40,27 @@
   font-weight: 900;
   line-height: 1.25;
   padding: 0.35rem 0.7rem;
-  border: 0;
+  border: 1px solid rgba(255, 255, 255, 0.35);
   border-radius: 6px;
   cursor: pointer;
   white-space: nowrap;
   flex-shrink: 0;
-  background: #f0ecf5;
-  color: #463f70;
+  background: rgba(255, 255, 255, 0.14);
+  color: #fff;
 }
 
 .share-card-btn--primary {
   background: linear-gradient(180deg, #f5cf6f, #e8b84a);
   color: #1a1630;
+  border-color: #f5cf6f;
 }
 
 .share-card-btn:not(:disabled):hover {
-  filter: brightness(1.06);
+  background: rgba(255, 255, 255, 0.22);
+}
+
+.share-card-btn--primary:not(:disabled):hover {
+  background: linear-gradient(180deg, #f8d984, #efc25a);
 }
 
 .share-card-btn:disabled {
@@ -57,6 +72,7 @@
 .share-card-btn--error {
   background: linear-gradient(180deg, #ff75a3, #f7518b) !important;
   color: #fff !important;
+  border-color: transparent !important;
 }
 
 .share-card-btn:focus-visible {
@@ -64,57 +80,8 @@
   outline-offset: 2px;
 }
 
-/* 紫ヘッダー上 */
-.panel--deck > .app-header .share-card-btn {
-  border: 1px solid rgba(255, 255, 255, 0.35);
-  background: rgba(255, 255, 255, 0.14);
-  color: #fff;
-}
-
-.panel--deck > .app-header .share-card-btn--primary {
-  background: linear-gradient(180deg, #f5cf6f, #e8b84a);
-  color: #1a1630;
-  border-color: #f5cf6f;
-}
-
-.panel--deck > .app-header .share-card-btn:not(:disabled):hover {
-  background: rgba(255, 255, 255, 0.22);
-}
-
-.panel--deck > .app-header .share-card-btn--primary:not(:disabled):hover {
-  background: linear-gradient(180deg, #f8d984, #efc25a);
-  filter: none;
-}
-
-/* 広幅スプリット退避先（modebar 右端。トータルバーには載せない） */
-.layout-modebar > .header-share {
-  margin-left: auto;
-}
-
-.layout-modebar .share-card-btn {
-  border: 1px solid rgba(255, 255, 255, 0.35);
-  background: rgba(255, 255, 255, 0.14);
-  color: #fff;
-}
-
-.layout-modebar .share-card-btn--primary {
-  background: linear-gradient(180deg, #f5cf6f, #e8b84a);
-  color: #1a1630;
-  border-color: #f5cf6f;
-}
-
-.layout-modebar .share-card-btn:not(:disabled):hover {
-  background: rgba(255, 255, 255, 0.22);
-}
-
-.layout-modebar .share-card-btn--primary:not(:disabled):hover {
-  background: linear-gradient(180deg, #f8d984, #efc25a);
-  filter: none;
-}
-
 @media (max-width: 560px) {
-  .header-share .share-card-btn,
-  .layout-modebar .share-card-btn {
+  .layout-share .share-card-btn {
     font-size: 0.68rem;
     padding: 0.3rem 0.55rem;
   }

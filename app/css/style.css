@@ -60,17 +60,6 @@ header p {
   justify-content: flex-end;
 }
 
-/* 共有ボタン専用枠（.header-actions とは別。トータルバーへは移さない） */
-.header-share {
-  display: flex;
-  flex-shrink: 0;
-  flex-wrap: wrap;
-  gap: 0.35rem;
-  align-items: center;
-  justify-content: flex-end;
-  margin-left: auto;
-}
-
 .help-open-btn:hover {
   background: rgba(255, 255, 255, 0.12);
 }
@@ -1125,6 +1114,8 @@ input[type="search"] {
 .layout-modebar__hint {
   color: #bebbce;
   font-size: 0.7rem;
+  flex: 1 1 auto;
+  min-width: 0;
 }
 
 .layout-mode-seg {
