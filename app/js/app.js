@@ -2005,8 +2005,8 @@ function bindShareCardButtons() {
 
   const cleanupMount = () => {
     mount.replaceChildren();
-    mount.hidden = true;
     mount.setAttribute("aria-hidden", "true");
+    mount.classList.remove("share-card-mount--capture");
   };
 
   const runShare = async (mode) => {
@@ -2022,7 +2022,7 @@ function bindShareCardButtons() {
       const model = getShareCardPayload();
       const card = await renderShareCardToMount(mount, model);
       if (isCopy) {
-        const ok = await copyShareCardPng(card);
+        const ok = await copyShareCardPng(card, mount);
         showShareCardButtonFeedback(
           btn,
           defaultLabel,
@@ -2030,7 +2030,7 @@ function bindShareCardButtons() {
           !ok
         );
       } else {
-        await saveShareCardPng(card);
+        await saveShareCardPng(card, mount);
         showShareCardButtonFeedback(btn, defaultLabel, "保存しました", false);
       }
     } catch (e) {

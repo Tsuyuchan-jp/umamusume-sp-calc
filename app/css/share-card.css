@@ -5,11 +5,20 @@
 
 .share-card-mount {
   position: fixed;
-  left: -12000px;
+  left: 0;
   top: 0;
   z-index: -1;
   pointer-events: none;
-  visibility: hidden;
+  opacity: 0;
+  overflow: hidden;
+  width: 1080px;
+  height: 608px;
+}
+
+/* キャプチャ直前のみ可視化（html2canvas は hidden / opacity:0 だと真っ白になる） */
+.share-card-mount.share-card-mount--capture {
+  z-index: 2147483646;
+  opacity: 1;
 }
 
 .share-card-mount .share {
@@ -25,7 +34,8 @@
   box-sizing: border-box;
   width: 1080px;
   max-width: 1080px;
-  aspect-ratio: 16 / 9;
+  height: 608px;
+  max-height: 608px;
   margin: 0;
   background: var(--bg);
   border-radius: 4px;

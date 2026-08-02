@@ -28,6 +28,7 @@ const SHARE_STYLE_LABELS = {
 };
 
 const CARD_WIDTH_PX = 1080;
+const CARD_HEIGHT_PX = 608;
 let html2canvasPromise = null;
 
 /**
@@ -350,7 +351,7 @@ export function renderShareCardElement(model) {
         return "<figure></figure>";
       }
       const url = supportImageUrl(id);
-      return `<figure><img src="${escapeHtml(url)}" alt="" crossorigin="anonymous" /></figure>`;
+      return `<figure><img src="${escapeHtml(url)}" alt="" /></figure>`;
     })
     .join("");
 
@@ -407,7 +408,7 @@ export function renderShareCardElement(model) {
     </section>
     <section class="right">
       <div class="right__trainee">
-        <img src="${escapeHtml(charUrl)}" alt="" crossorigin="anonymous" />
+        <img src="${escapeHtml(charUrl)}" alt="" />
         <div>
           <div class="right__trainee-lab">育成ウマ娘</div>
           <p class="right__trainee-name">${escapeHtml(model.subtitle)}</p>
@@ -431,7 +432,6 @@ export function renderShareCardElement(model) {
  */
 export async function renderShareCardToMount(mount, model) {
   mount.replaceChildren();
-  mount.hidden = false;
   mount.removeAttribute("aria-hidden");
 
   const card = renderShareCardElement(model);
@@ -453,7 +453,65 @@ export async function renderShareCardToMount(mount, model) {
   );
 
   fitManualExclusions(card, model.manualExcluded);
+
+  // レイアウト確定を待つ（aspect-ratio 非対応環境でも高さが効くよう CSS で固定済み）
+  await new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve)));
+  fitManualExclusions(card, model.manualExcluded);
+
   return card;
+}
+
+/**
+ * キャプチャ用にマウントを一時可視化
+ * @param {HTMLElement} mount
+ */
+function beginShareCardCapture(mount) {
+  mount.classList.add("share-card-mount--capture");
+}
+
+/**
+ * @param {HTMLElement} mount
+ */
+function endShareCardCapture(mount) {
+  mount.classList.remove("share-card-mount--capture");
+}
+
+/**
+ * html2canvas 向けにクローン側のスタイルを補正
+ * @param {Document} doc
+ * @param {HTMLElement} clonedCard
+ */
+function patchClonedShareCard(doc, clonedCard) {
+  const mount = clonedCard.closest(".share-card-mount");
+  if (mount) {
+    mount.style.opacity = "1";
+    mount.style.zIndex = "2147483646";
+    mount.style.width = `${CARD_WIDTH_PX}px`;
+    mount.style.height = `${CARD_HEIGHT_PX}px`;
+  }
+
+  clonedCard.style.width = `${CARD_WIDTH_PX}px`;
+  clonedCard.style.height = `${CARD_HEIGHT_PX}px`;
+
+  // backdrop-filter は html2canvas で真っ白になることがある
+  for (const el of clonedCard.querySelectorAll(".right__trainee, .grid-stage")) {
+    el.style.backdropFilter = "none";
+    el.style.webkitBackdropFilter = "none";
+  }
+
+  // 外部タイルは CORS で落ちることがあるためグラデーションのみ残す
+  const right = clonedCard.querySelector(".right");
+  if (right) {
+    right.style.backgroundImage =
+      "linear-gradient(165deg, rgba(90, 72, 160, 0.38) 0%, rgba(55, 48, 110, 0.48) 55%, rgba(40, 36, 88, 0.55) 100%), url('../assets/ui/uma-world.png')";
+    right.style.backgroundSize = "cover, cover";
+    right.style.backgroundPosition = "center, center";
+    right.style.backgroundRepeat = "no-repeat, no-repeat";
+  }
+
+  const pseudo = doc.createElement("style");
+  pseudo.textContent = ".right::before{display:none!important}";
+  doc.head.appendChild(pseudo);
 }
 
 /**
@@ -470,18 +528,33 @@ async function loadHtml2Canvas() {
 
 /**
  * @param {HTMLElement} cardEl
+ * @param {HTMLElement} mount
  * @returns {Promise<HTMLCanvasElement>}
  */
-export async function captureShareCardElement(cardEl) {
+export async function captureShareCardElement(cardEl, mount) {
   const html2canvas = await loadHtml2Canvas();
-  return html2canvas(cardEl, {
-    width: CARD_WIDTH_PX,
-    scale: 2,
-    useCORS: true,
-    allowTaint: false,
-    backgroundColor: "#ffffff",
-    logging: false,
-  });
+
+  if (document.fonts?.ready) {
+    await document.fonts.ready;
+  }
+
+  beginShareCardCapture(mount);
+  void cardEl.offsetHeight;
+
+  try {
+    return await html2canvas(cardEl, {
+      width: CARD_WIDTH_PX,
+      height: CARD_HEIGHT_PX,
+      scale: 2,
+      useCORS: true,
+      allowTaint: true,
+      backgroundColor: "#ffffff",
+      logging: false,
+      onclone: patchClonedShareCard,
+    });
+  } finally {
+    endShareCardCapture(mount);
+  }
 }
 
 /**
@@ -496,10 +569,11 @@ function canvasToBlob(canvas) {
 
 /**
  * @param {HTMLElement} cardEl
+ * @param {HTMLElement} mount
  * @returns {Promise<boolean>}
  */
-export async function copyShareCardPng(cardEl) {
-  const canvas = await captureShareCardElement(cardEl);
+export async function copyShareCardPng(cardEl, mount) {
+  const canvas = await captureShareCardElement(cardEl, mount);
   const blob = await canvasToBlob(canvas);
   if (!blob) return false;
 
@@ -518,10 +592,15 @@ export async function copyShareCardPng(cardEl) {
 
 /**
  * @param {HTMLElement} cardEl
+ * @param {HTMLElement} mount
  * @param {string} [filename]
  */
-export async function saveShareCardPng(cardEl, filename = "umamusume-formation.png") {
-  const canvas = await captureShareCardElement(cardEl);
+export async function saveShareCardPng(
+  cardEl,
+  mount,
+  filename = "umamusume-formation.png"
+) {
+  const canvas = await captureShareCardElement(cardEl, mount);
   const link = document.createElement("a");
   link.download = filename;
   link.href = canvas.toDataURL("image/png");
