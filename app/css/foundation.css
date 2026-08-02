@@ -13,9 +13,11 @@
   --surface-glass: rgba(255, 255, 255, 0.94);
   /* モック H5 と同じ幾何タイル（パネル面） */
   --panel: url("https://static.kouryaku.tools/umamusume/images/app/bg.webp?auto=format") center / 180px repeat, #fff;
-  /* 横長の競馬場イラスト（同梱）。gallery/split で幅が跳ねないようレイアウト幅も統一 */
+  /* 横長の競馬場イラスト（同梱） */
   --world-image: url("../../assets/ui/uma-world.png");
-  --layout-max: 1480px;
+  /* H-Mock: 上クロム幅は不変。本文だけ gallery 狭／split 広 */
+  --layout-chrome-max: 1480px;
+  --layout-gallery-max: 1180px;
 
   /* 文字 */
   --text-primary: #703a13;
