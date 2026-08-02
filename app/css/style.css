@@ -1852,11 +1852,6 @@ body.layout-split .panel--workbench {
   .total-sp-bar-value {
     font-size: 1.45rem;
   }
-
-  body.layout-gallery,
-  body:not(.layout-split) {
-    padding-bottom: calc(7rem + env(safe-area-inset-bottom, 0px) + var(--layout-stack, 0.5rem));
-  }
 }
 
 .deck-slot {
@@ -2677,17 +2672,26 @@ table.result-skills .col-sp {
 
   body.layout-gallery,
   body:not(.layout-split) {
-    padding-bottom: calc(6.25rem + env(safe-area-inset-bottom, 0px) + var(--layout-stack, 0.5rem));
+    padding-bottom: calc(7.75rem + env(safe-area-inset-bottom, 0px) + var(--layout-stack, 0.5rem));
   }
 
   .snap-zone--workbench {
-    scroll-margin-bottom: calc(6.25rem + env(safe-area-inset-bottom, 0px));
+    scroll-margin-bottom: calc(7.75rem + env(safe-area-inset-bottom, 0px));
+  }
+
+  .workbench-body {
+    padding-bottom: 1.25rem;
   }
 
   .result-table-wrap {
     max-height: none;
     overflow: visible;
-    margin-bottom: 0.5rem;
+    margin-bottom: 1.25rem;
+    padding-bottom: 0.75rem;
+  }
+
+  table.result-skills tbody tr:last-child td {
+    padding-bottom: 0.65rem;
   }
 
   main,
@@ -2830,5 +2834,26 @@ table.result-skills .col-sp {
 
   .copy-included-skills {
     min-height: 2.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  body.layout-gallery,
+  body:not(.layout-split) {
+    /* 合計バーが縦積みになるため clearance をさらに確保（1199px ルールより後勝ち） */
+    padding-bottom: calc(10.25rem + env(safe-area-inset-bottom, 0px) + var(--layout-stack, 0.5rem));
+  }
+
+  .snap-zone--workbench {
+    scroll-margin-bottom: calc(10.25rem + env(safe-area-inset-bottom, 0px));
+  }
+
+  .workbench-body {
+    padding-bottom: 1.5rem;
+  }
+
+  .result-table-wrap {
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
   }
 }
