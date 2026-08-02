@@ -1547,6 +1547,8 @@ body.layout-split #snap-zone-deck {
 body.layout-split #snap-zone-workbench {
   grid-column: 2;
   grid-row: 2;
+  display: flex;
+  flex-direction: column;
 }
 
 body.layout-split .panel--deck {
@@ -1559,8 +1561,23 @@ body.layout-split .panel--deck {
 }
 
 body.layout-split .panel--workbench {
+  flex: 1 1 auto;
   min-height: 0;
   height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+body.layout-split .panel--workbench > :not(.result-table-wrap) {
+  flex-shrink: 0;
+}
+
+/* スプリット: 表ラッパが残り高さを受けて縦スクロール */
+body.layout-split .result-table-wrap {
+  flex: 1 1 auto;
+  min-height: 0;
+  max-height: none;
   overflow: auto;
 }
 
@@ -1773,9 +1790,12 @@ body.layout-split .deck-footband {
   overflow: visible;
 }
 
-body.layout-split .panel--deck,
+body.layout-split .panel--deck {
+  min-height: 0;
+}
+
 body.layout-split .panel--workbench {
-  min-height: auto;
+  min-height: 0;
 }
 
 @media (max-width: 900px) {
@@ -2638,7 +2658,7 @@ tr.excluded td {
 }
 
 .result-table-wrap {
-  overflow-x: auto;
+  overflow: auto;
   max-height: min(520px, calc(100dvh - 16rem));
   margin-top: 0.5rem;
   border: 1px solid #e8ecef;
