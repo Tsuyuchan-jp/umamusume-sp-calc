@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>編成スクショ — 型C向け参考候補</title>
+  <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@700;900&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --ink: #1a1630;
+      --soft: #5a5478;
+      --gold: #f5cf6f;
+      --font: "Zen Maru Gothic", Meiryo, sans-serif;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: var(--font);
+      font-weight: 700;
+      background: #2f2a48;
+      color: #eeeaf8;
+      padding: 20px 16px 48px;
+    }
+    .wrap { max-width: 920px; margin: 0 auto; }
+    h1 { margin: 0 0 6px; font-size: 1.15rem; color: var(--gold); }
+    .lead {
+      margin: 0 0 1rem;
+      font-size: 0.82rem;
+      line-height: 1.55;
+      color: #ddd8ef;
+      max-width: 44rem;
+    }
+    .lead a { color: #59ccfc; }
+    .banner {
+      margin-bottom: 1rem;
+      padding: 0.75rem 0.9rem;
+      background: rgba(26,22,48,.92);
+      border-radius: 10px;
+      border-bottom: 3px solid var(--gold);
+      font-size: 0.78rem;
+      line-height: 1.5;
+    }
+    .banner strong { color: var(--gold); }
+    h2 {
+      margin: 1.4rem 0 0.55rem;
+      font-size: 0.88rem;
+      color: var(--gold);
+      letter-spacing: 0.04em;
+    }
+    .card {
+      background: #fff;
+      color: var(--ink);
+      border-radius: 10px;
+      padding: 0.85rem 1rem;
+      margin-bottom: 0.65rem;
+      border: 2px solid #463f70;
+    }
+    .card h3 {
+      margin: 0 0 0.25rem;
+      font-size: 0.86rem;
+    }
+    .tag {
+      display: inline-block;
+      margin-bottom: 0.35rem;
+      padding: 0.1rem 0.4rem;
+      border-radius: 4px;
+      font-size: 0.62rem;
+      font-weight: 900;
+      background: #eeeaf6;
+      color: #463f70;
+    }
+    .tag--best { background: #463f70; color: #fff; }
+    .tag--near { background: #e8f4ff; color: #0c5b92; }
+    .tag--alt { background: #fff4d0; color: #7a5200; }
+    .card p {
+      margin: 0 0 0.4rem;
+      font-size: 0.72rem;
+      color: var(--soft);
+      line-height: 1.5;
+    }
+    .card ul {
+      margin: 0.2rem 0 0.45rem;
+      padding-left: 1.1rem;
+      font-size: 0.72rem;
+      color: var(--ink);
+      line-height: 1.45;
+    }
+    .card a {
+      font-size: 0.72rem;
+      color: #0c5b92;
+      font-weight: 900;
+      word-break: break-all;
+    }
+    .foot {
+      margin-top: 1.2rem;
+      font-size: 0.78rem;
+      color: #ddd8ef;
+      line-height: 1.55;
+    }
+    .foot code {
+      background: rgba(0,0,0,.25);
+      padding: 1px 6px;
+      border-radius: 4px;
+      color: #59ccfc;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="banner">
+      <strong>エージェント収集 · 型C向け参考</strong> —
+      「左テキスト／右ビジュアルグリッド」で再現しやすいものを優先。
+      ローカル保存済み参考: <code>_refs/layout/ref-c-layerx.png</code> / <code>ref-c-tellernovel.png</code>
+    </div>
+
+    <h1>編成スクショ — 型C向け参考候補</h1>
+    <p class="lead">
+      現行ベスト候補モック: <a href="./screenshot-share-hero.html">型C v7</a> ·
+      比較: <a href="./screenshot-share-type-b.html">型B</a>
+    </p>
+
+    <h2>優先度高（型Cの型そのもの）</h2>
+
+    <section class="card">
+      <span class="tag tag--best">最優先</span>
+      <h3>1. LayerX Company Deck（オフィス紹介スライド）</h3>
+      <p>ユーザー提示の型C原点。左に文章・数字、右に写真グリッド（2×3）を面として見せる。</p>
+      <ul>
+        <li>借りる: 左右分割、右グリッドの一体感、左の余白と見出し階層</li>
+        <li>借りない: 採用コピーのトーンそのもの</li>
+      </ul>
+      <a href="https://speakerdeck.com/layerx/company-deck" target="_blank" rel="noopener">https://speakerdeck.com/layerx/company-deck</a>
+      （オフィス頁付近を重点）
+    </section>
+
+    <section class="card">
+      <span class="tag tag--best">最優先</span>
+      <h3>2. TellerNovel「働き方・制度」系カルチャー頁</h3>
+      <p>左にタグ＋箇条書き、右に揃った正方形グリッド。情報カテゴリ分けがスクショの「前提／金／条件」に転用しやすい。</p>
+      <ul>
+        <li>借りる: 黒タグでカテゴリ見出し、右グリッドの均一さ</li>
+        <li>ローカル: <code>_refs/layout/ref-c-tellernovel.png</code></li>
+      </ul>
+    </section>
+
+    <section class="card">
+      <span class="tag tag--near">近い</span>
+      <h3>3. 採用ピッチ資料の構成解説（Cone）</h3>
+      <p>「環境・ギャラリー」枠で写真グリッドを置く定石を説明。実画像の型カタログとして読む。</p>
+      <a href="https://cone-c-slide.com/see-sla/blog/recruitment-pitch/" target="_blank" rel="noopener">https://cone-c-slide.com/see-sla/blog/recruitment-pitch/</a>
+    </section>
+
+    <section class="card">
+      <span class="tag tag--near">近い</span>
+      <h3>4. 採用ピッチ資料まとめ（カロアタイムズ）</h3>
+      <p>LayerX / SmartHR など公開デックへの入口。型Cの実例を横断で眺めやすい。</p>
+      <a href="https://caroa.jp/article/rFa4Iux8" target="_blank" rel="noopener">https://caroa.jp/article/rFa4Iux8</a>
+    </section>
+
+    <section class="card">
+      <span class="tag tag--near">構図の言語化</span>
+      <h3>5. Deckary: Two-column / Image+Text / Grid layouts</h3>
+      <p>英語だが「左テキスト右ビジュアル」「グリッドは最大6枠」など型の名前がはっきりしている。</p>
+      <a href="https://deckary.com/blog/powerpoint-layout-ideas" target="_blank" rel="noopener">https://deckary.com/blog/powerpoint-layout-ideas</a>
+    </section>
+
+    <h2>用途近いが型は別（副参考）</h2>
+
+    <section class="card">
+      <span class="tag tag--alt">用途参考</span>
+      <h3>6. 競馬予想カードメーカー群</h3>
+      <p>「数値＋条件を1枚にしてXに貼る」用途は近い。見た目は馬券／印表寄りで、型Cのリッチさとは別物。</p>
+      <ul>
+        <li><a href="https://nobinobi-kaisyu.com/keiba-yoso-card/" target="_blank" rel="noopener">野比・予想カード</a></li>
+        <li><a href="https://southzone.sakura.ne.jp/fig/" target="_blank" rel="noopener">競馬予想画像ジェネレーター</a></li>
+        <li><a href="https://umabat.com/prediction-card-2/" target="_blank" rel="noopener">UMABAT 予想カード</a></li>
+      </ul>
+    </section>
+
+    <section class="card">
+      <span class="tag tag--alt">サイズ参考</span>
+      <h3>7. X 横長1枚の推奨サイズ</h3>
+      <p>投稿時の切れ方確認用。型ではないが受け入れ条件に効く（例: 1200×675 / 16:9）。</p>
+      <a href="https://manga-whomor.com/column/xtwitterillustsize/" target="_blank" rel="noopener">https://manga-whomor.com/column/xtwitterillustsize/</a>
+    </section>
+
+    <h2>このあとの見方</h2>
+    <p class="foot">
+      おすすめ: <strong>1と2をブラウザで眺め</strong>、型C v7と比べる。<br />
+      返事例: <code>C継続・LayerX寄りで磨き</code> / <code>TellerNovelのタグ分けが良い</code> / <code>競馬カード用途も混ぜたい</code>
+    </p>
+  </div>
+</body>
+</html>
