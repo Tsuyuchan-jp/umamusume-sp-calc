@@ -156,7 +156,8 @@ body > .app-main {
   box-shadow: none;
   border: 0;
   border-bottom: 3px solid var(--c-gold, #f5cf6f);
-  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  /* 角丸は親パネルの overflow クリップに任せる（二重 AA 防止） */
+  border-radius: 0;
 }
 
 .app-brand-accent {
@@ -211,26 +212,45 @@ body.layout-split .panel--deck > .app-header {
 }
 
 .panel--deck {
-  /* タイル下の基色を紫に：角丸 overflow クリップの AA が白を拾わない */
-  background: url("https://static.kouryaku.tools/umamusume/images/app/bg.webp?auto=format")
-      center / 180px repeat,
-    var(--ink-deep);
+  position: relative;
+  isolation: isolate;
+  /* クリップ要素の背景は紫のみ（白タイルを載せると角AAが白フリンジになる） */
+  background: var(--ink-deep);
   box-shadow: var(--shadow-lg);
-  /* 紫クロムが端まで来る面では白縁はリムに見えるので撤去（分離は影に任せる） */
   border: none;
-  /* g-brand をパネル上端に食い込ませる */
   overflow: hidden;
   padding-top: 0;
 }
 
-.panel--workbench {
+/* 幾何タイルは背面レイヤへ（角の AA 対象外） */
+.panel--deck::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
   background: url("https://static.kouryaku.tools/umamusume/images/app/bg.webp?auto=format")
-      center / 180px repeat,
-    var(--ink-deep);
+    center / 180px repeat;
+}
+
+.panel--workbench {
+  position: relative;
+  isolation: isolate;
+  background: var(--ink-deep);
   box-shadow: var(--shadow-lg);
   border: none;
   overflow: hidden;
   padding-top: 0;
+}
+
+.panel--workbench::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background: url("https://static.kouryaku.tools/umamusume/images/app/bg.webp?auto=format")
+    center / 180px repeat;
 }
 
 .hint {
