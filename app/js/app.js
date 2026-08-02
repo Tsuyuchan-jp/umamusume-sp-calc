@@ -239,6 +239,10 @@ function getDesignTitleInput() {
   return document.getElementById("design-title-input");
 }
 
+function getDesignTitleWrap() {
+  return document.getElementById("design-title-wrap");
+}
+
 function readDesignTitle() {
   return getDesignTitleInput()?.value.trim() ?? "";
 }
@@ -246,6 +250,24 @@ function readDesignTitle() {
 function setDesignTitle(value) {
   const input = getDesignTitleInput();
   if (input) input.value = String(value ?? "");
+}
+
+function enterDesignTitleEdit() {
+  const wrap = getDesignTitleWrap();
+  const input = getDesignTitleInput();
+  if (!wrap || !input) return;
+  wrap.classList.add("is-editing");
+  input.readOnly = false;
+  input.focus();
+  input.select();
+}
+
+function leaveDesignTitleEdit() {
+  const wrap = getDesignTitleWrap();
+  const input = getDesignTitleInput();
+  if (!wrap || !input) return;
+  wrap.classList.remove("is-editing");
+  input.readOnly = true;
 }
 
 function getDefaultDesignTitleForCharacter(characterId) {
@@ -279,9 +301,93 @@ function applyDesignTitleFromSnapshot(snapshot) {
 }
 
 function bindDesignTitleInput() {
+  const wrap = getDesignTitleWrap();
   const input = getDesignTitleInput();
-  if (!input) return;
+  const editBtn = document.getElementById("design-title-edit");
+  if (!wrap || !input) return;
+
+  wrap.addEventListener("click", (e) => {
+    if (e.target.closest("#design-title-edit")) return;
+    if (input.readOnly) enterDesignTitleEdit();
+  });
+
+  editBtn?.addEventListener("click", (e) => {
+    e.stopPropagation();
+    enterDesignTitleEdit();
+  });
+
   input.addEventListener("input", () => scheduleSessionSave());
+  input.addEventListener("blur", () => leaveDesignTitleEdit());
+  input.addEventListener("keydown", (e) => {
+    if (e.key === "Enter" || e.key === "Escape") {
+      e.preventDefault();
+      input.blur();
+    }
+  });
+}
+
+/** 起動時と同じ初期状態へ戻す（メモリ一覧は維持） */
+function resetToInitialDesign() {
+  if (!state) return;
+  if (
+    !window.confirm(
+      "初期状態に戻しますか？\n現在の編成・前提・除外・タイトルは破棄されます（メモリ一覧は消えません）。"
+    )
+  ) {
+    return;
+  }
+
+  applyDefaultCharacter();
+  applyDefaultSupports();
+  state.ui.enabledEventIds = new Set();
+  state.ui.eventChoiceIds = initEventChoiceIds(state.events);
+  state.ui.scenarioLinkChoiceId = "link_dotou";
+  state.ui.seniorRmjChoiceId =
+    state.scenario.seniorRmjChoice?.defaultChoiceId ?? "ramen_yokubari";
+
+  writeDesignOptions({
+    fastLearner: false,
+    trainingHintLevel: 5,
+    inheritEnabled: false,
+    inheritCount: 4,
+    inheritHintLevel: 3,
+    inheritBaseSp: INHERIT_BASE_SP,
+  });
+
+  excludedSkillIds.clear();
+  committedSkillFilter = { ground: "", distance: "", style: "" };
+  writeSkillFilterUI(committedSkillFilter);
+  setResultSortMode("skillId");
+  previousTotal = null;
+  lastRestoreIdWarnings = [];
+  focusSupportSlot = null;
+  setInheritPopoverOpen(false);
+
+  const splitPane = document.getElementById("split-evt-pane");
+  if (splitPane) {
+    splitPane.hidden = true;
+    splitEvtOpen = null;
+  }
+
+  leaveDesignTitleEdit();
+  setDesignTitleDefaultForCurrentCharacter();
+
+  syncHiddenCharacterSelect();
+  renderCharacterSelect();
+  renderDeckDashboard();
+  renderEvents();
+  renderScenarioLinkRadios();
+  renderSeniorRmjRadios();
+  renderScenarioAuto();
+  updateTotalBarChips();
+  recalc();
+  flushSessionSave();
+}
+
+function bindDesignResetButton() {
+  const btn = document.getElementById("design-reset-btn");
+  if (!btn) return;
+  btn.addEventListener("click", () => resetToInitialDesign());
 }
 
 function getSupportById(id) {
@@ -2363,6 +2469,7 @@ async function init() {
     bindHelpDialog();
     bindMemoryDialog();
     bindDesignTitleInput();
+    bindDesignResetButton();
     renderEvents();
     renderScenarioLinkRadios();
     renderSeniorRmjRadios();

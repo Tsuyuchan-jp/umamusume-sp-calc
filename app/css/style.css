@@ -520,15 +520,15 @@ input[type="search"] {
   display: flex;
   flex-direction: column;
   align-items: stretch;
-  gap: 0.45rem;
+  gap: 0.4rem;
   margin-bottom: 0.75rem;
 }
 
 .deck-heading__row {
   display: flex;
   flex-wrap: wrap;
-  align-items: baseline;
-  gap: 0.5rem 1rem;
+  align-items: center;
+  gap: 0.4rem 0.75rem;
 }
 
 .deck-heading h2 {
@@ -537,33 +537,129 @@ input[type="search"] {
   padding: 0;
 }
 
-.deck-heading__title-input {
-  box-sizing: border-box;
-  width: 100%;
-  margin: 0;
-  padding: 0.42rem 0.55rem;
-  border: 1px solid rgba(90, 60, 140, 0.22);
-  border-radius: 6px;
-  background: rgba(255, 255, 255, 0.92);
-  color: var(--text, #2a1f3d);
-  font: inherit;
-  font-size: 0.88rem;
-  line-height: 1.35;
-}
-
-.deck-heading__title-input::placeholder {
-  color: rgba(42, 31, 61, 0.42);
-}
-
-.deck-heading__title-input:focus {
-  outline: 2px solid rgba(180, 120, 255, 0.45);
-  outline-offset: 1px;
-  border-color: rgba(120, 80, 180, 0.45);
-}
-
 .deck-heading__scenario {
   margin: 0;
   font-size: 0.82rem;
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+/* 初期状態リセット（アイコンのみ・テキスト無し） */
+.deck-heading__reset {
+  flex: 0 0 auto;
+  margin-left: auto;
+  width: 2rem;
+  height: 2rem;
+  padding: 0;
+  border: 1px solid rgba(90, 60, 140, 0.16);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.72);
+  color: rgba(90, 60, 140, 0.55);
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  transition: color 0.15s ease, background 0.15s ease, border-color 0.15s ease;
+}
+
+.deck-heading__reset:hover {
+  color: #9b3a66;
+  border-color: rgba(180, 80, 120, 0.35);
+  background: rgba(255, 240, 246, 0.95);
+}
+
+.deck-heading__reset:focus-visible {
+  outline: 2px solid rgba(180, 120, 255, 0.5);
+  outline-offset: 2px;
+}
+
+.deck-heading__reset-icon {
+  width: 1.05rem;
+  height: 1.05rem;
+  display: block;
+}
+
+/* 編成タイトル: 見出し風（通常）＋編集時のみ入力感 */
+.deck-heading__title {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  min-height: 2rem;
+  padding: 0.1rem 0.15rem 0.2rem 0;
+  border-bottom: 1px solid transparent;
+  border-radius: 4px 4px 0 0;
+  cursor: text;
+}
+
+.deck-heading__title:hover {
+  border-bottom-color: rgba(90, 60, 140, 0.22);
+}
+
+.deck-heading__title.is-editing {
+  border-bottom-color: rgba(120, 80, 180, 0.5);
+  background: rgba(90, 45, 160, 0.04);
+}
+
+.deck-heading__title-text {
+  flex: 1 1 auto;
+  min-width: 0;
+  width: 100%;
+  margin: 0;
+  padding: 0.12rem 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: var(--text, #2a1f3d);
+  font: inherit;
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  line-height: 1.35;
+  outline: none;
+  box-shadow: none;
+}
+
+.deck-heading__title-text::placeholder {
+  color: rgba(42, 31, 61, 0.38);
+  font-weight: 600;
+}
+
+.deck-heading__title-text:read-only {
+  cursor: pointer;
+}
+
+.deck-heading__title-edit {
+  flex: 0 0 auto;
+  width: 1.7rem;
+  height: 1.7rem;
+  padding: 0;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: rgba(90, 60, 140, 0.42);
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  opacity: 0.7;
+  transition: opacity 0.15s ease, background 0.15s ease, color 0.15s ease;
+}
+
+.deck-heading__title:hover .deck-heading__title-edit,
+.deck-heading__title.is-editing .deck-heading__title-edit,
+.deck-heading__title-edit:focus-visible {
+  opacity: 1;
+  background: rgba(90, 45, 160, 0.08);
+  color: var(--ink-mid, #5a2d9e);
+}
+
+.deck-heading__title-edit:focus-visible {
+  outline: 2px solid rgba(180, 120, 255, 0.45);
+  outline-offset: 1px;
+}
+
+.deck-heading__title-edit-icon {
+  width: 0.95rem;
+  height: 0.95rem;
+  display: block;
 }
 
 .deck-dashboard__row {
@@ -1507,12 +1603,21 @@ body.layout-split .result-table-wrap {
 body.layout-split .deck-heading {
   flex-shrink: 0;
   margin-bottom: 0.45rem;
-  gap: 0.35rem;
+  gap: 0.3rem;
 }
 
-body.layout-split .deck-heading__title-input {
-  font-size: 0.8rem;
-  padding: 0.35rem 0.45rem;
+body.layout-split .deck-heading__title-text {
+  font-size: 0.95rem;
+}
+
+body.layout-split .deck-heading__reset {
+  width: 1.75rem;
+  height: 1.75rem;
+}
+
+body.layout-split .deck-heading__reset-icon {
+  width: 0.92rem;
+  height: 0.92rem;
 }
 
 body.layout-split .deck-heading h2 {
