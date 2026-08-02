@@ -574,6 +574,40 @@ export async function copyShareCardPng(cardEl, mount) {
 }
 
 /**
+ * ファイル名に使えない文字を除去（Windows 禁止文字など）
+ * @param {string} name
+ * @returns {string}
+ */
+export function sanitizeShareFilenamePart(name) {
+  const cleaned = String(name || "")
+    .trim()
+    .replace(/[<>:"/\\|?*\u0000-\u001f]/g, "")
+    .replace(/\s+/g, "_")
+    .replace(/\.+$/g, "")
+    .slice(0, 80);
+  return cleaned || "編成設計";
+}
+
+/**
+ * PNG 保存名: `{名前}-{YYYYMMDD}-{SP}sp.png`
+ * 名前はカードタイトルと同じ優先（メモリ名 → 育成名 → 編成設計）
+ * @param {{ title?: string, totalSp?: number, date?: Date }} params
+ * @returns {string}
+ */
+export function buildShareCardFilename({
+  title = "",
+  totalSp = 0,
+  date = new Date(),
+} = {}) {
+  const namePart = sanitizeShareFilenamePart(title);
+  const y = date.getFullYear();
+  const m = String(date.getMonth() + 1).padStart(2, "0");
+  const d = String(date.getDate()).padStart(2, "0");
+  const sp = Math.round(Number(totalSp) || 0);
+  return `${namePart}-${y}${m}${d}-${sp}sp.png`;
+}
+
+/**
  * @param {HTMLElement} cardEl
  * @param {HTMLElement} mount
  * @param {string} [filename]

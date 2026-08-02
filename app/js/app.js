@@ -49,6 +49,7 @@ import {
 } from "./skillSource.js";
 import { calcSkillCost } from "./spCost.js";
 import {
+  buildShareCardFilename,
   buildShareCardModel,
   copyShareCardPng,
   renderShareCardToMount,
@@ -106,6 +107,9 @@ let sessionSaveTimer = null;
 
 /** セッション即時保存のイベント登録済み */
 let sessionFlushBound = false;
+
+/** 共有カード用タイトル（メモリ保存／復元時の名前。未設定なら育成名へフォールバック） */
+let activeDesignTitle = "";
 
 /** スプリット左ドックでフォーカス中のサポ枠（0–5）。ギャラリーでは未使用 */
 let focusSupportSlot = null;
@@ -898,7 +902,9 @@ function scheduleSessionSave() {
   sessionSaveTimer = setTimeout(() => {
     sessionSaveTimer = null;
     if (!state) return;
-    saveSessionSnapshot(captureCurrentDesign());
+    const snap = captureCurrentDesign();
+    if (activeDesignTitle) snap.designTitle = activeDesignTitle;
+    saveSessionSnapshot(snap);
   }, 350);
 }
 
@@ -909,7 +915,9 @@ function flushSessionSave() {
     sessionSaveTimer = null;
   }
   if (!state) return;
-  saveSessionSnapshot(captureCurrentDesign());
+  const snap = captureCurrentDesign();
+  if (activeDesignTitle) snap.designTitle = activeDesignTitle;
+  saveSessionSnapshot(snap);
 }
 
 /** タブ非表示・ページ離脱時にセッションを flush */
@@ -1069,13 +1077,15 @@ function bindMemoryDialog() {
   saveBtn.addEventListener("click", () => {
     if (!state) return;
     const snapshot = captureCurrentDesign();
-    saveMemoryEntry({
+    const entry = saveMemoryEntry({
       name: nameInput.value,
       snapshot,
       totalSp: currentPlan?.total ?? null,
     });
+    activeDesignTitle = entry.name;
     nameInput.value = "";
     renderMemoryList();
+    scheduleSessionSave();
   });
 
   nameInput.addEventListener("keydown", (e) => {
@@ -1097,6 +1107,8 @@ function bindMemoryDialog() {
         return;
       }
       if (restoreDesign(entry.snapshot)) {
+        activeDesignTitle = entry.name || "";
+        scheduleSessionSave();
         dialog.close();
       } else {
         window.alert("この設計は復元できませんでした（形式が古い可能性があります）。");
@@ -2091,6 +2103,7 @@ function getShareCardPayload() {
     committedSkillFilter,
     excludedSkillIds,
     reguExcludedCount: currentReguExcludedCount,
+    designTitle: activeDesignTitle,
   });
 }
 
@@ -2142,7 +2155,11 @@ function bindShareCardButtons() {
           !ok
         );
       } else {
-        await saveShareCardPng(card, mount);
+        const filename = buildShareCardFilename({
+          title: model.title,
+          totalSp: model.totalSp,
+        });
+        await saveShareCardPng(card, mount, filename);
         showShareCardButtonFeedback(btn, defaultLabel, "保存しました", false);
       }
     } catch (e) {
@@ -2303,8 +2320,14 @@ async function init() {
     committedSkillFilter = readSkillFilterFromUI();
 
     const session = loadSessionSnapshot();
-    if (session && restoreDesign(session)) {
-      /* 前回セッションを復元（restoreDesign 内で recalc） */
+    if (session) {
+      activeDesignTitle = String(session.designTitle || "").trim();
+      if (restoreDesign(session)) {
+        /* 前回セッションを復元（restoreDesign 内で recalc） */
+      } else {
+        activeDesignTitle = "";
+        recalc();
+      }
     } else {
       recalc();
     }
