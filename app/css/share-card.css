@@ -489,7 +489,7 @@
       rgba(55, 48, 110, 0.48) 55%,
       rgba(40, 36, 88, 0.55) 100%
     ),
-    url("../assets/ui/uma-world.png") center / cover no-repeat;
+    url("../../assets/ui/uma-world.png") center / cover no-repeat;
 }
 
 .share-card-mount .right::before {

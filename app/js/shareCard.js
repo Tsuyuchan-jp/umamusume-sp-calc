@@ -264,7 +264,9 @@ export function buildShareCardModel(params) {
   } = params;
 
   const skillById = new Map((params.skills || []).map((s) => [s.id, s]));
-  const character = (characters || []).find((c) => c.id === ui.characterId);
+  const character = (characters || []).find(
+    (c) => Number(c.id) === Number(ui.characterId)
+  );
   const counts = countSkills(plan.rows);
   const goldGroups = collectGoldGroups({
     plan,
@@ -275,10 +277,12 @@ export function buildShareCardModel(params) {
   });
   const manualExcluded = collectManualExcludedNames(excludedSkillIds, skillById);
 
+  // characters.json は name 正本（displayName はピッカー用の一時フィールド）
+  const characterName = character?.name || "";
   const title =
     String(designTitle || "").trim() ||
-    (character?.displayName
-      ? character.displayName.replace(/^\[[^\]]+\]/, "").trim()
+    (characterName
+      ? characterName.replace(/^\[[^\]]+\]/, "").trim()
       : "編成設計");
 
   return {
@@ -293,7 +297,7 @@ export function buildShareCardModel(params) {
       : "継承 OFF",
     fastLearner: Boolean(options.fastLearner),
     title,
-    subtitle: character?.displayName || "",
+    subtitle: characterName,
     characterId: ui.characterId,
     supportIds: [...ui.supportIds],
     goldGroups,
@@ -548,6 +552,8 @@ export async function captureShareCardElement(cardEl, mount) {
       height: CARD_HEIGHT_PX,
       scale: 2,
       embedFonts: true,
+      // Google Fonts（Shippori / Zen Kaku）を埋め込み可能にする
+      fontStylesheetDomains: ["fonts.googleapis.com", "fonts.gstatic.com"],
     });
   } finally {
     endShareCardCapture(mount);
