@@ -3,15 +3,17 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>編成スクショ — 主案 v5（立ち絵フルブリード）</title>
+  <title>編成スクショ — 主案 v6（半裁立ち絵＋右情報密度）</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@700;900&display=swap" rel="stylesheet" />
   <style>
     /*
-      主案 v5 — 丸ごと差し替え
-      フィードバック: 立ち絵をそのまま貼って上下隙間 → リッチから遠い
-      対応: 育成枠を画像で塗りつぶす（cover + ブリード）。名前は下に重ねる。余白帯を作らない。
+      主案 v6 — 丸ごと差し替え
+      ユーザーイメージ:
+        - 透過立ち絵を縦半分で切り、縦幅フルで左端に設置
+        - サポも左揃え
+        - 広がった右エリアに情報を厚く詰める
     */
     :root {
       --c-dark: #463f70;
@@ -25,6 +27,7 @@
       --c-orange: #ff7300;
       --g-chrome: linear-gradient(180deg, #5a5288, #463f70);
       --g-sec: linear-gradient(180deg, #ff75a3, #f7518b);
+      --g-gold: linear-gradient(90deg, #e9c95f, #e29403);
       --g-acc: linear-gradient(180deg, #80e322, #38c306);
       --g-widget: linear-gradient(180deg, #ffffff, #dad4da);
       --panel: url("https://static.kouryaku.tools/umamusume/images/app/bg.webp?auto=format") center / 160px repeat, #fff;
@@ -58,7 +61,7 @@
 
     .shell {
       position: relative; z-index: 1;
-      width: min(1120px, calc(100% - 24px));
+      width: min(1140px, calc(100% - 24px));
       margin: 0 auto;
       padding: 18px 0 40px;
     }
@@ -90,7 +93,7 @@
       font-size: 13px;
       line-height: 1.5;
       text-shadow: 0 1px 0 #0004;
-      max-width: 46rem;
+      max-width: 48rem;
     }
 
     .stage-label {
@@ -102,10 +105,10 @@
     }
     .stage-label span { color: #ddd8ef; font-size: 11px; }
 
-    /* ========== 共有カード v5 ========== */
+    /* ========== 共有カード v6 ========== */
     .share {
       width: 100%;
-      max-width: 1080px;
+      max-width: 1100px;
       aspect-ratio: 16 / 9;
       margin: 0 auto;
       border-radius: 12px;
@@ -123,8 +126,6 @@
     }
 
     .share__head {
-      position: relative;
-      z-index: 3;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -164,97 +165,67 @@
     .share__brand strong { color: var(--c-gold); }
 
     .share__body {
-      position: relative;
       display: grid;
-      /* 立ち絵を広く取り、隙間を生まない */
-      grid-template-columns: minmax(240px, 0.9fr) minmax(0, 1.05fr) minmax(180px, 0.48fr);
+      /* 半裁立ち絵 | サポ左寄せ | 情報密度ゾーン */
+      grid-template-columns: 148px minmax(0, 0.95fr) minmax(280px, 1.15fr);
       min-height: 0;
       overflow: hidden;
     }
 
-    /* 左：立ち絵フルブリード（余白帯ゼロ） */
+    /* 左端：半裁立ち絵・縦フル */
     .hero {
       position: relative;
       min-width: 0;
       min-height: 0;
       overflow: hidden;
-      border-right: 1px solid rgba(70,63,112,.18);
-      background: #1a1630;
+      background:
+        linear-gradient(180deg, #2a2548 0%, #1a1630 55%, #12101f 100%);
     }
-    /* 画像そのもので面を塗る */
-    .hero__standee {
+    .hero__img {
       position: absolute;
-      inset: 0;
-      z-index: 0;
-    }
-    .hero__standee img {
+      left: 0;
+      top: 0;
+      bottom: 0;
       width: 100%;
       height: 100%;
-      display: block;
       object-fit: cover;
-      /* 公式ページ全体ではなくキャラ本体が枠を占める位置 */
-      object-position: 68% 18%;
-      transform: scale(1.08);
-      transform-origin: 65% 20%;
+      object-position: left center;
+      display: block;
+      filter: drop-shadow(6px 0 14px rgba(0,0,0,.35));
     }
-    /* 角の色面（公式の斜め帯を想起・余白をデザインに変える） */
-    .hero__accent-tl,
-    .hero__accent-br {
+    .hero__fade {
       position: absolute;
-      z-index: 1;
+      inset: 0;
       pointer-events: none;
+      background: linear-gradient(90deg, transparent 55%, rgba(26,22,48,.35) 100%);
     }
-    .hero__accent-tl {
-      top: 0; left: 0;
-      width: 42%;
-      height: 28%;
-      background: linear-gradient(135deg, rgba(120, 190, 255, 0.55), transparent 70%);
-      clip-path: polygon(0 0, 100% 0, 0 100%);
-    }
-    .hero__accent-br {
-      right: 0; bottom: 0;
-      width: 48%;
-      height: 26%;
-      background: linear-gradient(315deg, rgba(220, 50, 70, 0.72), transparent 72%);
-      clip-path: polygon(100% 100%, 0 100%, 100% 0);
-    }
-    /* 名前は画像の上に重ねる（下に別帯を作らない） */
-    .hero__meta {
+    .hero__tag {
       position: absolute;
-      left: 0; right: 0; bottom: 0;
+      left: 6px;
+      bottom: 8px;
       z-index: 2;
-      padding: 28px 10px 10px;
-      background: linear-gradient(180deg, transparent 0%, rgba(26, 22, 48, 0.15) 35%, rgba(26, 22, 48, 0.88) 100%);
-      color: #fff;
-      text-align: center;
-    }
-    .hero__lab {
+      padding: 3px 7px;
+      border-radius: 4px;
+      background: rgba(26, 22, 48, 0.82);
+      border: 1px solid rgba(245,207,111,.45);
+      color: var(--c-gold);
       font-size: 9px;
       font-weight: 900;
-      letter-spacing: .1em;
-      color: var(--c-gold);
-    }
-    .hero__name {
-      margin: 2px 0 0;
-      font-size: 15px;
-      font-weight: 900;
-      line-height: 1.15;
-    }
-    .hero__sub {
-      margin: 2px 0 0;
-      font-size: 10px;
-      color: #ddd8ef;
-      font-weight: 700;
+      letter-spacing: .06em;
+      writing-mode: horizontal-tb;
     }
 
-    /* 中央：サポ 3×2 */
+    /* 中央：サポ 3×2 左揃え */
     .share__deck {
-      padding: 10px 10px 8px;
       min-width: 0;
       min-height: 0;
+      padding: 8px 8px 8px 10px;
       display: flex;
       flex-direction: column;
-      gap: 6px;
+      align-items: stretch;
+      gap: 5px;
+      border-right: 1px solid var(--c-border-light);
+      background: linear-gradient(90deg, rgba(255,255,255,.55), rgba(255,255,255,.2));
     }
     .share__deck-label {
       align-self: flex-start;
@@ -264,15 +235,32 @@
       font-size: 10px;
       font-weight: 900;
       border-radius: 2px;
-      letter-spacing: .04em;
+    }
+    .trainee-line {
+      display: flex;
+      align-items: baseline;
+      gap: 6px;
+      font-size: 12px;
+      font-weight: 900;
+      color: var(--c-dark);
+      line-height: 1.2;
+    }
+    .trainee-line span {
+      font-size: 10px;
+      color: var(--c-accent);
+      font-weight: 900;
     }
     .sup-grid {
       flex: 1;
       min-height: 0;
+      width: 100%;
+      max-width: 100%;
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
       grid-template-rows: repeat(2, minmax(0, 1fr));
-      gap: 7px;
+      gap: 6px;
+      justify-items: stretch;
+      align-self: stretch;
     }
     .slot {
       min-width: 0;
@@ -284,11 +272,11 @@
     .slot__face {
       position: relative;
       min-height: 0;
-      border-radius: 6px;
+      border-radius: 5px;
       overflow: hidden;
       border: 2px solid var(--c-border);
       background: var(--c-label);
-      box-shadow: 0 2px 6px rgba(70,63,112,.14);
+      box-shadow: 0 2px 5px rgba(70,63,112,.12);
     }
     .slot__face img {
       width: 100%;
@@ -299,8 +287,8 @@
     }
     .slot__dot {
       position: absolute;
-      top: 4px; right: 4px;
-      width: 11px; height: 11px;
+      top: 3px; right: 3px;
+      width: 10px; height: 10px;
       border-radius: 50%;
       border: 1.5px solid #fff;
       box-shadow: 0 0 0 1px #0002;
@@ -311,94 +299,101 @@
     .slot__dot.friend { background: var(--t-friend); }
     .slot__name {
       margin: 0;
-      font-size: 11px;
+      font-size: 10px;
       text-align: center;
       font-weight: 900;
       color: var(--c-font);
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
-      line-height: 1.15;
+      line-height: 1.1;
     }
     .slot__gold {
       margin: 0;
-      font-size: 10px;
+      font-size: 9px;
       text-align: center;
       font-weight: 900;
       color: #7a5200;
       background: linear-gradient(180deg, #fff6d0, #ffd978);
       border: 1px solid #e9b84a;
-      border-radius: 4px;
-      padding: 2px 3px;
+      border-radius: 3px;
+      padding: 1px 2px;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
-      line-height: 1.2;
     }
     .slot__gold.is-empty {
       color: #b8ad7a;
-      background: rgba(255,255,255,.45);
+      background: rgba(255,255,255,.4);
       border-style: dashed;
       border-color: #dcc07a;
       font-weight: 700;
     }
 
-    .share__stats {
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      gap: 10px;
-      padding: 12px 14px;
-      background:
-        linear-gradient(180deg, rgba(70,63,112,.07), transparent 28%),
-        radial-gradient(circle at 85% 0%, rgba(245,207,111,.26), transparent 55%),
-        linear-gradient(180deg, #fff, #f1eef6);
-      border-left: 1px solid var(--c-border-light);
+    /* 右：情報を厚く */
+    .share__info {
+      min-width: 0;
       min-height: 0;
+      padding: 8px 12px 8px 12px;
+      display: grid;
+      grid-template-rows: auto auto minmax(0, 1fr) auto;
+      gap: 7px;
+      background:
+        radial-gradient(circle at 100% 0%, rgba(245,207,111,.2), transparent 42%),
+        linear-gradient(180deg, #fff, #f3f0f8);
+      overflow: hidden;
     }
-    .share__sp-label {
+
+    .info-sp {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 8px;
+      align-items: end;
+      padding-bottom: 6px;
+      border-bottom: 2px solid var(--c-dark);
+    }
+    .info-sp__label {
       font-size: 10px;
       color: var(--c-accent);
       font-weight: 900;
-      letter-spacing: .08em;
+      letter-spacing: .06em;
     }
-    .share__sp {
-      margin: 4px 0 0;
-      font-size: clamp(34px, 4.6vw, 48px);
+    .info-sp__num {
+      font-size: clamp(32px, 4.2vw, 44px);
       font-weight: 900;
       line-height: .9;
       color: var(--c-dark);
     }
-    .share__sp em {
+    .info-sp__num em {
       font-style: normal;
-      font-size: .32em;
+      font-size: .34em;
       color: var(--c-orange);
       margin-left: 2px;
-      vertical-align: .45em;
+      vertical-align: .4em;
     }
-    .share__count {
-      margin-top: 10px;
-      font-size: 13px;
-      color: var(--c-accent);
+    .info-sp__side {
+      text-align: right;
+      font-size: 11px;
       font-weight: 900;
-      line-height: 1.4;
+      color: var(--c-accent);
+      line-height: 1.35;
+      padding-bottom: 2px;
     }
-    .share__count strong { color: var(--c-dark); font-size: 1.12em; }
+    .info-sp__side strong { color: var(--c-dark); font-size: 1.15em; }
 
     .chips {
       display: flex;
-      flex-direction: column;
-      gap: 5px;
+      flex-wrap: wrap;
+      gap: 4px;
     }
     .chip {
-      display: flex;
+      display: inline-flex;
       align-items: center;
-      justify-content: center;
-      padding: 7px 8px;
-      border-radius: 6px;
+      padding: 3px 7px;
+      border-radius: 4px;
       border: 1px solid var(--c-border);
       background: var(--g-widget);
-      font-size: 12px;
+      font-size: 10px;
       font-weight: 900;
       color: var(--c-accent);
       white-space: nowrap;
@@ -413,10 +408,117 @@
       border-color: #c00f47;
       color: #fff;
     }
+    .chip.is-soft {
+      background: #f0eef5;
+      border-color: #d8d0e8;
+      color: #7a7394;
+    }
+
+    .info-block {
+      min-height: 0;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 7px;
+    }
+    .panel-mini {
+      min-height: 0;
+      border: 1px solid var(--c-border-light);
+      border-radius: 7px;
+      background: rgba(255,255,255,.85);
+      padding: 6px 7px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      overflow: hidden;
+    }
+    .panel-mini h3 {
+      margin: 0;
+      font-size: 10px;
+      font-weight: 900;
+      color: var(--c-dark);
+      letter-spacing: .04em;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .panel-mini h3::before {
+      content: "";
+      width: 3px;
+      height: 0.9em;
+      border-radius: 2px;
+      background: var(--g-gold);
+    }
+    .gold-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+      overflow: auto;
+      min-height: 0;
+    }
+    .gold-list li {
+      display: grid;
+      grid-template-columns: 4.2em 1fr;
+      gap: 4px;
+      align-items: center;
+      font-size: 10px;
+      font-weight: 900;
+      line-height: 1.2;
+      padding: 3px 4px;
+      border-radius: 4px;
+      background: linear-gradient(180deg, #fff9e8, #ffe9a8);
+      border: 1px solid #e9c45f;
+      color: #5a3d00;
+    }
+    .gold-list li span {
+      color: #9a6b00;
+      font-size: 9px;
+      font-weight: 700;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .gold-list li.is-empty {
+      background: #f7f5fa;
+      border-style: dashed;
+      border-color: #d8d0e8;
+      color: #9a96aa;
+    }
+
+    .meta-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+      font-size: 10px;
+      font-weight: 900;
+      color: var(--c-accent);
+      min-height: 0;
+      overflow: auto;
+    }
+    .meta-list li {
+      display: flex;
+      justify-content: space-between;
+      gap: 6px;
+      padding: 3px 0;
+      border-bottom: 1px dotted #ddd6e8;
+    }
+    .meta-list li strong { color: var(--c-dark); }
+
+    .info-note {
+      font-size: 9.5px;
+      color: var(--c-accent);
+      font-weight: 700;
+      line-height: 1.35;
+      padding-top: 2px;
+      border-top: 1px solid var(--c-border-light);
+    }
 
     .share__foot {
-      position: relative;
-      z-index: 3;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -431,13 +533,13 @@
 
     .contexts {
       display: grid;
-      grid-template-columns: 1.15fr .85fr;
+      grid-template-columns: 1.2fr .8fr;
       gap: 12px;
       margin-top: 22px;
     }
-    @media (max-width: 860px) {
+    @media (max-width: 900px) {
       .contexts { grid-template-columns: 1fr; }
-      .share__body { grid-template-columns: 0.85fr 1fr 150px; }
+      .share__body { grid-template-columns: 120px minmax(0,1fr) minmax(220px,1fr); }
     }
 
     .ctx {
@@ -456,7 +558,6 @@
     }
     .ctx__head span { color: var(--c-gold); margin-left: 6px; font-size: 11px; font-weight: 700; }
     .ctx__body { padding: 12px; }
-
     .note-fake h3 { margin: 0 0 6px; font-size: 15px; color: #222; font-weight: 900; }
     .note-fake p { margin: 0 0 10px; font-size: 12px; line-height: 1.65; color: #444; }
     .note-fake .share,
@@ -466,27 +567,30 @@
       box-shadow: 0 6px 16px #0002;
     }
 
+    .is-embed .share__body { grid-template-columns: 96px minmax(0,.9fr) minmax(180px,1.1fr); }
     .is-embed .share__title { font-size: 12px; }
-    .is-embed .share__sp { font-size: 26px; }
-    .is-embed .share__kicker { font-size: 8px; padding: 1px 5px; }
-    .is-embed .share__brand { font-size: 9px; }
-    .is-embed .hero__name { font-size: 12px; }
-    .is-embed .hero__lab,
-    .is-embed .hero__sub { font-size: 8px; }
-    .is-embed .hero__meta { padding: 18px 6px 6px; }
-    .is-embed .share__deck-label { font-size: 8px; }
-    .is-embed .slot__name { font-size: 8px; }
-    .is-embed .slot__gold { font-size: 8px; padding: 1px 2px; }
-    .is-embed .chip { font-size: 9px; padding: 4px 5px; }
-    .is-embed .share__count { font-size: 10px; margin-top: 6px; }
-    .is-embed .share__sp-label { font-size: 8px; }
-    .is-embed .share__foot { font-size: 8px; padding: 4px 10px; }
-    .is-embed .share__head { padding: 5px 10px; }
-    .is-embed .share__deck { padding: 6px; gap: 4px; }
-    .is-embed .share__stats { padding: 8px; }
-    .is-embed .share__body { grid-template-columns: 0.8fr 1.05fr 115px; }
-    .is-embed .sup-grid { gap: 4px; }
-    .is-embed .slot__dot { width: 8px; height: 8px; top: 2px; right: 2px; }
+    .is-embed .info-sp__num { font-size: 26px; }
+    .is-embed .share__kicker,
+    .is-embed .share__brand,
+    .is-embed .share__deck-label,
+    .is-embed .trainee-line,
+    .is-embed .slot__name,
+    .is-embed .slot__gold,
+    .is-embed .chip,
+    .is-embed .panel-mini h3,
+    .is-embed .gold-list li,
+    .is-embed .meta-list,
+    .is-embed .info-note,
+    .is-embed .info-sp__label,
+    .is-embed .info-sp__side,
+    .is-embed .hero__tag,
+    .is-embed .share__foot { font-size: 8px; }
+    .is-embed .share__head { padding: 5px 8px; }
+    .is-embed .share__deck,
+    .is-embed .share__info { padding: 5px 6px; gap: 4px; }
+    .is-embed .sup-grid { gap: 3px; }
+    .is-embed .gold-list li { grid-template-columns: 3.2em 1fr; padding: 2px 3px; }
+    .is-embed .slot__dot { width: 7px; height: 7px; }
 
     .x-fake {
       background: #fff;
@@ -508,20 +612,8 @@
       color: #0f1419;
     }
 
-    .asset-note {
-      margin-top: 14px;
-      padding: 10px 12px;
-      background: rgba(255,255,255,.12);
-      border: 1px dashed rgba(245,207,111,.45);
-      border-radius: 8px;
-      color: #eeeaf8;
-      font-size: 12px;
-      line-height: 1.55;
-    }
-    .asset-note strong { color: var(--c-gold); }
-
     .judge {
-      margin-top: 14px;
+      margin-top: 16px;
       padding: 12px 14px;
       background: rgba(70,63,112,.94);
       color: #fff;
@@ -544,19 +636,22 @@
   <div class="world" aria-hidden="true"></div>
   <div class="shell">
     <div class="banner">
-      <strong>主案 v5 · 丸ごと差し替え</strong> —
-      「立ち絵の上下隙間」を解消。<em>枠を画像で塗りつぶす</em>（cover / ブリード）。名前は下に重ね、別帯で余白を作らない。
+      <strong>主案 v6 · 丸ごと差し替え</strong> —
+      立ち絵を<em>縦半分＋左端フルハイト</em>。サポ3×2は左ゾーン。
+      右を広げて SP・前提・金一覧・シナリオ条件を厚く配置。
     </div>
 
-    <h1 class="page-title">編成スクショ · 共有カード主案 v5</h1>
-    <p class="lead">育成枠に空き帯を出さない。キャラが面を占め、サポ3×2と SP が横に並ぶ。</p>
+    <h1 class="page-title">編成スクショ · 共有カード主案 v6</h1>
+    <p class="lead">
+      添付イメージどおり：半裁立ち絵で「顔」を出し、空いた右に記事向けの情報を詰める。
+    </p>
 
     <div class="stage-label">
       <h2>OUTPUT · 16:9 共有カード</h2>
-      <span>立ち絵フルブリード ＋ サポ3×2</span>
+      <span>半裁立ち絵 | サポ3×2 | 情報密度ゾーン</span>
     </div>
 
-    <article class="share" aria-label="共有カード主案 v5">
+    <article class="share" aria-label="共有カード主案 v6">
       <header class="share__head">
         <div class="share__head-left">
           <span class="share__kicker">トレセン軒</span>
@@ -566,21 +661,17 @@
       </header>
 
       <div class="share__body">
-        <aside class="hero">
-          <div class="hero__standee">
-            <img src="./_refs/standee-style-sample.png" alt="" />
-          </div>
-          <div class="hero__accent-tl" aria-hidden="true"></div>
-          <div class="hero__accent-br" aria-hidden="true"></div>
-          <div class="hero__meta">
-            <div class="hero__lab">育成</div>
-            <p class="hero__name">アーモンドアイ</p>
-            <p class="hero__sub">The Changer</p>
-          </div>
+        <!-- 半裁立ち絵（2枚目イメージ） -->
+        <aside class="hero" aria-label="育成立ち絵（半裁）">
+          <img class="hero__img" src="./_refs/standee-half-crop-ref.png" alt="" />
+          <div class="hero__fade" aria-hidden="true"></div>
+          <div class="hero__tag">育成</div>
         </aside>
 
+        <!-- サポ左揃え -->
         <section class="share__deck">
           <span class="share__deck-label">サポート 3×2</span>
+          <div class="trainee-line"><span>育成</span>アーモンドアイ · The Changer</div>
           <div class="sup-grid">
             <div class="slot">
               <div class="slot__face"><span class="slot__dot speed"></span><img src="../../../assets/supports/30282.webp" alt="" /></div>
@@ -615,39 +706,70 @@
           </div>
         </section>
 
-        <aside class="share__stats">
-          <div>
-            <div class="share__sp-label">必要 SP（除外後）</div>
-            <div class="share__sp">12,450<em>SP</em></div>
-            <div class="share__count">計上 <strong>42</strong> スキル<br />除外 <strong>3</strong> 件</div>
+        <!-- 右：情報密度 -->
+        <aside class="share__info">
+          <div class="info-sp">
+            <div>
+              <div class="info-sp__label">必要 SP（除外後）</div>
+              <div class="info-sp__num">12,450<em>SP</em></div>
+            </div>
+            <div class="info-sp__side">
+              計上 <strong>42</strong> スキル<br />
+              除外 <strong>3</strong> 件
+            </div>
           </div>
-          <div class="chips">
+
+          <div class="chips" aria-label="前提チップ">
             <span class="chip is-on">切れ者</span>
             <span class="chip is-on">ヒント Lv3</span>
             <span class="chip">継承 +120</span>
+            <span class="chip is-on">エアリンク</span>
             <span class="chip is-signal">RMJ 参加</span>
             <span class="chip">レギュ ◎のみ</span>
+            <span class="chip is-soft">トレLv 50</span>
           </div>
+
+          <div class="info-block">
+            <div class="panel-mini">
+              <h3>金スキル選択</h3>
+              <ul class="gold-list">
+                <li><span>スピエア</span>切れ者</li>
+                <li><span>スピテイオー</span>先手必勝</li>
+                <li><span>スピタップ</span>冷静</li>
+                <li><span>スタドトウ</span>豪脚</li>
+                <li class="is-empty"><span>賢ヤング</span>—</li>
+                <li><span>友人たづな</span>中盤巧者</li>
+              </ul>
+            </div>
+            <div class="panel-mini">
+              <h3>算出条件</h3>
+              <ul class="meta-list">
+                <li><span>シナリオ</span><strong>トレセン軒</strong></li>
+                <li><span>ヒント合計</span><strong>Lv3 換算</strong></li>
+                <li><span>継承固有</span><strong>+120 SP</strong></li>
+                <li><span>レギュレーション</span><strong>◎のみ</strong></li>
+                <li><span>除外</span><strong>3件（一覧なし）</strong></li>
+                <li><span>設計名</span><strong>パワ寄せ</strong></li>
+              </ul>
+            </div>
+          </div>
+
+          <p class="info-note">結果表・除外スキル名は含みません。記事本文側で補足する想定。</p>
         </aside>
       </div>
 
       <footer class="share__foot">
-        <span><strong>トレセン軒</strong> シナリオ · 設計スナップショットより生成</span>
-        <span>結果表は含みません</span>
+        <span><strong>トレセン軒</strong> · 設計スナップショットより生成</span>
+        <span>ウマ娘 SP 計算</span>
       </footer>
     </article>
-
-    <div class="asset-note">
-      <strong>アセットメモ</strong> — モックは公式ページ風サンプルを <em>cover</em> でトリムして使用。
-      本番は透過立ち絵（背景なし）の方がさらに綺麗。直リンクは不採用・クライアント抽出は後続。
-    </div>
 
     <div class="contexts">
       <div class="ctx">
         <div class="ctx__head">note 記事内 <span>埋め込み</span></div>
         <div class="ctx__body note-fake is-embed">
           <h3>本番想定の必要 SP を先に確定する</h3>
-          <p>立ち絵が枠を埋め、サポと数値が横に並ぶイメージ。</p>
+          <p>半裁立ち絵＋左サポ、右に数値と金・条件をまとめたイメージ。</p>
           <article class="share" aria-hidden="true">
             <header class="share__head">
               <div class="share__head-left">
@@ -658,32 +780,43 @@
             </header>
             <div class="share__body">
               <aside class="hero">
-                <div class="hero__standee"><img src="./_refs/standee-style-sample.png" alt="" /></div>
-                <div class="hero__accent-tl" aria-hidden="true"></div>
-                <div class="hero__accent-br" aria-hidden="true"></div>
-                <div class="hero__meta">
-                  <div class="hero__lab">育成</div>
-                  <p class="hero__name">アーモンドアイ</p>
-                </div>
+                <img class="hero__img" src="./_refs/standee-half-crop-ref.png" alt="" />
+                <div class="hero__fade" aria-hidden="true"></div>
               </aside>
               <section class="share__deck">
                 <div class="sup-grid">
-                  <div class="slot"><div class="slot__face"><span class="slot__dot speed"></span><img src="../../../assets/supports/30282.webp" alt="" /></div><p class="slot__name">エア</p><p class="slot__gold">切れ者</p></div>
-                  <div class="slot"><div class="slot__face"><span class="slot__dot speed"></span><img src="../../../assets/supports/30275.webp" alt="" /></div><p class="slot__name">テイオー</p><p class="slot__gold">先手必勝</p></div>
-                  <div class="slot"><div class="slot__face"><span class="slot__dot speed"></span><img src="../../../assets/supports/30298.webp" alt="" /></div><p class="slot__name">タップ</p><p class="slot__gold">冷静</p></div>
-                  <div class="slot"><div class="slot__face"><span class="slot__dot stamina"></span><img src="../../../assets/supports/30304.webp" alt="" /></div><p class="slot__name">ドトウ</p><p class="slot__gold">豪脚</p></div>
-                  <div class="slot"><div class="slot__face"><span class="slot__dot wit"></span><img src="../../../assets/supports/30289.webp" alt="" /></div><p class="slot__name">ヤング</p><p class="slot__gold is-empty">—</p></div>
-                  <div class="slot"><div class="slot__face"><span class="slot__dot friend"></span><img src="../../../assets/supports/30305.webp" alt="" /></div><p class="slot__name">たづな</p><p class="slot__gold">中盤巧者</p></div>
+                  <div class="slot"><div class="slot__face"><span class="slot__dot speed"></span><img src="../../../assets/supports/30282.webp" alt="" /></div><p class="slot__gold">切れ者</p></div>
+                  <div class="slot"><div class="slot__face"><span class="slot__dot speed"></span><img src="../../../assets/supports/30275.webp" alt="" /></div><p class="slot__gold">先手必勝</p></div>
+                  <div class="slot"><div class="slot__face"><span class="slot__dot speed"></span><img src="../../../assets/supports/30298.webp" alt="" /></div><p class="slot__gold">冷静</p></div>
+                  <div class="slot"><div class="slot__face"><span class="slot__dot stamina"></span><img src="../../../assets/supports/30304.webp" alt="" /></div><p class="slot__gold">豪脚</p></div>
+                  <div class="slot"><div class="slot__face"><span class="slot__dot wit"></span><img src="../../../assets/supports/30289.webp" alt="" /></div><p class="slot__gold is-empty">—</p></div>
+                  <div class="slot"><div class="slot__face"><span class="slot__dot friend"></span><img src="../../../assets/supports/30305.webp" alt="" /></div><p class="slot__gold">中盤巧者</p></div>
                 </div>
               </section>
-              <aside class="share__stats">
-                <div>
-                  <div class="share__sp">12,450<em>SP</em></div>
-                  <div class="share__count">計上 <strong>42</strong></div>
+              <aside class="share__info">
+                <div class="info-sp">
+                  <div><div class="info-sp__num">12,450<em>SP</em></div></div>
+                  <div class="info-sp__side">42 スキル</div>
                 </div>
                 <div class="chips">
                   <span class="chip is-on">切れ者</span>
                   <span class="chip is-signal">RMJ</span>
+                </div>
+                <div class="info-block">
+                  <div class="panel-mini">
+                    <h3>金</h3>
+                    <ul class="gold-list">
+                      <li><span>エア</span>切れ者</li>
+                      <li><span>たづな</span>中盤巧者</li>
+                    </ul>
+                  </div>
+                  <div class="panel-mini">
+                    <h3>条件</h3>
+                    <ul class="meta-list">
+                      <li><span>シナリオ</span><strong>トレセン軒</strong></li>
+                      <li><span>除外</span><strong>3</strong></li>
+                    </ul>
+                  </div>
                 </div>
               </aside>
             </div>
@@ -714,28 +847,27 @@
               </header>
               <div class="share__body">
                 <aside class="hero">
-                  <div class="hero__standee"><img src="./_refs/standee-style-sample.png" alt="" /></div>
-                  <div class="hero__accent-tl" aria-hidden="true"></div>
-                  <div class="hero__accent-br" aria-hidden="true"></div>
-                  <div class="hero__meta">
-                    <p class="hero__name">アーモンドアイ</p>
-                  </div>
+                  <img class="hero__img" src="./_refs/standee-half-crop-ref.png" alt="" />
                 </aside>
                 <section class="share__deck">
                   <div class="sup-grid">
-                    <div class="slot"><div class="slot__face"><span class="slot__dot speed"></span><img src="../../../assets/supports/30282.webp" alt="" /></div><p class="slot__gold">切れ者</p></div>
-                    <div class="slot"><div class="slot__face"><span class="slot__dot speed"></span><img src="../../../assets/supports/30275.webp" alt="" /></div><p class="slot__gold">先手必勝</p></div>
-                    <div class="slot"><div class="slot__face"><span class="slot__dot speed"></span><img src="../../../assets/supports/30298.webp" alt="" /></div><p class="slot__gold">冷静</p></div>
-                    <div class="slot"><div class="slot__face"><span class="slot__dot stamina"></span><img src="../../../assets/supports/30304.webp" alt="" /></div><p class="slot__gold">豪脚</p></div>
-                    <div class="slot"><div class="slot__face"><span class="slot__dot wit"></span><img src="../../../assets/supports/30289.webp" alt="" /></div><p class="slot__gold is-empty">—</p></div>
-                    <div class="slot"><div class="slot__face"><span class="slot__dot friend"></span><img src="../../../assets/supports/30305.webp" alt="" /></div><p class="slot__gold">中盤巧者</p></div>
+                    <div class="slot"><div class="slot__face"><span class="slot__dot speed"></span><img src="../../../assets/supports/30282.webp" alt="" /></div></div>
+                    <div class="slot"><div class="slot__face"><span class="slot__dot speed"></span><img src="../../../assets/supports/30275.webp" alt="" /></div></div>
+                    <div class="slot"><div class="slot__face"><span class="slot__dot speed"></span><img src="../../../assets/supports/30298.webp" alt="" /></div></div>
+                    <div class="slot"><div class="slot__face"><span class="slot__dot stamina"></span><img src="../../../assets/supports/30304.webp" alt="" /></div></div>
+                    <div class="slot"><div class="slot__face"><span class="slot__dot wit"></span><img src="../../../assets/supports/30289.webp" alt="" /></div></div>
+                    <div class="slot"><div class="slot__face"><span class="slot__dot friend"></span><img src="../../../assets/supports/30305.webp" alt="" /></div></div>
                   </div>
                 </section>
-                <aside class="share__stats">
-                  <div><div class="share__sp">12,450<em>SP</em></div></div>
+                <aside class="share__info">
+                  <div class="info-sp">
+                    <div><div class="info-sp__num">12,450<em>SP</em></div></div>
+                    <div class="info-sp__side">42</div>
+                  </div>
                   <div class="chips">
                     <span class="chip is-on">切れ者</span>
                     <span class="chip is-signal">RMJ</span>
+                    <span class="chip">ヒント Lv3</span>
                   </div>
                 </aside>
               </div>
@@ -748,7 +880,8 @@
 
     <div class="judge">
       <strong>判断のお願い</strong><br />
-      返事例: <code>採用</code> / <code>方向違い</code> / <code>惜しい：〇〇</code>
+      返事例: <code>採用</code> / <code>方向違い</code> / <code>惜しい：〇〇</code><br />
+      この方向性そのものへの賛否も歓迎です。
     </div>
   </div>
 </body>

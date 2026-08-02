@@ -40,7 +40,7 @@
 
 ## 現在フォーカス（1行）
 
-**P2 編成スクショ** — 主案 v5 目視待ち（立ち絵フルブリード · [screenshot-share-hero.html](./product/mockups/screenshot-share-hero.html)）
+**P2 編成スクショ** — 主案 v6 目視待ち（半裁立ち絵＋右情報密度 · [screenshot-share-hero.html](./product/mockups/screenshot-share-hero.html)）
 
 ---
 
