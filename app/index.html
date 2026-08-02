@@ -90,7 +90,7 @@
                 </ul>
               </li>
               <li>
-                画面下部の <strong>合計 SP バー</strong> で切れ者・トレLv・継承を変更できる（継承ON時は「詳細」で個数などを上展開）
+                画面下部の <strong>合計 SP バー</strong> で切れ者・トレLv・継承を変更できる（継承チップでパネルを開き、加算・個数・ヒントLvを設定）
               </li>
               <li>
                 下段作業台で <strong>合計 SP</strong> を確認し、不要スキルを除外
@@ -206,7 +206,7 @@
               A. リンク条件のキャラが、育成ウマ娘かサポカ6枠にいれば金、いなければ白として計上します。
             </p>
             <p><strong>Q. 固有スキル本体は合計に入る？</strong><br />
-              A. 入りません（SP購入リスト外）。<strong>継承固有</strong>だけ、下部バーまたは足元帯で手動加算できます。
+              A. 入りません（SP購入リスト外）。<strong>継承固有</strong>だけ、下部バーの継承パネルから手動加算できます。
             </p>
             <p><strong>Q. ON を外すと何が起きる？</strong><br />
               A. その表示行（およびまとめて表示している下位スキル）が合計から外れます。対人レギュで取らないスキル向けです。手動で OFF にした分は、レギュを変えても維持されます。
@@ -443,6 +443,77 @@
       </div>
     </main>
 
+    <!-- 継承パラメータパネル（トータルバー直上・案2） -->
+    <div
+      id="inherit-popover"
+      class="inherit-popover"
+      hidden
+      role="dialog"
+      aria-modal="false"
+      aria-labelledby="inherit-popover-title"
+    >
+      <div class="inherit-popover__inner">
+        <div class="inherit-popover__main">
+          <h2 id="inherit-popover-title" class="inherit-popover__title">継承固有</h2>
+          <div class="inherit-popover__fields">
+            <div class="inherit-field">
+              <span>加算</span>
+              <button
+                type="button"
+                class="inherit-tog"
+                id="inherit-tog-enabled"
+                role="switch"
+                aria-checked="false"
+                aria-label="継承の加算"
+              ></button>
+              <span class="inherit-tog-label" id="inherit-tog-label">OFF</span>
+            </div>
+
+            <div class="inherit-field" role="group" aria-label="個数">
+              <span>個数</span>
+              <div class="inherit-seg" id="inherit-seg-count">
+                <button type="button" data-inherit-count="2">2</button>
+                <button type="button" data-inherit-count="3">3</button>
+                <button type="button" data-inherit-count="4">4</button>
+                <button type="button" data-inherit-count="5">5</button>
+                <button type="button" data-inherit-count="6">6</button>
+              </div>
+            </div>
+
+            <div class="inherit-field" role="group" aria-label="ヒントLv">
+              <span>ヒントLv</span>
+              <div class="inherit-seg" id="inherit-seg-hint">
+                <button type="button" data-inherit-hint="1">1</button>
+                <button type="button" data-inherit-hint="2">2</button>
+                <button type="button" data-inherit-hint="3">3</button>
+                <button type="button" data-inherit-hint="4">4</button>
+                <button type="button" data-inherit-hint="5">5</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <aside class="inherit-formula" id="inherit-formula" aria-live="polite" aria-label="必要SP">
+          <div class="inherit-formula__eq">
+            <span class="inherit-formula__term">
+              <b id="inherit-formula-unit">—</b><small>1本</small>
+            </span>
+            <span class="inherit-formula__op" aria-hidden="true">×</span>
+            <span class="inherit-formula__term">
+              <b id="inherit-formula-count">—</b><small>個</small>
+            </span>
+            <span class="inherit-formula__op" aria-hidden="true">＝</span>
+            <span class="inherit-formula__term inherit-formula__term--total">
+              <b id="inherit-formula-total">—</b><small>SP</small>
+            </span>
+          </div>
+          <p class="inherit-formula__meta" id="inherit-formula-meta"></p>
+        </aside>
+
+        <button type="button" class="inherit-popover__close" id="inherit-popover-close" aria-label="閉じる">×</button>
+      </div>
+    </div>
+
     <div id="total-sp-bar" class="total-sp-bar" aria-live="polite">
       <div class="total-sp-bar-inner">
         <div class="total-sp-bar__brand">
@@ -462,6 +533,9 @@
 
     <input type="checkbox" id="fast-learner" hidden aria-hidden="true" />
     <input type="checkbox" id="inherit-enabled" hidden aria-hidden="true" />
+    <input type="hidden" id="inherit-count" value="4" />
+    <input type="hidden" id="inherit-hint" value="3" />
+    <input type="hidden" id="inherit-base" value="200" />
     <select id="training-hint-level" hidden aria-hidden="true">
       <option value="5" selected>5</option>
       <option value="4">4</option>

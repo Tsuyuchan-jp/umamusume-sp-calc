@@ -109,9 +109,10 @@ cost(白, whiteHintLv) + cost(金, goldHintLv)
 スコープを広げないため **汎用行のみ**:
 
 - 個数: 2–6
-- baseSp: 既定 200（変更可）
+- baseSp: 200固定（UIでは編集しない）
 - ヒントLv: 一律 1–5（ユーザー指定）
 - 親ウマ娘名・固有スキル名は扱わない
+- UI: トータルバーの継承チップでパネル開閉。加算ON/OFFはパネル内トグル
 
 コスト: `calcSkillCost(baseSp, hintLv, 切れ者) * 個数`
 

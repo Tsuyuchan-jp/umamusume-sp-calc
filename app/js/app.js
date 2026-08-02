@@ -42,6 +42,10 @@ import {
   sortPlanRows,
   orderSourcesByAdopted,
 } from "./skillSource.js";
+import { calcSkillCost } from "./spCost.js";
+
+/** 継承固有の baseSp（UIでは非編集・固定） */
+const INHERIT_BASE_SP = 200;
 
 /** @type {object|null} */
 let state = null;
@@ -73,6 +77,12 @@ let cardPicker = null;
 
 /** 前提チップのイベントを一度だけバインド */
 let premiseChipsBound = false;
+
+/** 継承パネルの開閉 */
+let inheritPopoverOpen = false;
+
+/** 継承パネルのイベントを一度だけバインド */
+let inheritPopoverBound = false;
 
 /** スプリット左ドックでフォーカス中のサポ枠（0–5）。ギャラリーでは未使用 */
 let focusSupportSlot = null;
@@ -317,13 +327,101 @@ function bindPremiseChipsOnce() {
     }
 
     if (t.id === "bar-premise-inherit" || t.closest("#bar-premise-inherit")) {
-      const cb = document.getElementById("inherit-enabled");
-      if (!cb) return;
-      cb.checked = !cb.checked;
-      updateTotalBarChips();
-      recalc();
+      e.stopPropagation();
+      setInheritPopoverOpen(!inheritPopoverOpen);
     }
   });
+}
+
+function clampInheritCount(n) {
+  const v = Number(n);
+  if (!Number.isFinite(v)) return 4;
+  return Math.max(2, Math.min(6, Math.floor(v)));
+}
+
+function clampInheritHint(n) {
+  const v = Number(n);
+  if (!Number.isFinite(v)) return 3;
+  return Math.max(1, Math.min(5, Math.floor(v)));
+}
+
+function readInheritParams() {
+  const countEl = document.getElementById("inherit-count");
+  const hintEl = document.getElementById("inherit-hint");
+  const baseEl = document.getElementById("inherit-base");
+  const count = clampInheritCount(countEl?.value ?? 4);
+  const hint = clampInheritHint(hintEl?.value ?? 3);
+  if (countEl && String(count) !== countEl.value) countEl.value = String(count);
+  if (hintEl && String(hint) !== hintEl.value) hintEl.value = String(hint);
+  if (baseEl) baseEl.value = String(INHERIT_BASE_SP);
+  return {
+    enabled: Boolean(document.getElementById("inherit-enabled")?.checked),
+    count,
+    hint,
+    base: INHERIT_BASE_SP,
+    fast: Boolean(document.getElementById("fast-learner")?.checked),
+  };
+}
+
+function setInheritSeg(root, attr, value) {
+  if (!root) return;
+  root.querySelectorAll("button").forEach((btn) => {
+    btn.classList.toggle("is-on", String(btn.getAttribute(attr)) === String(value));
+  });
+}
+
+/** 継承パネルのトグル・セグメント・計算式を DOM 値に同期 */
+function syncInheritPopoverUi() {
+  const params = readInheritParams();
+  const pop = document.getElementById("inherit-popover");
+  if (pop) pop.hidden = !inheritPopoverOpen;
+
+  const tog = document.getElementById("inherit-tog-enabled");
+  const togLabel = document.getElementById("inherit-tog-label");
+  if (tog) {
+    tog.classList.toggle("is-on", params.enabled);
+    tog.setAttribute("aria-checked", params.enabled ? "true" : "false");
+  }
+  if (togLabel) {
+    togLabel.textContent = params.enabled ? "ON" : "OFF";
+    togLabel.classList.toggle("is-on", params.enabled);
+  }
+
+  setInheritSeg(document.getElementById("inherit-seg-count"), "data-inherit-count", params.count);
+  setInheritSeg(document.getElementById("inherit-seg-hint"), "data-inherit-hint", params.hint);
+
+  const unit = calcSkillCost(params.base, params.hint, params.fast);
+  const total = unit * params.count;
+
+  const unitEl = document.getElementById("inherit-formula-unit");
+  const countEl = document.getElementById("inherit-formula-count");
+  const totalEl = document.getElementById("inherit-formula-total");
+  const metaEl = document.getElementById("inherit-formula-meta");
+  const box = document.getElementById("inherit-formula");
+  if (unitEl) unitEl.textContent = String(unit);
+  if (countEl) countEl.textContent = String(params.count);
+  if (totalEl) totalEl.textContent = String(total);
+  if (box) box.classList.toggle("is-off", !params.enabled);
+  if (metaEl) {
+    if (!params.enabled) {
+      metaEl.textContent = `加算OFF · ヒントLv${params.hint}`;
+    } else if (params.fast) {
+      metaEl.innerHTML = `ヒントLv${params.hint} · <em>切れ者あり</em>`;
+    } else {
+      metaEl.textContent = `ヒントLv${params.hint} · 切れ者なし`;
+    }
+  }
+
+  const chip = document.getElementById("bar-premise-inherit");
+  if (chip) {
+    chip.setAttribute("aria-expanded", inheritPopoverOpen ? "true" : "false");
+    chip.classList.toggle("premise-chip--open", inheritPopoverOpen);
+  }
+}
+
+function setInheritPopoverOpen(open) {
+  inheritPopoverOpen = Boolean(open);
+  syncInheritPopoverUi();
 }
 
 function updateTotalBarChips(excludedCount = excludedSkillIds.size) {
@@ -332,14 +430,16 @@ function updateTotalBarChips(excludedCount = excludedSkillIds.size) {
 
   const fast = document.getElementById("fast-learner")?.checked;
   const trainingLv = document.getElementById("training-hint-level")?.value || "5";
-  const inheritOn = document.getElementById("inherit-enabled")?.checked;
-  const inheritCount = document.getElementById("inherit-count")?.value || "4";
-  const inheritHint = document.getElementById("inherit-hint")?.value || "3";
-  const inheritBase = document.getElementById("inherit-base")?.value || "200";
+  const inherit = readInheritParams();
   const fastClass = fast ? "premise-chip premise-chip--on" : "premise-chip";
-  const inheritClass = inheritOn ? "premise-chip premise-chip--on" : "premise-chip";
+  const inheritClass = [
+    "premise-chip",
+    inherit.enabled ? "premise-chip--on" : "",
+    inheritPopoverOpen ? "premise-chip--open" : "",
+  ]
+    .filter(Boolean)
+    .join(" ");
 
-  /* 継承の個数/Lv/base 編集UIはデザイン確定まで保留。値は hidden で維持 */
   el.innerHTML = `
     <button type="button" class="${fastClass}" id="bar-premise-fast-learner" aria-pressed="${fast ? "true" : "false"}">切れ者 ${fast ? "ON" : "OFF"}</button>
     <div class="premise-chip premise-chip--training" role="group" aria-label="トレヒントLv">
@@ -348,16 +448,62 @@ function updateTotalBarChips(excludedCount = excludedSkillIds.size) {
       <button type="button" class="premise-lv${trainingLv === "4" ? " is-on" : ""}" data-training-lv="4">4</button>
       <button type="button" class="premise-lv${trainingLv === "5" ? " is-on" : ""}" data-training-lv="5">5</button>
     </div>
-    <button type="button" class="${inheritClass}" id="bar-premise-inherit" aria-pressed="${inheritOn ? "true" : "false"}" title="個数・Lv・base の編集UIは後日">継承 ${inheritOn ? `${inheritCount}本` : "OFF"}</button>
-    <input type="hidden" id="inherit-count" value="${escapeHtml(String(inheritCount))}" />
-    <input type="hidden" id="inherit-hint" value="${escapeHtml(String(inheritHint))}" />
-    <input type="hidden" id="inherit-base" value="${escapeHtml(String(inheritBase))}" />
+    <button type="button" class="${inheritClass}" id="bar-premise-inherit" aria-pressed="${inherit.enabled ? "true" : "false"}" aria-expanded="${inheritPopoverOpen ? "true" : "false"}" aria-controls="inherit-popover" title="継承パラメータを開く">継承 ${inherit.enabled ? `${inherit.count}本` : "OFF"}</button>
     ${excludedCount > 0 ? `<span class="premise-chip premise-chip--warn">除外 ${excludedCount}</span>` : ""}
   `;
+
+  syncInheritPopoverUi();
 }
 
-function bindInheritInlineFields() {
-  /* 継承インライン編集は保留 */
+function bindInheritPopover() {
+  if (inheritPopoverBound) return;
+  inheritPopoverBound = true;
+
+  document.getElementById("inherit-popover-close")?.addEventListener("click", () => {
+    setInheritPopoverOpen(false);
+  });
+
+  document.getElementById("inherit-tog-enabled")?.addEventListener("click", () => {
+    const cb = document.getElementById("inherit-enabled");
+    if (!cb) return;
+    cb.checked = !cb.checked;
+    syncInheritPopoverUi();
+    recalc();
+  });
+
+  document.getElementById("inherit-seg-count")?.addEventListener("click", (e) => {
+    const btn = e.target.closest("[data-inherit-count]");
+    if (!btn) return;
+    const countEl = document.getElementById("inherit-count");
+    if (!countEl) return;
+    countEl.value = String(clampInheritCount(btn.getAttribute("data-inherit-count")));
+    syncInheritPopoverUi();
+    recalc();
+  });
+
+  document.getElementById("inherit-seg-hint")?.addEventListener("click", (e) => {
+    const btn = e.target.closest("[data-inherit-hint]");
+    if (!btn) return;
+    const hintEl = document.getElementById("inherit-hint");
+    if (!hintEl) return;
+    hintEl.value = String(clampInheritHint(btn.getAttribute("data-inherit-hint")));
+    syncInheritPopoverUi();
+    recalc();
+  });
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && inheritPopoverOpen) {
+      setInheritPopoverOpen(false);
+    }
+  });
+
+  document.addEventListener("click", (e) => {
+    if (!inheritPopoverOpen) return;
+    const t = e.target;
+    if (!(t instanceof Node)) return;
+    if (t.closest?.("#inherit-popover") || t.closest?.("#bar-premise-inherit")) return;
+    setInheritPopoverOpen(false);
+  });
 }
 
 function buildCharacterPickerItems() {
@@ -598,13 +744,14 @@ function bindHelpDialog() {
 
 /** 計算前提オプションを DOM から収集 */
 function readDesignOptions() {
+  const inherit = readInheritParams();
   return {
     fastLearner: document.getElementById("fast-learner")?.checked ?? false,
     trainingHintLevel: Number(document.getElementById("training-hint-level")?.value) || 5,
-    inheritEnabled: document.getElementById("inherit-enabled")?.checked ?? false,
-    inheritCount: Number(document.getElementById("inherit-count")?.value) || 0,
-    inheritHintLevel: Number(document.getElementById("inherit-hint")?.value) || 1,
-    inheritBaseSp: Number(document.getElementById("inherit-base")?.value) || 200,
+    inheritEnabled: inherit.enabled,
+    inheritCount: inherit.count,
+    inheritHintLevel: inherit.hint,
+    inheritBaseSp: inherit.base,
   };
 }
 
@@ -623,18 +770,18 @@ function writeDesignOptions(options = {}) {
 
   const inheritCount = document.getElementById("inherit-count");
   if (inheritCount && options.inheritCount != null) {
-    inheritCount.value = String(options.inheritCount);
+    inheritCount.value = String(clampInheritCount(options.inheritCount));
   }
 
   const inheritHint = document.getElementById("inherit-hint");
   if (inheritHint && options.inheritHintLevel != null) {
-    inheritHint.value = String(options.inheritHintLevel);
+    inheritHint.value = String(clampInheritHint(options.inheritHintLevel));
   }
 
   const inheritBase = document.getElementById("inherit-base");
-  if (inheritBase && options.inheritBaseSp != null) {
-    inheritBase.value = String(options.inheritBaseSp);
-  }
+  if (inheritBase) inheritBase.value = String(INHERIT_BASE_SP);
+
+  syncInheritPopoverUi();
 }
 
 /** 確定レギュをセグメント UI に反映 */
@@ -1062,14 +1209,6 @@ function bindEventChoiceDialog() {
     closeSplitEvtPane();
   });
 }
-
-function setInheritPopoverOpen(_open) {
-  /* 上展開は廃止。継承パラメータはトータルバー内インライン */
-}
-
-function syncInheritPopoverVisibility() {}
-
-function bindInheritPopover() {}
 
 /** 列下要約の並び: 金（選択中 or 選択肢に金あり）→ 白/ステ → 自動 */
 function selectableEventSortKey(evt) {
@@ -1549,6 +1688,7 @@ function renderPlanWarnings(unresolved) {
 function recalc() {
   if (!state) return;
 
+  const inherit = readInheritParams();
   const planParams = {
     skills: state.skills,
     supports: state.supports,
@@ -1559,10 +1699,10 @@ function recalc() {
     supportIds: getSupportIds(),
     excludedSkillIds: new Set(),
     fastLearner: document.getElementById("fast-learner").checked,
-    inheritEnabled: document.getElementById("inherit-enabled").checked,
-    inheritCount: Number(document.getElementById("inherit-count").value) || 0,
-    inheritHintLevel: Number(document.getElementById("inherit-hint").value) || 1,
-    inheritBaseSp: Number(document.getElementById("inherit-base").value) || 200,
+    inheritEnabled: inherit.enabled,
+    inheritCount: inherit.count,
+    inheritHintLevel: inherit.hint,
+    inheritBaseSp: inherit.base,
     trainingHintLevel: Number(document.getElementById("training-hint-level").value) || 5,
     enabledEventIds: state.ui.enabledEventIds,
     eventChoiceIds: Object.fromEntries(state.ui.eventChoiceIds),
@@ -1697,7 +1837,7 @@ function bindResultSort() {
 }
 
 function bindOptions() {
-  /* 継承入力は updateTotalBarChips → bindInheritInlineFields で都度配線 */
+  /* 継承は bindInheritPopover。切れ者・トレLvは bindPremiseChipsOnce */
 }
 
 /** タイトル（＋任意でレアリティ・タイプ）でサポカを検索 */

@@ -546,25 +546,259 @@ body.layout-split .panel--deck > .app-header {
   color: #fff;
 }
 
-.premise-chip--inherit-field {
-  min-width: auto;
-  gap: 0.25rem;
-  cursor: default;
-  background: rgba(255, 255, 255, 0.92);
-  color: #463f70;
-  font-size: 0.72rem;
+.premise-chip--open {
+  outline: 2px solid var(--c-gold, #f5cf6f);
+  outline-offset: 1px;
 }
 
-.premise-chip--inherit-field input {
-  width: 2.75rem;
+/* ---- 継承パラメータパネル（バー直上・1行グリッド） ---- */
+.inherit-popover {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: calc(4.75rem + 0.55rem);
+  z-index: 1001;
+  pointer-events: none;
+  padding: 0 0.75rem;
+}
+
+.inherit-popover[hidden] {
+  display: none !important;
+}
+
+.inherit-popover__inner {
+  pointer-events: auto;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto auto;
+  grid-template-areas: "main formula close";
+  align-items: center;
+  column-gap: 0.75rem;
+  row-gap: 0.45rem;
+  max-width: var(--layout-gallery-max, 1180px);
+  margin: 0 auto;
+  padding: 0.55rem 0.7rem;
+  background: linear-gradient(180deg, var(--ink-mid, #5a5288), var(--ink-deep, #463f70));
+  color: #fff;
+  border: 1px solid rgba(245, 207, 111, 0.55);
+  border-radius: 10px;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.32);
+}
+
+.inherit-popover__main {
+  grid-area: main;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 0.85rem;
+  min-width: 0;
+}
+
+.inherit-popover__title {
   margin: 0;
-  padding: 0.15rem 0.25rem;
-  border: 1px solid #c8c4d4;
-  border-radius: 4px;
+  font-size: 0.82rem;
+  font-weight: 900;
+  color: var(--c-gold, #f5cf6f);
+  white-space: nowrap;
+}
+
+.inherit-popover__fields {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 0.85rem;
+}
+
+.inherit-popover__close {
+  grid-area: close;
+  appearance: none;
+  align-self: center;
+  width: 1.75rem;
+  height: 1.75rem;
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
   font: inherit;
+  font-size: 1rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.inherit-field {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.74rem;
+  font-weight: var(--font-weight-bold, 700);
+  color: #ede6e6;
+}
+
+.inherit-field > span {
+  white-space: nowrap;
+  opacity: 0.92;
+}
+
+.inherit-seg {
+  display: inline-flex;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 6px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.inherit-seg button {
+  appearance: none;
+  border: 0;
+  border-right: 1px solid rgba(255, 255, 255, 0.18);
+  background: transparent;
+  color: #ddd8ef;
+  font: inherit;
+  font-size: 0.72rem;
   font-weight: 700;
-  color: #333;
+  min-width: 1.7rem;
+  height: 1.75rem;
+  padding: 0 0.35rem;
+  cursor: pointer;
+}
+
+.inherit-seg button:last-child {
+  border-right: 0;
+}
+
+.inherit-seg button.is-on {
+  background: linear-gradient(180deg, #fa9f40, #ff8427);
+  color: #fff;
+}
+
+.inherit-tog {
+  appearance: none;
+  width: 2.35rem;
+  height: 1.35rem;
+  padding: 0;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.18);
+  position: relative;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.inherit-tog::after {
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 1rem;
+  height: 1rem;
+  border-radius: 50%;
   background: #fff;
+  transition: transform 0.15s ease;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+}
+
+.inherit-tog.is-on {
+  background: linear-gradient(180deg, #ff75a3, #f7518b);
+  border-color: #c00f47;
+}
+
+.inherit-tog.is-on::after {
+  transform: translateX(1rem);
+}
+
+.inherit-tog-label {
+  min-width: 1.6rem;
+  font-size: 0.7rem;
+  font-weight: 900;
+  color: #bebbce;
+}
+
+.inherit-tog-label.is-on {
+  color: #ffc0d6;
+}
+
+.inherit-formula {
+  grid-area: formula;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.12rem;
+  padding: 0.2rem 0.55rem;
+  border-radius: 8px;
+  border: 1px solid rgba(245, 207, 111, 0.35);
+  background: rgba(0, 0, 0, 0.18);
+  line-height: 1.15;
+}
+
+.inherit-formula__eq {
+  display: flex;
+  align-items: baseline;
+  gap: 0.28rem;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.inherit-formula__term {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.15rem;
+}
+
+.inherit-formula__term b {
+  font-size: 1rem;
+  font-weight: 900;
+  color: #59ccfc;
+}
+
+.inherit-formula__term--total b {
+  font-size: 1.1rem;
+  color: #ffe9a8;
+}
+
+.inherit-formula__term small {
+  font-size: 0.58rem;
+  font-weight: 700;
+  color: #bebbce;
+}
+
+.inherit-formula__op {
+  font-size: 0.82rem;
+  font-weight: 900;
+  color: #cfcadf;
+}
+
+.inherit-formula__meta {
+  margin: 0;
+  font-size: 0.62rem;
+  font-weight: 700;
+  color: #cfcadf;
+}
+
+.inherit-formula__meta em {
+  font-style: normal;
+  color: #ffc0d6;
+}
+
+.inherit-formula.is-off .inherit-formula__term--total b {
+  color: #9a96ad;
+  text-decoration: line-through;
+  text-decoration-thickness: 1.5px;
+}
+
+.inherit-formula.is-off .inherit-formula__meta {
+  color: #9a96ad;
+}
+
+@media (max-width: 860px) {
+  .inherit-popover__inner {
+    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-areas:
+      "main close"
+      "formula formula";
+  }
+
+  .inherit-formula {
+    align-items: flex-start;
+  }
 }
 
 /* ---- 表示順セグメント ---- */
