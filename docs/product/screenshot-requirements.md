@@ -37,7 +37,7 @@
 | **必須（最低限）** | 育成＋サポ6、前提チップ、合計 SP |
 | **欲しい** | 設計名（メモリ名）、**計上スキル数** |
 | **レイアウト次第で載せたい** | **金スキル**（選択・計上ON）と **手動除外** を作業面の主役に。全スキル列挙はしない |
-| **見た目（大枠採用）** | 型C v28: D寄り。計上スキル数 61/79。切れ者ON/OFF。金チップ縦幅拡大。除外溢れは「他 N 件」 |
+| **見た目（大枠採用）** | 型C v28.1: D寄り。金行はサポ名＋1つ目チップを同一グリッド行で中央揃え。除外溢れは「他 N 件」 |
 | **付記まで可** | レギュは上段帯。切れ者は数値に効くため大きく見せる |
 | **載せない** | レギュ非互換の除外リスト、結果表（スキル一覧の詳細）、育成所持・進化の金 |
 
@@ -104,7 +104,7 @@ excludeMax = workHeight - goldHeight - gap
 
 ## 次ステップ
 
-1. ~~主案モック~~ → [mockups/screenshot-share-hero.html](./mockups/screenshot-share-hero.html)（**v28** · 除外溢れデモ）  
+1. ~~主案モック~~ → [mockups/screenshot-share-hero.html](./mockups/screenshot-share-hero.html)（**v28.1** · 金行DOM整理）  
    比較: [型B](./mockups/screenshot-share-type-b.html) · 参考: [screenshot-share-refs.html](./mockups/screenshot-share-refs.html)
    ※旧三連: [mockups/screenshot-share-options.html](./mockups/screenshot-share-options.html)（参考のみ）
 2. 主案承認 → 本実装（html2canvas 等は実装時）
