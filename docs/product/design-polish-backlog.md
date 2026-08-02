@@ -71,6 +71,8 @@
 
 推奨: **P-A（棚＋角バッジ）＋薄い P-B（上部プレビュー）**。育成はタイプ行なし同シェル。
 
+**モック（確認用）**: [mockups/picker-options.html](./mockups/picker-options.html)（推奨サポカ／育成＋比較 P-Aのみ／厚めP-B）
+
 ---
 
 ## やらない

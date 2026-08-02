@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>カードピッカー案 — P-A＋薄い P-B</title>
+  <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@700;900&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --ink: #463f70;
+      --ink-mid: #5a5288;
+      --gold: #f5cf6f;
+      --font-ink: #703a13;
+      --muted: #625d7d;
+      --accent: #ff3276;
+      --cyan: #23a4f6;
+      --ok: #68bb09;
+      --panel: url("https://static.kouryaku.tools/umamusume/images/app/bg.webp?auto=format") center/180px repeat, #fff;
+      --font: "Zen Maru Gothic", Meiryo, sans-serif;
+      --asset: "../../../assets";
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: var(--font);
+      font-weight: 700;
+      color: var(--font-ink);
+      background: #2a2540;
+      padding: 20px 16px 72px;
+    }
+    .page { max-width: 1180px; margin: 0 auto; }
+    h1 { margin: 0 0 6px; color: #fff; font-size: 1.35rem; }
+    .lead { color: #bebbce; font-size: 0.88rem; line-height: 1.55; margin: 0 0 1.1rem; max-width: 52rem; }
+    .lead strong { color: var(--gold); }
+
+    .note {
+      background: rgba(70, 63, 112, 0.88);
+      border: 1px solid #6a6290;
+      border-bottom: 3px solid var(--gold);
+      border-radius: 10px;
+      padding: 12px 14px;
+      color: #efeaf8;
+      font-size: 0.8rem;
+      line-height: 1.55;
+      margin-bottom: 1.25rem;
+    }
+    .note h2 { margin: 0 0 6px; font-size: 0.85rem; color: var(--gold); }
+    .note .rec { color: #b8f08a; font-weight: 900; }
+    .note ol { margin: 0; padding-left: 1.2rem; }
+    .note a { color: #7ed4ff; }
+
+    .tabs {
+      display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 1rem;
+    }
+    .tabs button {
+      font: inherit; font-size: 0.78rem; font-weight: 900;
+      padding: 7px 12px; border-radius: 8px; cursor: pointer;
+      border: 1px solid #554d78; background: #1e1a30; color: #bebbce;
+    }
+    .tabs button.is-on {
+      background: var(--gold); color: #3a2a00; border-color: transparent;
+    }
+
+    .panel { display: none; }
+    .panel.is-on { display: block; }
+
+    .card {
+      background: #1e1a30;
+      border: 1px solid #3d3758;
+      border-radius: 14px;
+      padding: 12px;
+      color: #ddd8ef;
+      margin-bottom: 1.1rem;
+    }
+    .card > h2 {
+      margin: 0 0 4px; font-size: 1rem; color: var(--gold);
+      display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+    }
+    .pill {
+      font-size: 0.65rem; padding: 2px 8px; border-radius: 999px;
+      background: #3d3758; color: #ddd8ef;
+    }
+    .pill.rec { background: var(--ok); color: #fff; }
+    .blurb { margin: 0 0 10px; font-size: 0.78rem; color: #bebbce; line-height: 1.45; }
+
+    .stage {
+      background:
+        linear-gradient(180deg, rgba(70,63,112,.35), rgba(70,63,112,.15)),
+        url("https://static.kouryaku.tools/umamusume/images/app/uma-world.webp?auto=format") center bottom / cover;
+      border-radius: 10px;
+      border: 1px solid #554d78;
+      padding: 18px 12px 22px;
+      display: grid;
+      place-items: center;
+      min-height: 420px;
+    }
+
+    /* ---- ピッカー共通シェル ---- */
+    .picker {
+      width: min(100%, 36rem);
+      background: var(--panel);
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 18px 48px rgba(0,0,0,.35);
+      border: 1px solid rgba(255,255,255,.55);
+      color: var(--font-ink);
+    }
+    .picker--wide { width: min(100%, 42rem); }
+
+    .pk-chrome {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0.7rem 0.9rem;
+      background: linear-gradient(135deg, var(--ink) 0%, var(--ink-mid) 100%);
+      color: #fff;
+      border-bottom: 2px solid var(--gold);
+    }
+    .pk-chrome h3 { margin: 0; font-size: 0.95rem; font-weight: 900; }
+    .pk-close {
+      border: 1px solid rgba(255,255,255,.4); background: transparent; color: #fff;
+      width: 1.85rem; height: 1.85rem; border-radius: 8px; cursor: pointer; font: inherit; font-size: 1.1rem;
+    }
+
+    /* 薄い P-B */
+    .pk-preview {
+      display: flex; align-items: center; gap: 0.65rem;
+      padding: 0.55rem 0.85rem;
+      background: linear-gradient(180deg, #f8f5fc, #efeaf8);
+      border-bottom: 1px solid rgba(70,63,112,.1);
+    }
+    .pk-preview__face {
+      width: 2.6rem; height: 3.45rem; border-radius: 6px; overflow: hidden;
+      background: #d8d2e4; flex-shrink: 0;
+      box-shadow: 0 2px 6px rgba(26,36,51,.15);
+    }
+    .pk-preview__face--sq { width: 2.7rem; height: 2.7rem; border-radius: 8px; }
+    .pk-preview__face img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .pk-preview__meta { min-width: 0; flex: 1; }
+    .pk-preview__kicker {
+      display: block; font-size: 0.65rem; color: var(--muted); letter-spacing: 0.04em;
+    }
+    .pk-preview__name {
+      display: block; font-size: 0.88rem; font-weight: 900; color: var(--ink);
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    }
+    .pk-preview__hint {
+      display: block; font-size: 0.68rem; color: var(--muted); margin-top: 2px;
+    }
+    .pk-preview__badge {
+      flex-shrink: 0;
+      font-size: 0.65rem; font-weight: 900;
+      padding: 0.22rem 0.55rem; border-radius: 999px;
+      background: var(--accent); color: #fff;
+    }
+    .pk-preview.is-empty .pk-preview__badge { display: none; }
+    .pk-preview.is-empty .pk-preview__face {
+      display: grid; place-items: center; color: #9a94b0; font-size: 1.1rem;
+      border: 1px dashed #b8b2c8; background: #f3f0f7;
+    }
+
+    .pk-filters {
+      padding: 0.55rem 0.85rem 0.35rem;
+      background: #faf9fc;
+      border-bottom: 1px solid rgba(70,63,112,.08);
+    }
+    .pk-checks {
+      display: flex; flex-wrap: wrap; gap: 0.55rem 1rem;
+      margin-bottom: 0.4rem; font-size: 0.75rem; color: var(--muted);
+    }
+    .pk-checks label { display: inline-flex; align-items: center; gap: 0.3rem; cursor: pointer; }
+    .pk-chips { display: flex; gap: 0.3rem; overflow-x: auto; padding-bottom: 0.35rem; }
+    .chip {
+      flex-shrink: 0; font: inherit; font-size: 0.72rem; font-weight: 900;
+      padding: 0.28rem 0.65rem; border-radius: 999px; cursor: pointer;
+      border: 1px solid rgba(70,63,112,.18); background: #fff; color: var(--muted);
+    }
+    .chip.is-on {
+      background: linear-gradient(180deg, var(--cyan), #3aabcc);
+      border-color: transparent; color: #fff;
+      box-shadow: 0 2px 8px rgba(78,196,224,.35);
+    }
+
+    .pk-search {
+      display: block; width: calc(100% - 1.7rem);
+      margin: 0.55rem 0.85rem 0.35rem;
+      padding: 0.45rem 0.7rem;
+      border: 1px solid rgba(70,63,112,.18);
+      border-radius: 999px;
+      background: #fff;
+      font: inherit; font-size: 0.8rem; color: var(--font-ink);
+    }
+    .pk-search:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(255,50,118,.18);
+    }
+
+    /* P-A 棚 */
+    .pk-shelf {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(4.4rem, 1fr));
+      gap: 0.55rem 0.45rem;
+      padding: 0.45rem 0.85rem 0.75rem;
+      max-height: 17rem;
+      overflow-y: auto;
+      background:
+        linear-gradient(180deg, transparent, rgba(70,63,112,.03)),
+        repeating-linear-gradient(
+          90deg,
+          transparent,
+          transparent 4.55rem,
+          rgba(70,63,112,.035) 4.55rem,
+          rgba(70,63,112,.035) 4.7rem
+        );
+    }
+    .pk-shelf--sq {
+      grid-template-columns: repeat(auto-fill, minmax(4.6rem, 1fr));
+    }
+
+    .pk-item {
+      position: relative;
+      padding: 0.2rem;
+      border: none;
+      background: transparent;
+      cursor: pointer;
+      border-radius: 10px;
+    }
+    .pk-item:focus-visible {
+      outline: 2px solid var(--cyan);
+      outline-offset: 2px;
+    }
+    .pk-item__face {
+      display: block;
+      width: 100%;
+      aspect-ratio: 3 / 4;
+      border-radius: 7px;
+      overflow: hidden;
+      background: #d8d2e4;
+      box-shadow: 0 2px 6px rgba(26,36,51,.12);
+      transition: transform .12s ease, filter .12s ease;
+    }
+    .pk-shelf--sq .pk-item__face { aspect-ratio: 1; border-radius: 9px; }
+    .pk-item__face img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .pk-item:hover:not(.is-selected) .pk-item__face {
+      transform: translateY(-2px);
+      filter: drop-shadow(0 6px 12px rgba(26,36,51,.2));
+    }
+
+    /* 選択中: 角バッジ＋耐久枠（ホバーでも消えない） */
+    .pk-item.is-selected {
+      outline: 3px solid var(--accent);
+      outline-offset: 2px;
+      z-index: 1;
+    }
+    .pk-item.is-selected .pk-item__face {
+      box-shadow:
+        0 0 0 2px #fff,
+        0 0 0 4px var(--gold),
+        0 6px 14px rgba(26,36,51,.22);
+    }
+    .pk-item.is-selected:hover .pk-item__face {
+      transform: scale(1.02);
+      filter: none;
+    }
+    .pk-corner {
+      position: absolute;
+      top: -2px; right: -2px;
+      z-index: 2;
+      font-size: 0.58rem;
+      font-weight: 900;
+      padding: 0.18rem 0.38rem;
+      border-radius: 0 8px 0 8px;
+      background: var(--accent);
+      color: #fff;
+      box-shadow: 0 2px 6px rgba(192,15,71,.35);
+      pointer-events: none;
+      display: none;
+    }
+    .pk-item.is-selected .pk-corner { display: block; }
+
+    .pk-foot {
+      padding: 0.55rem 0.85rem 0.75rem;
+      border-top: 1px solid rgba(70,63,112,.1);
+      background: #faf9fc;
+    }
+    .pk-clear {
+      font: inherit; font-size: 0.78rem;
+      padding: 0.4rem 0.85rem;
+      border-radius: 8px;
+      border: 1px solid rgba(70,63,112,.2);
+      background: #fff;
+      color: var(--muted);
+      cursor: pointer;
+    }
+
+    /* 比較用: P-A only / 厚め P-B */
+    .mini-grid {
+      display: grid; gap: 1rem;
+    }
+    @media (min-width: 900px) {
+      .mini-grid { grid-template-columns: 1fr 1fr; }
+    }
+    .picker--compact .pk-shelf { max-height: 12rem; }
+    .pk-preview--fat {
+      padding: 0.85rem 1rem;
+      gap: 0.85rem;
+      background: linear-gradient(135deg, #fff4d4, #ffe0ec 60%, #e5f7fc);
+    }
+    .pk-preview--fat .pk-preview__face {
+      width: 3.6rem; height: 4.8rem;
+    }
+    .pk-preview--fat .pk-preview__name { font-size: 1.05rem; }
+
+    .legend {
+      margin-top: 0.75rem;
+      font-size: 0.72rem;
+      color: #9a94b0;
+      line-height: 1.45;
+    }
+    .legend code {
+      font-size: 0.68rem;
+      background: #2a2540;
+      padding: 1px 5px;
+      border-radius: 4px;
+      color: #ddd8ef;
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <h1>カードピッカー案</h1>
+    <p class="lead">
+      backlog #4。推奨は <strong>P-A（棚＋角バッジ）＋薄い P-B（上部プレビュー）</strong>。
+      ホバーしても選択中が消えないこと、育成はタイプ行なしの同シェル、を確認用。
+    </p>
+
+    <aside class="note">
+      <h2>見方</h2>
+      <ol>
+        <li><span class="rec">推奨</span>タブでサポカ／育成の見た目を確認（カードをクリックすると選択が移る・プレビューは「この枠の現在」固定想定のデモ）</li>
+        <li>比較タブで P-A のみ／厚め P-B も並べる（別案に振るときの参照）</li>
+        <li>OK なら本番 <code>app/</code> へ移植。差し戻しポイントがあればこのページを指して指示</li>
+      </ol>
+    </aside>
+
+    <div class="tabs" role="tablist">
+      <button type="button" class="is-on" data-tab="rec-sup">推奨 · サポカ</button>
+      <button type="button" data-tab="rec-chr">推奨 · 育成</button>
+      <button type="button" data-tab="cmp">比較（P-A / 厚めP-B）</button>
+    </div>
+
+    <!-- 推奨: サポカ -->
+    <section class="panel is-on" id="panel-rec-sup">
+      <article class="card">
+        <h2>P-A＋薄い P-B <span class="pill rec">推奨</span> <span class="pill">サポカ</span></h2>
+        <p class="blurb">上部は「この枠」の現在カード固定。棚は角バッジ「選択中」＋ピンク枠＋金リム。タイプチップ／イベント・SSR／検索は現行機能のまま配置変更可。</p>
+        <div class="stage">
+          <div class="picker picker--wide" id="demo-sup" data-mode="support">
+            <div class="pk-chrome">
+              <h3>サポートカード 枠1</h3>
+              <button type="button" class="pk-close" aria-label="閉じる">×</button>
+            </div>
+            <div class="pk-preview" data-preview>
+              <div class="pk-preview__face"><img alt="" data-preview-img /></div>
+              <div class="pk-preview__meta">
+                <span class="pk-preview__kicker">この枠（現在）</span>
+                <span class="pk-preview__name" data-preview-name>—</span>
+                <span class="pk-preview__hint">タップで確定 · ホバーでも選択表示は消えない</span>
+              </div>
+              <span class="pk-preview__badge">選択中</span>
+            </div>
+            <div class="pk-filters">
+              <div class="pk-checks">
+                <label><input type="checkbox" checked disabled /> イベント対応のみ</label>
+                <label><input type="checkbox" disabled /> SSRのみ</label>
+              </div>
+              <div class="pk-chips" role="group" aria-label="タイプ">
+                <button type="button" class="chip is-on" data-type="">すべて</button>
+                <button type="button" class="chip" data-type="speed">スピ</button>
+                <button type="button" class="chip" data-type="stamina">スタ</button>
+                <button type="button" class="chip" data-type="power">パワ</button>
+                <button type="button" class="chip" data-type="guts">根性</button>
+                <button type="button" class="chip" data-type="wit">賢さ</button>
+                <button type="button" class="chip" data-type="friend">友人</button>
+              </div>
+            </div>
+            <input class="pk-search" type="search" placeholder="キャラ名で検索（ひらがな・ローマ字可）" disabled />
+            <div class="pk-shelf" data-shelf></div>
+            <div class="pk-foot">
+              <button type="button" class="pk-clear" data-clear>選択をクリア</button>
+            </div>
+          </div>
+        </div>
+        <p class="legend">画像はローカル <code>assets/supports/</code>。file:// で見えない場合はリポジトリ直下から相対パスで開くか、簡易HTTPで確認。</p>
+      </article>
+    </section>
+
+    <!-- 推奨: 育成 -->
+    <section class="panel" id="panel-rec-chr">
+      <article class="card">
+        <h2>P-A＋薄い P-B <span class="pill rec">推奨</span> <span class="pill">育成</span></h2>
+        <p class="blurb">タイプ行なし・同シェル。プレビュー＋検索＋正方形棚。クリアボタンなし（現行どおり allowClear:false）。</p>
+        <div class="stage">
+          <div class="picker" id="demo-chr" data-mode="character">
+            <div class="pk-chrome">
+              <h3>育成ウマ娘を選択（覚醒Lv5想定）</h3>
+              <button type="button" class="pk-close" aria-label="閉じる">×</button>
+            </div>
+            <div class="pk-preview" data-preview>
+              <div class="pk-preview__face pk-preview__face--sq"><img alt="" data-preview-img /></div>
+              <div class="pk-preview__meta">
+                <span class="pk-preview__kicker">この枠（現在）</span>
+                <span class="pk-preview__name" data-preview-name>—</span>
+                <span class="pk-preview__hint">育成はタイプ絞込なし</span>
+              </div>
+              <span class="pk-preview__badge">選択中</span>
+            </div>
+            <input class="pk-search" type="search" placeholder="キャラ名で検索（ひらがな・ローマ字可）" disabled />
+            <div class="pk-shelf pk-shelf--sq" data-shelf></div>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <!-- 比較 -->
+    <section class="panel" id="panel-cmp">
+      <div class="mini-grid">
+        <article class="card">
+          <h2>P-A のみ <span class="pill">参照</span></h2>
+          <p class="blurb">プレビュー条なし。棚の角バッジ／金枠だけで選択中を示す。</p>
+          <div class="stage" style="min-height:auto;padding:14px 10px">
+            <div class="picker picker--compact" id="demo-pa">
+              <div class="pk-chrome">
+                <h3>サポート（P-A）</h3>
+                <button type="button" class="pk-close">×</button>
+              </div>
+              <div class="pk-filters">
+                <div class="pk-chips">
+                  <button type="button" class="chip is-on">すべて</button>
+                  <button type="button" class="chip">スピ</button>
+                  <button type="button" class="chip">スタ</button>
+                </div>
+              </div>
+              <input class="pk-search" type="search" placeholder="検索" disabled />
+              <div class="pk-shelf" data-shelf-static></div>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <h2>厚め P-B <span class="pill">参照</span></h2>
+          <p class="blurb">上部プレビューを大きくした版。推奨は「薄い」条のため、こちらは採用しない想定。</p>
+          <div class="stage" style="min-height:auto;padding:14px 10px">
+            <div class="picker picker--compact" id="demo-pb">
+              <div class="pk-chrome">
+                <h3>サポート（厚めP-B）</h3>
+                <button type="button" class="pk-close">×</button>
+              </div>
+              <div class="pk-preview pk-preview--fat" data-preview>
+                <div class="pk-preview__face"><img alt="" data-preview-img /></div>
+                <div class="pk-preview__meta">
+                  <span class="pk-preview__kicker">この枠（強調プレビュー）</span>
+                  <span class="pk-preview__name" data-preview-name>—</span>
+                  <span class="pk-preview__hint">推奨案より高さ・装飾が強い</span>
+                </div>
+                <span class="pk-preview__badge">選択中</span>
+              </div>
+              <div class="pk-shelf" data-shelf-static></div>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    const SUPPORTS = [
+      { id: 30282, name: "エアグルーヴ", type: "speed", file: "30282.webp" },
+      { id: 30275, name: "トウカイテイオー", type: "speed", file: "30275.webp" },
+      { id: 30298, name: "タップダンスシチー", type: "speed", file: "30298.webp" },
+      { id: 30304, name: "メイショウドトウ", type: "stamina", file: "30304.webp" },
+      { id: 30300, name: "サクラチヨノオー", type: "stamina", file: "30300.webp" },
+      { id: 30256, name: "タマモクロス", type: "power", file: "30256.webp" },
+      { id: 30297, name: "アグネスデジタル", type: "power", file: "30297.webp" },
+      { id: 30293, name: "デアリングタクト", type: "guts", file: "30293.webp" },
+      { id: 30294, name: "デアリングハート", type: "guts", file: "30294.webp" },
+      { id: 30289, name: "フォーエバーヤング", type: "wit", file: "30289.webp" },
+      { id: 30306, name: "ナイスネイチャ", type: "wit", file: "30306.webp" },
+      { id: 30305, name: "駿川たづな", type: "friend", file: "30305.webp" },
+    ];
+    const CHARS = [
+      { id: 112901, name: "アーモンドアイ", file: "112901.webp" },
+      { id: 100102, name: "スペシャルウィーク", file: "100102.webp" },
+      { id: 100302, name: "トウカイテイオー", file: "100302.webp" },
+      { id: 100701, name: "ゴールドシップ", file: "100701.webp" },
+      { id: 101401, name: "メジロマックイーン", file: "101401.webp" },
+      { id: 104001, name: "ダイワスカーレット", file: "104001.webp" },
+      { id: 106002, name: "グラスワンダー", file: "106002.webp" },
+      { id: 110501, name: "ネオユニヴァース", file: "110501.webp" },
+    ];
+
+    const supportSrc = (f) => `../../../assets/supports/${f}`;
+    const charSrc = (f) => `../../../assets/characters/${f}`;
+
+    function faceBtn(item, { square = false, selected = false } = {}) {
+      const src = square ? charSrc(item.file) : supportSrc(item.file);
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "pk-item" + (selected ? " is-selected" : "");
+      btn.dataset.id = String(item.id);
+      if (item.type) btn.dataset.type = item.type;
+      btn.innerHTML = `
+        <span class="pk-corner">選択中</span>
+        <span class="pk-item__face"><img src="${src}" alt="" onerror="this.parentElement.style.background='linear-gradient(160deg,#c8cdd2,#8a9299)'" /></span>
+      `;
+      return btn;
+    }
+
+    function syncPreview(root, item, { square = false } = {}) {
+      const preview = root.querySelector("[data-preview]");
+      if (!preview) return;
+      const img = preview.querySelector("[data-preview-img]");
+      const name = preview.querySelector("[data-preview-name]");
+      const face = preview.querySelector(".pk-preview__face");
+      if (!item) {
+        preview.classList.add("is-empty");
+        if (name) name.textContent = "未選択";
+        if (img) { img.removeAttribute("src"); img.hidden = true; }
+        if (face && !face.querySelector(".empty-mark")) {
+          const m = document.createElement("span");
+          m.className = "empty-mark";
+          m.textContent = "＋";
+          face.appendChild(m);
+        }
+        return;
+      }
+      preview.classList.remove("is-empty");
+      face?.querySelector(".empty-mark")?.remove();
+      if (img) {
+        img.hidden = false;
+        img.src = square ? charSrc(item.file) : supportSrc(item.file);
+      }
+      if (name) name.textContent = item.name;
+    }
+
+    function mountSupportDemo(root, { filterable = true } = {}) {
+      const shelf = root.querySelector("[data-shelf]");
+      if (!shelf) return;
+      let selectedId = SUPPORTS[0].id;
+      let type = "";
+
+      function render() {
+        shelf.innerHTML = "";
+        const list = SUPPORTS.filter((s) => !type || s.type === type);
+        for (const s of list) {
+          const btn = faceBtn(s, { selected: s.id === selectedId });
+          btn.addEventListener("click", () => {
+            selectedId = s.id;
+            // 薄い P-B: プレビューは「開いた時点の枠」固定の本番想定だが、
+            // モックでは選択変更が分かるようプレビューも追従させる
+            syncPreview(root, s);
+            render();
+          });
+          shelf.appendChild(btn);
+        }
+        const cur = SUPPORTS.find((s) => s.id === selectedId) || null;
+        // タイプ絞込で選択中が消えた場合はプレビューだけ残す（本番 keepId とは別デモ）
+        if (cur && (!type || cur.type === type)) syncPreview(root, cur);
+        else if (cur) syncPreview(root, cur);
+      }
+
+      if (filterable) {
+        root.querySelectorAll(".chip[data-type]").forEach((chip) => {
+          chip.addEventListener("click", () => {
+            root.querySelectorAll(".chip[data-type]").forEach((c) => c.classList.remove("is-on"));
+            chip.classList.add("is-on");
+            type = chip.dataset.type || "";
+            render();
+          });
+        });
+      }
+      root.querySelector("[data-clear]")?.addEventListener("click", () => {
+        selectedId = null;
+        syncPreview(root, null);
+        render();
+      });
+      syncPreview(root, SUPPORTS[0]);
+      render();
+    }
+
+    function mountCharDemo(root) {
+      const shelf = root.querySelector("[data-shelf]");
+      if (!shelf) return;
+      let selectedId = CHARS[0].id;
+      function render() {
+        shelf.innerHTML = "";
+        for (const c of CHARS) {
+          const btn = faceBtn(c, { square: true, selected: c.id === selectedId });
+          btn.addEventListener("click", () => {
+            selectedId = c.id;
+            syncPreview(root, c, { square: true });
+            render();
+          });
+          shelf.appendChild(btn);
+        }
+      }
+      syncPreview(root, CHARS[0], { square: true });
+      render();
+    }
+
+    function mountStaticShelf(root, selectedIndex = 0) {
+      const shelf = root.querySelector("[data-shelf-static]");
+      if (!shelf) return;
+      shelf.innerHTML = "";
+      SUPPORTS.slice(0, 8).forEach((s, i) => {
+        shelf.appendChild(faceBtn(s, { selected: i === selectedIndex }));
+      });
+      const sel = SUPPORTS[selectedIndex];
+      syncPreview(root, sel);
+    }
+
+    mountSupportDemo(document.getElementById("demo-sup"));
+    mountCharDemo(document.getElementById("demo-chr"));
+    mountStaticShelf(document.getElementById("demo-pa"), 0);
+    mountStaticShelf(document.getElementById("demo-pb"), 2);
+
+    document.querySelectorAll(".tabs button").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        document.querySelectorAll(".tabs button").forEach((b) => b.classList.remove("is-on"));
+        btn.classList.add("is-on");
+        document.querySelectorAll(".panel").forEach((p) => p.classList.remove("is-on"));
+        document.getElementById("panel-" + btn.dataset.tab)?.classList.add("is-on");
+      });
+    });
+  </script>
+</body>
+</html>

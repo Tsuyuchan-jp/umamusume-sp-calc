@@ -40,7 +40,7 @@
 
 ## 現在フォーカス（1行）
 
-**カードピッカー刷新**（backlog #4・P-A＋薄い P-B）— デザイン指摘 #1〜#3/#5/#6・結果枠W-H・角丸DOMはクローズ
+**カードピッカー刷新** — モック確認待ち（[picker-options.html](./product/mockups/picker-options.html) · P-A＋薄い P-B）
 
 ---
 
@@ -52,8 +52,9 @@
 
 ### P1
 
-- [ ] **カードピッカー刷新**（backlog #4）  
-  - 推奨（P-A＋薄い P-B）で実装。見たあと別案可  
+- [~] **カードピッカー刷新**（backlog #4・モック確認中）  
+  - モック: [product/mockups/picker-options.html](./product/mockups/picker-options.html)  
+  - 推奨（P-A＋薄い P-B）。見たあと別案可 → OK後に `app/` 移植  
   - 育成／サポカとも0から刷新（選択中表示の改善を含む）
 
 - [ ] **育成 dress 流用カードのスポット目視**（任意だが短い）  
