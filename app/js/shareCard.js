@@ -538,14 +538,38 @@ export async function captureShareCardElement(cardEl, _mount) {
   });
 }
 
+/** 保存用 WebP 品質（見た目優先・ファイル軽量化） */
+const SHARE_SAVE_WEBP_QUALITY = 0.92;
+
 /**
  * @param {HTMLCanvasElement} canvas
+ * @param {string} [type]
+ * @param {number} [quality]
  * @returns {Promise<Blob|null>}
  */
-function canvasToBlob(canvas) {
+function canvasToBlob(canvas, type = "image/png", quality) {
   return new Promise((resolve) => {
-    canvas.toBlob((blob) => resolve(blob), "image/png");
+    canvas.toBlob((blob) => resolve(blob), type, quality);
   });
+}
+
+/**
+ * 保存用 Blob（WebP 優先。非対応時は JPEG → PNG）
+ * @param {HTMLCanvasElement} canvas
+ * @returns {Promise<{ blob: Blob, ext: "webp"|"jpg"|"png" }|null>}
+ */
+async function canvasToSaveBlob(canvas) {
+  const webp = await canvasToBlob(canvas, "image/webp", SHARE_SAVE_WEBP_QUALITY);
+  if (webp && webp.type === "image/webp" && webp.size > 0) {
+    return { blob: webp, ext: "webp" };
+  }
+  const jpeg = await canvasToBlob(canvas, "image/jpeg", 0.92);
+  if (jpeg && jpeg.size > 0) {
+    return { blob: jpeg, ext: "jpg" };
+  }
+  const png = await canvasToBlob(canvas, "image/png");
+  if (png && png.size > 0) return { blob: png, ext: "png" };
+  return null;
 }
 
 /**
@@ -587,40 +611,45 @@ export function sanitizeShareFilenamePart(name) {
 }
 
 /**
- * PNG 保存名: `{名前}-{YYYYMMDD}-{SP}sp.png`
+ * 保存名: `{名前}-{YYYYMMDD}-{SP}sp.webp`（既定）
  * 名前は編成タイトル入力欄（空なら育成名 → 編成設計）
- * @param {{ title?: string, totalSp?: number, date?: Date }} params
+ * @param {{ title?: string, totalSp?: number, date?: Date, ext?: string }} params
  * @returns {string}
  */
 export function buildShareCardFilename({
   title = "",
   totalSp = 0,
   date = new Date(),
+  ext = "webp",
 } = {}) {
   const namePart = sanitizeShareFilenamePart(title);
   const y = date.getFullYear();
   const m = String(date.getMonth() + 1).padStart(2, "0");
   const d = String(date.getDate()).padStart(2, "0");
   const sp = Math.round(Number(totalSp) || 0);
-  return `${namePart}-${y}${m}${d}-${sp}sp.png`;
+  const safeExt = String(ext || "webp").replace(/^\./, "") || "webp";
+  return `${namePart}-${y}${m}${d}-${sp}sp.${safeExt}`;
 }
 
 /**
+ * 共有カードをファイル保存（WebP 優先・Blob URL）
  * @param {HTMLElement} cardEl
  * @param {HTMLElement} mount
- * @param {string} [filename]
+ * @param {{ title?: string, totalSp?: number }} [nameParts]
  */
-export async function saveShareCardPng(
-  cardEl,
-  mount,
-  filename = "umamusume-formation.png"
-) {
+export async function saveShareCardPng(cardEl, mount, nameParts = {}) {
   const canvas = await captureShareCardElement(cardEl, mount);
-  const blob = await canvasToBlob(canvas);
-  if (!blob) throw new Error("PNG の生成に失敗しました");
+  const saved = await canvasToSaveBlob(canvas);
+  if (!saved) throw new Error("画像の生成に失敗しました");
+
+  const filename = buildShareCardFilename({
+    title: nameParts.title,
+    totalSp: nameParts.totalSp,
+    ext: saved.ext,
+  });
 
   // data URL は大きい画像でブラウザの上限に当たり本番で DL できないことがある
-  const url = URL.createObjectURL(blob);
+  const url = URL.createObjectURL(saved.blob);
   const link = document.createElement("a");
   link.download = filename;
   link.href = url;

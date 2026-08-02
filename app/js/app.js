@@ -53,7 +53,6 @@ import {
 } from "./skillSource.js";
 import { calcSkillCost } from "./spCost.js";
 import {
-  buildShareCardFilename,
   buildShareCardModel,
   copyShareCardPng,
   renderShareCardToMount,
@@ -2317,11 +2316,10 @@ function bindShareCardButtons() {
           !ok
         );
       } else {
-        const filename = buildShareCardFilename({
+        await saveShareCardPng(card, mount, {
           title: model.title,
           totalSp: model.totalSp,
         });
-        await saveShareCardPng(card, mount, filename);
         showShareCardButtonFeedback(btn, defaultLabel, "保存しました", false);
       }
     } catch (e) {
