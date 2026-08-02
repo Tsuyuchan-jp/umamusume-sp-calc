@@ -1439,10 +1439,27 @@ body.layout-split .total-sp-bar__total {
   min-width: 0;
   flex: 1 1 auto;
   width: 100%;
-  /* ギャラリー: app-main padding 内＝結果パネル左端に縦線 */
-  border-left: 1px solid rgba(255, 255, 255, 0.22);
+  position: relative;
   padding-left: 0.85rem;
   box-sizing: border-box;
+}
+
+/* ギャラリーのみ: 縦線を短く・薄く（フル高さの border は使わない） */
+body.layout-gallery .total-sp-bar__main,
+body:not(.layout-split) .total-sp-bar__main {
+  border-left: 0;
+}
+
+body.layout-gallery .total-sp-bar__main::before,
+body:not(.layout-split) .total-sp-bar__main::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 18%;
+  bottom: 18%;
+  width: 1px;
+  background: rgba(255, 255, 255, 0.12);
+  pointer-events: none;
 }
 
 /* ギャラリー: バー内枠を app-main（1200px + padding 1rem）と揃える */
