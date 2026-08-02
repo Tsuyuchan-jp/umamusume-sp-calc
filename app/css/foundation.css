@@ -4,45 +4,46 @@
  */
 
 :root {
-  /* 面 */
-  --bg-page: #dde4ee;
-  --bg-page-gradient: linear-gradient(165deg, #cfd9e8 0%, #e4eaf2 45%, #eef2f8 100%);
+  /* 面 — H5 寄り（紫クロム世界観） */
+  --bg-page: #3d3758;
+  --bg-page-gradient: linear-gradient(165deg, #463f70 0%, #5a5288 40%, #6b6494 100%);
   --surface: #ffffff;
-  --surface-muted: #f5f7fb;
-  --surface-sunken: #e9eef5;
-  --surface-glass: rgba(255, 255, 255, 0.92);
+  --surface-muted: #f5f3f8;
+  --surface-sunken: #ebe7f2;
+  --surface-glass: rgba(255, 255, 255, 0.94);
 
   /* 文字 */
-  --text-primary: #1a2433;
-  --text-secondary: #4f5d70;
-  --text-muted: #7a8799;
+  --text-primary: #703a13;
+  --text-secondary: #625d7d;
+  --text-muted: #7a7488;
   --text-on-dark: #f8fafc;
 
-  /* インク（ヘッダー・主ボタン） */
-  --ink-deep: #1a2838;
-  --ink-mid: #2a3f56;
-  --ink-light: #3d5570;
+  /* インク（ヘッダー・主ボタン）— 紫クロム */
+  --ink-deep: #463f70;
+  --ink-mid: #5a5288;
+  --ink-light: #6e68a0;
 
-  /* アクセント（合計・強調） */
-  --accent-total: #e63e5c;
-  --accent-total-bright: #ff4d6d;
-  --accent-total-soft: #ffe8ed;
-  --accent-on: #00a8ad;
-  --accent-on-deep: #078388;
-  --accent-on-soft: #dff6f7;
-  --accent-cyan: #4ec4e0;
+  /* アクセント */
+  --accent-total: #f5cf6f;
+  --accent-total-bright: #ffe9a8;
+  --accent-total-soft: #fff4d4;
+  --accent-on: #ff3276;
+  --accent-on-deep: #c00f47;
+  --accent-on-soft: #ffe0ec;
+  --accent-cyan: #23a4f6;
   --accent-cyan-soft: #e5f7fc;
+  --c-gold: #f5cf6f;
 
   /* 状態 */
-  --success: #1f9d6a;
-  --warn: #d48806;
+  --success: #68bb09;
+  --warn: #ff7300;
   --warn-soft: #fff6e0;
-  --danger: #e63e5c;
+  --danger: #ff3276;
 
   /* 境界 */
-  --border-subtle: rgba(26, 36, 51, 0.07);
-  --border-default: rgba(26, 36, 51, 0.11);
-  --border-strong: rgba(26, 36, 51, 0.18);
+  --border-subtle: rgba(70, 63, 112, 0.08);
+  --border-default: rgba(70, 63, 112, 0.14);
+  --border-strong: rgba(70, 63, 112, 0.22);
 
   /* 角丸 */
   --radius-sm: 8px;
@@ -54,12 +55,12 @@
   --shadow-sm: 0 1px 2px rgba(26, 36, 51, 0.05), 0 2px 6px rgba(26, 36, 51, 0.04);
   --shadow-md: 0 4px 14px rgba(26, 36, 51, 0.09), 0 2px 4px rgba(26, 36, 51, 0.04);
   --shadow-lg: 0 12px 36px rgba(26, 36, 51, 0.14), 0 4px 10px rgba(26, 36, 51, 0.06);
-  --shadow-bar: 0 -10px 40px rgba(26, 36, 51, 0.16), 0 -2px 8px rgba(26, 36, 51, 0.06);
+  --shadow-bar: 0 -10px 40px rgba(70, 63, 112, 0.28), 0 -2px 8px rgba(70, 63, 112, 0.12);
   --shadow-inset: inset 0 1px 0 rgba(255, 255, 255, 0.65);
 
   /* タイポ */
   --font-body: "M PLUS Rounded 1c", "Hiragino Maru Gothic ProN", "Hiragino Sans", sans-serif;
-  --font-weight-normal: 400;
+  --font-weight-normal: 500;
   --font-weight-medium: 500;
   --font-weight-bold: 700;
   --font-weight-black: 800;
@@ -72,7 +73,7 @@
   --space-xl: 1.5rem;
 
   /* フォーカス */
-  --focus-ring: 0 0 0 3px rgba(0, 168, 173, 0.35);
+  --focus-ring: 0 0 0 3px rgba(255, 115, 0, 0.35);
 
   color-scheme: light;
 }
@@ -88,14 +89,14 @@ body {
   background: var(--bg-page-gradient);
   background-attachment: fixed;
   color: var(--text-primary);
-  -webkit-font-smoothing: antialiased;
+  -webkit-font-smoothing: auto;
 }
 
 /* ---- ヘッダー ---- */
 header {
-  background: linear-gradient(135deg, var(--ink-deep) 0%, var(--ink-mid) 55%, #324a63 100%);
+  background: linear-gradient(180deg, var(--ink-mid) 0%, var(--ink-deep) 100%);
   box-shadow: var(--shadow-md);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 3px solid var(--c-gold, #f5cf6f);
   padding: 0.85rem 1.5rem;
 }
 
@@ -224,7 +225,7 @@ header p {
   background: linear-gradient(180deg, var(--accent-on) 0%, var(--accent-on-deep) 100%);
   border-color: transparent;
   color: #fff;
-  box-shadow: 0 2px 8px rgba(0, 168, 173, 0.35);
+  box-shadow: 0 2px 8px rgba(255, 50, 118, 0.35);
 }
 
 .premise-chip--warn {
@@ -267,18 +268,18 @@ header p {
   box-shadow: var(--focus-ring);
 }
 
-/* ---- トータルバー ---- */
+/* ---- トータルバー（H5 紫クロム） ---- */
 .total-sp-bar {
-  background: linear-gradient(180deg, var(--surface-glass) 0%, var(--surface) 100%);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border-top: 1px solid var(--border-default);
+  background: linear-gradient(180deg, var(--ink-mid) 0%, var(--ink-deep) 100%);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  border-top: 3px solid var(--c-gold, #f5cf6f);
   box-shadow: var(--shadow-bar);
 }
 
 .total-sp-bar-label {
   font-weight: var(--font-weight-bold);
-  color: var(--text-muted);
+  color: #bebbce;
   font-size: 0.72rem;
   text-transform: uppercase;
   letter-spacing: 0.06em;
@@ -288,7 +289,7 @@ header p {
   font-weight: var(--font-weight-black);
   font-size: 1.85rem;
   color: var(--accent-total);
-  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+  text-shadow: none;
   letter-spacing: -0.02em;
 }
 

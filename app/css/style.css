@@ -837,6 +837,267 @@ input[type="search"] {
   margin-top: 0;
 }
 
+/* ---- A: 列下要約 ---- */
+.deck-evt-sum {
+  display: block;
+  width: 100%;
+  text-align: left;
+  font: inherit;
+  font-size: 0.68rem;
+  font-weight: 700;
+  line-height: 1.35;
+  padding: 0.3rem 0.35rem;
+  border-radius: 5px;
+  border: 1px solid #ffd7a8;
+  background: #fff8ee;
+  color: #703a13;
+  cursor: pointer;
+  margin: 0 0 0.3rem;
+}
+
+.deck-evt-sum:hover {
+  border-color: #ff7300;
+}
+
+.deck-evt-sum--auto {
+  background: #f7f4ff;
+  border-color: #d4c4f0;
+  color: #4a2d7a;
+}
+
+.deck-evt-sum__more {
+  display: block;
+  font-size: 0.58rem;
+  font-weight: 700;
+  color: #625d7d;
+  margin-top: 0.1rem;
+}
+
+.evt-badge {
+  display: inline-block;
+  padding: 0 0.28rem;
+  border-radius: 3px;
+  font-size: 0.58rem;
+  font-weight: 900;
+  margin-right: 0.2rem;
+  vertical-align: 0.05em;
+}
+
+.evt-badge--gold {
+  background: linear-gradient(90deg, #e9c95f, #e29403);
+  color: #5a3d00;
+}
+
+.evt-badge--white {
+  background: #e8e8f0;
+  color: #4a4a66;
+  border: 1px solid #b8b8c8;
+}
+
+.evt-badge--stat {
+  background: #e5f7ff;
+  color: #0c5b92;
+}
+
+.evt-badge--auto {
+  background: #f0e8ff;
+  color: #5b2d9e;
+}
+
+/* ---- A: 選択ダイアログ ---- */
+.event-choice-dialog {
+  border: 2px solid #463f70;
+  border-radius: 12px;
+  padding: 0;
+  max-width: 440px;
+  width: calc(100% - 2rem);
+  font-family: inherit;
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.35);
+}
+
+.event-choice-dialog::backdrop {
+  background: rgba(30, 24, 50, 0.55);
+}
+
+.event-choice-dialog__chrome {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 0.75rem;
+  padding: 0.75rem 0.9rem;
+  background: linear-gradient(180deg, #5a5288, #463f70);
+  color: #fff;
+  border-bottom: 2px solid #f5cf6f;
+}
+
+.event-choice-dialog__title {
+  margin: 0;
+  font-size: 0.95rem;
+}
+
+.event-choice-dialog__sub {
+  margin: 0.2rem 0 0;
+  font-size: 0.7rem;
+  color: #bebbce;
+}
+
+.event-choice-dialog__close {
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  font-size: 1.1rem;
+  line-height: 1;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.event-choice-dialog__body {
+  padding: 0.75rem 0.9rem 1rem;
+  max-height: 55vh;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.evt-choice-hint {
+  margin: 0 0 0.15rem;
+  font-size: 0.72rem;
+  color: #625d7d;
+  font-weight: 700;
+}
+
+.evt-choice-panel {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 0.5rem;
+  align-items: start;
+  padding: 0.55rem 0.65rem;
+  border: 1.5px solid #c8c4d4;
+  border-radius: 8px;
+  background: linear-gradient(180deg, #fff, #f6f4f8);
+  cursor: pointer;
+  text-align: left;
+  font: inherit;
+  color: inherit;
+}
+
+.evt-choice-panel:hover {
+  border-color: #9088a8;
+}
+
+.evt-choice-panel.is-on {
+  border-color: #ff7300;
+  background: linear-gradient(180deg, #fff8ee, #ffe8cc);
+  box-shadow: inset 0 0 0 1px rgba(255, 115, 0, 0.2);
+}
+
+.evt-choice-panel__title {
+  font-size: 0.82rem;
+  font-weight: 900;
+  color: #703a13;
+}
+
+.evt-choice-panel__desc {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: #625d7d;
+  margin-top: 0.15rem;
+  line-height: 1.35;
+}
+
+.evt-choice-panel__pick {
+  font-size: 0.68rem;
+  font-weight: 900;
+  color: #625d7d;
+  padding-top: 0.15rem;
+}
+
+.evt-choice-panel.is-on .evt-choice-panel__pick {
+  color: #ff7300;
+}
+
+/* ---- 継承上展開（トータルバー直上） ---- */
+.inherit-popover {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 5.5rem;
+  z-index: 1001;
+  pointer-events: none;
+}
+
+.inherit-popover[hidden] {
+  display: none !important;
+}
+
+.inherit-popover__inner {
+  pointer-events: auto;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0.65rem 1rem 0.75rem;
+  background: linear-gradient(180deg, #5a5288, #463f70);
+  color: #fff;
+  border-top: 2px solid #f5cf6f;
+  border-radius: 10px 10px 0 0;
+  box-shadow: 0 -8px 28px rgba(0, 0, 0, 0.25);
+}
+
+.inherit-popover__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.4rem;
+}
+
+.inherit-popover__title {
+  font-size: 0.82rem;
+  font-weight: 900;
+  color: #f5cf6f;
+}
+
+.inherit-popover__close {
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  border-radius: 6px;
+  width: 1.75rem;
+  height: 1.75rem;
+  cursor: pointer;
+  font-size: 1rem;
+  line-height: 1;
+}
+
+.inherit-popover .options-row--inherit {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem 1rem;
+  margin: 0;
+}
+
+.inherit-popover .options-row--inherit label {
+  color: #ede6e6;
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.inherit-popover .options-row--inherit input {
+  margin-left: 0.35rem;
+  margin-bottom: 0;
+  background: #fff;
+  color: #333;
+}
+
+.premise-chip--detail {
+  min-width: 3.5rem;
+  background: rgba(255, 255, 255, 0.18);
+  border-color: rgba(245, 207, 111, 0.65);
+  color: #ffe9a8;
+  cursor: pointer;
+}
+
 /* ---- レイアウトモードバー（常に操作可能） ---- */
 .layout-modebar {
   display: flex;

@@ -103,7 +103,7 @@
                 </ul>
               </li>
               <li>
-                画面下部の <strong>合計 SP バー</strong> で切れ者・トレLv・継承を変更できる
+                画面下部の <strong>合計 SP バー</strong> で切れ者・トレLv・継承を変更できる（継承ON時は「詳細」で個数などを上展開）
               </li>
               <li>
                 下段作業台で <strong>合計 SP</strong> を確認し、不要スキルを除外
@@ -317,24 +317,6 @@
                 <ol id="event-priority-support-list" class="event-scope-list"></ol>
               </div>
             </div>
-
-            <details class="deck-inherit-details" id="deck-inherit-detail">
-              <summary class="deck-inherit-details__summary">継承固有の詳細</summary>
-              <div class="options-row options-row--inherit">
-                <label>
-                  個数
-                  <input type="number" id="inherit-count" min="2" max="6" value="4" style="width: 4rem" />
-                </label>
-                <label>
-                  ヒントLv
-                  <input type="number" id="inherit-hint" min="1" max="5" value="3" style="width: 4rem" />
-                </label>
-                <label>
-                  baseSp
-                  <input type="number" id="inherit-base" min="1" value="200" style="width: 5rem" />
-                </label>
-              </div>
-            </details>
           </div>
 
           <p id="event-empty-hint" class="hint deck-event-empty-hint" hidden>
@@ -465,6 +447,30 @@
       </div>
     </main>
 
+    <!-- 継承詳細（トータルバー上展開） -->
+    <div id="inherit-popover" class="inherit-popover" hidden>
+      <div class="inherit-popover__inner" id="deck-inherit-detail">
+        <div class="inherit-popover__head">
+          <span class="inherit-popover__title">継承固有の詳細</span>
+          <button type="button" id="inherit-popover-close" class="inherit-popover__close" aria-label="閉じる">×</button>
+        </div>
+        <div class="options-row options-row--inherit">
+          <label>
+            個数
+            <input type="number" id="inherit-count" min="2" max="6" value="4" style="width: 4rem" />
+          </label>
+          <label>
+            ヒントLv
+            <input type="number" id="inherit-hint" min="1" max="5" value="3" style="width: 4rem" />
+          </label>
+          <label>
+            baseSp
+            <input type="number" id="inherit-base" min="1" value="200" style="width: 5rem" />
+          </label>
+        </div>
+      </div>
+    </div>
+
     <div id="total-sp-bar" class="total-sp-bar" aria-live="polite">
       <div class="total-sp-bar-inner">
         <div class="total-sp-bar__total">
@@ -484,6 +490,18 @@
       <option value="3">3</option>
     </select>
     <span id="total-sp" hidden aria-hidden="true"></span>
+
+    <!-- A: 選択式イベント詳細 -->
+    <dialog id="event-choice-dialog" class="event-choice-dialog" aria-labelledby="event-choice-dialog-title">
+      <div class="event-choice-dialog__chrome">
+        <div>
+          <h2 id="event-choice-dialog-title" class="event-choice-dialog__title">A · イベント選択</h2>
+          <p class="event-choice-dialog__sub" id="event-choice-dialog-sub">金・白・ステから選ぶ（未選択なし）</p>
+        </div>
+        <button type="button" id="event-choice-close" class="event-choice-dialog__close" aria-label="閉じる">×</button>
+      </div>
+      <div id="event-choice-dialog-body" class="event-choice-dialog__body"></div>
+    </dialog>
 
     <!-- B: 自動計上一覧（インライン折りたたみしない） -->
     <dialog id="auto-events-dialog" class="auto-events-dialog" aria-labelledby="auto-events-dialog-title">

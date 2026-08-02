@@ -287,9 +287,15 @@ function bindPremiseChipsOnce() {
     if (t.id === "bar-premise-inherit" || t.closest("#bar-premise-inherit")) {
       const cb = document.getElementById("inherit-enabled");
       if (!cb) return;
+      /* 詳細ボタンは ON/OFF せずポップオーバーだけ */
+      if (t.closest("[data-inherit-detail]")) {
+        setInheritPopoverOpen(true);
+        return;
+      }
       cb.checked = !cb.checked;
       updateTotalBarChips();
       updateDeckFootbandMeta();
+      setInheritPopoverOpen(cb.checked);
       recalc();
     }
   });
@@ -325,11 +331,13 @@ function updateTotalBarChips(excludedCount = excludedSkillIds.size) {
       </select>
     </span>
     <button type="button" class="${inheritClass}" id="bar-premise-inherit" aria-pressed="${inheritOn ? "true" : "false"}">継承 ${inheritOn ? `${inheritCount}本` : "OFF"}</button>
+    ${inheritOn ? `<button type="button" class="premise-chip premise-chip--detail" data-inherit-detail aria-controls="inherit-popover">詳細</button>` : ""}
   `;
   if (excludedCount > 0) {
     html += `<span class="premise-chip premise-chip--warn">除外 ${excludedCount}</span>`;
   }
   el.innerHTML = html;
+  syncInheritPopoverVisibility();
 }
 
 function buildCharacterPickerItems() {
@@ -487,7 +495,8 @@ function initEventChoiceIds(events) {
   const map = new Map();
   for (const evt of events.events || []) {
     if (evt.selection === "single") {
-      map.set(evt.id, evt.defaultChoiceId ?? "none");
+      const def = evt.defaultChoiceId ?? evt.choices?.[0]?.id;
+      if (def) map.set(evt.id, def);
     }
   }
   return map;
@@ -627,7 +636,11 @@ function restoreDesign(snapshot) {
   // single イベントの欠落キーを既定で補完
   for (const evt of state.events.events || []) {
     if (evt.selection === "single" && !state.ui.eventChoiceIds.has(evt.id)) {
-      state.ui.eventChoiceIds.set(evt.id, evt.defaultChoiceId ?? "none");
+      const def = evt.defaultChoiceId ?? evt.choices?.[0]?.id;
+      if (def) state.ui.eventChoiceIds.set(evt.id, def);
+    } else if (evt.selection === "single") {
+      // 旧「未選択」や不正IDを既定へ寄せる
+      resolveEventChoiceId(evt);
     }
   }
 
@@ -774,58 +787,153 @@ function getEventsForSupport(support) {
   );
 }
 
-function renderSingleEventGroup(evt, container, compact = false) {
-  if (evt.selection === "single") {
-    const group = document.createElement("fieldset");
-    group.className = compact ? "event-single-group event-single-group--compact" : "event-single-group";
-    const legend = document.createElement("legend");
-    legend.textContent = compact ? evt.label.replace(/^[^ ]+ /, "") : evt.label;
-    group.appendChild(legend);
+/** 選択肢の種別: 金(rarity2) / 白 / ステのみ */
+function choiceKind(choice) {
+  const skills = choice?.skills || [];
+  if (skills.length === 0) return "stat";
+  const map = getSkillByIdMap();
+  if (skills.some((sk) => map.get(sk.skillId)?.rarity === 2)) return "gold";
+  return "white";
+}
 
-    const current = state.ui.eventChoiceIds.get(evt.id) ?? "none";
-    const choices = [
-      ...(evt.choices || []),
-      { id: "none", label: "未選択", skills: [] },
-    ];
+function kindBadgeHtml(kind) {
+  if (kind === "gold") return '<span class="evt-badge evt-badge--gold">金</span>';
+  if (kind === "white") return '<span class="evt-badge evt-badge--white">白</span>';
+  if (kind === "stat") return '<span class="evt-badge evt-badge--stat">ステ</span>';
+  if (kind === "auto") return '<span class="evt-badge evt-badge--auto">自動</span>';
+  return "";
+}
 
-    for (const choice of choices) {
-      const row = document.createElement("div");
-      row.className = "radio-row radio-row--compact";
-      const inputId = `evt-${evt.id}-${choice.id}`;
-      const checked = current === choice.id ? "checked" : "";
-      const shortLabel = compact ? choice.label.replace(/^① |^② /, "") : choice.label;
-      row.innerHTML = `
-        <input type="radio" name="evt-${evt.id}" id="${inputId}" value="${escapeHtml(choice.id)}" ${checked} />
-        <label for="${inputId}">${escapeHtml(shortLabel)}</label>
-      `;
-      group.appendChild(row);
-      row.querySelector("input").addEventListener("change", (e) => {
-        if (!e.target.checked) return;
-        state.ui.eventChoiceIds.set(evt.id, choice.id);
-        recalc();
-      });
-    }
-    container.appendChild(group);
+function sortChoicesGoldFirst(choices) {
+  return [...(choices || [])].sort((a, b) => {
+    const ka = choiceKind(a) === "gold" ? 0 : 1;
+    const kb = choiceKind(b) === "gold" ? 0 : 1;
+    return ka - kb;
+  });
+}
+
+function shortChoiceLabel(choice) {
+  return (choice?.label || "").replace(/^[①②③④⑤⑥⑦⑧⑨⑩]\s*/, "");
+}
+
+function goldSkillNamesFromSkills(skills) {
+  const map = getSkillByIdMap();
+  return (skills || [])
+    .filter((sk) => map.get(sk.skillId)?.rarity === 2)
+    .map((sk) => sk.skillName);
+}
+
+/** single の選択IDを既定へ正規化（未選択なし） */
+function resolveEventChoiceId(evt) {
+  const choices = evt.choices || [];
+  const def = evt.defaultChoiceId ?? choices[0]?.id;
+  let cur = state.ui.eventChoiceIds.get(evt.id);
+  if (!cur || cur === "none" || !choices.some((c) => c.id === cur)) {
+    cur = def;
+    if (cur) state.ui.eventChoiceIds.set(evt.id, cur);
+  }
+  return cur;
+}
+
+function renderChoicePanelButtons(container, evt, onAfter) {
+  container.innerHTML = "";
+  if (evt.selection === "toggle") {
+    const on = state.ui.enabledEventIds.has(evt.id);
+    const btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "evt-choice-panel" + (on ? " is-on" : "");
+    btn.innerHTML = `
+      <div class="evt-choice-panel__kind">${kindBadgeHtml("white")}</div>
+      <div>
+        <div class="evt-choice-panel__title">${escapeHtml(evt.label)}</div>
+        <div class="evt-choice-panel__desc">${escapeHtml(formatSkillList(evt.skills) || "ON/OFF")}</div>
+      </div>
+      <div class="evt-choice-panel__pick">${on ? "ON" : "OFF"}</div>`;
+    btn.onclick = () => {
+      if (state.ui.enabledEventIds.has(evt.id)) state.ui.enabledEventIds.delete(evt.id);
+      else state.ui.enabledEventIds.add(evt.id);
+      onAfter();
+    };
+    container.appendChild(btn);
     return;
   }
 
-  if (evt.selection === "toggle") {
-    const div = document.createElement("div");
-    div.className = "checkbox-row checkbox-row--compact";
-    const checked = state.ui.enabledEventIds.has(evt.id) ? "checked" : "";
-    div.innerHTML = `
-      <input type="checkbox" id="evt-${evt.id}" data-id="${evt.id}" ${checked} />
-      <label for="evt-${evt.id}">${escapeHtml(evt.label)}</label>
-    `;
-    container.appendChild(div);
-    div.querySelector("input").addEventListener("change", (e) => {
-      if (e.target.checked) state.ui.enabledEventIds.add(evt.id);
-      else state.ui.enabledEventIds.delete(evt.id);
-      recalc();
-    });
+  const hint = document.createElement("p");
+  hint.className = "evt-choice-hint";
+  hint.textContent = "1つ選択 · 金スキルがある選択肢を上に表示（未選択なし）";
+  container.appendChild(hint);
+
+  const current = resolveEventChoiceId(evt);
+  for (const choice of sortChoicesGoldFirst(evt.choices || [])) {
+    const kind = choiceKind(choice);
+    const btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "evt-choice-panel" + (current === choice.id ? " is-on" : "");
+    btn.innerHTML = `
+      <div class="evt-choice-panel__kind">${kindBadgeHtml(kind)}</div>
+      <div>
+        <div class="evt-choice-panel__title">${escapeHtml(shortChoiceLabel(choice))}</div>
+        <div class="evt-choice-panel__desc">${escapeHtml(formatSkillList(choice.skills) || "ステータス分岐など")}</div>
+      </div>
+      <div class="evt-choice-panel__pick">${current === choice.id ? "選択中" : "選ぶ"}</div>`;
+    btn.onclick = () => {
+      state.ui.eventChoiceIds.set(evt.id, choice.id);
+      onAfter();
+    };
+    container.appendChild(btn);
   }
 }
 
+function openEventChoiceDialog(evt) {
+  const dialog = document.getElementById("event-choice-dialog");
+  const title = document.getElementById("event-choice-dialog-title");
+  const sub = document.getElementById("event-choice-dialog-sub");
+  const body = document.getElementById("event-choice-dialog-body");
+  if (!dialog || !body) return;
+  title.textContent = `A · ${evt.label}`;
+  sub.textContent =
+    evt.selection === "toggle" ? "複数・ON/OFF" : "単一選択 · 金を最上段";
+  const refresh = () => {
+    renderColumnEvents();
+    renderChoicePanelButtons(body, evt, () => {
+      recalc();
+      refresh();
+    });
+  };
+  refresh();
+  if (typeof dialog.showModal === "function") dialog.showModal();
+}
+
+function bindEventChoiceDialog() {
+  const dialog = document.getElementById("event-choice-dialog");
+  const closeBtn = document.getElementById("event-choice-close");
+  closeBtn?.addEventListener("click", () => dialog?.close());
+  dialog?.addEventListener("click", (e) => {
+    if (e.target === dialog) dialog.close();
+  });
+}
+
+function setInheritPopoverOpen(open) {
+  const pop = document.getElementById("inherit-popover");
+  if (!pop) return;
+  const inheritOn = document.getElementById("inherit-enabled")?.checked;
+  pop.hidden = !(open && inheritOn);
+}
+
+function syncInheritPopoverVisibility() {
+  const pop = document.getElementById("inherit-popover");
+  if (!pop) return;
+  const inheritOn = document.getElementById("inherit-enabled")?.checked;
+  if (!inheritOn) pop.hidden = true;
+}
+
+function bindInheritPopover() {
+  document.getElementById("inherit-popover-close")?.addEventListener("click", () => {
+    setInheritPopoverOpen(false);
+  });
+}
+
+/** 列下: Aは要約タップで詳細、B自動は金スキル名のみ */
 function renderColumnEvents() {
   if (!state) return;
   for (let i = 0; i < 6; i++) {
@@ -836,11 +944,43 @@ function renderColumnEvents() {
     const support = id != null ? getSupportById(id) : null;
     if (!support) continue;
 
-    const singles = getEventsForSupport(support).filter(
+    const events = getEventsForSupport(support);
+    const selectables = events.filter(
       (evt) => evt.selection === "single" || evt.selection === "toggle"
     );
-    for (const evt of singles) {
-      renderSingleEventGroup(evt, container, true);
+    const autos = events.filter((evt) => evt.selection === "auto");
+
+    for (const evt of selectables) {
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "deck-evt-sum";
+      if (evt.selection === "toggle") {
+        const on = state.ui.enabledEventIds.has(evt.id);
+        btn.innerHTML = `${kindBadgeHtml("white")}${escapeHtml(evt.label.replace(/^[^ ]+ /, ""))}<span class="deck-evt-sum__more">${on ? "ON" : "OFF"} · タップで切替</span>`;
+      } else {
+        const choiceId = resolveEventChoiceId(evt);
+        const choice = (evt.choices || []).find((c) => c.id === choiceId);
+        const kind = choice ? choiceKind(choice) : "stat";
+        const label = choice ? shortChoiceLabel(choice) : "選択";
+        const n = (evt.choices || []).length;
+        btn.innerHTML = `${kindBadgeHtml(kind)}${escapeHtml(label)}<span class="deck-evt-sum__more">全${n}択 · タップで詳細</span>`;
+      }
+      btn.addEventListener("click", () => openEventChoiceDialog(evt));
+      container.appendChild(btn);
+    }
+
+    for (const evt of autos) {
+      const golds = goldSkillNamesFromSkills(evt.skills);
+      const label = golds[0] || evt.skills?.[0]?.skillName || "自動";
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "deck-evt-sum deck-evt-sum--auto";
+      btn.innerHTML = `${kindBadgeHtml("auto")}${escapeHtml(label)}`;
+      btn.title = "自動計上（一覧は件数チップから）";
+      btn.addEventListener("click", () => {
+        document.getElementById("auto-events-open")?.click();
+      });
+      container.appendChild(btn);
     }
   }
 }
@@ -1529,6 +1669,8 @@ async function init() {
     bindPickerFilters();
     bindLayoutMode();
     bindAutoEventsDialog();
+    bindEventChoiceDialog();
+    bindInheritPopover();
     renderDeckDashboard();
     updateTotalBarChips();
 
