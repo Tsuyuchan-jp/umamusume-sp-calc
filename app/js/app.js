@@ -2328,8 +2328,16 @@ function bindShareCardButtons() {
           showShareCardButtonFeedback(btn, defaultLabel, "保存に失敗", true);
         } else if (result.mode === "share") {
           showShareCardButtonFeedback(btn, defaultLabel, "共有しました", false);
-        } else {
+        } else if (result.mode === "picker") {
           showShareCardButtonFeedback(btn, defaultLabel, "保存しました", false);
+        } else {
+          // a[download]: ダイアログが出ない端末向けに行き先を明示
+          showShareCardButtonFeedback(
+            btn,
+            defaultLabel,
+            "DL開始（フォルダ確認）",
+            false
+          );
         }
       }
     } catch (e) {
