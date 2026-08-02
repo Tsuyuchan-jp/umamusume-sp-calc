@@ -2707,35 +2707,71 @@ table.result-skills .col-sp {
     width: 100%;
   }
 
-  .total-sp-bar-chips .premise-chip {
+  .total-sp-bar-chips .premise-chip:not(.premise-chip--training) {
     min-height: 2.5rem;
+  }
+
+  .total-sp-bar-chips {
+    align-items: center;
   }
 
   .total-sp-bar-chips .premise-chip--training {
     display: inline-flex;
+    flex-direction: row;
     align-items: stretch;
+    align-self: center;
+    box-sizing: border-box;
+    height: 2.5rem;
     min-height: 2.5rem;
+    max-height: 2.5rem;
     padding: 0;
     overflow: hidden;
+    border-radius: 6px;
+    vertical-align: middle;
   }
 
-  .total-sp-bar-chips .premise-chip__prefix {
-    display: inline-flex;
-    align-items: center;
-    min-height: 2.5rem;
-    padding: 0 0.45rem 0 0.55rem;
-  }
-
-  .total-sp-bar-chips .premise-lv {
-    min-width: 2.15rem;
-    width: auto;
-    height: auto;
-    align-self: stretch;
+  .total-sp-bar-chips .premise-chip--training .premise-chip__prefix {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    padding: 0 0.35rem;
+    flex: 0 0 auto;
+    height: auto;
+    min-height: 0;
+    margin: 0;
+    padding: 0 0.4rem 0 0.55rem;
+    border-right: 1px solid rgba(255, 255, 255, 0.2);
+    font-size: 0.68rem;
+    line-height: 1;
+  }
+
+  .total-sp-bar-chips .premise-chip--training .premise-lv {
+    flex: 1 1 0;
+    min-width: 2.25rem;
+    width: auto;
+    height: auto;
+    min-height: 0;
+    margin: 0;
+    padding: 0;
+    border: 0;
     border-radius: 0;
+    border-right: 1px solid rgba(255, 255, 255, 0.18);
+    background: rgba(255, 255, 255, 0.12);
+    font-size: 0.75rem;
+    line-height: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    align-self: stretch;
+    box-sizing: border-box;
+  }
+
+  .total-sp-bar-chips .premise-chip--training .premise-lv:last-child {
+    border-right: 0;
+  }
+
+  .total-sp-bar-chips .premise-chip--training .premise-lv.is-on {
+    background: linear-gradient(180deg, #fa9f40, #ff8427);
+    color: #fff;
   }
 
   /* 結果ツールバー: 並びラベル非表示・1段配置 */
