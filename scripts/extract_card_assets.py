@@ -1,8 +1,10 @@
 ﻿"""優先サポート40枚 + 全育成ウマ娘カードの PNG を flat 出力する。
 
 サポカは support_thumb（512×512・レア枠焼き付き）を抽出。import 側で縦合成する。
-育成は chr_icon（カードID直結）→ piece_icon（カード固有）→ dress 衣装 ID の順。
-3着目など chr_icon が card_id 名で無いカードは piece_icon が正本になる。
+育成は chr_icon のみ（piece_icon 不使用）。
+  1) chr_icon_{cardId}
+  2) race_dress_id（他育成カードIDと一致する場合はスキップ）
+  3) 同キャラ dress_data の未使用 chr_icon キー
 """
 from __future__ import annotations
 
@@ -185,38 +187,30 @@ def dress_ids_from_dress_data(master_conn: sqlite3.Connection | None, chara_id: 
         return []
 
 
-def piece_icon_meta_names(card_id: int) -> list[str]:
-    return [
-        f"outgame/piece/piece_icon_{card_id}_no_frame",
-        f"outgame/piece/piece_icon_{card_id}",
-    ]
-def dress_ids_from_card_rarity(master_conn: sqlite3.Connection | None, card_id: int) -> list[int]:
-    """card_rarity_data から衣装 ID を読む（レース衣装は最後に回す）。"""
+def race_dress_id(master_conn: sqlite3.Connection | None, card_id: int) -> int | None:
+    """card_rarity_data の race_dress_id（rarity=3 優先）。"""
     if master_conn is None:
-        return []
+        return None
     try:
         cols = {row[1] for row in master_conn.execute("PRAGMA table_info(card_rarity_data)")}
-        want = [c for c in ("get_dress_id_1", "get_dress_id_2", "race_dress_id") if c in cols]
-        if not want:
-            return []
-        id_col = "card_id" if "card_id" in cols else None
-        if id_col is None:
-            return []
-        sql = f"SELECT {', '.join(want)} FROM card_rarity_data WHERE {id_col}=?"
-        row = master_conn.execute(sql, (card_id,)).fetchone()
+        if "race_dress_id" not in cols or "card_id" not in cols:
+            return None
+        row = master_conn.execute(
+            "SELECT race_dress_id FROM card_rarity_data WHERE card_id=? AND rarity=3",
+            (card_id,),
+        ).fetchone()
         if not row:
-            return []
-        out: list[int] = []
-        for v in row:
-            if v is None:
-                continue
-            iv = int(v)
-            if iv > 1000 and iv not in out:
-                out.append(iv)
-        return out
+            row = master_conn.execute(
+                "SELECT race_dress_id FROM card_rarity_data WHERE card_id=? ORDER BY rarity LIMIT 1",
+                (card_id,),
+            ).fetchone()
+        if not row or row[0] is None:
+            return None
+        iv = int(row[0])
+        return iv if iv > 1000 else None
     except sqlite3.Error as e:
-        print(f"master query failed for {card_id}: {e}")
-        return []
+        print(f"race_dress_id query failed for {card_id}: {e}")
+        return None
 
 
 def guess_chara_id(card_id: int) -> int:
@@ -227,16 +221,18 @@ def guess_chara_id(card_id: int) -> int:
     return card_id
 
 
+def meta_has_chr_icon(meta_conn: sqlite3.Connection, chara_id: int, key: int) -> bool:
+    name = f"chara/chr{chara_id}/chr_icon_{chara_id}_{key}_01"
+    row = meta_conn.execute("SELECT 1 FROM a WHERE n=?", (name,)).fetchone()
+    return row is not None
+
+
 def iter_chr_icon_meta_names(chara_id: int, keys: list[int]) -> list[str]:
-    """カードID直結・dress・6桁レガシー名の候補を列挙。"""
+    """指定キーの chr_icon 候補（variant 01/02）。"""
     names: list[str] = []
     seen: set[str] = set()
     for key in keys:
-        key_forms: list[str] = []
-        for candidate in (str(key), f"{key:06d}", f"{key % 1000:06d}"):
-            if candidate not in key_forms:
-                key_forms.append(candidate)
-        for key_s in key_forms:
+        for key_s in (str(key), f"{key:06d}"):
             for variant in ("01", "02"):
                 name = f"chara/chr{chara_id}/chr_icon_{chara_id}_{key_s}_{variant}"
                 if name not in seen:
@@ -245,26 +241,43 @@ def iter_chr_icon_meta_names(chara_id: int, keys: list[int]) -> list[str]:
     return names
 
 
-def find_chr_icon_meta_names_by_card(
-    meta_conn: sqlite3.Connection, chara_id: int, card_id: int
-) -> list[str]:
-    """meta を LIKE 検索し、カード ID を含む chr_icon を列挙（dress 誤フォールバック前）。"""
-    patterns = (
-        f"chara/chr{chara_id}/chr_icon_{chara_id}_{card_id}_%",
-        f"chara/chr{chara_id}/chr_icon_{chara_id}_{card_id:06d}_%",
-    )
-    names: list[str] = []
-    seen: set[str] = set()
-    for pat in patterns:
-        try:
-            rows = meta_conn.execute("SELECT n FROM a WHERE n LIKE ? ORDER BY n", (pat,)).fetchall()
-        except sqlite3.Error:
-            continue
-        for (name,) in rows:
-            if name not in seen and "/chr_icon_" in name:
-                seen.add(name)
-                names.append(name)
-    return names
+def resolve_chr_icon_key(
+    *,
+    card_id: int,
+    chara_id: int,
+    sibling_card_ids: set[int],
+    master_conn: sqlite3.Connection | None,
+    meta_conn: sqlite3.Connection,
+) -> tuple[int | None, str]:
+    """カードに対応する chr_icon キーを返す。(key, via)
+
+    piece_icon は使わない。
+    """
+    if meta_has_chr_icon(meta_conn, chara_id, card_id):
+        return card_id, "card_id"
+
+    race = race_dress_id(master_conn, card_id)
+    # 他育成カードの ID と一致する race_dress は「前作衣装の流用」なのでスキップ
+    if (
+        race is not None
+        and race not in sibling_card_ids
+        and meta_has_chr_icon(meta_conn, chara_id, race)
+    ):
+        return race, "race_dress"
+
+    dresses = dress_ids_from_dress_data(master_conn, chara_id)
+    claimed = {sid for sid in sibling_card_ids if meta_has_chr_icon(meta_conn, chara_id, sid)}
+    unused = [
+        d
+        for d in dresses
+        if d not in sibling_card_ids
+        and d not in claimed
+        and meta_has_chr_icon(meta_conn, chara_id, d)
+    ]
+    if unused:
+        return unused[0], "unused_dress"
+
+    return None, "missing"
 
 
 def try_extract_chr_icons(
@@ -294,6 +307,7 @@ def extract_character_icon(
     *,
     card_id: int,
     chara_id: int,
+    sibling_card_ids: set[int],
     master_conn: sqlite3.Connection | None,
     dat_root: Path,
     meta_conn: sqlite3.Connection,
@@ -301,56 +315,38 @@ def extract_character_icon(
     mirror_png_dir: Path,
     flat_png: Path,
 ) -> str | None:
-    common = dict(
+    key, via = resolve_chr_icon_key(
+        card_id=card_id,
+        chara_id=chara_id,
+        sibling_card_ids=sibling_card_ids,
+        master_conn=master_conn,
+        meta_conn=meta_conn,
+    )
+    if key is None:
+        return None
+
+    used = try_extract_chr_icons(
+        meta_names=iter_chr_icon_meta_names(chara_id, [key]),
         dat_root=dat_root,
         meta_conn=meta_conn,
         decrypt_dir=decrypt_dir,
         mirror_png_dir=mirror_png_dir,
         flat_png=flat_png,
     )
-
-    # 1) カード ID 直結のみ（他衣装 dress へ飛ばない）
-    used = try_extract_chr_icons(
-        meta_names=iter_chr_icon_meta_names(chara_id, [card_id]),
-        **common,
-    )
     if used:
-        return used
+        print(f"  resolve {card_id} -> key={key} via={via}")
+    return used
 
-    # 2) meta LIKE（命名ゆれ・未列挙 variant）
-    used = try_extract_chr_icons(
-        meta_names=find_chr_icon_meta_names_by_card(meta_conn, chara_id, card_id),
-        **common,
-    )
-    if used:
-        return used
 
-    # 3) piece_icon（カード ID 固有。3着目など chr_icon が無い場合の正本）
-    used = try_extract_chr_icons(
-        meta_names=piece_icon_meta_names(card_id),
-        **common,
-    )
-    if used:
-        return used
-
-    # 4) dress_data の衣装 ID
-    dress_keys = dress_ids_from_dress_data(master_conn, chara_id)
-    used = try_extract_chr_icons(
-        meta_names=iter_chr_icon_meta_names(chara_id, dress_keys),
-        **common,
-    )
-    if used:
-        return used
-
-    # 5) card_rarity の衣装 ID（最終手段）
-    used = try_extract_chr_icons(
-        meta_names=iter_chr_icon_meta_names(chara_id, dress_ids_from_card_rarity(master_conn, card_id)),
-        **common,
-    )
-    if used:
-        return used
-
-    return None
+def build_chara_siblings(
+    character_ids: list[int], card_chara: dict[int, int]
+) -> dict[int, set[int]]:
+    """chara_id -> 同キャラの育成カード ID 集合"""
+    out: dict[int, set[int]] = {}
+    for card_id in character_ids:
+        chara_id = card_chara.get(card_id) or guess_chara_id(card_id)
+        out.setdefault(chara_id, set()).add(card_id)
+    return out
 
 
 def main() -> int:
@@ -398,6 +394,7 @@ def main() -> int:
 
     master_conn = open_master(master_path)
     card_chara = load_card_chara_map(master_conn)
+    siblings = build_chara_siblings(character_ids, card_chara)
     meta_conn = sqlite3.connect(str(meta_path))
 
     ok_supports: list[int] = []
@@ -425,6 +422,7 @@ def main() -> int:
         used = extract_character_icon(
             card_id=card_id,
             chara_id=chara_id,
+            sibling_card_ids=siblings.get(chara_id, {card_id}),
             master_conn=master_conn,
             dat_root=dat_root,
             meta_conn=meta_conn,
