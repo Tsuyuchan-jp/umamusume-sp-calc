@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>編成スクショ — 共有カード案 S1〜S3</title>
+  <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@700;900&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --ink: #463f70;
+      --gold: #f5cf6f;
+      --font: "Zen Maru Gothic", Meiryo, sans-serif;
+      --border: #d8d0e8;
+      --g-chrome: linear-gradient(180deg, #5a5288, #463f70);
+      --g-gold: linear-gradient(90deg, #e9c95f, #e29403);
+      --g-acc: linear-gradient(180deg, #80e322, #38c306);
+      --g-pri: linear-gradient(180deg, #59ccfc, #23a4f6);
+      --panel: radial-gradient(circle at 12% 8%, rgba(245, 207, 111, 0.1), transparent 42%), #fff;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: var(--font);
+      font-weight: 700;
+      background: #3d3758;
+      color: var(--ink);
+      padding: 1.25rem;
+    }
+    h1 { color: var(--gold); font-size: 1rem; margin: 0 0 0.35rem; }
+    h2 { font-size: 0.88rem; margin: 0 0 0.25rem; color: var(--ink); }
+    .note {
+      color: #ddd8ef;
+      font-size: 0.78rem;
+      margin: 0 0 1.1rem;
+      line-height: 1.55;
+      max-width: 58rem;
+    }
+    .note code { color: #f5cf6f; font-size: 0.9em; }
+    .section {
+      margin-bottom: 1.5rem;
+    }
+    .section > h2 {
+      color: var(--gold);
+      font-size: 0.82rem;
+      margin: 0 0 0.55rem;
+    }
+    .grid {
+      display: grid;
+      gap: 1rem;
+    }
+    .grid--cards {
+      grid-template-columns: 1fr;
+    }
+    .wrap-card {
+      background: #fff;
+      border: 2px solid var(--ink);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    .wrap-card__head {
+      padding: 0.65rem 0.85rem 0.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .wrap-card__head p {
+      margin: 0;
+      font-size: 0.66rem;
+      color: #625d7d;
+      line-height: 1.45;
+    }
+    .wrap-card__body {
+      padding: 0.85rem;
+      background: #f6f4f8;
+    }
+    .tag {
+      display: inline-block;
+      margin-bottom: 0.3rem;
+      padding: 0.1rem 0.38rem;
+      border-radius: 4px;
+      font-size: 0.6rem;
+      font-weight: 900;
+      background: #eeeaf6;
+      color: var(--ink);
+    }
+    .tag--rec { background: var(--ink); color: #fff; }
+    .tag--sub { background: #e8f4ff; color: #0c5b92; }
+
+    /* ===== 共有カード本体（出力イメージ） ===== */
+    .share {
+      width: 100%;
+      max-width: 960px;
+      aspect-ratio: 16 / 9;
+      margin: 0 auto;
+      border: 3px solid var(--ink);
+      border-radius: 12px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      background: var(--panel);
+      box-shadow: 0 6px 20px rgba(70, 63, 112, 0.18);
+    }
+    .share__chrome {
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.5rem;
+      padding: 0.42rem 0.75rem;
+      background: var(--g-chrome);
+      color: #fff;
+      border-bottom: 2px solid var(--gold);
+      min-height: 2rem;
+    }
+    .share__title {
+      font-size: clamp(0.72rem, 1.6vw, 0.92rem);
+      font-weight: 900;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      min-width: 0;
+    }
+    .share__brand {
+      flex-shrink: 0;
+      font-size: clamp(0.5rem, 1.1vw, 0.62rem);
+      color: #ddd8ef;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+    .share__brand a { color: #59ccfc; text-decoration: none; }
+    .share__body {
+      flex: 1;
+      min-height: 0;
+      display: flex;
+      gap: clamp(0.45rem, 1.2vw, 0.85rem);
+      padding: clamp(0.45rem, 1.2vw, 0.75rem);
+    }
+    .share__faces {
+      flex-shrink: 0;
+      display: flex;
+      gap: clamp(0.3rem, 0.8vw, 0.5rem);
+      align-items: flex-start;
+    }
+    .share__char {
+      width: clamp(3.2rem, 8vw, 4.6rem);
+      flex-shrink: 0;
+    }
+    .share__char img,
+    .share__sup img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      object-position: center bottom;
+    }
+    .share__char-frame {
+      height: clamp(4.4rem, 11vw, 6.2rem);
+      border-radius: 6px;
+      border: 2px solid var(--ink);
+      background: linear-gradient(180deg, #fff, #f0ecf8);
+      overflow: hidden;
+    }
+    .share__char-lbl {
+      margin-top: 0.15rem;
+      font-size: clamp(0.48rem, 1vw, 0.58rem);
+      color: #625d7d;
+      text-align: center;
+      line-height: 1.2;
+    }
+    .share__grid {
+      display: grid;
+      grid-template-columns: repeat(3, clamp(1.5rem, 3.8vw, 2.15rem));
+      grid-template-rows: repeat(2, clamp(2rem, 5vw, 2.85rem));
+      gap: clamp(0.14rem, 0.4vw, 0.22rem);
+    }
+    .share__sup {
+      position: relative;
+      border-radius: 4px;
+      border: 1.5px solid var(--border);
+      background: #fff;
+      overflow: hidden;
+    }
+    .share__sup .type-dot {
+      position: absolute;
+      top: 2px;
+      right: 2px;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      border: 1px solid #fff;
+      box-shadow: 0 0 0 1px #0002;
+    }
+    .type-dot.speed { background: #42a5f5; }
+    .type-dot.stamina { background: #ef5350; }
+    .type-dot.wit { background: #66bb6a; }
+    .type-dot.friend { background: #ab47bc; }
+
+    .share__meta {
+      flex: 1;
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 0.35rem;
+    }
+    .share__sp {
+      font-size: clamp(1.1rem, 3.2vw, 1.75rem);
+      font-weight: 900;
+      color: var(--ink);
+      line-height: 1.1;
+      letter-spacing: 0.02em;
+    }
+    .share__sp small {
+      font-size: 0.45em;
+      color: #625d7d;
+      margin-left: 0.15rem;
+    }
+    .share__count {
+      font-size: clamp(0.58rem, 1.4vw, 0.72rem);
+      color: #625d7d;
+    }
+    .share__chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.22rem;
+    }
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.12rem 0.38rem;
+      border-radius: 5px;
+      border: 1px solid #b3b0b6;
+      background: linear-gradient(180deg, #fff, #dad4da);
+      font-size: clamp(0.5rem, 1.1vw, 0.62rem);
+      color: #625d7d;
+      white-space: nowrap;
+    }
+    .chip.is-on {
+      background: var(--g-acc);
+      border-color: #238500;
+      color: #fff;
+    }
+    .chip.is-signal {
+      background: linear-gradient(180deg, #ff75a3, #f7518b);
+      border-color: #c00f47;
+      color: #fff;
+    }
+    .chip.is-muted {
+      background: #f0eef5;
+      border-color: #d8d0e8;
+      color: #8a849e;
+    }
+
+    /* 金イベント行（S2） */
+    .share__gold-row {
+      flex-shrink: 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.22rem;
+      padding: 0.35rem clamp(0.45rem, 1.2vw, 0.75rem) 0.5rem;
+      border-top: 1px solid var(--border);
+      background: linear-gradient(180deg, #fff9e8, #fff6d6);
+    }
+    .gold-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.2rem;
+      padding: 0.1rem 0.38rem;
+      border-radius: 5px;
+      border: 1px solid #e9b84a;
+      background: linear-gradient(180deg, #fff6d6, #ffe29a);
+      color: #5a3d00;
+      font-size: clamp(0.48rem, 1.05vw, 0.6rem);
+      white-space: nowrap;
+    }
+    .gold-chip .bar {
+      width: 3px;
+      align-self: stretch;
+      margin: -0.1rem 0.05rem -0.1rem -0.38rem;
+      border-radius: 5px 0 0 5px;
+      background: var(--g-gold);
+    }
+    .gold-chip .sup { color: #8a6a20; font-size: 0.92em; }
+
+    /* 枠下ラベル（S3） */
+    .share--s3 .share__faces {
+      flex-direction: column;
+      align-items: stretch;
+    }
+    .share--s3 .share__top-row {
+      display: flex;
+      gap: clamp(0.3rem, 0.8vw, 0.5rem);
+    }
+    .share--s3 .share__slots {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: clamp(0.2rem, 0.5vw, 0.35rem);
+    }
+    .share--s3 .share__slot {
+      text-align: center;
+    }
+    .share--s3 .share__slot .share__sup {
+      height: clamp(2rem, 5vw, 2.85rem);
+      margin: 0 auto;
+      width: clamp(1.5rem, 3.8vw, 2.15rem);
+    }
+    .share--s3 .slot-name {
+      margin-top: 0.1rem;
+      font-size: clamp(0.42rem, 0.95vw, 0.52rem);
+      color: #625d7d;
+      line-height: 1.15;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .share--s3 .slot-gold {
+      margin-top: 0.08rem;
+      font-size: clamp(0.4rem, 0.9vw, 0.5rem);
+      color: #9a6b00;
+      line-height: 1.15;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .share--s3 .slot-gold.is-empty { color: #b8b4c8; }
+
+    .share__foot {
+      flex-shrink: 0;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.3rem;
+      padding: 0.28rem clamp(0.45rem, 1.2vw, 0.75rem) 0.38rem;
+      border-top: 1px solid var(--border);
+      background: #faf8fc;
+      font-size: clamp(0.46rem, 1vw, 0.56rem);
+      color: #8a849e;
+    }
+
+    /* note 埋め込みプレビュー */
+    .embed-preview {
+      max-width: 600px;
+      margin: 0.65rem auto 0;
+      padding: 0.75rem;
+      background: #fff;
+      border-radius: 8px;
+      border: 1px dashed #b8b4c8;
+    }
+    .embed-preview p {
+      margin: 0 0 0.5rem;
+      font-size: 0.62rem;
+      color: #625d7d;
+    }
+    .embed-preview .share {
+      max-width: 100%;
+    }
+
+    /* ボタン置き場モック */
+    .btn-grid {
+      display: grid;
+      gap: 0.85rem;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    }
+    .btn-mock {
+      background: #fff;
+      border: 1.5px solid var(--border);
+      border-radius: 8px;
+      padding: 0.65rem;
+      font-size: 0.68rem;
+    }
+    .btn-mock h3 {
+      margin: 0 0 0.35rem;
+      font-size: 0.74rem;
+      color: var(--ink);
+    }
+    .btn-mock p {
+      margin: 0 0 0.5rem;
+      font-size: 0.62rem;
+      color: #625d7d;
+      line-height: 1.4;
+    }
+    .btn-row {
+      display: flex;
+      gap: 0.35rem;
+      flex-wrap: wrap;
+    }
+    .btn {
+      padding: 0.32rem 0.65rem;
+      border-radius: 6px;
+      font: inherit;
+      font-size: 0.66rem;
+      font-weight: 900;
+      cursor: default;
+      border: 1.5px solid var(--ink);
+    }
+    .btn--pri {
+      background: var(--g-chrome);
+      color: #fff;
+    }
+    .btn--sec {
+      background: #fff;
+      color: var(--ink);
+    }
+    .btn--ghost {
+      background: rgba(255,255,255,0.12);
+      border-color: rgba(255,255,255,0.35);
+      color: #fff;
+    }
+    .mini-bar {
+      background: var(--g-chrome);
+      color: #fff;
+      padding: 0.4rem 0.55rem;
+      border-radius: 6px;
+      margin-bottom: 0.45rem;
+      display: flex;
+      gap: 0.35rem;
+      align-items: center;
+      flex-wrap: wrap;
+      font-size: 0.6rem;
+    }
+    .mini-deck {
+      background: var(--panel);
+      border: 1.5px solid var(--ink);
+      border-radius: 8px;
+      padding: 0.45rem;
+      margin-bottom: 0.45rem;
+      min-height: 2.5rem;
+      font-size: 0.58rem;
+      color: #8a849e;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .mini-dialog {
+      background: #f6f4f8;
+      border: 1.5px solid var(--border);
+      border-radius: 8px;
+      padding: 0.45rem;
+    }
+    .mini-item {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.35rem;
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      font-size: 0.58rem;
+    }
+    .mini-item span { flex: 1; color: var(--ink); }
+
+    /* ブランド比較 */
+    .brand-grid {
+      display: grid;
+      gap: 0.75rem;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    }
+    .brand-grid .share { max-width: 100%; }
+
+    .pick { outline: 2px solid #ff3276; outline-offset: 3px; }
+  </style>
+</head>
+<body>
+  <h1>編成スクショ — 共有カード案 S1〜S3</h1>
+  <p class="note">
+    攻略記事・note 貼付向けの<strong>専用横長カード</strong>（16:9）。アプリ画面の切り抜きではない。<br />
+    サンプル編成: アーモンドアイ ＋ エアグルーヴ / テイオー / タップ / ドトウ / ヤング / たづな。<br />
+    採用案を <code>S1</code> / <code>S2</code> / <code>S3</code>（＋ブランド・ボタン置き場の希望）で返事ください。未承認のため本実装はまだしません。
+  </p>
+
+  <!-- ===== S1 ===== -->
+  <section class="section">
+    <h2>共有カード案</h2>
+    <div class="grid grid--cards">
+      <div class="wrap-card">
+        <div class="wrap-card__head">
+          <span class="tag">S1</span>
+          <h2>顔＋数値（最小）</h2>
+          <p>育成＋6・設計名・合計 SP・計上スキル数・前提チップのみ。金イベントなし。記事の「この編成でこの数値」と一言で足りるか確認用。</p>
+        </div>
+        <div class="wrap-card__body">
+          <div class="share" aria-label="S1 共有カード">
+            <div class="share__chrome">
+              <span class="share__title">切れ者前提・パワ寄せ</span>
+            </div>
+            <div class="share__body">
+              <div class="share__faces">
+                <div class="share__char">
+                  <div class="share__char-frame"><img src="../../../assets/characters/112901.webp" alt="" /></div>
+                  <div class="share__char-lbl">育成</div>
+                </div>
+                <div class="share__grid" aria-hidden="true">
+                  <div class="share__sup"><span class="type-dot speed"></span><img src="../../../assets/supports/30282.webp" alt="" /></div>
+                  <div class="share__sup"><span class="type-dot speed"></span><img src="../../../assets/supports/30275.webp" alt="" /></div>
+                  <div class="share__sup"><span class="type-dot speed"></span><img src="../../../assets/supports/30298.webp" alt="" /></div>
+                  <div class="share__sup"><span class="type-dot stamina"></span><img src="../../../assets/supports/30304.webp" alt="" /></div>
+                  <div class="share__sup"><span class="type-dot wit"></span><img src="../../../assets/supports/30289.webp" alt="" /></div>
+                  <div class="share__sup"><span class="type-dot friend"></span><img src="../../../assets/supports/30305.webp" alt="" /></div>
+                </div>
+              </div>
+              <div class="share__meta">
+                <div class="share__sp">12,450 <small>SP</small></div>
+                <div class="share__count">計上 42 スキル</div>
+                <div class="share__chips">
+                  <span class="chip is-on">切れ者</span>
+                  <span class="chip is-on">ヒント Lv3</span>
+                  <span class="chip">継承 +120</span>
+                  <span class="chip">レギュ ◎のみ</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="embed-preview">
+            <p>note 埋め込み幅イメージ（600px）</p>
+            <div class="share" style="max-width:100%">
+              <div class="share__chrome"><span class="share__title">切れ者前提・パワ寄せ</span></div>
+              <div class="share__body">
+                <div class="share__faces">
+                  <div class="share__char">
+                    <div class="share__char-frame"><img src="../../../assets/characters/112901.webp" alt="" /></div>
+                  </div>
+                  <div class="share__grid" aria-hidden="true">
+                    <div class="share__sup"><img src="../../../assets/supports/30282.webp" alt="" /></div>
+                    <div class="share__sup"><img src="../../../assets/supports/30275.webp" alt="" /></div>
+                    <div class="share__sup"><img src="../../../assets/supports/30298.webp" alt="" /></div>
+                    <div class="share__sup"><img src="../../../assets/supports/30304.webp" alt="" /></div>
+                    <div class="share__sup"><img src="../../../assets/supports/30289.webp" alt="" /></div>
+                    <div class="share__sup"><img src="../../../assets/supports/30305.webp" alt="" /></div>
+                  </div>
+                </div>
+                <div class="share__meta">
+                  <div class="share__sp">12,450 <small>SP</small></div>
+                  <div class="share__count">計上 42 スキル</div>
+                  <div class="share__chips">
+                    <span class="chip is-on">切れ者</span>
+                    <span class="chip is-on">ヒント Lv3</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== S2 ===== -->
+      <div class="wrap-card pick">
+        <div class="wrap-card__head">
+          <span class="tag tag--rec">S2（推奨候補）</span>
+          <h2>顔＋金イベント行</h2>
+          <p>S1 に金スキル関連の選択を1行で要約。「何を取った編成か」が記事読者に伝わる。情報過多になりにくいバランス。</p>
+        </div>
+        <div class="wrap-card__body">
+          <div class="share" aria-label="S2 共有カード">
+            <div class="share__chrome">
+              <span class="share__title">切れ者前提・パワ寄せ</span>
+              <span class="share__brand">トレセン軒 SP計算</span>
+            </div>
+            <div class="share__body">
+              <div class="share__faces">
+                <div class="share__char">
+                  <div class="share__char-frame"><img src="../../../assets/characters/112901.webp" alt="" /></div>
+                  <div class="share__char-lbl">アーモンドアイ</div>
+                </div>
+                <div class="share__grid" aria-hidden="true">
+                  <div class="share__sup"><span class="type-dot speed"></span><img src="../../../assets/supports/30282.webp" alt="" /></div>
+                  <div class="share__sup"><span class="type-dot speed"></span><img src="../../../assets/supports/30275.webp" alt="" /></div>
+                  <div class="share__sup"><span class="type-dot speed"></span><img src="../../../assets/supports/30298.webp" alt="" /></div>
+                  <div class="share__sup"><span class="type-dot stamina"></span><img src="../../../assets/supports/30304.webp" alt="" /></div>
+                  <div class="share__sup"><span class="type-dot wit"></span><img src="../../../assets/supports/30289.webp" alt="" /></div>
+                  <div class="share__sup"><span class="type-dot friend"></span><img src="../../../assets/supports/30305.webp" alt="" /></div>
+                </div>
+              </div>
+              <div class="share__meta">
+                <div class="share__sp">12,450 <small>SP</small></div>
+                <div class="share__count">計上 42 スキル · 除外 3 件</div>
+                <div class="share__chips">
+                  <span class="chip is-on">切れ者</span>
+                  <span class="chip is-on">ヒント Lv3</span>
+                  <span class="chip">継承 +120</span>
+                  <span class="chip is-signal">RMJ 参加</span>
+                  <span class="chip">レギュ ◎のみ</span>
+                </div>
+              </div>
+            </div>
+            <div class="share__gold-row" aria-label="金スキル選択要約">
+              <span class="gold-chip"><span class="bar"></span><span class="sup">スピエア</span> 切れ者</span>
+              <span class="gold-chip"><span class="bar"></span><span class="sup">スピテイオー</span> 先手必勝</span>
+              <span class="gold-chip"><span class="bar"></span><span class="sup">スピタップ</span> 冷静</span>
+              <span class="gold-chip"><span class="bar"></span><span class="sup">スタドトウ</span> 豪脚</span>
+              <span class="gold-chip"><span class="bar"></span><span class="sup">友人たづな</span> 中盤巧者</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== S3 ===== -->
+      <div class="wrap-card">
+        <div class="wrap-card__head">
+          <span class="tag">S3</span>
+          <h2>顔＋やや厚め（上限サンプル）</h2>
+          <p>枠ごとに金イベントを表示＋シナリオチップ＋除外件数＋フッター帰属。情報過多にならないかの上限確認用。</p>
+        </div>
+        <div class="wrap-card__body">
+          <div class="share share--s3" aria-label="S3 共有カード">
+            <div class="share__chrome">
+              <span class="share__title">切れ者前提・パワ寄せ</span>
+              <span class="share__brand"><a href="#">Tsuyuchan-jp.github.io/umamusume-sp-calc</a></span>
+            </div>
+            <div class="share__body">
+              <div class="share__faces">
+                <div class="share__top-row">
+                  <div class="share__char">
+                    <div class="share__char-frame"><img src="../../../assets/characters/112901.webp" alt="" /></div>
+                    <div class="share__char-lbl">アーモンドアイ</div>
+                  </div>
+                  <div class="share__slots">
+                    <div class="share__slot">
+                      <div class="share__sup"><span class="type-dot speed"></span><img src="../../../assets/supports/30282.webp" alt="" /></div>
+                      <div class="slot-name">スピエア</div>
+                      <div class="slot-gold">切れ者</div>
+                    </div>
+                    <div class="share__slot">
+                      <div class="share__sup"><span class="type-dot speed"></span><img src="../../../assets/supports/30275.webp" alt="" /></div>
+                      <div class="slot-name">スピテイオー</div>
+                      <div class="slot-gold">先手必勝</div>
+                    </div>
+                    <div class="share__slot">
+                      <div class="share__sup"><span class="type-dot speed"></span><img src="../../../assets/supports/30298.webp" alt="" /></div>
+                      <div class="slot-name">スピタップ</div>
+                      <div class="slot-gold">冷静</div>
+                    </div>
+                    <div class="share__slot">
+                      <div class="share__sup"><span class="type-dot stamina"></span><img src="../../../assets/supports/30304.webp" alt="" /></div>
+                      <div class="slot-name">スタドトウ</div>
+                      <div class="slot-gold">豪脚</div>
+                    </div>
+                    <div class="share__slot">
+                      <div class="share__sup"><span class="type-dot wit"></span><img src="../../../assets/supports/30289.webp" alt="" /></div>
+                      <div class="slot-name">賢ヤング</div>
+                      <div class="slot-gold is-empty">—</div>
+                    </div>
+                    <div class="share__slot">
+                      <div class="share__sup"><span class="type-dot friend"></span><img src="../../../assets/supports/30305.webp" alt="" /></div>
+                      <div class="slot-name">友人たづな</div>
+                      <div class="slot-gold">中盤巧者</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="share__meta">
+                <div class="share__sp">12,450 <small>SP</small></div>
+                <div class="share__count">計上 42 スキル</div>
+                <div class="share__chips">
+                  <span class="chip is-on">切れ者</span>
+                  <span class="chip is-on">ヒント Lv3</span>
+                  <span class="chip">継承 +120</span>
+                  <span class="chip is-on">エアリンク</span>
+                  <span class="chip is-signal">RMJ 参加</span>
+                  <span class="chip is-muted">除外 3 件</span>
+                  <span class="chip">レギュ ◎のみ</span>
+                </div>
+              </div>
+            </div>
+            <div class="share__foot">
+              <span>トレセン軒 SP計算 · 2026-08-02 算出</span>
+              <span>designSnapshot 準拠 · 結果表は含まない</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== ブランド表記 ===== -->
+  <section class="section">
+    <h2>ブランド表記（Q9 未決 → 3パターン）</h2>
+    <div class="brand-grid">
+      <div class="wrap-card">
+        <div class="wrap-card__head">
+          <span class="tag">B0</span>
+          <h2>帰属なし</h2>
+          <p>編成と数値だけ。記事本文でツール名を書く前提。</p>
+        </div>
+        <div class="wrap-card__body">
+          <div class="share" style="max-width:100%">
+            <div class="share__chrome"><span class="share__title">切れ者前提・パワ寄せ</span></div>
+            <div class="share__body" style="min-height:4.5rem">
+              <div class="share__meta" style="justify-content:center">
+                <div class="share__sp">12,450 <small>SP</small></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="wrap-card">
+        <div class="wrap-card__head">
+          <span class="tag tag--sub">B1</span>
+          <h2>アプリ名のみ（S2 ヘッダー右）</h2>
+          <p>控えめ。記事向き。</p>
+        </div>
+        <div class="wrap-card__body">
+          <div class="share" style="max-width:100%">
+            <div class="share__chrome">
+              <span class="share__title">切れ者前提・パワ寄せ</span>
+              <span class="share__brand">トレセン軒 SP計算</span>
+            </div>
+            <div class="share__body" style="min-height:4.5rem">
+              <div class="share__meta" style="justify-content:center">
+                <div class="share__sp">12,450 <small>SP</small></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="wrap-card">
+        <div class="wrap-card__head">
+          <span class="tag">B2</span>
+          <h2>URL 付き（S3 ヘッダー右＋フッター）</h2>
+          <p>拡散・出典明示向き。やや情報量多め。</p>
+        </div>
+        <div class="wrap-card__body">
+          <div class="share" style="max-width:100%">
+            <div class="share__chrome">
+              <span class="share__title">切れ者前提・パワ寄せ</span>
+              <span class="share__brand">github.io/umamusume-sp-calc</span>
+            </div>
+            <div class="share__body" style="min-height:4rem">
+              <div class="share__meta" style="justify-content:center">
+                <div class="share__sp">12,450 <small>SP</small></div>
+              </div>
+            </div>
+            <div class="share__foot"><span>トレセン軒 SP計算 · 2026-08-02</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== ボタン置き場 ===== -->
+  <section class="section">
+    <h2>操作ボタン置き場（Q5 未決 → 3パターン）</h2>
+    <p class="note" style="margin-top:-0.5rem">優先操作は<strong>クリップボードにコピー</strong>。保存は副次。</p>
+    <div class="btn-grid">
+      <div class="btn-mock">
+        <h3>A. 編成ゾーン付近</h3>
+        <p>「この顔を出す」が直感的。ギャラリー上段／スプリット左ドックの直下。</p>
+        <div class="mini-deck">編成エリア（育成＋サポ6）</div>
+        <div class="btn-row">
+          <button type="button" class="btn btn--pri">画像をコピー</button>
+          <button type="button" class="btn btn--sec">PNG 保存</button>
+        </div>
+      </div>
+      <div class="btn-mock">
+        <h3>B. メモリダイアログ内</h3>
+        <p>保存済み設計から共有。一覧の各行に小ボタン。</p>
+        <div class="mini-dialog">
+          <div class="mini-item">
+            <span>切れ者前提・パワ寄せ</span>
+            <button type="button" class="btn btn--sec" style="padding:0.2rem 0.4rem;font-size:0.55rem">コピー</button>
+          </div>
+        </div>
+      </div>
+      <div class="btn-mock">
+        <h3>C. ヘッダー／モードバー</h3>
+        <p>常時見える。現在編成に対して即実行。</p>
+        <div class="mini-bar">
+          <span>トレセン軒 SP計算</span>
+          <button type="button" class="btn btn--ghost" style="padding:0.2rem 0.45rem;font-size:0.55rem">共有画像</button>
+        </div>
+      </div>
+      <div class="btn-mock">
+        <h3>D. A＋B 併用（候補）</h3>
+        <p>編成から即コピー＋メモリから再共有。実装コストはやや増。</p>
+        <div class="mini-deck">編成ゾーン … コピー / 保存</div>
+        <div class="mini-dialog">
+          <div class="mini-item">
+            <span>保存済み設計</span>
+            <button type="button" class="btn btn--sec" style="padding:0.2rem 0.4rem;font-size:0.55rem">コピー</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</body>
+</html>

@@ -60,7 +60,7 @@
   - メモリ（localStorage）は済。共有用の画像書き出しは未着手  
   - 要件メモ: [product/screenshot-requirements.md](./product/screenshot-requirements.md)  
   - 用途第一: 攻略記事貼付。専用横長カード。コピー優先＋保存。モード非依存  
-  - 次: モック 2〜3案 → 承認後に本実装  
+  - 次: **モック目視比較** → [mockups/screenshot-share-options.html](./product/mockups/screenshot-share-options.html)（S1/S2/S3）  
   - 受け入れ（暫定）: 現在設計を1枚の共有カードとして保存／コピーできる
 
 - [ ] **タイプ印位置の最終微調整**（ユーザー指示があったときだけ）  
