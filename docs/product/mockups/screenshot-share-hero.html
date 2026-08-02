@@ -3,15 +3,15 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>編成スクショ — 主案 v14（金チップ＋Shippori）</title>
+  <title>編成スクショ — 主案 v15（フラット金＋必要SP）</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;600;700&family=Zen+Kaku+Gothic+New:wght@500;700;900&display=swap" rel="stylesheet" />
   <style>
     /*
-      主案 v14 — 型C継続
-      - 金: ゲーム風ゴールドチップ／サポ・シナリオ由来の取得可能金を全載せ（育成所持・進化は除外）
-      - フォント: Shippori Mincho（見出し）＋ Zen Kaku（UI・チップ）
+      主案 v15 — 型C継続
+      - 金: フラットチップ／計算で選ばれているサポ・シナリオ由来のみ（育成所持・進化は除外）
+      - フォント: Shippori Mincho（見出し）＋ Zen Kaku（UI・チップ）採用寄り
     */
     :root {
       --ink: #1a1630;
@@ -254,7 +254,7 @@
       gap: 3px;
       min-width: 0;
     }
-    /* ゲーム内の金スキルバーを簡略化（アイコンなし） */
+    /* 全体に合わせたフラット金チップ（立体グラデなし） */
     .gold-chip {
       display: inline-flex;
       align-items: center;
@@ -265,12 +265,9 @@
       font-size: 10px;
       font-weight: 700;
       line-height: 1.35;
-      color: #3f2a08;
-      background: linear-gradient(180deg, #ffe98a 0%, #f5c62a 48%, #e8a60f 100%);
-      border: 1px solid #d49a12;
-      box-shadow:
-        inset 0 1px 0 rgba(255, 255, 255, 0.7),
-        0 1px 2px rgba(90, 55, 0, 0.2);
+      color: #6a5220;
+      background: #f3e9c2;
+      border: 1px solid #e0c878;
       white-space: nowrap;
     }
 
@@ -430,18 +427,18 @@
 <body>
   <div class="shell">
     <div class="banner">
-      <strong>主案 v14 · 金チップ＋Shippori</strong> —
-      サポ／シナリオ由来の取得可能金を全載せ（育成所持・進化は除外）。SUPPORTラベル削除。
+      <strong>主案 v15 · フラット金＋必要SP</strong> —
+      金は計算で選ばれているサポ／シナリオ由来のみ。チップはフラット。フォントは維持。
       参考: <a href="./screenshot-share-refs.html">一覧</a>
     </div>
 
-    <h1 class="page-title">編成スクショ · 共有カード主案 v14</h1>
-    <p class="lead">金スキルの見た目・網羅範囲・フォント（候補3: Shippori＋Zen Kaku）を確認してください。</p>
+    <h1 class="page-title">編成スクショ · 共有カード主案 v15</h1>
+    <p class="lead">フラット金チップ・選択中の金・eyebrow「必要SP」を確認してください。</p>
 
-    <article class="share" aria-label="共有カード主案 v14（初期編成）">
+    <article class="share" aria-label="共有カード主案 v15（初期編成）">
       <section class="left">
         <div class="eyebrow">
-          <span class="eyebrow__cat">TRESENKEN · NEED SP</span>
+          <span class="eyebrow__cat">必要SP</span>
           <span class="eyebrow__brand">ウマ娘 SP 計算</span>
         </div>
 
@@ -479,7 +476,6 @@
                   <div class="gold-row__chips">
                     <span class="gold-chip">王手</span>
                     <span class="gold-chip">千鍛万錬</span>
-                    <span class="gold-chip">錦上添花</span>
                   </div>
                 </div>
                 <div class="gold-row">
@@ -487,13 +483,11 @@
                   <div class="gold-row__chips">
                     <span class="gold-chip">迸る気迫</span>
                     <span class="gold-chip">正々堂々</span>
-                    <span class="gold-chip">夢の舞台へ</span>
                   </div>
                 </div>
                 <div class="gold-row">
                   <span class="gold-row__src">スピタップ</span>
                   <div class="gold-row__chips">
-                    <span class="gold-chip">コンセントレーション</span>
                     <span class="gold-chip">トップランナー</span>
                     <span class="gold-chip">飛竜乗雲</span>
                   </div>
@@ -503,38 +497,37 @@
                   <div class="gold-row__chips">
                     <span class="gold-chip">弧線のプロフェッサー</span>
                     <span class="gold-chip">パスファインダー</span>
-                    <span class="gold-chip">曙光</span>
-                    <span class="gold-chip">悠々自適</span>
                   </div>
                 </div>
                 <div class="gold-row">
                   <span class="gold-row__src">賢ヤング</span>
                   <div class="gold-row__chips">
-                    <span class="gold-chip">コール&amp;レスポンス</span>
-                    <span class="gold-chip">イノベーション</span>
                     <span class="gold-chip">尻尾の滝登り</span>
                     <span class="gold-chip">前人未到</span>
+                  </div>
+                </div>
+                <div class="gold-row">
+                  <span class="gold-row__src">友人たづな</span>
+                  <div class="gold-row__chips">
+                    <span class="gold-chip">時中の妙</span>
+                    <span class="gold-chip">お先に失礼っ！</span>
                   </div>
                 </div>
                 <div class="gold-row is-scn">
                   <span class="gold-row__src">RMJ</span>
                   <div class="gold-row__chips">
-                    <span class="gold-chip">火事場のバ鹿力</span>
                     <span class="gold-chip">いいとこ入った！</span>
-                    <span class="gold-chip">好奇心</span>
                   </div>
                 </div>
                 <div class="gold-row is-scn">
                   <span class="gold-row__src">リンク</span>
                   <div class="gold-row__chips">
                     <span class="gold-chip">ネバーギブアップ</span>
-                    <span class="gold-chip">英俊豪傑</span>
                   </div>
                 </div>
                 <div class="gold-row is-scn">
                   <span class="gold-row__src">シナリオ</span>
                   <div class="gold-row__chips">
-                    <span class="gold-chip">時中の妙</span>
                     <span class="gold-chip">極上の感謝を！</span>
                   </div>
                 </div>
@@ -546,7 +539,7 @@
             <span class="pill">条件</span>
             <div class="block__body">
               シナリオ <strong>トレセン軒</strong> ／ ヒント <strong>Lv5</strong> ／ 継承固有 <strong>×4 · Lv3</strong><br />
-              金はサポ・シナリオ由来の取得可能分。除外は件数のみ。結果表は含まない。
+              金は計算で選ばれているサポ・シナリオ由来のみ。除外は件数のみ。結果表は含まない。
             </div>
           </div>
         </div>
@@ -577,7 +570,7 @@
     </article>
 
     <div class="judge">
-      <strong>判断のお願い</strong>（金チップ・取得可能全載せ・Shippori）<br />
+      <strong>判断のお願い</strong>（フラット金・選択中の金・eyebrow）<br />
       返事例: <code>採用</code> / <code>方向違い</code> / <code>惜しい：〇〇</code>
     </div>
   </div>

@@ -36,8 +36,8 @@
 |------|------|
 | **必須（最低限）** | 育成＋サポ6、前提チップ、合計 SP |
 | **欲しい** | 設計名（メモリ名）、**計上スキル数** |
-| **レイアウト次第で載せたい** | サポ・シナリオ由来の **取得可能金スキル**（ゲーム風チップ。育成所持・進化は除外） |
-| **見た目（大枠採用）** | 型C v14: 金チップ化・取得可能金全載せ。フォント候補3 Shippori＋Zen Kaku 試用中 |
+| **レイアウト次第で載せたい** | 計算で選ばれている **金スキル**（サポ選択＋RMJ／リンク／シナリオ。育成所持・進化は除外）。フラットチップ |
+| **見た目（大枠採用）** | 型C v15: フラット金チップ・選択中の金。フォント Shippori＋Zen Kaku。eyebrow「必要SP」試用 |
 | **付記まで可** | 除外は **件数のみ**（リストは出さない） |
 | **載せない** | 除外の中身リスト、結果表（スキル一覧の詳細） |
 
@@ -82,7 +82,7 @@ UX 初期方針（顔＝6＋合計＋前提）は土台として維持。記事�
 
 ## 次ステップ
 
-1. ~~主案モック~~ → [mockups/screenshot-share-hero.html](./mockups/screenshot-share-hero.html)（**v14·金チップ＋Shippori** · 目視待ち）  
+1. ~~主案モック~~ → [mockups/screenshot-share-hero.html](./mockups/screenshot-share-hero.html)（**v15·フラット金** · 目視待ち）  
    比較: [型B](./mockups/screenshot-share-type-b.html) · 参考: [screenshot-share-refs.html](./mockups/screenshot-share-refs.html)
    ※旧三連: [mockups/screenshot-share-options.html](./mockups/screenshot-share-options.html)（参考のみ）
 2. 主案承認 → 本実装（html2canvas 等は実装時）

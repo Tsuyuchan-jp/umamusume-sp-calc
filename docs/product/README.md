@@ -6,7 +6,7 @@
 |----------|------|
 | [UX.md](./UX.md) | UX 思想 |
 | [screenshot-requirements.md](./screenshot-requirements.md) | 編成スクショ要件（すり合わせ中） |
-| [mockups/screenshot-share-hero.html](./mockups/screenshot-share-hero.html) | **編成スクショ主案（型C·v14·金チップ＋Shippori）** |
+| [mockups/screenshot-share-hero.html](./mockups/screenshot-share-hero.html) | **編成スクショ主案（型C·v15·フラット金）** |
 | [mockups/screenshot-share-type-b.html](./mockups/screenshot-share-type-b.html) | 編成スクショ主案（型B比較） |
 | [mockups/screenshot-share-refs.html](./mockups/screenshot-share-refs.html) | 型C向け参考候補一覧 |
 | [mockups/screenshot-share-options.html](./mockups/screenshot-share-options.html) | 旧・薄い三連比較（参考） |
