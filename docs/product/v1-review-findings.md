@@ -6,7 +6,7 @@
 
 ## 結論（1行）
 
-コア SP 計算・金白／○◎・既存ユニットテストは健全。**M1・M2・M3 は修正済（実機OK）**。次は **スマホ最低限** または **M4**。
+コア SP 計算・金白／○◎・既存ユニットテストは健全。**レビュー中（M1〜M4）はすべて実機OK**。次は **スマホ最低限**。
 
 ## テスト現状
 
@@ -42,7 +42,7 @@
 | ~~**M1**~~ | `getDisplayActivation` | レギュがチェーン下位で緩む | **修正済**（案A: 表示行 skillId のみ） |
 | ~~**M2**~~ | `restoreDesign` | 復元で ID 未検証 | **修正済・実機OK**（名簿照合・空欄化・警告表示） |
 | ~~**M3**~~ | `pruneManualExclusions` | デッキ変更で手動 OFF 消失 | **修正済・実機OK**（チェーン／groupId → 表示行 ID へ引き継ぎ） |
-| ~~**M4**~~ | `scheduleSessionSave` | debounce で即閉じ欠落 | **修正済**（`visibilitychange` / `pagehide` で flush） |
+| ~~**M4**~~ | `scheduleSessionSave` | debounce で即閉じ欠落 | **修正済・実機OK**（`visibilitychange` / `pagehide` で flush） |
 
 <details>
 <summary>M1 旧記述（修正前）</summary>
@@ -72,7 +72,7 @@
 1. ~~**M1**~~ — **完了・実機OK**
 2. ~~**M3**~~ — **完了・実機OK**
 3. ~~**M2**~~ — **完了・実機OK**
-4. ~~**M4**~~ — **修正済**（実機確認待ち）
+4. ~~**M4**~~ — **完了・実機OK**
 5. **スマホ最低限**（v1 公開前）
 6. **公開準備**（[TODO.md](../TODO.md)）
 
