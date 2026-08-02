@@ -3,15 +3,15 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>編成スクショ — 主案 v17（金縦並び＋レギュ／除外）</title>
+  <title>編成スクショ — 主案 v18（左右金グラデ）</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;600;700&family=Zen+Kaku+Gothic+New:wght@500;700;900&display=swap" rel="stylesheet" />
   <style>
     /*
-      主案 v17 — 型C継続
-      - 金: 淡グラデ維持・チップは縦並びで左端揃え／2列グリッド
-      - 条件枠を廃し、レギュチップ＋手動除外リストへ
+      主案 v18 — 型C継続
+      - 金: 左右グラデ（左明→右濃）／縦並び・2列
+      - SPはレギュ（芝・中距離・先行）＋手動除外3の実計算例
     */
     :root {
       --ink: #1a1630;
@@ -257,7 +257,7 @@
       gap: 3px;
       min-width: 0;
     }
-    /* 立体なし・淡い縦グラデで金らしさ（影・ハイライト無し） */
+    /* 左右の淡グラデ（左やや明るく・右やや濃い、影なし） */
     .gold-chip {
       display: flex;
       align-items: center;
@@ -268,10 +268,9 @@
       font-size: 10px;
       font-weight: 700;
       line-height: 1.35;
-      color: #5c4514;
-      background: linear-gradient(180deg, #fbf3d0 0%, #f0d978 100%);
-      border: 1px solid #dfc35a;
-      border-left: 3px solid #e0b020;
+      color: #4a3510;
+      background: linear-gradient(90deg, #ffe9a0 0%, #f0c83a 55%, #e0b018 100%);
+      border: 1px solid #d4b03a;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
@@ -453,15 +452,15 @@
 <body>
   <div class="shell">
     <div class="banner">
-      <strong>主案 v17 · 金縦並び＋レギュ／除外</strong> —
-      金チップは縦並びで左端揃え。条件枠をレギュ＋手動除外に置換。
+      <strong>主案 v18 · 左右金グラデ</strong> —
+      金チップは左明→右濃の横グラデ。SP 3,492 は芝・中距離・先行＋手動除外3の実計算（レギュ込みのため低め）。
       参考: <a href="./screenshot-share-refs.html">一覧</a>
     </div>
 
-    <h1 class="page-title">編成スクショ · 共有カード主案 v17</h1>
-    <p class="lead">金の縦並び、レギュチップ、手動除外リストを確認してください。</p>
+    <h1 class="page-title">編成スクショ · 共有カード主案 v18</h1>
+    <p class="lead">左右グラデの金チップを確認してください。</p>
 
-    <article class="share" aria-label="共有カード主案 v17（初期編成）">
+    <article class="share" aria-label="共有カード主案 v18（初期編成）">
       <section class="left">
         <div class="eyebrow">
           <span class="eyebrow__cat">必要SP</span>
@@ -610,7 +609,7 @@
     </article>
 
     <div class="judge">
-      <strong>判断のお願い</strong>（金縦並び・レギュ／除外）<br />
+      <strong>判断のお願い</strong>（左右金グラデ）<br />
       返事例: <code>採用</code> / <code>方向違い</code> / <code>惜しい：〇〇</code>
     </div>
   </div>
