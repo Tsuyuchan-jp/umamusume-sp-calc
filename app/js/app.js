@@ -310,14 +310,6 @@ function bindPremiseChipsOnce() {
 function updateTotalBarChips(excludedCount = excludedSkillIds.size) {
   const el = document.getElementById("total-sp-bar-chips");
   if (!el) return;
-  const active = document.activeElement;
-  const keepFocusId =
-    active instanceof HTMLInputElement &&
-    ["inherit-count", "inherit-hint", "inherit-base"].includes(active.id)
-      ? active.id
-      : null;
-  const keepSelStart = keepFocusId ? active.selectionStart : null;
-  const keepSelEnd = keepFocusId ? active.selectionEnd : null;
 
   const fast = document.getElementById("fast-learner")?.checked;
   const trainingLv = document.getElementById("training-hint-level")?.value || "5";
@@ -328,7 +320,8 @@ function updateTotalBarChips(excludedCount = excludedSkillIds.size) {
   const fastClass = fast ? "premise-chip premise-chip--on" : "premise-chip";
   const inheritClass = inheritOn ? "premise-chip premise-chip--on" : "premise-chip";
 
-  let html = `
+  /* 継承の個数/Lv/base 編集UIはデザイン確定まで保留。値は hidden で維持 */
+  el.innerHTML = `
     <button type="button" class="${fastClass}" id="bar-premise-fast-learner" aria-pressed="${fast ? "true" : "false"}">切れ者 ${fast ? "ON" : "OFF"}</button>
     <div class="premise-chip premise-chip--training" role="group" aria-label="トレヒントLv">
       <span class="premise-chip__prefix">トレ</span>
@@ -336,63 +329,16 @@ function updateTotalBarChips(excludedCount = excludedSkillIds.size) {
       <button type="button" class="premise-lv${trainingLv === "4" ? " is-on" : ""}" data-training-lv="4">4</button>
       <button type="button" class="premise-lv${trainingLv === "5" ? " is-on" : ""}" data-training-lv="5">5</button>
     </div>
-    <button type="button" class="${inheritClass}" id="bar-premise-inherit" aria-pressed="${inheritOn ? "true" : "false"}">継承 ${inheritOn ? "ON" : "OFF"}</button>
+    <button type="button" class="${inheritClass}" id="bar-premise-inherit" aria-pressed="${inheritOn ? "true" : "false"}" title="個数・Lv・base の編集UIは後日">継承 ${inheritOn ? `${inheritCount}本` : "OFF"}</button>
+    <input type="hidden" id="inherit-count" value="${escapeHtml(String(inheritCount))}" />
+    <input type="hidden" id="inherit-hint" value="${escapeHtml(String(inheritHint))}" />
+    <input type="hidden" id="inherit-base" value="${escapeHtml(String(inheritBase))}" />
+    ${excludedCount > 0 ? `<span class="premise-chip premise-chip--warn">除外 ${excludedCount}</span>` : ""}
   `;
-  if (inheritOn) {
-    html += `
-      <label class="premise-chip premise-chip--inherit-field">
-        個数
-        <input type="number" id="inherit-count" min="2" max="6" value="${escapeHtml(String(inheritCount))}" />
-      </label>
-      <label class="premise-chip premise-chip--inherit-field">
-        Lv
-        <input type="number" id="inherit-hint" min="1" max="5" value="${escapeHtml(String(inheritHint))}" />
-      </label>
-      <label class="premise-chip premise-chip--inherit-field">
-        base
-        <input type="number" id="inherit-base" min="1" value="${escapeHtml(String(inheritBase))}" />
-      </label>
-    `;
-  } else {
-    html += `
-      <input type="hidden" id="inherit-count" value="${escapeHtml(String(inheritCount))}" />
-      <input type="hidden" id="inherit-hint" value="${escapeHtml(String(inheritHint))}" />
-      <input type="hidden" id="inherit-base" value="${escapeHtml(String(inheritBase))}" />
-    `;
-  }
-  if (excludedCount > 0) {
-    html += `<span class="premise-chip premise-chip--warn">除外 ${excludedCount}</span>`;
-  }
-  el.innerHTML = html;
-  bindInheritInlineFields();
-
-  /* recalc のたび再描画しても入力フォーカスを維持 */
-  if (keepFocusId) {
-    const field = document.getElementById(keepFocusId);
-    if (field && field.type !== "hidden") {
-      field.focus();
-      if (typeof keepSelStart === "number" && field.setSelectionRange) {
-        try {
-          field.setSelectionRange(keepSelStart, keepSelEnd);
-        } catch {
-          /* number input 等で未対応でも無視 */
-        }
-      }
-    }
-  }
 }
 
 function bindInheritInlineFields() {
-  const onOptionChange = () => {
-    updateDeckFootbandMeta();
-    recalc();
-  };
-  ["inherit-count", "inherit-hint", "inherit-base"].forEach((id) => {
-    const field = document.getElementById(id);
-    if (!field || field.type === "hidden") return;
-    field.addEventListener("change", onOptionChange);
-    field.addEventListener("input", onOptionChange);
-  });
+  /* 継承インライン編集は保留 */
 }
 
 function buildCharacterPickerItems() {
