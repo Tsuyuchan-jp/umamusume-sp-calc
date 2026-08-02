@@ -251,7 +251,7 @@
       font-weight: 700;
     }
 
-    /* 右：余白のあるギャラリー＋世界観背景 */
+    /* 右：世界観背景（オーバーレイ薄め・彩度を残す）＋入れ子角丸なし */
     .right {
       position: relative;
       min-width: 0;
@@ -261,9 +261,13 @@
       gap: 14px;
       padding: 18px 18px 18px 16px;
       overflow: hidden;
-      /* アプリ同梱の世界観 + 薄い暗幕（読みやすさ） */
       background:
-        linear-gradient(165deg, rgba(45, 40, 72, 0.72) 0%, rgba(26, 22, 48, 0.82) 100%),
+        linear-gradient(
+          165deg,
+          rgba(90, 72, 160, 0.38) 0%,
+          rgba(55, 48, 110, 0.48) 55%,
+          rgba(40, 36, 88, 0.55) 100%
+        ),
         url("../../../assets/ui/uma-world.png") center / cover no-repeat;
     }
     .right::before {
@@ -271,9 +275,9 @@
       position: absolute;
       inset: 0;
       z-index: 0;
-      /* U-tools 系パネルタイルを淡く重ねる */
       background: url("https://static.kouryaku.tools/umamusume/images/app/bg.webp?auto=format") center / 160px repeat;
-      opacity: 0.14;
+      opacity: 0.22;
+      mix-blend-mode: soft-light;
       pointer-events: none;
     }
     .right > * {
@@ -286,11 +290,12 @@
       display: flex;
       align-items: center;
       gap: 12px;
-      padding: 10px 12px;
-      border-radius: 12px;
-      background: rgba(255,255,255,0.12);
-      border: 1px solid rgba(255,255,255,0.16);
-      backdrop-filter: blur(6px);
+      margin: -6px -6px 0;
+      padding: 10px 12px 12px;
+      border-radius: 0;
+      background: rgba(26, 22, 48, 0.28);
+      border: 0;
+      border-bottom: 1px solid rgba(255,255,255,0.14);
       color: #fff;
     }
     .right__trainee img {
@@ -321,20 +326,21 @@
       display: flex;
       flex-direction: column;
       gap: 8px;
-      padding: 12px;
-      border-radius: 14px;
-      background: rgba(255,255,255,0.1);
-      border: 1px solid rgba(255,255,255,0.14);
-      backdrop-filter: blur(4px);
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.08);
+      padding: 4px 2px 2px;
+      border-radius: 0;
+      background: transparent;
+      border: 0;
+      box-shadow: none;
+      backdrop-filter: none;
     }
     .grid-stage__label {
       flex-shrink: 0;
       font-size: 10px;
       font-weight: 900;
       letter-spacing: 0.1em;
-      color: #ddd8ef;
+      color: #f0ecff;
       padding: 0 2px;
+      text-shadow: 0 1px 2px rgba(26,22,48,0.55);
     }
     .grid-bleed {
       flex: 1;
@@ -346,8 +352,6 @@
       align-items: center;
       justify-items: center;
     }
-    /* サポは 3:4 を維持し、セル内は縮尺のみ。
-       カード絵に既に角があるので、枠側に角丸を足さない（裏の板が見える） */
     .grid-bleed figure {
       margin: 0;
       height: 100%;
@@ -393,8 +397,8 @@
 <body>
   <div class="shell">
     <div class="banner">
-      <strong>主案 v10.1 · 大枠採用（型Cハイブリッド）</strong> —
-      サポ枠の余計な角丸を外し、カード絵の角の裏に背景が覗かないようにした。
+      <strong>主案 v10.2 · 大枠採用（型Cハイブリッド）</strong> —
+      右の入れ子角丸を廃止。背景オーバーレイを薄く・紫寄りにして彩度を上げた。
       参考: <a href="./screenshot-share-refs.html">一覧</a>
     </div>
 
