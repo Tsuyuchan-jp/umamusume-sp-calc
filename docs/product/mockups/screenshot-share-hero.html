@@ -346,18 +346,19 @@
       align-items: center;
       justify-items: center;
     }
-    /* サポは 3:4 を維持し、セル内は縮尺のみ（cover で下部を切らない） */
+    /* サポは 3:4 を維持し、セル内は縮尺のみ。
+       カード絵に既に角があるので、枠側に角丸を足さない（裏の板が見える） */
     .grid-bleed figure {
       margin: 0;
       height: 100%;
       width: auto;
       max-width: 100%;
       aspect-ratio: 3 / 4;
-      overflow: hidden;
-      border-radius: 8px;
-      background: rgba(255,255,255,0.06);
-      box-shadow: 0 6px 16px rgba(0,0,0,0.28);
-      border: 1px solid rgba(255,255,255,0.1);
+      overflow: visible;
+      background: transparent;
+      border: 0;
+      border-radius: 0;
+      box-shadow: 0 8px 18px rgba(0,0,0,0.28);
     }
     .grid-bleed img {
       width: 100%;
@@ -365,6 +366,8 @@
       object-fit: contain;
       object-position: center center;
       display: block;
+      border-radius: 0;
+      vertical-align: top;
     }
 
     .judge {
@@ -390,8 +393,8 @@
 <body>
   <div class="shell">
     <div class="banner">
-      <strong>主案 v10 · 大枠採用（型Cハイブリッド）</strong> —
-      サポは 3:4 維持・contain（下部を切らない）。右背景はアプリ世界観＋U-tools タイル。
+      <strong>主案 v10.1 · 大枠採用（型Cハイブリッド）</strong> —
+      サポ枠の余計な角丸を外し、カード絵の角の裏に背景が覗かないようにした。
       参考: <a href="./screenshot-share-refs.html">一覧</a>
     </div>
 
