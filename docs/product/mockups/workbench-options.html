@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>結果作業台 — 再設計案</title>
+  <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@700;900&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --ink: #463f70;
+      --ink-mid: #5a5288;
+      --gold: #f5cf6f;
+      --font-ink: #703a13;
+      --muted: #625d7d;
+      --line: #e6e1ec;
+      --label: #ede6e6;
+      --ok: #68bb09;
+      --warn: #ff7300;
+      --cyan: #23a4f6;
+      --panel: url("https://static.kouryaku.tools/umamusume/images/app/bg.webp?auto=format") center/180px repeat, #fff;
+      --world: url("https://static.kouryaku.tools/umamusume/images/app/uma-world.webp?auto=format");
+      --font: "Zen Maru Gothic", Meiryo, sans-serif;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: var(--font);
+      font-weight: 700;
+      color: var(--font-ink);
+      background: #2a2540;
+      padding: 20px 16px 64px;
+    }
+    .page { max-width: 1180px; margin: 0 auto; }
+    h1 { margin: 0 0 6px; color: #fff; font-size: 1.35rem; }
+    .lead { color: #bebbce; font-size: 0.88rem; line-height: 1.55; margin: 0 0 1.25rem; max-width: 48rem; }
+    .lead strong { color: var(--gold); }
+
+    .note {
+      background: rgba(70, 63, 112, 0.85);
+      border: 1px solid #6a6290;
+      border-bottom: 3px solid var(--gold);
+      border-radius: 10px;
+      padding: 12px 14px;
+      color: #efeaf8;
+      font-size: 0.8rem;
+      line-height: 1.55;
+      margin-bottom: 1.25rem;
+    }
+    .note h2 { margin: 0 0 6px; font-size: 0.85rem; color: var(--gold); }
+    .note ol { margin: 0; padding-left: 1.2rem; }
+    .note li { margin: 0.2rem 0; }
+    .note .rec { color: #b8f08a; font-weight: 900; }
+
+    .grid {
+      display: grid;
+      gap: 1.35rem;
+    }
+    @media (min-width: 1100px) {
+      .grid { grid-template-columns: 1fr 1fr; align-items: start; }
+      .grid .span2 { grid-column: 1 / -1; }
+    }
+
+    .card {
+      background: #1e1a30;
+      border: 1px solid #3d3758;
+      border-radius: 14px;
+      padding: 12px;
+      color: #ddd8ef;
+    }
+    .card > h2 {
+      margin: 0 0 2px;
+      font-size: 1rem;
+      color: var(--gold);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .pill {
+      font-size: 0.65rem;
+      padding: 2px 8px;
+      border-radius: 999px;
+      background: var(--ok);
+      color: #fff;
+    }
+    .pill.alt { background: #7870a0; }
+    .tagline { font-size: 0.72rem; color: #9a94b0; margin: 0 0 10px; line-height: 1.45; }
+    .card ul.why {
+      margin: 10px 0 0;
+      padding-left: 1.15rem;
+      font-size: 0.72rem;
+      color: #bebbce;
+      line-height: 1.45;
+    }
+
+    /* ---- 共通プレビュー枠 ---- */
+    .frame {
+      position: relative;
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid #554d78;
+      background: var(--world) center bottom / cover;
+      min-height: 420px;
+    }
+    .frame::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(70,63,112,.2), rgba(70,63,112,.08) 40%, rgba(70,63,112,.35));
+      pointer-events: none;
+    }
+    .bench {
+      position: relative;
+      z-index: 1;
+      margin: 14px;
+      background: var(--panel);
+      border-radius: 12px;
+      box-shadow: 0 10px 28px #0005;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      min-height: 390px;
+    }
+
+    /* ---- トグル ---- */
+    .tog {
+      width: 34px; height: 20px; border-radius: 999px; border: 0;
+      background: #b3b0b6; position: relative; cursor: pointer; flex-shrink: 0;
+    }
+    .tog::after {
+      content: ""; position: absolute; top: 2px; left: 2px; width: 16px; height: 16px;
+      border-radius: 50%; background: #fff; transition: transform .15s; box-shadow: 0 1px 2px #0003;
+    }
+    .tog.is-on { background: var(--ok); }
+    .tog.is-on::after { transform: translateX(14px); }
+
+    .seg {
+      display: inline-flex; border: 1px solid #787588; border-radius: 6px; overflow: hidden; background: #fff;
+    }
+    .seg button {
+      appearance: none; border: 0; border-right: 1px solid #b3b0b6; background: transparent;
+      font: inherit; font-size: 0.68rem; font-weight: 900; color: var(--muted);
+      padding: 0.28rem 0.55rem; cursor: pointer; white-space: nowrap;
+    }
+    .seg button:last-child { border-right: 0; }
+    .seg button.is-on { background: var(--ink); color: #fff; }
+    .solid {
+      border: 0; background: linear-gradient(180deg, #59ccfc, var(--cyan)); color: #fff;
+      font: inherit; font-size: 0.72rem; font-weight: 900; padding: 0.35rem 0.7rem;
+      border-radius: 6px; cursor: pointer; white-space: nowrap;
+    }
+    .chip {
+      appearance: none; border: 1px solid #787588; background: linear-gradient(180deg,#fff,#dad4da);
+      font: inherit; font-size: 0.68rem; font-weight: 900; color: var(--muted);
+      padding: 0.28rem 0.55rem; border-radius: 6px; cursor: pointer;
+    }
+    .chip.is-on { background: linear-gradient(180deg,#80e322,#38c306); border-color: #238500; color: #fff; }
+    .chip.is-pending {
+      border-color: var(--warn); background: #fff8ee; color: #9a4500;
+      box-shadow: 0 0 0 2px rgba(255,115,0,.15);
+    }
+    .apply {
+      border: 0; background: linear-gradient(180deg, var(--ink-mid), var(--ink)); color: #fff;
+      font: inherit; font-size: 0.68rem; font-weight: 900; padding: 0.3rem 0.7rem;
+      border-radius: 6px; cursor: pointer;
+    }
+    .apply:disabled { background: #dad4da; color: #999; cursor: not-allowed; }
+
+    .cond {
+      display: inline-block; font-size: 0.58rem; font-weight: 900; padding: 0.05rem 0.3rem;
+      border-radius: 3px; background: #e8f4fc; color: #1a5276; margin-right: 0.2rem;
+    }
+    .src {
+      display: inline-block; font-size: 0.58rem; font-weight: 900; padding: 0.05rem 0.3rem;
+      border-radius: 3px; margin-right: 0.15rem; margin-bottom: 0.1rem;
+    }
+    .src-t { background: #eaf4ea; color: #1e5c2a; }
+    .src-e { background: #fff3e0; color: #8a4b08; }
+    .src-o { background: #f3eaf8; color: #5b2c7a; }
+    .src-s { background: #e5f7ff; color: #0c5b92; }
+
+    /* ========== W-A 推奨：削る作業台 ========== */
+    .wa-head {
+      display: flex; align-items: baseline; justify-content: space-between; gap: 8px;
+      padding: 10px 12px 0;
+    }
+    .wa-title {
+      margin: 0; font-size: 0.95rem; font-weight: 900; color: var(--ink);
+      letter-spacing: 0.02em;
+    }
+    .wa-meta { font-size: 0.7rem; color: var(--muted); font-weight: 700; }
+    .wa-meta b { color: var(--font-ink); font-size: 0.85rem; }
+
+    .wa-tools {
+      display: flex; flex-wrap: wrap; align-items: center; gap: 6px 8px;
+      padding: 8px 12px;
+      border-bottom: 1px solid var(--line);
+    }
+    .wa-tools .fl { font-size: 0.62rem; color: var(--muted); font-weight: 900; }
+    .wa-tools .grow { flex: 1 1 auto; min-width: 0; }
+    .wa-status {
+      margin: 0; padding: 0 12px 6px; font-size: 0.62rem; color: #9a6700; font-weight: 700;
+      min-height: 0;
+    }
+    .wa-status[hidden] { display: none; }
+
+    .wa-board { flex: 1; overflow: auto; padding: 0 4px 8px; }
+    .wa-board table { width: 100%; border-collapse: collapse; font-size: 0.78rem; }
+    .wa-board th {
+      position: sticky; top: 0; z-index: 1;
+      text-align: left; font-size: 0.62rem; color: var(--muted);
+      padding: 8px 8px 6px; background: #fffc; border-bottom: 2px solid var(--ink);
+    }
+    .wa-board td {
+      padding: 7px 8px; border-bottom: 1px solid var(--line); vertical-align: top;
+    }
+    .wa-board tr.is-off td { opacity: 0.38; }
+    .wa-board tr.is-off .name { text-decoration: line-through; }
+    .wa-board .name { font-weight: 900; color: var(--font-ink); line-height: 1.25; }
+    .wa-board .sub { margin-top: 2px; line-height: 1.3; }
+    .wa-board .sp {
+      font-weight: 900; color: var(--warn); font-size: 0.88rem; white-space: nowrap;
+    }
+    .wa-board .sp small { font-size: 0.62rem; color: var(--muted); font-weight: 700; }
+    .wa-board .lv {
+      font-size: 0.58rem; color: var(--muted); font-weight: 700; margin-left: 0.25rem;
+    }
+    .col-on { width: 42px; }
+    .col-sp { width: 88px; }
+
+    /* ========== W-B 代替：レギュ決定バー ========== */
+    .wb-regu {
+      padding: 10px 12px;
+      background: linear-gradient(180deg, #5a5288, #463f70);
+      color: #fff;
+      border-bottom: 2px solid var(--gold);
+    }
+    .wb-regu-top {
+      display: flex; justify-content: space-between; align-items: center; gap: 8px; margin-bottom: 8px;
+    }
+    .wb-regu-top strong { font-size: 0.78rem; }
+    .wb-regu-top span { font-size: 0.62rem; color: #bebbce; }
+    .wb-dims { display: flex; flex-wrap: wrap; gap: 8px; align-items: flex-end; }
+    .wb-dim { display: flex; flex-direction: column; gap: 3px; }
+    .wb-dim label { font-size: 0.58rem; color: #bebbce; font-weight: 900; }
+    .wb-dim .seg button { background: rgba(255,255,255,.08); color: #ddd8ef; border-right-color: #fff3; }
+    .wb-dim .seg { border-color: #fff5; background: transparent; }
+    .wb-dim .seg button.is-on { background: var(--gold); color: #3a2a00; }
+
+    .wb-bar {
+      display: flex; flex-wrap: wrap; align-items: center; gap: 8px;
+      padding: 8px 12px; border-bottom: 1px solid var(--line);
+    }
+    .wb-bar h3 { margin: 0; font-size: 0.85rem; color: var(--ink); }
+    .wb-bar .fl { font-size: 0.62rem; color: var(--muted); margin-left: 4px; }
+    .wb-board { flex: 1; overflow: auto; padding: 0 4px 8px; }
+    .wb-board table { width: 100%; border-collapse: collapse; font-size: 0.78rem; }
+    .wb-board th {
+      position: sticky; top: 0; z-index: 1;
+      text-align: left; font-size: 0.62rem; color: var(--muted);
+      padding: 8px; background: var(--label); border-bottom: 1px solid var(--line);
+    }
+    .wb-board td { padding: 8px; border-bottom: 1px solid var(--line); vertical-align: middle; }
+    .wb-board tr.is-off td { opacity: 0.4; text-decoration: line-through; }
+    .wb-board .sp { font-weight: 900; color: var(--warn); }
+
+    /* ========== W-C 参考：現行寄せ（比較用・薄く） ========== */
+    .wc-head {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 8px 12px; border-bottom: 1px solid #e8e8e8;
+    }
+    .wc-zt {
+      display: inline-block; padding: 4px 10px; background: var(--ink); color: #fff;
+      font-size: 0.72rem; border-radius: 2px; border-bottom: 2px solid var(--gold); margin: 0;
+    }
+    .wc-tool {
+      display: flex; flex-wrap: wrap; gap: 6px 8px; align-items: center;
+      padding: 8px; margin: 8px 10px; background: var(--label); border-radius: 6px;
+    }
+    .wc-tool .tag {
+      padding: 4px 8px; background: linear-gradient(180deg,#5a5288,#463f70); color: #fff;
+      font-size: 0.68rem; border-radius: 2px; border-bottom: 2px solid var(--gold);
+    }
+    .wc-hint { margin: 0 12px 6px; font-size: 0.62rem; color: var(--muted); line-height: 1.4; }
+    .wc-board { flex: 1; overflow: auto; margin: 0 10px 10px; border: 1px solid var(--line); border-radius: 8px; }
+    .wc-board table { width: 100%; border-collapse: collapse; font-size: 0.72rem; }
+    .wc-board th {
+      position: sticky; top: 0; background: #ede6e6f2; font-size: 0.6rem; color: var(--muted);
+      padding: 6px; border-bottom: 2px solid var(--ink); text-align: left;
+    }
+    .wc-board td { padding: 6px; border-bottom: 1px solid var(--line); }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <h1>結果作業台 — ゼロから再設計</h1>
+    <p class="lead">
+      命題は「望まぬスキルを落として真の必要 SP を出す」。必要なのは
+      <strong>含める／スキル／必要SP／由来</strong>と、確定フロー付きの<strong>レギュ</strong>・並べ替え・コピー。
+      条件・ヒントLv は主列に載せ続けず、スキル行の二次情報へ落とす案です。列ロジックの本番変更は選定後。
+    </p>
+
+    <aside class="note">
+      <h2>別件：詳細ペインの閉じ方</h2>
+      <ol>
+        <li><span class="rec">推奨</span> — <b>同じ要約を再タップで閉じる</b>（トグル）。閉じるボタンは残す</li>
+        <li>推奨サブ — <b>Esc</b> で閉じる</li>
+        <li>任意 — カード帯の空白クリックで閉じる（誤タップに注意）</li>
+        <li>やらない — 選択肢を選んだ瞬間に自動で閉じる（複数選択・見比べに向かない）</li>
+      </ol>
+    </aside>
+
+    <div class="grid">
+      <!-- W-A -->
+      <article class="card">
+        <h2>W-A · 削る作業台 <span class="pill">推奨</span></h2>
+        <p class="tagline">見出しを静かにして表を主役に。条件・Lv はスキル名の下へ。レギュは薄い1行。</p>
+        <div class="frame">
+          <section class="bench" aria-label="W-A プレビュー">
+            <div class="wa-head">
+              <h3 class="wa-title">結果</h3>
+              <div class="wa-meta">含める <b>72</b> / 75</div>
+            </div>
+            <div class="wa-tools">
+              <span class="fl">レギュ</span>
+              <button type="button" class="chip is-on" data-demo-reg>芝</button>
+              <button type="button" class="chip" data-demo-reg>中距離</button>
+              <button type="button" class="chip" data-demo-reg>先行</button>
+              <button type="button" class="apply" id="wa-apply" disabled>適用</button>
+              <span class="grow"></span>
+              <span class="fl">並び</span>
+              <div class="seg" role="group" aria-label="並び">
+                <button type="button" class="is-on" data-sort>由来</button>
+                <button type="button" data-sort>SP</button>
+                <button type="button" data-sort>名前</button>
+              </div>
+              <button type="button" class="solid">含めるをコピー</button>
+            </div>
+            <p class="wa-status" id="wa-status" hidden>未適用の絞込があります · 適用で確定（手動除外はリセット）</p>
+            <div class="wa-board">
+              <table>
+                <thead>
+                  <tr>
+                    <th class="col-on">ON</th>
+                    <th>スキル</th>
+                    <th class="col-sp">必要SP</th>
+                    <th>由来</th>
+                  </tr>
+                </thead>
+                <tbody id="wa-body"></tbody>
+              </table>
+            </div>
+          </section>
+        </div>
+        <ul class="why">
+          <li>「含めるスキル」タグや長い説明文を廃止 → 操作と表が近い</li>
+          <li>列を4つに圧縮（条件・ヒントLvはサブ行）。視線は ON → 名前 → SP</li>
+          <li>レギュはチップ仮選択＋適用（要件の確定フローは維持）</li>
+        </ul>
+      </article>
+
+      <!-- W-B -->
+      <article class="card">
+        <h2>W-B · レギュ決定バー <span class="pill alt">代替</span></h2>
+        <p class="tagline">対人レギュを「先に決める」儀式にする。表は削る作業専用。</p>
+        <div class="frame">
+          <section class="bench" aria-label="W-B プレビュー">
+            <div class="wb-regu">
+              <div class="wb-regu-top">
+                <strong>レギュを決める</strong>
+                <span>セレクトではなくセグメント · 適用で確定</span>
+              </div>
+              <div class="wb-dims">
+                <div class="wb-dim">
+                  <label>バ場</label>
+                  <div class="seg">
+                    <button type="button" class="is-on">芝</button>
+                    <button type="button">ダート</button>
+                  </div>
+                </div>
+                <div class="wb-dim">
+                  <label>距離</label>
+                  <div class="seg">
+                    <button type="button">短</button>
+                    <button type="button">マイル</button>
+                    <button type="button" class="is-on">中</button>
+                    <button type="button">長</button>
+                  </div>
+                </div>
+                <div class="wb-dim">
+                  <label>作戦</label>
+                  <div class="seg">
+                    <button type="button">逃</button>
+                    <button type="button" class="is-on">先</button>
+                    <button type="button">差</button>
+                    <button type="button">追</button>
+                  </div>
+                </div>
+                <button type="button" class="apply" style="align-self:flex-end">適用</button>
+              </div>
+            </div>
+            <div class="wb-bar">
+              <h3>結果</h3>
+              <span class="fl">72/75</span>
+              <span class="grow" style="flex:1"></span>
+              <span class="fl">並び</span>
+              <div class="seg">
+                <button type="button" class="is-on">由来</button>
+                <button type="button">SP</button>
+              </div>
+              <button type="button" class="solid">コピー</button>
+            </div>
+            <div class="wb-board">
+              <table>
+                <thead>
+                  <tr><th>ON</th><th>スキル</th><th>SP</th><th>由来</th></tr>
+                </thead>
+                <tbody id="wb-body"></tbody>
+              </table>
+            </div>
+          </section>
+        </div>
+        <ul class="why">
+          <li>レギュがクロム帯で一目瞭然。対人大会前の「前提固定」感が強い</li>
+          <li>表ヘッダは静か。列も W-A と同じ4列</li>
+          <li>弱点: スプリット右ペインでは帯がやや主張しすぎる可能性</li>
+        </ul>
+      </article>
+
+      <!-- 現行比較 -->
+      <article class="card span2">
+        <h2>参考 · いまの app 寄せ <span class="pill alt">比較用</span></h2>
+        <p class="tagline">ツール行にタグ・レギュ・並び・コピーが同居。説明文あり。列は6（含める／スキル／条件／Lv／SP／由来）。</p>
+        <div class="frame" style="min-height: 320px;">
+          <section class="bench" style="min-height: 300px;" aria-label="現行寄せ">
+            <div class="wc-head">
+              <h3 class="wc-zt">結果作業台</h3>
+              <span style="font-size:0.7rem;color:var(--muted)">スキル数 72/75</span>
+            </div>
+            <div class="wc-tool">
+              <span class="tag">含めるスキル</span>
+              <span style="font-size:0.62rem;color:var(--muted)">レギュ</span>
+              <select disabled style="font:inherit;font-size:0.68rem"><option>芝</option></select>
+              <select disabled style="font:inherit;font-size:0.68rem"><option>中距離</option></select>
+              <select disabled style="font:inherit;font-size:0.68rem"><option>先行</option></select>
+              <button type="button" class="apply" disabled>適用</button>
+              <span style="font-size:0.62rem;color:var(--muted)">並び</span>
+              <div class="seg"><button type="button" class="is-on">スキルID</button><button type="button">由来種別</button><button type="button">必要SP</button></div>
+              <button type="button" class="solid">含めるをコピー</button>
+            </div>
+            <p class="wc-hint">絞込は「適用」で確定。確定時にレギュ外を除外し「含める」の手動変更はやり直されます。一覧のトグルで合計から外せます。</p>
+            <div class="wc-board">
+              <table>
+                <thead>
+                  <tr>
+                    <th>含める</th><th>スキル</th><th>条件</th><th>ヒントLv</th><th>必要SP</th><th>由来</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><button type="button" class="tog is-on" aria-label="含める"></button></td>
+                    <td>弧線のプロフェッサー</td>
+                    <td><span class="cond">コーナー</span></td>
+                    <td>5</td>
+                    <td style="color:var(--warn);font-weight:900">120 <small style="color:var(--muted)">(54+66)</small></td>
+                    <td><span class="src src-e">スピエア</span></td>
+                  </tr>
+                  <tr>
+                    <td><button type="button" class="tog is-on" aria-label="含める"></button></td>
+                    <td>左回り◎</td>
+                    <td><span class="cond">左</span></td>
+                    <td>5</td>
+                    <td style="color:var(--warn);font-weight:900">78</td>
+                    <td><span class="src src-t">スピタップ</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+        </div>
+      </article>
+    </div>
+  </div>
+
+  <script>
+    const ROWS = [
+      { on: true, name: "弧線のプロフェッサー", cond: ["コーナー"], lv: 5, sp: "120", detail: "54+66", src: [["e", "スピエア"]] },
+      { on: true, name: "左回り◎", cond: ["左"], lv: 5, sp: "78", src: [["t", "スピタップ"]] },
+      { on: false, name: "右回り○", cond: ["右"], lv: 3, sp: "66", src: [["t", "スタドトウ"]] },
+      { on: true, name: "先手必勝", cond: ["逃げ"], lv: 2, sp: "160", detail: "70+90", src: [["e", "スピテイオー"], ["o", "育成"]] },
+      { on: true, name: "中盤巧者", cond: [], lv: 1, sp: "120", src: [["s", "シナリオ"]] },
+      { on: true, name: "食いしん坊", cond: [], lv: 2, sp: "140", src: [["e", "スタドーベル"]] },
+      { on: true, name: "臨機応変", cond: [], lv: 1, sp: "90", src: [["e", "友人たづな"]] },
+    ];
+
+    function srcHtml(list) {
+      return list.map(([k, t]) => `<span class="src src-${k}">${t}</span>`).join("");
+    }
+    function condHtml(list) {
+      return list.map((c) => `<span class="cond">${c}</span>`).join("");
+    }
+
+    function renderWA() {
+      const body = document.getElementById("wa-body");
+      body.innerHTML = ROWS.map((r) => `
+        <tr class="${r.on ? "" : "is-off"}">
+          <td><button type="button" class="tog ${r.on ? "is-on" : ""}" data-tog aria-label="含める"></button></td>
+          <td>
+            <div class="name">${r.name}<span class="lv">Lv${r.lv}</span></div>
+            <div class="sub">${condHtml(r.cond) || '<span style="font-size:0.58rem;color:#9a94b0">条件なし</span>'}</div>
+          </td>
+          <td class="sp">${r.sp}${r.detail ? ` <small>(${r.detail})</small>` : ""}</td>
+          <td>${srcHtml(r.src)}</td>
+        </tr>
+      `).join("");
+    }
+
+    function renderWB() {
+      const body = document.getElementById("wb-body");
+      body.innerHTML = ROWS.map((r) => `
+        <tr class="${r.on ? "" : "is-off"}">
+          <td><button type="button" class="tog ${r.on ? "is-on" : ""}" data-tog aria-label="含める"></button></td>
+          <td>
+            <div style="font-weight:900">${r.name}</div>
+            <div style="margin-top:2px">${condHtml(r.cond)}<span class="lv">Lv${r.lv}</span></div>
+          </td>
+          <td class="sp">${r.sp}</td>
+          <td>${srcHtml(r.src)}</td>
+        </tr>
+      `).join("");
+    }
+
+    renderWA();
+    renderWB();
+
+    document.querySelectorAll("[data-tog]").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const on = btn.classList.toggle("is-on");
+        btn.closest("tr").classList.toggle("is-off", !on);
+      });
+    });
+
+    document.querySelectorAll("[data-sort]").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const seg = btn.parentElement;
+        seg.querySelectorAll("button").forEach((b) => b.classList.remove("is-on"));
+        btn.classList.add("is-on");
+      });
+    });
+
+    const apply = document.getElementById("wa-apply");
+    const status = document.getElementById("wa-status");
+    document.querySelectorAll("[data-demo-reg]").forEach((chip) => {
+      chip.addEventListener("click", () => {
+        chip.classList.toggle("is-on");
+        chip.classList.toggle("is-pending", true);
+        apply.disabled = false;
+        status.hidden = false;
+      });
+    });
+    apply.addEventListener("click", () => {
+      document.querySelectorAll("[data-demo-reg]").forEach((c) => c.classList.remove("is-pending"));
+      apply.disabled = true;
+      status.hidden = true;
+    });
+
+    document.querySelectorAll(".wb-dim .seg").forEach((seg) => {
+      seg.querySelectorAll("button").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          seg.querySelectorAll("button").forEach((b) => b.classList.remove("is-on"));
+          btn.classList.add("is-on");
+        });
+      });
+    });
+  </script>
+</body>
+</html>

@@ -40,7 +40,7 @@
 
 ## 現在フォーカス（1行）
 
-**P1 カードピッカー刷新** — 推奨 P-A＋薄い P-B。育成／サポカとも0から。詳細: [product/design-polish-backlog.md](./product/design-polish-backlog.md)
+**結果作業台 再設計の選定** — モック [product/mockups/workbench-options.html](./product/mockups/workbench-options.html)（W-A 推奨 / W-B）。詳細ペイン閉じ方も同ページ。選定後に実装 → ピッカー
 
 ---
 
@@ -52,7 +52,12 @@
 
 ### P1
 
-- [ ] **カードピッカー刷新**（次チャットの本命・backlog #4）  
+- [ ] **結果作業台 再設計の選定→実装**（モック確認中）  
+  - 比較: [product/mockups/workbench-options.html](./product/mockups/workbench-options.html)（W-A 推奨 / W-B）  
+  - 詳細ペイン閉じ方: 再タップで閉じる＋Esc を推奨（モック先頭に記載）  
+  - 列圧縮（条件・Lv をサブ行）は選定時に合意
+
+- [ ] **カードピッカー刷新**（結果枠の直後・backlog #4）  
   - 推奨（P-A＋薄い P-B）で実装。見たあと別案可  
   - 育成／サポカとも0から刷新（選択中表示の改善を含む）
 
