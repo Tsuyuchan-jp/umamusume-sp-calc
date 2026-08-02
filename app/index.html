@@ -324,8 +324,19 @@
           <!-- 白本体（見出し・ダッシュボード・足元帯） -->
           <div class="deck-body">
             <div class="deck-heading">
-              <h2>編成</h2>
-              <p class="hint deck-heading__scenario">シナリオ: らっしゃい！トレセン軒！（固定）</p>
+              <div class="deck-heading__row">
+                <h2>編成</h2>
+                <p class="hint deck-heading__scenario">シナリオ: らっしゃい！トレセン軒！（固定）</p>
+              </div>
+              <input
+                type="text"
+                id="design-title-input"
+                class="deck-heading__title-input"
+                maxlength="80"
+                placeholder="編成タイトル"
+                aria-label="編成タイトル"
+                autocomplete="off"
+              />
             </div>
             <div class="deck-dashboard">
               <div class="deck-dashboard__row">

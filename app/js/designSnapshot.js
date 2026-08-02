@@ -94,6 +94,7 @@ export function captureDesignSnapshot({
   options,
   excludedSkillIds,
   committedSkillFilter,
+  designTitle = "",
 }) {
   return {
     version: 1,
@@ -106,6 +107,7 @@ export function captureDesignSnapshot({
     options: { ...options },
     excludedSkillIds: [...excludedSkillIds],
     committedSkillFilter: { ...committedSkillFilter },
+    designTitle: String(designTitle || "").trim(),
   };
 }
 
@@ -128,5 +130,6 @@ export function applyDesignSnapshot(snapshot, ui) {
     options: { ...(snapshot.options || {}) },
     excludedSkillIds: [...(snapshot.excludedSkillIds || [])],
     committedSkillFilter: { ...(snapshot.committedSkillFilter || {}) },
+    designTitle: String(snapshot.designTitle || "").trim(),
   };
 }

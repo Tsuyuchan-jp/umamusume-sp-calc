@@ -56,9 +56,11 @@ const snap = captureDesignSnapshot({
   options,
   excludedSkillIds: new Set([200512]),
   committedSkillFilter: { ground: "turf", distance: "", style: "" },
+  designTitle: "切れ者前提",
 });
 
 assert.equal(snap.version, 1);
+assert.equal(snap.designTitle, "切れ者前提");
 assert.equal(snap.characterId, 105801);
 assert.deepEqual(snap.supportIds, ui.supportIds);
 assert.deepEqual(snap.excludedSkillIds, [200512]);
@@ -91,6 +93,7 @@ assert.equal(applied.options.trainingHintLevel, 5);
 assert.equal(applied.options.inheritCount, 4);
 assert.deepEqual(applied.excludedSkillIds, [200512]);
 assert.equal(applied.committedSkillFilter.ground, "turf");
+assert.equal(applied.designTitle, "切れ者前提");
 
 assert.equal(applyDesignSnapshot({ version: 99 }, restored), false);
 

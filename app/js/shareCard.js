@@ -3,7 +3,7 @@
  * DOM 骨格はモックと同一。JS はテキスト／画像／金行・除外の差し替えのみ。
  */
 
-import { characterImageUrl, supportImageUrl } from "./cardAssets.js";
+import { characterImageUrl, characterBaseName, supportImageUrl } from "./cardAssets.js";
 import {
   getDeckLinkCharacterIds,
   resolveLinkSkill,
@@ -281,9 +281,7 @@ export function buildShareCardModel(params) {
   const characterName = character?.name || "";
   const title =
     String(designTitle || "").trim() ||
-    (characterName
-      ? characterName.replace(/^\[[^\]]+\]/, "").trim()
-      : "編成設計");
+    (characterName ? characterBaseName(characterName) : "編成設計");
 
   return {
     totalSp: plan.total,
@@ -590,7 +588,7 @@ export function sanitizeShareFilenamePart(name) {
 
 /**
  * PNG 保存名: `{名前}-{YYYYMMDD}-{SP}sp.png`
- * 名前はカードタイトルと同じ優先（メモリ名 → 育成名 → 編成設計）
+ * 名前は編成タイトル入力欄（空なら育成名 → 編成設計）
  * @param {{ title?: string, totalSp?: number, date?: Date }} params
  * @returns {string}
  */

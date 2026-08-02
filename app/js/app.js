@@ -17,6 +17,10 @@ import {
   getIncludedSkillRows,
 } from "./copyIncludedSkills.js";
 import {
+  defaultDesignTitleFromCharacterName,
+  resolveDesignTitleOnCharacterChange,
+} from "./designTitle.js";
+import {
   applyDesignSnapshot,
   captureDesignSnapshot,
   sanitizeDesignSnapshot,
@@ -107,9 +111,6 @@ let sessionSaveTimer = null;
 
 /** セッション即時保存のイベント登録済み */
 let sessionFlushBound = false;
-
-/** 共有カード用タイトル（メモリ保存／復元時の名前。未設定なら育成名へフォールバック） */
-let activeDesignTitle = "";
 
 /** スプリット左ドックでフォーカス中のサポ枠（0–5）。ギャラリーでは未使用 */
 let focusSupportSlot = null;
@@ -232,6 +233,55 @@ function buildCardFaceHtml({
 
 function getCharacterById(id) {
   return state.characters.find((c) => c.id === id);
+}
+
+function getDesignTitleInput() {
+  return document.getElementById("design-title-input");
+}
+
+function readDesignTitle() {
+  return getDesignTitleInput()?.value.trim() ?? "";
+}
+
+function setDesignTitle(value) {
+  const input = getDesignTitleInput();
+  if (input) input.value = String(value ?? "");
+}
+
+function getDefaultDesignTitleForCharacter(characterId) {
+  const c = getCharacterById(characterId);
+  return c ? defaultDesignTitleFromCharacterName(c.name) : "";
+}
+
+function setDesignTitleDefaultForCurrentCharacter() {
+  setDesignTitle(getDefaultDesignTitleForCharacter(state?.ui?.characterId));
+}
+
+function applyDesignTitleOnCharacterChange(previousCharacterId, nextCharacterId) {
+  const prevName = getCharacterById(previousCharacterId)?.name ?? "";
+  const nextName = getCharacterById(nextCharacterId)?.name ?? "";
+  const nextTitle = resolveDesignTitleOnCharacterChange(
+    readDesignTitle(),
+    defaultDesignTitleFromCharacterName(prevName),
+    defaultDesignTitleFromCharacterName(nextName)
+  );
+  setDesignTitle(nextTitle);
+  scheduleSessionSave();
+}
+
+function applyDesignTitleFromSnapshot(snapshot) {
+  const title = String(snapshot?.designTitle || "").trim();
+  if (title) {
+    setDesignTitle(title);
+  } else {
+    setDesignTitleDefaultForCurrentCharacter();
+  }
+}
+
+function bindDesignTitleInput() {
+  const input = getDesignTitleInput();
+  if (!input) return;
+  input.addEventListener("input", () => scheduleSessionSave());
 }
 
 function getSupportById(id) {
@@ -658,8 +708,10 @@ function openCharacterPicker() {
     allowClear: false,
     onPick: (id) => {
       if (id == null) return;
+      const prevId = state.ui.characterId;
       state.ui.characterId = id;
       syncHiddenCharacterSelect();
+      applyDesignTitleOnCharacterChange(prevId, id);
       renderDeckCharacter();
       renderScenarioLinkRadios();
       recalc();
@@ -892,6 +944,7 @@ function captureCurrentDesign() {
     options: readDesignOptions(),
     excludedSkillIds,
     committedSkillFilter,
+    designTitle: readDesignTitle(),
   });
 }
 
@@ -902,9 +955,7 @@ function scheduleSessionSave() {
   sessionSaveTimer = setTimeout(() => {
     sessionSaveTimer = null;
     if (!state) return;
-    const snap = captureCurrentDesign();
-    if (activeDesignTitle) snap.designTitle = activeDesignTitle;
-    saveSessionSnapshot(snap);
+    saveSessionSnapshot(captureCurrentDesign());
   }, 350);
 }
 
@@ -915,9 +966,7 @@ function flushSessionSave() {
     sessionSaveTimer = null;
   }
   if (!state) return;
-  const snap = captureCurrentDesign();
-  if (activeDesignTitle) snap.designTitle = activeDesignTitle;
-  saveSessionSnapshot(snap);
+  saveSessionSnapshot(captureCurrentDesign());
 }
 
 /** タブ非表示・ページ離脱時にセッションを flush */
@@ -980,6 +1029,8 @@ function restoreDesign(snapshot) {
   };
   writeSkillFilterUI(committedSkillFilter);
   previousTotal = null;
+
+  applyDesignTitleFromSnapshot(sanitized);
 
   syncHiddenCharacterSelect();
   renderDeckDashboard();
@@ -1065,8 +1116,10 @@ function bindMemoryDialog() {
 
   openBtn.addEventListener("click", () => {
     renderMemoryList();
+    nameInput.value = readDesignTitle();
     dialog.showModal();
     nameInput.focus();
+    nameInput.select();
   });
 
   closeBtn.addEventListener("click", () => dialog.close());
@@ -1077,15 +1130,13 @@ function bindMemoryDialog() {
   saveBtn.addEventListener("click", () => {
     if (!state) return;
     const snapshot = captureCurrentDesign();
-    const entry = saveMemoryEntry({
+    saveMemoryEntry({
       name: nameInput.value,
       snapshot,
       totalSp: currentPlan?.total ?? null,
     });
-    activeDesignTitle = entry.name;
     nameInput.value = "";
     renderMemoryList();
-    scheduleSessionSave();
   });
 
   nameInput.addEventListener("keydown", (e) => {
@@ -1107,7 +1158,12 @@ function bindMemoryDialog() {
         return;
       }
       if (restoreDesign(entry.snapshot)) {
-        activeDesignTitle = entry.name || "";
+        const restoredTitle = String(entry.name || "").trim();
+        if (restoredTitle) {
+          setDesignTitle(restoredTitle);
+        } else {
+          setDesignTitleDefaultForCurrentCharacter();
+        }
         scheduleSessionSave();
         dialog.close();
       } else {
@@ -2103,7 +2159,7 @@ function getShareCardPayload() {
     committedSkillFilter,
     excludedSkillIds,
     reguExcludedCount: currentReguExcludedCount,
-    designTitle: activeDesignTitle,
+    designTitle: readDesignTitle(),
   });
 }
 
@@ -2306,6 +2362,7 @@ async function init() {
     bindEventScopeDisclosure();
     bindHelpDialog();
     bindMemoryDialog();
+    bindDesignTitleInput();
     renderEvents();
     renderScenarioLinkRadios();
     renderSeniorRmjRadios();
@@ -2320,15 +2377,10 @@ async function init() {
     committedSkillFilter = readSkillFilterFromUI();
 
     const session = loadSessionSnapshot();
-    if (session) {
-      activeDesignTitle = String(session.designTitle || "").trim();
-      if (restoreDesign(session)) {
-        /* 前回セッションを復元（restoreDesign 内で recalc） */
-      } else {
-        activeDesignTitle = "";
-        recalc();
-      }
+    if (session && restoreDesign(session)) {
+      /* 前回セッションを復元（restoreDesign 内で recalc・編成タイトル反映） */
     } else {
+      setDesignTitleDefaultForCurrentCharacter();
       recalc();
     }
   } catch (e) {

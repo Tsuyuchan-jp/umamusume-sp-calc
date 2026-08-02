@@ -518,16 +518,47 @@ input[type="search"] {
 
 .deck-heading {
   display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0.45rem;
+  margin-bottom: 0.75rem;
+}
+
+.deck-heading__row {
+  display: flex;
   flex-wrap: wrap;
   align-items: baseline;
   gap: 0.5rem 1rem;
-  margin-bottom: 0.75rem;
 }
 
 .deck-heading h2 {
   margin: 0;
   border: none;
   padding: 0;
+}
+
+.deck-heading__title-input {
+  box-sizing: border-box;
+  width: 100%;
+  margin: 0;
+  padding: 0.42rem 0.55rem;
+  border: 1px solid rgba(90, 60, 140, 0.22);
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.92);
+  color: var(--text, #2a1f3d);
+  font: inherit;
+  font-size: 0.88rem;
+  line-height: 1.35;
+}
+
+.deck-heading__title-input::placeholder {
+  color: rgba(42, 31, 61, 0.42);
+}
+
+.deck-heading__title-input:focus {
+  outline: 2px solid rgba(180, 120, 255, 0.45);
+  outline-offset: 1px;
+  border-color: rgba(120, 80, 180, 0.45);
 }
 
 .deck-heading__scenario {
@@ -1476,6 +1507,12 @@ body.layout-split .result-table-wrap {
 body.layout-split .deck-heading {
   flex-shrink: 0;
   margin-bottom: 0.45rem;
+  gap: 0.35rem;
+}
+
+body.layout-split .deck-heading__title-input {
+  font-size: 0.8rem;
+  padding: 0.35rem 0.45rem;
 }
 
 body.layout-split .deck-heading h2 {
