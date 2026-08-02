@@ -57,7 +57,7 @@ import {
   copyShareCardPng,
   renderShareCardToMount,
   saveShareCardPng,
-} from "./shareCard.js";
+} from "./shareCard.js?v=1.0.3";
 
 /** 継承固有の baseSp（UIでは非編集・固定） */
 const INHERIT_BASE_SP = 200;
@@ -121,7 +121,7 @@ let splitEvtOpen = null;
 let supportPickerTypeFilter = "";
 
 /** Pages の max-age キャッシュで古い events.json が残るのを防ぐ（版上げ時に更新） */
-const DATA_CACHE_BUST = "1.0.2";
+const DATA_CACHE_BUST = "1.0.3";
 
 async function loadJson(path) {
   const sep = path.includes("?") ? "&" : "?";

@@ -554,13 +554,38 @@ function canvasToBlob(canvas, type = "image/png", quality) {
 }
 
 /**
+ * Blob 先頭が WebP か（type 欠落時の判定用）
+ * @param {Blob} blob
+ * @returns {Promise<boolean>}
+ */
+async function blobLooksLikeWebp(blob) {
+  if (blob.type === "image/webp") return true;
+  try {
+    const head = new Uint8Array(await blob.slice(0, 12).arrayBuffer());
+    // RIFF .... WEBP
+    return (
+      head[0] === 0x52 &&
+      head[1] === 0x49 &&
+      head[2] === 0x46 &&
+      head[3] === 0x46 &&
+      head[8] === 0x57 &&
+      head[9] === 0x45 &&
+      head[10] === 0x42 &&
+      head[11] === 0x50
+    );
+  } catch {
+    return false;
+  }
+}
+
+/**
  * 保存用 Blob（WebP 優先。非対応時は JPEG → PNG）
  * @param {HTMLCanvasElement} canvas
  * @returns {Promise<{ blob: Blob, ext: "webp"|"jpg"|"png" }|null>}
  */
 async function canvasToSaveBlob(canvas) {
   const webp = await canvasToBlob(canvas, "image/webp", SHARE_SAVE_WEBP_QUALITY);
-  if (webp && webp.type === "image/webp" && webp.size > 0) {
+  if (webp && webp.size > 0 && (await blobLooksLikeWebp(webp))) {
     return { blob: webp, ext: "webp" };
   }
   const jpeg = await canvasToBlob(canvas, "image/jpeg", 0.95);
