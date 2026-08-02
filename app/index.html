@@ -250,7 +250,7 @@
 
       <div class="snap-zone snap-zone--deck" id="snap-zone-deck">
         <section class="panel panel--deck">
-          <!-- H-Mock: g-brand 相当。編成パネルの先頭クロム（浮いた別帯にしない） -->
+          <!-- 紫クロム（角丸はここ自身が描く） -->
           <header class="app-header">
             <div class="header-text">
               <h1>SP <span class="app-brand-accent">Calc</span><span class="app-version">v0.1.14</span></h1>
@@ -264,69 +264,73 @@
               </button>
             </div>
           </header>
-          <div class="deck-heading">
-            <h2>編成</h2>
-            <p class="hint deck-heading__scenario">シナリオ: らっしゃい！トレセン軒！（固定）</p>
+
+          <!-- 白本体（見出し・ダッシュボード・足元帯） -->
+          <div class="deck-body">
+            <div class="deck-heading">
+              <h2>編成</h2>
+              <p class="hint deck-heading__scenario">シナリオ: らっしゃい！トレセン軒！（固定）</p>
+            </div>
+            <div class="deck-dashboard">
+              <div class="deck-dashboard__row">
+                <div class="deck-character-wrap">
+                  <span class="deck-slot-label">育成ウマ娘</span>
+                  <button
+                    type="button"
+                    id="deck-character"
+                    class="deck-slot deck-slot--character"
+                    aria-label="育成ウマ娘を選択"
+                  ></button>
+                </div>
+                <div class="deck-supports-wrap">
+                  <span class="deck-slot-label">サポートカード（6枚）</span>
+                  <div class="deck-supports" id="deck-supports"></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- スプリット専用: A 詳細ペイン（ギャラリーでは非表示） -->
+            <aside id="split-evt-pane" class="split-evt-pane" hidden>
+              <div class="split-evt-pane__head">
+                <div>
+                  <div id="split-evt-pane-title" class="split-evt-pane__title">A · イベント選択</div>
+                  <div id="split-evt-pane-sub" class="split-evt-pane__sub">左のサポカ要約を選ぶと詳細が出ます</div>
+                </div>
+                <button type="button" id="split-evt-pane-close" class="split-evt-pane__close" aria-label="閉じる">×</button>
+              </div>
+              <div id="split-evt-pane-body" class="split-evt-pane__body">
+                <p class="split-evt-pane__empty">サポカの要約をタップすると、ここに選択肢が出ます</p>
+              </div>
+            </aside>
+
+            <!-- シナリオ: リンク / RMJ チップ + 自動（確認） -->
+            <div class="deck-footband" id="deck-footband">
+              <div class="deck-scenario-bar" id="deck-layer-c">
+                <div class="scn-chip-group" role="group" aria-label="シナリオリンク">
+                  <span class="scn-chip-group__lbl">リンク</span>
+                  <div id="scenario-link" class="scn-chip-row"></div>
+                </div>
+                <div class="scn-chip-group" role="group" aria-label="RMJラーメン">
+                  <span class="scn-chip-group__lbl">RMJ</span>
+                  <div id="scenario-senior-rmj" class="scn-chip-row"></div>
+                </div>
+              </div>
+              <details class="deck-scenario-auto" id="deck-scenario-auto-wrap">
+                <summary class="deck-scenario-auto__summary">
+                  <span class="deck-scenario-auto__summary-label">シナリオ自動</span>
+                  <span id="scenario-auto-count" class="deck-scenario-auto__count">0件</span>
+                  <span class="deck-scenario-auto__hint">確認のみ</span>
+                </summary>
+                <div id="scenario-auto" class="scenario-auto-list"></div>
+              </details>
+            </div>
+
+            <p id="event-empty-hint" class="hint deck-event-empty-hint" hidden>
+              該当サポカがデッキにいません。6枠に編成するとイベントが表示されます。
+            </p>
+
+            <select id="character-select" hidden aria-hidden="true"></select>
           </div>
-          <div class="deck-dashboard">
-            <div class="deck-dashboard__row">
-              <div class="deck-character-wrap">
-                <span class="deck-slot-label">育成ウマ娘</span>
-                <button
-                  type="button"
-                  id="deck-character"
-                  class="deck-slot deck-slot--character"
-                  aria-label="育成ウマ娘を選択"
-                ></button>
-              </div>
-              <div class="deck-supports-wrap">
-                <span class="deck-slot-label">サポートカード（6枚）</span>
-                <div class="deck-supports" id="deck-supports"></div>
-              </div>
-            </div>
-          </div>
-
-          <!-- スプリット専用: A 詳細ペイン（ギャラリーでは非表示） -->
-          <aside id="split-evt-pane" class="split-evt-pane" hidden>
-            <div class="split-evt-pane__head">
-              <div>
-                <div id="split-evt-pane-title" class="split-evt-pane__title">A · イベント選択</div>
-                <div id="split-evt-pane-sub" class="split-evt-pane__sub">左のサポカ要約を選ぶと詳細が出ます</div>
-              </div>
-              <button type="button" id="split-evt-pane-close" class="split-evt-pane__close" aria-label="閉じる">×</button>
-            </div>
-            <div id="split-evt-pane-body" class="split-evt-pane__body">
-              <p class="split-evt-pane__empty">サポカの要約をタップすると、ここに選択肢が出ます</p>
-            </div>
-          </aside>
-
-          <!-- シナリオ: リンク / RMJ チップ + 自動（確認） -->
-          <div class="deck-footband" id="deck-footband">
-            <div class="deck-scenario-bar" id="deck-layer-c">
-              <div class="scn-chip-group" role="group" aria-label="シナリオリンク">
-                <span class="scn-chip-group__lbl">リンク</span>
-                <div id="scenario-link" class="scn-chip-row"></div>
-              </div>
-              <div class="scn-chip-group" role="group" aria-label="RMJラーメン">
-                <span class="scn-chip-group__lbl">RMJ</span>
-                <div id="scenario-senior-rmj" class="scn-chip-row"></div>
-              </div>
-            </div>
-            <details class="deck-scenario-auto" id="deck-scenario-auto-wrap">
-              <summary class="deck-scenario-auto__summary">
-                <span class="deck-scenario-auto__summary-label">シナリオ自動</span>
-                <span id="scenario-auto-count" class="deck-scenario-auto__count">0件</span>
-                <span class="deck-scenario-auto__hint">確認のみ</span>
-              </summary>
-              <div id="scenario-auto" class="scenario-auto-list"></div>
-            </details>
-          </div>
-
-          <p id="event-empty-hint" class="hint deck-event-empty-hint" hidden>
-            該当サポカがデッキにいません。6枠に編成するとイベントが表示されます。
-          </p>
-
-          <select id="character-select" hidden aria-hidden="true"></select>
         </section>
       </div>
 

@@ -142,21 +142,21 @@ body > .app-main {
   z-index: 1000;
 }
 
-/* ---- ヘッダー（H-Mock g-brand: 編成パネル先頭の一体クロム） ---- */
+/* ---- ヘッダー（紫クロム: 上角は自身が描く） ---- */
 .panel--deck > .app-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 0.75rem;
   box-sizing: border-box;
-  width: auto;
-  margin: 0 calc(-1 * var(--panel-pad-x)) var(--layout-stack);
+  flex-shrink: 0;
+  width: 100%;
+  margin: 0;
   padding: 0.65rem var(--panel-pad-x);
   background: linear-gradient(180deg, var(--ink-mid) 0%, var(--ink-deep) 100%);
   box-shadow: none;
   border: 0;
   border-bottom: 3px solid var(--c-gold, #f5cf6f);
-  /* modebar と同じく、紫面自身が上角を描く */
   border-radius: 8px 8px 0 0;
 }
 
@@ -211,22 +211,39 @@ body.layout-split .panel--deck > .app-header {
   letter-spacing: 0.01em;
 }
 
+/* 編成枠: 透明ラッパ。見た目は .app-header（紫）＋ .deck-body（白）
+   親は clip しない。角は子が描く */
 .panel--deck {
-  /* modebar / トータルバーと同じ: 角丸は紫クロム自身が描く（親 clip しない） */
   position: relative;
-  overflow: visible;
-  background: var(--panel);
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  background: transparent;
   border: none;
-  border-radius: 0 0 8px 8px;
+  border-radius: 8px;
   box-shadow: var(--shadow-lg);
-  padding-top: 0;
+  overflow: visible;
 }
 
 .panel--deck::before {
   content: none;
 }
 
-/* 結果枠: 透明ラッパ。見た目は .wb-regu（紫）＋ .workbench-body（白） */
+/* 白本体: 見出し・ダッシュボード・足元帯 */
+.deck-body {
+  box-sizing: border-box;
+  flex: 1 1 auto;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: var(--panel-pad-y) var(--panel-pad-x);
+  background: var(--panel);
+  border-radius: 0 0 8px 8px;
+}
+
+/* 結果枠: 透明ラッパ。見た目は .wb-regu（紫）＋ .workbench-body（白）
+   親は clip しない（overflow:hidden+radius の AA 白縁を避ける）。角は子が描く */
 .panel--workbench {
   position: relative;
   display: flex;

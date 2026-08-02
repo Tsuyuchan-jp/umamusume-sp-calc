@@ -526,11 +526,7 @@ input[type="search"] {
 }
 
 /* ---- 編成ダッシュボード（二段構え・上段） ---- */
-.panel--deck {
-  padding-bottom: var(--panel-pad-y, 0.85rem);
-  /* 背景は foundation の --panel（幾何タイル）に委譲 */
-  box-shadow: 0 2px 8px rgba(44, 62, 80, 0.06);
-}
+/* .panel--deck の見た目は foundation（透明ラッパ＋影）に集約 */
 
 .deck-heading {
   display: flex;
@@ -1506,15 +1502,22 @@ body.layout-split .panel--deck {
   min-height: 0;
   display: flex;
   flex-direction: column;
-  /* split では g-brand 非表示のため四隅とも角丸の白パネル */
   overflow: visible;
-  background: var(--panel, #fff);
+  /* 透明ラッパは維持。クロム非表示時は .deck-body が四隅角丸 */
+  padding: 0;
+  background: transparent;
   border-radius: 8px;
-  padding: var(--panel-pad-y, 0.85rem) var(--panel-pad-x, 1rem);
 }
 
 body.layout-split .panel--deck::before {
   content: none;
+}
+
+body.layout-split .deck-body {
+  flex: 1 1 auto;
+  min-height: 0;
+  border-radius: 8px;
+  padding: var(--panel-pad-y, 0.85rem) var(--panel-pad-x, 1rem);
 }
 
 body.layout-split .panel--workbench {
@@ -1833,11 +1836,15 @@ body.layout-split .panel--workbench {
   /* 狭幅スプリット: 上部コマンドではなく下端バー＋パネル内ブランドを残す */
   body.layout-split .panel--deck > .app-header {
     display: flex;
-    margin: 0 calc(-1 * var(--panel-pad-x, 1rem)) var(--layout-stack, 0.5rem);
+    margin: 0;
+  }
+
+  body.layout-split .deck-body {
+    border-radius: 0 0 8px 8px;
   }
 
   body.layout-split .panel--deck {
-    padding-top: 0;
+    padding: 0;
   }
 
   body.layout-split > .total-sp-bar,
@@ -2609,7 +2616,7 @@ tr.excluded td {
 
 /* ---- 結果作業台（W-H） ---- */
 
-/* 紫クロム: 角丸は自身が描く（親白面の上に載せない） */
+/* 紫クロム: 上角は自身が描く（親白面の裏打ちなし・親も clip しない） */
 .wb-regu {
   box-sizing: border-box;
   flex-shrink: 0;
@@ -2623,7 +2630,7 @@ tr.excluded td {
   border-radius: 8px 8px 0 0;
 }
 
-/* 白本体: 見出し・並び・表 */
+/* 白本体: 見出し・並び・表。下角は自身が描く */
 .workbench-body {
   box-sizing: border-box;
   flex: 1 1 auto;
