@@ -3,16 +3,15 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>編成スクショ — 主案 v24（D寄り調整）</title>
+  <title>編成スクショ — 主案 v25（レギュ整列・金枠伸縮）</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;600;700&family=Zen+Kaku+Gothic+New:wght@500;700;900&display=swap" rel="stylesheet" />
   <style>
     /*
-      主案 v24 — D寄り調整
-      - 上段メタ帯（必要SP / 計上 61/79 / レギュ＋除外件数）
-      - 切れ者はタイトル右のコンパクト表示
-      - 作業面 = 金スキル ＋ 除外（除外枠を広め）
+      主案 v25 — ほぼ採用の微調整
+      - レギュ帯: 条件1行 + トレヒント/継承を2行
+      - 金スキル枠は内容量に応じて縦に伸びる（除外は残り）
     */
     :root {
       --ink: #1a1630;
@@ -134,6 +133,25 @@
       font-weight: 500;
       color: #b8b2c8;
     }
+    /* レギュ: 条件を主、前提は2行で縦積み */
+    .strip__regu {
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 1.25;
+      letter-spacing: 0.01em;
+    }
+    .strip__prem {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      margin-top: 5px;
+    }
+    .strip__prem span {
+      font-size: 10px;
+      font-weight: 500;
+      color: #b8b2c8;
+      line-height: 1.2;
+    }
     .strip__count {
       display: flex;
       align-items: baseline;
@@ -217,7 +235,8 @@
       flex: 1;
       min-height: 0;
       display: grid;
-      grid-template-rows: minmax(0, 1fr) minmax(108px, 0.95fr);
+      /* 金は内容量で伸び、除外は残りの下限付き */
+      grid-template-rows: auto minmax(96px, 1fr);
       gap: 8px;
     }
 
@@ -232,10 +251,12 @@
       background: #faf9fc;
     }
     .panel--gold {
+      flex-shrink: 0;
       border-color: #efe8c8;
       background: #fffdf6;
     }
     .panel--off {
+      min-height: 96px;
       border-color: #e4dde9;
       background: #f7f5fb;
     }
@@ -248,13 +269,13 @@
     .panel--off .panel__lab { color: #6a6478; }
 
     .gold-board {
-      flex: 1;
-      min-height: 0;
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 4px 12px;
       align-content: start;
     }
+    .gold-extra { display: none; }
+    body.is-gold-plus .gold-extra { display: grid; }
     .gold-row {
       display: grid;
       grid-template-columns: 5.2em minmax(0, 1fr);
@@ -448,20 +469,54 @@
       color: #59ccfc;
       font-size: .92em;
     }
+    .demo-bar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 10px;
+      margin: 0 0 14px;
+    }
+    .demo-bar button {
+      appearance: none;
+      border: 1px solid rgba(245, 207, 111, 0.55);
+      background: rgba(245, 207, 111, 0.14);
+      color: #f5cf6f;
+      font: inherit;
+      font-size: 12.5px;
+      font-weight: 700;
+      padding: 8px 12px;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    .demo-bar button[aria-pressed="true"] {
+      background: #f5cf6f;
+      color: #1a1630;
+      border-color: #f5cf6f;
+    }
+    .demo-bar span {
+      color: #ddd8ef;
+      font-size: 12.5px;
+      line-height: 1.45;
+    }
   </style>
 </head>
 <body>
   <div class="shell">
     <div class="banner">
-      <strong>主案 v24 · D寄り調整</strong> —
-      計上 61/79、レギュ除外15。切れ者はタイトル右。金／除外は日本語ラベル。フッタ削除。
+      <strong>主案 v25 · ほぼ採用の微調整</strong> —
+      レギュ帯の前提を2行化。金枠は件数に応じて縦伸縮（下のトグルで+4を確認可）。
       比較: <a href="./screenshot-share-left-fresh.html">A〜E</a>
     </div>
 
-    <h1 class="page-title">編成スクショ · 共有カード主案 v24</h1>
-    <p class="lead">COUNT表記・切れ者位置・除外枠の広さを確認してください。</p>
+    <h1 class="page-title">編成スクショ · 共有カード主案 v25</h1>
+    <p class="lead">レギュ帯の読みやすさと、金スキルが増えたときの枠の伸び方を確認してください。</p>
 
-    <article class="share" aria-label="共有カード主案 v24">
+    <div class="demo-bar">
+      <button type="button" id="toggle-gold-plus" aria-pressed="false">金スキル +4 を仮表示</button>
+      <span>カード比率は固定のまま、金パネルだけ内容量で伸び、除外は残りスペースを使います。</span>
+    </div>
+
+    <article class="share" aria-label="共有カード主案 v25">
       <section class="left">
         <div class="strip">
           <div class="strip__cell">
@@ -477,7 +532,11 @@
           </div>
           <div class="strip__cell">
             <div class="strip__lab">レギュ</div>
-            <div class="strip__val">芝 · 中距離 · 先行<small>トレヒント Lv5 · 継承 ×4 Lv3</small></div>
+            <div class="strip__regu">芝 · 中距離 · 先行</div>
+            <div class="strip__prem">
+              <span>トレヒント Lv5</span>
+              <span>継承 ×4 Lv3</span>
+            </div>
           </div>
         </div>
 
@@ -550,6 +609,21 @@
                     <span class="gold-chip"><span class="gold-chip__name">極上の感謝を！</span></span>
                   </div>
                 </div>
+                <!-- +4 デモ用（トグルで表示）。実データではない -->
+                <div class="gold-row gold-extra is-scn">
+                  <span class="gold-row__src">育成固有</span>
+                  <div class="gold-row__chips">
+                    <span class="gold-chip"><span class="gold-chip__name">（仮）追加金A</span></span>
+                    <span class="gold-chip"><span class="gold-chip__name">（仮）追加金B</span></span>
+                  </div>
+                </div>
+                <div class="gold-row gold-extra is-scn">
+                  <span class="gold-row__src">イベント</span>
+                  <div class="gold-row__chips">
+                    <span class="gold-chip"><span class="gold-chip__name">（仮）追加金C</span></span>
+                    <span class="gold-chip"><span class="gold-chip__name">（仮）追加金D</span></span>
+                  </div>
+                </div>
               </div>
             </div>
 
@@ -587,9 +661,17 @@
     </article>
 
     <div class="judge">
-      <strong>判断のお願い</strong>（v24）<br />
+      <strong>判断のお願い</strong>（v25）<br />
       返事例: <code>採用</code> / <code>方向違い</code> / <code>惜しい：〇〇</code>
     </div>
   </div>
+  <script>
+    const btn = document.getElementById("toggle-gold-plus");
+    btn.addEventListener("click", () => {
+      const on = document.body.classList.toggle("is-gold-plus");
+      btn.setAttribute("aria-pressed", on ? "true" : "false");
+      btn.textContent = on ? "金スキル +4 を隠す（通常に戻す）" : "金スキル +4 を仮表示";
+    });
+  </script>
 </body>
 </html>
