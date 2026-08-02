@@ -40,7 +40,7 @@
 
 ## 現在フォーカス（1行）
 
-**カードピッカー刷新** — リッチ案確認待ち（[picker-rich-options.html](./product/mockups/picker-rich-options.html) · R1推奨）
+**育成 dress スポット目視**（任意）— ピッカー刷新は実装済・実機確認待ち
 
 ---
 
@@ -51,12 +51,6 @@
 （なし）
 
 ### P1
-
-- [~] **カードピッカー刷新**（backlog #4・リッチ案確認中）  
-  - リッチ案: [product/mockups/picker-rich-options.html](./product/mockups/picker-rich-options.html)（R1 Studio Glass 推奨）  
-  - 初期案: [product/mockups/picker-options.html](./product/mockups/picker-options.html)  
-  - 骨格は P-A＋薄い P-B。見たあと別案可 → OK後に `app/` 移植  
-  - 育成／サポカとも0から刷新（選択中表示の改善を含む）
 
 - [ ] **育成 dress 流用カードのスポット目視**（任意だが短い）  
   - `chr_icon` が dress フォールバックのカードで、ピッカー上の衣装が明らかにおかしいものがないか数枚確認
@@ -91,6 +85,7 @@
 
 ## 最近完了（直近のみ残す）
 
+- [x] 2026-08-02 **カードピッカー刷新**（backlog #4）— R3＋R1 ハイブリッド。トグル絞込・固定棚高・選択バッジ
 - [x] 2026-08-02 **スプリット左「カード」枠上ラベル削除** — 不要（編成＋枠＋詳細見出しで足りる）。見切れ対策のCSSいじりは撤回
 - [x] 2026-08-02 **角丸DOMクローズ** — 結果枠・編成枠を紫クロム＋白本体の二段構成に整理（ユーザー確認OK）
 - [x] 2026-08-02 **結果作業台 W-H** — ON文言・レギュ即適用（手動OFF保持）・4列表・儀式バー

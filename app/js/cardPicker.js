@@ -1,13 +1,18 @@
 /**
  * カード選択ダイアログ（育成ウマ娘・サポカ共通）
+ * 見た目: R3 土台（紫クロム＋統合プレビュー）＋ R1 部品（トグル・色ドット・選択バッジ）
  */
 
 import { normalizeSearchQuery } from "./searchText.js";
+
+const SELECTED_BADGE = '<span class="card-picker__badge" aria-hidden="true">選択中</span>';
 
 /**
  * @param {object} root
  * @param {HTMLDialogElement} root.dialog
  * @param {HTMLElement} root.titleEl
+ * @param {HTMLElement} root.previewThumbEl
+ * @param {HTMLElement} root.previewNameEl
  * @param {HTMLInputElement} root.searchEl
  * @param {HTMLElement} root.gridEl
  * @param {HTMLButtonElement} root.closeBtn
@@ -31,14 +36,17 @@ export function createCardPicker(root) {
   root.searchEl.addEventListener("input", () => renderGrid());
 
   if (root.filtersEl) {
-    root.filtersEl.addEventListener("change", () => {
-      onFiltersChange?.();
-      if (root._getItems) {
-        root._items = root._getItems();
-      }
-      renderGrid();
-    });
     root.filtersEl.addEventListener("click", (e) => {
+      const tog = e.target.closest("[data-filter]");
+      if (tog && root.filtersEl.contains(tog)) {
+        const on = tog.classList.toggle("is-on");
+        tog.setAttribute("aria-pressed", on ? "true" : "false");
+        onFiltersChange?.();
+        refreshItems();
+        renderGrid();
+        return;
+      }
+
       const chip = e.target.closest("[data-type]");
       if (!chip || !(chip instanceof HTMLElement)) return;
       const type = chip.dataset.type ?? "";
@@ -49,15 +57,32 @@ export function createCardPicker(root) {
       }
       root._typeFilter = type;
       onFiltersChange?.();
-      if (root._getItems) {
-        root._items = root._getItems();
-      }
+      refreshItems();
       renderGrid();
     });
   }
 
+  function refreshItems() {
+    if (root._getItems) {
+      root._items = root._getItems();
+    }
+  }
+
+  function setPreview(opts) {
+    const square = opts.mode === "character";
+    root.dialog.classList.toggle("card-picker--character", square);
+    if (root.previewThumbEl) {
+      root.previewThumbEl.classList.toggle("card-picker__preview-thumb--sq", square);
+      root.previewThumbEl.innerHTML =
+        opts.previewHtml ||
+        '<span class="card-picker__preview-empty" aria-hidden="true">＋</span>';
+    }
+    if (root.previewNameEl) {
+      root.previewNameEl.textContent = opts.previewLabel || "未選択";
+    }
+  }
+
   function renderGrid() {
-    // 英字はローマ字→かな（ai→アイ）。かな同士はひらがな/カタカナ同一視
     const q = normalizeSearchQuery(root.searchEl.value);
     const items = root._items || [];
     const filtered = items.filter((item) => {
@@ -72,11 +97,14 @@ export function createCardPicker(root) {
     }
 
     for (const item of filtered) {
+      const selected = item.id === root._selectedId;
       const btn = document.createElement("button");
       btn.type = "button";
       btn.className = "card-picker__item";
-      if (item.id === root._selectedId) btn.classList.add("card-picker__item--selected");
-      btn.innerHTML = item.html;
+      if (selected) btn.classList.add("card-picker__item--selected");
+      btn.setAttribute("aria-pressed", selected ? "true" : "false");
+      btn.setAttribute("aria-label", item.label ? `${item.label}${selected ? "（選択中）" : ""}` : "");
+      btn.innerHTML = (selected ? SELECTED_BADGE : "") + item.html;
       btn.addEventListener("click", () => {
         onPick?.(item.id);
         root.dialog.close();
@@ -89,11 +117,14 @@ export function createCardPicker(root) {
     /**
      * @param {object} opts
      * @param {string} opts.title
-     * @param {{ id: number, searchText: string, html: string }[]} opts.items
+     * @param {{ id: number, searchText: string, html: string, label?: string }[]} opts.items
      * @param {number|null} [opts.selectedId]
      * @param {boolean} [opts.allowClear]
      * @param {boolean} [opts.showSupportFilters]
-     * @param {(() => { id: number, searchText: string, html: string }[])|null} [opts.getItems]
+     * @param {"character"|"support"} [opts.mode]
+     * @param {string} [opts.previewHtml]
+     * @param {string} [opts.previewLabel]
+     * @param {(() => { id: number, searchText: string, html: string, label?: string }[])|null} [opts.getItems]
      * @param {(id: number|null) => void} opts.onPick
      * @param {(() => void)|null} [opts.onFiltersChange]
      */
@@ -108,6 +139,11 @@ export function createCardPicker(root) {
       if (root.filtersEl) {
         root.filtersEl.hidden = !opts.showSupportFilters;
       }
+      setPreview({
+        mode: opts.mode ?? "support",
+        previewHtml: opts.previewHtml ?? "",
+        previewLabel: opts.previewLabel ?? "未選択",
+      });
       root.searchEl.value = "";
       renderGrid();
       root.searchEl.focus();

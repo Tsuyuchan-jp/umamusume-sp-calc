@@ -111,10 +111,12 @@ const SUPPORT_TYPE_LABELS = {
 };
 
 function getSupportFilterState() {
+  const eventBtn = document.getElementById("picker-event-only");
+  const ssrBtn = document.getElementById("picker-ssr-only");
   return {
     query: "",
-    eventOnly: document.getElementById("picker-event-only")?.checked ?? true,
-    ssrOnly: document.getElementById("picker-ssr-only")?.checked ?? false,
+    eventOnly: eventBtn?.classList.contains("is-on") ?? true,
+    ssrOnly: ssrBtn?.classList.contains("is-on") ?? false,
     type: supportPickerTypeFilter,
   };
 }
@@ -362,7 +364,7 @@ function buildCharacterPickerItems() {
   return [...state.characters]
     .map((c) => ({
       id: c.id,
-      // キャラ名のみ（衣装タイトル除外）＋ローマ字
+      label: formatCharacterDisplayName(c.name),
       searchText: buildCharacterNameSearchText(c.name),
       html: buildCardFaceHtml({
         imageUrl: characterImageUrl(c.id),
@@ -374,6 +376,38 @@ function buildCharacterPickerItems() {
       }),
     }))
     .sort((a, b) => a.searchText.localeCompare(b.searchText, "ja"));
+}
+
+function buildCharacterPreview(characterId) {
+  const c = getCharacterById(characterId);
+  if (!c) return { html: "", label: "未選択" };
+  return {
+    html: buildCardFaceHtml({
+      imageUrl: characterImageUrl(c.id),
+      typeStyle: { bg: "linear-gradient(160deg,#d4dce4,#8a9aaa)", ink: "#1c2420", label: "ウマ" },
+      rarity: "",
+      label: shortCharacterLabel(c.name),
+      square: true,
+      showTextOverlay: false,
+    }),
+    label: formatCharacterDisplayName(c.name),
+  };
+}
+
+function buildSupportPreview(supportId) {
+  const s = getSupportById(supportId);
+  if (!s) return { html: "", label: "未選択" };
+  const typeStyle = getSupportTypeStyle(s.type);
+  return {
+    html: buildCardFaceHtml({
+      imageUrl: supportImageUrl(s.id),
+      typeStyle,
+      rarity: s.rarity,
+      label: shortSupportLabel(s),
+      showTextOverlay: false,
+    }),
+    label: s.characterName || s.name,
+  };
 }
 
 function buildSupportPickerItems(slotIndex) {
@@ -392,6 +426,7 @@ function buildSupportPickerItems(slotIndex) {
       const typeStyle = getSupportTypeStyle(s.type);
       return {
         id: s.id,
+        label: s.characterName || s.name,
         searchText: buildCharacterNameSearchText(s.characterName || s.name),
         html: buildCardFaceHtml({
           imageUrl: supportImageUrl(s.id),
@@ -406,8 +441,12 @@ function buildSupportPickerItems(slotIndex) {
 
 function openCharacterPicker() {
   if (!cardPicker) return;
+  const preview = buildCharacterPreview(state.ui.characterId);
   cardPicker.open({
     title: "育成ウマ娘を選択（覚醒Lv5想定）",
+    mode: "character",
+    previewHtml: preview.html,
+    previewLabel: preview.label,
     items: buildCharacterPickerItems(),
     selectedId: state.ui.characterId,
     allowClear: false,
@@ -425,8 +464,12 @@ function openCharacterPicker() {
 function openSupportPicker(slotIndex) {
   if (!cardPicker) return;
   renderPickerTypeChips();
+  const preview = buildSupportPreview(state.ui.supportIds[slotIndex]);
   cardPicker.open({
     title: `サポートカード 枠${slotIndex + 1}`,
+    mode: "support",
+    previewHtml: preview.html,
+    previewLabel: preview.label,
     getItems: () => buildSupportPickerItems(slotIndex),
     selectedId: state.ui.supportIds[slotIndex],
     allowClear: true,
@@ -464,7 +507,10 @@ function renderPickerTypeChips() {
   container.innerHTML = types
     .map(({ value, label }) => {
       const active = supportPickerTypeFilter === value;
-      return `<button type="button" class="type-chip${active ? " is-active" : ""}" data-type="${escapeHtml(value)}" aria-pressed="${active ? "true" : "false"}">${escapeHtml(label)}</button>`;
+      const dot = value
+        ? `<span class="type-chip__dot" data-type="${escapeHtml(value)}"></span>`
+        : "";
+      return `<button type="button" class="type-chip${active ? " is-active" : ""}" data-type="${escapeHtml(value)}" aria-pressed="${active ? "true" : "false"}">${dot}${escapeHtml(label)}</button>`;
     })
     .join("");
 }
@@ -1742,6 +1788,8 @@ async function init() {
     cardPicker = createCardPicker({
       dialog: document.getElementById("card-picker"),
       titleEl: document.getElementById("card-picker-title"),
+      previewThumbEl: document.getElementById("card-picker-preview-thumb"),
+      previewNameEl: document.getElementById("card-picker-preview-name"),
       searchEl: document.getElementById("card-picker-search"),
       gridEl: document.getElementById("card-picker-grid"),
       closeBtn: document.getElementById("card-picker-close"),

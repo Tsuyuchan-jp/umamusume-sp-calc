@@ -78,7 +78,7 @@
               <li>
                 <strong>サポートカードを最大6枚</strong>選ぶ
                 <ul>
-                  <li>ピッカー内で「イベント対応のみ」ON。全件を見たいときはチェックを外す</li>
+                  <li>ピッカー内で「イベント対応」トグルをON（既定）。全件を見たいときはOFF</li>
                   <li>検索・SSR・タイプでも絞れる</li>
                 </ul>
               </li>
@@ -483,19 +483,36 @@
 
     <dialog id="card-picker" class="card-picker" aria-labelledby="card-picker-title">
       <div class="card-picker__chrome">
-        <h2 id="card-picker-title" class="card-picker__title"></h2>
+        <div id="card-picker-preview-thumb" class="card-picker__preview-thumb" aria-hidden="true"></div>
+        <div class="card-picker__head">
+          <h2 id="card-picker-title" class="card-picker__title"></h2>
+          <p id="card-picker-preview-name" class="card-picker__preview-name"></p>
+          <p class="card-picker__preview-hint">タップで確定 · この枠の現在</p>
+        </div>
         <button type="button" id="card-picker-close" class="card-picker__close" aria-label="閉じる">×</button>
       </div>
       <div id="card-picker-filters" class="card-picker__filters" hidden>
-        <div class="card-picker__filter-row">
-          <label class="checkbox-row card-picker__filter-check">
-            <input type="checkbox" id="picker-event-only" checked />
-            イベント対応のみ
-          </label>
-          <label class="checkbox-row card-picker__filter-check">
-            <input type="checkbox" id="picker-ssr-only" />
+        <div class="card-picker__tools">
+          <button
+            type="button"
+            id="picker-event-only"
+            class="card-picker__tog is-on"
+            aria-pressed="true"
+            data-filter="event"
+          >
+            <span class="card-picker__tog-knob" aria-hidden="true"></span>
+            イベント対応
+          </button>
+          <button
+            type="button"
+            id="picker-ssr-only"
+            class="card-picker__tog card-picker__tog--cyan"
+            aria-pressed="false"
+            data-filter="ssr"
+          >
+            <span class="card-picker__tog-knob" aria-hidden="true"></span>
             SSRのみ
-          </label>
+          </button>
         </div>
         <div
           id="card-picker-type-chips"
@@ -504,14 +521,18 @@
           aria-label="タイプ絞込"
         ></div>
       </div>
-      <input
-        type="search"
-        id="card-picker-search"
-        class="card-picker__search"
-        placeholder="キャラ名で検索（ひらがな・ローマ字可）"
-        autocomplete="off"
-      />
-      <div id="card-picker-grid" class="card-picker__grid"></div>
+      <div class="card-picker__search-wrap">
+        <input
+          type="search"
+          id="card-picker-search"
+          class="card-picker__search"
+          placeholder="キャラ名で検索（ひらがな・ローマ字可）"
+          autocomplete="off"
+        />
+      </div>
+      <div class="card-picker__body">
+        <div id="card-picker-grid" class="card-picker__grid"></div>
+      </div>
       <div class="card-picker__footer">
         <button type="button" id="card-picker-clear" class="card-picker__clear">選択をクリア</button>
       </div>
