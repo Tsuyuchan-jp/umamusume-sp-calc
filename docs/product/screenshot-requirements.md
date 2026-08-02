@@ -37,7 +37,7 @@
 | **必須（最低限）** | 育成＋サポ6、前提チップ、合計 SP |
 | **欲しい** | 設計名（メモリ名）、**計上スキル数** |
 | **レイアウト次第で載せたい** | **金スキル**（選択・計上ON）と **手動除外** を作業面の主役に。全スキル列挙はしない |
-| **見た目（大枠採用）** | 型C v23: **D寄り**（上段メタ帯）。作業面の主役は金＋手動除外。切れ者は大きく独立表示 |
+| **見た目（大枠採用）** | 型C v24: D寄り。計上は 61/79（分子強調）。レギュ除外件数を帯に。切れ者はタイトル右。金／除外は日本語ラベル |
 | **付記まで可** | レギュは上段帯。切れ者は数値に効くため大きく見せる |
 | **載せない** | レギュ非互換の除外リスト、結果表（スキル一覧の詳細）、育成所持・進化の金 |
 
@@ -82,8 +82,7 @@ UX 初期方針（顔＝6＋合計＋前提）は土台として維持。記事�
 
 ## 次ステップ
 
-1. ~~主案モック~~ → [mockups/screenshot-share-hero.html](./mockups/screenshot-share-hero.html)（**v23·D寄り** · 目視待ち）  
-   刷新比較: [left-fresh A〜E](./mockups/screenshot-share-left-fresh.html)  
+1. ~~主案モック~~ → [mockups/screenshot-share-hero.html](./mockups/screenshot-share-hero.html)（**v24** · 目視待ち）  
    比較: [型B](./mockups/screenshot-share-type-b.html) · 参考: [screenshot-share-refs.html](./mockups/screenshot-share-refs.html)
    ※旧三連: [mockups/screenshot-share-options.html](./mockups/screenshot-share-options.html)（参考のみ）
 2. 主案承認 → 本実装（html2canvas 等は実装時）
