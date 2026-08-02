@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>編成スクショ — 主案 v19（SP修正＋金明るめ）</title>
+  <title>編成スクショ — 主案 v20（金さらに明るく）</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;600;700&family=Zen+Kaku+Gothic+New:wght@500;700;900&display=swap" rel="stylesheet" />
@@ -257,7 +257,7 @@
       gap: 3px;
       min-width: 0;
     }
-    /* 左右の淡グラデ（左やや明るく・右は明るめの金、影なし） */
+    /* ゲーム金スキル寄せ：左上が明るく輝く横〜斜めグラデ（影なし・右端も暗くしすぎない） */
     .gold-chip {
       display: flex;
       align-items: center;
@@ -268,9 +268,9 @@
       font-size: 10px;
       font-weight: 700;
       line-height: 1.35;
-      color: #4a3510;
-      background: linear-gradient(90deg, #fff0b8 0%, #f6d968 52%, #ecc63a 100%);
-      border: 1px solid #dfc35a;
+      color: #3d2a08;
+      background: linear-gradient(115deg, #fff8d4 0%, #ffe97a 42%, #f6d24a 78%, #efc53a 100%);
+      border: 1px solid #e5c54e;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
@@ -452,16 +452,16 @@
 <body>
   <div class="shell">
     <div class="banner">
-      <strong>主案 v19 · SP修正＋金明るめ</strong> —
-      前回の低SPはレギュキーを日本語で渡した誤り。正は turf/mid/senko → 除外15・計上61・7,906 SP。
-      金グラデ右端を明るく調整。
+      <strong>主案 v20 · 金さらに明るく</strong> —
+      前回の低SPは<strong>モック用ワンショット計算</strong>でレギュキーを日本語にした誤り（本番UIは data-value=turf/mid/senko のみ。日本語ラベルは表示専用）。
+      金グラデをゲーム参照寄りに明るく。
       参考: <a href="./screenshot-share-refs.html">一覧</a>
     </div>
 
-    <h1 class="page-title">編成スクショ · 共有カード主案 v19</h1>
-    <p class="lead">修正後の SP／金リスト（先行レギュで非互換のタップ金は非表示）と明るめグラデを確認してください。</p>
+    <h1 class="page-title">編成スクショ · 共有カード主案 v20</h1>
+    <p class="lead">ゲーム参照寄りに明るくした金チップを確認してください。</p>
 
-    <article class="share" aria-label="共有カード主案 v19（初期編成）">
+    <article class="share" aria-label="共有カード主案 v20（初期編成）">
       <section class="left">
         <div class="eyebrow">
           <span class="eyebrow__cat">必要SP</span>
@@ -603,7 +603,7 @@
     </article>
 
     <div class="judge">
-      <strong>判断のお願い</strong>（SP修正・金明るめ）<br />
+      <strong>判断のお願い</strong>（金明るさ）<br />
       返事例: <code>採用</code> / <code>方向違い</code> / <code>惜しい：〇〇</code>
     </div>
   </div>

@@ -37,7 +37,7 @@
 | **必須（最低限）** | 育成＋サポ6、前提チップ、合計 SP |
 | **欲しい** | 設計名（メモリ名）、**計上スキル数** |
 | **レイアウト次第で載せたい** | 計算で選ばれている **金スキル**（フラット淡グラデチップ・縦並び）。**レギュ**チップ。**手動除外**スキル名（レギュ非互換は出さない） |
-| **見た目（大枠採用）** | 型C v19: 金チップ左右グラデ（右端明るめ）。SPはレギュ英語キー実計算。フォント Shippori＋Zen Kaku |
+| **見た目（大枠採用）** | 型C v20: 金チップはゲーム寄せの明るい左右グラデ。SPはレギュ英語キー実計算。フォント Shippori＋Zen Kaku |
 | **付記まで可** | 手動除外は名前リスト可（件数だけでも可） |
 | **載せない** | レギュ非互換の除外リスト、結果表（スキル一覧の詳細）、育成所持・進化の金 |
 
@@ -82,7 +82,7 @@ UX 初期方針（顔＝6＋合計＋前提）は土台として維持。記事�
 
 ## 次ステップ
 
-1. ~~主案モック~~ → [mockups/screenshot-share-hero.html](./mockups/screenshot-share-hero.html)（**v19·SP修正＋金明るめ** · 目視待ち）  
+1. ~~主案モック~~ → [mockups/screenshot-share-hero.html](./mockups/screenshot-share-hero.html)（**v20·金明るく** · 目視待ち）  
    比較: [型B](./mockups/screenshot-share-type-b.html) · 参考: [screenshot-share-refs.html](./mockups/screenshot-share-refs.html)
    ※旧三連: [mockups/screenshot-share-options.html](./mockups/screenshot-share-options.html)（参考のみ）
 2. 主案承認 → 本実装（html2canvas 等は実装時）
