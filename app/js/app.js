@@ -1192,36 +1192,7 @@ function bindLayoutMode() {
   sync();
 }
 
-/** シナリオリンク／RMJ 用の短いチップ表示名 */
-const LINK_CHIP_LABELS = {
-  link_fine_motion: "ファイン",
-  link_top_road: "トップロード",
-  link_calstone: "カルストン",
-  link_dotou: "ドトウ",
-  link_nature: "ネイチャ",
-  link_tazuna_halo: "たづな／ハロー",
-};
-
-const RMJ_CHIP_LABELS = {
-  ramen_special: "スペシャル",
-  ramen_yokubari: "よくばり",
-  ramen_shugyoku: "珠玉",
-};
-
-function shortLinkChipLabel(entry) {
-  return LINK_CHIP_LABELS[entry.id] || String(entry.label || "").replace(/リンク$/, "");
-}
-
-function shortRmjChipLabel(choice) {
-  return (
-    RMJ_CHIP_LABELS[choice.id] ||
-    String(choice.label || "")
-      .replace(/トレセンラーメン$/, "")
-      .replace(/ラーメン$/, "")
-  );
-}
-
-/** シニア12月 RMJ ラーメン選択（チップ1択） */
+/** シニア12月 RMJ ラーメン選択（チップ1択・表示はスキル名） */
 function renderSeniorRmjRadios() {
   const container = document.getElementById("scenario-senior-rmj");
   if (!container) return;
@@ -1233,16 +1204,17 @@ function renderSeniorRmjRadios() {
   const current = state.ui.seniorRmjChoiceId ?? defaultId;
 
   for (const choice of rmj.choices) {
+    const skillName = choice.skills?.[0]?.skillName || choice.label || choice.id;
     const btn = document.createElement("button");
     btn.type = "button";
     btn.className = "scn-chip scn-chip--rmj" + (current === choice.id ? " is-on" : "");
     btn.setAttribute("aria-pressed", current === choice.id ? "true" : "false");
-    btn.textContent = shortRmjChipLabel(choice);
+    btn.textContent = skillName;
     const skillNote =
       choice.skills?.length > 0 ? formatSkillList(choice.skills) : "";
     btn.title = skillNote
       ? `${choice.label}（${skillNote}）`
-      : choice.label || shortRmjChipLabel(choice);
+      : choice.label || skillName;
     btn.addEventListener("click", () => {
       if (state.ui.seniorRmjChoiceId === choice.id) return;
       state.ui.seniorRmjChoiceId = choice.id;
@@ -1264,7 +1236,23 @@ function getResolvedLinkSkill(linkEntry) {
   return resolveLinkSkill(linkEntry, deckIds);
 }
 
-/** シナリオリンクは相互排他のチップ1択（未選択なし） */
+/** リンク効果が金（対象キャラ編成あり）か */
+function isLinkSkillGold(linkEntry) {
+  const supportById = new Map(state.supports.map((s) => [s.id, s]));
+  const deckIds = getDeckLinkCharacterIds(
+    state.ui.characterId,
+    getSupportIds(),
+    supportById
+  );
+  const resolved = resolveLinkSkill(linkEntry, deckIds);
+  return Boolean(
+    resolved &&
+      linkEntry.skillWithLink &&
+      resolved.skillId === linkEntry.skillWithLink.skillId
+  );
+}
+
+/** シナリオリンクは相互排他のチップ1択（表示は解決後スキル名） */
 function renderScenarioLinkRadios() {
   const container = document.getElementById("scenario-link");
   if (!container) return;
@@ -1275,15 +1263,25 @@ function renderScenarioLinkRadios() {
   const current = state.ui.scenarioLinkChoiceId ?? "link_dotou";
 
   for (const entry of links) {
+    const resolved = getResolvedLinkSkill(entry);
+    const isGold = isLinkSkillGold(entry);
+    const skillName = resolved?.skillName || entry.label || entry.id;
     const btn = document.createElement("button");
     btn.type = "button";
-    btn.className = "scn-chip" + (current === entry.id ? " is-on" : "");
+    btn.className =
+      "scn-chip" +
+      (current === entry.id ? " is-on" : "") +
+      (isGold ? " scn-chip--gold" : "");
     btn.setAttribute("aria-pressed", current === entry.id ? "true" : "false");
-    btn.textContent = shortLinkChipLabel(entry);
-    const resolved = getResolvedLinkSkill(entry);
+    if (isGold) {
+      btn.innerHTML = `<span class="scn-chip__gold-mark" aria-hidden="true">金</span>${escapeHtml(skillName)}`;
+    } else {
+      btn.textContent = skillName;
+    }
+    const linkShort = String(entry.label || "").replace(/リンク$/, "");
     btn.title = resolved
-      ? `${entry.label} → ${resolved.skillName} Lv${resolved.hintLevel}`
-      : entry.label || shortLinkChipLabel(entry);
+      ? `${linkShort} → ${resolved.skillName} Lv${resolved.hintLevel}${isGold ? "（リンク金）" : ""}`
+      : entry.label || skillName;
     btn.addEventListener("click", () => {
       if (state.ui.scenarioLinkChoiceId === entry.id) return;
       state.ui.scenarioLinkChoiceId = entry.id;

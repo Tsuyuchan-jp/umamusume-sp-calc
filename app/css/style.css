@@ -674,6 +674,42 @@ input[type="search"] {
   box-shadow: 0 1px 4px rgba(255, 50, 118, 0.35);
 }
 
+/* シナリオリンク効果で金になっているスキル */
+.scn-chip.scn-chip--gold {
+  border-color: #e9b84a;
+  background: linear-gradient(180deg, #fff8e0, #ffe29a);
+  color: #5a3d00;
+}
+
+.scn-chip.scn-chip--gold:hover {
+  border-color: #e29403;
+}
+
+.scn-chip.scn-chip--gold.is-on {
+  border-color: #c98910;
+  background: linear-gradient(180deg, #f0d060, #e29403);
+  color: #3a2a00;
+  box-shadow: 0 1px 5px rgba(226, 148, 3, 0.4);
+}
+
+.scn-chip__gold-mark {
+  display: inline-block;
+  margin-right: 0.28rem;
+  padding: 0.05rem 0.28rem;
+  border-radius: 3px;
+  font-size: 0.58rem;
+  font-weight: 900;
+  line-height: 1.2;
+  vertical-align: 0.05em;
+  background: linear-gradient(90deg, #e9c95f, #e29403);
+  color: #5a3d00;
+}
+
+.scn-chip.scn-chip--gold.is-on .scn-chip__gold-mark {
+  background: rgba(255, 255, 255, 0.55);
+  color: #5a3d00;
+}
+
 .deck-scenario-auto {
   margin-top: 0.4rem;
   border-radius: 6px;
