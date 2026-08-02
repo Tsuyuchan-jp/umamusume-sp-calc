@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SP Calc — 継承編集モック（案2）</title>
+  <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@700;900&display=swap" rel="stylesheet" />
+  <style>
+    /*
+      案2: 継承チップ1タップ＝パネル開閉。ON/OFF はパネル内トグル。
+      見た目は現行 foundation（紫クロム・premise-chip）に合わせた静的モック。
+      計算ロジック・本アプリ HTML は触らない。
+    */
+    :root {
+      --c-dark: #463f70;
+      --c-ink-mid: #5a5288;
+      --c-accent: #625d7d;
+      --c-border: #787588;
+      --c-gold: #f5cf6f;
+      --c-label: #bebbce;
+      --c-chip-text: #ddd8ef;
+      --g-chrome: linear-gradient(180deg, #5a5288, #463f70);
+      --g-on: linear-gradient(180deg, #ff75a3, #f7518b);
+      --g-lv: linear-gradient(180deg, #fa9f40, #ff8427);
+      --g-chip: linear-gradient(180deg, #fff, #dad4da);
+      --font: "Zen Maru Gothic", Meiryo, sans-serif;
+      --bar-h: 72px;
+      --max: 1180px;
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: var(--font);
+      font-weight: 700;
+      color: #703a13;
+      background: var(--c-dark);
+      -webkit-font-smoothing: auto;
+    }
+
+    .world {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      background:
+        linear-gradient(180deg, rgba(70, 63, 112, 0.2), rgba(70, 63, 112, 0.45)),
+        #3a3558;
+    }
+
+    .stage {
+      position: relative;
+      z-index: 1;
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 1.25rem 1rem calc(var(--bar-h) + 8rem);
+    }
+
+    .banner {
+      background: rgba(70, 63, 112, 0.94);
+      color: #e8eaf5;
+      border-radius: 10px;
+      border-bottom: 3px solid var(--c-gold);
+      padding: 0.85rem 1rem;
+      margin-bottom: 1rem;
+    }
+    .banner h1 {
+      margin: 0 0 0.35rem;
+      font-size: 1rem;
+      font-weight: 900;
+      color: var(--c-gold);
+    }
+    .banner p {
+      margin: 0;
+      font-size: 0.78rem;
+      line-height: 1.5;
+      color: #ddd8ef;
+    }
+    .banner code {
+      font-size: 0.72rem;
+      background: rgba(255, 255, 255, 0.1);
+      padding: 0.1rem 0.35rem;
+      border-radius: 4px;
+    }
+
+    .fake-result {
+      background: #fff;
+      border: 2px solid var(--c-dark);
+      border-radius: 12px;
+      min-height: 42vh;
+      padding: 1rem;
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.2);
+    }
+    .fake-result h2 {
+      margin: 0 0 0.5rem;
+      font-size: 0.9rem;
+      color: var(--c-dark);
+    }
+    .fake-result p {
+      margin: 0;
+      font-size: 0.78rem;
+      color: var(--c-accent);
+      line-height: 1.55;
+    }
+    .fake-row {
+      margin-top: 0.85rem;
+      display: flex;
+      justify-content: space-between;
+      gap: 0.75rem;
+      padding: 0.55rem 0.65rem;
+      border-radius: 8px;
+      background: #f6f4f8;
+      border: 1px solid #d8d4e0;
+      font-size: 0.78rem;
+      color: var(--c-dark);
+    }
+    .fake-row.is-off { opacity: 0.45; }
+    .fake-row b { color: #ff3276; }
+
+    .notes {
+      margin-top: 1rem;
+      padding: 0.85rem 1rem;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(245, 207, 111, 0.35);
+      border-radius: 10px;
+      color: #e8eaf5;
+      font-size: 0.74rem;
+      line-height: 1.55;
+    }
+    .notes h3 {
+      margin: 0 0 0.4rem;
+      font-size: 0.8rem;
+      color: var(--c-gold);
+    }
+    .notes ul { margin: 0; padding-left: 1.15em; }
+    .notes li { margin: 0.25rem 0; }
+
+    /* ---- トータルバー（現行寄せ） ---- */
+    .total-sp-bar {
+      position: fixed;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 1000;
+      background: var(--g-chrome);
+      border-top: 3px solid var(--c-gold);
+      box-shadow: 0 -8px 28px rgba(0, 0, 0, 0.28);
+    }
+    .total-sp-bar-inner {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 0.55rem 1rem 0.65rem;
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+    }
+    .brand {
+      flex: 0 0 auto;
+      color: #fff;
+      font-size: 0.78rem;
+      font-weight: 900;
+    }
+    .brand span { color: var(--c-gold); }
+    .bar-main {
+      flex: 1 1 auto;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.5rem 0.75rem;
+      min-width: 0;
+    }
+    .total {
+      display: flex;
+      align-items: baseline;
+      gap: 0.35rem;
+      color: #fff;
+    }
+    .total .k {
+      font-size: 0.68rem;
+      color: var(--c-label);
+      letter-spacing: 0.06em;
+    }
+    .total .v {
+      font-size: 1.85rem;
+      font-weight: 900;
+      font-variant-numeric: tabular-nums;
+      width: 6ch;
+      color: #59ccfc;
+    }
+    .total .u {
+      font-size: 0.75rem;
+      color: #59ccfc;
+    }
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+      margin-left: auto;
+      justify-content: flex-end;
+    }
+
+    .premise-chip {
+      appearance: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.3rem;
+      min-width: 5.5rem;
+      padding: 0.35rem 0.65rem;
+      border-radius: 6px;
+      border: 1px solid var(--c-border);
+      background: var(--g-chip);
+      color: var(--c-accent);
+      font: inherit;
+      font-size: 0.75rem;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .premise-chip--on {
+      background: var(--g-on);
+      border-color: #c00f47;
+      color: #fff;
+    }
+    .premise-chip--open {
+      outline: 2px solid var(--c-gold);
+      outline-offset: 1px;
+    }
+    .premise-chip--training {
+      min-width: auto;
+      gap: 0;
+      padding: 0;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.35);
+      background: rgba(255, 255, 255, 0.08);
+      color: var(--c-chip-text);
+      cursor: default;
+    }
+    .premise-chip__prefix {
+      padding: 0 0.35rem 0 0.5rem;
+      color: var(--c-label);
+      font-size: 0.68rem;
+    }
+    .premise-lv {
+      appearance: none;
+      border: 0;
+      background: rgba(255, 255, 255, 0.12);
+      color: var(--c-chip-text);
+      min-width: 1.7rem;
+      height: 1.85rem;
+      font: inherit;
+      font-size: 0.75rem;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .premise-lv.is-on {
+      background: var(--g-lv);
+      color: #fff;
+    }
+
+    /* ---- 案2: バー直上ポップオーバー ---- */
+    .inherit-pop {
+      position: fixed;
+      left: 0;
+      right: 0;
+      bottom: calc(var(--bar-h) + 0.15rem);
+      z-index: 1001;
+      pointer-events: none;
+    }
+    .inherit-pop[hidden] { display: none !important; }
+    .inherit-pop__inner {
+      pointer-events: auto;
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 0.7rem 1rem 0.8rem;
+      background: var(--g-chrome);
+      color: #fff;
+      border: 1px solid rgba(245, 207, 111, 0.55);
+      border-bottom: 0;
+      border-radius: 10px 10px 0 0;
+      box-shadow: 0 -10px 28px rgba(0, 0, 0, 0.28);
+    }
+    .inherit-pop__head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+      margin-bottom: 0.55rem;
+    }
+    .inherit-pop__title {
+      margin: 0;
+      font-size: 0.82rem;
+      font-weight: 900;
+      color: var(--c-gold);
+    }
+    .inherit-pop__close {
+      appearance: none;
+      width: 1.75rem;
+      height: 1.75rem;
+      border-radius: 6px;
+      border: 1px solid rgba(255, 255, 255, 0.35);
+      background: rgba(255, 255, 255, 0.1);
+      color: #fff;
+      font: inherit;
+      font-size: 1rem;
+      line-height: 1;
+      cursor: pointer;
+    }
+
+    .inherit-pop__body {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.65rem 1rem;
+      align-items: center;
+    }
+
+    .field {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.74rem;
+      color: #ede6e6;
+    }
+    .field > span {
+      white-space: nowrap;
+      opacity: 0.92;
+    }
+
+    .seg {
+      display: inline-flex;
+      border: 1px solid rgba(255, 255, 255, 0.35);
+      border-radius: 6px;
+      overflow: hidden;
+      background: rgba(255, 255, 255, 0.08);
+    }
+    .seg button {
+      appearance: none;
+      border: 0;
+      border-right: 1px solid rgba(255, 255, 255, 0.18);
+      background: transparent;
+      color: var(--c-chip-text);
+      font: inherit;
+      font-size: 0.72rem;
+      font-weight: 700;
+      min-width: 1.7rem;
+      height: 1.75rem;
+      padding: 0 0.35rem;
+      cursor: pointer;
+    }
+    .seg button:last-child { border-right: 0; }
+    .seg button.is-on {
+      background: var(--g-lv);
+      color: #fff;
+    }
+    .seg--onoff button.is-on {
+      background: var(--g-on);
+    }
+
+    .base-input {
+      width: 3.4rem;
+      margin: 0;
+      padding: 0.25rem 0.35rem;
+      border: 1px solid #c8c4d4;
+      border-radius: 5px;
+      font: inherit;
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: #333;
+      background: #fff;
+      text-align: center;
+    }
+
+    .cost-hint {
+      margin-left: auto;
+      font-size: 0.72rem;
+      color: #bebbce;
+      white-space: nowrap;
+    }
+    .cost-hint b {
+      color: #59ccfc;
+      font-variant-numeric: tabular-nums;
+    }
+
+    @media (max-width: 720px) {
+      .cost-hint {
+        margin-left: 0;
+        width: 100%;
+      }
+      .total .v { font-size: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="world" aria-hidden="true"></div>
+
+  <div class="stage">
+    <header class="banner">
+      <h1>継承パラメータ編集UI — 案2モック</h1>
+      <p>
+        <strong>操作:</strong> 下部バーの「継承」チップを押すとパネル開閉。
+        ON/OFF はパネル内。個数 2–6・ヒントLv 1–5・baseSp（既定200）。
+        汎用行のみ（親名・固有名なし）。本アプリには未配線。
+      </p>
+    </header>
+
+    <section class="fake-result" aria-label="結果表のダミー">
+      <h2>結果表（ダミー）</h2>
+      <p>パネル操作に連動して、継承行の表示だけ更新します（計算式の再実装はなし）。</p>
+      <div class="fake-row" id="fake-inherit-row">
+        <span>継承固有 × <span id="fake-count">4</span></span>
+        <span>Lv<span id="fake-lv">3</span> / base <span id="fake-base">200</span> → <b id="fake-cost">640</b> SP</span>
+      </div>
+    </section>
+
+    <aside class="notes">
+      <h3>確認ポイント</h3>
+      <ul>
+        <li>チップ文言: OFF時は「継承 OFF」、ON時は「継承 N本」</li>
+        <li>開いている間はチップに金アウトライン（開閉状態が分かる）</li>
+        <li>外側クリック / Esc / × で閉じる（ON状態は維持）</li>
+        <li>切れ者・トレLvチップは従来どおり（このモックでは装飾のみ）</li>
+      </ul>
+    </aside>
+  </div>
+
+  <!-- 継承パネル（バー直上） -->
+  <div
+    id="inherit-pop"
+    class="inherit-pop"
+    hidden
+    role="dialog"
+    aria-modal="false"
+    aria-labelledby="inherit-pop-title"
+  >
+    <div class="inherit-pop__inner">
+      <div class="inherit-pop__head">
+        <h2 id="inherit-pop-title" class="inherit-pop__title">継承固有</h2>
+        <button type="button" class="inherit-pop__close" id="inherit-close" aria-label="閉じる">×</button>
+      </div>
+      <div class="inherit-pop__body">
+        <div class="field" role="group" aria-label="継承のON/OFF">
+          <span>加算</span>
+          <div class="seg seg--onoff">
+            <button type="button" data-enabled="0" id="btn-off">OFF</button>
+            <button type="button" data-enabled="1" id="btn-on" class="is-on">ON</button>
+          </div>
+        </div>
+
+        <div class="field" role="group" aria-label="個数">
+          <span>個数</span>
+          <div class="seg" id="seg-count">
+            <button type="button" data-count="2">2</button>
+            <button type="button" data-count="3">3</button>
+            <button type="button" data-count="4" class="is-on">4</button>
+            <button type="button" data-count="5">5</button>
+            <button type="button" data-count="6">6</button>
+          </div>
+        </div>
+
+        <div class="field" role="group" aria-label="ヒントLv">
+          <span>Lv</span>
+          <div class="seg" id="seg-lv">
+            <button type="button" data-lv="1">1</button>
+            <button type="button" data-lv="2">2</button>
+            <button type="button" data-lv="3" class="is-on">3</button>
+            <button type="button" data-lv="4">4</button>
+            <button type="button" data-lv="5">5</button>
+          </div>
+        </div>
+
+        <label class="field" for="base-input">
+          <span>baseSp</span>
+          <input
+            class="base-input"
+            id="base-input"
+            type="number"
+            min="1"
+            step="1"
+            value="200"
+          />
+        </label>
+
+        <div class="cost-hint">
+          参考合計 <b id="ref-cost">640</b> SP
+          <span id="ref-formula">（概算・切れ者OFF想定）</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="total-sp-bar" class="total-sp-bar">
+    <div class="total-sp-bar-inner">
+      <div class="brand">SP <span>Calc</span></div>
+      <div class="bar-main">
+        <div class="total">
+          <span class="k">TOTAL</span>
+          <span class="v" id="total-value">12,480</span>
+          <span class="u">SP</span>
+        </div>
+        <div class="chips" aria-label="計算前提">
+          <button type="button" class="premise-chip" id="chip-fast" aria-pressed="false">切れ者 OFF</button>
+          <div class="premise-chip premise-chip--training" role="group" aria-label="トレヒントLv">
+            <span class="premise-chip__prefix">トレLv</span>
+            <button type="button" class="premise-lv">3</button>
+            <button type="button" class="premise-lv">4</button>
+            <button type="button" class="premise-lv is-on">5</button>
+          </div>
+          <button
+            type="button"
+            class="premise-chip premise-chip--on"
+            id="chip-inherit"
+            aria-pressed="true"
+            aria-expanded="false"
+            aria-controls="inherit-pop"
+          >継承 4本</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      const state = {
+        open: false,
+        enabled: true,
+        count: 4,
+        lv: 3,
+        base: 200,
+        fast: false,
+      };
+
+      const pop = document.getElementById("inherit-pop");
+      const chip = document.getElementById("chip-inherit");
+      const chipFast = document.getElementById("chip-fast");
+      const baseInput = document.getElementById("base-input");
+      const closeBtn = document.getElementById("inherit-close");
+
+      /** ヒント割引の概算（本番 calc の見た目確認用。正確再現はしない） */
+      function hintMult(lv) {
+        const table = { 1: 1, 2: 0.9, 3: 0.8, 4: 0.7, 5: 0.6 };
+        return table[lv] ?? 1;
+      }
+
+      function unitCost() {
+        let c = Math.floor(state.base * hintMult(state.lv));
+        if (state.fast) c = Math.floor(c * 0.9);
+        return c;
+      }
+
+      function totalInherit() {
+        if (!state.enabled) return 0;
+        return unitCost() * state.count;
+      }
+
+      function setSeg(root, attr, value) {
+        root.querySelectorAll("button").forEach((btn) => {
+          btn.classList.toggle("is-on", String(btn.getAttribute(attr)) === String(value));
+        });
+      }
+
+      function render() {
+        chip.classList.toggle("premise-chip--on", state.enabled);
+        chip.classList.toggle("premise-chip--open", state.open);
+        chip.setAttribute("aria-pressed", state.enabled ? "true" : "false");
+        chip.setAttribute("aria-expanded", state.open ? "true" : "false");
+        chip.textContent = state.enabled ? `継承 ${state.count}本` : "継承 OFF";
+
+        pop.hidden = !state.open;
+
+        setSeg(document.querySelector(".seg--onoff"), "data-enabled", state.enabled ? 1 : 0);
+        setSeg(document.getElementById("seg-count"), "data-count", state.count);
+        setSeg(document.getElementById("seg-lv"), "data-lv", state.lv);
+        baseInput.value = String(state.base);
+
+        const cost = totalInherit();
+        document.getElementById("ref-cost").textContent = cost.toLocaleString("ja-JP");
+        document.getElementById("fake-count").textContent = String(state.count);
+        document.getElementById("fake-lv").textContent = String(state.lv);
+        document.getElementById("fake-base").textContent = String(state.base);
+        document.getElementById("fake-cost").textContent = cost.toLocaleString("ja-JP");
+        document.getElementById("fake-inherit-row").classList.toggle("is-off", !state.enabled);
+
+        /* ダミーTOTAL: 継承差分だけ反映 */
+        const baseTotal = 11840;
+        document.getElementById("total-value").textContent = (baseTotal + cost).toLocaleString("ja-JP");
+      }
+
+      function setOpen(open) {
+        state.open = open;
+        render();
+      }
+
+      chip.addEventListener("click", (e) => {
+        e.stopPropagation();
+        setOpen(!state.open);
+      });
+
+      closeBtn.addEventListener("click", () => setOpen(false));
+
+      document.querySelector(".seg--onoff").addEventListener("click", (e) => {
+        const btn = e.target.closest("button[data-enabled]");
+        if (!btn) return;
+        state.enabled = btn.getAttribute("data-enabled") === "1";
+        render();
+      });
+
+      document.getElementById("seg-count").addEventListener("click", (e) => {
+        const btn = e.target.closest("button[data-count]");
+        if (!btn) return;
+        state.count = Number(btn.getAttribute("data-count"));
+        render();
+      });
+
+      document.getElementById("seg-lv").addEventListener("click", (e) => {
+        const btn = e.target.closest("button[data-lv]");
+        if (!btn) return;
+        state.lv = Number(btn.getAttribute("data-lv"));
+        render();
+      });
+
+      baseInput.addEventListener("change", () => {
+        const n = Number(baseInput.value);
+        state.base = Number.isFinite(n) && n > 0 ? Math.floor(n) : 200;
+        render();
+      });
+
+      chipFast.addEventListener("click", () => {
+        state.fast = !state.fast;
+        chipFast.classList.toggle("premise-chip--on", state.fast);
+        chipFast.setAttribute("aria-pressed", state.fast ? "true" : "false");
+        chipFast.textContent = state.fast ? "切れ者 ON" : "切れ者 OFF";
+        render();
+      });
+
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && state.open) setOpen(false);
+      });
+
+      document.addEventListener("click", (e) => {
+        if (!state.open) return;
+        if (e.target.closest("#inherit-pop") || e.target.closest("#chip-inherit")) return;
+        setOpen(false);
+      });
+
+      render();
+    })();
+  </script>
+</body>
+</html>
