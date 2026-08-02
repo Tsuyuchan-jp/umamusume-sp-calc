@@ -40,7 +40,7 @@
 | ID | 箇所 | 内容 | 状態 |
 |----|------|------|------|
 | ~~**M1**~~ | `getDisplayActivation` | レギュがチェーン下位で緩む | **修正済**（案A: 表示行 skillId のみ） |
-| **M2** | `restoreDesign` | 復元で ID 未検証 | Open |
+| ~~**M2**~~ | `restoreDesign` | 復元で ID 未検証 | **修正済**（名簿照合・空欄化・警告表示） |
 | ~~**M3**~~ | `pruneManualExclusions` | デッキ変更で手動 OFF 消失 | **修正済・実機OK**（チェーン／groupId → 表示行 ID へ引き継ぎ） |
 | **M4** | `scheduleSessionSave` | debounce で即閉じ欠落 | Open |
 

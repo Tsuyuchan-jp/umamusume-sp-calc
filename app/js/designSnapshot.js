@@ -20,6 +20,68 @@ function toEventChoiceMap(value) {
   return new Map(Object.entries(value || {}));
 }
 
+const SUPPORT_SLOT_COUNT = 6;
+
+/**
+ * 復元前に育成／サポ ID を名簿と照合し、不正分を空にする。
+ * @param {object} snapshot
+ * @param {{ characters?: { id: number }[], supports?: { id: number }[] }} catalogs
+ * @returns {{ snapshot: object, warnings: string[] }}
+ */
+export function sanitizeDesignSnapshot(snapshot, catalogs = {}) {
+  if (!snapshot || snapshot.version !== 1) {
+    return { snapshot, warnings: [] };
+  }
+
+  const charIds = new Set((catalogs.characters || []).map((c) => c.id));
+  const supIds = new Set((catalogs.supports || []).map((s) => s.id));
+  const warnings = [];
+
+  const rawSupports = Array.isArray(snapshot.supportIds) ? snapshot.supportIds : [];
+  const supportIds = [];
+  for (let i = 0; i < SUPPORT_SLOT_COUNT; i++) {
+    supportIds.push(i < rawSupports.length ? rawSupports[i] : null);
+  }
+
+  let characterId = snapshot.characterId ?? null;
+  if (
+    characterId != null &&
+    charIds.size > 0 &&
+    !charIds.has(characterId)
+  ) {
+    const fallback = catalogs.characters?.[0]?.id ?? null;
+    warnings.push(
+      `育成ウマ娘（ID ${characterId}）は見つからないため${fallback != null ? "先頭の育成ウマ娘" : "未選択"}にしました`
+    );
+    characterId = fallback;
+  }
+
+  const seenSupports = new Set();
+  for (let i = 0; i < supportIds.length; i++) {
+    const id = supportIds[i];
+    if (id == null) continue;
+
+    if (supIds.size > 0 && !supIds.has(id)) {
+      warnings.push(`サポカ枠${i + 1}（ID ${id}）は見つからないため空にしました`);
+      supportIds[i] = null;
+      continue;
+    }
+
+    if (seenSupports.has(id)) {
+      warnings.push(`サポカ（ID ${id}）が重複しているため枠${i + 1} を空にしました`);
+      supportIds[i] = null;
+      continue;
+    }
+
+    seenSupports.add(id);
+  }
+
+  return {
+    snapshot: { ...snapshot, characterId, supportIds },
+    warnings,
+  };
+}
+
 /**
  * @param {object} params
  * @param {object} params.ui - app の state.ui

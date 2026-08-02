@@ -2,6 +2,7 @@ import assert from "node:assert/strict";
 import {
   applyDesignSnapshot,
   captureDesignSnapshot,
+  sanitizeDesignSnapshot,
 } from "../app/js/designSnapshot.js";
 import {
   DESIGN_MEMORY_MAX_ENTRIES,
@@ -92,6 +93,24 @@ assert.deepEqual(applied.excludedSkillIds, [200512]);
 assert.equal(applied.committedSkillFilter.ground, "turf");
 
 assert.equal(applyDesignSnapshot({ version: 99 }, restored), false);
+
+// --- sanitizeDesignSnapshot（復元 ID 検証） ---
+const catalogs = {
+  characters: [{ id: 105801 }, { id: 999001 }],
+  supports: [{ id: 30301 }, { id: 30201 }],
+};
+const dirty = {
+  version: 1,
+  characterId: 888888,
+  supportIds: [30301, 999999, 30301, null, 30201, null],
+};
+const { snapshot: clean, warnings } = sanitizeDesignSnapshot(dirty, catalogs);
+assert.equal(clean.characterId, 105801);
+assert.deepEqual(clean.supportIds, [30301, null, null, null, 30201, null]);
+assert.equal(warnings.length, 3);
+assert.ok(warnings.some((w) => w.includes("育成ウマ娘")));
+assert.ok(warnings.some((w) => w.includes("枠2")));
+assert.ok(warnings.some((w) => w.includes("重複")));
 
 // --- designMemory ---
 const storage = createMemoryStorage();

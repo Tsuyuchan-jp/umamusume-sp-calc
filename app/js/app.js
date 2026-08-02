@@ -19,6 +19,7 @@ import {
 import {
   applyDesignSnapshot,
   captureDesignSnapshot,
+  sanitizeDesignSnapshot,
 } from "./designSnapshot.js";
 import {
   deleteEntry as deleteMemoryEntry,
@@ -68,6 +69,9 @@ let committedSkillFilter = { ground: "", distance: "", style: "" };
 
 /** 直近の計画（コピー用） */
 let currentPlan = null;
+
+/** 直近の復元で落とした不正 ID の警告（次の復元まで保持） */
+let lastRestoreIdWarnings = [];
 let currentReguExcludedCount = 0;
 
 /** コピーボタンの既定ラベル */
@@ -894,7 +898,15 @@ function scheduleSessionSave() {
  */
 function restoreDesign(snapshot) {
   if (!state) return false;
-  const applied = applyDesignSnapshot(snapshot, state.ui);
+  lastRestoreIdWarnings = [];
+
+  const { snapshot: sanitized, warnings } = sanitizeDesignSnapshot(snapshot, {
+    characters: state.characters,
+    supports: state.supports,
+  });
+  lastRestoreIdWarnings = warnings;
+
+  const applied = applyDesignSnapshot(sanitized, state.ui);
   if (!applied) return false;
 
   // 未知イベント ID を落とす
@@ -1829,16 +1841,30 @@ function setResultSortMode(mode) {
 function renderPlanWarnings(unresolved) {
   const el = document.getElementById("plan-warnings");
   if (!el) return;
-  if (!unresolved?.length) {
+
+  const parts = [];
+  if (lastRestoreIdWarnings.length) {
+    parts.push("復元時の調整: " + lastRestoreIdWarnings.join(" "));
+  }
+  if (unresolved?.length) {
+    parts.push(
+      "未解決スキル（合計から除外されています）: " +
+        unresolved.map((u) => `${u.skillName}（${u.context}）`).join("、")
+    );
+  }
+
+  if (!parts.length) {
     el.hidden = true;
     el.textContent = "";
     return;
   }
+
   el.hidden = false;
-  el.textContent =
-    "未解決スキル（合計から除外されています）: " +
-    unresolved.map((u) => `${u.skillName}（${u.context}）`).join("、");
-  console.warn("未解決スキル:", unresolved);
+  el.textContent = parts.join(" / ");
+  if (unresolved?.length) console.warn("未解決スキル:", unresolved);
+  if (lastRestoreIdWarnings.length) {
+    console.warn("復元時の ID 調整:", lastRestoreIdWarnings);
+  }
 }
 
 function recalc() {
