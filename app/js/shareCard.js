@@ -538,8 +538,8 @@ export async function captureShareCardElement(cardEl, _mount) {
   });
 }
 
-/** 保存用 WebP 品質（見た目優先・ファイル軽量化） */
-const SHARE_SAVE_WEBP_QUALITY = 0.92;
+/** 保存用 WebP 品質（見た目優先・1.0＝lossy最高） */
+const SHARE_SAVE_WEBP_QUALITY = 1;
 
 /**
  * @param {HTMLCanvasElement} canvas
@@ -563,7 +563,7 @@ async function canvasToSaveBlob(canvas) {
   if (webp && webp.type === "image/webp" && webp.size > 0) {
     return { blob: webp, ext: "webp" };
   }
-  const jpeg = await canvasToBlob(canvas, "image/jpeg", 0.92);
+  const jpeg = await canvasToBlob(canvas, "image/jpeg", 1);
   if (jpeg && jpeg.size > 0) {
     return { blob: jpeg, ext: "jpg" };
   }
