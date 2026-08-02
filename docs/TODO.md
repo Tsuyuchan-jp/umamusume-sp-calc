@@ -40,7 +40,7 @@
 
 ## 現在フォーカス（1行）
 
-**P2 編成スクショ** — v18 左右金グラデ目視（[screenshot-share-hero.html](./product/mockups/screenshot-share-hero.html)）
+**P2 編成スクショ** — v19 SP修正＋金明るめ目視（[screenshot-share-hero.html](./product/mockups/screenshot-share-hero.html)）
 
 ---
 
@@ -60,7 +60,7 @@
   - メモリ（localStorage）は済。共有用の画像書き出しは未着手  
   - 要件メモ: [product/screenshot-requirements.md](./product/screenshot-requirements.md)  
   - 用途第一: 攻略記事貼付。専用横長カード。コピー優先＋保存。モード非依存  
-  - 次: **v18 目視**（左右金グラデ）→ [mockups/screenshot-share-hero.html](./product/mockups/screenshot-share-hero.html)（採用 / 方向違い / 惜しい＋一言）  
+  - 次: **v19 目視**（SP修正・金明るめ）→ [mockups/screenshot-share-hero.html](./product/mockups/screenshot-share-hero.html)（採用 / 方向違い / 惜しい＋一言）  
   - 受け入れ（暫定）: 現在設計を1枚の共有カードとして保存／コピーできる
 
 - [ ] **タイプ印位置の最終微調整**（ユーザー指示があったときだけ）  

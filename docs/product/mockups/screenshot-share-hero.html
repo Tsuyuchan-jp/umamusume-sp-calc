@@ -3,15 +3,15 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>編成スクショ — 主案 v18（左右金グラデ）</title>
+  <title>編成スクショ — 主案 v19（SP修正＋金明るめ）</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;600;700&family=Zen+Kaku+Gothic+New:wght@500;700;900&display=swap" rel="stylesheet" />
   <style>
     /*
-      主案 v18 — 型C継続
-      - 金: 左右グラデ（左明→右濃）／縦並び・2列
-      - SPはレギュ（芝・中距離・先行）＋手動除外3の実計算例
+      主案 v19 — 型C継続
+      - 金: 左右グラデ（右端を明るめに）／縦並び・2列
+      - SPはレギュ turf/mid/senko の実計算（キーは英語。日本語キーだと誤除外になる）
     */
     :root {
       --ink: #1a1630;
@@ -257,7 +257,7 @@
       gap: 3px;
       min-width: 0;
     }
-    /* 左右の淡グラデ（左やや明るく・右やや濃い、影なし） */
+    /* 左右の淡グラデ（左やや明るく・右は明るめの金、影なし） */
     .gold-chip {
       display: flex;
       align-items: center;
@@ -269,8 +269,8 @@
       font-weight: 700;
       line-height: 1.35;
       color: #4a3510;
-      background: linear-gradient(90deg, #ffe9a0 0%, #f0c83a 55%, #e0b018 100%);
-      border: 1px solid #d4b03a;
+      background: linear-gradient(90deg, #fff0b8 0%, #f6d968 52%, #ecc63a 100%);
+      border: 1px solid #dfc35a;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
@@ -452,15 +452,16 @@
 <body>
   <div class="shell">
     <div class="banner">
-      <strong>主案 v18 · 左右金グラデ</strong> —
-      金チップは左明→右濃の横グラデ。SP 3,492 は芝・中距離・先行＋手動除外3の実計算（レギュ込みのため低め）。
+      <strong>主案 v19 · SP修正＋金明るめ</strong> —
+      前回の低SPはレギュキーを日本語で渡した誤り。正は turf/mid/senko → 除外15・計上61・7,906 SP。
+      金グラデ右端を明るく調整。
       参考: <a href="./screenshot-share-refs.html">一覧</a>
     </div>
 
-    <h1 class="page-title">編成スクショ · 共有カード主案 v18</h1>
-    <p class="lead">左右グラデの金チップを確認してください。</p>
+    <h1 class="page-title">編成スクショ · 共有カード主案 v19</h1>
+    <p class="lead">修正後の SP／金リスト（先行レギュで非互換のタップ金は非表示）と明るめグラデを確認してください。</p>
 
-    <article class="share" aria-label="共有カード主案 v18（初期編成）">
+    <article class="share" aria-label="共有カード主案 v19（初期編成）">
       <section class="left">
         <div class="eyebrow">
           <span class="eyebrow__cat">必要SP</span>
@@ -473,9 +474,9 @@
         </div>
 
         <div class="sp-row">
-          <div class="sp-num">3,492<em>SP</em></div>
+          <div class="sp-num">7,666<em>SP</em></div>
           <div class="sp-meta">
-            計上 <strong>23</strong> スキル<br />
+            計上 <strong>58</strong> スキル<br />
             手動除外 <strong>3</strong> 件
           </div>
         </div>
@@ -508,13 +509,6 @@
                   <div class="gold-row__chips">
                     <span class="gold-chip">迸る気迫</span>
                     <span class="gold-chip">正々堂々</span>
-                  </div>
-                </div>
-                <div class="gold-row">
-                  <span class="gold-row__src">スピタップ</span>
-                  <div class="gold-row__chips">
-                    <span class="gold-chip">トップランナー</span>
-                    <span class="gold-chip">飛竜乗雲</span>
                   </div>
                 </div>
                 <div class="gold-row">
@@ -609,7 +603,7 @@
     </article>
 
     <div class="judge">
-      <strong>判断のお願い</strong>（左右金グラデ）<br />
+      <strong>判断のお願い</strong>（SP修正・金明るめ）<br />
       返事例: <code>採用</code> / <code>方向違い</code> / <code>惜しい：〇〇</code>
     </div>
   </div>
