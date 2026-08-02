@@ -699,7 +699,6 @@ tr:hover td {
   border-radius: 7px;
   overflow: hidden;
   flex-shrink: 0;
-  background: rgba(0, 0, 0, 0.2);
 }
 
 .card-picker__preview-thumb--sq {
@@ -727,6 +726,7 @@ tr:hover td {
   height: 100%;
   font-size: 1.1rem;
   color: #bebbce;
+  background: rgba(0, 0, 0, 0.2);
 }
 
 .card-picker__head {
