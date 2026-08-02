@@ -42,7 +42,7 @@
 | ~~**M1**~~ | `getDisplayActivation` | レギュがチェーン下位で緩む | **修正済**（案A: 表示行 skillId のみ） |
 | ~~**M2**~~ | `restoreDesign` | 復元で ID 未検証 | **修正済・実機OK**（名簿照合・空欄化・警告表示） |
 | ~~**M3**~~ | `pruneManualExclusions` | デッキ変更で手動 OFF 消失 | **修正済・実機OK**（チェーン／groupId → 表示行 ID へ引き継ぎ） |
-| **M4** | `scheduleSessionSave` | debounce で即閉じ欠落 | Open |
+| ~~**M4**~~ | `scheduleSessionSave` | debounce で即閉じ欠落 | **修正済**（`visibilitychange` / `pagehide` で flush） |
 
 <details>
 <summary>M1 旧記述（修正前）</summary>
@@ -72,8 +72,8 @@
 1. ~~**M1**~~ — **完了・実機OK**
 2. ~~**M3**~~ — **完了・実機OK**
 3. ~~**M2**~~ — **完了・実機OK**
-4. **スマホ最低限**（v1 公開前）
-5. **M4** — `beforeunload` / `visibilitychange` で flush（必須度低）
+4. ~~**M4**~~ — **修正済**（実機確認待ち）
+5. **スマホ最低限**（v1 公開前）
 6. **公開準備**（[TODO.md](../TODO.md)）
 
 ## PC 通しスモーク（調査用）

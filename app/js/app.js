@@ -104,6 +104,9 @@ let inheritPopoverBound = false;
 /** セッション自動保存の debounce */
 let sessionSaveTimer = null;
 
+/** セッション即時保存のイベント登録済み */
+let sessionFlushBound = false;
+
 /** スプリット左ドックでフォーカス中のサポ枠（0–5）。ギャラリーでは未使用 */
 let focusSupportSlot = null;
 
@@ -886,9 +889,30 @@ function scheduleSessionSave() {
   if (!state) return;
   clearTimeout(sessionSaveTimer);
   sessionSaveTimer = setTimeout(() => {
+    sessionSaveTimer = null;
     if (!state) return;
     saveSessionSnapshot(captureCurrentDesign());
   }, 350);
+}
+
+/** 未保存の変更を即時書き込み（タブ閉じ・非表示時） */
+function flushSessionSave() {
+  if (sessionSaveTimer != null) {
+    clearTimeout(sessionSaveTimer);
+    sessionSaveTimer = null;
+  }
+  if (!state) return;
+  saveSessionSnapshot(captureCurrentDesign());
+}
+
+/** タブ非表示・ページ離脱時にセッションを flush */
+function bindSessionFlushOnce() {
+  if (sessionFlushBound) return;
+  sessionFlushBound = true;
+  document.addEventListener("visibilitychange", () => {
+    if (document.visibilityState === "hidden") flushSessionSave();
+  });
+  window.addEventListener("pagehide", () => flushSessionSave());
 }
 
 /**
@@ -2212,6 +2236,7 @@ async function init() {
     bindResultSort();
     bindCopyIncludedSkills();
     bindShareCardButtons();
+    bindSessionFlushOnce();
     committedSkillFilter = readSkillFilterFromUI();
 
     const session = loadSessionSnapshot();
