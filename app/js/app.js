@@ -380,32 +380,18 @@ function buildCharacterPickerItems() {
 
 function buildCharacterPreview(characterId) {
   const c = getCharacterById(characterId);
-  if (!c) return { html: "", label: "未選択" };
+  if (!c) return { imageUrl: "", label: "未選択" };
   return {
-    html: buildCardFaceHtml({
-      imageUrl: characterImageUrl(c.id),
-      typeStyle: { bg: "linear-gradient(160deg,#d4dce4,#8a9aaa)", ink: "#1c2420", label: "ウマ" },
-      rarity: "",
-      label: shortCharacterLabel(c.name),
-      square: true,
-      showTextOverlay: false,
-    }),
+    imageUrl: characterImageUrl(c.id),
     label: formatCharacterDisplayName(c.name),
   };
 }
 
 function buildSupportPreview(supportId) {
   const s = getSupportById(supportId);
-  if (!s) return { html: "", label: "未選択" };
-  const typeStyle = getSupportTypeStyle(s.type);
+  if (!s) return { imageUrl: "", label: "未選択" };
   return {
-    html: buildCardFaceHtml({
-      imageUrl: supportImageUrl(s.id),
-      typeStyle,
-      rarity: s.rarity,
-      label: shortSupportLabel(s),
-      showTextOverlay: false,
-    }),
+    imageUrl: supportImageUrl(s.id),
     label: s.characterName || s.name,
   };
 }
@@ -445,7 +431,7 @@ function openCharacterPicker() {
   cardPicker.open({
     title: "育成ウマ娘を選択（覚醒Lv5想定）",
     mode: "character",
-    previewHtml: preview.html,
+    previewImageUrl: preview.imageUrl,
     previewLabel: preview.label,
     items: buildCharacterPickerItems(),
     selectedId: state.ui.characterId,
@@ -468,7 +454,7 @@ function openSupportPicker(slotIndex) {
   cardPicker.open({
     title: `サポートカード 枠${slotIndex + 1}`,
     mode: "support",
-    previewHtml: preview.html,
+    previewImageUrl: preview.imageUrl,
     previewLabel: preview.label,
     getItems: () => buildSupportPickerItems(slotIndex),
     selectedId: state.ui.supportIds[slotIndex],

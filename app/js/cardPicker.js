@@ -73,9 +73,17 @@ export function createCardPicker(root) {
     root.dialog.classList.toggle("card-picker--character", square);
     if (root.previewThumbEl) {
       root.previewThumbEl.classList.toggle("card-picker__preview-thumb--sq", square);
-      root.previewThumbEl.innerHTML =
-        opts.previewHtml ||
-        '<span class="card-picker__preview-empty" aria-hidden="true">＋</span>';
+      if (opts.previewImageUrl) {
+        const img = document.createElement("img");
+        img.className = "card-picker__preview-img";
+        img.src = opts.previewImageUrl;
+        img.alt = "";
+        img.decoding = "async";
+        root.previewThumbEl.replaceChildren(img);
+      } else {
+        root.previewThumbEl.innerHTML =
+          '<span class="card-picker__preview-empty" aria-hidden="true">＋</span>';
+      }
     }
     if (root.previewNameEl) {
       root.previewNameEl.textContent = opts.previewLabel || "未選択";
@@ -122,7 +130,7 @@ export function createCardPicker(root) {
      * @param {boolean} [opts.allowClear]
      * @param {boolean} [opts.showSupportFilters]
      * @param {"character"|"support"} [opts.mode]
-     * @param {string} [opts.previewHtml]
+     * @param {string} [opts.previewImageUrl]
      * @param {string} [opts.previewLabel]
      * @param {(() => { id: number, searchText: string, html: string, label?: string }[])|null} [opts.getItems]
      * @param {(id: number|null) => void} opts.onPick
@@ -141,7 +149,7 @@ export function createCardPicker(root) {
       }
       setPreview({
         mode: opts.mode ?? "support",
-        previewHtml: opts.previewHtml ?? "",
+        previewImageUrl: opts.previewImageUrl ?? "",
         previewLabel: opts.previewLabel ?? "未選択",
       });
       root.searchEl.value = "";

@@ -523,7 +523,7 @@
           ></div>
         </div>
         <div class="card-picker__search-field">
-          <label class="card-picker__search" for="card-picker-search">
+          <div class="card-picker__search" role="search">
             <svg class="card-picker__search-icon" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true">
               <path
                 d="M11.5 10.5 15 14M7 12a5 5 0 1 1 0-10 5 5 0 0 1 0 10z"
@@ -539,8 +539,9 @@
               class="card-picker__search-input"
               placeholder="名前・かな・ローマ字"
               autocomplete="off"
+              aria-label="名前・かな・ローマ字で検索"
             />
-          </label>
+          </div>
         </div>
       </div>
       <div class="card-picker__body">
