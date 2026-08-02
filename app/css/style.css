@@ -1424,17 +1424,27 @@ body.layout-split > .app-main {
   height: auto;
   max-height: none;
   grid-template-columns: minmax(300px, 420px) 1fr;
-  grid-template-rows: auto 1fr;
+  /* パネルは row 1。row 2 固定だと空の auto 行＋row-gap が padding-top と二重になり
+     modebar↔TOTAL（stack 1本）より TOTAL↔カードが広く見える */
+  grid-template-rows: minmax(0, 1fr);
   align-items: stretch;
   overflow: hidden;
-  gap: var(--layout-stack, 0.5rem);
+  column-gap: var(--layout-stack, 0.5rem);
+  row-gap: 0;
   padding: var(--layout-stack, 0.5rem) 0;
   margin: 0 auto;
+}
+
+/* 警告行が出るときだけ縦ギャップを復帰（空行の二重加算は起こさない） */
+body.layout-split > .app-main:has(#load-error:not([hidden]), #plan-warnings:not([hidden])) {
+  grid-template-rows: auto minmax(0, 1fr);
+  row-gap: var(--layout-stack, 0.5rem);
 }
 
 body.layout-split #load-error,
 body.layout-split #plan-warnings {
   grid-column: 1 / -1;
+  grid-row: 1;
 }
 
 body.layout-split #snap-zone-deck,
@@ -1446,16 +1456,21 @@ body.layout-split #snap-zone-workbench {
 
 body.layout-split #snap-zone-deck {
   grid-column: 1;
-  grid-row: 2;
+  grid-row: 1;
   display: flex;
   flex-direction: column;
 }
 
 body.layout-split #snap-zone-workbench {
   grid-column: 2;
-  grid-row: 2;
+  grid-row: 1;
   display: flex;
   flex-direction: column;
+}
+
+body.layout-split > .app-main:has(#load-error:not([hidden]), #plan-warnings:not([hidden])) #snap-zone-deck,
+body.layout-split > .app-main:has(#load-error:not([hidden]), #plan-warnings:not([hidden])) #snap-zone-workbench {
+  grid-row: 2;
 }
 
 body.layout-split .panel--deck {
