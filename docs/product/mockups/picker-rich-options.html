@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>カードピッカー — リッチ案比較</title>
+  <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@700;900&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --ink: #463f70;
+      --ink-mid: #5a5288;
+      --gold: #f5cf6f;
+      --font-ink: #703a13;
+      --muted: #625d7d;
+      --accent: #ff3276;
+      --cyan: #23a4f6;
+      --ok: #68bb09;
+      --panel: url("https://static.kouryaku.tools/umamusume/images/app/bg.webp?auto=format") center/180px repeat, #fff;
+      --world: url("https://static.kouryaku.tools/umamusume/images/app/uma-world.webp?auto=format");
+      --font: "Zen Maru Gothic", Meiryo, sans-serif;
+      --speed: #2a8fc4;
+      --stamina: #d04545;
+      --power: #e08820;
+      --guts: #d04a82;
+      --wit: #3a9e4a;
+      --friend: #c9a020;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: var(--font);
+      font-weight: 700;
+      color: var(--font-ink);
+      background: #221e36;
+      padding: 20px 16px 80px;
+    }
+    .page { max-width: 1200px; margin: 0 auto; }
+    h1 { margin: 0 0 6px; color: #fff; font-size: 1.35rem; }
+    .lead { color: #bebbce; font-size: 0.88rem; line-height: 1.55; margin: 0 0 1rem; max-width: 54rem; }
+    .lead strong { color: var(--gold); }
+
+    .note {
+      background: rgba(70, 63, 112, 0.9);
+      border: 1px solid #6a6290;
+      border-bottom: 3px solid var(--gold);
+      border-radius: 10px;
+      padding: 12px 14px;
+      color: #efeaf8;
+      font-size: 0.8rem;
+      line-height: 1.55;
+      margin-bottom: 1rem;
+    }
+    .note h2 { margin: 0 0 6px; font-size: 0.85rem; color: var(--gold); }
+    .note .rec { color: #b8f08a; font-weight: 900; }
+    .note a { color: #7ed4ff; }
+    .note ul { margin: 0.35rem 0 0; padding-left: 1.15rem; }
+
+    .tabs { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 1rem; }
+    .tabs button {
+      font: inherit; font-size: 0.76rem; font-weight: 900;
+      padding: 7px 12px; border-radius: 8px; cursor: pointer;
+      border: 1px solid #554d78; background: #1e1a30; color: #bebbce;
+    }
+    .tabs button.is-on { background: var(--gold); color: #3a2a00; border-color: transparent; }
+
+    .panel { display: none; }
+    .panel.is-on { display: block; }
+
+    .wrap {
+      background: #1e1a30;
+      border: 1px solid #3d3758;
+      border-radius: 14px;
+      padding: 12px;
+      color: #ddd8ef;
+      margin-bottom: 1rem;
+    }
+    .wrap > h2 {
+      margin: 0 0 4px; font-size: 1rem; color: var(--gold);
+      display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+    }
+    .tag {
+      font-size: 0.62rem; padding: 2px 8px; border-radius: 999px;
+      background: #3d3758; color: #ddd8ef;
+    }
+    .tag.rec { background: var(--ok); color: #fff; }
+    .blurb { margin: 0 0 10px; font-size: 0.78rem; color: #bebbce; line-height: 1.45; }
+
+    .stage {
+      position: relative;
+      border-radius: 12px;
+      border: 1px solid #554d78;
+      overflow: hidden;
+      min-height: 520px;
+      display: grid;
+      place-items: center;
+      padding: 28px 14px 32px;
+      background:
+        linear-gradient(165deg, rgba(70,63,112,.45), rgba(70,63,112,.18) 45%, rgba(34,30,54,.55)),
+        var(--world) center bottom / cover;
+    }
+    .stage::before {
+      content: "";
+      position: absolute; inset: 0;
+      backdrop-filter: blur(1.5px);
+      background: radial-gradient(ellipse at 50% 20%, rgba(255,50,118,.12), transparent 50%);
+      pointer-events: none;
+    }
+    .stage > * { position: relative; z-index: 1; }
+
+    /* ========== 共通: トグル（チェックボックス置き換え） ========== */
+    .tog {
+      display: inline-flex; align-items: center; gap: 0.35rem;
+      font: inherit; font-size: 0.72rem; font-weight: 900;
+      padding: 0.28rem 0.55rem 0.28rem 0.35rem;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      cursor: pointer;
+      color: #fff;
+      background: rgba(255,255,255,.12);
+    }
+    .tog .knob {
+      width: 1.55rem; height: 0.9rem; border-radius: 999px;
+      background: rgba(255,255,255,.25);
+      position: relative;
+      flex-shrink: 0;
+    }
+    .tog .knob::after {
+      content: "";
+      position: absolute; top: 2px; left: 2px;
+      width: 0.65rem; height: 0.65rem; border-radius: 50%;
+      background: #fff;
+      transition: transform .15s ease;
+    }
+    .tog.is-on { background: linear-gradient(180deg, #ff75a3, #f7518b); }
+    .tog.is-on .knob { background: rgba(255,255,255,.35); }
+    .tog.is-on .knob::after { transform: translateX(0.55rem); }
+    .tog.is-cyan.is-on { background: linear-gradient(180deg, #59ccfc, #23a4f6); }
+
+    .type-row { display: flex; gap: 0.35rem; overflow-x: auto; padding: 2px; }
+    .type {
+      flex-shrink: 0;
+      display: inline-flex; align-items: center; gap: 0.28rem;
+      font: inherit; font-size: 0.7rem; font-weight: 900;
+      padding: 0.32rem 0.65rem;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      cursor: pointer;
+      background: rgba(255,255,255,.1);
+      color: #efeaf8;
+    }
+    .type .dot {
+      width: 0.55rem; height: 0.55rem; border-radius: 50%;
+      box-shadow: 0 0 0 1.5px #fff8;
+    }
+    .type.is-on {
+      background: #fff;
+      color: var(--ink);
+      box-shadow: 0 4px 14px rgba(0,0,0,.18);
+    }
+    .type[data-t="speed"] .dot { background: var(--speed); }
+    .type[data-t="stamina"] .dot { background: var(--stamina); }
+    .type[data-t="power"] .dot { background: var(--power); }
+    .type[data-t="guts"] .dot { background: var(--guts); }
+    .type[data-t="wit"] .dot { background: var(--wit); }
+    .type[data-t="friend"] .dot { background: var(--friend); }
+
+    .search {
+      width: 100%;
+      border: 0;
+      font: inherit;
+      font-size: 0.82rem;
+      padding: 0.55rem 0.85rem 0.55rem 2.2rem;
+      border-radius: 999px;
+      background: rgba(255,255,255,.92) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%23625d7d'%3E%3Cpath d='M11.5 10.5 15 14M7 12a5 5 0 1 1 0-10 5 5 0 0 1 0 10z' stroke='%23625d7d' stroke-width='1.6' fill='none' stroke-linecap='round'/%3E%3C/svg%3E") 0.75rem 50% / 16px no-repeat;
+      color: var(--font-ink);
+      box-shadow: 0 4px 16px rgba(26,36,51,.12);
+    }
+    .search:focus { outline: 2px solid var(--accent); outline-offset: 2px; }
+    .search:disabled { opacity: 1; }
+
+    .shelf {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(4.6rem, 1fr));
+      gap: 0.7rem 0.55rem;
+      max-height: 18rem;
+      overflow-y: auto;
+      padding: 0.15rem 0.1rem 0.4rem;
+    }
+    .shelf--sq { grid-template-columns: repeat(auto-fill, minmax(4.8rem, 1fr)); }
+
+    .item {
+      position: relative;
+      padding: 0;
+      border: 0;
+      background: transparent;
+      cursor: pointer;
+      border-radius: 12px;
+    }
+    .item:focus-visible { outline: 2px solid var(--cyan); outline-offset: 3px; }
+    .face {
+      display: block;
+      width: 100%;
+      aspect-ratio: 3 / 4;
+      border-radius: 10px;
+      overflow: hidden;
+      background: #c8c2d4;
+      box-shadow: 0 6px 16px rgba(0,0,0,.22);
+      transition: transform .14s ease, box-shadow .14s ease;
+    }
+    .shelf--sq .face { aspect-ratio: 1; border-radius: 12px; }
+    .face img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .item:hover:not(.is-selected) .face {
+      transform: translateY(-4px) scale(1.03);
+      box-shadow: 0 12px 24px rgba(0,0,0,.28);
+    }
+    .badge {
+      position: absolute;
+      top: -4px; right: -4px;
+      z-index: 2;
+      font-size: 0.58rem;
+      font-weight: 900;
+      padding: 0.2rem 0.4rem;
+      border-radius: 999px;
+      background: linear-gradient(180deg, #ff75a3, #f7518b);
+      color: #fff;
+      box-shadow: 0 4px 10px rgba(192,15,71,.4);
+      pointer-events: none;
+    }
+    .item.is-selected .face {
+      box-shadow:
+        0 0 0 2px #fff,
+        0 0 0 4px var(--gold),
+        0 0 0 7px var(--accent),
+        0 10px 28px rgba(255,50,118,.35);
+      transform: scale(1.04);
+    }
+
+    /* ========== R1: Studio Glass（新推奨） ========== */
+    .r1 {
+      width: min(100%, 40rem);
+      border-radius: 20px;
+      overflow: hidden;
+      background: linear-gradient(165deg, rgba(255,255,255,.22), rgba(255,255,255,.08));
+      border: 1px solid rgba(255,255,255,.35);
+      box-shadow:
+        0 30px 80px rgba(0,0,0,.45),
+        inset 0 1px 0 rgba(255,255,255,.45);
+      backdrop-filter: blur(18px) saturate(1.35);
+      color: #fff;
+    }
+    .r1-chrome {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0.85rem 1rem 0.55rem;
+    }
+    .r1-chrome h3 { margin: 0; font-size: 1rem; font-weight: 900; letter-spacing: 0.02em; }
+    .r1-chrome .sub { display: block; font-size: 0.68rem; color: #ddd8ef; font-weight: 700; margin-top: 2px; }
+    .r1-x {
+      width: 2rem; height: 2rem; border-radius: 50%;
+      border: 1px solid rgba(255,255,255,.35);
+      background: rgba(0,0,0,.18);
+      color: #fff; font: inherit; font-size: 1.1rem; cursor: pointer;
+    }
+    .r1-preview {
+      margin: 0 0.85rem;
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      gap: 0.75rem;
+      align-items: center;
+      padding: 0.65rem 0.75rem;
+      border-radius: 16px;
+      background:
+        linear-gradient(120deg, rgba(245,207,111,.22), rgba(255,50,118,.18) 55%, rgba(35,164,246,.12)),
+        rgba(30,26,48,.55);
+      border: 1px solid rgba(255,255,255,.22);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.2);
+    }
+    .r1-preview .thumb {
+      width: 3rem; height: 4rem; border-radius: 8px; overflow: hidden;
+      box-shadow: 0 6px 14px rgba(0,0,0,.35);
+      border: 1px solid rgba(255,255,255,.35);
+    }
+    .r1-preview .thumb--sq { width: 3.1rem; height: 3.1rem; border-radius: 10px; }
+    .r1-preview .thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .r1-preview .k { font-size: 0.62rem; color: var(--gold); letter-spacing: 0.06em; }
+    .r1-preview .n { font-size: 0.95rem; font-weight: 900; margin-top: 2px; }
+    .r1-preview .h { font-size: 0.68rem; color: #ddd8ef; margin-top: 2px; }
+    .r1-preview .now {
+      font-size: 0.62rem; font-weight: 900;
+      padding: 0.35rem 0.55rem; border-radius: 999px;
+      background: var(--accent); color: #fff;
+      box-shadow: 0 4px 12px rgba(255,50,118,.4);
+    }
+    .r1-tools {
+      margin: 0.7rem 0.85rem 0;
+      display: flex; flex-wrap: wrap; gap: 0.4rem;
+      align-items: center;
+    }
+    .r1-search-wrap { margin: 0.55rem 0.85rem 0; }
+    .r1-types { margin: 0.55rem 0.85rem 0; }
+    .r1-body {
+      margin: 0.65rem 0.55rem 0.55rem;
+      padding: 0.65rem 0.55rem 0.75rem;
+      border-radius: 16px;
+      background: rgba(255,255,255,.94);
+      color: var(--font-ink);
+      box-shadow: inset 0 1px 0 #fff, 0 8px 24px rgba(0,0,0,.12);
+    }
+    .r1-body .shelf {
+      background:
+        radial-gradient(circle at 20% 0%, rgba(245,207,111,.12), transparent 40%),
+        radial-gradient(circle at 80% 100%, rgba(255,50,118,.08), transparent 35%),
+        linear-gradient(180deg, #faf8fc, #f0ecf6);
+      border-radius: 12px;
+      padding: 0.55rem;
+    }
+    .r1-foot {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 0.55rem 1rem 0.85rem;
+      color: #ddd8ef; font-size: 0.72rem;
+    }
+    .r1-clear {
+      font: inherit; font-size: 0.75rem; font-weight: 900;
+      padding: 0.4rem 0.9rem; border-radius: 999px; cursor: pointer;
+      border: 1px solid rgba(255,255,255,.35);
+      background: rgba(0,0,0,.2); color: #fff;
+    }
+    .r1 .type {
+      background: rgba(70,63,112,.08);
+      color: var(--muted);
+      border: 1px solid rgba(70,63,112,.12);
+    }
+    .r1 .type.is-on {
+      background: linear-gradient(180deg, var(--ink-mid), var(--ink));
+      color: #fff;
+      border-color: transparent;
+    }
+
+    /* ========== R2: Soft Market ========== */
+    .r2 {
+      width: min(100%, 42rem);
+      border-radius: 22px;
+      overflow: hidden;
+      background: var(--panel);
+      box-shadow: 0 28px 70px rgba(0,0,0,.4);
+      border: 1px solid rgba(255,255,255,.65);
+    }
+    .r2-top {
+      padding: 1rem 1rem 0.75rem;
+      background:
+        linear-gradient(180deg, rgba(70,63,112,.08), transparent),
+        linear-gradient(135deg, #fff, #f5f2fa);
+      border-bottom: 1px solid rgba(70,63,112,.08);
+    }
+    .r2-chrome {
+      display: flex; justify-content: space-between; align-items: flex-start;
+      margin-bottom: 0.75rem;
+    }
+    .r2-chrome h3 { margin: 0; font-size: 1.05rem; color: var(--ink); font-weight: 900; }
+    .r2-chrome .sub { font-size: 0.7rem; color: var(--muted); margin-top: 2px; }
+    .r2-x {
+      border: 0; background: #efeaf8; color: var(--ink);
+      width: 2rem; height: 2rem; border-radius: 50%; font: inherit; cursor: pointer;
+    }
+    .r2-preview {
+      display: flex; gap: 0.75rem; align-items: center;
+      padding: 0.55rem;
+      border-radius: 14px;
+      background: #fff;
+      box-shadow: 0 8px 24px rgba(70,63,112,.1);
+      border: 1px solid rgba(70,63,112,.08);
+    }
+    .r2-preview .thumb {
+      width: 3.2rem; height: 4.25rem; border-radius: 8px; overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0,0,0,.15);
+    }
+    .r2-preview .thumb--sq { width: 3.2rem; height: 3.2rem; border-radius: 10px; }
+    .r2-preview .thumb img { width: 100%; height: 100%; object-fit: cover; }
+    .r2-preview .k { font-size: 0.62rem; color: var(--accent); }
+    .r2-preview .n { font-size: 1rem; color: var(--ink); font-weight: 900; }
+    .r2-preview .h { font-size: 0.68rem; color: var(--muted); }
+    .r2-preview .now {
+      margin-left: auto;
+      font-size: 0.65rem; font-weight: 900; color: #fff;
+      background: linear-gradient(180deg, #ff75a3, #f7518b);
+      padding: 0.35rem 0.6rem; border-radius: 999px;
+    }
+    .r2-bar {
+      display: flex; flex-wrap: wrap; gap: 0.4rem; align-items: center;
+      margin-top: 0.75rem;
+    }
+    .r2-bar .search { flex: 1; min-width: 10rem; }
+    .r2 .tog {
+      color: var(--ink);
+      background: #efeaf8;
+    }
+    .r2 .tog.is-on { color: #fff; }
+    .r2-types {
+      padding: 0.55rem 1rem;
+      background: #faf8fc;
+      border-bottom: 1px solid rgba(70,63,112,.06);
+    }
+    .r2 .type { background: #fff; color: var(--muted); border: 1px solid rgba(70,63,112,.12); }
+    .r2 .type.is-on {
+      background: linear-gradient(180deg, #59ccfc, #23a4f6);
+      color: #fff; border-color: transparent;
+    }
+    .r2-body { padding: 0.75rem 1rem 0.5rem; }
+    .r2-body .shelf {
+      background:
+        repeating-linear-gradient(
+          90deg,
+          transparent 0,
+          transparent 4.85rem,
+          rgba(70,63,112,.04) 4.85rem,
+          rgba(70,63,112,.04) 4.95rem
+        );
+    }
+    .r2-foot {
+      padding: 0.5rem 1rem 0.9rem;
+      display: flex; justify-content: flex-end;
+    }
+    .r2-clear {
+      font: inherit; font-size: 0.78rem; font-weight: 900;
+      padding: 0.45rem 1rem; border-radius: 999px; cursor: pointer;
+      border: 1px solid rgba(70,63,112,.18);
+      background: #fff; color: var(--muted);
+    }
+
+    /* ========== R3: Immersive Night ========== */
+    .r3 {
+      width: min(100%, 44rem);
+      border-radius: 18px;
+      overflow: hidden;
+      background: linear-gradient(180deg, #2a2548 0%, #1a1630 100%);
+      border: 1px solid rgba(245,207,111,.35);
+      box-shadow:
+        0 0 0 1px rgba(255,255,255,.06),
+        0 28px 80px rgba(0,0,0,.55),
+        0 0 60px rgba(255,50,118,.12);
+      color: #fff;
+    }
+    .r3-chrome {
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      gap: 0.75rem;
+      align-items: center;
+      padding: 0.85rem 1rem;
+      background: linear-gradient(180deg, #5a5288, #463f70);
+      border-bottom: 2px solid var(--gold);
+    }
+    .r3-chrome .thumb {
+      width: 2.8rem; height: 3.7rem; border-radius: 7px; overflow: hidden;
+      box-shadow: 0 0 0 2px rgba(255,255,255,.35), 0 6px 14px rgba(0,0,0,.35);
+    }
+    .r3-chrome .thumb--sq { width: 2.9rem; height: 2.9rem; border-radius: 9px; }
+    .r3-chrome .thumb img { width: 100%; height: 100%; object-fit: cover; }
+    .r3-chrome h3 { margin: 0; font-size: 0.95rem; }
+    .r3-chrome .n { color: var(--gold); font-size: 0.88rem; margin-top: 2px; }
+    .r3-chrome .h { font-size: 0.65rem; color: #ddd8ef; margin-top: 2px; }
+    .r3-x {
+      border: 1px solid rgba(255,255,255,.35); background: transparent; color: #fff;
+      width: 2rem; height: 2rem; border-radius: 8px; font: inherit; cursor: pointer;
+    }
+    .r3-tools {
+      padding: 0.7rem 1rem 0.35rem;
+      display: flex; flex-wrap: wrap; gap: 0.4rem; align-items: center;
+    }
+    .r3-search-wrap { padding: 0.35rem 1rem 0.55rem; }
+    .r3 .search {
+      background-color: rgba(255,255,255,.1);
+      color: #fff;
+      box-shadow: none;
+      border: 1px solid rgba(255,255,255,.18);
+    }
+    .r3 .search::placeholder { color: #bebbce; }
+    .r3-types { padding: 0 1rem 0.55rem; }
+    .r3-body {
+      margin: 0 0.65rem 0.65rem;
+      padding: 0.65rem;
+      border-radius: 14px;
+      background: rgba(0,0,0,.28);
+      border: 1px solid rgba(255,255,255,.08);
+    }
+    .r3 .item.is-selected .face {
+      box-shadow:
+        0 0 0 2px #1a1630,
+        0 0 0 4px var(--gold),
+        0 0 24px rgba(245,207,111,.55),
+        0 0 40px rgba(255,50,118,.35);
+    }
+    .r3-foot {
+      padding: 0 1rem 0.9rem;
+      display: flex; justify-content: space-between; align-items: center;
+      font-size: 0.7rem; color: #9a94b0;
+    }
+    .r3-clear {
+      font: inherit; font-size: 0.75rem; font-weight: 900;
+      padding: 0.4rem 0.9rem; border-radius: 8px; cursor: pointer;
+      border: 1px solid rgba(255,255,255,.25);
+      background: transparent; color: #ddd8ef;
+    }
+
+    .legend { margin-top: 0.65rem; font-size: 0.72rem; color: #9a94b0; line-height: 1.45; }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <h1>カードピッカー — リッチ案</h1>
+    <p class="lead">
+      骨格は引き続き <strong>P-A（棚＋角バッジ）＋薄い P-B（上部プレビュー）</strong>。
+      「無難すぎる」指摘を受け、チェックボックス廃止・トグル／色ドットタイプ・質感を上げた3案です。
+      旧シンプル案は <a href="./picker-options.html" style="color:#7ed4ff">picker-options.html</a>。
+    </p>
+
+    <aside class="note">
+      <h2>改善の狙い</h2>
+      <ul>
+        <li><span class="rec">チェックボックス</span> → ピンク／シアンの<strong>トグルピル</strong>（検索横 or ツール行）</li>
+        <li>タイプは<strong>色ドット付きチップ</strong>（ゲームUIっぽさ）</li>
+        <li>選択中は角バッジ＋金／ピンクの<strong>多重リング</strong>（ホバーでも消えない）</li>
+        <li>新推奨候補は <span class="rec">R1 Studio Glass</span>（ガラス＋白棚の二層）</li>
+      </ul>
+    </aside>
+
+    <div class="tabs" role="tablist">
+      <button type="button" class="is-on" data-tab="r1">R1 Studio Glass（推奨）</button>
+      <button type="button" data-tab="r2">R2 Soft Market</button>
+      <button type="button" data-tab="r3">R3 Immersive Night</button>
+      <button type="button" data-tab="r1c">R1 · 育成</button>
+    </div>
+
+    <!-- R1 -->
+    <section class="panel is-on" id="panel-r1">
+      <article class="wrap">
+        <h2>R1 Studio Glass <span class="tag rec">新推奨</span> <span class="tag">サポカ</span></h2>
+        <p class="blurb">半透明ガラスの外殻＋白いカード棚。プレビューはグラデ帯。絞込はトグルをツール行にまとめ、検索は独立。モダン寄りでアプリ本体の紫／金とも相性が良い。</p>
+        <div class="stage">
+          <div class="r1" id="demo-r1" data-kind="support">
+            <div class="r1-chrome">
+              <div>
+                <h3>サポートを選ぶ</h3>
+                <span class="sub">枠1 · タップで確定</span>
+              </div>
+              <button type="button" class="r1-x" aria-label="閉じる">×</button>
+            </div>
+            <div class="r1-preview" data-preview>
+              <div class="thumb"><img alt="" data-preview-img /></div>
+              <div>
+                <div class="k">この枠 · 現在</div>
+                <div class="n" data-preview-name>—</div>
+                <div class="h">ホバーしても選択表示は残ります</div>
+              </div>
+              <span class="now">選択中</span>
+            </div>
+            <div class="r1-tools">
+              <button type="button" class="tog is-on" data-tog="event"><span class="knob"></span>イベント対応</button>
+              <button type="button" class="tog is-cyan" data-tog="ssr"><span class="knob"></span>SSRのみ</button>
+            </div>
+            <div class="r1-search-wrap">
+              <input class="search" type="search" placeholder="名前・かな・ローマ字で検索" disabled />
+            </div>
+            <div class="r1-types">
+              <div class="type-row" data-types></div>
+            </div>
+            <div class="r1-body">
+              <div class="shelf" data-shelf></div>
+            </div>
+            <div class="r1-foot">
+              <span>12枚表示 · フィルタ連動デモ</span>
+              <button type="button" class="r1-clear" data-clear>選択をクリア</button>
+            </div>
+          </div>
+        </div>
+        <p class="legend">チェックボックスをやめた理由: フォーム感が強く、紫クロム世界観とズレる。トグルは結果作業台の「含める」と同系統。</p>
+      </article>
+    </section>
+
+    <!-- R2 -->
+    <section class="panel" id="panel-r2">
+      <article class="wrap">
+        <h2>R2 Soft Market <span class="tag">参照</span></h2>
+        <p class="blurb">明るいシート。検索とトグルを同一バーに並べ、タイプは下段。ストア／ギャラリーアプリ寄りの清潔さ。やや無難寄りだが現行より一段リッチ。</p>
+        <div class="stage">
+          <div class="r2" id="demo-r2" data-kind="support">
+            <div class="r2-top">
+              <div class="r2-chrome">
+                <div>
+                  <h3>サポートカード</h3>
+                  <div class="sub">枠1 · Soft Market</div>
+                </div>
+                <button type="button" class="r2-x">×</button>
+              </div>
+              <div class="r2-preview" data-preview>
+                <div class="thumb"><img alt="" data-preview-img /></div>
+                <div>
+                  <div class="k">この枠のカード</div>
+                  <div class="n" data-preview-name>—</div>
+                  <div class="h">プレビューは薄い帯のまま</div>
+                </div>
+                <span class="now">選択中</span>
+              </div>
+              <div class="r2-bar">
+                <input class="search" type="search" placeholder="検索（かな・ローマ字）" disabled />
+                <button type="button" class="tog is-on" data-tog="event"><span class="knob"></span>イベント</button>
+                <button type="button" class="tog is-cyan" data-tog="ssr"><span class="knob"></span>SSR</button>
+              </div>
+            </div>
+            <div class="r2-types"><div class="type-row" data-types></div></div>
+            <div class="r2-body"><div class="shelf" data-shelf></div></div>
+            <div class="r2-foot"><button type="button" class="r2-clear" data-clear>選択をクリア</button></div>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <!-- R3 -->
+    <section class="panel" id="panel-r3">
+      <article class="wrap">
+        <h2>R3 Immersive Night <span class="tag">参照</span></h2>
+        <p class="blurb">プレビューを紫クロム見出しに統合（薄いP-Bをクロム内へ吸収）。暗色棚＋金グロー選択。ゲーム内ガチャ／編成画面寄りで一番“リッチ”に見えやすい。</p>
+        <div class="stage">
+          <div class="r3" id="demo-r3" data-kind="support">
+            <div class="r3-chrome" data-preview>
+              <div class="thumb"><img alt="" data-preview-img /></div>
+              <div>
+                <h3>サポートカード · 枠1</h3>
+                <div class="n" data-preview-name>—</div>
+                <div class="h">現在の選択 · タップで確定</div>
+              </div>
+              <button type="button" class="r3-x">×</button>
+            </div>
+            <div class="r3-tools">
+              <button type="button" class="tog is-on" data-tog="event"><span class="knob"></span>イベント対応</button>
+              <button type="button" class="tog is-cyan" data-tog="ssr"><span class="knob"></span>SSRのみ</button>
+            </div>
+            <div class="r3-search-wrap">
+              <input class="search" type="search" placeholder="検索…" disabled />
+            </div>
+            <div class="r3-types"><div class="type-row" data-types></div>
+            <div class="r3-body"><div class="shelf" data-shelf></div></div>
+            <div class="r3-foot">
+              <span>Night · 金グロー選択</span>
+              <button type="button" class="r3-clear" data-clear>クリア</button>
+            </div>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <!-- R1 character -->
+    <section class="panel" id="panel-r1c">
+      <article class="wrap">
+        <h2>R1 Studio Glass <span class="tag rec">新推奨</span> <span class="tag">育成</span></h2>
+        <p class="blurb">タイプ行・クリアなし。プレビュー＋検索＋正方形棚のみ。</p>
+        <div class="stage">
+          <div class="r1" id="demo-r1c" data-kind="character">
+            <div class="r1-chrome">
+              <div>
+                <h3>育成ウマ娘を選ぶ</h3>
+                <span class="sub">覚醒Lv5想定</span>
+              </div>
+              <button type="button" class="r1-x">×</button>
+            </div>
+            <div class="r1-preview" data-preview>
+              <div class="thumb thumb--sq"><img alt="" data-preview-img /></div>
+              <div>
+                <div class="k">この枠 · 現在</div>
+                <div class="n" data-preview-name>—</div>
+                <div class="h">タイプ絞込なし</div>
+              </div>
+              <span class="now">選択中</span>
+            </div>
+            <div class="r1-search-wrap">
+              <input class="search" type="search" placeholder="名前・かな・ローマ字で検索" disabled />
+            </div>
+            <div class="r1-body">
+              <div class="shelf shelf--sq" data-shelf></div>
+            </div>
+            <div class="r1-foot"><span>育成 · 同シェル</span><span></span></div>
+          </div>
+        </div>
+      </article>
+    </section>
+  </div>
+
+  <script>
+    const SUPPORTS = [
+      { id: 30282, name: "エアグルーヴ", type: "speed", file: "30282.webp" },
+      { id: 30275, name: "トウカイテイオー", type: "speed", file: "30275.webp" },
+      { id: 30298, name: "タップダンスシチー", type: "speed", file: "30298.webp" },
+      { id: 30304, name: "メイショウドトウ", type: "stamina", file: "30304.webp" },
+      { id: 30300, name: "サクラチヨノオー", type: "stamina", file: "30300.webp" },
+      { id: 30256, name: "タマモクロス", type: "power", file: "30256.webp" },
+      { id: 30297, name: "アグネスデジタル", type: "power", file: "30297.webp" },
+      { id: 30293, name: "デアリングタクト", type: "guts", file: "30293.webp" },
+      { id: 30294, name: "デアリングハート", type: "guts", file: "30294.webp" },
+      { id: 30289, name: "フォーエバーヤング", type: "wit", file: "30289.webp" },
+      { id: 30306, name: "ナイスネイチャ", type: "wit", file: "30306.webp" },
+      { id: 30305, name: "駿川たづな", type: "friend", file: "30305.webp" },
+    ];
+    const CHARS = [
+      { id: 112901, name: "アーモンドアイ", file: "112901.webp" },
+      { id: 100102, name: "スペシャルウィーク", file: "100102.webp" },
+      { id: 100302, name: "トウカイテイオー", file: "100302.webp" },
+      { id: 100701, name: "ゴールドシップ", file: "100701.webp" },
+      { id: 101401, name: "メジロマックイーン", file: "101401.webp" },
+      { id: 104001, name: "ダイワスカーレット", file: "104001.webp" },
+      { id: 106002, name: "グラスワンダー", file: "106002.webp" },
+      { id: 110501, name: "ネオユニヴァース", file: "110501.webp" },
+    ];
+    const TYPES = [
+      { t: "", label: "すべて" },
+      { t: "speed", label: "スピ" },
+      { t: "stamina", label: "スタ" },
+      { t: "power", label: "パワ" },
+      { t: "guts", label: "根性" },
+      { t: "wit", label: "賢さ" },
+      { t: "friend", label: "友人" },
+    ];
+
+    const sSrc = (f) => `../../../assets/supports/${f}`;
+    const cSrc = (f) => `../../../assets/characters/${f}`;
+
+    function faceBtn(item, { square = false, selected = false } = {}) {
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "item" + (selected ? " is-selected" : "");
+      btn.dataset.id = String(item.id);
+      if (item.type) btn.dataset.type = item.type;
+      btn.setAttribute("aria-pressed", selected ? "true" : "false");
+      btn.setAttribute("aria-label", item.name + (selected ? "（選択中）" : ""));
+      const src = square ? cSrc(item.file) : sSrc(item.file);
+      btn.innerHTML = `
+        ${selected ? '<span class="badge" aria-hidden="true">選択中</span>' : ""}
+        <span class="face"><img src="${src}" alt="" onerror="this.parentElement.style.background='linear-gradient(160deg,#9a94b0,#5a5288)'" /></span>
+      `;
+      return btn;
+    }
+
+    function syncPreview(root, item, { square = false } = {}) {
+      const box = root.querySelector("[data-preview]");
+      if (!box) return;
+      const img = box.querySelector("[data-preview-img]");
+      const name = box.querySelector("[data-preview-name]");
+      if (name) name.textContent = item ? item.name : "未選択";
+      if (img && item) img.src = square ? cSrc(item.file) : sSrc(item.file);
+    }
+
+    function fillTypes(root, onChange) {
+      const row = root.querySelector("[data-types]");
+      if (!row) return;
+      row.innerHTML = "";
+      TYPES.forEach((t, i) => {
+        const b = document.createElement("button");
+        b.type = "button";
+        b.className = "type" + (i === 0 ? " is-on" : "");
+        b.dataset.t = t.t;
+        b.innerHTML = (t.t ? `<span class="dot"></span>` : "") + t.label;
+        b.addEventListener("click", () => {
+          row.querySelectorAll(".type").forEach((x) => x.classList.remove("is-on"));
+          b.classList.add("is-on");
+          onChange(t.t);
+        });
+        row.appendChild(b);
+      });
+    }
+
+    function mount(root) {
+      const kind = root.dataset.kind;
+      const square = kind === "character";
+      const list = square ? CHARS : SUPPORTS;
+      const shelf = root.querySelector("[data-shelf]");
+      let selectedId = list[0].id;
+      let type = "";
+
+      function render() {
+        shelf.innerHTML = "";
+        const filtered = square ? list : list.filter((s) => !type || s.type === type);
+        for (const item of filtered) {
+          const btn = faceBtn(item, { square, selected: item.id === selectedId });
+          btn.addEventListener("click", () => {
+            selectedId = item.id;
+            syncPreview(root, item, { square });
+            render();
+          });
+          shelf.appendChild(btn);
+        }
+        const cur = list.find((x) => x.id === selectedId);
+        if (cur) syncPreview(root, cur, { square });
+      }
+
+      if (!square) {
+        fillTypes(root, (t) => { type = t; render(); });
+      }
+      root.querySelectorAll("[data-tog]").forEach((tog) => {
+        tog.addEventListener("click", () => tog.classList.toggle("is-on"));
+      });
+      root.querySelector("[data-clear]")?.addEventListener("click", () => {
+        selectedId = null;
+        syncPreview(root, null, { square });
+        render();
+      });
+      syncPreview(root, list[0], { square });
+      render();
+    }
+
+    ["demo-r1", "demo-r2", "demo-r3", "demo-r1c"].forEach((id) => {
+      const el = document.getElementById(id);
+      if (el) mount(el);
+    });
+
+    document.querySelectorAll(".tabs button").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        document.querySelectorAll(".tabs button").forEach((b) => b.classList.remove("is-on"));
+        btn.classList.add("is-on");
+        document.querySelectorAll(".panel").forEach((p) => p.classList.remove("is-on"));
+        document.getElementById("panel-" + btn.dataset.tab)?.classList.add("is-on");
+      });
+    });
+  </script>
+</body>
+</html>

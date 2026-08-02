@@ -40,7 +40,7 @@
 
 ## 現在フォーカス（1行）
 
-**カードピッカー刷新** — モック確認待ち（[picker-options.html](./product/mockups/picker-options.html) · P-A＋薄い P-B）
+**カードピッカー刷新** — リッチ案確認待ち（[picker-rich-options.html](./product/mockups/picker-rich-options.html) · R1推奨）
 
 ---
 
@@ -52,9 +52,10 @@
 
 ### P1
 
-- [~] **カードピッカー刷新**（backlog #4・モック確認中）  
-  - モック: [product/mockups/picker-options.html](./product/mockups/picker-options.html)  
-  - 推奨（P-A＋薄い P-B）。見たあと別案可 → OK後に `app/` 移植  
+- [~] **カードピッカー刷新**（backlog #4・リッチ案確認中）  
+  - リッチ案: [product/mockups/picker-rich-options.html](./product/mockups/picker-rich-options.html)（R1 Studio Glass 推奨）  
+  - 初期案: [product/mockups/picker-options.html](./product/mockups/picker-options.html)  
+  - 骨格は P-A＋薄い P-B。見たあと別案可 → OK後に `app/` 移植  
   - 育成／サポカとも0から刷新（選択中表示の改善を含む）
 
 - [ ] **育成 dress 流用カードのスポット目視**（任意だが短い）  

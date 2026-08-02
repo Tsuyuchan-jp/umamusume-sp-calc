@@ -69,9 +69,11 @@
 
 ## ピッカー（実装予定）
 
-推奨: **P-A（棚＋角バッジ）＋薄い P-B（上部プレビュー）**。育成はタイプ行なし同シェル。
+推奨骨格: **P-A（棚＋角バッジ）＋薄い P-B（上部プレビュー）**。育成はタイプ行なし同シェル。
 
-**モック（確認用）**: [mockups/picker-options.html](./mockups/picker-options.html)（推奨サポカ／育成＋比較 P-Aのみ／厚めP-B）
+**モック**:
+- リッチ案（確認中・R1推奨）: [mockups/picker-rich-options.html](./mockups/picker-rich-options.html)
+- 初期シンプル案: [mockups/picker-options.html](./mockups/picker-options.html)
 
 ---
 
