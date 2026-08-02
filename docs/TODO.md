@@ -40,7 +40,7 @@
 
 ## 現在フォーカス（1行）
 
-**P2 編成スクショ** — 主案 v8 目視待ち（Cハイブリッド · [screenshot-share-hero.html](./product/mockups/screenshot-share-hero.html)）
+**P2 編成スクショ** — 大枠採用済 · v9 右余白磨き目視（[screenshot-share-hero.html](./product/mockups/screenshot-share-hero.html)）
 
 ---
 
