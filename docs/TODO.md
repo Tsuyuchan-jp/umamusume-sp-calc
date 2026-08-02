@@ -40,7 +40,7 @@
 
 ## 現在フォーカス（1行）
 
-（空き）— ピッカー実機確認はグラスワンダー疑似カード除外まで完了
+（未定）— ピッカーUIクローズ済。次は P2 から選ぶか v1.0.0 準備を検討
 
 ---
 
@@ -75,7 +75,7 @@
   - 手順: `npm run extract:events` → `compare:events` → `apply:events` のあと、`events.preserve.json` から GameWith 一時手載せ6件（`evt_30307_*` / `evt_30308_*`）を削除。docs の件数・注記も更新  
   - 関連: [ops/GAME_UPDATE_RUNBOOK.md](./ops/GAME_UPDATE_RUNBOOK.md) / events preserve
 
-- [ ] **v1.0.0 公開準備** — UX 残り（ピッカー等）が閉じたあと。CHANGELOG・README・**初 push / Pages 反映**  
+- [ ] **v1.0.0 公開準備** — UX 残り（ピッカー等）が閉じた。CHANGELOG・README・**初 push / Pages 反映**  
   - 制約: それまで `git push` しない（[ops/ASSETS.md](./ops/ASSETS.md) / [ops/GAME_UPDATE_RUNBOOK.md](./ops/GAME_UPDATE_RUNBOOK.md)）
 
 - [ ] **ゲーム更新追従** — 発生時のみ [ops/GAME_UPDATE_RUNBOOK.md](./ops/GAME_UPDATE_RUNBOOK.md)（mdb → events → assets:extract/import → verify）
@@ -84,12 +84,13 @@
 
 ## 最近完了（直近のみ残す）
 
+- [x] 2026-08-02 **カードピッカーUIクローズ** — R3+R1・アイコン race_dress 正本・疑似カード除外まで実機OK
 - [x] 2026-08-02 **育成疑似カード除外** — 9100101/9101101（岩穿つ青二重など）。extract でも skill_set=0 / 91xxxxx を除外
 - [x] 2026-08-02 **育成アイコン race_dress 正本** — カード名⇔衣装名一致。オグリ 2↔3 入れ替え解消
-- [x] 2026-08-02 **育成アイコン重複修正** — `chr_icon` の dress キー割当（piece_icon 不使用）。監査で通常カード重複0
+- [x] 2026-08-02 **育成アイコン重複修正** — `chr_icon` の dress キー割当（piece_icon 不使用）
 - [x] 2026-08-02 **カードピッカー刷新**（backlog #4）— R3＋R1 ハイブリッド。トグル絞込・固定棚高・選択バッジ
-- [x] 2026-08-02 **スプリット左「カード」枠上ラベル削除** — 不要（編成＋枠＋詳細見出しで足りる）。見切れ対策のCSSいじりは撤回
-- [x] 2026-08-02 **角丸DOMクローズ** — 結果枠・編成枠を紫クロム＋白本体の二段構成に整理（ユーザー確認OK）
+- [x] 2026-08-02 **スプリット左「カード」枠上ラベル削除** — 不要（編成＋枠＋詳細見出しで足りる）
+- [x] 2026-08-02 **角丸DOMクローズ** — 結果枠・編成枠を紫クロム＋白本体の二段構成に整理
 - [x] 2026-08-02 **結果作業台 W-H** — ON文言・レギュ即適用（手動OFF保持）・4列表・儀式バー
 - [x] 2026-08-02 **詳細ペイン** — 見た目再設計・再タップ/Esc/カード帯で閉じる・二重表示解消
 - [x] 2026-08-02 **デザイン指摘 #1/#3/#5/#6** — H-Mock・左ゾーン・背景芝・幾何・レイアウト／隙間トークン
