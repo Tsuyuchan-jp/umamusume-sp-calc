@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>リンク／RMJ チップ — 選択中デザイン（再モック）</title>
+  <title>リンク／RMJ — 案D改善（チェック印）</title>
   <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@700;900&display=swap" rel="stylesheet" />
   <style>
     :root {
@@ -25,7 +25,7 @@
       font-size: 0.78rem;
       margin: 0 0 1rem;
       line-height: 1.55;
-      max-width: 52rem;
+      max-width: 54rem;
     }
     .grid {
       display: grid;
@@ -43,7 +43,7 @@
       font-size: 0.84rem;
       color: var(--ink);
     }
-    .card .tag {
+    .tag {
       display: inline-block;
       margin: 0 0 0.45rem;
       padding: 0.12rem 0.4rem;
@@ -53,8 +53,8 @@
       background: #eeeaf6;
       color: var(--ink);
     }
-    .card .tag--now {
-      background: #463f70;
+    .tag--base {
+      background: #8a849e;
       color: #fff;
     }
     .card p {
@@ -64,11 +64,11 @@
       line-height: 1.45;
     }
     .block { margin-bottom: 0.55rem; }
-    .block:last-child { margin-bottom: 0; }
+    .block:last-of-type { margin-bottom: 0; }
     .row {
       display: flex;
       flex-wrap: wrap;
-      gap: 0.35rem;
+      gap: 0.4rem;
       align-items: center;
     }
     .lbl {
@@ -79,12 +79,12 @@
       min-width: 2.4rem;
     }
     .hint {
-      margin-top: 0.45rem;
+      margin-top: 0.5rem;
       font-size: 0.62rem;
       color: #8a849e;
     }
 
-    /* ---- 共通チップ骨格（本番 .scn-chip に合わせる） ---- */
+    /* ---- 共通骨格 ---- */
     .chip {
       appearance: none;
       border: 1.5px solid #c8c0d8;
@@ -98,8 +98,7 @@
       border-radius: 999px;
       cursor: pointer;
       white-space: nowrap;
-      max-width: 100%;
-      transition: box-shadow 0.12s ease, transform 0.12s ease, border-color 0.12s ease, filter 0.12s ease;
+      transition: box-shadow 0.12s ease, border-color 0.12s ease, transform 0.12s ease;
     }
     .chip:hover { border-color: #9080b8; }
     .mark {
@@ -124,233 +123,156 @@
       border-color: #e29403;
       filter: none;
     }
+    .check {
+      display: none;
+      margin-right: 0.22rem;
+      font-size: 0.72rem;
+      font-weight: 900;
+      line-height: 1;
+    }
+    .chip.is-on .check { display: inline-block; }
 
-    /* ========== 現在の実装（style.css 再現） ========== */
-    .now .chip.is-on:not(.gold) {
-      border-color: #c00f47;
-      background: linear-gradient(180deg, #ff75a3, #f7518b);
-      color: #fff;
-      box-shadow: 0 1px 4px rgba(255, 50, 118, 0.35);
-    }
-    .now .chip.gold.is-on {
-      border-color: #c98910;
-      background: linear-gradient(180deg, #f0d060, #e29403);
-      color: #3a2a00;
-      filter: none;
-      box-shadow:
-        0 0 0 2px #fff,
-        0 0 0 4px #463f70,
-        0 2px 8px rgba(70, 63, 112, 0.28);
-      transform: translateY(-1px);
-    }
-    .now .chip.gold.is-on .mark {
-      background: rgba(255, 255, 255, 0.55);
-      color: #5a3d00;
-    }
-
-    /* ========== 案A: 属性は薄金のまま／選択はリングのみ ========== */
-    .a .chip.is-on:not(.gold) {
-      border-color: #c00f47;
-      background: linear-gradient(180deg, #ff75a3, #f7518b);
-      color: #fff;
-      box-shadow: 0 1px 4px rgba(255, 50, 118, 0.35);
-    }
-    .a .chip.gold.is-on {
-      /* 塗りは未選択と同じ薄金。選択は紫リングだけ */
-      border-color: #e0c878;
-      background: linear-gradient(180deg, #fffaf0, #ffe9b8);
-      color: #6a5220;
-      filter: none;
-      box-shadow:
-        0 0 0 2px #fff,
-        0 0 0 4px #463f70;
-      transform: translateY(-1px);
-    }
-
-    /* ========== 案B: 選択言語をピンクに統一（金塗りは薄いまま） ========== */
-    .b .chip.is-on:not(.gold) {
-      border-color: #c00f47;
-      background: linear-gradient(180deg, #ff75a3, #f7518b);
-      color: #fff;
-      box-shadow: 0 1px 4px rgba(255, 50, 118, 0.35);
-    }
-    .b .chip.gold.is-on {
-      border-color: #e0c878;
-      background: linear-gradient(180deg, #fffaf0, #ffe9b8);
-      color: #6a5220;
-      filter: none;
-      box-shadow:
-        0 0 0 2px #fff,
-        0 0 0 4px #f7518b;
-      transform: translateY(-1px);
-    }
-
-    /* ========== 案C: 左ドットで選択 ========== */
-    .c .chip {
-      padding-left: 0.55rem;
-      position: relative;
-    }
-    .c .chip.is-on:not(.gold) {
+    /* ========== D0: 前回モックの案D（比較用） ========== */
+    .d0 .chip.is-on:not(.gold) {
       border-color: #c00f47;
       background: linear-gradient(180deg, #ff75a3, #f7518b);
       color: #fff;
     }
-    .c .chip.gold.is-on {
-      border-color: #c98910;
-      background: linear-gradient(180deg, #fffaf0, #ffe9b8);
-      color: #6a5220;
-      filter: none;
-      box-shadow: inset 3px 0 0 #463f70;
-    }
-    .c .chip.is-on::before {
-      content: "";
-      position: absolute;
-      left: 0.35rem;
-      top: 50%;
-      width: 0.35rem;
-      height: 0.35rem;
-      border-radius: 50%;
-      transform: translateY(-50%);
-      background: #463f70;
-    }
-    .c .chip.is-on:not(.gold)::before {
-      background: #fff;
-    }
-    .c .chip.is-on {
-      padding-left: 0.85rem;
-    }
-
-    /* ========== 案D: チェック印 ========== */
-    .d .chip.is-on:not(.gold) {
-      border-color: #c00f47;
-      background: linear-gradient(180deg, #ff75a3, #f7518b);
-      color: #fff;
-    }
-    .d .chip.gold.is-on {
+    .d0 .chip.gold.is-on {
       border-color: #c98910;
       background: linear-gradient(180deg, #fffaf0, #ffe9b8);
       color: #5a3d00;
       filter: none;
       box-shadow: inset 0 0 0 1.5px #463f70;
     }
-    .d .chip.is-on .check {
-      display: inline-block;
-      margin-right: 0.28rem;
-      font-size: 0.72rem;
-      font-weight: 900;
+    .d0 .chip.is-on .check { color: #463f70; }
+    .d0 .chip.is-on:not(.gold) .check { color: #fff; }
+
+    /* ========== D1: 塗り統一＋内側枠は細く（1px）・色は濃紫 ========== */
+    .d1 .chip.is-on {
+      filter: none;
+      box-shadow: inset 0 0 0 1px #2f2854;
+    }
+    .d1 .chip.is-on:not(.gold) {
+      border-color: #c8c0d8;
+      background: linear-gradient(180deg, #fff, #f3f0f7);
       color: #463f70;
     }
-    .d .chip.is-on:not(.gold) .check { color: #fff; }
-    .d .chip .check { display: none; }
-    .d .chip.is-on .check { display: inline-block; }
-
-    /* ========== 案E: 現行の濃金塗りをやめ、枠を太く＋わずかに拡大 ========== */
-    .e .chip.is-on:not(.gold) {
-      border-color: #c00f47;
-      background: linear-gradient(180deg, #ff75a3, #f7518b);
-      color: #fff;
-      box-shadow: 0 1px 4px rgba(255, 50, 118, 0.35);
-      transform: scale(1.04);
-    }
-    .e .chip.gold.is-on {
-      border: 2.5px solid #463f70;
+    .d1 .chip.gold.is-on {
+      border-color: #e0c878;
       background: linear-gradient(180deg, #fffaf0, #ffe9b8);
       color: #6a5220;
-      filter: none;
-      transform: scale(1.04);
-      box-shadow: 0 2px 6px rgba(70, 63, 112, 0.18);
     }
+    .d1 .chip.is-on .check { color: #2f2854; }
+
+    /* ========== D2: 塗り統一＋外側リング（白ギャップでにじみ防止） ========== */
+    .d2 .chip.is-on {
+      filter: none;
+      box-shadow:
+        0 0 0 2px #fff,
+        0 0 0 4px #463f70;
+    }
+    .d2 .chip.is-on:not(.gold) {
+      border-color: #c8c0d8;
+      background: linear-gradient(180deg, #fff, #f3f0f7);
+      color: #463f70;
+    }
+    .d2 .chip.gold.is-on {
+      border-color: #e0c878;
+      background: linear-gradient(180deg, #fffaf0, #ffe9b8);
+      color: #6a5220;
+    }
+    .d2 .chip.is-on .check { color: #463f70; }
+
+    /* ========== D3: 塗り統一＋外枠を選択色に置き換え（内側枠なし） ========== */
+    .d3 .chip.is-on {
+      filter: none;
+      border-color: #463f70;
+      border-width: 2px;
+      box-shadow: none;
+    }
+    .d3 .chip.is-on:not(.gold) {
+      background: linear-gradient(180deg, #fff, #f3f0f7);
+      color: #463f70;
+    }
+    .d3 .chip.gold.is-on {
+      background: linear-gradient(180deg, #fffaf0, #ffe9b8);
+      color: #6a5220;
+    }
+    .d3 .chip.is-on .check { color: #463f70; }
+
+    /* ========== D4: 塗り統一＋内側枠はティール（金枠と色相を離す） ========== */
+    .d4 .chip.is-on {
+      filter: none;
+      box-shadow: inset 0 0 0 2px #0e7a8a;
+    }
+    .d4 .chip.is-on:not(.gold) {
+      border-color: #c8c0d8;
+      background: linear-gradient(180deg, #fff, #f3f0f7);
+      color: #463f70;
+    }
+    .d4 .chip.gold.is-on {
+      border-color: #e0c878;
+      background: linear-gradient(180deg, #fffaf0, #ffe9b8);
+      color: #6a5220;
+    }
+    .d4 .chip.is-on .check { color: #0e7a8a; }
+
+    /* ========== D5: 塗り統一＋チェックのみ（枠なし・いちばん軽い） ========== */
+    .d5 .chip.is-on {
+      filter: none;
+      box-shadow: none;
+    }
+    .d5 .chip.is-on:not(.gold) {
+      border-color: #c8c0d8;
+      background: linear-gradient(180deg, #fff, #f3f0f7);
+      color: #463f70;
+    }
+    .d5 .chip.gold.is-on {
+      border-color: #e0c878;
+      background: linear-gradient(180deg, #fffaf0, #ffe9b8);
+      color: #6a5220;
+    }
+    .d5 .chip.is-on .check {
+      color: #463f70;
+      background: rgba(70, 63, 112, 0.12);
+      border-radius: 999px;
+      padding: 0 0.22rem;
+      margin-right: 0.28rem;
+    }
+
+    /* ========== D6: 塗り統一＋外側に淡い紫ハロー（内側枠なし） ========== */
+    .d6 .chip.is-on {
+      filter: none;
+      box-shadow: 0 0 0 3px rgba(70, 63, 112, 0.28);
+    }
+    .d6 .chip.is-on:not(.gold) {
+      border-color: #aea6c4;
+      background: linear-gradient(180deg, #fff, #f3f0f7);
+      color: #463f70;
+    }
+    .d6 .chip.gold.is-on {
+      border-color: #d4b85a;
+      background: linear-gradient(180deg, #fffaf0, #ffe9b8);
+      color: #6a5220;
+    }
+    .d6 .chip.is-on .check { color: #463f70; }
   </style>
 </head>
 <body>
-  <h1>リンク／RMJ — 選択中デザイン（再モック）</h1>
+  <h1>リンク／RMJ — 案D改善（チェック印）</h1>
   <p class="note">
-    課題: 「金スキル属性」と「選択中」がどちらも金系だと区別しづらい。<br />
-    下の「現在の実装」は本番 CSS の再現です。案A〜Eは<strong>未承認の提案</strong>（チップをタップで選択切替できます）。採用案を返事ください。本実装は承認後のみ変更します。
+    方針はチェック印で固定。改善ポイント:<br />
+    ① 白ヒントだけ全面ピンク塗りになるのをやめ、金／白で選択表現を揃える<br />
+    ② 紫の内側枠が元ボーダーとにじむ → 太さ・色・外側リング／枠置換などで比較<br />
+    チップをタップで切替できます。未承認（本実装は変更しません）。
   </p>
 
   <div class="grid">
-    <section class="card now" data-group>
-      <h2>現在の実装</h2>
-      <span class="tag tag--now">本番どおり</span>
-      <p>非金ON＝ピンク塗り。金ON＝濃い金塗り＋白／紫の二重リング。属性と選択の両方で金が強くなる。</p>
-      <div class="block">
-        <div class="row"><span class="lbl">リンク</span>
-          <button type="button" class="chip gold is-on" data-chip><span class="mark">金</span>アガッてきた！</button>
-          <button type="button" class="chip gold" data-chip><span class="mark">金</span>食いしん坊</button>
-          <button type="button" class="chip" data-chip>白ヒント例</button>
-        </div>
-      </div>
-      <div class="block">
-        <div class="row"><span class="lbl">RMJ</span>
-          <button type="button" class="chip gold is-on" data-chip><span class="mark">金</span>全身全霊</button>
-          <button type="button" class="chip gold" data-chip><span class="mark">金</span>アガッてきた！</button>
-        </div>
-      </div>
-      <p class="hint">※ リンク行と RMJ 行はそれぞれ独立して1つ選択</p>
-    </section>
-
-    <section class="card a" data-group>
-      <h2>案A — リングのみ</h2>
-      <span class="tag">提案</span>
-      <p>金の塗りは常に薄いまま（属性専用）。選択は紫リングだけ。濃金塗りをやめて属性と選択を分離。</p>
-      <div class="block">
-        <div class="row"><span class="lbl">リンク</span>
-          <button type="button" class="chip gold is-on" data-chip><span class="mark">金</span>アガッてきた！</button>
-          <button type="button" class="chip gold" data-chip><span class="mark">金</span>食いしん坊</button>
-          <button type="button" class="chip" data-chip>白ヒント例</button>
-        </div>
-      </div>
-      <div class="block">
-        <div class="row"><span class="lbl">RMJ</span>
-          <button type="button" class="chip gold is-on" data-chip><span class="mark">金</span>全身全霊</button>
-          <button type="button" class="chip gold" data-chip><span class="mark">金</span>アガッてきた！</button>
-        </div>
-      </div>
-    </section>
-
-    <section class="card b" data-group>
-      <h2>案B — ピンクリング統一</h2>
-      <span class="tag">提案</span>
-      <p>選択の色を非金ONと同じピンク系に揃える。金塗りは薄いまま。リング色＝選択、金塗り＝属性。</p>
-      <div class="block">
-        <div class="row"><span class="lbl">リンク</span>
-          <button type="button" class="chip gold is-on" data-chip><span class="mark">金</span>アガッてきた！</button>
-          <button type="button" class="chip gold" data-chip><span class="mark">金</span>食いしん坊</button>
-          <button type="button" class="chip" data-chip>白ヒント例</button>
-        </div>
-      </div>
-      <div class="block">
-        <div class="row"><span class="lbl">RMJ</span>
-          <button type="button" class="chip gold is-on" data-chip><span class="mark">金</span>全身全霊</button>
-          <button type="button" class="chip gold" data-chip><span class="mark">金</span>アガッてきた！</button>
-        </div>
-      </div>
-    </section>
-
-    <section class="card c" data-group>
-      <h2>案C — 左ドット／インセット</h2>
-      <span class="tag">提案</span>
-      <p>選択は左の点＋内側の紫バー。金塗りは薄いまま。リングより省スペース。</p>
-      <div class="block">
-        <div class="row"><span class="lbl">リンク</span>
-          <button type="button" class="chip gold is-on" data-chip><span class="mark">金</span>アガッてきた！</button>
-          <button type="button" class="chip gold" data-chip><span class="mark">金</span>食いしん坊</button>
-          <button type="button" class="chip" data-chip>白ヒント例</button>
-        </div>
-      </div>
-      <div class="block">
-        <div class="row"><span class="lbl">RMJ</span>
-          <button type="button" class="chip gold is-on" data-chip><span class="mark">金</span>全身全霊</button>
-          <button type="button" class="chip gold" data-chip><span class="mark">金</span>アガッてきた！</button>
-        </div>
-      </div>
-    </section>
-
-    <section class="card d" data-group>
-      <h2>案D — チェック印</h2>
-      <span class="tag">提案</span>
-      <p>選択中だけ先頭に ✓。金は薄い塗り＋紫の内側枠。記号で一目。</p>
+    <section class="card d0" data-group>
+      <h2>D0 — 前回の案D（比較用）</h2>
+      <span class="tag tag--base">ベース</span>
+      <p>白ONだけピンク全面塗り。金は薄塗り＋紫1.5px内側枠（にじみやすい）。</p>
       <div class="block">
         <div class="row"><span class="lbl">リンク</span>
           <button type="button" class="chip gold is-on" data-chip><span class="check" aria-hidden="true">✓</span><span class="mark">金</span>アガッてきた！</button>
@@ -366,25 +288,122 @@
       </div>
     </section>
 
-    <section class="card e" data-group>
-      <h2>案E — 太枠＋わずかに拡大</h2>
-      <span class="tag">提案</span>
-      <p>濃金塗りもリングも使わない。選択＝紫の太枠＋わずかな scale。いちばん控えめで、差が弱い可能性あり。</p>
+    <section class="card d1" data-group>
+      <h2>D1 — 塗り統一＋細い内側枠</h2>
+      <span class="tag">改善案</span>
+      <p>白も塗り替えない。内側枠を1px・濃紫（#2f2854）にして元枠との重なりを抑える。</p>
       <div class="block">
         <div class="row"><span class="lbl">リンク</span>
-          <button type="button" class="chip gold is-on" data-chip><span class="mark">金</span>アガッてきた！</button>
-          <button type="button" class="chip gold" data-chip><span class="mark">金</span>食いしん坊</button>
-          <button type="button" class="chip" data-chip>白ヒント例</button>
+          <button type="button" class="chip gold is-on" data-chip><span class="check" aria-hidden="true">✓</span><span class="mark">金</span>アガッてきた！</button>
+          <button type="button" class="chip gold" data-chip><span class="check" aria-hidden="true">✓</span><span class="mark">金</span>食いしん坊</button>
+          <button type="button" class="chip" data-chip><span class="check" aria-hidden="true">✓</span>白ヒント例</button>
         </div>
       </div>
       <div class="block">
         <div class="row"><span class="lbl">RMJ</span>
-          <button type="button" class="chip gold is-on" data-chip><span class="mark">金</span>全身全霊</button>
-          <button type="button" class="chip gold" data-chip><span class="mark">金</span>アガッてきた！</button>
+          <button type="button" class="chip gold is-on" data-chip><span class="check" aria-hidden="true">✓</span><span class="mark">金</span>全身全霊</button>
+          <button type="button" class="chip gold" data-chip><span class="check" aria-hidden="true">✓</span><span class="mark">金</span>アガッてきた！</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="card d2" data-group>
+      <h2>D2 — 塗り統一＋外側リング</h2>
+      <span class="tag">改善案</span>
+      <p>内側枠をやめる。白ギャップ＋紫の外側リングでにじみを回避。選択の輪郭ははっきり。</p>
+      <div class="block">
+        <div class="row"><span class="lbl">リンク</span>
+          <button type="button" class="chip gold is-on" data-chip><span class="check" aria-hidden="true">✓</span><span class="mark">金</span>アガッてきた！</button>
+          <button type="button" class="chip gold" data-chip><span class="check" aria-hidden="true">✓</span><span class="mark">金</span>食いしん坊</button>
+          <button type="button" class="chip" data-chip><span class="check" aria-hidden="true">✓</span>白ヒント例</button>
+        </div>
+      </div>
+      <div class="block">
+        <div class="row"><span class="lbl">RMJ</span>
+          <button type="button" class="chip gold is-on" data-chip><span class="check" aria-hidden="true">✓</span><span class="mark">金</span>全身全霊</button>
+          <button type="button" class="chip gold" data-chip><span class="check" aria-hidden="true">✓</span><span class="mark">金</span>アガッてきた！</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="card d3" data-group>
+      <h2>D3 — 塗り統一＋外枠を置換</h2>
+      <span class="tag">改善案</span>
+      <p>内側枠なし。選択時はボーダー自体を紫2pxに差し替え。輪郭が1本だけなのでにじまない。</p>
+      <div class="block">
+        <div class="row"><span class="lbl">リンク</span>
+          <button type="button" class="chip gold is-on" data-chip><span class="check" aria-hidden="true">✓</span><span class="mark">金</span>アガッてきた！</button>
+          <button type="button" class="chip gold" data-chip><span class="check" aria-hidden="true">✓</span><span class="mark">金</span>食いしん坊</button>
+          <button type="button" class="chip" data-chip><span class="check" aria-hidden="true">✓</span>白ヒント例</button>
+        </div>
+      </div>
+      <div class="block">
+        <div class="row"><span class="lbl">RMJ</span>
+          <button type="button" class="chip gold is-on" data-chip><span class="check" aria-hidden="true">✓</span><span class="mark">金</span>全身全霊</button>
+          <button type="button" class="chip gold" data-chip><span class="check" aria-hidden="true">✓</span><span class="mark">金</span>アガッてきた！</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="card d4" data-group>
+      <h2>D4 — 塗り統一＋ティール内側枠</h2>
+      <span class="tag">改善案</span>
+      <p>内側枠は残しつつ色相を金枠から離す（#0e7a8a）。チェックも同色。にじみ感より「別レイヤー」に見える狙い。</p>
+      <div class="block">
+        <div class="row"><span class="lbl">リンク</span>
+          <button type="button" class="chip gold is-on" data-chip><span class="check" aria-hidden="true">✓</span><span class="mark">金</span>アガッてきた！</button>
+          <button type="button" class="chip gold" data-chip><span class="check" aria-hidden="true">✓</span><span class="mark">金</span>食いしん坊</button>
+          <button type="button" class="chip" data-chip><span class="check" aria-hidden="true">✓</span>白ヒント例</button>
+        </div>
+      </div>
+      <div class="block">
+        <div class="row"><span class="lbl">RMJ</span>
+          <button type="button" class="chip gold is-on" data-chip><span class="check" aria-hidden="true">✓</span><span class="mark">金</span>全身全霊</button>
+          <button type="button" class="chip gold" data-chip><span class="check" aria-hidden="true">✓</span><span class="mark">金</span>アガッてきた！</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="card d5" data-group>
+      <h2>D5 — 塗り統一＋チェックのみ</h2>
+      <span class="tag">改善案</span>
+      <p>枠は触らない。✓だけ＋薄いピル背景。いちばん軽く、差が弱い可能性あり。</p>
+      <div class="block">
+        <div class="row"><span class="lbl">リンク</span>
+          <button type="button" class="chip gold is-on" data-chip><span class="check" aria-hidden="true">✓</span><span class="mark">金</span>アガッてきた！</button>
+          <button type="button" class="chip gold" data-chip><span class="check" aria-hidden="true">✓</span><span class="mark">金</span>食いしん坊</button>
+          <button type="button" class="chip" data-chip><span class="check" aria-hidden="true">✓</span>白ヒント例</button>
+        </div>
+      </div>
+      <div class="block">
+        <div class="row"><span class="lbl">RMJ</span>
+          <button type="button" class="chip gold is-on" data-chip><span class="check" aria-hidden="true">✓</span><span class="mark">金</span>全身全霊</button>
+          <button type="button" class="chip gold" data-chip><span class="check" aria-hidden="true">✓</span><span class="mark">金</span>アガッてきた！</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="card d6" data-group>
+      <h2>D6 — 塗り統一＋淡い外側ハロー</h2>
+      <span class="tag">改善案</span>
+      <p>内側枠なし。外側に半透明の紫ハロー。ボーダーは少し濃くする程度。柔らかい選択感。</p>
+      <div class="block">
+        <div class="row"><span class="lbl">リンク</span>
+          <button type="button" class="chip gold is-on" data-chip><span class="check" aria-hidden="true">✓</span><span class="mark">金</span>アガッてきた！</button>
+          <button type="button" class="chip gold" data-chip><span class="check" aria-hidden="true">✓</span><span class="mark">金</span>食いしん坊</button>
+          <button type="button" class="chip" data-chip><span class="check" aria-hidden="true">✓</span>白ヒント例</button>
+        </div>
+      </div>
+      <div class="block">
+        <div class="row"><span class="lbl">RMJ</span>
+          <button type="button" class="chip gold is-on" data-chip><span class="check" aria-hidden="true">✓</span><span class="mark">金</span>全身全霊</button>
+          <button type="button" class="chip gold" data-chip><span class="check" aria-hidden="true">✓</span><span class="mark">金</span>アガッてきた！</button>
         </div>
       </div>
     </section>
   </div>
+
+  <p class="hint">採用は「D1」のように番号で返事ください。必要なら組み合わせ（例: D3の枠＋D4の色）も可です。</p>
 
   <script>
     document.querySelectorAll("[data-group]").forEach((card) => {
