@@ -854,6 +854,12 @@ input[type="search"] {
 }
 
 .deck-evt-sum--gold {
+  /* 金のみ選中名を最大2行まで見せる（モーダルなしで確認用） */
+  height: auto;
+  min-height: 1.7rem;
+  max-height: 3.05rem;
+  align-items: stretch;
+  padding: 0.22rem 0.35rem 0.22rem 0;
   background: linear-gradient(180deg, #fff6d6, #ffe29a);
   border-color: #e9b84a;
   color: #5a3d00;
@@ -864,8 +870,20 @@ input[type="search"] {
   background: linear-gradient(180deg, #f0d060, #e29403);
 }
 
+.deck-evt-sum--gold .deck-evt-sum__name {
+  white-space: normal;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  align-self: center;
+}
+
 .deck-evt-sum--gold .deck-evt-sum__meta {
   color: #8a6a20;
+  align-self: center;
 }
 
 /* 詳細ダイアログ／ペイン内の種別バッジ（列下では使わない） */
@@ -1524,6 +1542,15 @@ body.layout-split .deck-trainee-meta__name {
 body.layout-split .deck-evt-sum {
   font-size: 0.62rem;
   min-height: 2.4em;
+}
+
+body.layout-split .deck-evt-sum:not(.deck-evt-sum--gold) {
+  height: 1.7rem;
+}
+
+body.layout-split .deck-evt-sum--gold {
+  height: auto;
+  max-height: 3.2rem;
 }
 
 body.layout-split .deck-support-col.is-focus .deck-evt-sum:not(.deck-evt-sum--auto) {

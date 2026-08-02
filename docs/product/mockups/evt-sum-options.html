@@ -65,7 +65,7 @@
       background: linear-gradient(90deg, #e9c95f, #e29403); color: #5a3d00;
     }
 
-    /* 案A: 1行＋色バー（推奨・本番採用） */
+    /* 案A: 1行＋色バー（採用。金のみ最大2行） */
     .a {
       display: flex; align-items: center; gap: 0.35rem; height: 1.7rem;
       padding: 0 0.35rem 0 0; border-radius: 5px; border: 1px solid #e9b84a;
@@ -74,11 +74,19 @@
     }
     .a.white { background: #f7f5fa; border-color: #d4cfe0; color: #4a4560; }
     .a.auto { background: #f7f4ff; border-color: #d4c4f0; color: #4a2d7a; }
+    .a.gold2 {
+      height: auto; min-height: 1.7rem; max-height: 3.05rem;
+      align-items: stretch; padding: 0.22rem 0.35rem 0.22rem 0;
+    }
     .a .bar { flex: 0 0 4px; align-self: stretch; background: linear-gradient(180deg, #f0d060, #e29403); }
     .a.white .bar { background: #b8b4c8; }
     .a.auto .bar { background: #9b7ad4; }
     .a .name { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-    .a .meta { flex: 0 0 auto; font-size: 0.58rem; font-weight: 900; opacity: 0.85; }
+    .a.gold2 .name {
+      white-space: normal; display: -webkit-box; -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2; line-clamp: 2; align-self: center; line-height: 1.2;
+    }
+    .a .meta { flex: 0 0 auto; font-size: 0.58rem; font-weight: 900; opacity: 0.85; align-self: center; }
 
     /* 案B: 色ベタ背景のみ・メタなし */
     .b {
@@ -91,7 +99,7 @@
 </head>
 <body>
   <h1>列下イベント — 見せ方案</h1>
-  <p class="note">狭いサポカ列幅を想定。推奨は案A（色バー＋1行）。本番はこの案で実装済み。</p>
+  <p class="note">狭いサポカ列幅を想定。採用: 案A＋金スキル名のみ最大2行（モーダルなしで選中確認）。</p>
   <div class="grid">
     <section class="card">
       <h2>現行（問題）</h2>
@@ -102,10 +110,10 @@
       </div>
     </section>
     <section class="card pick">
-      <h2>案A（推奨・採用）</h2>
-      <p>左色バー・名前ellipsis・右に択数のみ</p>
+      <h2>案A（採用）</h2>
+      <p>色バー＋名前。白/自動は1行、金は最大2行</p>
       <div class="col">
-        <div class="a"><span class="bar"></span><span class="name">ノンストップガール</span><span class="meta">3</span></div>
+        <div class="a gold2"><span class="bar"></span><span class="name">右回りコーナー〇（やや長い金スキル名の例）</span><span class="meta">3</span></div>
         <div class="a white"><span class="bar"></span><span class="name">ペースアップ</span><span class="meta">2</span></div>
         <div class="a auto"><span class="bar"></span><span class="name">全身全霊</span><span class="meta">自動</span></div>
       </div>
