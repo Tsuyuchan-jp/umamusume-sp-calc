@@ -3,15 +3,15 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>編成スクショ — 主案 v12（金フル＋IBM Plex）</title>
+  <title>編成スクショ — 主案 v13（Zen Kaku）</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+JP:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@500;700;900&display=swap" rel="stylesheet" />
   <style>
     /*
-      主案 v12 — 型C継続
-      - 金: サポ既定選択の金は全件／RMJ・リンクも金なら同枠
-      - フォント: IBM Plex Sans JP（計算機・記事貼付向け）
+      主案 v13 — 型C継続
+      - 金: サポ1行に選択金を併記／RMJ・リンクも同枠
+      - フォント: Zen Kaku Gothic New（候補2）
     */
     :root {
       --ink: #1a1630;
@@ -25,7 +25,7 @@
       --orange: #ff7300;
       --pink: #ff3276;
       --green: #38c306;
-      --font: "IBM Plex Sans JP", "Hiragino Sans", "Yu Gothic UI", Meiryo, sans-serif;
+      --font: "Zen Kaku Gothic New", "Hiragino Sans", "Yu Gothic UI", Meiryo, sans-serif;
     }
 
     * { box-sizing: border-box; }
@@ -33,7 +33,7 @@
       margin: 0;
       min-height: 100vh;
       font-family: var(--font);
-      font-weight: 600;
+      font-weight: 700;
       color: var(--ink);
       background: #2f2a48;
       -webkit-font-smoothing: antialiased;
@@ -112,7 +112,7 @@
     }
     .eyebrow__cat {
       font-size: 11px;
-      font-weight: 700;
+      font-weight: 900;
       letter-spacing: 0.14em;
       color: var(--accent-2);
     }
@@ -125,7 +125,7 @@
     .title {
       margin: 0;
       font-size: clamp(22px, 2.7vw, 28px);
-      font-weight: 700;
+      font-weight: 900;
       line-height: 1.2;
       color: var(--ink);
       letter-spacing: -0.01em;
@@ -146,7 +146,7 @@
     }
     .sp-num {
       font-size: clamp(40px, 5.2vw, 54px);
-      font-weight: 700;
+      font-weight: 900;
       line-height: 0.9;
       color: var(--accent);
       letter-spacing: -0.03em;
@@ -230,23 +230,27 @@
       margin: 0;
       padding: 0;
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 2px 12px;
+      grid-template-columns: 1fr;
+      gap: 3px 0;
     }
     .gold-list li {
       display: grid;
-      grid-template-columns: 5.4em minmax(0, 1fr);
-      gap: 4px;
-      font-size: 10px;
-      font-weight: 600;
+      grid-template-columns: max-content minmax(0, 1fr);
+      gap: 10px;
+      align-items: baseline;
+      font-size: 11px;
+      font-weight: 700;
       color: var(--ink);
-      line-height: 1.35;
+      line-height: 1.4;
     }
-    .gold-list li span { color: #8a849e; font-weight: 500; }
+    .gold-list li span {
+      color: #8a849e;
+      font-weight: 500;
+      white-space: nowrap;
+    }
     .gold-list li strong {
       min-width: 0;
       font-weight: 700;
-      overflow-wrap: anywhere;
     }
     .gold-list li.is-scn span { color: var(--accent-2); }
 
@@ -319,15 +323,16 @@
       background: transparent;
     }
     .right__trainee-lab {
-      font-size: 9px;
+      font-size: 10px;
       font-weight: 700;
-      letter-spacing: 0.08em;
+      letter-spacing: 0.06em;
       color: #f5cf6f;
     }
     .right__trainee-name {
       margin: 2px 0 0;
-      font-size: 15px;
-      font-weight: 700;
+      font-size: 14px;
+      font-weight: 900;
+      line-height: 1.25;
     }
 
     .grid-stage {
@@ -414,15 +419,15 @@
 <body>
   <div class="shell">
     <div class="banner">
-      <strong>主案 v12 · 金フル＋IBM Plex Sans JP</strong> —
-      サポ既定選択の金は全件、RMJ／リンクも金なら同枠。フォント候補の主推奨を適用。
+      <strong>主案 v13 · Zen Kaku Gothic New</strong> —
+      サポ金は1行に併記、前提から RMJ／リンクタグ削除、育成表記をゲーム名に。
       参考: <a href="./screenshot-share-refs.html">一覧</a>
     </div>
 
-    <h1 class="page-title">編成スクショ · 共有カード主案 v12</h1>
-    <p class="lead">金スキルの列挙とフォント感を記事貼付想定で確認してください。</p>
+    <h1 class="page-title">編成スクショ · 共有カード主案 v13</h1>
+    <p class="lead">金のまとめ方・育成表記・フォント（候補2: Zen Kaku）を確認してください。</p>
 
-    <article class="share" aria-label="共有カード主案 v12（初期編成）">
+    <article class="share" aria-label="共有カード主案 v13（初期編成）">
       <section class="left">
         <div class="eyebrow">
           <span class="eyebrow__cat">TRESENKEN · NEED SP</span>
@@ -431,7 +436,7 @@
 
         <div>
           <h2 class="title">初期編成サンプル</h2>
-          <p class="title-sub">アーモンドアイ · The Changer</p>
+          <p class="title-sub">[The Changer]アーモンドアイ</p>
         </div>
 
         <div class="sp-row">
@@ -449,9 +454,7 @@
               <div class="tags">
                 <span class="tag is-ok">切れ者</span>
                 <span class="tag is-key">ヒント Lv5</span>
-                <span class="tag is-hot">RMJ よくばり</span>
                 <span class="tag">継承 ×4 Lv3</span>
-                <span class="tag">ドトウリンク</span>
               </div>
             </div>
           </div>
@@ -460,16 +463,11 @@
             <span class="pill">金スキル</span>
             <div class="block__body">
               <ul class="gold-list">
-                <li><span>スピグルーヴ</span><strong>王手</strong></li>
-                <li><span>スピグルーヴ</span><strong>千鍛万錬</strong></li>
-                <li><span>スピテイオー</span><strong>迸る気迫</strong></li>
-                <li><span>スピテイオー</span><strong>正々堂々</strong></li>
-                <li><span>スピタップ</span><strong>トップランナー</strong></li>
-                <li><span>スピタップ</span><strong>飛竜乗雲</strong></li>
-                <li><span>スタドトウ</span><strong>弧線のプロフェッサー</strong></li>
-                <li><span>スタドトウ</span><strong>パスファインダー</strong></li>
-                <li><span>賢ヤング</span><strong>尻尾の滝登り</strong></li>
-                <li><span>賢ヤング</span><strong>前人未到</strong></li>
+                <li><span>スピグルーヴ</span><strong>王手 · 千鍛万錬</strong></li>
+                <li><span>スピテイオー</span><strong>迸る気迫 · 正々堂々</strong></li>
+                <li><span>スピタップ</span><strong>トップランナー · 飛竜乗雲</strong></li>
+                <li><span>スタドトウ</span><strong>弧線のプロフェッサー · パスファインダー</strong></li>
+                <li><span>賢ヤング</span><strong>尻尾の滝登り · 前人未到</strong></li>
                 <li class="is-scn"><span>RMJ</span><strong>いいとこ入った！</strong></li>
                 <li class="is-scn"><span>リンク</span><strong>ネバーギブアップ</strong></li>
               </ul>
@@ -492,8 +490,8 @@
         <div class="right__trainee">
           <img src="../../../assets/characters/112901.webp" alt="" />
           <div>
-            <div class="right__trainee-lab">TRAINEE</div>
-            <p class="right__trainee-name">アーモンドアイ</p>
+            <div class="right__trainee-lab">育成ウマ娘</div>
+            <p class="right__trainee-name">[The Changer]アーモンドアイ</p>
           </div>
         </div>
 
@@ -512,9 +510,9 @@
     </article>
 
     <div class="judge">
-      <strong>判断のお願い</strong>（金フル列挙＋フォント）<br />
+      <strong>判断のお願い</strong>（金1行併記・育成表記・Zen Kaku）<br />
       返事例: <code>採用</code> / <code>方向違い</code> / <code>惜しい：〇〇</code>
-      （フォントだけ差し替えたい場合は <code>惜しい：フォントは Zen Kaku</code> のように一言で）
+      （次フォント試す場合は <code>惜しい：フォントは明朝</code> など）
     </div>
   </div>
 </body>
