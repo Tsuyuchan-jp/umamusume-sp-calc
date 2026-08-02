@@ -3,15 +3,15 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>編成スクショ — 主案 v27（切れ者揃え・金チップ視認）</title>
+  <title>編成スクショ — 主案 v28（除外溢れデモ）</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;600;700&family=Zen+Kaku+Gothic+New:wght@500;700;900&display=swap" rel="stylesheet" />
   <style>
     /*
-      主案 v27 — 切れ者縦揃え・金チップ視認性
-      - 切れ者 ON/OFF の光学的中央揃え
-      - 金チップ縦幅を拡大、除外は内容サイズ（無理に伸ばさない）
+      主案 v28 — 除外溢れデモ
+      - 金優先 → 除外は残りスペース。溢れは「他 N 件」
+      - デモトグルであふれ状態を確認
     */
     :root {
       --ink: #1a1630;
@@ -270,15 +270,14 @@
       background: #faf9fc;
     }
     .panel--gold {
-      flex: 1 1 auto;
-      min-height: 0;
+      flex: 0 0 auto;
       border-color: #efe8c8;
       background: #fffdf6;
     }
     .panel--off {
-      flex: 0 0 auto;
-      /* チップ2〜3行分の下限。余白で伸ばし切らず、金側の余りは奪わない */
+      flex: 1 1 auto;
       min-height: 6.5em;
+      min-width: 0;
       border-color: #e4dde9;
       background: #f7f5fb;
     }
@@ -345,11 +344,19 @@
         0 1px 1px rgba(255, 255, 255, 0.55);
     }
 
+    .off-body {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      min-height: 0;
+      flex: 1;
+    }
     .off-list {
       display: flex;
       flex-wrap: wrap;
       gap: 6px;
       align-content: flex-start;
+      min-height: 0;
     }
     .off-chip {
       display: inline-flex;
@@ -363,6 +370,27 @@
       border: 1px solid #d8d2e2;
       text-decoration: line-through;
       text-decoration-color: #b0a9c0;
+    }
+    .off-chip--more {
+      flex-shrink: 0;
+      align-self: flex-start;
+      text-decoration: none;
+      color: #7a7488;
+      background: #f0ecf5;
+      border: 1px dashed #c4bdd0;
+      font-weight: 700;
+    }
+    .off-extra,
+    .off-chip--more { display: none; }
+    /* 溢れデモ: 金のあと残りだけ使い、収まらない分は「他 N 件」 */
+    body.is-off-overflow .off-extra { display: inline-flex; }
+    body.is-off-overflow .off-chip--more { display: inline-flex; }
+    body.is-off-overflow .off-list {
+      max-height: 4.6em;
+      overflow: hidden;
+    }
+    body.is-off-overflow.is-gold-plus .off-list {
+      max-height: 2.8em;
     }
 
     /* ========== 右 ========== */
@@ -528,21 +556,22 @@
 <body>
   <div class="shell">
     <div class="banner">
-      <strong>主案 v27.1 · 除外の下限を戻す</strong> —
-      切れ者は幾何中央のまま（光学補正なし）。除外は2〜3行分の下限余白。
+      <strong>主案 v28 · 除外溢れデモ</strong> —
+      金優先。溢れは「他 N 件」。金+4 と併用で侵食も確認可。
       比較: <a href="./screenshot-share-left-fresh.html">A〜E</a>
     </div>
 
-    <h1 class="page-title">編成スクショ · 共有カード主案 v27.1</h1>
-    <p class="lead">除外枠に2〜3行分の余裕があるか確認してください。</p>
+    <h1 class="page-title">編成スクショ · 共有カード主案 v28</h1>
+    <p class="lead">除外が多いときの「他 N 件」表示を確認してください。金+4 と併用すると侵食も見えます。</p>
 
     <div class="demo-bar">
       <button type="button" id="toggle-gold-plus" aria-pressed="false">金スキル +4 を仮表示</button>
+      <button type="button" id="toggle-off-overflow" aria-pressed="false">除外あふれを表示</button>
       <button type="button" id="toggle-fast" aria-pressed="true">切れ者を OFF 表示にする</button>
-      <span>金+4は通常非表示。切れ者はカード内バッジの見た目切替です（数値は変えません）。</span>
+      <span>溢れ時は金のあと残りだけ使い、収まらない分は「他 8 件」。</span>
     </div>
 
-    <article class="share" aria-label="共有カード主案 v27">
+    <article class="share" aria-label="共有カード主案 v28">
       <section class="left">
         <div class="strip">
           <div class="strip__cell">
@@ -655,10 +684,21 @@
 
             <div class="panel panel--off">
               <div class="panel__lab">除外</div>
-              <div class="off-list">
-                <span class="off-chip">ペースアップ</span>
-                <span class="off-chip">コーナー回復○</span>
-                <span class="off-chip">集中力</span>
+              <div class="off-body">
+                <div class="off-list" id="off-list">
+                  <span class="off-chip">ペースアップ</span>
+                  <span class="off-chip">コーナー回復○</span>
+                  <span class="off-chip">集中力</span>
+                  <span class="off-chip off-extra">左回り○</span>
+                  <span class="off-chip off-extra">右回り○</span>
+                  <span class="off-chip off-extra">直線巧者</span>
+                  <span class="off-chip off-extra">逃げ脚作り</span>
+                  <span class="off-chip off-extra">先行脚作り</span>
+                  <span class="off-chip off-extra">差し脚作り</span>
+                  <span class="off-chip off-extra">追込脚作り</span>
+                  <span class="off-chip off-extra">スタミナ回復</span>
+                </div>
+                <span class="off-chip off-chip--more" id="off-more">他 8 件</span>
               </div>
             </div>
           </div>
@@ -687,7 +727,7 @@
     </article>
 
     <div class="judge">
-      <strong>判断のお願い</strong>（v27.1）<br />
+      <strong>判断のお願い</strong>（v28）<br />
       返事例: <code>採用</code> / <code>方向違い</code> / <code>惜しい：〇〇</code>
     </div>
   </div>
@@ -697,6 +737,13 @@
       const on = document.body.classList.toggle("is-gold-plus");
       goldBtn.setAttribute("aria-pressed", on ? "true" : "false");
       goldBtn.textContent = on ? "金スキル +4 を隠す（通常に戻す）" : "金スキル +4 を仮表示";
+    });
+
+    const offOverflowBtn = document.getElementById("toggle-off-overflow");
+    offOverflowBtn.addEventListener("click", () => {
+      const on = document.body.classList.toggle("is-off-overflow");
+      offOverflowBtn.setAttribute("aria-pressed", on ? "true" : "false");
+      offOverflowBtn.textContent = on ? "除外あふれを隠す（通常に戻す）" : "除外あふれを表示";
     });
 
     const fastBtn = document.getElementById("toggle-fast");
