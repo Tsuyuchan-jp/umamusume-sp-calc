@@ -8,7 +8,8 @@ body {
   background: #eef1f4;
   color: #1a1a1a;
   line-height: 1.5;
-  padding-bottom: 5.5rem;
+  /* 下端トータルバー＋stack 1段分 */
+  padding-bottom: calc(4.75rem + var(--layout-stack, 0.5rem));
 }
 
 header {
@@ -428,9 +429,9 @@ main,
 .app-main {
   max-width: var(--layout-gallery-max, 1180px);
   margin: 0 auto;
-  padding: 1rem;
+  padding: var(--layout-stack, 0.5rem) var(--layout-gutter, 0.75rem);
   display: grid;
-  gap: 0.75rem;
+  gap: var(--layout-stack, 0.5rem);
 }
 
 /* 旧マグネット（scroll-snap）は削除。ゾーンは通常のブロック */
@@ -442,7 +443,7 @@ main,
 .panel {
   background: #fff;
   border-radius: 8px;
-  padding: 1rem 1.25rem;
+  padding: var(--panel-pad-y, 0.85rem) var(--panel-pad-x, 1rem);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
 }
 
@@ -1171,9 +1172,9 @@ input[type="search"] {
   gap: 0.4rem 0.75rem;
   align-items: center;
   box-sizing: border-box;
-  width: min(var(--layout-chrome-max, 1480px), calc(100% - 1.5rem));
-  margin: 0.5rem auto 0;
-  padding: 0.45rem 0.75rem;
+  width: min(var(--layout-chrome-max, 1480px), calc(100% - 2 * var(--layout-gutter, 0.75rem)));
+  margin: var(--layout-stack, 0.5rem) auto 0;
+  padding: 0.45rem var(--layout-gutter, 0.75rem);
   background: rgba(70, 63, 112, 0.94);
   color: #eee;
   font-size: 0.75rem;
@@ -1241,9 +1242,8 @@ body.layout-split > .layout-modebar {
   position: relative;
   flex-shrink: 0;
   z-index: 60;
-  /* クロム幅は gallery と同じ（不変） */
-  width: min(var(--layout-chrome-max, 1480px), calc(100% - 1.5rem));
-  margin: 0.5rem auto 0;
+  width: min(var(--layout-chrome-max, 1480px), calc(100% - 2 * var(--layout-gutter, 0.75rem)));
+  margin: var(--layout-stack, 0.5rem) auto 0;
 }
 
 /* 合計バーを上部コマンド化（DOM は applyLayoutMode で modebar 直後へ移動） */
@@ -1260,12 +1260,11 @@ body.layout-split > .total-sp-bar,
   right: auto;
   flex-shrink: 0;
   z-index: 55;
-  /* クロム幅は modebar と同じ（本文の gallery 幅とは独立） */
   box-sizing: border-box;
   max-width: var(--layout-chrome-max, 1480px);
-  width: 100%;
-  margin: 0.35rem auto 0;
-  padding: 0 0.75rem;
+  width: min(var(--layout-chrome-max, 1480px), calc(100% - 2 * var(--layout-gutter, 0.75rem)));
+  margin: var(--layout-stack, 0.5rem) auto 0;
+  padding: 0;
   background: transparent;
   border: 0;
   box-shadow: none;
@@ -1276,7 +1275,7 @@ body.layout-split .total-sp-bar-inner {
   display: grid;
   grid-template-columns: minmax(300px, 420px) 1fr;
   align-items: center;
-  gap: 0.5rem;
+  gap: var(--layout-stack, 0.5rem);
   max-width: none;
   margin: 0;
   padding: 0.4rem 0;
@@ -1294,7 +1293,7 @@ body.layout-split .total-sp-bar__brand {
   gap: 0.45rem 0.65rem;
   flex-shrink: 0;
   min-width: 0;
-  padding: 0.2rem 0.75rem 0.2rem 0.85rem;
+  padding: 0.2rem var(--panel-pad-x, 1rem);
   min-height: 2.85rem;
 }
 
@@ -1408,7 +1407,7 @@ body:not(.layout-split) .total-sp-bar__main::before {
 body.layout-gallery .total-sp-bar-inner,
 body:not(.layout-split) .total-sp-bar-inner {
   max-width: var(--layout-gallery-max, 1180px);
-  padding: 0.55rem 1rem 0.65rem;
+  padding: 0.55rem var(--layout-gutter, 0.75rem) 0.65rem;
   box-sizing: border-box;
 }
 
@@ -1418,7 +1417,7 @@ body.layout-split .total-sp-bar-value {
 
 body.layout-split > .app-main {
   max-width: var(--layout-chrome-max, 1480px);
-  width: 100%;
+  width: min(var(--layout-chrome-max, 1480px), calc(100% - 2 * var(--layout-gutter, 0.75rem)));
   box-sizing: border-box;
   flex: 1 1 auto;
   min-height: 0;
@@ -1428,8 +1427,8 @@ body.layout-split > .app-main {
   grid-template-rows: auto 1fr;
   align-items: stretch;
   overflow: hidden;
-  gap: 0.5rem;
-  padding: 0.5rem 0.75rem;
+  gap: var(--layout-stack, 0.5rem);
+  padding: var(--layout-stack, 0.5rem) 0;
   margin: 0 auto;
 }
 
@@ -1465,7 +1464,8 @@ body.layout-split .panel--deck {
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  padding: 0.65rem 0.7rem 0.55rem;
+  /* split では g-brand 非表示なので通常のパネル余白 */
+  padding: var(--panel-pad-y, 0.85rem) var(--panel-pad-x, 1rem);
 }
 
 body.layout-split .panel--workbench {
@@ -1629,7 +1629,7 @@ body.layout-split .deck-support-col.is-focus .deck-evt-sum:not(.deck-evt-sum--au
   flex-shrink: 0;
   max-height: 42%;
   min-height: 0;
-  margin: 0.55rem 0 0;
+  margin: var(--layout-stack, 0.5rem) 0 0;
   border: 1px solid rgba(70, 63, 112, 0.22);
   border-radius: 10px;
   overflow: hidden;
@@ -1726,7 +1726,7 @@ body.layout-split .deck-dashboard::after {
 
 body.layout-split .deck-footband {
   flex-shrink: 0;
-  margin-top: 0.55rem;
+  margin-top: var(--layout-stack, 0.5rem);
   max-height: none;
   overflow: visible;
 }
@@ -1749,13 +1749,17 @@ body.layout-split .panel--workbench {
     display: block;
     height: auto;
     overflow: auto;
-    padding-bottom: 5.5rem;
+    padding-bottom: calc(4.75rem + var(--layout-stack, 0.5rem));
   }
 
   /* 狭幅スプリット: 上部コマンドではなく下端バー＋パネル内ブランドを残す */
   body.layout-split .panel--deck > .app-header {
     display: flex;
-    margin: 0 -0.7rem 0.55rem;
+    margin: 0 calc(-1 * var(--panel-pad-x, 1rem)) var(--layout-stack, 0.5rem);
+  }
+
+  body.layout-split .panel--deck {
+    padding-top: 0;
   }
 
   body.layout-split > .total-sp-bar,
@@ -1889,7 +1893,7 @@ body.layout-split .panel--workbench {
   }
 
   body {
-    padding-bottom: 6.5rem;
+    padding-bottom: calc(5.75rem + var(--layout-stack, 0.5rem));
   }
 }
 
@@ -2342,7 +2346,7 @@ body.layout-split .panel--workbench {
 .total-sp-bar-inner {
   max-width: var(--layout-gallery-max, 1180px);
   margin: 0 auto;
-  padding: 0.55rem 1rem 0.65rem;
+  padding: 0.55rem var(--layout-gutter, 0.75rem) 0.65rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
