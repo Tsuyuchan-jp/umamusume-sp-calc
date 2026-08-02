@@ -25,7 +25,7 @@ UI は `app/js/cardAssets.js` が URL を組み立てる。画像が無い場合
 ## 同梱範囲
 
 - 優先サポカ **40種** → `assets/supports/{id}.webp`
-- 育成ウマ娘 **全カード**（`chr_icon` + dress フォールバック）→ `assets/characters/{id}.webp`
+- 育成ウマ娘 **全カード**（`chr_icon` → 欠落時 `piece_icon`）→ `assets/characters/{id}.webp`
 - タイプ印 **6種** — 実行時 CDN 非依存
 - UI 背景 `assets/ui/uma-world.png` — 横長イラスト（空＋芝）。旧 U-tools 縦長 webp は使わない
 - 目安サイズ: サポカ **240×320**・キャラ長辺 256px・WebP
@@ -80,12 +80,13 @@ D:\DMM\umamusumeDMM\Umamusume\umamusume_Data\Persistent\
 npm run assets:extract
 # 育成のみ: node scripts/run_extract_card_assets.mjs --skip-supports
 npm run assets:import
+npm run assets:audit-dupes   # 別カードなのに同一 webp が無いか（0 件が理想）
 ```
 
 | 種別 | meta 名 |
 |------|---------|
 | サポカ縦カード元 | `supportcard/support{ID}/support_thumb_{ID}` |
-| 育成カード | `chara/chr{charaId}/chr_icon_{charaId}_{key}_01`（無ければ dress。`piece_icon` は不使用） |
+| 育成カード | `chr_icon_{charaId}_{cardId}_01`（無ければ `piece_icon_{cardId}_no_frame` → dress） |
 
 import 時のサポカ後処理（`scripts/support_vertical_card.py`）:
 

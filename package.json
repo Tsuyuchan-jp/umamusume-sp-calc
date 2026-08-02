@@ -19,6 +19,7 @@
     "reclassify-support-events": "node scripts/reclassify_support_events.mjs",
     "assets:extract": "node scripts/run_extract_card_assets.mjs",
     "assets:import": "node scripts/import_card_assets.mjs",
+    "assets:audit-dupes": "node scripts/audit_character_icon_dupes.mjs",
     "samples:vertical-v3": "node scripts/run_make_vertical_support_v3.mjs",
     "samples:vertical-v4": "node scripts/run_make_vertical_support_v4.mjs",
     "samples:trim": "node scripts/run_make_trim_support_samples.mjs",
