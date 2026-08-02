@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>編成タイトル見た目案 ＋ リセット置き場</title>
+  <style>
+    :root {
+      --ink-deep: #3a1f6e;
+      --ink-mid: #5a2d9e;
+      --gold: #f5cf6f;
+      --text: #2a1f3d;
+      --muted: rgba(42, 31, 61, 0.55);
+      --line: rgba(90, 60, 140, 0.18);
+      --pink: #e85a8c;
+      --page: #f3eef8;
+      --panel: #fff;
+      --font: "Hiragino Sans", "Noto Sans JP", "Segoe UI", sans-serif;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: var(--font);
+      color: var(--text);
+      background:
+        radial-gradient(900px 400px at 10% -10%, rgba(232, 90, 140, 0.12), transparent 60%),
+        radial-gradient(700px 360px at 90% 0%, rgba(90, 45, 160, 0.14), transparent 55%),
+        var(--page);
+      line-height: 1.45;
+    }
+    .wrap { max-width: 1080px; margin: 0 auto; padding: 1.5rem 1.25rem 3rem; }
+    h1 { margin: 0 0 0.35rem; font-size: 1.45rem; }
+    .lead { margin: 0 0 1.5rem; color: var(--muted); max-width: 46rem; }
+    h2 {
+      margin: 2rem 0 0.75rem;
+      font-size: 1.05rem;
+      padding-bottom: 0.35rem;
+      border-bottom: 1px solid var(--line);
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1rem;
+    }
+    .card {
+      background: var(--panel);
+      border-radius: 12px;
+      box-shadow: 0 8px 24px rgba(50, 20, 90, 0.08);
+      overflow: hidden;
+      border: 1px solid rgba(90, 60, 140, 0.1);
+    }
+    .card__chrome {
+      background: linear-gradient(180deg, var(--ink-mid), var(--ink-deep));
+      color: #fff;
+      padding: 0.55rem 0.85rem;
+      font-size: 0.78rem;
+      letter-spacing: 0.04em;
+      border-bottom: 2px solid var(--gold);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .card__chrome strong { font-size: 0.9rem; letter-spacing: 0; }
+    .card__body { padding: 0.85rem 0.95rem 1rem; }
+    .meta {
+      margin: 0.65rem 0 0;
+      font-size: 0.78rem;
+      color: var(--muted);
+    }
+    .tag {
+      display: inline-block;
+      padding: 0.12rem 0.45rem;
+      border-radius: 999px;
+      background: rgba(90, 45, 160, 0.08);
+      color: var(--ink-mid);
+      font-size: 0.72rem;
+      font-weight: 700;
+    }
+    .tag--rec { background: rgba(232, 90, 140, 0.14); color: #b83266; }
+    .fake-h2 {
+      margin: 0 0 0.35rem;
+      font-size: 0.95rem;
+      display: flex;
+      gap: 0.75rem;
+      align-items: baseline;
+    }
+    .fake-h2 span { color: var(--muted); font-size: 0.75rem; font-weight: 500; }
+
+    /* ---- A: 現状 ---- */
+    .a-input {
+      width: 100%;
+      padding: 0.42rem 0.55rem;
+      border: 1px solid rgba(90, 60, 140, 0.22);
+      border-radius: 6px;
+      font: inherit;
+      font-size: 0.88rem;
+    }
+
+    /* ---- B: 見出し風 + 鉛筆 ---- */
+    .b-title {
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+      min-height: 2rem;
+      padding: 0.15rem 0.2rem 0.25rem 0;
+      border-bottom: 1px solid transparent;
+      cursor: text;
+    }
+    .b-title:hover { border-bottom-color: rgba(90, 60, 140, 0.25); }
+    .b-title.is-editing {
+      border-bottom-color: rgba(120, 80, 180, 0.55);
+      background: rgba(90, 45, 160, 0.04);
+      border-radius: 4px 4px 0 0;
+    }
+    .b-title__text {
+      flex: 1;
+      min-width: 0;
+      font-size: 1.05rem;
+      font-weight: 700;
+      letter-spacing: 0.01em;
+      outline: none;
+      border: 0;
+      background: transparent;
+      color: var(--text);
+      padding: 0.15rem 0;
+      font-family: inherit;
+    }
+    .b-title__text:read-only { cursor: pointer; }
+    .b-edit {
+      flex: 0 0 auto;
+      width: 1.7rem;
+      height: 1.7rem;
+      border: 0;
+      border-radius: 999px;
+      background: transparent;
+      color: rgba(90, 60, 140, 0.45);
+      cursor: pointer;
+      display: grid;
+      place-items: center;
+      opacity: 0.65;
+    }
+    .b-title:hover .b-edit,
+    .b-title.is-editing .b-edit,
+    .b-edit:focus-visible { opacity: 1; background: rgba(90, 45, 160, 0.08); color: var(--ink-mid); }
+
+    /* ---- C: バッジ行 ---- */
+    .c-row {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      max-width: 100%;
+      padding: 0.28rem 0.55rem 0.28rem 0.7rem;
+      border-radius: 999px;
+      background: linear-gradient(180deg, #faf7ff, #f3ecfb);
+      border: 1px solid rgba(90, 60, 140, 0.14);
+      cursor: text;
+    }
+    .c-row:hover { border-color: rgba(90, 60, 140, 0.28); }
+    .c-row.is-editing {
+      border-radius: 8px;
+      background: #fff;
+      box-shadow: 0 0 0 2px rgba(180, 120, 255, 0.28);
+    }
+    .c-row__text {
+      border: 0;
+      background: transparent;
+      font: inherit;
+      font-size: 0.86rem;
+      font-weight: 650;
+      color: var(--text);
+      outline: none;
+      min-width: 8rem;
+      max-width: 16rem;
+    }
+    .c-edit {
+      width: 1.45rem;
+      height: 1.45rem;
+      border: 0;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.7);
+      color: var(--ink-mid);
+      cursor: pointer;
+      display: grid;
+      place-items: center;
+      font-size: 0.75rem;
+    }
+
+    /* ---- D: ゴースト行（アンダーラインのみ） ---- */
+    .d-title {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      border-bottom: 1px dashed rgba(90, 60, 140, 0.28);
+      padding-bottom: 0.15rem;
+    }
+    .d-title.is-editing { border-bottom-style: solid; border-bottom-color: var(--pink); }
+    .d-title__text {
+      flex: 1;
+      border: 0;
+      background: transparent;
+      font: inherit;
+      font-size: 1rem;
+      font-weight: 700;
+      outline: none;
+      color: var(--text);
+    }
+    .d-hint {
+      font-size: 0.68rem;
+      color: var(--muted);
+      white-space: nowrap;
+      opacity: 0;
+      transition: opacity 0.15s;
+    }
+    .d-title:hover .d-hint,
+    .d-title.is-editing .d-hint { opacity: 1; }
+
+    /* ---- E: 見出しと同一行 ---- */
+    .e-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.45rem 0.65rem;
+    }
+    .e-row h3 { margin: 0; font-size: 0.95rem; }
+    .e-title {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+      min-width: 10rem;
+      max-width: 100%;
+      padding: 0.1rem 0.2rem;
+      border-radius: 4px;
+    }
+    .e-title:hover { background: rgba(90, 45, 160, 0.05); }
+    .e-title.is-editing { background: rgba(90, 45, 160, 0.07); box-shadow: inset 0 -2px 0 var(--gold); }
+    .e-title__text {
+      border: 0;
+      background: transparent;
+      outline: none;
+      font: inherit;
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: var(--ink-deep);
+      min-width: 6rem;
+    }
+    .e-edit {
+      border: 0;
+      background: transparent;
+      color: rgba(90, 60, 140, 0.5);
+      cursor: pointer;
+      font-size: 0.85rem;
+      padding: 0.15rem;
+    }
+
+    /* ---- リセット置き場 ---- */
+    .reset-demo {
+      display: grid;
+      gap: 1rem;
+    }
+    .chrome-demo {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.5rem;
+      padding: 0.55rem 0.75rem;
+      background: linear-gradient(180deg, var(--ink-mid), var(--ink-deep));
+      color: #fff;
+      border-radius: 8px 8px 0 0;
+      border-bottom: 2px solid var(--gold);
+    }
+    .chrome-demo .acts { display: flex; gap: 0.35rem; flex-wrap: wrap; }
+    .chip-btn {
+      border: 1px solid rgba(255,255,255,0.28);
+      background: rgba(255,255,255,0.08);
+      color: #fff;
+      border-radius: 6px;
+      padding: 0.28rem 0.55rem;
+      font: inherit;
+      font-size: 0.75rem;
+      cursor: pointer;
+    }
+    .chip-btn--danger {
+      border-color: rgba(255, 170, 190, 0.45);
+      color: #ffd0dc;
+    }
+    .chip-btn--ghost {
+      background: transparent;
+      border-color: transparent;
+      color: rgba(255,255,255,0.72);
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+    .white-panel {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-top: 0;
+      border-radius: 0 0 10px 10px;
+      padding: 0.85rem;
+    }
+    .quiet-link {
+      margin: 0.5rem 0 0;
+      font-size: 0.78rem;
+    }
+    .quiet-link button {
+      border: 0;
+      background: none;
+      color: var(--muted);
+      text-decoration: underline;
+      cursor: pointer;
+      font: inherit;
+      padding: 0;
+    }
+    .menu {
+      position: relative;
+      display: inline-block;
+    }
+    .menu__panel {
+      position: absolute;
+      right: 0;
+      top: calc(100% + 4px);
+      min-width: 10rem;
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      box-shadow: 0 10px 28px rgba(40, 20, 70, 0.16);
+      padding: 0.35rem;
+      z-index: 2;
+      display: none;
+    }
+    .menu.is-open .menu__panel { display: block; }
+    .menu__item {
+      display: block;
+      width: 100%;
+      text-align: left;
+      border: 0;
+      background: transparent;
+      padding: 0.45rem 0.55rem;
+      border-radius: 6px;
+      font: inherit;
+      font-size: 0.82rem;
+      cursor: pointer;
+      color: var(--text);
+    }
+    .menu__item:hover { background: rgba(90, 45, 160, 0.07); }
+    .menu__item--danger { color: #b83266; }
+    .compare {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.75rem;
+    }
+    @media (max-width: 700px) {
+      .compare { grid-template-columns: 1fr; }
+    }
+    .note {
+      background: rgba(90, 45, 160, 0.05);
+      border-left: 3px solid var(--ink-mid);
+      padding: 0.65rem 0.8rem;
+      margin: 0.75rem 0 0;
+      font-size: 0.84rem;
+    }
+    .icon-pen::before { content: "✎"; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>編成タイトル見た目案 ＋ リセット置き場</h1>
+    <p class="lead">
+      対話用モック。タイトルは「入力欄っぽくないが編集できる」方向。リセットは要否と置き場の比較。
+      各タイトル案はクリック／タップで編集モードになります。
+    </p>
+
+    <h2>1. 編成タイトルの見た目</h2>
+    <div class="grid">
+      <!-- A -->
+      <article class="card">
+        <div class="card__chrome"><strong>A. 現状</strong><span class="tag">NG寄り</span></div>
+        <div class="card__body">
+          <div class="fake-h2">編成 <span>シナリオ: トレセン軒</span></div>
+          <input class="a-input" value="アーモンドアイ" aria-label="現状" />
+          <p class="meta">枠線のあるテキストボックス。機能は分かるが「フォーム部品」感が強い。</p>
+        </div>
+      </article>
+
+      <!-- B -->
+      <article class="card">
+        <div class="card__chrome"><strong>B. 見出し風 + 鉛筆</strong><span class="tag tag--rec">推奨候補</span></div>
+        <div class="card__body">
+          <div class="fake-h2">編成 <span>シナリオ: トレセン軒</span></div>
+          <div class="b-title" data-edit-root>
+            <input class="b-title__text" value="切れ者前提・パワ寄せ" readonly data-edit-field />
+            <button type="button" class="b-edit icon-pen" data-edit-btn aria-label="タイトルを編集" title="編集"></button>
+          </div>
+          <p class="meta">通常はタイポグラフィ。ホバーで鉛筆。クリック／鉛筆で編集。共有カードの見出し感に近い。</p>
+        </div>
+      </article>
+
+      <!-- C -->
+      <article class="card">
+        <div class="card__chrome"><strong>C. ピルバッジ</strong><span class="tag">柔らかめ</span></div>
+        <div class="card__body">
+          <div class="fake-h2">編成 <span>シナリオ: トレセン軒</span></div>
+          <div class="c-row" data-edit-root>
+            <input class="c-row__text" value="アーモンドアイ" readonly data-edit-field />
+            <button type="button" class="c-edit icon-pen" data-edit-btn aria-label="編集"></button>
+          </div>
+          <p class="meta">チップ風。可愛いが「ラベル」に見えやすく、長タイトルだと伸びる／折り返しが難しい。</p>
+        </div>
+      </article>
+
+      <!-- D -->
+      <article class="card">
+        <div class="card__chrome"><strong>D. ゴースト下線</strong><span class="tag">最小</span></div>
+        <div class="card__body">
+          <div class="fake-h2">編成 <span>シナリオ: トレセン軒</span></div>
+          <div class="d-title" data-edit-root>
+            <input class="d-title__text" value="スピ3スタ1" readonly data-edit-field />
+            <span class="d-hint">クリックで編集</span>
+          </div>
+          <p class="meta">アイコン無し。編集可能だと気づきにくいリスク。ホバーヒント頼み。</p>
+        </div>
+      </article>
+
+      <!-- E -->
+      <article class="card">
+        <div class="card__chrome"><strong>E. 「編成」と同列</strong><span class="tag">縦節約</span></div>
+        <div class="card__body">
+          <div class="e-row">
+            <h3>編成</h3>
+            <div class="e-title" data-edit-root>
+              <input class="e-title__text" value="アーモンドアイ" readonly data-edit-field />
+              <button type="button" class="e-edit icon-pen" data-edit-btn aria-label="編集"></button>
+            </div>
+            <span style="color:var(--muted);font-size:0.75rem">シナリオ固定</span>
+          </div>
+          <p class="meta">1段に収まる。狭幅・スプリットで縦を食わない。ただし見出しとタイトルの役割が混ざりやすい。</p>
+        </div>
+      </article>
+    </div>
+
+    <p class="note">
+      <strong>おすすめ:</strong> <b>B</b>（見出し風＋鉛筆）。共有カードのタイトル見た目と揃いやすく、編集可能も伝わる。
+      縦が気になるなら <b>E</b>。鉛筆は常時薄く出すか、ホバー時のみかはその後で調整可。
+    </p>
+
+    <h2>2. オールリセット — まず要否</h2>
+    <div class="note">
+      タイトル入力が入った今、「初期デッキ＋前提＋除外＋タイトル」をまとめて戻す導線がないと、
+      比較のたびに手作業が増える。なので <b>入れる価値はある</b>。ただし常時目立つ主ボタンにはしない方がよい
+      （誤タップで全部消える破壊操作）。
+    </div>
+    <p class="meta" style="margin-top:0.75rem">
+      決めること: リセット範囲は何か？
+    </p>
+    <div class="grid" style="margin-top:0.5rem">
+      <article class="card">
+        <div class="card__chrome"><strong>R1. 初期状態へ</strong><span class="tag tag--rec">推奨</span></div>
+        <div class="card__body">
+          <p class="meta" style="margin:0">アプリ起動時と同じ（常用デッキ・前提既定・除外クリア・タイトル＝育成名）。セッションも上書き。</p>
+        </div>
+      </article>
+      <article class="card">
+        <div class="card__chrome"><strong>R2. 空にクリア</strong><span class="tag">非推奨寄り</span></div>
+        <div class="card__body">
+          <p class="meta" style="margin:0">育成／サポ全空。初回体験が悪く、用途も「初期へ戻す」より狭い。</p>
+        </div>
+      </article>
+      <article class="card">
+        <div class="card__chrome"><strong>R3. タイトルだけ</strong><span class="tag">別機能</span></div>
+        <div class="card__body">
+          <p class="meta" style="margin:0">オールリセットではない。必要ならタイトル横の小さな「戻す」で足りる。</p>
+        </div>
+      </article>
+    </div>
+
+    <h2>3. リセットの置き場案</h2>
+    <div class="reset-demo">
+      <div class="compare">
+        <div>
+          <p class="meta" style="margin:0 0 0.35rem"><span class="tag">P1</span> ヘッダー右（メモリ／使い方の隣）— 常時露出</p>
+          <div class="chrome-demo">
+            <strong>SP Calc</strong>
+            <div class="acts">
+              <button type="button" class="chip-btn">メモリ</button>
+              <button type="button" class="chip-btn">使い方</button>
+              <button type="button" class="chip-btn chip-btn--danger">リセット</button>
+            </div>
+          </div>
+          <div class="white-panel"><p class="meta" style="margin:0">発見しやすいが、危険操作が主導線と並ぶ。ボタンが増えて窮屈。</p></div>
+        </div>
+        <div>
+          <p class="meta" style="margin:0 0 0.35rem"><span class="tag tag--rec">P2 推奨</span> 「⋯」メニューに格納</p>
+          <div class="chrome-demo">
+            <strong>SP Calc</strong>
+            <div class="acts">
+              <button type="button" class="chip-btn">メモリ</button>
+              <button type="button" class="chip-btn">使い方</button>
+              <div class="menu" id="menu-demo">
+                <button type="button" class="chip-btn" id="menu-toggle" aria-expanded="false">⋯</button>
+                <div class="menu__panel" role="menu">
+                  <button type="button" class="menu__item">セッションを忘れる</button>
+                  <button type="button" class="menu__item menu__item--danger">初期状態に戻す</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="white-panel"><p class="meta" style="margin:0">常時は増えない。破壊操作を一段奥に。確認ダイアログ必須。</p></div>
+        </div>
+      </div>
+
+      <div class="compare">
+        <div>
+          <p class="meta" style="margin:0 0 0.35rem"><span class="tag">P3</span> メモリダイアログ内</p>
+          <div class="white-panel" style="border-radius:10px;border-top:1px solid var(--line)">
+            <strong style="font-size:0.9rem">設計メモリ</strong>
+            <p class="meta">保存行…</p>
+            <p class="quiet-link"><button type="button">初期状態に戻す…</button></p>
+          </div>
+          <p class="meta">メモリと近いメンタルモデル（保存／復元／初期化）。ただし「メモリを開かないとリセットできない」。</p>
+        </div>
+        <div>
+          <p class="meta" style="margin:0 0 0.35rem"><span class="tag">P4</span> 編成見出し右の静かなリンク</p>
+          <div class="white-panel" style="border-radius:10px;border:1px solid var(--line)">
+            <div style="display:flex;justify-content:space-between;align-items:baseline;gap:0.5rem">
+              <strong>編成</strong>
+              <button type="button" style="border:0;background:none;color:var(--muted);font:inherit;font-size:0.75rem;text-decoration:underline;cursor:pointer">初期に戻す</button>
+            </div>
+            <div class="b-title" style="margin-top:0.4rem">
+              <input class="b-title__text" value="アーモンドアイ" readonly />
+            </div>
+          </div>
+          <p class="meta">編成操作の近く。狭幅では押しやすいが、誤操作距離も近い。</p>
+        </div>
+      </div>
+    </div>
+
+    <p class="note">
+      <strong>おすすめの組み合わせ:</strong> リセット範囲は <b>R1（初期状態へ）</b>、置き場は <b>P2（⋯メニュー）</b> または <b>P3（メモリ内）</b>。
+      タイトル見た目は <b>B</b>。どちらも「主面を増やさない」方針と合う。
+    </p>
+  </div>
+
+  <script>
+    function enterEdit(root) {
+      const field = root.querySelector("[data-edit-field]");
+      if (!field) return;
+      root.classList.add("is-editing");
+      field.readOnly = false;
+      field.focus();
+      field.select();
+    }
+    function leaveEdit(root) {
+      const field = root.querySelector("[data-edit-field]");
+      if (!field) return;
+      root.classList.remove("is-editing");
+      field.readOnly = true;
+    }
+    document.querySelectorAll("[data-edit-root]").forEach((root) => {
+      const field = root.querySelector("[data-edit-field]");
+      const btn = root.querySelector("[data-edit-btn]");
+      root.addEventListener("click", (e) => {
+        if (e.target === btn) return;
+        if (field && field.readOnly) enterEdit(root);
+      });
+      btn?.addEventListener("click", (e) => {
+        e.stopPropagation();
+        enterEdit(root);
+      });
+      field?.addEventListener("blur", () => leaveEdit(root));
+      field?.addEventListener("keydown", (e) => {
+        if (e.key === "Enter" || e.key === "Escape") {
+          e.preventDefault();
+          field.blur();
+        }
+      });
+    });
+    const menu = document.getElementById("menu-demo");
+    const toggle = document.getElementById("menu-toggle");
+    toggle?.addEventListener("click", () => {
+      const open = menu.classList.toggle("is-open");
+      toggle.setAttribute("aria-expanded", open ? "true" : "false");
+    });
+    document.addEventListener("click", (e) => {
+      if (!menu?.contains(e.target)) menu?.classList.remove("is-open");
+    });
+  </script>
+</body>
+</html>
