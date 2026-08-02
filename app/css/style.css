@@ -11,11 +11,6 @@ body {
   padding-bottom: 5.5rem;
 }
 
-html {
-  scroll-snap-type: y proximity;
-  scroll-behavior: smooth;
-}
-
 header {
   display: flex;
   align-items: flex-start;
@@ -438,18 +433,10 @@ main,
   gap: 0.75rem;
 }
 
-.snap-zone {
-  scroll-snap-align: start;
-  scroll-snap-stop: normal;
-}
-
-.snap-zone--deck {
-  min-height: calc(100dvh - 5.5rem - 5rem);
-}
-
+/* 旧マグネット（scroll-snap）は削除。ゾーンは通常のブロック */
+.snap-zone--deck,
 .snap-zone--workbench {
-  min-height: calc(100dvh - 5.5rem - 5rem);
-  scroll-snap-align: start;
+  min-height: 0;
 }
 
 .panel {
@@ -850,7 +837,7 @@ input[type="search"] {
   margin-top: 0;
 }
 
-/* ---- レイアウトモードバー ---- */
+/* ---- レイアウトモードバー（常に操作可能） ---- */
 .layout-modebar {
   display: flex;
   flex-wrap: wrap;
@@ -863,7 +850,8 @@ input[type="search"] {
   border-bottom: 2px solid #f5cf6f;
   position: sticky;
   top: 0;
-  z-index: 40;
+  z-index: 60;
+  flex-shrink: 0;
 }
 
 .layout-modebar__label {
@@ -905,9 +893,8 @@ input[type="search"] {
   color: #3a2a00;
 }
 
-/* ---- スプリット（H1） ---- */
+/* ---- スプリット（H1）: 切替時は先頭へ戻し、左右ペインのみスクロール ---- */
 html.layout-split {
-  scroll-snap-type: none;
   height: 100%;
   overflow: hidden;
 }
@@ -918,9 +905,17 @@ body.layout-split {
   padding-bottom: 5.5rem;
 }
 
-body.layout-split .app-main {
+body.layout-split > .layout-modebar {
+  position: sticky;
+  top: 0;
+  z-index: 60;
+}
+
+body.layout-split > .app-main {
   max-width: 1480px;
-  height: calc(100dvh - 5.5rem - 2.6rem - 3.2rem);
+  /* header〜modebar〜下部バーを除いた残り。左右だけ内部スクロール */
+  height: calc(100dvh - 5.5rem - 7.5rem);
+  max-height: calc(100dvh - 5.5rem - 7.5rem);
   grid-template-columns: minmax(300px, 420px) 1fr;
   grid-template-rows: auto 1fr;
   align-items: stretch;
@@ -939,7 +934,6 @@ body.layout-split #snap-zone-workbench {
   min-height: 0;
   height: 100%;
   overflow: auto;
-  scroll-snap-align: none;
 }
 
 body.layout-split #snap-zone-deck {
@@ -954,25 +948,26 @@ body.layout-split #snap-zone-workbench {
 
 body.layout-split .panel--deck,
 body.layout-split .panel--workbench {
-  min-height: 100%;
+  min-height: auto;
 }
 
 @media (max-width: 900px) {
-  body.layout-split .app-main {
-    grid-template-columns: 1fr;
-    grid-template-rows: auto;
+  html.layout-split {
     height: auto;
     overflow: auto;
   }
 
   body.layout-split {
-    overflow: auto;
     height: auto;
+    overflow: auto;
   }
 
-  html.layout-split {
-    overflow: auto;
+  body.layout-split > .app-main {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
     height: auto;
+    max-height: none;
+    overflow: visible;
   }
 
   body.layout-split #snap-zone-deck,
@@ -981,6 +976,7 @@ body.layout-split .panel--workbench {
     grid-row: auto;
     height: auto;
     max-height: none;
+    overflow: visible;
   }
 }
 

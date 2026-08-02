@@ -944,10 +944,17 @@ function resolveLayoutMode(pref) {
 }
 
 function applyLayoutMode(effective) {
-  document.documentElement.classList.toggle("layout-split", effective === "split");
-  document.documentElement.classList.toggle("layout-gallery", effective === "gallery");
-  document.body.classList.toggle("layout-split", effective === "split");
-  document.body.classList.toggle("layout-gallery", effective === "gallery");
+  const enteringSplit = effective === "split";
+  /* ギャラリーで下にスクロールしたまま split の overflow:hidden に入ると切替バーが画面外で操作不能になる */
+  if (enteringSplit) {
+    window.scrollTo(0, 0);
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
+  }
+  document.documentElement.classList.toggle("layout-split", enteringSplit);
+  document.documentElement.classList.toggle("layout-gallery", !enteringSplit);
+  document.body.classList.toggle("layout-split", enteringSplit);
+  document.body.classList.toggle("layout-gallery", !enteringSplit);
 }
 
 function bindLayoutMode() {
