@@ -233,7 +233,7 @@ header p {
 
 /* 設計メモリダイアログ（help-dialog と同系統） */
 .memory-dialog {
-  width: min(520px, calc(100vw - 1.5rem));
+  width: min(560px, calc(100vw - 1.5rem));
   max-height: min(85vh, 640px);
   margin: auto;
   padding: 0;

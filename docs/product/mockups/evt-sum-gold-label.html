@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>列下イベント — 金スキル表記統一案</title>
+  <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@700;900&display=swap" rel="stylesheet" />
+  <style>
+    :root { --ink: #463f70; --font: "Zen Maru Gothic", Meiryo, sans-serif; }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; font-family: var(--font); font-weight: 700;
+      background: #3d3758; color: #703a13; padding: 1.25rem;
+    }
+    h1 { color: #f5cf6f; font-size: 1rem; margin: 0 0 0.4rem; }
+    .note {
+      color: #ddd8ef; font-size: 0.78rem; margin: 0 0 1rem;
+      line-height: 1.55; max-width: 52rem;
+    }
+    .grid {
+      display: grid; gap: 1rem;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    }
+    .card {
+      background: #fff; border: 2px solid var(--ink);
+      border-radius: 10px; padding: 0.85rem;
+    }
+    .card h2 { margin: 0 0 0.25rem; font-size: 0.84rem; color: var(--ink); }
+    .card p { margin: 0 0 0.65rem; font-size: 0.66rem; color: #625d7d; line-height: 1.45; }
+    .tag {
+      display: inline-block; margin-bottom: 0.35rem;
+      padding: 0.1rem 0.38rem; border-radius: 4px;
+      font-size: 0.6rem; font-weight: 900;
+      background: #eeeaf6; color: var(--ink);
+    }
+    .tag--pick { background: #463f70; color: #fff; }
+    .col { display: flex; flex-direction: column; gap: 0.32rem; max-width: 9.5rem; }
+    .sup { font-size: 0.62rem; color: #8a849e; margin: 0.5rem 0 0.2rem; }
+
+    /* 列下チップ共通 */
+    .sum {
+      display: flex; align-items: center; gap: 0.35rem;
+      min-height: 1.7rem; padding: 0 0.35rem 0 0;
+      border-radius: 5px; border: 1px solid #e9b84a;
+      background: linear-gradient(180deg, #fff6d6, #ffe29a);
+      color: #5a3d00; font-size: 0.68rem; font-weight: 700;
+      overflow: hidden; cursor: default;
+    }
+    .sum .bar {
+      flex: 0 0 4px; align-self: stretch;
+      background: linear-gradient(180deg, #f0d060, #e29403);
+      border-radius: 4px 0 0 4px;
+    }
+    .sum .name { flex: 1; min-width: 0; }
+    .sum .meta {
+      flex: 0 0 auto; font-size: 0.58rem; font-weight: 900;
+      color: #8a6a20; opacity: 0.85; padding-right: 0.1rem;
+    }
+    /* 現行: 1行・区切り混在 */
+    .now .name {
+      overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+    }
+    /* 採用案: 金は最大2行・1スキル1行 */
+    .pick .sum {
+      height: auto; min-height: 1.7rem; max-height: 3.05rem;
+      align-items: stretch; padding: 0.22rem 0.35rem 0.22rem 0;
+    }
+    .pick .name {
+      display: flex; flex-direction: column; justify-content: center;
+      gap: 0.06rem; line-height: 1.15; overflow: hidden;
+    }
+    .pick .skill-line {
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    }
+    .pick .sum--1line { max-height: 1.7rem; }
+  </style>
+</head>
+<body>
+  <h1>列下イベント — 金スキル表記統一案</h1>
+  <p class="note">
+    方針: 金は <strong>skills から「スキル名 Lv○」を1行ずつ</strong>（最大2行）。選択式も自動も同じ組み立て。<br />
+    グランアレグリア・ナイスネイチャの例を掲載。採用後に本実装（未承認）。
+  </p>
+
+  <div class="grid">
+    <section class="card now">
+      <span class="tag">現行</span>
+      <h2>表記がバラバラ</h2>
+      <p>選択式は JSON の <code>+</code> 区切り＋Lv。自動は名前のみ <code>／</code> 区切り。</p>
+
+      <p class="sup">グラン（自動）</p>
+      <div class="col">
+        <div class="sum">
+          <span class="bar"></span>
+          <span class="name">天真爛漫／元気溌剌</span>
+          <span class="meta">自動</span>
+        </div>
+      </div>
+
+      <p class="sup">ネイチャ（自動）</p>
+      <div class="col">
+        <div class="sum">
+          <span class="bar"></span>
+          <span class="name">突破口／秘めた闘魂</span>
+          <span class="meta">自動</span>
+        </div>
+      </div>
+
+      <p class="sup">選択式（例）</p>
+      <div class="col">
+        <div class="sum">
+          <span class="bar"></span>
+          <span class="name">千里の道 Lv1 + 陽炎 Lv1</span>
+          <span class="meta">3</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="card pick">
+      <span class="tag tag--pick">採用案</span>
+      <h2>金は 1スキル1行（最大2行）</h2>
+      <p>改行は DOM の行分割。Lv は常に表示。1金だけのときは1行のまま。</p>
+
+      <p class="sup">グラン（自動）</p>
+      <div class="col">
+        <div class="sum">
+          <span class="bar"></span>
+          <span class="name">
+            <span class="skill-line">天真爛漫 Lv1</span>
+            <span class="skill-line">元気溌剌 Lv2</span>
+          </span>
+          <span class="meta">自動</span>
+        </div>
+      </div>
+
+      <p class="sup">ネイチャ（自動）</p>
+      <div class="col">
+        <div class="sum">
+          <span class="bar"></span>
+          <span class="name">
+            <span class="skill-line">突破口 Lv1</span>
+            <span class="skill-line">秘めた闘魂 Lv2</span>
+          </span>
+          <span class="meta">自動</span>
+        </div>
+      </div>
+
+      <p class="sup">選択式（例・金2つ）</p>
+      <div class="col">
+        <div class="sum">
+          <span class="bar"></span>
+          <span class="name">
+            <span class="skill-line">千里の道 Lv1</span>
+            <span class="skill-line">陽炎 Lv1</span>
+          </span>
+          <span class="meta">3</span>
+        </div>
+      </div>
+
+      <p class="sup">選択式（例・金1つ）</p>
+      <div class="col">
+        <div class="sum sum--1line">
+          <span class="bar"></span>
+          <span class="name">
+            <span class="skill-line">ノンストップガール Lv2</span>
+          </span>
+          <span class="meta">3</span>
+        </div>
+      </div>
+    </section>
+  </div>
+</body>
+</html>

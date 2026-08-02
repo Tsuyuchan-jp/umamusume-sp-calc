@@ -944,6 +944,27 @@ function formatMemoryUpdatedAt(ts) {
   }
 }
 
+function renderMemoryDeckThumbHtml(snapshot) {
+  if (!snapshot) return "";
+  const thumbCell = (url, empty = false) => {
+    if (empty || !url) {
+      return `<div class="memory-deck-thumb__cell memory-deck-thumb__cell--empty"></div>`;
+    }
+    return `<div class="memory-deck-thumb__cell"><img src="${escapeHtml(url)}" alt="" loading="lazy" decoding="async" /></div>`;
+  };
+  const charId = snapshot.characterId;
+  const charCell = charId
+    ? `<div class="memory-deck-thumb__char">${thumbCell(characterImageUrl(charId))}</div>`
+    : `<div class="memory-deck-thumb__char">${thumbCell(null, true)}</div>`;
+  const supportIds = Array.isArray(snapshot.supportIds) ? snapshot.supportIds : [];
+  const supCells = [];
+  for (let i = 0; i < 6; i++) {
+    const id = supportIds[i];
+    supCells.push(thumbCell(id != null ? supportImageUrl(id) : null, id == null));
+  }
+  return `<div class="memory-deck-thumb" aria-hidden="true">${charCell}<div class="memory-deck-thumb__grid">${supCells.join("")}</div></div>`;
+}
+
 function renderMemoryList() {
   const list = document.getElementById("memory-list");
   if (!list) return;
@@ -959,6 +980,7 @@ function renderMemoryList() {
     const sp =
       entry.totalSp == null ? "—" : `${Number(entry.totalSp).toLocaleString("ja-JP")} SP`;
     li.innerHTML = `
+      ${renderMemoryDeckThumbHtml(entry.snapshot)}
       <div class="memory-item__meta">
         <div class="memory-item__name">${escapeHtml(entry.name)}</div>
         <div class="memory-item__sub">${escapeHtml(formatMemoryUpdatedAt(entry.updatedAt))} · ${escapeHtml(sp)}</div>
