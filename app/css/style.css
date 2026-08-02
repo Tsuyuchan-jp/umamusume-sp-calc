@@ -608,9 +608,10 @@ input[type="search"] {
 .scn-chip-row {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.28rem;
+  gap: 0.4rem;
   min-width: 0;
   flex: 1 1 auto;
+  padding: 2px 0;
 }
 
 .scn-chip {
@@ -627,21 +628,13 @@ input[type="search"] {
   cursor: pointer;
   white-space: nowrap;
   max-width: 100%;
-  overflow: hidden;
+  overflow: visible;
   text-overflow: ellipsis;
   transition: box-shadow 0.12s ease, transform 0.12s ease, border-color 0.12s ease, filter 0.12s ease;
 }
 
 .scn-chip:hover {
   border-color: #9080b8;
-}
-
-/* 選択中（非金）: ピンク塗り */
-.scn-chip.is-on:not(.scn-chip--gold) {
-  border-color: #c00f47;
-  background: linear-gradient(180deg, #ff75a3, #f7518b);
-  color: #fff;
-  box-shadow: 0 1px 4px rgba(255, 50, 118, 0.35);
 }
 
 /* 金スキル属性（未選択は少し抑える） */
@@ -657,18 +650,37 @@ input[type="search"] {
   filter: none;
 }
 
-/* 金 + 選択中: 金塗りは維持し、紫リングで選択を示す */
+/* 選択中（D6）: 塗りは属性のまま／✓＋淡い外側ハロー */
+.scn-chip.is-on {
+  filter: none;
+  box-shadow: 0 0 0 3px rgba(70, 63, 112, 0.28);
+}
+
+.scn-chip.is-on:not(.scn-chip--gold) {
+  border-color: #aea6c4;
+  background: linear-gradient(180deg, #fff, #f3f0f7);
+  color: #463f70;
+}
+
 .scn-chip.scn-chip--gold.is-on,
 .scn-chip.scn-chip--rmj.is-on {
-  border-color: #c98910;
-  background: linear-gradient(180deg, #f0d060, #e29403);
-  color: #3a2a00;
-  filter: none;
-  box-shadow:
-    0 0 0 2px #fff,
-    0 0 0 4px #463f70,
-    0 2px 8px rgba(70, 63, 112, 0.28);
-  transform: translateY(-1px);
+  border-color: #d4b85a;
+  background: linear-gradient(180deg, #fffaf0, #ffe9b8);
+  color: #6a5220;
+}
+
+.scn-chip__check {
+  display: none;
+  margin-right: 0.22rem;
+  font-size: 0.72rem;
+  font-weight: 900;
+  line-height: 1;
+  color: #463f70;
+  vertical-align: 0.02em;
+}
+
+.scn-chip.is-on .scn-chip__check {
+  display: inline-block;
 }
 
 .scn-chip__gold-mark {
@@ -681,11 +693,6 @@ input[type="search"] {
   line-height: 1.2;
   vertical-align: 0.05em;
   background: linear-gradient(90deg, #e9c95f, #e29403);
-  color: #5a3d00;
-}
-
-.scn-chip.scn-chip--gold.is-on .scn-chip__gold-mark {
-  background: rgba(255, 255, 255, 0.55);
   color: #5a3d00;
 }
 

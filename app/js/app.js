@@ -1494,7 +1494,7 @@ function renderSeniorRmjRadios() {
     btn.className =
       "scn-chip scn-chip--gold" + (current === choice.id ? " is-on" : "");
     btn.setAttribute("aria-pressed", current === choice.id ? "true" : "false");
-    btn.innerHTML = `<span class="scn-chip__gold-mark" aria-hidden="true">金</span>${escapeHtml(skillName)}`;
+    btn.innerHTML = `<span class="scn-chip__check" aria-hidden="true">✓</span><span class="scn-chip__gold-mark" aria-hidden="true">金</span>${escapeHtml(skillName)}`;
     const skillNote =
       choice.skills?.length > 0 ? formatSkillList(choice.skills) : "";
     btn.title = skillNote
@@ -1558,10 +1558,11 @@ function renderScenarioLinkRadios() {
       (current === entry.id ? " is-on" : "") +
       (isGold ? " scn-chip--gold" : "");
     btn.setAttribute("aria-pressed", current === entry.id ? "true" : "false");
+    const check = `<span class="scn-chip__check" aria-hidden="true">✓</span>`;
     if (isGold) {
-      btn.innerHTML = `<span class="scn-chip__gold-mark" aria-hidden="true">金</span>${escapeHtml(skillName)}`;
+      btn.innerHTML = `${check}<span class="scn-chip__gold-mark" aria-hidden="true">金</span>${escapeHtml(skillName)}`;
     } else {
-      btn.textContent = skillName;
+      btn.innerHTML = `${check}${escapeHtml(skillName)}`;
     }
     const linkShort = String(entry.label || "").replace(/リンク$/, "");
     btn.title = resolved
