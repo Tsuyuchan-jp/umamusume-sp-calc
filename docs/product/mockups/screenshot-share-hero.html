@@ -3,28 +3,24 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>編成スクショ — 主案 v22（影強化）</title>
+  <title>編成スクショ — 主案 v23（D寄り・金と除外）</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;600;700&family=Zen+Kaku+Gothic+New:wght@500;700;900&display=swap" rel="stylesheet" />
   <style>
     /*
-      主案 v19 — 型C継続
-      - 金: 左右グラデ（右端を明るめに）／縦並び・2列
-      - SPはレギュ turf/mid/senko の実計算（キーは英語。日本語キーだと誤除外になる）
+      主案 v23 — D寄り刷新
+      - 上段メタ帯（SP / 件数 / レギュ）
+      - 切れ者は大きく独立表示
+      - 作業面の主役 = 金スキル ＋ 除外スキル
     */
     :root {
       --ink: #1a1630;
       --ink-soft: #5a5478;
       --line: #ebe6f2;
       --bg: #ffffff;
-      --panel: #f7f5fb;
       --accent: #463f70;
       --accent-2: #7b6fd6;
-      --gold: #c9a227;
-      --orange: #ff7300;
-      --pink: #ff3276;
-      --green: #38c306;
       --font-display: "Shippori Mincho", "Hiragino Mincho ProN", "Yu Mincho", serif;
       --font-ui: "Zen Kaku Gothic New", "Hiragino Sans", "Yu Gothic UI", Meiryo, sans-serif;
     }
@@ -45,7 +41,6 @@
       margin: 0 auto;
       padding: 20px 0 44px;
     }
-
     .banner {
       margin-bottom: 14px;
       padding: 12px 14px;
@@ -57,9 +52,7 @@
       line-height: 1.55;
     }
     .banner strong { color: #f5cf6f; }
-    .banner em { font-style: normal; color: #59ccfc; }
     .banner a { color: #59ccfc; }
-
     h1.page-title {
       margin: 0 0 4px;
       color: #fff;
@@ -74,7 +67,6 @@
       max-width: 48rem;
     }
 
-    /* ========== 共有カード v8 ========== */
     .share {
       width: 100%;
       max-width: 1080px;
@@ -85,158 +77,192 @@
       overflow: hidden;
       box-shadow: 0 18px 50px rgba(0,0,0,.35);
       display: grid;
-      grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
-      animation: rise .4s ease both;
-    }
-    @keyframes rise {
-      from { opacity: 0; transform: translateY(8px); }
-      to { opacity: 1; transform: none; }
+      grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
     }
 
-    /* 左：LayerX的な余白＋TellerNovel的タグ */
+    /* ========== 左：D寄り ========== */
     .left {
-      padding: 18px 18px 14px 22px;
       display: flex;
       flex-direction: column;
-      gap: 8px;
       min-width: 0;
-      background:
-        radial-gradient(circle at 0% 0%, rgba(123, 111, 214, 0.09), transparent 40%),
-        #fff;
+      background: #fff;
     }
 
-    .eyebrow {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 8px;
+    .strip {
+      display: grid;
+      grid-template-columns: 1.35fr 0.85fr 1.1fr;
+      background: #1a1630;
+      color: #fff;
+      flex-shrink: 0;
     }
-    .eyebrow__cat {
-      font-size: 11px;
-      font-weight: 900;
-      letter-spacing: 0.14em;
-      color: var(--accent-2);
+    .strip__cell {
+      padding: 11px 14px;
+      border-right: 1px solid rgba(255,255,255,0.12);
+      min-width: 0;
     }
-    .eyebrow__brand {
-      font-size: 10px;
+    .strip__cell:last-child { border-right: 0; }
+    .strip__lab {
+      font-size: 9px;
       font-weight: 700;
-      color: var(--ink-soft);
+      letter-spacing: 0.1em;
+      color: #f5cf6f;
+      margin-bottom: 4px;
     }
-
-    .title {
-      margin: 0;
+    .strip__sp {
       font-family: var(--font-display);
-      font-size: clamp(20px, 2.5vw, 26px);
+      font-size: clamp(26px, 3.2vw, 34px);
       font-weight: 700;
-      line-height: 1.2;
-      color: var(--ink);
-      letter-spacing: 0.02em;
-    }
-    .title-sub {
-      margin: 4px 0 0;
-      font-size: 11px;
-      color: var(--ink-soft);
-      font-weight: 500;
-    }
-
-    .sp-row {
-      display: flex;
-      align-items: flex-end;
-      justify-content: space-between;
-      gap: 12px;
-      padding: 2px 0 0;
-    }
-    .sp-num {
-      font-family: var(--font-display);
-      font-size: clamp(36px, 4.6vw, 48px);
-      font-weight: 700;
-      line-height: 0.9;
-      color: var(--accent);
+      line-height: 0.95;
       letter-spacing: -0.02em;
-      font-variant-numeric: tabular-nums;
     }
-    .sp-num em {
+    .strip__sp em {
       font-style: normal;
-      font-size: 0.32em;
-      color: var(--orange);
-      margin-left: 4px;
-      vertical-align: 0.45em;
+      font-size: 0.38em;
+      color: #ff9a4a;
+      margin-left: 3px;
+      vertical-align: 0.35em;
     }
-    .sp-meta {
-      text-align: right;
-      font-size: 12px;
-      font-weight: 600;
-      color: var(--ink-soft);
-      line-height: 1.4;
-      padding-bottom: 4px;
+    .strip__val {
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 1.25;
     }
-    .sp-meta strong { color: var(--ink); font-weight: 700; }
+    .strip__val small {
+      display: block;
+      margin-top: 2px;
+      font-size: 10px;
+      font-weight: 500;
+      color: #b8b2c8;
+    }
 
-    /* TellerNovel風：黒ピル＋本文 */
-    .blocks {
+    .body {
+      flex: 1;
+      min-height: 0;
       display: flex;
       flex-direction: column;
       gap: 10px;
-      margin-top: 2px;
+      padding: 12px 14px 12px;
     }
-    .block {
-      display: grid;
-      grid-template-columns: auto 1fr;
-      gap: 10px 12px;
-      align-items: start;
+
+    .head {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 10px;
+      flex-shrink: 0;
     }
-    .pill {
+    .head__title {
+      margin: 0;
+      font-family: var(--font-display);
+      font-size: 18px;
+      font-weight: 700;
+      line-height: 1.2;
+    }
+    .head__sub {
+      margin: 3px 0 0;
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--ink-soft);
+    }
+    .head__brand {
+      font-size: 10px;
+      font-weight: 500;
+      color: #9a96aa;
+      white-space: nowrap;
+      padding-top: 4px;
+    }
+
+    /* 切れ者を大きく */
+    .fast {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-shrink: 0;
+      padding: 8px 12px;
+      border-radius: 10px;
+      background: linear-gradient(90deg, #eaf9e4, #f5fbf2);
+      border: 1px solid #b7e6a8;
+    }
+    .fast__mark {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      min-height: 24px;
-      padding: 3px 10px;
-      border-radius: 6px;
-      background: #111;
+      min-width: 4.6em;
+      padding: 8px 12px;
+      border-radius: 8px;
+      background: #38c306;
       color: #fff;
-      font-size: 11px;
-      font-weight: 700;
+      font-size: 16px;
+      font-weight: 900;
       letter-spacing: 0.04em;
-      white-space: nowrap;
+      line-height: 1;
+      box-shadow: 0 2px 0 #2a9604;
     }
-    .block__body {
-      font-size: 12px;
-      font-weight: 500;
-      color: var(--ink-soft);
-      line-height: 1.5;
-      padding-top: 2px;
-    }
-    .block__body strong { color: var(--ink); font-weight: 700; }
-
-    .tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 5px;
-    }
-    .tag {
-      display: inline-flex;
-      align-items: center;
-      padding: 3px 9px;
-      border-radius: 999px;
+    .fast__meta {
       font-size: 11px;
       font-weight: 600;
-      background: var(--panel);
       color: var(--ink-soft);
-      border: 1px solid var(--line);
+      line-height: 1.4;
     }
-    .tag.is-key { background: var(--accent); border-color: var(--accent); color: #fff; }
-    .tag.is-hot { background: var(--pink); border-color: var(--pink); color: #fff; }
-    .tag.is-ok { background: var(--green); border-color: var(--green); color: #fff; }
+    .fast__meta strong { color: var(--ink); }
+
+    .work {
+      flex: 1;
+      min-height: 0;
+      display: grid;
+      grid-template-rows: 1fr auto;
+      gap: 8px;
+    }
+
+    .panel {
+      min-height: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      padding: 8px 10px 10px;
+      border-radius: 10px;
+      border: 1px solid var(--line);
+      background: #faf9fc;
+    }
+    .panel--gold {
+      border-color: #efe8c8;
+      background: #fffdf6;
+    }
+    .panel--off {
+      border-color: #e4dde9;
+      background: #f7f5fb;
+    }
+    .panel__lab {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 8px;
+      font-size: 10px;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      color: #8a849e;
+    }
+    .panel--gold .panel__lab { color: #9a7a18; }
+    .panel--off .panel__lab { color: #7a748e; }
+    .panel__lab small {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0;
+      color: var(--ink-soft);
+    }
 
     .gold-board {
+      flex: 1;
+      min-height: 0;
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 6px 14px;
+      gap: 4px 12px;
+      align-content: start;
     }
     .gold-row {
       display: grid;
-      grid-template-columns: 5.6em minmax(0, 1fr);
-      gap: 6px;
+      grid-template-columns: 5.2em minmax(0, 1fr);
+      gap: 5px;
       align-items: start;
       min-width: 0;
     }
@@ -244,27 +270,23 @@
       font-size: 10px;
       font-weight: 500;
       color: #8a849e;
-      line-height: 1.55;
-      white-space: nowrap;
-      padding-top: 2px;
       text-align: right;
+      padding-top: 2px;
+      white-space: nowrap;
     }
     .gold-row.is-scn .gold-row__src { color: var(--accent-2); }
     .gold-row__chips {
       display: flex;
       flex-direction: column;
-      align-items: stretch;
       gap: 3px;
       min-width: 0;
     }
-    /* ゲーム金スキル寄せ：左上が明るく輝く横〜斜めグラデ（影なし・右端も暗くしすぎない） */
     .gold-chip {
       display: flex;
       align-items: center;
       width: 100%;
       padding: 2px 8px 2px 7px;
       border-radius: 6px;
-      font-family: var(--font-ui);
       font-size: 10px;
       font-weight: 700;
       line-height: 1.35;
@@ -275,7 +297,6 @@
       overflow: hidden;
       text-overflow: ellipsis;
     }
-    /* 白シャドウは文字ノード側へ（薄めのドロップ） */
     .gold-chip__name {
       text-shadow:
         0 0 1px rgba(255, 255, 255, 0.7),
@@ -285,31 +306,50 @@
     .off-list {
       display: flex;
       flex-wrap: wrap;
-      gap: 4px;
+      gap: 5px;
     }
     .off-chip {
       display: inline-flex;
       align-items: center;
-      padding: 2px 8px;
+      padding: 4px 10px;
       border-radius: 6px;
-      font-size: 10px;
-      font-weight: 600;
-      color: #7a748e;
-      background: #f3f1f7;
-      border: 1px solid #e2dde8;
+      font-size: 11px;
+      font-weight: 700;
+      color: #6a6478;
+      background: #fff;
+      border: 1px solid #d8d2e2;
       text-decoration: line-through;
-      text-decoration-color: #c4bfd0;
+      text-decoration-color: #b0a9c0;
     }
 
+    .prem-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+      align-items: center;
+      flex-shrink: 0;
+    }
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      padding: 3px 9px;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 600;
+      background: #f7f5fb;
+      color: var(--ink-soft);
+      border: 1px solid var(--line);
+    }
+    .tag.is-key { background: var(--accent); border-color: var(--accent); color: #fff; }
     .foot-note {
-      margin-top: auto;
+      margin: 0;
       font-size: 10px;
       color: #9a96aa;
       font-weight: 500;
       letter-spacing: 0.02em;
     }
 
-    /* 右：世界観背景（オーバーレイ薄め・彩度を残す）＋入れ子角丸なし */
+    /* ========== 右 ========== */
     .right {
       position: relative;
       min-width: 0;
@@ -338,11 +378,7 @@
       mix-blend-mode: soft-light;
       pointer-events: none;
     }
-    .right > * {
-      position: relative;
-      z-index: 1;
-    }
-
+    .right > * { position: relative; z-index: 1; }
     .right__trainee {
       flex-shrink: 0;
       display: flex;
@@ -364,10 +400,7 @@
       width: 52px;
       height: 52px;
       object-fit: contain;
-      object-position: center center;
-      border-radius: 0;
       display: block;
-      /* 角丸アイコンの裏に下地色が出るので付けない */
       background: transparent;
     }
     .right__trainee-lab {
@@ -383,13 +416,11 @@
       font-weight: 700;
       line-height: 1.25;
     }
-
     .grid-stage {
       flex: 1;
       min-height: 0;
       display: flex;
       flex-direction: column;
-      /* 角丸グラスの曲線部にカードが被らないよう余白を多めに */
       padding: 14px 16px 16px;
       border-radius: 14px;
       background: rgba(255, 255, 255, 0.12);
@@ -420,18 +451,12 @@
       overflow: visible;
       background: transparent;
       border: 0;
-      border-radius: 0;
-      /* 矩形の box-shadow だとカード角の外に四角い影の角が出る */
-      box-shadow: none;
     }
     .grid-bleed img {
       width: 100%;
       height: 100%;
       object-fit: contain;
-      object-position: center center;
       display: block;
-      border-radius: 0;
-      vertical-align: top;
       filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.35));
     }
 
@@ -458,50 +483,50 @@
 <body>
   <div class="shell">
     <div class="banner">
-      <strong>主案 v22</strong> —
-      左レイアウトは刷新比較へ:
-      <a href="./screenshot-share-left-fresh.html">A〜E</a>
-      （旧: <a href="./screenshot-share-left-options.html">L1〜L4</a>）
+      <strong>主案 v23 · D寄り</strong> —
+      上段メタ帯＋切れ者大表示。作業面の主役は金スキルと除外。
+      比較: <a href="./screenshot-share-left-fresh.html">A〜E</a>
     </div>
 
-    <h1 class="page-title">編成スクショ · 共有カード主案 v22</h1>
-    <p class="lead">金名シャドウの見え方を確認してください。</p>
+    <h1 class="page-title">編成スクショ · 共有カード主案 v23</h1>
+    <p class="lead">D寄りの骨格で、切れ者・金・除外の見せ方を確認してください。</p>
 
-    <article class="share" aria-label="共有カード主案 v22（初期編成）">
+    <article class="share" aria-label="共有カード主案 v23">
       <section class="left">
-        <div class="eyebrow">
-          <span class="eyebrow__cat">必要SP</span>
-          <span class="eyebrow__brand">ウマ娘 SP 計算</span>
-        </div>
-
-        <div>
-          <h2 class="title">初期編成サンプル</h2>
-          <p class="title-sub">[The Changer]アーモンドアイ</p>
-        </div>
-
-        <div class="sp-row">
-          <div class="sp-num">7,666<em>SP</em></div>
-          <div class="sp-meta">
-            計上 <strong>61</strong> スキル<br />
-            手動除外 <strong>3</strong> 件
+        <div class="strip">
+          <div class="strip__cell">
+            <div class="strip__lab">NEED SP</div>
+            <div class="strip__sp">7,666<em>SP</em></div>
+          </div>
+          <div class="strip__cell">
+            <div class="strip__lab">COUNT</div>
+            <div class="strip__val">61 スキル<small>手動除外 3</small></div>
+          </div>
+          <div class="strip__cell">
+            <div class="strip__lab">REGU</div>
+            <div class="strip__val">芝 · 中距離 · 先行<small>トレヒント Lv5 · 継承 ×4 Lv3</small></div>
           </div>
         </div>
 
-        <div class="blocks">
-          <div class="block">
-            <span class="pill">前提</span>
-            <div class="block__body">
-              <div class="tags">
-                <span class="tag is-ok">切れ者</span>
-                <span class="tag is-key">トレヒント Lv5</span>
-                <span class="tag">継承 ×4 Lv3</span>
-              </div>
+        <div class="body">
+          <div class="head">
+            <div>
+              <h2 class="head__title">初期編成サンプル</h2>
+              <p class="head__sub">[The Changer]アーモンドアイ</p>
+            </div>
+            <span class="head__brand">umamusume-sp-calc</span>
+          </div>
+
+          <div class="fast">
+            <span class="fast__mark">切れ者</span>
+            <div class="fast__meta">
+              <strong>ON</strong> — この合計に反映済み
             </div>
           </div>
 
-          <div class="block">
-            <span class="pill">金スキル</span>
-            <div class="block__body">
+          <div class="work">
+            <div class="panel panel--gold">
+              <div class="panel__lab">GOLD<small>選択イベント由来（レギュ計上ON）</small></div>
               <div class="gold-board">
                 <div class="gold-row">
                   <span class="gold-row__src">スピグルーヴ</span>
@@ -558,22 +583,9 @@
                 </div>
               </div>
             </div>
-          </div>
 
-          <div class="block">
-            <span class="pill">レギュ</span>
-            <div class="block__body">
-              <div class="tags">
-                <span class="tag is-key">芝</span>
-                <span class="tag is-key">中距離</span>
-                <span class="tag is-key">先行</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="block">
-            <span class="pill">除外</span>
-            <div class="block__body">
+            <div class="panel panel--off">
+              <div class="panel__lab">EXCLUDE<small>手動OFFのみ（レギュ非互換は帯のREGU側）</small></div>
               <div class="off-list">
                 <span class="off-chip">ペースアップ</span>
                 <span class="off-chip">コーナー回復○</span>
@@ -581,9 +593,9 @@
               </div>
             </div>
           </div>
-        </div>
 
-        <p class="foot-note">umamusume-sp-calc</p>
+          <p class="foot-note">記事貼付用 · ウマ娘 SP 計算</p>
+        </div>
       </section>
 
       <section class="right">
@@ -594,7 +606,6 @@
             <p class="right__trainee-name">[The Changer]アーモンドアイ</p>
           </div>
         </div>
-
         <div class="grid-stage">
           <div class="grid-bleed" aria-label="サポートカード">
             <figure><img src="../../../assets/supports/30282.webp" alt="スピグルーヴ" /></figure>
@@ -609,7 +620,7 @@
     </article>
 
     <div class="judge">
-      <strong>判断のお願い</strong>（金名シャドウ）<br />
+      <strong>判断のお願い</strong>（D寄り v23）<br />
       返事例: <code>採用</code> / <code>方向違い</code> / <code>惜しい：〇〇</code>
     </div>
   </div>

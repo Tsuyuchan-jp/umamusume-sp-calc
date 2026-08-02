@@ -36,9 +36,9 @@
 |------|------|
 | **必須（最低限）** | 育成＋サポ6、前提チップ、合計 SP |
 | **欲しい** | 設計名（メモリ名）、**計上スキル数** |
-| **レイアウト次第で載せたい** | 計算で選ばれている **金スキル**（フラット淡グラデチップ・縦並び）。**レギュ**チップ。**手動除外**スキル名（レギュ非互換は出さない） |
-| **見た目（大枠採用）** | 型C v22: 金チップ＋名の白輪郭シャドウ。選択金はレギュ計上ONのみ。計上はアプリONスキル数（継承×N込み）に揃える |
-| **付記まで可** | 手動除外は名前リスト可（件数だけでも可） |
+| **レイアウト次第で載せたい** | **金スキル**（選択・計上ON）と **手動除外** を作業面の主役に。全スキル列挙はしない |
+| **見た目（大枠採用）** | 型C v23: **D寄り**（上段メタ帯）。作業面の主役は金＋手動除外。切れ者は大きく独立表示 |
+| **付記まで可** | レギュは上段帯。切れ者は数値に効くため大きく見せる |
 | **載せない** | レギュ非互換の除外リスト、結果表（スキル一覧の詳細）、育成所持・進化の金 |
 
 UX 初期方針（顔＝6＋合計＋前提）は土台として維持。記事用途のため、金イベント要約とスキル数を上乗せ候補にする。
@@ -82,9 +82,8 @@ UX 初期方針（顔＝6＋合計＋前提）は土台として維持。記事�
 
 ## 次ステップ
 
-1. ~~主案モック~~ → [mockups/screenshot-share-hero.html](./mockups/screenshot-share-hero.html)（v22）  
-   **左レイアウト刷新中** → [mockups/screenshot-share-left-fresh.html](./mockups/screenshot-share-left-fresh.html)（A〜E）  
-   旧比較: [left-options L1〜L4](./mockups/screenshot-share-left-options.html)  
+1. ~~主案モック~~ → [mockups/screenshot-share-hero.html](./mockups/screenshot-share-hero.html)（**v23·D寄り** · 目視待ち）  
+   刷新比較: [left-fresh A〜E](./mockups/screenshot-share-left-fresh.html)  
    比較: [型B](./mockups/screenshot-share-type-b.html) · 参考: [screenshot-share-refs.html](./mockups/screenshot-share-refs.html)
    ※旧三連: [mockups/screenshot-share-options.html](./mockups/screenshot-share-options.html)（参考のみ）
 2. 主案承認 → 本実装（html2canvas 等は実装時）
