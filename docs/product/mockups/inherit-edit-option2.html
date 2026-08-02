@@ -401,39 +401,80 @@
       display: flex;
       flex-direction: column;
       align-items: flex-end;
-      gap: 0.12rem;
-      min-width: 9.5rem;
-      padding: 0.3rem 0.55rem;
+      gap: 0.2rem;
+      min-width: 12.5rem;
+      padding: 0.35rem 0.65rem 0.4rem;
       border-radius: 8px;
       border: 1px solid rgba(245, 207, 111, 0.35);
       background: rgba(0, 0, 0, 0.18);
-      line-height: 1.2;
+      line-height: 1.25;
     }
     .unit-cost__kicker {
       font-size: 0.62rem;
       font-weight: 700;
       color: #bebbce;
       letter-spacing: 0.04em;
+      align-self: stretch;
     }
-    .unit-cost__main {
-      font-size: 0.78rem;
-      font-weight: 900;
-      color: #fff;
-    }
-    .unit-cost__main b {
-      font-size: 1.15rem;
+    .unit-cost__formula {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      justify-content: flex-end;
+      gap: 0.2rem 0.28rem;
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: #ddd8ef;
       font-variant-numeric: tabular-nums;
+    }
+    .unit-cost__term {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.05rem;
+      min-width: 2.4rem;
+    }
+    .unit-cost__term b {
+      font-size: 1.05rem;
+      font-weight: 900;
       color: #59ccfc;
-      margin: 0 0.15rem;
+      line-height: 1.1;
+    }
+    .unit-cost__term--total b {
+      font-size: 1.2rem;
+      color: #ffe9a8;
+    }
+    .unit-cost__term small {
+      font-size: 0.58rem;
+      font-weight: 700;
+      color: #bebbce;
+      letter-spacing: 0.02em;
+      white-space: nowrap;
+    }
+    .unit-cost__op {
+      font-size: 0.85rem;
+      font-weight: 900;
+      color: #cfcadf;
+      padding-bottom: 0.7rem;
     }
     .unit-cost__meta {
       font-size: 0.64rem;
       font-weight: 700;
       color: #cfcadf;
+      align-self: stretch;
+      text-align: right;
     }
     .unit-cost__meta em {
       font-style: normal;
       color: #ffc0d6;
+    }
+    .unit-cost.is-off .unit-cost__term--total b {
+      color: #9a96ad;
+      text-decoration: line-through;
+      text-decoration-thickness: 1.5px;
+    }
+    .unit-cost.is-off .unit-cost__meta {
+      color: #9a96ad;
     }
 
     @media (max-width: 720px) {
@@ -441,6 +482,11 @@
         margin-left: 0;
         width: 100%;
         align-items: flex-start;
+      }
+      .unit-cost__formula,
+      .unit-cost__meta {
+        justify-content: flex-start;
+        text-align: left;
       }
       .total .v { font-size: 1.5rem; }
     }
@@ -455,7 +501,7 @@
       <p>
         <strong>操作:</strong> 下部バーの「継承」チップを押すとパネル開閉。
         加算はトグル。編集は個数とヒントLvのみ（baseSpは200固定・非表示）。
-        右端は「1本あたりの必要SP」（ヒントLv＋切れ者反映）。本アプリには未配線。
+        右端は「1本SP × 個数 = 合計」の式表示（ヒントLv＋切れ者反映）。本アプリには未配線。
       </p>
     </header>
 
@@ -474,7 +520,7 @@
         <li>チップ文言: OFF時は「継承 OFF」、ON時は「継承 N本」</li>
         <li>開いている間はチップに金アウトライン（開閉状態が分かる）</li>
         <li>外側クリック / Esc / × で閉じる（ON状態は維持）</li>
-        <li>加算はトグル。右端は1本あたり必要SP（Lv＋切れ者）。baseSp入力なし</li>
+        <li>加算はトグル。右端は 1本SP × 個数 = 合計。baseSp入力なし</li>
       </ul>
     </aside>
   </div>
@@ -529,9 +575,24 @@
           </div>
         </div>
 
-        <div class="unit-cost" aria-live="polite">
-          <span class="unit-cost__kicker">継承固有 1本</span>
-          <span class="unit-cost__main"><b id="unit-cost">140</b>SP</span>
+        <div class="unit-cost" id="unit-cost-box" aria-live="polite">
+          <span class="unit-cost__kicker">必要SP</span>
+          <div class="unit-cost__formula">
+            <span class="unit-cost__term">
+              <b id="unit-cost">140</b>
+              <small>1本</small>
+            </span>
+            <span class="unit-cost__op" aria-hidden="true">×</span>
+            <span class="unit-cost__term">
+              <b id="unit-count">4</b>
+              <small>個数</small>
+            </span>
+            <span class="unit-cost__op" aria-hidden="true">＝</span>
+            <span class="unit-cost__term unit-cost__term--total">
+              <b id="unit-total">560</b>
+              <small>合計</small>
+            </span>
+          </div>
           <span class="unit-cost__meta" id="unit-meta">ヒントLv3 · 切れ者なし</span>
         </div>
       </div>
@@ -629,12 +690,17 @@
 
         const unit = unitCost();
         const total = totalInherit();
+        const rawTotal = unit * state.count;
         document.getElementById("unit-cost").textContent = unit.toLocaleString("ja-JP");
+        document.getElementById("unit-count").textContent = String(state.count);
+        document.getElementById("unit-total").textContent = (state.enabled ? total : rawTotal).toLocaleString("ja-JP");
+        document.getElementById("unit-cost-box").classList.toggle("is-off", !state.enabled);
         const fastLabel = state.fast
           ? '<em>切れ者あり</em>'
           : "切れ者なし";
-        document.getElementById("unit-meta").innerHTML =
-          `ヒントLv${state.lv} · ${fastLabel}`;
+        document.getElementById("unit-meta").innerHTML = state.enabled
+          ? `ヒントLv${state.lv} · ${fastLabel}`
+          : `加算OFF · ヒントLv${state.lv}`;
 
         document.getElementById("fake-count").textContent = String(state.count);
         document.getElementById("fake-lv").textContent = String(state.lv);
