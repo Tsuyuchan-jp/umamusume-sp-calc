@@ -63,8 +63,14 @@ UX 初期方針（顔＝6＋合計＋前提）は土台として維持。記事�
 4. ボタン置き場・ブランド表記の有無
 5. 横長カードの具体サイズ（記事埋め込み想定）
 
+## 進め方（確定）
+
+- 薄い三連比較より **主案1枚を完成品質で出す** → 採用 / 方向違い / 惜しい＋一言
+- 部品の逐次微調整はしない（クオリティ低下防止）。差し替えは丸ごと
+
 ## 次ステップ
 
-1. ~~モック HTML 2〜3案を `docs/product/mockups/` に置き、目視比較~~ → [mockups/screenshot-share-options.html](./mockups/screenshot-share-options.html)（S1/S2/S3＋ブランド・ボタン置き場）
-2. 1案承認 → 本実装（html2canvas 等の技術選定は実装時）
+1. ~~主案モック~~ → [mockups/screenshot-share-hero.html](./mockups/screenshot-share-hero.html)（目視待ち）  
+   ※旧三連: [mockups/screenshot-share-options.html](./mockups/screenshot-share-options.html)（参考のみ）
+2. 主案承認 → 本実装（html2canvas 等は実装時）
 3. TODO 更新＋ローカルコミット（push しない）
