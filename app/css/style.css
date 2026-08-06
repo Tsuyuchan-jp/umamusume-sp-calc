@@ -2536,7 +2536,7 @@ tr.excluded td {
   border: 1px solid #eae7ec;
   border-radius: 8px;
   background: rgba(255, 255, 255, 0.88);
-  padding: 0 0.15rem 0.35rem;
+  padding: 0 0 0.35rem;
 }
 
 /* .panel--workbench の見た目は foundation（透明ラッパ＋影）に集約 */
