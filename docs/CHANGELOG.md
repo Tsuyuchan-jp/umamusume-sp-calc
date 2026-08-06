@@ -13,7 +13,7 @@
 
 ### 変更
 
-- **全域レビュー／リファクタ**: [product/repo-review-findings.md](./product/repo-review-findings.md)。イベント UI → `eventUi.js`、結果表 → `resultTable.js`。`htmlEscape` 共通化。CSS は見た目=foundation／配置=style に整理。一度きりスクリプト・完了 handoff を archive へ
+- **リファクタ進捗の可視化**: [product/repo-review-findings.md](./product/repo-review-findings.md) にステータス（済／一部／未）・R1 ロードマップ・合意ポイントを追加
 
 ### 追加
 

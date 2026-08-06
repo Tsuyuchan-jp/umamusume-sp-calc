@@ -40,7 +40,7 @@
 
 ## 現在フォーカス（1行）
 
-**公開後フォロー** — 共有カード右背景（スマホ）が次候補。Open は回帰・ゲーム更新・30307/30308
+**R1 リファクタ続行（B）** — 次は `scenarioLinkUi.js` 候補。進捗正本は [repo-review-findings.md](./product/repo-review-findings.md)
 
 ---
 
@@ -48,15 +48,16 @@
 
 ### P0
 
-（なし）
+- [ ] **R1-b: シナリオリンク UI 抽出** — `scenarioLinkUi.js`（`renderScenarioLinkRadios` / `renderSeniorRmjRadios` 等）。挙動不変・`npm test`・実機（リンク・RMJ）。正本: [repo-review-findings.md](./product/repo-review-findings.md) ロードマップ順1
 
 ### P1
 
-- [ ] **共有カード右背景（スマホ）** — 画像コピー／画像保存時、iPhone 等で右背景（競馬場写真）が欠け・紫グラデのみになる。PC は問題なし。候補: キャプチャ前に背景を data URL 化して DOM 埋め込み（CORS／CSS `background-image` の snapdom 取り込み差）。関連: [product/screenshot-requirements.md](./product/screenshot-requirements.md)・`share-card.css` `.right`
+- [ ] **共有カード右背景（スマホ）** — 画像コピー／画像保存時、iPhone 等で右背景（競馬場写真）が欠け・紫グラデのみになる。PC は問題なし。候補: キャプチャ前に背景を data URL 化して DOM 埋め込み。関連: [product/screenshot-requirements.md](./product/screenshot-requirements.md)・`share-card.css` `.right`。**R1-g 前後で着手推奨**
 
 ### P2
 
-- [ ] **回帰テスト拡充** — 実機確認ケース全般（バグ取りとセット）。**スマホ本体での広範確認は v1.0.0 公開後**。継承 SP ユニットは 2026-08-06 追加済み
+- [ ] **R1 続き（ロードマップ順2〜6）** — designMemoryUi → session → deckUi → layoutMode → shareCardUi。塊ごとに合意→実装→実機。正本: [repo-review-findings.md](./product/repo-review-findings.md)
+- [ ] **回帰テスト拡充** — 実機確認ケース全般。継承 SP ユニットは 2026-08-06 追加済み。DOM E2E は未
 
 ### P3 / 条件付き
 
