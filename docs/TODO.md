@@ -40,7 +40,7 @@
 
 ## 現在フォーカス（1行）
 
-**R1 順2** — `designMemoryUi.js` 候補。順1 実機 OK
+**R1 順3** — セッション復元配線候補。順2 `designMemoryUi.js` は実装済み（実機確認待ち）
 
 ---
 
@@ -48,7 +48,7 @@
 
 ### P0
 
-- [ ] **R1-c: 設計メモリ UI 抽出** — `designMemoryUi.js`（一覧・サムネ・ダイアログ）。挙動不変・`npm test`・実機（保存／復元／削除）。正本: [repo-review-findings.md](./product/repo-review-findings.md)
+- [~] **R1-c: 設計メモリ UI 抽出** — `designMemoryUi.js` 実装済み・`npm test` OK。**実機（保存／復元／削除・サムネ）確認待ち**
 
 ### P1
 
@@ -70,7 +70,7 @@
 
 ---
 
-- [x] 2026-08-06 **R1-b シナリオリンク UI 抽出** — `scenarioLinkUi.js`。`npm test` OK・実機 OK
+- [x] 2026-08-06 **R1-c 設計メモリ UI 抽出** — `designMemoryUi.js`。`npm test` OK・実機確認待ち
 - [x] 2026-08-06 **結果表レンダ抽出** — `createResultTable` → `resultTable.js`。挙動不変・npm test OK
 - [x] 2026-08-06 **イベントUI抽出** — `createEventUi` → `eventUi.js`。`focusSupportSlot` / `splitEvtOpen` も移設。挙動不変・npm test OK
 - [x] 2026-08-06 **v1.0.4 版上げ** — ONスキル数広幅・タイプ絞込修正・スキル表ヘッダー背景ずれ。キャッシュバス 1.0.4

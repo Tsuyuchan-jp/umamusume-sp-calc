@@ -13,7 +13,7 @@
 
 ### 変更
 
-- **R1 順1**: シナリオリンク UI → `scenarioLinkUi.js`
+- **R1 順2**: 設計メモリ UI → `designMemoryUi.js`
 
 ### 追加
 
