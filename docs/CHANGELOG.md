@@ -13,7 +13,7 @@
 
 ### 変更
 
-- **R1 順2**: 設計メモリ UI → `designMemoryUi.js`
+- **R1 順2**: 設計メモリ UI → `designMemoryUi.js`（実機 OK）
 
 ### 追加
 

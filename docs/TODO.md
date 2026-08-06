@@ -40,7 +40,7 @@
 
 ## 現在フォーカス（1行）
 
-**R1 順3** — セッション復元配線候補。順2 `designMemoryUi.js` は実装済み（実機確認待ち）
+**R1 一時停止** — 順2 まで完了・実機 OK。順3（session）は再開指示待ち
 
 ---
 
@@ -48,7 +48,7 @@
 
 ### P0
 
-- [~] **R1-c: 設計メモリ UI 抽出** — `designMemoryUi.js` 実装済み・`npm test` OK。**実機（保存／復元／削除・サムネ）確認待ち**
+（なし — R1 順3 は一時停止。再開は指示待ち）
 
 ### P1
 
@@ -56,7 +56,7 @@
 
 ### P2
 
-- [ ] **R1 続き（ロードマップ順3〜6）** — session → deckUi → layoutMode → shareCardUi。塊ごとに合意→実装→実機
+- [ ] **R1 続き（ロードマップ順3〜6）** — session → deckUi → layoutMode → shareCardUi。**順3は一時停止（再開指示待ち）**。塊ごとに合意→実装→実機
 - [ ] **回帰テスト拡充** — 実機確認ケース全般。継承 SP ユニットは 2026-08-06 追加済み。DOM E2E は未
 
 ### P3 / 条件付き
@@ -70,7 +70,7 @@
 
 ---
 
-- [x] 2026-08-06 **R1-c 設計メモリ UI 抽出** — `designMemoryUi.js`。`npm test` OK・実機確認待ち
+- [x] 2026-08-06 **R1-c 設計メモリ UI 抽出** — `designMemoryUi.js`。`npm test` OK・実機 OK
 - [x] 2026-08-06 **R1-b シナリオリンク UI 抽出** — `scenarioLinkUi.js`。`npm test` OK・実機 OK
 - [x] 2026-08-06 **結果表レンダ抽出** — `createResultTable` → `resultTable.js`。挙動不変・npm test OK
 - [x] 2026-08-06 **イベントUI抽出** — `createEventUi` → `eventUi.js`。`focusSupportSlot` / `splitEvtOpen` も移設。挙動不変・npm test OK
