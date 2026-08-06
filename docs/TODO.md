@@ -48,7 +48,7 @@
 
 ### P0
 
-- [~] **全域レビュー棚卸し** — [product/repo-review-findings.md](./product/repo-review-findings.md) 作成 → 合意項目をリファクタ（進行中）
+- [~] **全域レビュー棚卸し** — [product/repo-review-findings.md](./product/repo-review-findings.md) 作成 → 合意項目をリファクタ（進行中・イベントUI抽出済み）
 
 ### P1（保留 — レビュー枠完了まで）
 
@@ -69,6 +69,7 @@
 
 ---
 
+- [x] 2026-08-06 **イベントUI抽出** — `createEventUi` → `eventUi.js`。`focusSupportSlot` / `splitEvtOpen` も移設。挙動不変・npm test OK
 - [x] 2026-08-06 **v1.0.4 版上げ** — ONスキル数広幅・タイプ絞込修正・スキル表ヘッダー背景ずれ。キャッシュバス 1.0.4
 - [x] 2026-08-06 **結果枠スキル表 th 背景ずれ** — `.result-table-wrap` の左右 padding 除去。ヘッダー帯が枠端まで揃う
 - [x] 2026-08-03 **タイプ絞込チップ ○クリック解除** — dot の data-type 除去＋button 限定。実機確認待ち
