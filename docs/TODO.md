@@ -40,7 +40,7 @@
 
 ## 現在フォーカス（1行）
 
-**R1 リファクタ続行（B）** — 次は `scenarioLinkUi.js` 候補。進捗正本は [repo-review-findings.md](./product/repo-review-findings.md)
+**R1 順2** — `designMemoryUi.js` 候補。順1 `scenarioLinkUi.js` は実装済み（実機確認待ち）
 
 ---
 
@@ -48,7 +48,7 @@
 
 ### P0
 
-- [ ] **R1-b: シナリオリンク UI 抽出** — `scenarioLinkUi.js`（`renderScenarioLinkRadios` / `renderSeniorRmjRadios` 等）。挙動不変・`npm test`・実機（リンク・RMJ）。正本: [repo-review-findings.md](./product/repo-review-findings.md) ロードマップ順1
+- [~] **R1-b: シナリオリンク UI 抽出** — `scenarioLinkUi.js` 実装済み・`npm test` OK。**実機（リンク白/金・RMJ・合計SP）確認待ち**
 
 ### P1
 
@@ -56,7 +56,8 @@
 
 ### P2
 
-- [ ] **R1 続き（ロードマップ順2〜6）** — designMemoryUi → session → deckUi → layoutMode → shareCardUi。塊ごとに合意→実装→実機。正本: [repo-review-findings.md](./product/repo-review-findings.md)
+- [ ] **R1-c: 設計メモリ UI 抽出** — `designMemoryUi.js`。順1 実機 OK 後に着手。正本: [repo-review-findings.md](./product/repo-review-findings.md)
+- [ ] **R1 続き（ロードマップ順3〜6）** — session → deckUi → layoutMode → shareCardUi。塊ごとに合意→実装→実機
 - [ ] **回帰テスト拡充** — 実機確認ケース全般。継承 SP ユニットは 2026-08-06 追加済み。DOM E2E は未
 
 ### P3 / 条件付き
@@ -70,7 +71,7 @@
 
 ---
 
-- [x] 2026-08-06 **全域レビュー→合意リファクタ** — findings・docs/archive・ユーティリティ・CSS境界・eventUi/resultTable・継承SPテスト。レイアウト分離は後回し
+- [x] 2026-08-06 **R1-b シナリオリンク UI 抽出** — `scenarioLinkUi.js`。`npm test` OK・実機確認待ち — findings・docs/archive・ユーティリティ・CSS境界・eventUi/resultTable・継承SPテスト。レイアウト分離は後回し
 - [x] 2026-08-06 **結果表レンダ抽出** — `createResultTable` → `resultTable.js`。挙動不変・npm test OK
 - [x] 2026-08-06 **イベントUI抽出** — `createEventUi` → `eventUi.js`。`focusSupportSlot` / `splitEvtOpen` も移設。挙動不変・npm test OK
 - [x] 2026-08-06 **v1.0.4 版上げ** — ONスキル数広幅・タイプ絞込修正・スキル表ヘッダー背景ずれ。キャッシュバス 1.0.4

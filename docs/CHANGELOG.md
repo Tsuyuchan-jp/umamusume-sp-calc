@@ -13,7 +13,7 @@
 
 ### 変更
 
-- **リファクタ進捗の可視化**: [product/repo-review-findings.md](./product/repo-review-findings.md) にステータス（済／一部／未）・R1 ロードマップ・合意ポイントを追加
+- **R1 順1**: シナリオリンク UI → `scenarioLinkUi.js`
 
 ### 追加
 
