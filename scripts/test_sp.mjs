@@ -256,4 +256,39 @@ assertEq(
   "リンク金解決"
 );
 
+// --- 継承固有 SP（R4） ---
+assertEq(calcSkillCost(200, 0), 200, "継承 baseSp200 Lv0");
+assertEq(calcSkillCost(200, 3), 140, "継承 baseSp200 Lv3");
+assertEq(calcSkillCost(200, 3, true), 120, "継承 baseSp200 Lv3+切れ者");
+
+const inheritOff = makePlan([young.id, tazuna.id]);
+const inheritOn = buildSkillPlan({
+  skills,
+  supports,
+  characters,
+  events,
+  scenario,
+  characterId: top.id,
+  supportIds: [young.id, tazuna.id],
+  excludedSkillIds: new Set(),
+  fastLearner: false,
+  inheritEnabled: true,
+  inheritCount: 2,
+  inheritHintLevel: 3,
+  inheritBaseSp: 200,
+  enabledEventIds: new Set(),
+  eventChoiceIds: defaultEventChoices(),
+  enabledScenarioEntryIds: new Set(["link_dotou"]),
+  seniorRmjChoiceId: "ramen_yokubari",
+});
+assertEq(
+  inheritOn.total,
+  inheritOff.total + 140 * 2,
+  "継承ONは単価×個数を合計に加算"
+);
+const inheritRow = inheritOn.rows.find((r) => r.isInherit);
+assertTruthy(inheritRow, "継承固有行がある");
+assertEq(inheritRow.cost, 280, "継承行 cost=140×2");
+assertEq(inheritRow.skillWeight, 2, "継承 skillWeight=個数");
+
 console.log("全テスト通過");

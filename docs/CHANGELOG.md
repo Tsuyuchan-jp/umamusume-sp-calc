@@ -11,6 +11,14 @@
 
 ## [Unreleased]
 
+### 変更
+
+- **全域レビュー／リファクタ**: [product/repo-review-findings.md](./product/repo-review-findings.md)。イベント UI → `eventUi.js`、結果表 → `resultTable.js`。`htmlEscape` 共通化。CSS は見た目=foundation／配置=style に整理。一度きりスクリプト・完了 handoff を archive へ
+
+### 追加
+
+- **継承固有 SP 回帰**: `test_sp.mjs` に単価×個数の合計加算アサーション
+
 ## [1.0.4] — 2026-08-06
 
 ### 変更

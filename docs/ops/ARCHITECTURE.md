@@ -69,7 +69,10 @@ app.js (loadJson) ──► buildSkillPlan(aggregate.js)
 | `copyIncludedSkills.js` | 含める ON 行のクリップボード書き出し |
 | `designSnapshot.js` / `designMemory.js` | 設計メモリ |
 | `cardAssets.js` | カード画像 URL |
-| `app.js` | UI・JSON 読込・再計算 |
+| `htmlEscape.js` | HTML エスケープ共通 |
+| `eventUi.js` | 列下イベント要約・選択ダイアログ／スプリット詳細 |
+| `resultTable.js` | 結果表 tbody レンダ（ON／条件／由来） |
+| `app.js` | UI 配線・JSON 読込・`recalc` オーケストレーション |
 
 ## 設計上の注意
 
