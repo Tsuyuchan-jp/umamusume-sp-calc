@@ -71,6 +71,7 @@
 ---
 
 - [x] 2026-08-06 **R1-c 設計メモリ UI 抽出** — `designMemoryUi.js`。`npm test` OK・実機確認待ち
+- [x] 2026-08-06 **R1-b シナリオリンク UI 抽出** — `scenarioLinkUi.js`。`npm test` OK・実機 OK
 - [x] 2026-08-06 **結果表レンダ抽出** — `createResultTable` → `resultTable.js`。挙動不変・npm test OK
 - [x] 2026-08-06 **イベントUI抽出** — `createEventUi` → `eventUi.js`。`focusSupportSlot` / `splitEvtOpen` も移設。挙動不変・npm test OK
 - [x] 2026-08-06 **v1.0.4 版上げ** — ONスキル数広幅・タイプ絞込修正・スキル表ヘッダー背景ずれ。キャッシュバス 1.0.4
