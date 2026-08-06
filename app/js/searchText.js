@@ -3,6 +3,8 @@
  * ひらがな↔カタカナ、ローマ字（カタカナ読み）を同一視する。
  */
 
+import { characterBaseName } from "./cardAssets.js";
+
 /** ひらがなをカタカナへ */
 export function toKatakana(s) {
   return String(s).replace(/[\u3041-\u3096]/g, (ch) =>
@@ -13,15 +15,6 @@ export function toKatakana(s) {
 /** 検索照合用（かな統一＋小文字） */
 export function normalizeSearchText(s) {
   return toKatakana(s).toLowerCase();
-}
-
-/**
- * `[衣装]キャラ名` からキャラ名だけ取り出す。
- * 括弧が無ければ全体を返す。
- */
-export function characterBaseName(fullName) {
-  const m = String(fullName).match(/^\[([^\]]+)\](.+)$/);
-  return m ? m[2].trim() : String(fullName).trim();
 }
 
 /** カタカナ→ローマ字（ヘボン寄り・長音は直前母音の繰り返し） */

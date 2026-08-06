@@ -205,9 +205,12 @@ body.layout-split .panel--deck > .app-header {
 }
 
 .panel h2 {
+  margin: 0 0 0.75rem;
+  font-size: 1rem;
+  padding-bottom: 0.5rem;
   font-weight: var(--font-weight-bold);
   color: var(--text-primary);
-  border-bottom-color: var(--border-subtle);
+  border-bottom: 1px solid var(--border-subtle);
   letter-spacing: 0.01em;
 }
 

@@ -11,6 +11,7 @@ import {
   buildCharacterNameSearchText,
   normalizeSearchText,
 } from "./searchText.js";
+import { escapeHtml } from "./htmlEscape.js";
 import {
   copyTextToClipboard,
   formatIncludedSkillNames,
@@ -180,15 +181,6 @@ function supportMatchesFilters(s, filters, keepId) {
   return true;
 }
 
-function escapeHtml(s) {
-  return String(s)
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;");
-}
-
-/** [衣装]キャラ名 → キャラ名[衣装] */
 function formatCharacterDisplayName(name) {
   const m = String(name).match(/^\[([^\]]+)\](.+)$/);
   if (!m) return name;
@@ -849,10 +841,6 @@ function openSupportPicker(slotIndex) {
       recalc();
     },
   });
-}
-
-function renderSupportSlots() {
-  renderDeckDashboard();
 }
 
 function renderPickerTypeChips() {

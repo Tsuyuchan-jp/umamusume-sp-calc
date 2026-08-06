@@ -92,7 +92,7 @@ import 時のサポカ後処理（`scripts/support_vertical_card.py`）:
 
 - 枠外パディング＋ソフトグロー除去、角丸マスク、縦縮尺 3:4 → 240×320
 - タイプ印を右上合成（size=52 / top=-1 / right=4）
-- 比較試作: `npm run samples:trim`
+- 比較試作: `npm run samples:trim`（縦カード正本は v4 + `support_vertical_card.py`。旧 v1/v2 は `scripts/archive/`）
 
 ### スクリプト
 

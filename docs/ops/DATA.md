@@ -24,10 +24,12 @@ data/
 ## master.mdb → JSON（概要）
 
 - **推奨**: `scripts/extract_mdb.mjs`（Node）
-- 代替: `scripts/extract_mdb.py`
+- 代替（レガシー）: `scripts/extract_mdb.py` — 新規作業では使わない
 - 手順・mdb パス: [GAME_UPDATE_RUNBOOK.md](./GAME_UPDATE_RUNBOOK.md)
 
-補助: `scripts/verify_data.mjs`、`scripts/test_sp.mjs`、`scripts/test_skill_activation.mjs`
+補助: `npm test`（SP / activation / copy / snapshot / source / ファイル名 / title）および `scripts/verify_data.mjs`
+
+**レガシー npm**（通常不要）: `merge-support-events` / `reclassify-support-events` — 正本は `extract:events` → `compare:events` → `apply:events`。一度きり・試作は `scripts/archive/`。
 
 ### サポカイベント関連ファイル
 

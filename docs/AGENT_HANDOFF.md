@@ -26,7 +26,8 @@
 
 **正本は [TODO.md](./TODO.md)。** 着手・完了のたびに更新する。ここには要約を長く書かない。
 
-**デザイン大改修の会話引継ぎ**: [product/design-overhaul-handoff.md](./product/design-overhaul-handoff.md)（デュアル・イベントA/B/Cは [product/UX.md](./product/UX.md)）
+**デザイン大改修の会話引継ぎ（完了・履歴）**: [archive/design-overhaul-handoff.md](./archive/design-overhaul-handoff.md)（デュアル・イベントA/B/Cは [product/UX.md](./product/UX.md)）
+**全域レビュー**: [product/repo-review-findings.md](./product/repo-review-findings.md)
 
 ## 非交渉ルール（変えない）
 
@@ -46,7 +47,8 @@
 | 要件 / 計算 / 用語 | [spec/](./spec/) |
 | 起動 / 更新 / 画像 / データ | [ops/](./ops/) |
 | UX / 優先40 | [product/](./product/) |
-| デザイン大改修引継ぎ | [product/design-overhaul-handoff.md](./product/design-overhaul-handoff.md) |
+| 全域レビュー | [product/repo-review-findings.md](./product/repo-review-findings.md) |
+| デザイン大改修引継ぎ（履歴） | [archive/design-overhaul-handoff.md](./archive/design-overhaul-handoff.md) |
 | 設計履歴（通常不要） | [archive/](./archive/) |
 
 ## 推奨言語モデル

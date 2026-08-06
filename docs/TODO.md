@@ -40,7 +40,7 @@
 
 ## 現在フォーカス（1行）
 
-**公開後フォロー** — 共有カード右背景（スマホ）が次候補。Open は回帰・ゲーム更新・30307/30308
+**全域レビュー → 合意リファクタ** — findings 作成後、計画デフォルト順で実装。既存 Open は保留
 
 ---
 
@@ -48,24 +48,24 @@
 
 ### P0
 
-（なし）
+- [~] **全域レビュー棚卸し** — [product/repo-review-findings.md](./product/repo-review-findings.md) 作成 → 合意項目をリファクタ（進行中）
 
-### P1
+### P1（保留 — レビュー枠完了まで）
 
-- [ ] **共有カード右背景（スマホ）** — 画像コピー／画像保存時、iPhone 等で右背景（競馬場写真）が欠け・紫グラデのみになる。PC は問題なし。候補: キャプチャ前に背景を data URL 化して DOM 埋め込み（CORS／CSS `background-image` の snapdom 取り込み差）。関連: [product/screenshot-requirements.md](./product/screenshot-requirements.md)・`share-card.css` `.right`
+- [!] **共有カード右背景（スマホ）** — 保留。画像コピー／画像保存時、iPhone 等で右背景（競馬場写真）が欠け・紫グラデのみになる。PC は問題なし。候補: キャプチャ前に背景を data URL 化して DOM 埋め込み。関連: [product/screenshot-requirements.md](./product/screenshot-requirements.md)・`share-card.css` `.right`
 
-### P2
+### P2（保留 — レビュー枠完了まで）
 
-- [ ] **回帰テスト拡充** — 実機確認ケース全般（バグ取りとセット）。**スマホ本体での広範確認は v1.0.0 公開後**
+- [!] **回帰テスト拡充** — 保留。実機確認ケース全般（バグ取りとセット）。**スマホ本体での広範確認は v1.0.0 公開後**
 
-### P3 / 条件付き
+### P3 / 条件付き（保留 — レビュー枠完了まで）
 
-- [ ] **30307 / 30308 の U-tools 化**  
+- [!] **30307 / 30308 の U-tools 化** — 保留  
   - 条件: U-tools にキセキ（巻頭カラーの夏）・アーモンドアイ（夏空チルタイム）が掲載されたら  
   - 手順: `npm run extract:events` → `compare:events` → `apply:events` のあと、`events.preserve.json` から GameWith 一時手載せ6件（`evt_30307_*` / `evt_30308_*`）を削除。docs の件数・注記も更新  
   - 関連: [ops/GAME_UPDATE_RUNBOOK.md](./ops/GAME_UPDATE_RUNBOOK.md) / events preserve
 
-- [ ] **ゲーム更新追従** — 発生時のみ [ops/GAME_UPDATE_RUNBOOK.md](./ops/GAME_UPDATE_RUNBOOK.md)（mdb → events → assets:extract/import → verify）
+- [!] **ゲーム更新追従** — 保留。発生時のみ [ops/GAME_UPDATE_RUNBOOK.md](./ops/GAME_UPDATE_RUNBOOK.md)（mdb → events → assets:extract/import → verify）
 
 ---
 

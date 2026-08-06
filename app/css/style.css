@@ -440,24 +440,10 @@ main,
   gap: var(--layout-stack, 0.5rem);
 }
 
-/* 旧マグネット（scroll-snap）は削除。ゾーンは通常のブロック */
+/* 見た目の .panel は foundation。ここはレイアウト用の旧マグネット残骸のみ */
 .snap-zone--deck,
 .snap-zone--workbench {
   min-height: 0;
-}
-
-.panel {
-  background: #fff;
-  border-radius: 8px;
-  padding: var(--panel-pad-y, 0.85rem) var(--panel-pad-x, 1rem);
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
-}
-
-.panel h2 {
-  margin: 0 0 0.75rem;
-  font-size: 1rem;
-  border-bottom: 1px solid #e8e8e8;
-  padding-bottom: 0.5rem;
 }
 
 label {
@@ -2198,21 +2184,18 @@ body.layout-split .panel--workbench {
   opacity: 0;
 }
 
+/* 表の見た目トークンは foundation。ここは構造＋ sticky */
 table {
   width: 100%;
   border-collapse: collapse;
-  font-size: 0.85rem;
 }
 
 th,
 td {
-  border-bottom: 1px solid #eee;
-  padding: 0.4rem 0.5rem;
   text-align: left;
 }
 
 th {
-  background: #fafafa;
   position: sticky;
   top: 0;
 }
@@ -2529,13 +2512,11 @@ tr.excluded td {
   background: #3a345f;
 }
 
+/* 見た目（border/radius/bg/shadow）は foundation。ここはスクロール配置のみ */
 .result-table-wrap {
   overflow: auto;
   max-height: min(520px, calc(100dvh - 16rem));
   margin-top: 0.35rem;
-  border: 1px solid #eae7ec;
-  border-radius: 8px;
-  background: rgba(255, 255, 255, 0.88);
   padding: 0 0 0.35rem;
 }
 

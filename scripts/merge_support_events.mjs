@@ -1,5 +1,8 @@
 /**
- * support-events-research-26.json を events.json にマージし skillId を解決する
+ * 【レガシー・通常は使わない】
+ * support-events-research-26.json を events.json にマージし skillId を解決する。
+ * 現行の正本パイプラインは `npm run extract:events` → `apply:events`。
+ * 調査 JSON は `data/archive/support-events-research-26.json`。
  */
 import fs from "node:fs";
 import { formatEventLabel } from "./format_event_choice_labels.mjs";
@@ -8,7 +11,9 @@ import { normalizeEventSelection } from "./event_selection.mjs";
 const skills = JSON.parse(fs.readFileSync("./data/skills.json", "utf8"));
 const supports = JSON.parse(fs.readFileSync("./data/supports.json", "utf8"));
 const eventsDoc = JSON.parse(fs.readFileSync("./data/events.json", "utf8"));
-const research = JSON.parse(fs.readFileSync("./data/support-events-research-26.json", "utf8"));
+const research = JSON.parse(
+  fs.readFileSync("./data/archive/support-events-research-26.json", "utf8")
+);
 
 const nameToId = new Map(skills.map((s) => [s.name, s.id]));
 const unresolved = [];

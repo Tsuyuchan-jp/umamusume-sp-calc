@@ -4,6 +4,7 @@
  */
 
 import { characterImageUrl, characterBaseName, supportImageUrl } from "./cardAssets.js";
+import { escapeHtml } from "./htmlEscape.js";
 import {
   getDeckLinkCharacterIds,
   resolveLinkSkill,
@@ -40,18 +41,6 @@ let snapdomPromise = null;
  */
 function formatSp(n) {
   return Number(n).toLocaleString("ja-JP");
-}
-
-/**
- * @param {string} text
- * @returns {string}
- */
-function escapeHtml(text) {
-  return String(text ?? "")
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;");
 }
 
 /**

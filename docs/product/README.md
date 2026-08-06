@@ -5,7 +5,8 @@
 | ファイル | 内容 |
 |----------|------|
 | [UX.md](./UX.md) | UX 思想 |
-| [v1-review-findings.md](./v1-review-findings.md) | **v1.0.0 向けレビュー棚卸し**（致命／中／軽） |
+| [v1-review-findings.md](./v1-review-findings.md) | v1.0.0 向けレビュー棚卸し（M1〜M4 クローズ） |
+| [repo-review-findings.md](./repo-review-findings.md) | **全域レビュー棚卸し**（2026-08-06） |
 | [screenshot-requirements.md](./screenshot-requirements.md) | 編成スクショ要件（**本実装完了・実機OK**・v28.1） |
 | [mockups/screenshot-share-hero.html](./mockups/screenshot-share-hero.html) | **編成スクショ正本モック（型C·v28.1·採用）** |
 | [mockups/screenshot-share-left-options.html](./mockups/screenshot-share-left-options.html) | 左レイアウト比較（旧 L1〜L4） |
@@ -14,15 +15,15 @@
 | [mockups/screenshot-share-refs.html](./mockups/screenshot-share-refs.html) | 型C向け参考候補一覧 |
 | [mockups/screenshot-share-options.html](./mockups/screenshot-share-options.html) | 旧・薄い三連比較（参考） |
 | [PRIORITY_SUPPORTS.md](./PRIORITY_SUPPORTS.md) | 優先40サポカ一覧 |
-| [design-overhaul-handoff.md](./design-overhaul-handoff.md) | デザイン大改修の引継ぎ |
-| [design-polish-backlog.md](./design-polish-backlog.md) | 実機デザイン指摘（進捗・ヘッダー選定） |
 | [mockups/header-options.html](./mockups/header-options.html) | ヘッダー案比較（H-Mock/A/B/C） |
-| [mockups/hybrid-h5-dual.html](./mockups/hybrid-h5-dual.html) | **H2⇄H1デュアル試用（推奨確認中）** |
+| [mockups/hybrid-h5-dual.html](./mockups/hybrid-h5-dual.html) | **H2⇄H1デュアル（採用済み）** |
 | [mockups/hybrid-index.html](./mockups/hybrid-index.html) | ハイブリッド案入口（H1〜H5） |
 | [mockups/redesign-proposal-v5.html](./mockups/redesign-proposal-v5.html) | v2見た目 × v4骨格 |
 | [mockups/redesign-proposal-v4.html](./mockups/redesign-proposal-v4.html) | 別UX案（Command Desk） |
 | [mockups/redesign-proposal-v3.html](./mockups/redesign-proposal-v3.html) | 緑メイン |
 | [mockups/redesign-proposal-v2.html](./mockups/redesign-proposal-v2.html) | U-tools 寄せ・紫クロム |
 | [mockups/redesign-proposal-v1.html](./mockups/redesign-proposal-v1.html) | 以前の案（履歴） |
+
+完了設計の引継ぎ・デザイン残件メモは [../archive/](../archive/)（`design-overhaul-handoff` / `design-polish-backlog`）。
 
 入口: [../README.md](../README.md)
