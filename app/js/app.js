@@ -22,16 +22,8 @@ import {
   defaultDesignTitleFromCharacterName,
   resolveDesignTitleOnCharacterChange,
 } from "./designTitle.js";
-import {
-  applyDesignSnapshot,
-  captureDesignSnapshot,
-  sanitizeDesignSnapshot,
-} from "./designSnapshot.js";
 import { createDesignMemoryUi } from "./designMemoryUi.js";
-import {
-  loadSessionSnapshot,
-  saveSessionSnapshot,
-} from "./designSession.js";
+import { createDesignSessionUi } from "./designSessionUi.js";
 import { createScenarioLinkUi } from "./scenarioLinkUi.js";
 import {
   getEffectiveExcludedSkillIds,
@@ -63,8 +55,6 @@ let committedSkillFilter = { ground: "", distance: "", style: "" };
 /** 直近の計画（コピー用） */
 let currentPlan = null;
 
-/** 直近の復元で落とした不正 ID の警告（次の復元まで保持） */
-let lastRestoreIdWarnings = [];
 let currentReguExcludedCount = 0;
 
 /** コピーボタンの既定ラベル */
@@ -93,12 +83,6 @@ let inheritPopoverOpen = false;
 
 /** 継承パネルのイベントを一度だけバインド */
 let inheritPopoverBound = false;
-
-/** セッション自動保存の debounce */
-let sessionSaveTimer = null;
-
-/** セッション即時保存のイベント登録済み */
-let sessionFlushBound = false;
 
 /** ピッカー内タイプ絞込（すべて = ""） */
 let supportPickerTypeFilter = "";
@@ -136,15 +120,46 @@ const scenarioLinkUi = createScenarioLinkUi({
   recalc: () => recalc(),
 });
 
+/** セッション自動保存・スナップショット復元 */
+const designSessionUi = createDesignSessionUi({
+  getState: () => state,
+  readDesignOptions,
+  getExcludedSkillIds: () => excludedSkillIds,
+  replaceExcludedSkillIds: (ids) => {
+    excludedSkillIds.clear();
+    for (const id of ids) {
+      const n = Number(id);
+      if (!Number.isNaN(n)) excludedSkillIds.add(n);
+    }
+  },
+  getCommittedSkillFilter: () => committedSkillFilter,
+  setCommittedSkillFilter: (filter) => {
+    committedSkillFilter = filter;
+  },
+  writeSkillFilterUI,
+  writeDesignOptions,
+  readDesignTitle,
+  setDesignTitle,
+  setDesignTitleDefaultForCurrentCharacter,
+  syncHiddenCharacterSelect,
+  renderDeckDashboard,
+  eventUi,
+  scenarioLinkUi,
+  recalc: () => recalc(),
+  clearPreviousTotal: () => {
+    previousTotal = null;
+  },
+});
+
 /** 設計メモリダイアログ UI */
 const designMemoryUi = createDesignMemoryUi({
   getState: () => state,
   readDesignTitle,
-  captureCurrentDesign,
-  restoreDesign,
+  captureCurrentDesign: () => designSessionUi.captureCurrentDesign(),
+  restoreDesign: (snapshot) => designSessionUi.restoreDesign(snapshot),
   setDesignTitle,
   setDesignTitleDefaultForCurrentCharacter,
-  scheduleSessionSave,
+  scheduleSessionSave: () => designSessionUi.scheduleSessionSave(),
   getCurrentPlan: () => currentPlan,
 });
 
@@ -303,16 +318,7 @@ function applyDesignTitleOnCharacterChange(previousCharacterId, nextCharacterId)
     defaultDesignTitleFromCharacterName(nextName)
   );
   setDesignTitle(nextTitle);
-  scheduleSessionSave();
-}
-
-function applyDesignTitleFromSnapshot(snapshot) {
-  const title = String(snapshot?.designTitle || "").trim();
-  if (title) {
-    setDesignTitle(title);
-  } else {
-    setDesignTitleDefaultForCurrentCharacter();
-  }
+  designSessionUi.scheduleSessionSave();
 }
 
 function bindDesignTitleInput() {
@@ -331,7 +337,7 @@ function bindDesignTitleInput() {
     enterDesignTitleEdit();
   });
 
-  input.addEventListener("input", () => scheduleSessionSave());
+  input.addEventListener("input", () => designSessionUi.scheduleSessionSave());
   input.addEventListener("blur", () => leaveDesignTitleEdit());
   input.addEventListener("keydown", (e) => {
     if (e.key === "Enter" || e.key === "Escape") {
@@ -374,7 +380,7 @@ function resetToInitialDesign() {
   writeSkillFilterUI(committedSkillFilter);
   setResultSortMode("skillId");
   previousTotal = null;
-  lastRestoreIdWarnings = [];
+  designSessionUi.clearRestoreIdWarnings();
   setInheritPopoverOpen(false);
 
   eventUi.closeSplitEvtPane();
@@ -391,7 +397,7 @@ function resetToInitialDesign() {
   eventUi.renderScenarioAuto();
   updateTotalBarChips();
   recalc();
-  flushSessionSave();
+  designSessionUi.flushSessionSave();
 }
 
 function bindDesignResetButton() {
@@ -1049,110 +1055,6 @@ function readSkillFilterFromUI() {
   };
 }
 
-/** 現在の画面状態をスナップショット化 */
-function captureCurrentDesign() {
-  return captureDesignSnapshot({
-    ui: state.ui,
-    options: readDesignOptions(),
-    excludedSkillIds,
-    committedSkillFilter,
-    designTitle: readDesignTitle(),
-  });
-}
-
-/** 前回セッションを debounce 保存（メモリ一覧とは別） */
-function scheduleSessionSave() {
-  if (!state) return;
-  clearTimeout(sessionSaveTimer);
-  sessionSaveTimer = setTimeout(() => {
-    sessionSaveTimer = null;
-    if (!state) return;
-    saveSessionSnapshot(captureCurrentDesign());
-  }, 350);
-}
-
-/** 未保存の変更を即時書き込み（タブ閉じ・非表示時） */
-function flushSessionSave() {
-  if (sessionSaveTimer != null) {
-    clearTimeout(sessionSaveTimer);
-    sessionSaveTimer = null;
-  }
-  if (!state) return;
-  saveSessionSnapshot(captureCurrentDesign());
-}
-
-/** タブ非表示・ページ離脱時にセッションを flush */
-function bindSessionFlushOnce() {
-  if (sessionFlushBound) return;
-  sessionFlushBound = true;
-  document.addEventListener("visibilitychange", () => {
-    if (document.visibilityState === "hidden") flushSessionSave();
-  });
-  window.addEventListener("pagehide", () => flushSessionSave());
-}
-
-/**
- * スナップショットを画面へ復元
- * @param {object} snapshot
- * @returns {boolean}
- */
-function restoreDesign(snapshot) {
-  if (!state) return false;
-  lastRestoreIdWarnings = [];
-
-  const { snapshot: sanitized, warnings } = sanitizeDesignSnapshot(snapshot, {
-    characters: state.characters,
-    supports: state.supports,
-  });
-  lastRestoreIdWarnings = warnings;
-
-  const applied = applyDesignSnapshot(sanitized, state.ui);
-  if (!applied) return false;
-
-  // 未知イベント ID を落とす
-  const knownEventIds = new Set((state.events.events || []).map((e) => e.id));
-  state.ui.enabledEventIds = new Set(
-    [...state.ui.enabledEventIds].filter((id) => knownEventIds.has(id))
-  );
-  for (const id of [...state.ui.eventChoiceIds.keys()]) {
-    if (!knownEventIds.has(id)) state.ui.eventChoiceIds.delete(id);
-  }
-  // single イベントの欠落キーを既定で補完
-  for (const evt of state.events.events || []) {
-    if (evt.selection === "single" && !state.ui.eventChoiceIds.has(evt.id)) {
-      const def = evt.defaultChoiceId ?? evt.choices?.[0]?.id;
-      if (def) state.ui.eventChoiceIds.set(evt.id, def);
-    } else if (evt.selection === "single") {
-      // 旧「未選択」や不正IDを既定へ寄せる
-      eventUi.resolveEventChoiceId(evt);
-    }
-  }
-
-  writeDesignOptions(applied.options);
-  excludedSkillIds.clear();
-  for (const id of applied.excludedSkillIds) {
-    const n = Number(id);
-    if (!Number.isNaN(n)) excludedSkillIds.add(n);
-  }
-  committedSkillFilter = {
-    ground: applied.committedSkillFilter.ground || "",
-    distance: applied.committedSkillFilter.distance || "",
-    style: applied.committedSkillFilter.style || "",
-  };
-  writeSkillFilterUI(committedSkillFilter);
-  previousTotal = null;
-
-  applyDesignTitleFromSnapshot(sanitized);
-
-  syncHiddenCharacterSelect();
-  renderDeckDashboard();
-  eventUi.renderEvents();
-  scenarioLinkUi.renderScenarioLinkRadios();
-  scenarioLinkUi.renderSeniorRmjRadios();
-  recalc();
-  return true;
-}
-
 /** localStorage キー: レイアウト好み gallery | split（旧 auto は gallery へ移行） */
 const LAYOUT_MODE_KEY = "umamusume-sp-calc-layout-mode";
 const LAYOUT_NARROW_MQ = "(max-width: 1199px)";
@@ -1396,9 +1298,10 @@ function renderPlanWarnings(unresolved) {
   const el = document.getElementById("plan-warnings");
   if (!el) return;
 
+  const restoreWarnings = designSessionUi.getLastRestoreIdWarnings();
   const parts = [];
-  if (lastRestoreIdWarnings.length) {
-    parts.push("復元時の調整: " + lastRestoreIdWarnings.join(" "));
+  if (restoreWarnings.length) {
+    parts.push("復元時の調整: " + restoreWarnings.join(" "));
   }
   if (unresolved?.length) {
     parts.push(
@@ -1416,8 +1319,8 @@ function renderPlanWarnings(unresolved) {
   el.hidden = false;
   el.textContent = parts.join(" / ");
   if (unresolved?.length) console.warn("未解決スキル:", unresolved);
-  if (lastRestoreIdWarnings.length) {
-    console.warn("復元時の ID 調整:", lastRestoreIdWarnings);
+  if (restoreWarnings.length) {
+    console.warn("復元時の ID 調整:", restoreWarnings);
   }
 }
 
@@ -1476,7 +1379,7 @@ function recalc() {
   });
   resultTable.renderResultBody(displayRows, reguExcluded);
 
-  scheduleSessionSave();
+  designSessionUi.scheduleSessionSave();
 }
 
 function bindCopyIncludedSkills() {
@@ -1724,13 +1627,10 @@ async function init() {
     bindResultSort();
     bindCopyIncludedSkills();
     bindShareCardButtons();
-    bindSessionFlushOnce();
+    designSessionUi.bindSessionFlushOnce();
     committedSkillFilter = readSkillFilterFromUI();
 
-    const session = loadSessionSnapshot();
-    if (session && restoreDesign(session)) {
-      /* 前回セッションを復元（restoreDesign 内で recalc・編成タイトル反映） */
-    } else {
+    if (!designSessionUi.tryRestoreLastSession()) {
       setDesignTitleDefaultForCurrentCharacter();
       recalc();
     }
