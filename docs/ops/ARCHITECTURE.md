@@ -74,6 +74,7 @@ app.js (loadJson) ──► buildSkillPlan(aggregate.js)
 | `scenarioLinkUi.js` | シナリオリンク・シニア RMJ チップ UI |
 | `designMemoryUi.js` | 設計メモリダイアログ（一覧・サムネ・保存／復元／削除） |
 | `designSessionUi.js` | セッション自動保存・スナップショット復元 |
+| `deckUi.js` | 編成ダッシュボード・カードピッカー・継承ポップオーバー |
 | `resultTable.js` | 結果表 tbody レンダ（ON／条件／由来） |
 | `app.js` | UI 配線・JSON 読込・`recalc` オーケストレーション |
 
