@@ -1,4 +1,4 @@
-import { createCardPicker } from "./cardPicker.js?v=1.0.4";
+import { createCardPicker } from "./cardPicker.js?v=1.0.5";
 import {
   characterImageUrl,
   getSupportTypeStyle,

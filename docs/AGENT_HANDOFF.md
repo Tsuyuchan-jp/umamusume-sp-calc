@@ -9,7 +9,7 @@
 
 | 項目 | 状態 |
 |------|------|
-| アプリ | **v1.0.4** 公開。SP計算・デュアルUI・スクショ（WebP保存）・スマホ対応・集計実装済み |
+| アプリ | **v1.0.5** 公開。SP計算・デュアルUI・スクショ（WebP保存）・スマホ対応・集計実装済み |
 | データ | skills / supports / characters / events / toresenken **あり**（件数は `data/meta.json`） |
 | events | 優先40・111イベント（U-tools+mdb + preserve。30307/30308 は GameWith 一時） |
 | カード画像 | サポカ縦40 + 育成 `chr_icon` 全262 同梱済み（[ops/ASSETS.md](./ops/ASSETS.md)） |

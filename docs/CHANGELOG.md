@@ -11,14 +11,12 @@
 
 ## [Unreleased]
 
+## [1.0.5] — 2026-08-10
+
 ### 変更
 
-- **R1 順6**: 共有カードボタン配線 → `shareCardUi.js`（実機 OK）
-- **R1 完了**: `app.js` 分割ロードマップ（順1〜6）完了
-- **R1 順5**: レイアウト切替 → `layoutMode.js`（実機 OK）
-- **R1 順4**: 編成 UI → `deckUi.js`（実機 OK）
-- **R1 順3**: セッション保存・復元配線 → `designSessionUi.js`（実機 OK）
-- **R1 順2**: 設計メモリ UI → `designMemoryUi.js`（実機 OK）
+- **内部構造**: `app.js` を機能別モジュールに分割（`eventUi` / `resultTable` / `scenarioLinkUi` / `designMemoryUi` / `designSessionUi` / `deckUi` / `layoutMode` / `shareCardUi`）。挙動・計算は不変
+- **JS/CSS キャッシュバス**: `app.js` / `shareCard.js` / `cardPicker.js` / CSS に `?v=1.0.5`
 
 ### 追加
 

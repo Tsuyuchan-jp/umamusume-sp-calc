@@ -3,7 +3,7 @@ import {
   copyShareCardPng,
   renderShareCardToMount,
   saveShareCardPng,
-} from "./shareCard.js?v=1.0.4";
+} from "./shareCard.js?v=1.0.5";
 
 /**
  * 共有カードボタン配線（コピー／画像保存）
