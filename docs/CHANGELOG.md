@@ -13,7 +13,8 @@
 
 ### 変更
 
-- **R1 順5**: レイアウト切替 → `layoutMode.js`
+- **R1 順6**: 共有カードボタン配線 → `shareCardUi.js`
+- **R1 順5**: レイアウト切替 → `layoutMode.js`（実機 OK）
 - **R1 順4**: 編成 UI → `deckUi.js`（実機 OK）
 - **R1 順3**: セッション保存・復元配線 → `designSessionUi.js`（実機 OK）
 - **R1 順2**: 設計メモリ UI → `designMemoryUi.js`（実機 OK）

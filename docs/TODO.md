@@ -40,7 +40,7 @@
 
 ## 現在フォーカス（1行）
 
-**R1 順5** — `layoutMode.js` 抽出済み・`npm test` OK。**実機（ギャラリー⇔スプリット・リサイズ）確認待ち**
+**R1 順6** — `shareCardUi.js` 抽出済み・`npm test` OK。**実機（画像コピー／保存）確認待ち**
 
 ---
 
@@ -48,7 +48,7 @@
 
 ### P0
 
-- [~] **R1-f: レイアウト切替抽出** — `layoutMode.js` 実装済み・`npm test` OK。**実機（ギャラリー⇔スプリット・狭幅・リサイズ）確認待ち**
+- [~] **R1-g: 共有カードボタン配線** — `shareCardUi.js` 実装済み・`npm test` OK。**実機（コピー／画像保存）確認待ち**
 
 ### P1
 
@@ -56,7 +56,7 @@
 
 ### P2
 
-- [ ] **R1 続き（ロードマップ順4〜6）** — deckUi → layoutMode → shareCardUi。塊ごとに合意→実装→実機
+- [ ] **R1 クローズ** — 順6 実機 OK 後にロードマップ完了として記録
 - [ ] **回帰テスト拡充** — 実機確認ケース全般。継承 SP ユニットは 2026-08-06 追加済み。DOM E2E は未
 
 ### P3 / 条件付き
@@ -70,7 +70,7 @@
 
 ---
 
-- [x] 2026-08-10 **R1-e 編成 UI 抽出** — `deckUi.js`。`npm test` OK・実機 OK
+- [x] 2026-08-10 **R1-f レイアウト切替抽出** — `layoutMode.js`。`npm test` OK・実機 OK
 - [x] 2026-08-06 **R1-b シナリオリンク UI 抽出** — `scenarioLinkUi.js`。`npm test` OK・実機 OK
 - [x] 2026-08-06 **結果表レンダ抽出** — `createResultTable` → `resultTable.js`。挙動不変・npm test OK
 - [x] 2026-08-06 **イベントUI抽出** — `createEventUi` → `eventUi.js`。`focusSupportSlot` / `splitEvtOpen` も移設。挙動不変・npm test OK

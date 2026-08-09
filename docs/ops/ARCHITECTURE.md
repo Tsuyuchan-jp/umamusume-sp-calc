@@ -76,6 +76,8 @@ app.js (loadJson) ──► buildSkillPlan(aggregate.js)
 | `designSessionUi.js` | セッション自動保存・スナップショット復元 |
 | `deckUi.js` | 編成ダッシュボード・カードピッカー・継承ポップオーバー |
 | `layoutMode.js` | ギャラリー⇔スプリット・合計バー／共有ボタン DOM 移動 |
+| `shareCardUi.js` | 共有カードボタン配線（コピー／画像保存） |
+| `shareCard.js` | 共有カード DOM 生成・キャプチャ |
 | `resultTable.js` | 結果表 tbody レンダ（ON／条件／由来） |
 | `app.js` | UI 配線・JSON 読込・`recalc` オーケストレーション |
 
