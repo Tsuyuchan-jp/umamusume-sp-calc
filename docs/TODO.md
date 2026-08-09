@@ -40,7 +40,7 @@
 
 ## 現在フォーカス（1行）
 
-**R1 順6** — `shareCardUi.js` 抽出済み・`npm test` OK。**実機（画像コピー／保存）確認待ち**
+**R1 完了** — 順1〜6 抽出済み・実機 OK。次: P1 共有カード右背景（別途）／push 可
 
 ---
 
@@ -48,15 +48,15 @@
 
 ### P0
 
-- [~] **R1-g: 共有カードボタン配線** — `shareCardUi.js` 実装済み・`npm test` OK。**実機（コピー／画像保存）確認待ち**
+（なし — R1 ロードマップ順1〜6 完了）
 
 ### P1
 
-- [ ] **共有カード右背景（スマホ）** — 画像コピー／画像保存時、iPhone 等で右背景（競馬場写真）が欠け・紫グラデのみになる。PC は問題なし。候補: キャプチャ前に背景を data URL 化して DOM 埋め込み。関連: [product/screenshot-requirements.md](./product/screenshot-requirements.md)・`share-card.css` `.right`。**R1-g 前後で着手推奨**
+- [ ] **共有カード右背景（スマホ）** — 画像コピー／画像保存時、iPhone 等で右背景（競馬場写真）が欠け・紫グラデのみになる。PC は問題なし。候補: キャプチャ前に背景を data URL 化して DOM 埋め込み。関連: [product/screenshot-requirements.md](./product/screenshot-requirements.md)・`share-card.css` `.right`
 
 ### P2
 
-- [ ] **R1 クローズ** — 順6 実機 OK 後にロードマップ完了として記録
+- [x] **R1 クローズ** — 順1〜6 抽出完了・塊ごと実機 OK（2026-08-10）
 - [ ] **回帰テスト拡充** — 実機確認ケース全般。継承 SP ユニットは 2026-08-06 追加済み。DOM E2E は未
 
 ### P3 / 条件付き
@@ -70,7 +70,7 @@
 
 ---
 
-- [x] 2026-08-10 **R1-f レイアウト切替抽出** — `layoutMode.js`。`npm test` OK・実機 OK
+- [x] 2026-08-10 **R1-g 共有カードボタン配線** — `shareCardUi.js`。`npm test` OK・実機 OK。**R1 ロードマップ完了**
 - [x] 2026-08-10 **R1-e 編成 UI 抽出** — `deckUi.js`。`npm test` OK・実機 OK
 - [x] 2026-08-10 **R1-d セッション保存・復元配線** — `designSessionUi.js`。`npm test` OK・実機 OK
 - [x] 2026-08-06 **R1-c 設計メモリ UI 抽出** — `designMemoryUi.js`。`npm test` OK・実機 OK
