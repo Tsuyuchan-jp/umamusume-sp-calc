@@ -23,12 +23,7 @@ import {
 } from "./skillActivation.js";
 import { sortPlanRows } from "./skillSource.js";
 import { createResultTable } from "./resultTable.js";
-import {
-  buildShareCardModel,
-  copyShareCardPng,
-  renderShareCardToMount,
-  saveShareCardPng,
-} from "./shareCard.js?v=1.0.4";
+import { createShareCardUi } from "./shareCardUi.js";
 
 /** 継承固有の baseSp（UIでは非編集・固定） */
 const INHERIT_BASE_SP = 200;
@@ -49,8 +44,6 @@ let currentReguExcludedCount = 0;
 
 /** コピーボタンの既定ラベル */
 let copyIncludedSkillsDefaultLabel = "";
-let shareCardCopyDefaultLabel = "";
-let shareCardSaveDefaultLabel = "";
 
 /** イベントヒント対応サポカ id（events.json の prioritySupportIds） */
 /** @type {Set<number>} */
@@ -157,6 +150,17 @@ const designMemoryUi = createDesignMemoryUi({
 const layoutMode = createLayoutMode({
   eventUi,
   syncInheritPopoverAnchorIfOpen: () => deckUi.syncInheritPopoverAnchorIfOpen(),
+});
+
+/** 共有カードボタン（コピー／画像保存） */
+const shareCardUi = createShareCardUi({
+  getState: () => state,
+  getCurrentPlan: () => currentPlan,
+  readDesignOptions,
+  getCommittedSkillFilter: () => committedSkillFilter,
+  getExcludedSkillIds: () => excludedSkillIds,
+  getReguExcludedCount: () => currentReguExcludedCount,
+  readDesignTitle,
 });
 
 async function loadJson(path) {
@@ -682,91 +686,6 @@ function bindCopyIncludedSkills() {
   });
 }
 
-/** 共有カード用のデータモデルを組み立て */
-function getShareCardPayload() {
-  return buildShareCardModel({
-    plan: currentPlan,
-    ui: state.ui,
-    skills: state.skills,
-    supports: state.supports,
-    characters: state.characters,
-    scenario: state.scenario,
-    options: readDesignOptions(),
-    committedSkillFilter,
-    excludedSkillIds,
-    reguExcludedCount: currentReguExcludedCount,
-    designTitle: readDesignTitle(),
-  });
-}
-
-/** スクショボタンの一時フィードバック */
-function showShareCardButtonFeedback(btn, defaultLabel, message, isError = false) {
-  if (!btn) return;
-  btn.dataset.feedback = "1";
-  btn.textContent = message;
-  btn.classList.toggle("share-card-btn--error", isError);
-  window.setTimeout(() => {
-    delete btn.dataset.feedback;
-    btn.classList.remove("share-card-btn--error");
-    btn.textContent = defaultLabel;
-  }, 2000);
-}
-
-function bindShareCardButtons() {
-  const copyBtn = document.getElementById("copy-share-card");
-  const saveBtn = document.getElementById("save-share-card");
-  const mount = document.getElementById("share-card-mount");
-  if (!copyBtn || !saveBtn || !mount) return;
-
-  shareCardCopyDefaultLabel = copyBtn.textContent.trim();
-  shareCardSaveDefaultLabel = saveBtn.textContent.trim();
-
-  const cleanupMount = () => {
-    mount.replaceChildren();
-    mount.setAttribute("aria-hidden", "true");
-  };
-
-  const runShare = async (mode) => {
-    if (!currentPlan || !state) return;
-    const isCopy = mode === "copy";
-    const btn = isCopy ? copyBtn : saveBtn;
-    const defaultLabel = isCopy ? shareCardCopyDefaultLabel : shareCardSaveDefaultLabel;
-
-    copyBtn.disabled = true;
-    saveBtn.disabled = true;
-
-    try {
-      const model = getShareCardPayload();
-      const card = await renderShareCardToMount(mount, model);
-      if (isCopy) {
-        const ok = await copyShareCardPng(card, mount);
-        showShareCardButtonFeedback(
-          btn,
-          defaultLabel,
-          ok ? "コピーしました" : "コピーに失敗",
-          !ok
-        );
-      } else {
-        await saveShareCardPng(card, mount, {
-          title: model.title,
-          totalSp: model.totalSp,
-        });
-        showShareCardButtonFeedback(btn, defaultLabel, "保存しました", false);
-      }
-    } catch (e) {
-      console.error(e);
-      showShareCardButtonFeedback(btn, defaultLabel, "失敗しました", true);
-    } finally {
-      cleanupMount();
-      copyBtn.disabled = false;
-      saveBtn.disabled = false;
-    }
-  };
-
-  copyBtn.addEventListener("click", () => runShare("copy"));
-  saveBtn.addEventListener("click", () => runShare("save"));
-}
-
 function bindSkillFilters() {
   document.querySelectorAll(".regu-seg").forEach((seg) => {
     seg.addEventListener("click", (e) => {
@@ -896,7 +815,7 @@ async function init() {
     bindSkillFilters();
     bindResultSort();
     bindCopyIncludedSkills();
-    bindShareCardButtons();
+    shareCardUi.bindShareCardButtons();
     designSessionUi.bindSessionFlushOnce();
     committedSkillFilter = readSkillFilterFromUI();
 
