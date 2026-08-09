@@ -40,7 +40,7 @@
 
 ## 現在フォーカス（1行）
 
-**R1 順4** — `deckUi.js` 抽出済み・`npm test` OK。**実機（編成・ピッカー・継承ポップオーバー）確認待ち**
+**R1 順5** — `layoutMode.js` 抽出済み・`npm test` OK。**実機（ギャラリー⇔スプリット・リサイズ）確認待ち**
 
 ---
 
@@ -48,7 +48,7 @@
 
 ### P0
 
-- [~] **R1-e: 編成 UI 抽出** — `deckUi.js`（ダッシュボード・ピッカー・継承ポップオーバー）。挙動不変・`npm test`・実機確認待ち
+- [~] **R1-f: レイアウト切替抽出** — `layoutMode.js` 実装済み・`npm test` OK。**実機（ギャラリー⇔スプリット・狭幅・リサイズ）確認待ち**
 
 ### P1
 
@@ -70,7 +70,7 @@
 
 ---
 
-- [x] 2026-08-10 **R1-d セッション保存・復元配線** — `designSessionUi.js`。`npm test` OK・実機 OK
+- [x] 2026-08-10 **R1-e 編成 UI 抽出** — `deckUi.js`。`npm test` OK・実機 OK
 - [x] 2026-08-06 **R1-b シナリオリンク UI 抽出** — `scenarioLinkUi.js`。`npm test` OK・実機 OK
 - [x] 2026-08-06 **結果表レンダ抽出** — `createResultTable` → `resultTable.js`。挙動不変・npm test OK
 - [x] 2026-08-06 **イベントUI抽出** — `createEventUi` → `eventUi.js`。`focusSupportSlot` / `splitEvtOpen` も移設。挙動不変・npm test OK
