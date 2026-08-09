@@ -71,6 +71,9 @@
 ---
 
 - [x] 2026-08-10 **R1-f レイアウト切替抽出** — `layoutMode.js`。`npm test` OK・実機 OK
+- [x] 2026-08-10 **R1-e 編成 UI 抽出** — `deckUi.js`。`npm test` OK・実機 OK
+- [x] 2026-08-10 **R1-d セッション保存・復元配線** — `designSessionUi.js`。`npm test` OK・実機 OK
+- [x] 2026-08-06 **R1-c 設計メモリ UI 抽出** — `designMemoryUi.js`。`npm test` OK・実機 OK
 - [x] 2026-08-06 **R1-b シナリオリンク UI 抽出** — `scenarioLinkUi.js`。`npm test` OK・実機 OK
 - [x] 2026-08-06 **結果表レンダ抽出** — `createResultTable` → `resultTable.js`。挙動不変・npm test OK
 - [x] 2026-08-06 **イベントUI抽出** — `createEventUi` → `eventUi.js`。`focusSupportSlot` / `splitEvtOpen` も移設。挙動不変・npm test OK
