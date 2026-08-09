@@ -13,6 +13,7 @@
 
 ### 変更
 
+- **R1 順3**: セッション保存・復元配線 → `designSessionUi.js`
 - **R1 順2**: 設計メモリ UI → `designMemoryUi.js`（実機 OK）
 
 ### 追加
