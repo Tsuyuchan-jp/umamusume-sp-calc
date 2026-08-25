@@ -40,7 +40,7 @@
 
 ## 現在フォーカス（1行）
 
-**v1.0.5 公開** — R1 リファクタ反映済み。P1 共有カード右背景は未着手
+**8/24 本体パッチ追従の調査済み（未 extract）** — 適用は mdb 再抽出が本筋。P1 共有カード右背景は未着手
 
 ---
 
@@ -66,7 +66,8 @@
   - 手順: `npm run extract:events` → `compare:events` → `apply:events` のあと、`events.preserve.json` から GameWith 一時手載せ6件（`evt_30307_*` / `evt_30308_*`）を削除。docs の件数・注記も更新  
   - 関連: [ops/GAME_UPDATE_RUNBOOK.md](./ops/GAME_UPDATE_RUNBOOK.md) / events preserve
 
-- [ ] **ゲーム更新追従** — 発生時のみ [ops/GAME_UPDATE_RUNBOOK.md](./ops/GAME_UPDATE_RUNBOOK.md)（mdb → events → assets:extract/import → verify）
+- [ ] **ゲーム更新追従** — 発生時のみ [ops/GAME_UPDATE_RUNBOOK.md](./ops/GAME_UPDATE_RUNBOOK.md)（mdb → events → assets:extract/import → verify）  
+  - 2026-08-25 調査: 手元 `master.mdb` は 8/24 21:01。JSON は 7/30 のまま。育成 **114101 エピファネイア**、SSR **30311 エフフォーリア / 30312 シービー** は mdb にあり extract で取れる。U-tools イベントは「調査中」。優先枠入替・画像は `meta` 再復号が必要。詳細は直近チャット調査結果。
 
 ---
 
