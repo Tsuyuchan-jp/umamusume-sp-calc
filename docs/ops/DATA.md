@@ -12,7 +12,7 @@ data/
   characters.json      # extract 生成
   meta.json            # extract 生成（件数・ソースパス）
   events.json          # U-tools+mdb 抽出正本（+ preserve）
-  priority-supports.json  # イベント対応40種のエクスポート（render:priority-supports で生成）
+  priority-supports.json  # イベント対応42種のエクスポート（render:priority-supports で生成）
   events.extracted.json
   events.preserve.json # たづな2 + GameWith一時6（30307/30308）
   events.id-aliases.json

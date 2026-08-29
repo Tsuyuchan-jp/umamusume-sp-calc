@@ -2,7 +2,7 @@
 
 ウマ娘クライアントがパッチされ **`master.mdb` が更新されたあと**、このリポジトリの JSON と公開サイトを追随させる手順です。
 
-**目的**: スキル・サポカ・育成ウマ娘のトレヒントと、優先40サポカのイベントデータを最新化し、回帰テストと実機確認のうえ本番（GitHub Pages）へ反映する。
+**目的**: スキル・サポカ・育成ウマ娘のトレヒントと、優先42サポカのイベントデータを最新化し、回帰テストと実機確認のうえ本番（GitHub Pages）へ反映する。
 
 詳細仕様は [DATA.md](./DATA.md)。設計経緯は [archive/EVENT_EXTRACT_DESIGN.md](../archive/EVENT_EXTRACT_DESIGN.md)。このファイルは **作業順の正本** とする。
 
@@ -46,7 +46,7 @@ npm run extract
 npm run verify
 npm test
 
-# 2. サポカイベント（優先40・U-tools + mdb）
+# 2. サポカイベント（優先42・U-tools + mdb）
 npm run extract:events
 npm run compare:events
 # → data/events.diff-report.json を確認。旧11 conflict があれば要調査
@@ -308,6 +308,6 @@ assets/supports|characters/{id}.webp ──► app/（cardAssets.js）
 | [AGENT_HANDOFF.md](../AGENT_HANDOFF.md) | エージェント向け最短ブリーフ |
 | [CHANGELOG.md](../CHANGELOG.md) | 公開版の変更履歴（データ更新も記録推奨） |
 | [ASSETS.md](./ASSETS.md) | カード画像のパス規約・抽出／import |
-| [PRIORITY_SUPPORTS.md](../product/PRIORITY_SUPPORTS.md) | イベント対応サポカ40種の一覧 |
+| [PRIORITY_SUPPORTS.md](../product/PRIORITY_SUPPORTS.md) | イベント対応サポカ42種の一覧 |
 
 データ更新を公開したら、`CHANGELOG.md` に `### 変更` で件数やパッチ日を1行追記しておくと後から追いやすい。

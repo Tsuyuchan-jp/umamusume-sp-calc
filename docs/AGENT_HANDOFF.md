@@ -18,7 +18,7 @@
 | push / Pages | **通常どおり push 可**（v1.0.0 で初反映。以降は変更のたびコミット＋明示時 push） |
 | 初期編成 | 育成112901（アーモンドアイ）/ 枠1エアグルーヴ・枠2テイオー・枠3タップ・枠4ドトウ・枠5ヤング・枠6たづな |
 | 編成スクショ | **本実装完了・実機OK**（v28.1・snapdom）。[product/screenshot-requirements.md](./product/screenshot-requirements.md) |
-| v1 レビュー | M1〜M4・スマホ対応 **クローズ**。次は TODO Open（回帰拡充・ゲーム更新・30307/30308 等） |
+| v1 レビュー | M1〜M4・スマホ対応 **クローズ**。8/24 パッチ追従 **クローズ**（v1.0.6）。次は TODO Open（P1 共有カード右背景 等） |
 
 通し確認・版履歴の詳細は [CHANGELOG.md](./CHANGELOG.md)。
 

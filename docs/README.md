@@ -14,7 +14,7 @@ AI 新チャットは [AGENT_HANDOFF.md](./AGENT_HANDOFF.md) から。
 | 入口 | [CHANGELOG.md](./CHANGELOG.md) | 公開履歴 |
 | フォルダ | [spec/](./spec/) | 要件・計算仕様・用語 |
 | フォルダ | [ops/](./ops/) | 起動・ゲーム更新・画像・データ・構成 |
-| フォルダ | [product/](./product/) | UX・優先40一覧 |
+| フォルダ | [product/](./product/) | UX・優先42一覧 |
 | フォルダ | [archive/](./archive/) | 完了設計（通常読まない） |
 
 ## 状況別: 何を開くか
@@ -36,7 +36,7 @@ AI 新チャットは [AGENT_HANDOFF.md](./AGENT_HANDOFF.md) から。
 | 全域レビュー・リファクタ進捗 | [product/repo-review-findings.md](./product/repo-review-findings.md) |
 | v1.0.0 レビュー棚卸し | [product/v1-review-findings.md](./product/v1-review-findings.md) |
 | 見た目モック | [product/mockups/hybrid-index.html](./product/mockups/hybrid-index.html)（ハイブリッド入口） |
-| 優先40サポカ一覧 | [product/PRIORITY_SUPPORTS.md](./product/PRIORITY_SUPPORTS.md) |
+| 優先42サポカ一覧 | [product/PRIORITY_SUPPORTS.md](./product/PRIORITY_SUPPORTS.md) |
 | 公開版の履歴 | [CHANGELOG.md](./CHANGELOG.md) |
 
 ## 正本（事実は1箇所だけ）
@@ -54,7 +54,7 @@ AI 新チャットは [AGENT_HANDOFF.md](./AGENT_HANDOFF.md) から。
 | JSON スキーマ | [ops/DATA.md](./ops/DATA.md) |
 | 構成・フロー | [ops/ARCHITECTURE.md](./ops/ARCHITECTURE.md) |
 | UX 思想 | [product/UX.md](./product/UX.md) |
-| 優先40一覧 | [product/PRIORITY_SUPPORTS.md](./product/PRIORITY_SUPPORTS.md) |
+| 優先42一覧 | [product/PRIORITY_SUPPORTS.md](./product/PRIORITY_SUPPORTS.md) |
 | 公開履歴 | [CHANGELOG.md](./CHANGELOG.md) |
 
 ## 再肥大化防止

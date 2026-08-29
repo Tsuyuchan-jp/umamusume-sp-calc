@@ -40,7 +40,7 @@
 
 ## 現在フォーカス（1行）
 
-**v1.0.6 公開** — 8/24 パッチ追従済み。P1 共有カード右背景は未着手
+**v1.0.6 公開済み（実機OK・push 済）** — 次は P1 共有カード右背景
 
 ---
 
@@ -66,11 +66,9 @@
   - 手順: `npm run extract:events` → `compare:events` → `apply:events` のあと、`events.preserve.json` から GameWith 一時手載せを削除。docs の件数・注記も更新  
   - 関連: [ops/GAME_UPDATE_RUNBOOK.md](./ops/GAME_UPDATE_RUNBOOK.md) / events preserve
 
-- [x] **ゲーム更新追従（8/24）** — mdb extract・優先42・GameWith 手載せ・画像3枚（2026-08-30）
-
 ---
 
-- [x] 2026-08-30 **v1.0.6 / 8/24パッチ追従** — 優先42・GameWith手載せ6件・エピファネイア/新SSR画像・verify/test OK
+- [x] 2026-08-30 **v1.0.6 / 8/24パッチ追従** — 優先42・GameWith手載せ6件・画像3枚・実機OK・push / Pages
 - [x] 2026-08-10 **v1.0.5 版上げ** — R1 `app.js` 分割・キャッシュバス 1.0.5・push / Pages
 - [x] 2026-08-10 **R1-g 共有カードボタン配線** — `shareCardUi.js`。実機 OK。**R1 ロードマップ完了**
 - [x] 2026-08-10 **R1-e 編成 UI 抽出** — `deckUi.js`。`npm test` OK・実機 OK
