@@ -40,7 +40,7 @@
 
 ## 現在フォーカス（1行）
 
-**8/24 本体パッチ追従の調査済み（未 extract）** — 適用は mdb 再抽出が本筋。P1 共有カード右背景は未着手
+**v1.0.6 公開** — 8/24 パッチ追従済み。P1 共有カード右背景は未着手
 
 ---
 
@@ -61,16 +61,16 @@
 
 ### P3 / 条件付き
 
-- [ ] **30307 / 30308 の U-tools 化**  
-  - 条件: U-tools にキセキ（巻頭カラーの夏）・アーモンドアイ（夏空チルタイム）が掲載されたら  
-  - 手順: `npm run extract:events` → `compare:events` → `apply:events` のあと、`events.preserve.json` から GameWith 一時手載せ6件（`evt_30307_*` / `evt_30308_*`）を削除。docs の件数・注記も更新  
+- [ ] **30307 / 30308 / 30311 / 30312 の U-tools 化**  
+  - 条件: U-tools に該当カードのイベントが掲載されたら  
+  - 手順: `npm run extract:events` → `compare:events` → `apply:events` のあと、`events.preserve.json` から GameWith 一時手載せを削除。docs の件数・注記も更新  
   - 関連: [ops/GAME_UPDATE_RUNBOOK.md](./ops/GAME_UPDATE_RUNBOOK.md) / events preserve
 
-- [ ] **ゲーム更新追従** — 発生時のみ [ops/GAME_UPDATE_RUNBOOK.md](./ops/GAME_UPDATE_RUNBOOK.md)（mdb → events → assets:extract/import → verify）  
-  - 2026-08-25 調査: 手元 `master.mdb` は 8/24 21:01。JSON は 7/30 のまま。育成 **114101 エピファネイア**、SSR **30311 エフフォーリア / 30312 シービー** は mdb にあり extract で取れる。U-tools イベントは「調査中」。優先枠入替・画像は `meta` 再復号が必要。詳細は直近チャット調査結果。
+- [x] **ゲーム更新追従（8/24）** — mdb extract・優先42・GameWith 手載せ・画像3枚（2026-08-30）
 
 ---
 
+- [x] 2026-08-30 **v1.0.6 / 8/24パッチ追従** — 優先42・GameWith手載せ6件・エピファネイア/新SSR画像・verify/test OK
 - [x] 2026-08-10 **v1.0.5 版上げ** — R1 `app.js` 分割・キャッシュバス 1.0.5・push / Pages
 - [x] 2026-08-10 **R1-g 共有カードボタン配線** — `shareCardUi.js`。実機 OK。**R1 ロードマップ完了**
 - [x] 2026-08-10 **R1-e 編成 UI 抽出** — `deckUi.js`。`npm test` OK・実機 OK

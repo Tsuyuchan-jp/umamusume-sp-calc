@@ -15,7 +15,7 @@ const DEFAULT_STYLE = {
 };
 
 /** 画像 URL のキャッシュ回避（追加前の 404 が残るのを防ぐ。版上げ時に更新） */
-const ASSET_CACHE_BUST = "1.0.5";
+const ASSET_CACHE_BUST = "1.0.6";
 
 /** @param {string} [type] */
 export function getSupportTypeStyle(type) {

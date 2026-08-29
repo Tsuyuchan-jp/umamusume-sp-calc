@@ -168,6 +168,211 @@
         }
       ],
       "_preserveReason": "一時: GameWith 570424（U-tools 未掲載）。掲載後に extract へ置換し本行を削除予定"
+    },
+    {
+      "id": "evt_30312_801057002",
+      "supportNameMatch": "時に交わる海と空",
+      "label": "シービー たとえタブーに触れても",
+      "selection": "auto",
+      "skills": [
+        {
+          "skillName": "早仕掛け",
+          "hintLevel": 1,
+          "skillId": 202022
+        }
+      ],
+      "_preserveReason": "一時: GameWith 573289（U-tools 調査中）。掲載後に extract へ置換し本行を削除予定"
+    },
+    {
+      "id": "evt_30312_830312002",
+      "supportNameMatch": "時に交わる海と空",
+      "label": "シービー 『気分』キミの中に",
+      "selection": "single",
+      "defaultChoiceId": "c001_2035822",
+      "choices": [
+        {
+          "id": "c001_2035822",
+          "label": "① 捕捉 Lv2",
+          "skills": [
+            {
+              "skillName": "捕捉",
+              "hintLevel": 2,
+              "skillId": 203582
+            }
+          ]
+        },
+        {
+          "id": "c002_2028921",
+          "label": "② 不動の心 Lv1",
+          "skills": [
+            {
+              "skillName": "不動の心",
+              "hintLevel": 1,
+              "skillId": 202892
+            }
+          ]
+        },
+        {
+          "id": "c003_empty",
+          "label": "③ スキルヒントなし",
+          "skills": []
+        }
+      ],
+      "_preserveReason": "一時: GameWith 573289（U-tools 調査中）。掲載後に extract へ置換し本行を削除予定"
+    },
+    {
+      "id": "evt_30312_830312003",
+      "supportNameMatch": "時に交わる海と空",
+      "label": "シービー 『気分』思うままに",
+      "selection": "single",
+      "defaultChoiceId": "c001_2020211+2045212",
+      "choices": [
+        {
+          "id": "c001_2020211+2045212",
+          "label": "① 強攻策 Lv1 + 当機立断 Lv2",
+          "skills": [
+            {
+              "skillName": "強攻策",
+              "hintLevel": 1,
+              "skillId": 202021
+            },
+            {
+              "skillName": "当機立断",
+              "hintLevel": 2,
+              "skillId": 204521
+            }
+          ]
+        },
+        {
+          "id": "c002_2020211+2028712",
+          "label": "② 強攻策 Lv1 + 君臨 Lv2",
+          "skills": [
+            {
+              "skillName": "強攻策",
+              "hintLevel": 1,
+              "skillId": 202021
+            },
+            {
+              "skillName": "君臨",
+              "hintLevel": 2,
+              "skillId": 202871
+            }
+          ]
+        },
+        {
+          "id": "c003_2020212+2028511",
+          "label": "③ 強攻策 Lv2 + 一網打尽 Lv1",
+          "skills": [
+            {
+              "skillName": "強攻策",
+              "hintLevel": 2,
+              "skillId": 202021
+            },
+            {
+              "skillName": "一網打尽",
+              "hintLevel": 1,
+              "skillId": 202851
+            }
+          ]
+        }
+      ],
+      "_preserveReason": "一時: GameWith 573289（U-tools 調査中）。掲載後に extract へ置換し本行を削除予定"
+    },
+    {
+      "id": "evt_30311_801146002",
+      "supportNameMatch": "As if Guided",
+      "label": "エフフォーリア 運命共同体な僕ら",
+      "selection": "auto",
+      "skills": [
+        {
+          "skillName": "流れに任せて",
+          "hintLevel": 1,
+          "skillId": 204372
+        }
+      ],
+      "_preserveReason": "一時: GameWith 573288（U-tools 調査中）。掲載後に extract へ置換し本行を削除予定"
+    },
+    {
+      "id": "evt_30311_830311002",
+      "supportNameMatch": "As if Guided",
+      "label": "エフフォーリア 運命の暴走散歩道",
+      "selection": "auto",
+      "skills": [
+        {
+          "skillName": "気持ちを乗せて",
+          "hintLevel": 1,
+          "skillId": 204072
+        }
+      ],
+      "_preserveReason": "一時: GameWith 573288（U-tools 調査中）。掲載後に extract へ置換し本行を削除予定"
+    },
+    {
+      "id": "evt_30311_830311003",
+      "supportNameMatch": "As if Guided",
+      "label": "エフフォーリア 『運命』のライバル",
+      "selection": "single",
+      "defaultChoiceId": "c001_2045321+2047011+2045311",
+      "choices": [
+        {
+          "id": "c001_2045321+2047011+2045311",
+          "label": "① 華麗な踏み込み Lv1 + 素質の証明 Lv1 + 清麗高雅 Lv1",
+          "skills": [
+            {
+              "skillName": "華麗な踏み込み",
+              "hintLevel": 1,
+              "skillId": 204532
+            },
+            {
+              "skillName": "素質の証明",
+              "hintLevel": 1,
+              "skillId": 204701
+            },
+            {
+              "skillName": "清麗高雅",
+              "hintLevel": 1,
+              "skillId": 204531
+            }
+          ]
+        },
+        {
+          "id": "c002_2047011+2045711",
+          "label": "② 素質の証明 Lv1 + 純真無垢 Lv1",
+          "skills": [
+            {
+              "skillName": "素質の証明",
+              "hintLevel": 1,
+              "skillId": 204701
+            },
+            {
+              "skillName": "純真無垢",
+              "hintLevel": 1,
+              "skillId": 204571
+            }
+          ]
+        },
+        {
+          "id": "c003_2037121+2047011+2037111",
+          "label": "③ 勇気の一歩 Lv1 + 素質の証明 Lv1 + ショーダウン Lv1",
+          "skills": [
+            {
+              "skillName": "勇気の一歩",
+              "hintLevel": 1,
+              "skillId": 203712
+            },
+            {
+              "skillName": "素質の証明",
+              "hintLevel": 1,
+              "skillId": 204701
+            },
+            {
+              "skillName": "ショーダウン",
+              "hintLevel": 1,
+              "skillId": 203711
+            }
+          ]
+        }
+      ],
+      "_preserveReason": "一時: GameWith 573288（U-tools 調査中）。掲載後に extract へ置換し本行を削除予定"
     }
   ]
 }

@@ -1,25 +1,25 @@
 {
   "version": 2,
   "description": "U-tools + mdb から抽出（Phase A 生成物・手メンテ events.json は未置換）",
-  "extractedAt": "2026-07-30T07:56:16.541Z",
+  "extractedAt": "2026-08-29T17:11:07.098Z",
   "source": {
     "mdb": "D:/DMM/umamusumeDMM/Umamusume/umamusume_Data/Persistent/master/master.mdb",
     "utoolsCache": "data/events.raw.utools.json",
-    "priorityCount": 40
+    "priorityCount": 42
   },
   "stats": {
-    "total": 103,
-    "auto": 84,
-    "single": 19
+    "total": 109,
+    "auto": 88,
+    "single": 21
   },
   "warnings": [
     {
-      "supportCardId": 30307,
-      "message": "U-tools 取得失敗: U-tools fetch failed 30307: HTTP 404"
+      "supportCardId": 30312,
+      "message": "U-tools イベント0件"
     },
     {
-      "supportCardId": 30308,
-      "message": "U-tools 取得失敗: U-tools fetch failed 30308: HTTP 404"
+      "supportCardId": 30311,
+      "message": "U-tools イベント0件"
     }
   ],
   "events": [
@@ -638,6 +638,140 @@
         }
       ],
       "defaultChoiceId": "c001_2032411+2035611",
+      "selection": "single"
+    },
+    {
+      "id": "evt_30308_801129002",
+      "supportNameMatch": "夏空チルタイム",
+      "label": "根性アーモンド アーモンドアイは見逃さない",
+      "selection": "auto",
+      "skills": [
+        {
+          "skillName": "品行方正",
+          "hintLevel": 1,
+          "skillId": 202742
+        }
+      ]
+    },
+    {
+      "id": "evt_30308_830308002",
+      "supportNameMatch": "夏空チルタイム",
+      "label": "根性アーモンド そよ風と烈風のセッション",
+      "selection": "auto",
+      "skills": [
+        {
+          "skillName": "切り替え上手",
+          "hintLevel": 1,
+          "skillId": 203172
+        }
+      ]
+    },
+    {
+      "id": "evt_30308_830308003",
+      "supportNameMatch": "夏空チルタイム",
+      "label": "根性アーモンド 鳴り響け！エモーション",
+      "choices": [
+        {
+          "id": "c001_2036311+2045011",
+          "label": "① 唯一無二 Lv1 + 一石二鳥 Lv1",
+          "skills": [
+            {
+              "skillName": "唯一無二",
+              "hintLevel": 1,
+              "skillId": 203631
+            },
+            {
+              "skillName": "一石二鳥",
+              "hintLevel": 1,
+              "skillId": 204501
+            }
+          ]
+        },
+        {
+          "id": "c002_2000241+2036311",
+          "label": "② 左回りの鬼 Lv1 + 唯一無二 Lv1",
+          "skills": [
+            {
+              "skillName": "左回りの鬼",
+              "hintLevel": 1,
+              "skillId": 200024
+            },
+            {
+              "skillName": "唯一無二",
+              "hintLevel": 1,
+              "skillId": 203631
+            }
+          ]
+        }
+      ],
+      "defaultChoiceId": "c001_2036311+2045011",
+      "selection": "single"
+    },
+    {
+      "id": "evt_30307_801137002",
+      "supportNameMatch": "巻頭カラーの夏",
+      "label": "スタキセキ ◆努力の末、掴んだ勝利！",
+      "selection": "auto",
+      "skills": [
+        {
+          "skillName": "道悪○",
+          "hintLevel": 1,
+          "skillId": 200162
+        }
+      ]
+    },
+    {
+      "id": "evt_30307_830307002",
+      "supportNameMatch": "巻頭カラーの夏",
+      "label": "スタキセキ これがあたしの漫画道",
+      "selection": "auto",
+      "skills": [
+        {
+          "skillName": "覚悟を決めて",
+          "hintLevel": 1,
+          "skillId": 203262
+        }
+      ]
+    },
+    {
+      "id": "evt_30307_830307003",
+      "supportNameMatch": "巻頭カラーの夏",
+      "label": "スタキセキ 炎のコンテスト",
+      "choices": [
+        {
+          "id": "c001_2028212+2044811",
+          "label": "① 万里一空 Lv2 + レースメイカー Lv1",
+          "skills": [
+            {
+              "skillName": "万里一空",
+              "hintLevel": 2,
+              "skillId": 202821
+            },
+            {
+              "skillName": "レースメイカー",
+              "hintLevel": 1,
+              "skillId": 204481
+            }
+          ]
+        },
+        {
+          "id": "c002_2026812+2044811",
+          "label": "② ブチ☆アゲ↑バイブス Lv2 + レースメイカー Lv1",
+          "skills": [
+            {
+              "skillName": "ブチ☆アゲ↑バイブス",
+              "hintLevel": 2,
+              "skillId": 202681
+            },
+            {
+              "skillName": "レースメイカー",
+              "hintLevel": 1,
+              "skillId": 204481
+            }
+          ]
+        }
+      ],
+      "defaultChoiceId": "c002_2026812+2044811",
       "selection": "single"
     },
     {

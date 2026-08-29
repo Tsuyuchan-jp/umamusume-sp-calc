@@ -82,7 +82,10 @@
     {
       "id": "link_tazuna_halo",
       "label": "たづな＆ハローリンク",
-      "requiresLinkCharacterIds": [9001, 9008],
+      "requiresLinkCharacterIds": [
+        9001,
+        9008
+      ],
       "note": "requiresLinkCharacterIds は OR（たづなまたはハローのどちらかいれば金）",
       "skillWithoutLink": {
         "skillId": 203502,

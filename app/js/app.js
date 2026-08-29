@@ -56,7 +56,7 @@ let previousTotal = null;
 let deltaHideTimer = null;
 
 /** Pages の max-age キャッシュで古い events.json が残るのを防ぐ（版上げ時に更新） */
-const DATA_CACHE_BUST = "1.0.5";
+const DATA_CACHE_BUST = "1.0.6";
 
 /** イベント選択 UI（関数宣言はホイストされるので deps で参照可） */
 const eventUi = createEventUi({

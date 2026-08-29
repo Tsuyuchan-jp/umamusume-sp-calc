@@ -24,7 +24,7 @@ UI は `app/js/cardAssets.js` が URL を組み立てる。画像が無い場合
 
 ## 同梱範囲
 
-- 優先サポカ **40種** → `assets/supports/{id}.webp`
+- 優先サポカ **42種** → `assets/supports/{id}.webp`
 - 育成ウマ娘 **全育成カード**（`chr_icon` キー = `race_dress_id`。skill_set=0 / 91xxxxx の疑似カードは除外）→ `assets/characters/{id}.webp`
 - タイプ印 **6種** — 実行時 CDN 非依存
 - UI 背景 `assets/ui/uma-world.png` — 横長イラスト（競馬場・スタンド・芝）。旧 U-tools 縦長 webp は使わない

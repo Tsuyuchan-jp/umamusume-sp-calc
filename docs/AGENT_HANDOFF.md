@@ -9,10 +9,10 @@
 
 | 項目 | 状態 |
 |------|------|
-| アプリ | **v1.0.5** 公開。SP計算・デュアルUI・スクショ（WebP保存）・スマホ対応・集計実装済み |
+| アプリ | **v1.0.6** 公開。SP計算・デュアルUI・スクショ（WebP保存）・スマホ対応・集計実装済み |
 | データ | skills / supports / characters / events / toresenken **あり**（件数は `data/meta.json`） |
-| events | 優先40・111イベント（U-tools+mdb + preserve。30307/30308 は GameWith 一時） |
-| カード画像 | サポカ縦40 + 育成 `chr_icon` 全262 同梱済み（[ops/ASSETS.md](./ops/ASSETS.md)） |
+| events | 優先42・117イベント（U-tools+mdb + preserve。30307/30308/30311/30312 は GameWith 一時） |
+| カード画像 | サポカ縦42 + 育成 `chr_icon` 全264（111302 除く1枚欠落）同梱済み（[ops/ASSETS.md](./ops/ASSETS.md)） |
 | extract 元 mdb | `D:\DMM\...\Persistent\master\master.mdb`（AppData 既定は無しが多い） |
 | 公開 URL | https://Tsuyuchan-jp.github.io/umamusume-sp-calc/app/ |
 | push / Pages | **通常どおり push 可**（v1.0.0 で初反映。以降は変更のたびコミット＋明示時 push） |
@@ -35,7 +35,7 @@
 
 - **ローカル HTML/JS + JSON**（NotebookLM / Electron ではない）
 - **シナリオはトレセン軒のみ**
-- **ヒントLv / 金+白 / ○+◎ / ×除外 / 継承固有 / イベント優先40** — REQUIREMENTS の確定ルールに従う
+- **ヒントLv / 金+白 / ○+◎ / ×除外 / 継承固有 / イベント優先42** — REQUIREMENTS の確定ルールに従う
 - **イベント正本**: U-tools+mdb（`events.preserve.json` で例外維持）。全サポカ網羅はスコープ外
 - **Git**: 変更のたびコミット。PowerShell では `git add .` と `git commit` を別ステップ。push は明示依頼時のみ
 
@@ -46,7 +46,7 @@
 | 次タスク・やらないこと | [TODO.md](./TODO.md) |
 | 要件 / 計算 / 用語 | [spec/](./spec/) |
 | 起動 / 更新 / 画像 / データ | [ops/](./ops/) |
-| UX / 優先40 | [product/](./product/) |
+| UX / 優先42 | [product/](./product/) |
 | 全域レビュー | [product/repo-review-findings.md](./product/repo-review-findings.md) |
 | デザイン大改修引継ぎ（履歴） | [archive/design-overhaul-handoff.md](./archive/design-overhaul-handoff.md) |
 | 設計履歴（通常不要） | [archive/](./archive/) |

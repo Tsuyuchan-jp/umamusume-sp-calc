@@ -41,9 +41,104 @@
     "[世界を変える眼差し] アーモンドアイ",
     "[両手いっぱい、小倉愛] ナイスネイチャ",
     "[巻頭カラーの夏] キセキ",
-    "[夏空チルタイム] アーモンドアイ"
+    "[夏空チルタイム] アーモンドアイ",
+    "[時に交わる海と空] ミスターシービー",
+    "[As if Guided] エフフォーリア"
   ],
   "events": [
+    {
+      "id": "evt_30311_830311003",
+      "supportNameMatch": "As if Guided",
+      "label": "エフフォーリア 『運命』のライバル",
+      "selection": "single",
+      "defaultChoiceId": "c001_2045321+2047011+2045311",
+      "choices": [
+        {
+          "id": "c001_2045321+2047011+2045311",
+          "label": "① 華麗な踏み込み Lv1 + 素質の証明 Lv1 + 清麗高雅 Lv1",
+          "skills": [
+            {
+              "skillName": "華麗な踏み込み",
+              "hintLevel": 1,
+              "skillId": 204532
+            },
+            {
+              "skillName": "素質の証明",
+              "hintLevel": 1,
+              "skillId": 204701
+            },
+            {
+              "skillName": "清麗高雅",
+              "hintLevel": 1,
+              "skillId": 204531
+            }
+          ]
+        },
+        {
+          "id": "c002_2047011+2045711",
+          "label": "② 素質の証明 Lv1 + 純真無垢 Lv1",
+          "skills": [
+            {
+              "skillName": "素質の証明",
+              "hintLevel": 1,
+              "skillId": 204701
+            },
+            {
+              "skillName": "純真無垢",
+              "hintLevel": 1,
+              "skillId": 204571
+            }
+          ]
+        },
+        {
+          "id": "c003_2037121+2047011+2037111",
+          "label": "③ 勇気の一歩 Lv1 + 素質の証明 Lv1 + ショーダウン Lv1",
+          "skills": [
+            {
+              "skillName": "勇気の一歩",
+              "hintLevel": 1,
+              "skillId": 203712
+            },
+            {
+              "skillName": "素質の証明",
+              "hintLevel": 1,
+              "skillId": 204701
+            },
+            {
+              "skillName": "ショーダウン",
+              "hintLevel": 1,
+              "skillId": 203711
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "evt_30311_830311002",
+      "supportNameMatch": "As if Guided",
+      "label": "エフフォーリア 運命の暴走散歩道",
+      "selection": "auto",
+      "skills": [
+        {
+          "skillName": "気持ちを乗せて",
+          "hintLevel": 1,
+          "skillId": 204072
+        }
+      ]
+    },
+    {
+      "id": "evt_30311_801146002",
+      "supportNameMatch": "As if Guided",
+      "label": "エフフォーリア 運命共同体な僕ら",
+      "selection": "auto",
+      "skills": [
+        {
+          "skillName": "流れに任せて",
+          "hintLevel": 1,
+          "skillId": 204372
+        }
+      ]
+    },
     {
       "id": "evt_30289_830289003",
       "supportNameMatch": "Innovator",
@@ -571,7 +666,7 @@
     {
       "id": "evt_tazuna_oodate5",
       "supportNameMatch": "一杯のノスタルジア",
-      "label": "友人たづな お出かけ5回目",
+      "label": "たづな お出かけ5回目",
       "selection": "auto",
       "skills": [
         {
@@ -584,7 +679,7 @@
     {
       "id": "evt_tazuna_newyear",
       "supportNameMatch": "一杯のノスタルジア",
-      "label": "友人たづな クラシック正月",
+      "label": "たづな クラシック正月",
       "selection": "auto",
       "skills": [
         {
@@ -717,8 +812,6 @@
       "id": "evt_30308_830308003",
       "supportNameMatch": "夏空チルタイム",
       "label": "根性アーモンド 鳴り響け！エモーション",
-      "selection": "single",
-      "defaultChoiceId": "c001_2036311+2045011",
       "choices": [
         {
           "id": "c001_2036311+2045011",
@@ -752,6 +845,21 @@
             }
           ]
         }
+      ],
+      "defaultChoiceId": "c001_2036311+2045011",
+      "selection": "single"
+    },
+    {
+      "id": "evt_30307_801137002",
+      "supportNameMatch": "巻頭カラーの夏",
+      "label": "スタキセキ ◆努力の末、掴んだ勝利！",
+      "selection": "auto",
+      "skills": [
+        {
+          "skillName": "道悪○",
+          "hintLevel": 1,
+          "skillId": 200162
+        }
       ]
     },
     {
@@ -771,8 +879,6 @@
       "id": "evt_30307_830307003",
       "supportNameMatch": "巻頭カラーの夏",
       "label": "スタキセキ 炎のコンテスト",
-      "selection": "single",
-      "defaultChoiceId": "c002_2026812+2044811",
       "choices": [
         {
           "id": "c001_2028212+2044811",
@@ -806,20 +912,9 @@
             }
           ]
         }
-      ]
-    },
-    {
-      "id": "evt_30307_801137002",
-      "supportNameMatch": "巻頭カラーの夏",
-      "label": "スタキセキ 努力の末、掴んだ勝利！",
-      "selection": "auto",
-      "skills": [
-        {
-          "skillName": "道悪○",
-          "hintLevel": 1,
-          "skillId": 200162
-        }
-      ]
+      ],
+      "defaultChoiceId": "c002_2026812+2044811",
+      "selection": "single"
     },
     {
       "id": "evt_30264_830264002",
@@ -1105,6 +1200,112 @@
           "skillName": "末脚",
           "hintLevel": 1,
           "skillId": 200512
+        }
+      ]
+    },
+    {
+      "id": "evt_30312_830312002",
+      "supportNameMatch": "時に交わる海と空",
+      "label": "シービー 『気分』キミの中に",
+      "selection": "single",
+      "defaultChoiceId": "c001_2035822",
+      "choices": [
+        {
+          "id": "c001_2035822",
+          "label": "① 捕捉 Lv2",
+          "skills": [
+            {
+              "skillName": "捕捉",
+              "hintLevel": 2,
+              "skillId": 203582
+            }
+          ]
+        },
+        {
+          "id": "c002_2028921",
+          "label": "② 不動の心 Lv1",
+          "skills": [
+            {
+              "skillName": "不動の心",
+              "hintLevel": 1,
+              "skillId": 202892
+            }
+          ]
+        },
+        {
+          "id": "c003_empty",
+          "label": "③ スキルヒントなし",
+          "skills": []
+        }
+      ]
+    },
+    {
+      "id": "evt_30312_830312003",
+      "supportNameMatch": "時に交わる海と空",
+      "label": "シービー 『気分』思うままに",
+      "selection": "single",
+      "defaultChoiceId": "c001_2020211+2045212",
+      "choices": [
+        {
+          "id": "c001_2020211+2045212",
+          "label": "① 強攻策 Lv1 + 当機立断 Lv2",
+          "skills": [
+            {
+              "skillName": "強攻策",
+              "hintLevel": 1,
+              "skillId": 202021
+            },
+            {
+              "skillName": "当機立断",
+              "hintLevel": 2,
+              "skillId": 204521
+            }
+          ]
+        },
+        {
+          "id": "c002_2020211+2028712",
+          "label": "② 強攻策 Lv1 + 君臨 Lv2",
+          "skills": [
+            {
+              "skillName": "強攻策",
+              "hintLevel": 1,
+              "skillId": 202021
+            },
+            {
+              "skillName": "君臨",
+              "hintLevel": 2,
+              "skillId": 202871
+            }
+          ]
+        },
+        {
+          "id": "c003_2020212+2028511",
+          "label": "③ 強攻策 Lv2 + 一網打尽 Lv1",
+          "skills": [
+            {
+              "skillName": "強攻策",
+              "hintLevel": 2,
+              "skillId": 202021
+            },
+            {
+              "skillName": "一網打尽",
+              "hintLevel": 1,
+              "skillId": 202851
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "evt_30312_801057002",
+      "supportNameMatch": "時に交わる海と空",
+      "label": "シービー たとえタブーに触れても",
+      "selection": "auto",
+      "skills": [
+        {
+          "skillName": "早仕掛け",
+          "hintLevel": 1,
+          "skillId": 202022
         }
       ]
     },
@@ -2379,6 +2580,16 @@
       "id": 30308,
       "title": "夏空チルタイム",
       "name": "[夏空チルタイム]アーモンドアイ"
+    },
+    {
+      "id": 30312,
+      "title": "時に交わる海と空",
+      "name": "[時に交わる海と空]ミスターシービー"
+    },
+    {
+      "id": 30311,
+      "title": "As if Guided",
+      "name": "[As if Guided]エフフォーリア"
     }
   ],
   "prioritySupportIds": [
@@ -2421,6 +2632,8 @@
     30242,
     30306,
     30307,
-    30308
+    30308,
+    30312,
+    30311
   ]
 }

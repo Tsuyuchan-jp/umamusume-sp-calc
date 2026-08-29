@@ -4412,6 +4412,48 @@
     }
   },
   {
+    "id": 101411,
+    "name": "光れ！弾けろ！超新星爆発！",
+    "baseSp": 0,
+    "rarity": 5,
+    "groupId": 10141,
+    "groupRate": 1,
+    "iconId": 0,
+    "lowerSkillId": null,
+    "upperSkillId": null,
+    "activation": {
+      "branches": [
+        {
+          "grounds": [],
+          "distances": [],
+          "styles": [
+            "nige"
+          ]
+        },
+        {
+          "grounds": [],
+          "distances": [],
+          "styles": [
+            "senko"
+          ]
+        },
+        {
+          "grounds": [],
+          "distances": [],
+          "styles": []
+        }
+      ],
+      "tags": {
+        "grounds": [],
+        "distances": [],
+        "styles": [
+          "nige",
+          "senko"
+        ]
+      }
+    }
+  },
+  {
     "id": 101431,
     "name": "Ring-a-Link",
     "baseSp": 0,
@@ -7178,6 +7220,40 @@
         "styles": [
           "senko"
         ]
+      }
+    }
+  },
+  {
+    "id": 111131,
+    "name": "渚のヴィーナスタイム♡",
+    "baseSp": 0,
+    "rarity": 5,
+    "groupId": 11113,
+    "groupRate": 1,
+    "iconId": 0,
+    "lowerSkillId": null,
+    "upperSkillId": null,
+    "activation": {
+      "branches": [
+        {
+          "grounds": [],
+          "distances": [
+            "mid"
+          ],
+          "styles": []
+        },
+        {
+          "grounds": [],
+          "distances": [],
+          "styles": []
+        }
+      ],
+      "tags": {
+        "grounds": [],
+        "distances": [
+          "mid"
+        ],
+        "styles": []
       }
     }
   },
@@ -32271,6 +32347,196 @@
     }
   },
   {
+    "id": 204511,
+    "name": "超然",
+    "baseSp": 200,
+    "rarity": 2,
+    "groupId": 20451,
+    "groupRate": 2,
+    "iconId": 0,
+    "lowerSkillId": 204512,
+    "upperSkillId": null,
+    "activation": {
+      "branches": [
+        {
+          "grounds": [],
+          "distances": [
+            "mid"
+          ],
+          "styles": []
+        },
+        {
+          "grounds": [],
+          "distances": [
+            "long"
+          ],
+          "styles": []
+        }
+      ],
+      "tags": {
+        "grounds": [],
+        "distances": [
+          "mid",
+          "long"
+        ],
+        "styles": []
+      }
+    }
+  },
+  {
+    "id": 204512,
+    "name": "存在感",
+    "baseSp": 200,
+    "rarity": 1,
+    "groupId": 20451,
+    "groupRate": 1,
+    "iconId": 0,
+    "lowerSkillId": null,
+    "upperSkillId": 204511,
+    "activation": {
+      "branches": [
+        {
+          "grounds": [],
+          "distances": [
+            "mid"
+          ],
+          "styles": []
+        },
+        {
+          "grounds": [],
+          "distances": [
+            "long"
+          ],
+          "styles": []
+        }
+      ],
+      "tags": {
+        "grounds": [],
+        "distances": [
+          "mid",
+          "long"
+        ],
+        "styles": []
+      }
+    }
+  },
+  {
+    "id": 204521,
+    "name": "当機立断",
+    "baseSp": 180,
+    "rarity": 2,
+    "groupId": 20452,
+    "groupRate": 2,
+    "iconId": 0,
+    "lowerSkillId": 204522,
+    "upperSkillId": null,
+    "activation": {
+      "branches": [
+        {
+          "grounds": [],
+          "distances": [],
+          "styles": [
+            "oikomi"
+          ]
+        }
+      ],
+      "tags": {
+        "grounds": [],
+        "distances": [],
+        "styles": [
+          "oikomi"
+        ]
+      }
+    }
+  },
+  {
+    "id": 204522,
+    "name": "潮目を掴んで",
+    "baseSp": 180,
+    "rarity": 1,
+    "groupId": 20452,
+    "groupRate": 1,
+    "iconId": 0,
+    "lowerSkillId": null,
+    "upperSkillId": 204521,
+    "activation": {
+      "branches": [
+        {
+          "grounds": [],
+          "distances": [],
+          "styles": [
+            "oikomi"
+          ]
+        }
+      ],
+      "tags": {
+        "grounds": [],
+        "distances": [],
+        "styles": [
+          "oikomi"
+        ]
+      }
+    }
+  },
+  {
+    "id": 204531,
+    "name": "清麗高雅",
+    "baseSp": 190,
+    "rarity": 2,
+    "groupId": 20453,
+    "groupRate": 2,
+    "iconId": 0,
+    "lowerSkillId": 204532,
+    "upperSkillId": null,
+    "activation": {
+      "branches": [
+        {
+          "grounds": [],
+          "distances": [
+            "mid"
+          ],
+          "styles": []
+        }
+      ],
+      "tags": {
+        "grounds": [],
+        "distances": [
+          "mid"
+        ],
+        "styles": []
+      }
+    }
+  },
+  {
+    "id": 204532,
+    "name": "華麗な踏み込み",
+    "baseSp": 190,
+    "rarity": 1,
+    "groupId": 20453,
+    "groupRate": 1,
+    "iconId": 0,
+    "lowerSkillId": null,
+    "upperSkillId": 204531,
+    "activation": {
+      "branches": [
+        {
+          "grounds": [],
+          "distances": [
+            "mid"
+          ],
+          "styles": []
+        }
+      ],
+      "tags": {
+        "grounds": [],
+        "distances": [
+          "mid"
+        ],
+        "styles": []
+      }
+    }
+  },
+  {
     "id": 204541,
     "name": "急先鋒",
     "baseSp": 170,
@@ -32399,6 +32665,64 @@
     }
   },
   {
+    "id": 204571,
+    "name": "純真無垢",
+    "baseSp": 180,
+    "rarity": 2,
+    "groupId": 20457,
+    "groupRate": 2,
+    "iconId": 0,
+    "lowerSkillId": 204572,
+    "upperSkillId": null,
+    "activation": {
+      "branches": [
+        {
+          "grounds": [],
+          "distances": [],
+          "styles": [
+            "senko"
+          ]
+        }
+      ],
+      "tags": {
+        "grounds": [],
+        "distances": [],
+        "styles": [
+          "senko"
+        ]
+      }
+    }
+  },
+  {
+    "id": 204572,
+    "name": "ただその先へ",
+    "baseSp": 180,
+    "rarity": 1,
+    "groupId": 20457,
+    "groupRate": 1,
+    "iconId": 0,
+    "lowerSkillId": null,
+    "upperSkillId": 204571,
+    "activation": {
+      "branches": [
+        {
+          "grounds": [],
+          "distances": [],
+          "styles": [
+            "senko"
+          ]
+        }
+      ],
+      "tags": {
+        "grounds": [],
+        "distances": [],
+        "styles": [
+          "senko"
+        ]
+      }
+    }
+  },
+  {
     "id": 204581,
     "name": "抱えた動揺",
     "baseSp": 0,
@@ -32408,6 +32732,218 @@
     "iconId": 20064,
     "lowerSkillId": null,
     "upperSkillId": null,
+    "activation": {
+      "branches": [
+        {
+          "grounds": [],
+          "distances": [],
+          "styles": []
+        }
+      ],
+      "tags": {
+        "grounds": [],
+        "distances": [],
+        "styles": []
+      }
+    }
+  },
+  {
+    "id": 204591,
+    "name": "アタシは抑えない！！",
+    "baseSp": 0,
+    "rarity": 1,
+    "groupId": 20459,
+    "groupRate": -1,
+    "iconId": 10054,
+    "lowerSkillId": null,
+    "upperSkillId": null,
+    "activation": {
+      "branches": [
+        {
+          "grounds": [],
+          "distances": [],
+          "styles": []
+        }
+      ],
+      "tags": {
+        "grounds": [],
+        "distances": [],
+        "styles": []
+      }
+    }
+  },
+  {
+    "id": 204601,
+    "name": "アタシが苦しい！？",
+    "baseSp": 0,
+    "rarity": 1,
+    "groupId": 20460,
+    "groupRate": -1,
+    "iconId": 20014,
+    "lowerSkillId": null,
+    "upperSkillId": null,
+    "activation": {
+      "branches": [
+        {
+          "grounds": [],
+          "distances": [],
+          "styles": []
+        }
+      ],
+      "tags": {
+        "grounds": [],
+        "distances": [],
+        "styles": []
+      }
+    }
+  },
+  {
+    "id": 204611,
+    "name": "アタシアタシアタシ！！",
+    "baseSp": 0,
+    "rarity": 1,
+    "groupId": 20461,
+    "groupRate": -1,
+    "iconId": 10054,
+    "lowerSkillId": null,
+    "upperSkillId": null,
+    "activation": {
+      "branches": [
+        {
+          "grounds": [],
+          "distances": [],
+          "styles": []
+        }
+      ],
+      "tags": {
+        "grounds": [],
+        "distances": [],
+        "styles": []
+      }
+    }
+  },
+  {
+    "id": 204622,
+    "name": "連綿",
+    "baseSp": 200,
+    "rarity": 1,
+    "groupId": 20462,
+    "groupRate": 1,
+    "iconId": 0,
+    "lowerSkillId": null,
+    "upperSkillId": null,
+    "activation": {
+      "branches": [
+        {
+          "grounds": [],
+          "distances": [],
+          "styles": []
+        }
+      ],
+      "tags": {
+        "grounds": [],
+        "distances": [],
+        "styles": []
+      }
+    }
+  },
+  {
+    "id": 204632,
+    "name": "広がる景色",
+    "baseSp": 160,
+    "rarity": 1,
+    "groupId": 20463,
+    "groupRate": 1,
+    "iconId": 0,
+    "lowerSkillId": null,
+    "upperSkillId": null,
+    "activation": {
+      "branches": [
+        {
+          "grounds": [],
+          "distances": [
+            "mid"
+          ],
+          "styles": [
+            "oikomi"
+          ]
+        }
+      ],
+      "tags": {
+        "grounds": [],
+        "distances": [
+          "mid"
+        ],
+        "styles": [
+          "oikomi"
+        ]
+      }
+    }
+  },
+  {
+    "id": 204642,
+    "name": "私の足取り",
+    "baseSp": 180,
+    "rarity": 1,
+    "groupId": 20464,
+    "groupRate": 1,
+    "iconId": 0,
+    "lowerSkillId": null,
+    "upperSkillId": null,
+    "activation": {
+      "branches": [
+        {
+          "grounds": [],
+          "distances": [],
+          "styles": [
+            "oikomi"
+          ]
+        }
+      ],
+      "tags": {
+        "grounds": [],
+        "distances": [],
+        "styles": [
+          "oikomi"
+        ]
+      }
+    }
+  },
+  {
+    "id": 204701,
+    "name": "素質の証明",
+    "baseSp": 200,
+    "rarity": 2,
+    "groupId": 20470,
+    "groupRate": 2,
+    "iconId": 0,
+    "lowerSkillId": 204702,
+    "upperSkillId": null,
+    "activation": {
+      "branches": [
+        {
+          "grounds": [],
+          "distances": [],
+          "styles": []
+        }
+      ],
+      "tags": {
+        "grounds": [],
+        "distances": [],
+        "styles": []
+      }
+    }
+  },
+  {
+    "id": 204702,
+    "name": "突き抜ける走り",
+    "baseSp": 200,
+    "rarity": 1,
+    "groupId": 20470,
+    "groupRate": 1,
+    "iconId": 0,
+    "lowerSkillId": null,
+    "upperSkillId": 204701,
     "activation": {
       "branches": [
         {
@@ -39326,6 +39862,48 @@
     }
   },
   {
+    "id": 901411,
+    "name": "光れ！弾けろ！超新星爆発！",
+    "baseSp": 200,
+    "rarity": 1,
+    "groupId": 90141,
+    "groupRate": 2,
+    "iconId": 0,
+    "lowerSkillId": null,
+    "upperSkillId": null,
+    "activation": {
+      "branches": [
+        {
+          "grounds": [],
+          "distances": [],
+          "styles": [
+            "nige"
+          ]
+        },
+        {
+          "grounds": [],
+          "distances": [],
+          "styles": [
+            "senko"
+          ]
+        },
+        {
+          "grounds": [],
+          "distances": [],
+          "styles": []
+        }
+      ],
+      "tags": {
+        "grounds": [],
+        "distances": [],
+        "styles": [
+          "nige",
+          "senko"
+        ]
+      }
+    }
+  },
+  {
     "id": 901431,
     "name": "Ring-a-Link",
     "baseSp": 200,
@@ -41985,6 +42563,31 @@
     }
   },
   {
+    "id": 911131,
+    "name": "渚のヴィーナスタイム♡",
+    "baseSp": 200,
+    "rarity": 1,
+    "groupId": 91113,
+    "groupRate": 2,
+    "iconId": 0,
+    "lowerSkillId": null,
+    "upperSkillId": null,
+    "activation": {
+      "branches": [
+        {
+          "grounds": [],
+          "distances": [],
+          "styles": []
+        }
+      ],
+      "tags": {
+        "grounds": [],
+        "distances": [],
+        "styles": []
+      }
+    }
+  },
+  {
     "id": 911161,
     "name": "不凋なるCattleya",
     "baseSp": 200,
@@ -43684,6 +44287,48 @@
         "styles": [
           "sashi",
           "oikomi"
+        ]
+      }
+    }
+  },
+  {
+    "id": 91101411,
+    "name": "光れ！弾けろ！超新星爆発！",
+    "baseSp": 0,
+    "rarity": 6,
+    "groupId": 9110141,
+    "groupRate": 1,
+    "iconId": 0,
+    "lowerSkillId": null,
+    "upperSkillId": null,
+    "activation": {
+      "branches": [
+        {
+          "grounds": [],
+          "distances": [],
+          "styles": [
+            "nige"
+          ]
+        },
+        {
+          "grounds": [],
+          "distances": [],
+          "styles": [
+            "senko"
+          ]
+        },
+        {
+          "grounds": [],
+          "distances": [],
+          "styles": []
+        }
+      ],
+      "tags": {
+        "grounds": [],
+        "distances": [],
+        "styles": [
+          "nige",
+          "senko"
         ]
       }
     }
@@ -60685,6 +61330,68 @@
     }
   },
   {
+    "id": 111302111,
+    "name": "愛されすぎてマジごめん♡",
+    "baseSp": 0,
+    "rarity": 6,
+    "groupId": 11130211,
+    "groupRate": 1,
+    "iconId": 0,
+    "lowerSkillId": null,
+    "upperSkillId": null,
+    "activation": {
+      "branches": [
+        {
+          "grounds": [],
+          "distances": [
+            "mid"
+          ],
+          "styles": [
+            "senko"
+          ]
+        }
+      ],
+      "tags": {
+        "grounds": [],
+        "distances": [
+          "mid"
+        ],
+        "styles": [
+          "senko"
+        ]
+      }
+    }
+  },
+  {
+    "id": 111302211,
+    "name": "秘める気のない才気",
+    "baseSp": 0,
+    "rarity": 6,
+    "groupId": 11130221,
+    "groupRate": 1,
+    "iconId": 0,
+    "lowerSkillId": null,
+    "upperSkillId": null,
+    "activation": {
+      "branches": [
+        {
+          "grounds": [],
+          "distances": [
+            "mid"
+          ],
+          "styles": []
+        }
+      ],
+      "tags": {
+        "grounds": [],
+        "distances": [
+          "mid"
+        ],
+        "styles": []
+      }
+    }
+  },
+  {
     "id": 111401111,
     "name": "ふたりの約束、とどく時",
     "baseSp": 0,
@@ -62519,6 +63226,115 @@
         "distances": [],
         "styles": [
           "nige"
+        ]
+      }
+    }
+  },
+  {
+    "id": 114101111,
+    "name": "星奔光天",
+    "baseSp": 0,
+    "rarity": 6,
+    "groupId": 11410111,
+    "groupRate": 1,
+    "iconId": 0,
+    "lowerSkillId": null,
+    "upperSkillId": null,
+    "activation": {
+      "branches": [
+        {
+          "grounds": [
+            "turf"
+          ],
+          "distances": [],
+          "styles": [
+            "senko"
+          ]
+        },
+        {
+          "grounds": [],
+          "distances": [],
+          "styles": []
+        }
+      ],
+      "tags": {
+        "grounds": [
+          "turf"
+        ],
+        "distances": [],
+        "styles": [
+          "senko"
+        ]
+      }
+    }
+  },
+  {
+    "id": 114101211,
+    "name": "天意の彼方",
+    "baseSp": 0,
+    "rarity": 6,
+    "groupId": 11410121,
+    "groupRate": 1,
+    "iconId": 0,
+    "lowerSkillId": null,
+    "upperSkillId": null,
+    "activation": {
+      "branches": [
+        {
+          "grounds": [],
+          "distances": [
+            "mid"
+          ],
+          "styles": [
+            "senko"
+          ]
+        },
+        {
+          "grounds": [],
+          "distances": [],
+          "styles": []
+        }
+      ],
+      "tags": {
+        "grounds": [],
+        "distances": [
+          "mid"
+        ],
+        "styles": [
+          "senko"
+        ]
+      }
+    }
+  },
+  {
+    "id": 114101221,
+    "name": "久遠の天際",
+    "baseSp": 0,
+    "rarity": 6,
+    "groupId": 11410122,
+    "groupRate": 1,
+    "iconId": 0,
+    "lowerSkillId": null,
+    "upperSkillId": null,
+    "activation": {
+      "branches": [
+        {
+          "grounds": [],
+          "distances": [
+            "long"
+          ],
+          "styles": [
+            "senko"
+          ]
+        }
+      ],
+      "tags": {
+        "grounds": [],
+        "distances": [
+          "long"
+        ],
+        "styles": [
+          "senko"
         ]
       }
     }

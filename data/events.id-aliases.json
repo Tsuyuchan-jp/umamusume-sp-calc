@@ -1,6 +1,6 @@
 {
   "description": "Phase B 移行用: 旧 events.json id → 新 id（1バージョンのみ保持）",
-  "migratedAt": "2026-07-30T08:10:47.536Z",
+  "migratedAt": "2026-08-29T17:11:07.523Z",
   "eventAliases": {},
   "choiceAliases": {}
 }
