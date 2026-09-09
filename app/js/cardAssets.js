@@ -17,6 +17,18 @@ const DEFAULT_STYLE = {
 /** 画像 URL のキャッシュ回避（追加前の 404 が残るのを防ぐ。版上げ時に更新） */
 const ASSET_CACHE_BUST = "1.0.6";
 
+/** ハブ利用時は origin（末尾 /）。null なら同梱 assets/ */
+let assetOrigin = null;
+let cacheBust = ASSET_CACHE_BUST;
+
+/**
+ * @param {{ origin?: string|null, cacheBust?: string }} [opts]
+ */
+export function configureCardAssets(opts = {}) {
+  assetOrigin = opts.origin || null;
+  if (opts.cacheBust) cacheBust = String(opts.cacheBust);
+}
+
 /** @param {string} [type] */
 export function getSupportTypeStyle(type) {
   return SUPPORT_TYPE_STYLES[type] || DEFAULT_STYLE;
@@ -27,7 +39,13 @@ export function getSupportTypeStyle(type) {
  * @param {string} relFromApp 例: supports/30305.webp
  */
 function assetUrl(relFromApp) {
-  const rel = `../assets/${relFromApp}?v=${ASSET_CACHE_BUST}`;
+  if (assetOrigin) {
+    const path = String(relFromApp).replace(/^\/+/, "");
+    const url = new URL(`assets/${path}`, assetOrigin);
+    url.searchParams.set("v", cacheBust);
+    return url.href;
+  }
+  const rel = `../assets/${relFromApp}?v=${cacheBust}`;
   if (typeof window !== "undefined" && window.location?.href) {
     try {
       return new URL(rel, window.location.href).href;

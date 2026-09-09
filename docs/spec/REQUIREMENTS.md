@@ -81,7 +81,7 @@ mdb は白・金それぞれ別 `baseSp` を持つ（合算済みではない）
 - **シナリオ**: 当面 **トレセン軒のみ**（約4ヶ月想定）。参考: [umasim ramen_memo.md](https://github.com/mee1080/umasim/blob/main/data/ramen_memo.md)
 - **イベント**: 優先42サポカ分。**U-tools + mdb 抽出**が正本（`npm run extract:events` → `apply:events`）。例外は `events.preserve.json`（GameWith 一時含む）。全サポカ一括はスコープ外。トレヒントは mdb 自動。
 - **優先枠の新規追加方針**: ガチ本育成で使う最新の**課金必須 SSR**を原則とする。過去の SR 等は網羅しない。無料配布 SSR は都度判断。
-- **サポカ UI 絞込**: 「イベント対応のみ」はデフォルト ON（`prioritySupportIds` で id 照合。名前マッチは使わない）。選択中カードはその枠に残す。
+- **サポカ UI 絞込**: 対象分（画像かつ events）のみ選択可。`prioritySupportIds` で id 照合。名前マッチは使わない。「イベント対応」トグル OFF＝全件編成は廃止。選択中カードはその枠に残す（SSR／タイプ絞込時）。
 - **結果スキルレギュ**: バ場／距離／作戦（未選択＝全 ON）。表示行（最上段 skillId）の `activation` で互換判定（チェーン下位は OR しない）。セグメント選択で即確定。手動 OFF はレギュ変更でも維持
 
 ## 優先サポカ（events.json 対象・42種）

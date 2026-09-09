@@ -96,8 +96,7 @@
               <li>
                 <strong>サポートカードを最大6枚</strong>選ぶ
                 <ul>
-                  <li>ピッカー内で「イベント対応」トグルをON（既定）。全件を見たいときはOFF</li>
-                  <li>検索（ローマ字可）・SSR・タイプでも絞れる</li>
+                  <li>候補はイベント対応分のみ。検索（ローマ字可）・SSR・タイプでも絞れる</li>
                 </ul>
               </li>
               <li>
@@ -155,7 +154,7 @@
           <div class="help-section__content">
             <p>
               <strong id="event-scope-lead">サポカイベントは優先42種のみ対応</strong><br />
-              イベント由来のスキルは、対応リストのサポカを編成したときだけ計上されます。それ以外のサポカはトレヒントのみ反映されます。
+              サポカ選択はイベント対応分（画像かつ events があるカード）のみです。イベント由来のスキルは、そのサポカを編成したときだけ計上されます。
             </p>
             <p id="event-scope-list-title" class="event-scope-panel__list-title">対応サポカ一覧（42種）</p>
             <ol id="event-priority-support-list" class="event-scope-list"></ol>
@@ -672,16 +671,6 @@
           <div class="card-picker__tools">
             <button
               type="button"
-              id="picker-event-only"
-              class="card-picker__tog is-on"
-              aria-pressed="true"
-              data-filter="event"
-            >
-              <span class="card-picker__tog-knob" aria-hidden="true"></span>
-              イベント対応
-            </button>
-            <button
-              type="button"
               id="picker-ssr-only"
               class="card-picker__tog card-picker__tog--cyan"
               aria-pressed="false"
@@ -730,6 +719,6 @@
 
     <div id="share-card-mount" class="share-card-mount" aria-hidden="true"></div>
 
-    <script type="module" src="js/app.js?v=1.0.6"></script>
+    <script type="module" src="js/app.js?v=1.0.7"></script>
   </body>
 </html>

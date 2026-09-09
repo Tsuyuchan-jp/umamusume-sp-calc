@@ -8,7 +8,7 @@
     "extract": "node scripts/extract_mdb.mjs",
     "patch:activation": "node scripts/patch_skill_activation.mjs",
     "relink-skills": "node scripts/relink_skills.mjs",
-    "test": "node scripts/test_sp.mjs && node scripts/test_skill_activation.mjs && node scripts/test_copy_included_skills.mjs && node scripts/test_design_snapshot.mjs && node scripts/test_skill_source.mjs && node scripts/test_share_card_filename.mjs && node scripts/test_design_title.mjs",
+    "test": "node scripts/test_sp.mjs && node scripts/test_skill_activation.mjs && node scripts/test_copy_included_skills.mjs && node scripts/test_design_snapshot.mjs && node scripts/test_skill_source.mjs && node scripts/test_share_card_filename.mjs && node scripts/test_design_title.mjs && node scripts/test_hub.mjs",
     "verify": "node scripts/verify_data.mjs",
     "bind-priority": "node scripts/bind_priority.mjs",
     "render:priority-supports": "node scripts/render_priority_supports.mjs",

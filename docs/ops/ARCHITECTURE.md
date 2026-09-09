@@ -23,28 +23,15 @@ umamusume-sp-calc/
 
 - **静的フロントのみ**（ビルドツール・フレームワークなし）
 - ES modules（`type="module"`）
-- `fetch` で `../data/*.json` を読むため、原則 **HTTP サーバー経由**で `app/` を配信
+- 既定は公開棚 `umamusume-data` の第1波を `fetch`。失敗時や `?hub=local` は同梱 `../data/*.json` と `../assets/`。HTTP サーバー経由で `app/` を配信
 
 ## データフロー
 
 ```text
-master.mdb
-    │ extract_mdb.mjs
-    ▼
-data/skills.json + supports.json + characters.json
-    │
-U-tools SSR + mdb ──► extract_support_events.mjs
-    │                      │
-    │                      ▼
-    │               events.extracted.json
-    │                      │ apply_extracted_events.mjs
-    │                      │ (+ events.preserve.json)
-    ▼                      ▼
-data/events.json ──────────────┐
-data/scenarios/toresenken.json ┤
-    │                           │
-    ▼                           ▼
-app.js (loadJson) ──► buildSkillPlan(aggregate.js)
+umamusume-data（棚・第1波）  ──失敗時──► 同梱 data/*.json + assets/
+        │
+        ▼
+app.js (loadCardDataset) ──► buildSkillPlan(aggregate.js)
                           │
                           ├─ サポカ hintSkillIds → トレヒントLv
                           ├─ 育成ウマ娘所持スキル → Lv3
@@ -68,7 +55,8 @@ app.js (loadJson) ──► buildSkillPlan(aggregate.js)
 | `aggregate.js` | 全由来のヒント収集と合計 |
 | `copyIncludedSkills.js` | 含める ON 行のクリップボード書き出し |
 | `designSnapshot.js` / `designMemory.js` | 設計メモリ |
-| `cardAssets.js` | カード画像 URL |
+| `cardAssets.js` | カード画像 URL（ハブ origin 可） |
+| `hub.js` | 公開棚の第1波取得。失敗時は同梱 |
 | `htmlEscape.js` | HTML エスケープ共通 |
 | `eventUi.js` | 列下イベント要約・選択ダイアログ／スプリット詳細 |
 | `scenarioLinkUi.js` | シナリオリンク・シニア RMJ チップ UI |

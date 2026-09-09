@@ -25,7 +25,7 @@ const SUPPORT_TYPE_LABELS = {
  *   getState: () => any,
  *   getCharacterById: (id: number) => object | undefined,
  *   getSupportById: (id: number) => object | undefined,
- *   getPrioritySupportIdSet: () => Set<number>,
+ *   getAllowedSupportIdSet: () => Set<number>,
  *   inheritBaseSp: number,
  *   getExcludedCount: () => number,
  *   eventUi: {
@@ -44,7 +44,7 @@ export function createDeckUi(deps) {
     getState,
     getCharacterById,
     getSupportById,
-    getPrioritySupportIdSet,
+    getAllowedSupportIdSet,
     inheritBaseSp,
     getExcludedCount,
     eventUi,
@@ -103,11 +103,9 @@ export function createDeckUi(deps) {
   }
 
   function getSupportFilterState() {
-    const eventBtn = document.getElementById("picker-event-only");
     const ssrBtn = document.getElementById("picker-ssr-only");
     return {
       query: "",
-      eventOnly: eventBtn?.classList.contains("is-on") ?? true,
       ssrOnly: ssrBtn?.classList.contains("is-on") ?? false,
       type: supportPickerTypeFilter,
     };
@@ -124,8 +122,8 @@ export function createDeckUi(deps) {
   function supportMatchesFilters(s, filters, keepId) {
     if (filters.type && s.type !== filters.type) return false;
     if (filters.query && !supportSearchHaystack(s).includes(filters.query)) return false;
+    if (!getAllowedSupportIdSet().has(s.id)) return false;
     if (keepId != null && s.id === keepId) return true;
-    if (filters.eventOnly && !getPrioritySupportIdSet().has(s.id)) return false;
     if (filters.ssrOnly && s.rarity !== "SSR") return false;
     return true;
   }

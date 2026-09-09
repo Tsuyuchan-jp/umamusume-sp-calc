@@ -1,5 +1,6 @@
 import { buildSkillPlan } from "./aggregate.js";
-import { shortSupportLabel } from "./cardAssets.js";
+import { configureCardAssets, shortSupportLabel } from "./cardAssets.js";
+import { allowedSupportIds, hubPreferenceFromSearch, loadCardDataset } from "./hub.js";
 import { createLayoutMode } from "./layoutMode.js";
 import { createDeckUi } from "./deckUi.js";
 import { escapeHtml } from "./htmlEscape.js";
@@ -45,18 +46,15 @@ let currentReguExcludedCount = 0;
 /** コピーボタンの既定ラベル */
 let copyIncludedSkillsDefaultLabel = "";
 
-/** イベントヒント対応サポカ id（events.json の prioritySupportIds） */
+/** 対象サポカ id（画像 ∩ events。ハブの supports と同じ集合） */
 /** @type {Set<number>} */
-let prioritySupportIdSet = new Set();
+let allowedSupportIdSet = new Set();
 
 /** 前回の合計SP（差分表示用） */
 let previousTotal = null;
 
 /** 差分ハイライトのタイマー */
 let deltaHideTimer = null;
-
-/** Pages の max-age キャッシュで古い events.json が残るのを防ぐ（版上げ時に更新） */
-const DATA_CACHE_BUST = "1.0.6";
 
 /** イベント選択 UI（関数宣言はホイストされるので deps で参照可） */
 const eventUi = createEventUi({
@@ -93,7 +91,7 @@ const deckUi = createDeckUi({
   getState: () => state,
   getCharacterById,
   getSupportById,
-  getPrioritySupportIdSet: () => prioritySupportIdSet,
+  getAllowedSupportIdSet: () => allowedSupportIdSet,
   inheritBaseSp: INHERIT_BASE_SP,
   getExcludedCount: () => excludedSkillIds.size,
   eventUi,
@@ -162,15 +160,6 @@ const shareCardUi = createShareCardUi({
   getReguExcludedCount: () => currentReguExcludedCount,
   readDesignTitle,
 });
-
-async function loadJson(path) {
-  const sep = path.includes("?") ? "&" : "?";
-  const url = `${path}${sep}v=${encodeURIComponent(DATA_CACHE_BUST)}`;
-  // no-cache: キャッシュがあっても再検証する（デプロイ直後の古い JSON 滞留を避ける）
-  const res = await fetch(url, { cache: "no-cache" });
-  if (!res.ok) throw new Error(`${path}: ${res.status}`);
-  return res.json();
-}
 
 function showError(msg) {
   const el = document.getElementById("load-error");
@@ -759,19 +748,25 @@ function applyDefaultSupports() {
 
 async function init() {
   try {
-    const [skills, supports, characters, events, scenario] = await Promise.all([
-      loadJson("../data/skills.json"),
-      loadJson("../data/supports.json"),
-      loadJson("../data/characters.json"),
-      loadJson("../data/events.json"),
-      loadJson("../data/scenarios/toresenken.json"),
-    ]);
+    const pref =
+      typeof window !== "undefined"
+        ? hubPreferenceFromSearch(window.location.search)
+        : "auto";
+    const cardPack = await loadCardDataset(pref);
+    const { skills, supports, characters, events, scenario } = cardPack.dataset;
+    configureCardAssets({
+      origin: cardPack.assetBase,
+      cacheBust: cardPack.manifest?.datasetVersion,
+    });
 
-    prioritySupportIdSet = new Set(events.prioritySupportIds || []);
+    allowedSupportIdSet = allowedSupportIds(supports, events);
+    const targetSupports = Array.isArray(supports)
+      ? supports.filter((s) => allowedSupportIdSet.has(s.id))
+      : [];
 
     state = {
       skills,
-      supports,
+      supports: targetSupports,
       characters,
       events,
       scenario,
@@ -829,7 +824,9 @@ async function init() {
         "対処:\n" +
         "1. リポジトリ直下で npm run serve を実行\n" +
         "2. ブラウザで http://localhost:8080/app/ を開く\n" +
-        "3. data/*.json が無い場合は npm run extract を実行\n\n" +
+        "3. 既定は公開棚 umamusume-data を参照する。失敗時は同梱 data/ に戻る\n" +
+        "4. 同梱だけ使うときは ?hub=local。棚必須は ?hub=remote\n" +
+        "5. 同梱 data/*.json が無い場合は npm run extract を実行\n\n" +
         "※ index.html をダブルクリック（file://）では動きません。\n" +
         "※ app/ だけをサイトルートにすると ../data/ が読めません。"
     );

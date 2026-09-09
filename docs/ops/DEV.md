@@ -32,6 +32,11 @@ npm run serve
 
 ブラウザ: http://localhost:8080/app/
 
+カード系マスタとカード画像は、既定で公開棚 `umamusume-data` を取る。失敗時は同梱 `data/` `assets/` に戻る。
+
+- `?hub=local` … 同梱だけ
+- `?hub=remote` … ハブ必須（失敗したら起動しない）
+
 `app/` だけをルートにすると `../data/*.json` が 404 になる。
 
 データが無いときは [GAME_UPDATE_RUNBOOK.md](./GAME_UPDATE_RUNBOOK.md) の extract 手順へ。
