@@ -8,6 +8,7 @@ import { fileURLToPath } from "node:url";
 import {
   allowedSupportIds,
   hubFileUrl,
+  hubManifestUrl,
   hubPreferenceFromSearch,
 } from "../app/js/hub.js";
 
@@ -37,6 +38,11 @@ check(
   "hubFileUrl に版クエリ",
   hubFileUrl("https://example.test/hub/", "data/skills.json", "0.1.1") ===
     "https://example.test/hub/data/skills.json?v=0.1.1"
+);
+check(
+  "hubManifestUrl に時刻クエリ",
+  hubManifestUrl("https://example.test/hub/", 1700000000000) ===
+    "https://example.test/hub/manifest.json?t=1700000000000"
 );
 
 const hubDir = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../../umamusume-data");

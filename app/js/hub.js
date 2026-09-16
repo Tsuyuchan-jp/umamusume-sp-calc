@@ -16,15 +16,24 @@ export function hubPreferenceFromSearch(search = "") {
   return "auto";
 }
 
-export function hubFileUrl(base, relPath, version = "") {
+export function hubFileUrl(base, relPath, version = "", extra = {}) {
   const normalized = String(relPath || "").replace(/^\.\//, "");
   const url = new URL(normalized, base);
   if (version) url.searchParams.set("v", String(version));
+  for (const [key, val] of Object.entries(extra || {})) {
+    if (val == null || val === "") continue;
+    url.searchParams.set(key, String(val));
+  }
   return url.href;
 }
 
-export async function fetchJson(url) {
-  const res = await fetch(url);
+/** マニフェストだけ毎回取り直す（ブラウザ／CDN の旧版掴み防止） */
+export function hubManifestUrl(base, nowMs = Date.now()) {
+  return hubFileUrl(base, "manifest.json", "", { t: String(nowMs) });
+}
+
+export async function fetchJson(url, init = {}) {
+  const res = await fetch(url, init);
   if (!res.ok) throw new Error(`${url} HTTP ${res.status}`);
   return res.json();
 }
@@ -56,7 +65,7 @@ async function loadLocalCardDataset() {
 }
 
 async function loadHubCardDataset(base) {
-  const manifest = await fetchJson(hubFileUrl(base, "manifest.json"));
+  const manifest = await fetchJson(hubManifestUrl(base), { cache: "no-store" });
   const files = manifest?.files;
   if (!files?.skills?.path || !files?.supports?.path || !files?.characters?.path) {
     throw new Error("manifest に第1波の files がありません");
