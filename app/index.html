@@ -198,7 +198,8 @@
             </div>
             <p>トレヒントLvを下げても、イベントやシナリオなど<strong>他由来のヒントが高ければそちらが優先</strong>されます（いちばん高い Lv を採用）。</p>
             <p><strong>SP の計算（イメージ）</strong><br />
-              <code>必要SP ≒ 基準SP ×（1 − ヒント割引 − 切れ者なら10%）</code>（小数点以下切り捨て）
+              <code>必要SP ≒ 基準SP ×（1 − ヒント割引 − 状態割引）</code>（小数点以下切り捨て）<br />
+              状態割引は、勉強家が4%、切れ者が10%です（重複しません）。
             </p>
             <p>ヒント割引の目安:</p>
             <div class="help-table-wrap">
@@ -633,6 +634,7 @@
     </div>
 
     <input type="checkbox" id="fast-learner" hidden aria-hidden="true" />
+    <input type="hidden" id="skill-discount-state" value="none" />
     <input type="checkbox" id="inherit-enabled" hidden aria-hidden="true" />
     <input type="hidden" id="inherit-count" value="4" />
     <input type="hidden" id="inherit-hint" value="3" />

@@ -458,6 +458,16 @@ body.layout-split .panel--deck > .app-header {
   box-shadow: none;
 }
 
+.total-sp-bar-chips .premise-chip--discount {
+  box-sizing: border-box;
+  width: 9rem;
+  white-space: nowrap;
+}
+
+.discount-label--compact {
+  display: none;
+}
+
 .total-sp-bar-chips .premise-chip--warn {
   background: rgba(255, 244, 212, 0.95);
   border-color: rgba(245, 207, 111, 0.55);
@@ -810,6 +820,20 @@ body.layout-split .panel--deck > .app-header {
 
 .inherit-formula.is-off .inherit-formula__meta {
   color: #9a96ad;
+}
+
+@media (max-width: 480px) {
+  .total-sp-bar-chips .premise-chip--discount {
+    width: 6.4rem;
+  }
+
+  .discount-label--full {
+    display: none;
+  }
+
+  .discount-label--compact {
+    display: inline;
+  }
 }
 
 @media (max-width: 1199px) {

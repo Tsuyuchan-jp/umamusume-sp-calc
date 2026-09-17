@@ -244,7 +244,9 @@ export function createDeckUi(deps) {
       count,
       hint,
       base: inheritBaseSp,
-      fast: Boolean(document.getElementById("fast-learner")?.checked),
+      skillDiscountState:
+        document.getElementById("skill-discount-state")?.value ||
+        (document.getElementById("fast-learner")?.checked ? "fast" : "none"),
     };
   }
 
@@ -274,7 +276,7 @@ export function createDeckUi(deps) {
     setInheritSeg(document.getElementById("inherit-seg-count"), "data-inherit-count", params.count);
     setInheritSeg(document.getElementById("inherit-seg-hint"), "data-inherit-hint", params.hint);
 
-    const unit = calcSkillCost(params.base, params.hint, params.fast);
+    const unit = calcSkillCost(params.base, params.hint, params.skillDiscountState);
     const total = unit * params.count;
 
     const unitEl = document.getElementById("inherit-formula-unit");
@@ -289,10 +291,12 @@ export function createDeckUi(deps) {
     if (metaEl) {
       if (!params.enabled) {
         metaEl.textContent = `加算OFF · ヒントLv${params.hint}`;
-      } else if (params.fast) {
+      } else if (params.skillDiscountState === "fast") {
         metaEl.innerHTML = `ヒントLv${params.hint} · <em>切れ者あり</em>`;
+      } else if (params.skillDiscountState === "studious") {
+        metaEl.innerHTML = `ヒントLv${params.hint} · <em>勉強家あり</em>`;
       } else {
-        metaEl.textContent = `ヒントLv${params.hint} · 切れ者なし`;
+        metaEl.textContent = `ヒントLv${params.hint} · 状態割引なし`;
       }
     }
 
@@ -351,10 +355,20 @@ export function createDeckUi(deps) {
     const excludedEl = document.getElementById("total-sp-bar-excluded");
     if (!el) return;
 
-    const fast = document.getElementById("fast-learner")?.checked;
+    const skillDiscountState =
+      document.getElementById("skill-discount-state")?.value ||
+      (document.getElementById("fast-learner")?.checked ? "fast" : "none");
     const trainingLv = document.getElementById("training-hint-level")?.value || "5";
     const inherit = readInheritParams();
-    const fastClass = fast ? "premise-chip premise-chip--on" : "premise-chip";
+    const discountLabels = {
+      none: { full: "勉強家/切れ者 OFF", compact: "割引 OFF" },
+      studious: { full: "勉強家 ON", compact: "勉強家 ON" },
+      fast: { full: "切れ者 ON", compact: "切れ者 ON" },
+    };
+    const discountLabel = discountLabels[skillDiscountState] || discountLabels.none;
+    const fastClass = skillDiscountState !== "none"
+      ? "premise-chip premise-chip--discount premise-chip--on"
+      : "premise-chip premise-chip--discount";
     const inheritClass = [
       "premise-chip",
       inherit.enabled ? "premise-chip--on" : "",
@@ -364,7 +378,7 @@ export function createDeckUi(deps) {
       .join(" ");
 
     el.innerHTML = `
-    <button type="button" class="${fastClass}" id="bar-premise-fast-learner" aria-pressed="${fast ? "true" : "false"}">切れ者 ${fast ? "ON" : "OFF"}</button>
+    <button type="button" class="${fastClass}" id="bar-premise-fast-learner" aria-pressed="${skillDiscountState !== "none" ? "true" : "false"}" aria-label="スキルポイント割引: ${discountLabel.full}"><span class="discount-label--full">${discountLabel.full}</span><span class="discount-label--compact">${discountLabel.compact}</span></button>
     <div class="premise-chip premise-chip--training" role="group" aria-label="トレヒントLv">
       <span class="premise-chip__prefix">トレLv</span>
       <button type="button" class="premise-lv${trainingLv === "3" ? " is-on" : ""}" data-training-lv="3">3</button>
@@ -396,7 +410,11 @@ export function createDeckUi(deps) {
       if (t.id === "bar-premise-fast-learner" || t.closest("#bar-premise-fast-learner")) {
         const cb = document.getElementById("fast-learner");
         if (!cb) return;
-        cb.checked = !cb.checked;
+        const stateInput = document.getElementById("skill-discount-state");
+        const current = stateInput?.value || (cb.checked ? "fast" : "none");
+        const next = current === "none" ? "studious" : current === "studious" ? "fast" : "none";
+        if (stateInput) stateInput.value = next;
+        cb.checked = next === "fast";
         updateTotalBarChips();
         recalc();
         return;

@@ -81,7 +81,7 @@ export function getLowerChain(skill, skillById) {
  * @param {object} skill - 表示対象（一覧の行）
  * @param {Map<number, object>} skillById
  * @param {Map<number, { hintLevel: number }>} hintMap
- * @param {boolean} fastLearner
+ * @param {boolean|"none"|"studious"|"fast"} fastLearner 状態割引（boolean は旧互換）
  */
 export function calcAcquisitionCost(skill, skillById, hintMap, fastLearner) {
   const chain = getLowerChain(skill, skillById);

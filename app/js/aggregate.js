@@ -82,7 +82,7 @@ function appendEventSkills(
  * @param {number} params.characterId
  * @param {number[]} params.supportIds 長さ6
  * @param {Set<number>} params.excludedSkillIds
- * @param {boolean} params.fastLearner
+ * @param {boolean|"none"|"studious"|"fast"} params.fastLearner 状態割引（boolean は旧互換）
  * @param {boolean} params.inheritEnabled
  * @param {number} params.inheritCount 2-6
  * @param {number} params.inheritHintLevel 1-5

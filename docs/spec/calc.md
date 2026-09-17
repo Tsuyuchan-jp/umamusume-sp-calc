@@ -29,7 +29,9 @@
 ### 単体
 
 ```text
-cost = floor(baseSp * (1 - hintDiscount - (切れ者 ? 0.10 : 0)))
+cost = floor(baseSp * (1 - hintDiscount - stateDiscount))
+
+stateDiscount は OFF が 0、勉強家が 0.04、切れ者が 0.10。勉強家と切れ者は重複しない。
 ```
 
 ヒント割引:

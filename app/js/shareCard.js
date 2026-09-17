@@ -282,7 +282,12 @@ export function buildShareCardModel(params) {
     inheritLine: options.inheritEnabled
       ? `継承 ×${options.inheritCount} Lv${options.inheritHintLevel}`
       : "継承 OFF",
-    fastLearner: Boolean(options.fastLearner),
+    skillDiscountState:
+      options.skillDiscountState === "studious" || options.skillDiscountState === "fast"
+        ? options.skillDiscountState
+        : options.fastLearner
+          ? "fast"
+          : "none",
     title,
     subtitle: characterName,
     characterId: ui.characterId,
@@ -382,7 +387,13 @@ export function renderShareCardElement(model) {
 
   const charUrl =
     model.characterId != null ? characterImageUrl(model.characterId) : "";
-  const fastOn = model.fastLearner;
+  const discountLabels = {
+    none: "勉強家/切れ者 OFF",
+    studious: "勉強家 ON",
+    fast: "切れ者 ON",
+  };
+  const skillDiscountState = model.skillDiscountState || "none";
+  const discountLabel = discountLabels[skillDiscountState] || discountLabels.none;
 
   // DOM 骨格はモック article.share と同一
   article.innerHTML = `
@@ -415,9 +426,9 @@ export function renderShareCardElement(model) {
               <h2 class="head__title">${escapeHtml(model.title)}</h2>
               <p class="head__sub">${escapeHtml(model.subtitle)}</p>
             </div>
-            <div class="fast-inline${fastOn ? "" : " is-off"}" title="切れ者 ${fastOn ? "ON" : "OFF"}">
-              <span class="fast-inline__mark">切れ者</span>
-              <span class="fast-inline__state">${fastOn ? "ON" : "OFF"}</span>
+            <div class="fast-inline${skillDiscountState === "none" ? " is-off" : ""}" title="${discountLabel}">
+              <span class="fast-inline__mark">${skillDiscountState === "studious" ? "勉強家" : "切れ者"}</span>
+              <span class="fast-inline__state">${skillDiscountState === "none" ? "OFF" : "ON"}</span>
             </div>
           </div>
 

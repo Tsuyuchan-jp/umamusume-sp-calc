@@ -33,6 +33,8 @@ assertEq(calcSkillCost(170, 1), 153, "Lv1");
 assertEq(calcSkillCost(170, 2), 136, "Lv2");
 assertEq(calcSkillCost(170, 5), 102, "Lv5");
 assertEq(calcSkillCost(170, 5, true), 85, "Lv5+切れ者");
+assertEq(calcSkillCost(170, 5, "studious"), 95, "Lv5+勉強家");
+assertEq(calcSkillCost(170, 5, "fast"), 85, "Lv5+切れ者（状態指定）");
 
 // 実機検証: 強者の証 Lv2 + さらなる高みへ Lv0
 const white = {

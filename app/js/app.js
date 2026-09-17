@@ -273,6 +273,7 @@ function resetToInitialDesign() {
     state.scenario.seniorRmjChoice?.defaultChoiceId ?? "ramen_yokubari";
 
   writeDesignOptions({
+    skillDiscountState: "none",
     fastLearner: false,
     trainingHintLevel: 5,
     inheritEnabled: false,
@@ -389,8 +390,13 @@ function bindHelpDialog() {
 /** 計算前提オプションを DOM から収集 */
 function readDesignOptions() {
   const inherit = deckUi.readInheritParams();
+  const skillDiscountState =
+    document.getElementById("skill-discount-state")?.value ||
+    (document.getElementById("fast-learner")?.checked ? "fast" : "none");
   return {
-    fastLearner: document.getElementById("fast-learner")?.checked ?? false,
+    skillDiscountState,
+    // 旧メモリとの互換性のため残す。新規保存では skillDiscountState を正とする。
+    fastLearner: skillDiscountState === "fast",
     trainingHintLevel: Number(document.getElementById("training-hint-level")?.value) || 5,
     inheritEnabled: inherit.enabled,
     inheritCount: inherit.count,
@@ -402,7 +408,15 @@ function readDesignOptions() {
 /** 計算前提オプションを DOM へ書き戻し */
 function writeDesignOptions(options = {}) {
   const fast = document.getElementById("fast-learner");
-  if (fast) fast.checked = Boolean(options.fastLearner);
+  const skillDiscountState =
+    options.skillDiscountState === "studious" || options.skillDiscountState === "fast"
+      ? options.skillDiscountState
+      : options.fastLearner
+        ? "fast"
+        : "none";
+  const discountState = document.getElementById("skill-discount-state");
+  if (discountState) discountState.value = skillDiscountState;
+  if (fast) fast.checked = skillDiscountState === "fast";
 
   const training = document.getElementById("training-hint-level");
   if (training && options.trainingHintLevel != null) {
@@ -612,7 +626,9 @@ function recalc() {
     characterId: state.ui.characterId,
     supportIds: getSupportIds(),
     excludedSkillIds: new Set(),
-    fastLearner: document.getElementById("fast-learner").checked,
+    fastLearner:
+      document.getElementById("skill-discount-state")?.value ||
+      (document.getElementById("fast-learner").checked ? "fast" : "none"),
     inheritEnabled: inherit.enabled,
     inheritCount: inherit.count,
     inheritHintLevel: inherit.hint,
