@@ -824,7 +824,9 @@ body.layout-split .panel--deck > .app-header {
 
 @media (max-width: 480px) {
   .total-sp-bar-chips .premise-chip--discount {
-    width: 6.4rem;
+    width: 5.5rem;
+    padding-left: 0.45rem;
+    padding-right: 0.45rem;
   }
 
   .discount-label--full {
