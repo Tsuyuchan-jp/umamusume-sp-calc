@@ -1,4 +1,4 @@
-import { createCardPicker } from "./cardPicker.js?v=1.0.5";
+import { createCardPicker } from "./cardPicker.js?v=1.0.7";
 import {
   characterImageUrl,
   getSupportTypeStyle,
@@ -8,7 +8,7 @@ import {
 } from "./cardAssets.js";
 import { buildCharacterNameSearchText, normalizeSearchText } from "./searchText.js";
 import { escapeHtml } from "./htmlEscape.js";
-import { calcSkillCost } from "./spCost.js";
+import { calcSkillCost } from "./spCost.js?v=1.0.7";
 
 const SUPPORT_TYPE_LABELS = {
   speed: "スピード",

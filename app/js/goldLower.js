@@ -1,4 +1,4 @@
-import { calcSkillCost } from "./spCost.js";
+import { calcSkillCost } from "./spCost.js?v=1.0.7";
 
 /** 購入チェーンに含めるスキルか（group_rate < 0 の×等は除外） */
 export function isChainMember(skill) {

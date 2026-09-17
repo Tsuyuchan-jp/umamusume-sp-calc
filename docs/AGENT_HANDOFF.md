@@ -9,7 +9,7 @@
 
 | 項目 | 状態 |
 |------|------|
-| アプリ | **v1.0.6** 公開。SP計算・デュアルUI・スクショ（WebP保存）・スマホ対応・集計実装済み |
+| アプリ | **v1.0.7** 公開。SP計算・デュアルUI・スクショ（WebP保存）・スマホ対応・集計実装済み |
 | データ | skills / supports / characters / events / toresenken。起動時は棚 `umamusume-data` 第1波を参照（失敗時は同梱） |
 | events | 優先42・117イベント（U-tools+mdb + preserve。30307/30308/30311/30312 は GameWith 一時） |
 | カード画像 | ハブの webp（失敗時は同梱 サポカ縦42 + 育成 `chr_icon`） |
@@ -18,7 +18,7 @@
 | push / Pages | **通常どおり push 可**（v1.0.0 で初反映。以降は変更のたびコミット＋明示時 push） |
 | 初期編成 | 育成112901（アーモンドアイ）/ 枠1エアグルーヴ・枠2テイオー・枠3タップ・枠4ドトウ・枠5ヤング・枠6たづな |
 | 編成スクショ | **本実装完了・実機OK**（v28.1・snapdom）。[product/screenshot-requirements.md](./product/screenshot-requirements.md) |
-| v1 レビュー | M1〜M4・スマホ対応 **クローズ**。8/24 パッチ追従 **クローズ**（v1.0.6）。次は TODO Open（P1 共有カード右背景 等） |
+| v1 レビュー | M1〜M4・スマホ対応 **クローズ**。8/24 パッチ追従 **クローズ**（v1.0.6）。状態割引3段階トグルを追加（v1.0.7）。次は TODO Open（P1 共有カード右背景 等） |
 
 通し確認・版履歴の詳細は [CHANGELOG.md](./CHANGELOG.md)。
 

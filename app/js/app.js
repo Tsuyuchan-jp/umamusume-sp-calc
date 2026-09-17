@@ -1,8 +1,8 @@
-import { buildSkillPlan } from "./aggregate.js";
+import { buildSkillPlan } from "./aggregate.js?v=1.0.7";
 import { configureCardAssets, shortSupportLabel } from "./cardAssets.js";
 import { allowedSupportIds, hubPreferenceFromSearch, loadCardDataset } from "./hub.js";
 import { createLayoutMode } from "./layoutMode.js";
-import { createDeckUi } from "./deckUi.js";
+import { createDeckUi } from "./deckUi.js?v=1.0.7";
 import { escapeHtml } from "./htmlEscape.js";
 import { createEventUi } from "./eventUi.js";
 import {
@@ -24,7 +24,7 @@ import {
 } from "./skillActivation.js";
 import { sortPlanRows } from "./skillSource.js";
 import { createResultTable } from "./resultTable.js";
-import { createShareCardUi } from "./shareCardUi.js";
+import { createShareCardUi } from "./shareCardUi.js?v=1.0.7";
 
 /** 継承固有の baseSp（UIでは非編集・固定） */
 const INHERIT_BASE_SP = 200;

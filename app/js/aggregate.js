@@ -3,8 +3,8 @@ import {
   calcAcquisitionCost,
   filterDisplaySkills,
   getEffectiveHintLevel,
-} from "./goldLower.js";
-import { calcSkillCost } from "./spCost.js";
+} from "./goldLower.js?v=1.0.7";
+import { calcSkillCost } from "./spCost.js?v=1.0.7";
 import {
   getDeckLinkCharacterIds,
   resolveLinkSkill,

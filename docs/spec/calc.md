@@ -116,7 +116,7 @@ cost(白, whiteHintLv) + cost(金, goldHintLv)
 - 親ウマ娘名・固有スキル名は扱わない
 - UI: トータルバーの継承チップでパネル開閉。加算ON/OFFはパネル内トグル
 
-コスト: `calcSkillCost(baseSp, hintLv, 切れ者) * 個数`
+コスト: `calcSkillCost(baseSp, hintLv, stateDiscount) * 個数`
 
 スキル数表示: 個数分を本数として加算（`skillWeight`）。コピー・絞込・activation は対象外のまま
 
